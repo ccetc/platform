@@ -222,7 +222,46 @@
 	      return _react2.default.createElement(
 	        "div",
 	        { className: "platform" },
-	        this.props.children
+	        _react2.default.createElement(
+	          "div",
+	          { className: "platorm-drawer" },
+	          _react2.default.createElement(
+	            "div",
+	            { className: "platorm-branding" },
+	            "PLATFORM"
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "platorm-apps" },
+	            _react2.default.createElement(
+	              "div",
+	              { className: "platorm-app" },
+	              _react2.default.createElement("i", { className: "user icon" }),
+	              "Contacts"
+	            ),
+	            _react2.default.createElement(
+	              "div",
+	              { className: "platorm-app" },
+	              _react2.default.createElement("i", { className: "setting icon" }),
+	              "Settings"
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          "div",
+	          { className: "platorm-canvas" },
+	          _react2.default.createElement(
+	            "div",
+	            { className: "platorm-topbar" },
+	            "topbar"
+	          ),
+	          _react2.default.createElement(
+	            "a",
+	            { href: "http://google.com" },
+	            "hey"
+	          ),
+	          this.props.children
+	        )
 	      );
 	    }
 	  }]);

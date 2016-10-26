@@ -60,6 +60,8 @@
 
 	var _client2 = _interopRequireDefault(_client);
 
+	__webpack_require__(249);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	_reactDom2.default.render(_react2.default.createElement(_reactRouter.Router, { routes: _client2.default, history: _reactRouter.browserHistory }), document.getElementById('platform'));
@@ -27165,7 +27167,46 @@
 	      return _react2.default.createElement(
 	        "div",
 	        { className: "platform" },
-	        this.props.children
+	        _react2.default.createElement(
+	          "div",
+	          { className: "platorm-drawer" },
+	          _react2.default.createElement(
+	            "div",
+	            { className: "platorm-branding" },
+	            "PLATFORM"
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "platorm-apps" },
+	            _react2.default.createElement(
+	              "div",
+	              { className: "platorm-app" },
+	              _react2.default.createElement("i", { className: "user icon" }),
+	              "Contacts"
+	            ),
+	            _react2.default.createElement(
+	              "div",
+	              { className: "platorm-app" },
+	              _react2.default.createElement("i", { className: "setting icon" }),
+	              "Settings"
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          "div",
+	          { className: "platorm-canvas" },
+	          _react2.default.createElement(
+	            "div",
+	            { className: "platorm-topbar" },
+	            "topbar"
+	          ),
+	          _react2.default.createElement(
+	            "a",
+	            { href: "http://google.com" },
+	            "hey"
+	          ),
+	          this.props.children
+	        )
 	      );
 	    }
 	  }]);
@@ -27661,6 +27702,12 @@
 	}(_react2.default.Component);
 
 	exports.default = List;
+
+/***/ },
+/* 249 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);

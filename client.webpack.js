@@ -1,10 +1,12 @@
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
+
 module.exports = {
   entry: {
     platform: './src/client.js'
   },
   output: {
-    path: './dist/public/js',
-    filename: 'platform.js'
+    path: './dist/public',
+    filename: 'js/[name].js'
   },
   module: {
     loaders: [
@@ -16,7 +18,14 @@ module.exports = {
           presets: ['es2015','react','stage-0'],
           plugins: ['transform-flow-strip-types']
         }
+      },
+      {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract('css!sass?outputStyle=compressed&sourceMapEmbed=true')
       }
     ]
-  }
+  },
+  plugins: [
+    new ExtractTextPlugin('css/styles.min.css')
+  ]
 }
