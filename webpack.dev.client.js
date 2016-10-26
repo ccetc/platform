@@ -1,4 +1,6 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var path = require('path')
+var compassPath = path.resolve(__dirname, './node_modules/compass-mixins/lib')
 
 module.exports = {
   entry: {
@@ -21,7 +23,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('css!sass?outputStyle=compressed&sourceMapEmbed=true')
+        loader: ExtractTextPlugin.extract('css!sass?outputStyle=compressed&sourceMapEmbed=true&includePaths[]='+compassPath)
       }
     ]
   },
