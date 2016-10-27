@@ -63,12 +63,13 @@
     "style-loader": "^0.13.1",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.2",
-    "webpack-node-externals": "^1.5.4"
+    "webpack-node-externals": "^1.5.4",
+    "webpack-uglify-js-plugin": "^1.1.9"
   },
   "scripts": {
     "build:clean": "rm -rf ./dist && mkdir ./dist",
-    "build:server": "webpack --config webpack.dev.server.js",
-    "build:client": "cp -rp ./src/public ./dist/public && webpack --config webpack.dev.client.js",
+    "build:server": "webpack --config config/webpack.development.server.js",
+    "build:client": "cp -rp ./src/public ./dist/public && webpack --config config/webpack.development.client.js",
     "start": "node dist/server.js",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "test": "jest .",
