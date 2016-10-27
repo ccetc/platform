@@ -1268,7 +1268,7 @@
 
 	      return _react2.default.createElement(
 	        _reactAddonsCssTransitionGroup2.default,
-	        { transitionName: 'expanded', transitionAppear: true, transitionEnterTimeout: 250, transitionLeaveTimeout: 250 },
+	        { transitionName: 'expanded', transitionAppear: true, transitionEnterTimeout: 250, transitionLeaveTimeout: 250, transitionAppearTimeout: 250 },
 	        expanded && _react2.default.createElement('div', { key: 'chrome-drawer-overlay', className: 'chrome-drawer-overlay', onClick: this._handleToggleDrawer.bind(this) }),
 	        expanded && _react2.default.createElement(
 	          'div',
