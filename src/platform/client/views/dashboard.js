@@ -6,6 +6,10 @@ class Dashboard extends React.Component {
     return <p>Dashboard</p>
   }
 
+  componentDidMount() {
+    
+  }
+
 }
 
 export default Dashboard

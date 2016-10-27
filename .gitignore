@@ -1,5 +1,5 @@
 node_modules
-uglify_cache
+cached_uglify
 dist
 npm-debug.log
 coverage
