@@ -11,16 +11,16 @@ const INITIAL_STATE = {
     // { story: { text: 'This is what happened' } },
     // { story: { text: 'This is what happened next' } }
   ],
-  results: [
-    // { name: 'Greg Kops', email: 'gmk8@cornell.edu', photo: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-1/p320x320/11905777_10153132112387338_9017849880928176850_n.jpg?oh=5fe3364029062b65f8192a14ebc893ab&oe=58A477BA' },
-    // { name: 'Greg Kops', email: 'gmk8@cornell.edu', photo: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-1/p320x320/11905777_10153132112387338_9017849880928176850_n.jpg?oh=5fe3364029062b65f8192a14ebc893ab&oe=58A477BA' },
-    // { name: 'Greg Kops', email: 'gmk8@cornell.edu', photo: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-1/p320x320/11905777_10153132112387338_9017849880928176850_n.jpg?oh=5fe3364029062b65f8192a14ebc893ab&oe=58A477BA' },
-    // { name: 'Greg Kops', email: 'gmk8@cornell.edu', photo: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-1/p320x320/11905777_10153132112387338_9017849880928176850_n.jpg?oh=5fe3364029062b65f8192a14ebc893ab&oe=58A477BA' }
-  ],
+  search: {
+    query: '',
+    active: false,
+    results: [],
+    choice: null
+  },
   user: {
     name: 'Greg Kops',
     email: 'gmk8@cornell.edu',
-    photo: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-1/p320x320/11905777_10153132112387338_9017849880928176850_n.jpg?oh=5fe3364029062b65f8192a14ebc893ab&oe=58A477BA'
+    photo: '/images/greg.jpg'
   }
 }
 
@@ -39,6 +39,55 @@ export default (state = INITIAL_STATE, action) => {
       ...state,
       active: action.index,
       expanded: false
+    }
+
+  case actionTypes.BEGIN_SEARCH:
+    return {
+      ...state,
+      search: {
+        ...state.search,
+        active: true
+      }
+    }
+
+  case actionTypes.ABORT_SEARCH:
+    return {
+      ...state,
+      search: {
+        ...state.search,
+        active: false
+      }
+    }
+
+  case actionTypes.COMPLETE_SEARCH:
+    return {
+      ...state,
+      search: {
+        ...state.search,
+        query: '',
+        active: false,
+        results: [],
+        choice: state.search.results[action.index]
+      }
+    }
+
+  case actionTypes.LOOKUP:
+    return {
+      ...state,
+      search: {
+        ...state.search,
+        query: action.query,
+        results: (action.query.length > 0) ? [
+          { name: 'Ken Schlather', email: 'ks47@cornell.edu', photo: '/images/ken.jpg', route: '/crm/contacts/1' },
+          { name: 'Sandy Repp', email: 'sjr37@cornell.edu', photo: '/images/sandy.jpg', route: '/crm/contacts/2' },
+          { name: 'Sharon Anderson', email: 'ska2@cornell.edu', photo: '/images/sharon.jpg', route: '/crm/contacts/3' },
+          { name: 'Greg Kops', email: 'gmk8@cornell.edu', photo: '/images/greg.jpg', route: '/crm/contacts/4' },
+          { name: 'Ken Schlather', email: 'ks47@cornell.edu', photo: '/images/ken.jpg', route: '/crm/contacts/1' },
+          { name: 'Sandy Repp', email: 'sjr37@cornell.edu', photo: '/images/sandy.jpg', route: '/crm/contacts/2' },
+          { name: 'Sharon Anderson', email: 'ska2@cornell.edu', photo: '/images/sharon.jpg', route: '/crm/contacts/3' },
+          { name: 'Greg Kops', email: 'gmk8@cornell.edu', photo: '/images/greg.jpg', route: '/crm/contacts/4' }
+        ] : []
+      }
     }
 
   default:

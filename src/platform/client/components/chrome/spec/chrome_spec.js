@@ -6,14 +6,14 @@ jest.unmock('../components/chrome')
 
 describe('chrome component', () => {
 
-  it('renders expanded', () => {
+  it('renders', () => {
     const config = {
       expanded: true
     }
     const chrome = shallow(
       <Chrome {...config}>children</Chrome>
     )
-    expect(chrome.is('div.chrome.expanded')).toBeTruthy()
+    expect(chrome.is('div.chrome')).toBeTruthy()
     expect(chrome.children().length).toEqual(2)
 
     const drawer = chrome.childAt(0)
@@ -29,16 +29,6 @@ describe('chrome component', () => {
     expect(header.is('div.chrome-header')).toBeTruthy()
 
     expect(canvas.childAt(2).text()).toEqual('children')
-  })
-
-  it('renders collapsed', () => {
-    const config = {
-      expanded: false
-    }
-    const chrome = shallow(
-      <Chrome {...config} />
-    )
-    expect(chrome.is('div.chrome')).toBeTruthy()
   })
 
 })

@@ -60,7 +60,7 @@
 
 	var _client2 = _interopRequireDefault(_client);
 
-	__webpack_require__(343);
+	__webpack_require__(344);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27117,15 +27117,15 @@
 
 	var _chrome2 = _interopRequireDefault(_chrome);
 
-	var _dashboard = __webpack_require__(331);
+	var _dashboard = __webpack_require__(332);
 
 	var _dashboard2 = _interopRequireDefault(_dashboard);
 
-	var _client = __webpack_require__(332);
+	var _client = __webpack_require__(333);
 
 	var _client2 = _interopRequireDefault(_client);
 
-	var _client3 = __webpack_require__(336);
+	var _client3 = __webpack_require__(337);
 
 	var _client4 = _interopRequireDefault(_client3);
 
@@ -34527,16 +34527,16 @@
 	    // { story: { text: 'This is what happened' } },
 	    // { story: { text: 'This is what happened next' } }
 	  ],
-	  results: [
-	    // { name: 'Greg Kops', email: 'gmk8@cornell.edu', photo: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-1/p320x320/11905777_10153132112387338_9017849880928176850_n.jpg?oh=5fe3364029062b65f8192a14ebc893ab&oe=58A477BA' },
-	    // { name: 'Greg Kops', email: 'gmk8@cornell.edu', photo: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-1/p320x320/11905777_10153132112387338_9017849880928176850_n.jpg?oh=5fe3364029062b65f8192a14ebc893ab&oe=58A477BA' },
-	    // { name: 'Greg Kops', email: 'gmk8@cornell.edu', photo: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-1/p320x320/11905777_10153132112387338_9017849880928176850_n.jpg?oh=5fe3364029062b65f8192a14ebc893ab&oe=58A477BA' },
-	    // { name: 'Greg Kops', email: 'gmk8@cornell.edu', photo: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-1/p320x320/11905777_10153132112387338_9017849880928176850_n.jpg?oh=5fe3364029062b65f8192a14ebc893ab&oe=58A477BA' }
-	  ],
+	  search: {
+	    query: '',
+	    active: false,
+	    results: [],
+	    choice: null
+	  },
 	  user: {
 	    name: 'Greg Kops',
 	    email: 'gmk8@cornell.edu',
-	    photo: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-1/p320x320/11905777_10153132112387338_9017849880928176850_n.jpg?oh=5fe3364029062b65f8192a14ebc893ab&oe=58A477BA'
+	    photo: '/images/greg.jpg'
 	  }
 	};
 
@@ -34558,6 +34558,38 @@
 	        expanded: false
 	      });
 
+	    case actionTypes.BEGIN_SEARCH:
+	      return _extends({}, state, {
+	        search: _extends({}, state.search, {
+	          active: true
+	        })
+	      });
+
+	    case actionTypes.ABORT_SEARCH:
+	      return _extends({}, state, {
+	        search: _extends({}, state.search, {
+	          active: false
+	        })
+	      });
+
+	    case actionTypes.COMPLETE_SEARCH:
+	      return _extends({}, state, {
+	        search: _extends({}, state.search, {
+	          query: '',
+	          active: false,
+	          results: [],
+	          choice: state.search.results[action.index]
+	        })
+	      });
+
+	    case actionTypes.LOOKUP:
+	      return _extends({}, state, {
+	        search: _extends({}, state.search, {
+	          query: action.query,
+	          results: action.query.length > 0 ? [{ name: 'Ken Schlather', email: 'ks47@cornell.edu', photo: '/images/ken.jpg', route: '/crm/contacts/1' }, { name: 'Sandy Repp', email: 'sjr37@cornell.edu', photo: '/images/sandy.jpg', route: '/crm/contacts/2' }, { name: 'Sharon Anderson', email: 'ska2@cornell.edu', photo: '/images/sharon.jpg', route: '/crm/contacts/3' }, { name: 'Greg Kops', email: 'gmk8@cornell.edu', photo: '/images/greg.jpg', route: '/crm/contacts/4' }, { name: 'Ken Schlather', email: 'ks47@cornell.edu', photo: '/images/ken.jpg', route: '/crm/contacts/1' }, { name: 'Sandy Repp', email: 'sjr37@cornell.edu', photo: '/images/sandy.jpg', route: '/crm/contacts/2' }, { name: 'Sharon Anderson', email: 'ska2@cornell.edu', photo: '/images/sharon.jpg', route: '/crm/contacts/3' }, { name: 'Greg Kops', email: 'gmk8@cornell.edu', photo: '/images/greg.jpg', route: '/crm/contacts/4' }] : []
+	        })
+	      });
+
 	    default:
 	      return state;
 	  }
@@ -34574,8 +34606,12 @@
 	});
 	var TOGGLE_DRAWER = exports.TOGGLE_DRAWER = 'chrome/TOGGLE_DRAWER';
 	var CHANGE_APP = exports.CHANGE_APP = 'chrome/CHANGE_APP';
-	var PUSH_NOTIFICATION = exports.PUSH_NOTIFICATION = 'application/PUSH_NOTIFICATION';
-	var READ_NOTIFICATION = exports.READ_NOTIFICATION = 'application/READ_NOTIFICATION';
+	var PUSH_NOTIFICATION = exports.PUSH_NOTIFICATION = 'chrome/PUSH_NOTIFICATION';
+	var READ_NOTIFICATION = exports.READ_NOTIFICATION = 'chrome/READ_NOTIFICATION';
+	var BEGIN_SEARCH = exports.BEGIN_SEARCH = 'chrome/BEGIN_SEARCH';
+	var ABORT_SEARCH = exports.ABORT_SEARCH = 'chrome/ABORT_SEARCH';
+	var COMPLETE_SEARCH = exports.COMPLETE_SEARCH = 'chrome/COMPLETE_SEARCH';
+	var LOOKUP = exports.LOOKUP = 'chrome/LOOKUP';
 
 /***/ },
 /* 318 */
@@ -34647,17 +34683,9 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactAddonsCssTransitionGroup = __webpack_require__(320);
-
-	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
-
 	var _reactRedux = __webpack_require__(236);
 
-	var _actions = __webpack_require__(327);
-
-	var actions = _interopRequireWildcard(_actions);
-
-	var _drawer = __webpack_require__(328);
+	var _drawer = __webpack_require__(320);
 
 	var _drawer2 = _interopRequireDefault(_drawer);
 
@@ -34665,11 +34693,9 @@
 
 	var _topbar2 = _interopRequireDefault(_topbar);
 
-	var _notifications = __webpack_require__(330);
+	var _notifications = __webpack_require__(331);
 
 	var _notifications2 = _interopRequireDefault(_notifications);
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -34691,17 +34717,10 @@
 	  _createClass(Chrome, [{
 	    key: 'render',
 	    value: function render() {
-	      var expanded = this.props.expanded;
-
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'chrome' },
-	        _react2.default.createElement(
-	          _reactAddonsCssTransitionGroup2.default,
-	          { transitionName: 'expanded', transitionAppear: true, transitionEnterTimeout: 250, transitionLeaveTimeout: 250 },
-	          expanded && _react2.default.createElement(_drawer2.default, { key: 'chrome-drawer' }),
-	          expanded && _react2.default.createElement('div', { key: 'chrome-expanded', className: 'chrome-overlay', onClick: this._handleToggleDrawer.bind(this) })
-	        ),
+	        _react2.default.createElement(_drawer2.default, null),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'chrome-canvas' },
@@ -34738,12 +34757,127 @@
 	        )
 	      );
 	    }
+	  }]);
+
+	  return Chrome;
+	}(_react2.default.Component);
+
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    apps: state.chrome.apps,
+	    active: state.chrome.active
+	  };
+	};
+
+	var mapDispatchToProps = {};
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Chrome);
+
+/***/ },
+/* 320 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.Drawer = undefined;
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactAddonsCssTransitionGroup = __webpack_require__(321);
+
+	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
+	var _reactRedux = __webpack_require__(236);
+
+	var _actions = __webpack_require__(328);
+
+	var actions = _interopRequireWildcard(_actions);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Drawer = exports.Drawer = function (_React$Component) {
+	  _inherits(Drawer, _React$Component);
+
+	  function Drawer() {
+	    _classCallCheck(this, Drawer);
+
+	    return _possibleConstructorReturn(this, (Drawer.__proto__ || Object.getPrototypeOf(Drawer)).apply(this, arguments));
+	  }
+
+	  _createClass(Drawer, [{
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      var _props = this.props;
+	      var active = _props.active;
+	      var apps = _props.apps;
+	      var expanded = _props.expanded;
+	      var user = _props.user;
+
+	      return _react2.default.createElement(
+	        _reactAddonsCssTransitionGroup2.default,
+	        { transitionName: 'expanded', transitionAppear: true, transitionEnterTimeout: 250, transitionLeaveTimeout: 250 },
+	        expanded && _react2.default.createElement('div', { key: 'chrome-drawer-overlay', className: 'chrome-drawer-overlay', onClick: this._handleToggleDrawer.bind(this) }),
+	        expanded && _react2.default.createElement(
+	          'div',
+	          { key: 'chrome-drawer', className: 'chrome-drawer' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'chrome-presence' },
+	            _react2.default.createElement('img', { src: user.photo, className: 'ui image circular' }),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'chrome-user' },
+	              _react2.default.createElement(
+	                'h2',
+	                null,
+	                user.name
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                user.email
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'chrome-apps' },
+	            apps.map(function (app, index) {
+	              var classes = index === active ? 'chrome-app active' : 'chrome-app';
+	              return _react2.default.createElement(
+	                'div',
+	                { key: 'app_' + index, className: classes, onClick: _this2._handleChangeApp.bind(_this2, index) },
+	                _react2.default.createElement('i', { className: app.icon + ' icon' }),
+	                app.name
+	              );
+	            })
+	          )
+	        )
+	      );
+	    }
 	  }, {
 	    key: 'componentDidUpdate',
 	    value: function componentDidUpdate(prevProps) {
-	      var _props = this.props;
-	      var apps = _props.apps;
-	      var active = _props.active;
+	      var _props2 = this.props;
+	      var active = _props2.active;
+	      var apps = _props2.apps;
 
 	      var app = apps[active];
 	      if (prevProps.active != active) {
@@ -34756,38 +34890,45 @@
 	    value: function _handleToggleDrawer() {
 	      this.props.onToggleDrawer();
 	    }
+	  }, {
+	    key: '_handleChangeApp',
+	    value: function _handleChangeApp(index) {
+	      this.props.onChangeApp(index);
+	    }
 	  }]);
 
-	  return Chrome;
+	  return Drawer;
 	}(_react2.default.Component);
 
-	Chrome.contextTypes = {
+	Drawer.contextTypes = {
 	  history: _react2.default.PropTypes.object
 	};
 
 
 	var mapStateToProps = function mapStateToProps(state) {
 	  return {
-	    expanded: state.chrome.expanded,
+	    active: state.chrome.active,
 	    apps: state.chrome.apps,
-	    active: state.chrome.active
+	    expanded: state.chrome.expanded,
+	    user: state.chrome.user
 	  };
 	};
 
 	var mapDispatchToProps = {
+	  onChangeApp: actions.changeApp,
 	  onToggleDrawer: actions.toggleDrawer
 	};
 
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Chrome);
-
-/***/ },
-/* 320 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__(321);
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Drawer);
 
 /***/ },
 /* 321 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(322);
+
+/***/ },
+/* 322 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -34807,8 +34948,8 @@
 
 	var React = __webpack_require__(2);
 
-	var ReactTransitionGroup = __webpack_require__(322);
-	var ReactCSSTransitionGroupChild = __webpack_require__(324);
+	var ReactTransitionGroup = __webpack_require__(323);
+	var ReactCSSTransitionGroupChild = __webpack_require__(325);
 
 	function createTransitionTimeoutPropValidator(transitionType) {
 	  var timeoutPropName = 'transition' + transitionType + 'Timeout';
@@ -34879,7 +35020,7 @@
 	module.exports = ReactCSSTransitionGroup;
 
 /***/ },
-/* 322 */
+/* 323 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -34899,7 +35040,7 @@
 
 	var React = __webpack_require__(2);
 	var ReactInstanceMap = __webpack_require__(119);
-	var ReactTransitionChildMapping = __webpack_require__(323);
+	var ReactTransitionChildMapping = __webpack_require__(324);
 
 	var emptyFunction = __webpack_require__(12);
 
@@ -35131,7 +35272,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 323 */
+/* 324 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -35240,7 +35381,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 324 */
+/* 325 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -35259,8 +35400,8 @@
 	var React = __webpack_require__(2);
 	var ReactDOM = __webpack_require__(35);
 
-	var CSSCore = __webpack_require__(325);
-	var ReactTransitionEvents = __webpack_require__(326);
+	var CSSCore = __webpack_require__(326);
+	var ReactTransitionEvents = __webpack_require__(327);
 
 	var onlyChild = __webpack_require__(33);
 
@@ -35412,7 +35553,7 @@
 	module.exports = ReactCSSTransitionGroupChild;
 
 /***/ },
-/* 325 */
+/* 326 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -35539,7 +35680,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 326 */
+/* 327 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -35617,7 +35758,7 @@
 	module.exports = ReactTransitionEvents;
 
 /***/ },
-/* 327 */
+/* 328 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35629,6 +35770,10 @@
 	exports.changeApp = changeApp;
 	exports.pushNotification = pushNotification;
 	exports.readNotification = readNotification;
+	exports.beginSearch = beginSearch;
+	exports.abortSearch = abortSearch;
+	exports.completeSearch = completeSearch;
+	exports.lookup = lookup;
 
 	var _action_types = __webpack_require__(317);
 
@@ -35662,118 +35807,31 @@
 	  };
 	}
 
-/***/ },
-/* 328 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.Drawer = undefined;
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRedux = __webpack_require__(236);
-
-	var _actions = __webpack_require__(327);
-
-	var actions = _interopRequireWildcard(_actions);
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Drawer = exports.Drawer = function (_React$Component) {
-	  _inherits(Drawer, _React$Component);
-
-	  function Drawer() {
-	    _classCallCheck(this, Drawer);
-
-	    return _possibleConstructorReturn(this, (Drawer.__proto__ || Object.getPrototypeOf(Drawer)).apply(this, arguments));
-	  }
-
-	  _createClass(Drawer, [{
-	    key: 'render',
-	    value: function render() {
-	      var _this2 = this;
-
-	      var _props = this.props;
-	      var user = _props.user;
-	      var apps = _props.apps;
-	      var active = _props.active;
-
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'chrome-drawer' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'chrome-presence' },
-	          _react2.default.createElement('img', { src: user.photo, className: 'ui image circular' }),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'chrome-user' },
-	            _react2.default.createElement(
-	              'h2',
-	              null,
-	              user.name
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              user.email
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'chrome-apps' },
-	          apps.map(function (app, index) {
-	            var classes = index === active ? 'chrome-app active' : 'chrome-app';
-	            return _react2.default.createElement(
-	              'div',
-	              { key: 'app_' + index, className: classes, onClick: _this2._handleChangeApp.bind(_this2, index) },
-	              _react2.default.createElement('i', { className: app.icon + ' icon' }),
-	              app.name
-	            );
-	          })
-	        )
-	      );
-	    }
-	  }, {
-	    key: '_handleChangeApp',
-	    value: function _handleChangeApp(index) {
-	      this.props.onChangeApp(index);
-	    }
-	  }]);
-
-	  return Drawer;
-	}(_react2.default.Component);
-
-	var mapStateToProps = function mapStateToProps(state) {
+	function beginSearch() {
 	  return {
-	    active: state.chrome.active,
-	    apps: state.chrome.apps,
-	    user: state.chrome.user
+	    type: actionTypes.BEGIN_SEARCH
 	  };
-	};
+	}
 
-	var mapDispatchToProps = {
-	  onChangeApp: actions.changeApp
-	};
+	function abortSearch() {
+	  return {
+	    type: actionTypes.ABORT_SEARCH
+	  };
+	}
 
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Drawer);
+	function completeSearch(index) {
+	  return {
+	    type: actionTypes.COMPLETE_SEARCH,
+	    index: index
+	  };
+	}
+
+	function lookup(query) {
+	  return {
+	    type: actionTypes.LOOKUP,
+	    query: query
+	  };
+	}
 
 /***/ },
 /* 329 */
@@ -35794,9 +35852,13 @@
 
 	var _reactRedux = __webpack_require__(236);
 
-	var _actions = __webpack_require__(327);
+	var _actions = __webpack_require__(328);
 
 	var actions = _interopRequireWildcard(_actions);
+
+	var _search = __webpack_require__(330);
+
+	var _search2 = _interopRequireDefault(_search);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -35820,8 +35882,6 @@
 	  _createClass(Topbar, [{
 	    key: 'render',
 	    value: function render() {
-	      var results = this.props.results;
-
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'chrome-topbar' },
@@ -35830,38 +35890,7 @@
 	          { className: 'chrome-toggle', onClick: this._handleToggleDrawer.bind(this) },
 	          _react2.default.createElement('i', { className: 'sidebar icon' })
 	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'chrome-search' },
-	          _react2.default.createElement('i', { className: 'search icon' }),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'ui input' },
-	            _react2.default.createElement('input', { type: 'text', placeholder: 'Search' })
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'chrome-search-results' },
-	            results.map(function (result, index) {
-	              return _react2.default.createElement(
-	                'div',
-	                { key: 'result_' + index, className: 'chrome-search-result' },
-	                _react2.default.createElement('img', { src: result.photo }),
-	                _react2.default.createElement(
-	                  'p',
-	                  null,
-	                  _react2.default.createElement(
-	                    'strong',
-	                    null,
-	                    result.name
-	                  ),
-	                  _react2.default.createElement('br', null),
-	                  result.email
-	                )
-	              );
-	            })
-	          )
-	        )
+	        _react2.default.createElement(_search2.default, null)
 	      );
 	    }
 	  }, {
@@ -35875,10 +35904,7 @@
 	}(_react2.default.Component);
 
 	var mapStateToProps = function mapStateToProps(state) {
-	  return {
-	    expanded: state.chrome.expanded,
-	    results: state.chrome.results
-	  };
+	  return {};
 	};
 
 	var mapDispatchToProps = {
@@ -35896,6 +35922,149 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.Search = undefined;
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(236);
+
+	var _actions = __webpack_require__(328);
+
+	var actions = _interopRequireWildcard(_actions);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Search = exports.Search = function (_React$Component) {
+	  _inherits(Search, _React$Component);
+
+	  function Search() {
+	    _classCallCheck(this, Search);
+
+	    return _possibleConstructorReturn(this, (Search.__proto__ || Object.getPrototypeOf(Search)).apply(this, arguments));
+	  }
+
+	  _createClass(Search, [{
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      var _props = this.props;
+	      var active = _props.active;
+	      var results = _props.results;
+	      var query = _props.query;
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'chrome-search' },
+	        _react2.default.createElement('i', { className: 'search icon' }),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'ui input' },
+	          _react2.default.createElement('input', { type: 'text', placeholder: 'Search', ref: 'query', onFocus: this._handleBeginSearch.bind(this), onChange: this._handleLookup.bind(this), value: query })
+	        ),
+	        active && _react2.default.createElement('div', { key: 'chrome-search-overlay', className: 'chrome-search-overlay', onClick: this._handleAbortSearch.bind(this) }),
+	        active && _react2.default.createElement(
+	          'div',
+	          { className: 'chrome-search-results' },
+	          results.map(function (result, index) {
+	            return _react2.default.createElement(
+	              'div',
+	              { key: 'result_' + index, className: 'chrome-search-result', onClick: _this2._handleCompleteSearch.bind(_this2, index) },
+	              _react2.default.createElement('img', { src: result.photo }),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                _react2.default.createElement(
+	                  'strong',
+	                  null,
+	                  result.name
+	                ),
+	                _react2.default.createElement('br', null),
+	                result.email
+	              )
+	            );
+	          })
+	        )
+	      );
+	    }
+	  }, {
+	    key: 'componentDidUpdate',
+	    value: function componentDidUpdate(prevProps) {
+	      var choice = this.props.choice;
+
+	      if (prevProps.choice != choice) {
+	        this.context.history.push(choice.route);
+	      }
+	    }
+	  }, {
+	    key: '_handleBeginSearch',
+	    value: function _handleBeginSearch() {
+	      this.props.onBeginSearch();
+	    }
+	  }, {
+	    key: '_handleAbortSearch',
+	    value: function _handleAbortSearch() {
+	      this.props.onAbortSearch();
+	    }
+	  }, {
+	    key: '_handleCompleteSearch',
+	    value: function _handleCompleteSearch(index) {
+	      this.props.onCompleteSearch(index);
+	    }
+	  }, {
+	    key: '_handleLookup',
+	    value: function _handleLookup(event) {
+	      this.props.onLookup(event.target.value);
+	    }
+	  }]);
+
+	  return Search;
+	}(_react2.default.Component);
+
+	Search.contextTypes = {
+	  history: _react2.default.PropTypes.object
+	};
+
+
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    active: state.chrome.search.active,
+	    query: state.chrome.search.query,
+	    results: state.chrome.search.results,
+	    choice: state.chrome.search.choice
+	  };
+	};
+
+	var mapDispatchToProps = {
+	  onBeginSearch: actions.beginSearch,
+	  onAbortSearch: actions.abortSearch,
+	  onCompleteSearch: actions.completeSearch,
+	  onLookup: actions.lookup
+	};
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Search);
+
+/***/ },
+/* 331 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	exports.Notifications = undefined;
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -35906,7 +36075,7 @@
 
 	var _reactRedux = __webpack_require__(236);
 
-	var _actions = __webpack_require__(327);
+	var _actions = __webpack_require__(328);
 
 	var actions = _interopRequireWildcard(_actions);
 
@@ -35939,22 +36108,18 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'chrome-notifications' },
-	        function () {
-	          if (notifications.length > 0) {
+	        notifications.length > 0 && _react2.default.createElement(
+	          'div',
+	          { className: 'ui raised segments' },
+	          notifications.map(function (notification, index) {
 	            return _react2.default.createElement(
 	              'div',
-	              { className: 'ui raised segments' },
-	              notifications.map(function (notification, index) {
-	                return _react2.default.createElement(
-	                  'div',
-	                  { key: 'notification_' + index, className: 'ui segment' },
-	                  _react2.default.createElement('i', { className: 'fa fa-times', onClick: _this2.readNotification.bind(_this2, notification.id) }),
-	                  notification.story.text
-	                );
-	              })
+	              { key: 'notification_' + index, className: 'ui segment' },
+	              _react2.default.createElement('i', { className: 'fa fa-times', onClick: _this2.readNotification.bind(_this2, notification.id) }),
+	              notification.story.text
 	            );
-	          }
-	        }()
+	          })
+	        )
 	      );
 	    }
 
@@ -36000,7 +36165,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Notifications);
 
 /***/ },
-/* 331 */
+/* 332 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36049,36 +36214,6 @@
 	exports.default = Dashboard;
 
 /***/ },
-/* 332 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRouter = __webpack_require__(172);
-
-	var _contacts = __webpack_require__(333);
-
-	var _contacts2 = _interopRequireDefault(_contacts);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var routes = _react2.default.createElement(
-	  _reactRouter.Route,
-	  { path: 'crm' },
-	  _contacts2.default
-	);
-
-	exports.default = routes;
-
-/***/ },
 /* 333 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -36094,11 +36229,41 @@
 
 	var _reactRouter = __webpack_require__(172);
 
-	var _list = __webpack_require__(334);
+	var _contacts = __webpack_require__(334);
+
+	var _contacts2 = _interopRequireDefault(_contacts);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var routes = _react2.default.createElement(
+	  _reactRouter.Route,
+	  { path: 'crm' },
+	  _contacts2.default
+	);
+
+	exports.default = routes;
+
+/***/ },
+/* 334 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(172);
+
+	var _list = __webpack_require__(335);
 
 	var _list2 = _interopRequireDefault(_list);
 
-	var _show = __webpack_require__(335);
+	var _show = __webpack_require__(336);
 
 	var _show2 = _interopRequireDefault(_show);
 
@@ -36114,7 +36279,7 @@
 	exports.default = routes;
 
 /***/ },
-/* 334 */
+/* 335 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36163,7 +36328,7 @@
 	exports.default = List;
 
 /***/ },
-/* 335 */
+/* 336 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36212,44 +36377,6 @@
 	exports.default = Show;
 
 /***/ },
-/* 336 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRouter = __webpack_require__(172);
-
-	var _apps = __webpack_require__(337);
-
-	var _apps2 = _interopRequireDefault(_apps);
-
-	var _emails = __webpack_require__(339);
-
-	var _emails2 = _interopRequireDefault(_emails);
-
-	var _users = __webpack_require__(341);
-
-	var _users2 = _interopRequireDefault(_users);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = _react2.default.createElement(
-	  _reactRouter.Route,
-	  { path: 'settings' },
-	  _apps2.default,
-	  _emails2.default,
-	  _users2.default
-	);
-
-/***/ },
 /* 337 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -36265,7 +36392,45 @@
 
 	var _reactRouter = __webpack_require__(172);
 
-	var _list = __webpack_require__(338);
+	var _apps = __webpack_require__(338);
+
+	var _apps2 = _interopRequireDefault(_apps);
+
+	var _emails = __webpack_require__(340);
+
+	var _emails2 = _interopRequireDefault(_emails);
+
+	var _users = __webpack_require__(342);
+
+	var _users2 = _interopRequireDefault(_users);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _react2.default.createElement(
+	  _reactRouter.Route,
+	  { path: 'settings' },
+	  _apps2.default,
+	  _emails2.default,
+	  _users2.default
+	);
+
+/***/ },
+/* 338 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(172);
+
+	var _list = __webpack_require__(339);
 
 	var _list2 = _interopRequireDefault(_list);
 
@@ -36280,7 +36445,7 @@
 	exports.default = routes;
 
 /***/ },
-/* 338 */
+/* 339 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36329,7 +36494,7 @@
 	exports.default = List;
 
 /***/ },
-/* 339 */
+/* 340 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36344,7 +36509,7 @@
 
 	var _reactRouter = __webpack_require__(172);
 
-	var _list = __webpack_require__(340);
+	var _list = __webpack_require__(341);
 
 	var _list2 = _interopRequireDefault(_list);
 
@@ -36359,7 +36524,7 @@
 	exports.default = routes;
 
 /***/ },
-/* 340 */
+/* 341 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36408,7 +36573,7 @@
 	exports.default = List;
 
 /***/ },
-/* 341 */
+/* 342 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36423,7 +36588,7 @@
 
 	var _reactRouter = __webpack_require__(172);
 
-	var _list = __webpack_require__(342);
+	var _list = __webpack_require__(343);
 
 	var _list2 = _interopRequireDefault(_list);
 
@@ -36438,7 +36603,7 @@
 	exports.default = routes;
 
 /***/ },
-/* 342 */
+/* 343 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36487,7 +36652,7 @@
 	exports.default = List;
 
 /***/ },
-/* 343 */
+/* 344 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

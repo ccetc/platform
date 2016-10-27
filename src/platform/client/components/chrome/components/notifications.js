@@ -18,22 +18,18 @@ export class Notifications extends React.Component {
     const { notifications } = this.props
     return (
       <div className="chrome-notifications">
-        {(() => {
-          if(notifications.length > 0) {
-            return (
-              <div className="ui raised segments">
-                {notifications.map((notification, index) => {
-                  return (
-                    <div key={`notification_${index}`} className="ui segment">
-                      <i className="fa fa-times" onClick={this.readNotification.bind(this, notification.id)}></i>
-                      {notification.story.text}
-                    </div>
-                  )
-                })}
-              </div>
-            )
-          }
-        })()}
+        { notifications.length > 0 &&
+          <div className="ui raised segments">
+            { notifications.map((notification, index) => {
+              return (
+                <div key={`notification_${index}`} className="ui segment">
+                  <i className="fa fa-times" onClick={this.readNotification.bind(this, notification.id)}></i>
+                  {notification.story.text}
+                </div>
+              )
+            })}
+          </div>
+        }
       </div>
     )
   }

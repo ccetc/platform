@@ -3,28 +3,6 @@
 @import "compass/css3/opacity";
 @import "compass/css3/border-radius";
 
-.chrome-overlay {
-  background-color: rgb(0, 0, 0);
-  transition: opacity .25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -webkit-transition: opacity .25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -moz-transition: opacity .25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  z-index: 10;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  @include opacity(0.2);
-}
-.chrome-overlay.expanded-enter,
-.chrome-overlay.expanded-leave.expanded-leave-active {
-  @include opacity(0);
-}
-.chrome-overlay.expanded-enter.expanded-enter-active,
-.chrome-overlay.expanded-leave {
-  @include opacity(0.2);
-}
-
 .chrome-drawer {
   transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -webkit-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
@@ -45,6 +23,27 @@
 .chrome-drawer.expanded-enter.expanded-enter-active,
 .chrome-drawer.expanded-leave {
   transform: translateX(0);
+}
+.chrome-drawer-overlay {
+  background-color: rgb(0, 0, 0);
+  transition: opacity .25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -webkit-transition: opacity .25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -moz-transition: opacity .25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  @include opacity(0.2);
+}
+.chrome-drawer-overlay.expanded-enter,
+.chrome-drawer-overlay.expanded-leave.expanded-leave-active {
+  @include opacity(0);
+}
+.chrome-drawer-overlay.expanded-enter.expanded-enter-active,
+.chrome-drawer-overlay.expanded-leave {
+  @include opacity(0.2);
 }
 
 .chrome-presence {
@@ -153,9 +152,17 @@
     }
   }
 }
+.chrome-search-overlay {
+  z-index: 10;
+  position: fixed;
+  top: 42px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
 .chrome-search-results {
   border-top: 1px solid #DDD;
-  z-index: 4;
+  z-index: 11;
   position: absolute;
   top: 42px;
   left: 0;
