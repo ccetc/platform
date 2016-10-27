@@ -74,6 +74,8 @@
     "start": "node dist/server.js",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "test": "jest .",
+    "test:server": "jest --testPathPattern=/.*\/server/",
+    "test:client": "jest --testPathPattern=/.*\/client/",
     "coverage": "jest --coverage && codeclimate-test-reporter < coverage/lcov.info",
     "eslint": "eslint ."
   },
