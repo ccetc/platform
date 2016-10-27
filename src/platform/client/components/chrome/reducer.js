@@ -7,6 +7,16 @@ const INITIAL_STATE = {
     { name: 'Contacts', icon: 'user', route: '/crm/contacts' },
     { name: 'Settings', icon: 'setting', route: '/settings/apps' }
   ],
+  notifications: [
+    // { story: { text: 'This is what happened' } },
+    // { story: { text: 'This is what happened next' } }
+  ],
+  results: [
+    // { name: 'Greg Kops', email: 'gmk8@cornell.edu', photo: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-1/p320x320/11905777_10153132112387338_9017849880928176850_n.jpg?oh=5fe3364029062b65f8192a14ebc893ab&oe=58A477BA' },
+    // { name: 'Greg Kops', email: 'gmk8@cornell.edu', photo: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-1/p320x320/11905777_10153132112387338_9017849880928176850_n.jpg?oh=5fe3364029062b65f8192a14ebc893ab&oe=58A477BA' },
+    // { name: 'Greg Kops', email: 'gmk8@cornell.edu', photo: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-1/p320x320/11905777_10153132112387338_9017849880928176850_n.jpg?oh=5fe3364029062b65f8192a14ebc893ab&oe=58A477BA' },
+    // { name: 'Greg Kops', email: 'gmk8@cornell.edu', photo: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-1/p320x320/11905777_10153132112387338_9017849880928176850_n.jpg?oh=5fe3364029062b65f8192a14ebc893ab&oe=58A477BA' }
+  ],
   user: {
     name: 'Greg Kops',
     email: 'gmk8@cornell.edu',

@@ -1,7 +1,10 @@
 import React from 'react'
+import Transition from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
+import * as actions from '../actions'
 import Drawer from './drawer'
 import Topbar from './topbar'
+import Notifications from './notifications'
 
 export class Chrome extends React.Component {
 
@@ -14,10 +17,13 @@ export class Chrome extends React.Component {
   }
 
   render() {
-    const classes = (this.props.expanded) ? 'chrome expanded' : 'chrome'
+    const { expanded } = this.props
     return (
-      <div className={classes}>
-        <Drawer />
+      <div className="chrome">
+        <Transition transitionName="expanded" transitionAppear={true} transitionEnterTimeout={250} transitionLeaveTimeout={250}>
+          { expanded && <Drawer key="chrome-drawer" /> }
+          { expanded && <div key="chrome-expanded" className="chrome-overlay" onClick={this._handleToggleDrawer.bind(this)} /> }
+        </Transition>
         <div className="chrome-canvas">
           <Topbar />
           <div className="chrome-header">
@@ -30,6 +36,7 @@ export class Chrome extends React.Component {
           <div className="chrome-body">
             {this.props.children}
           </div>
+          <Notifications />
         </div>
       </div>
     )
@@ -56,6 +63,8 @@ const mapStateToProps = (state) => ({
   active: state.chrome.active
 })
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = {
+  onToggleDrawer: actions.toggleDrawer
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chrome)

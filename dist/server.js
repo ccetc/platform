@@ -69,8 +69,8 @@
 	server.use('/', assets);
 
 	// api routes
-	server.use('/api/settings', __webpack_require__(42).default);
-	server.use('/api/crm', __webpack_require__(44).default);
+	server.use('/api/settings', __webpack_require__(44).default);
+	server.use('/api/crm', __webpack_require__(46).default);
 
 	// client routes
 	server.get('/[^api]*', _client2.default);
@@ -106,7 +106,7 @@
 
 	var _reactRouter = __webpack_require__(6);
 
-	var _path = __webpack_require__(41);
+	var _path = __webpack_require__(43);
 
 	var _path2 = _interopRequireDefault(_path);
 
@@ -160,15 +160,15 @@
 
 	var _chrome2 = _interopRequireDefault(_chrome);
 
-	var _dashboard = __webpack_require__(29);
+	var _dashboard = __webpack_require__(31);
 
 	var _dashboard2 = _interopRequireDefault(_dashboard);
 
-	var _client = __webpack_require__(30);
+	var _client = __webpack_require__(32);
 
 	var _client2 = _interopRequireDefault(_client);
 
-	var _client3 = __webpack_require__(34);
+	var _client3 = __webpack_require__(36);
 
 	var _client4 = _interopRequireDefault(_client3);
 
@@ -959,6 +959,16 @@
 	  expanded: false,
 	  active: null,
 	  apps: [{ name: 'Contacts', icon: 'user', route: '/crm/contacts' }, { name: 'Settings', icon: 'setting', route: '/settings/apps' }],
+	  notifications: [
+	    // { story: { text: 'This is what happened' } },
+	    // { story: { text: 'This is what happened next' } }
+	  ],
+	  results: [
+	    // { name: 'Greg Kops', email: 'gmk8@cornell.edu', photo: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-1/p320x320/11905777_10153132112387338_9017849880928176850_n.jpg?oh=5fe3364029062b65f8192a14ebc893ab&oe=58A477BA' },
+	    // { name: 'Greg Kops', email: 'gmk8@cornell.edu', photo: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-1/p320x320/11905777_10153132112387338_9017849880928176850_n.jpg?oh=5fe3364029062b65f8192a14ebc893ab&oe=58A477BA' },
+	    // { name: 'Greg Kops', email: 'gmk8@cornell.edu', photo: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-1/p320x320/11905777_10153132112387338_9017849880928176850_n.jpg?oh=5fe3364029062b65f8192a14ebc893ab&oe=58A477BA' },
+	    // { name: 'Greg Kops', email: 'gmk8@cornell.edu', photo: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-1/p320x320/11905777_10153132112387338_9017849880928176850_n.jpg?oh=5fe3364029062b65f8192a14ebc893ab&oe=58A477BA' }
+	  ],
 	  user: {
 	    name: 'Greg Kops',
 	    email: 'gmk8@cornell.edu',
@@ -1000,6 +1010,8 @@
 	});
 	var TOGGLE_DRAWER = exports.TOGGLE_DRAWER = 'chrome/TOGGLE_DRAWER';
 	var CHANGE_APP = exports.CHANGE_APP = 'chrome/CHANGE_APP';
+	var PUSH_NOTIFICATION = exports.PUSH_NOTIFICATION = 'application/PUSH_NOTIFICATION';
+	var READ_NOTIFICATION = exports.READ_NOTIFICATION = 'application/READ_NOTIFICATION';
 
 /***/ },
 /* 24 */
@@ -1071,15 +1083,29 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactAddonsCssTransitionGroup = __webpack_require__(26);
+
+	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
 	var _reactRedux = __webpack_require__(7);
 
-	var _drawer = __webpack_require__(26);
+	var _actions = __webpack_require__(27);
+
+	var actions = _interopRequireWildcard(_actions);
+
+	var _drawer = __webpack_require__(28);
 
 	var _drawer2 = _interopRequireDefault(_drawer);
 
-	var _topbar = __webpack_require__(28);
+	var _topbar = __webpack_require__(29);
 
 	var _topbar2 = _interopRequireDefault(_topbar);
+
+	var _notifications = __webpack_require__(30);
+
+	var _notifications2 = _interopRequireDefault(_notifications);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1101,11 +1127,17 @@
 	  _createClass(Chrome, [{
 	    key: 'render',
 	    value: function render() {
-	      var classes = this.props.expanded ? 'chrome expanded' : 'chrome';
+	      var expanded = this.props.expanded;
+
 	      return _react2.default.createElement(
 	        'div',
-	        { className: classes },
-	        _react2.default.createElement(_drawer2.default, null),
+	        { className: 'chrome' },
+	        _react2.default.createElement(
+	          _reactAddonsCssTransitionGroup2.default,
+	          { transitionName: 'expanded', transitionAppear: true, transitionEnterTimeout: 250, transitionLeaveTimeout: 250 },
+	          expanded && _react2.default.createElement(_drawer2.default, { key: 'chrome-drawer' }),
+	          expanded && _react2.default.createElement('div', { key: 'chrome-expanded', className: 'chrome-overlay', onClick: this._handleToggleDrawer.bind(this) })
+	        ),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'chrome-canvas' },
@@ -1137,7 +1169,8 @@
 	            'div',
 	            { className: 'chrome-body' },
 	            this.props.children
-	          )
+	          ),
+	          _react2.default.createElement(_notifications2.default, null)
 	        )
 	      );
 	    }
@@ -1177,12 +1210,66 @@
 	  };
 	};
 
-	var mapDispatchToProps = {};
+	var mapDispatchToProps = {
+	  onToggleDrawer: actions.toggleDrawer
+	};
 
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Chrome);
 
 /***/ },
 /* 26 */
+/***/ function(module, exports) {
+
+	module.exports = require("react-addons-css-transition-group");
+
+/***/ },
+/* 27 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.toggleDrawer = toggleDrawer;
+	exports.changeApp = changeApp;
+	exports.pushNotification = pushNotification;
+	exports.readNotification = readNotification;
+
+	var _action_types = __webpack_require__(23);
+
+	var actionTypes = _interopRequireWildcard(_action_types);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function toggleDrawer() {
+	  return {
+	    type: actionTypes.TOGGLE_DRAWER
+	  };
+	}
+
+	function changeApp(index) {
+	  return {
+	    type: actionTypes.CHANGE_APP,
+	    index: index
+	  };
+	}
+
+	function pushNotification(notification) {
+	  return {
+	    type: actionTypes.PUSH_NOTIFICATION, notification: notification
+	  };
+	}
+
+	function readNotification(id) {
+	  return {
+	    type: actionTypes.READ_NOTIFICATION,
+	    id: id
+	  };
+	}
+
+/***/ },
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1295,38 +1382,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Drawer);
 
 /***/ },
-/* 27 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.toggleDrawer = toggleDrawer;
-	exports.changeApp = changeApp;
-
-	var _action_types = __webpack_require__(23);
-
-	var actionTypes = _interopRequireWildcard(_action_types);
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-	function toggleDrawer() {
-	  return {
-	    type: actionTypes.TOGGLE_DRAWER
-	  };
-	}
-
-	function changeApp(index) {
-	  return {
-	    type: actionTypes.CHANGE_APP,
-	    index: index
-	  };
-	}
-
-/***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1370,10 +1426,11 @@
 	  _createClass(Topbar, [{
 	    key: 'render',
 	    value: function render() {
+	      var results = this.props.results;
+
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'chrome-topbar' },
-	        _react2.default.createElement('div', { className: 'chrome-overlay', onClick: this._handleToggleDrawer.bind(this) }),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'chrome-toggle', onClick: this._handleToggleDrawer.bind(this) },
@@ -1387,6 +1444,28 @@
 	            'div',
 	            { className: 'ui input' },
 	            _react2.default.createElement('input', { type: 'text', placeholder: 'Search' })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'chrome-search-results' },
+	            results.map(function (result, index) {
+	              return _react2.default.createElement(
+	                'div',
+	                { key: 'result_' + index, className: 'chrome-search-result' },
+	                _react2.default.createElement('img', { src: result.photo }),
+	                _react2.default.createElement(
+	                  'p',
+	                  null,
+	                  _react2.default.createElement(
+	                    'strong',
+	                    null,
+	                    result.name
+	                  ),
+	                  _react2.default.createElement('br', null),
+	                  result.email
+	                )
+	              );
+	            })
 	          )
 	        )
 	      );
@@ -1403,7 +1482,8 @@
 
 	var mapStateToProps = function mapStateToProps(state) {
 	  return {
-	    expanded: state.chrome.expanded
+	    expanded: state.chrome.expanded,
+	    results: state.chrome.results
 	  };
 	};
 
@@ -1414,7 +1494,119 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Topbar);
 
 /***/ },
-/* 29 */
+/* 30 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.Notifications = undefined;
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(7);
+
+	var _actions = __webpack_require__(27);
+
+	var actions = _interopRequireWildcard(_actions);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Notifications = exports.Notifications = function (_React$Component) {
+	  _inherits(Notifications, _React$Component);
+
+	  function Notifications() {
+	    _classCallCheck(this, Notifications);
+
+	    return _possibleConstructorReturn(this, (Notifications.__proto__ || Object.getPrototypeOf(Notifications)).apply(this, arguments));
+	  }
+
+	  _createClass(Notifications, [{
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      var notifications = this.props.notifications;
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'chrome-notifications' },
+	        function () {
+	          if (notifications.length > 0) {
+	            return _react2.default.createElement(
+	              'div',
+	              { className: 'ui raised segments' },
+	              notifications.map(function (notification, index) {
+	                return _react2.default.createElement(
+	                  'div',
+	                  { key: 'notification_' + index, className: 'ui segment' },
+	                  _react2.default.createElement('i', { className: 'fa fa-times', onClick: _this2.readNotification.bind(_this2, notification.id) }),
+	                  notification.story.text
+	                );
+	              })
+	            );
+	          }
+	        }()
+	      );
+	    }
+
+	    // componentDidMount() {
+	    //   Socket.subscribe(`/users/${this.context.session.user.id}/notifications`, this.pushNotification.bind(this))
+	    // }
+
+	    // componentWillUnmount() {
+	    //   Socket.unsubscribe(`/users/${this.context.session.user.id}/notifications`, this.pushNotification.bind(this))
+	    // }
+
+	  }, {
+	    key: 'readNotification',
+	    value: function readNotification(id) {
+	      this.props.onReadNotification(id);
+	    }
+	  }, {
+	    key: 'pushNotification',
+	    value: function pushNotification(payload) {
+	      this.props.onPushNotification(payload.message);
+	    }
+	  }]);
+
+	  return Notifications;
+	}(_react2.default.Component);
+
+	Notifications.contextTypes = {
+	  session: _react2.default.PropTypes.object
+	};
+
+
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    notifications: state.chrome.notifications
+	  };
+	};
+
+	var mapDispatchToProps = {
+	  onReadNotification: actions.readNotification,
+	  onPushNotification: actions.pushNotification
+	};
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Notifications);
+
+/***/ },
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1463,7 +1655,7 @@
 	exports.default = Dashboard;
 
 /***/ },
-/* 30 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1478,7 +1670,7 @@
 
 	var _reactRouter = __webpack_require__(6);
 
-	var _contacts = __webpack_require__(31);
+	var _contacts = __webpack_require__(33);
 
 	var _contacts2 = _interopRequireDefault(_contacts);
 
@@ -1493,7 +1685,7 @@
 	exports.default = routes;
 
 /***/ },
-/* 31 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1508,11 +1700,11 @@
 
 	var _reactRouter = __webpack_require__(6);
 
-	var _list = __webpack_require__(32);
+	var _list = __webpack_require__(34);
 
 	var _list2 = _interopRequireDefault(_list);
 
-	var _show = __webpack_require__(33);
+	var _show = __webpack_require__(35);
 
 	var _show2 = _interopRequireDefault(_show);
 
@@ -1528,7 +1720,7 @@
 	exports.default = routes;
 
 /***/ },
-/* 32 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1577,7 +1769,7 @@
 	exports.default = List;
 
 /***/ },
-/* 33 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1626,7 +1818,7 @@
 	exports.default = Show;
 
 /***/ },
-/* 34 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1641,15 +1833,15 @@
 
 	var _reactRouter = __webpack_require__(6);
 
-	var _apps = __webpack_require__(35);
+	var _apps = __webpack_require__(37);
 
 	var _apps2 = _interopRequireDefault(_apps);
 
-	var _emails = __webpack_require__(37);
+	var _emails = __webpack_require__(39);
 
 	var _emails2 = _interopRequireDefault(_emails);
 
-	var _users = __webpack_require__(39);
+	var _users = __webpack_require__(41);
 
 	var _users2 = _interopRequireDefault(_users);
 
@@ -1664,7 +1856,7 @@
 	);
 
 /***/ },
-/* 35 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1679,7 +1871,7 @@
 
 	var _reactRouter = __webpack_require__(6);
 
-	var _list = __webpack_require__(36);
+	var _list = __webpack_require__(38);
 
 	var _list2 = _interopRequireDefault(_list);
 
@@ -1694,7 +1886,7 @@
 	exports.default = routes;
 
 /***/ },
-/* 36 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1743,7 +1935,7 @@
 	exports.default = List;
 
 /***/ },
-/* 37 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1758,7 +1950,7 @@
 
 	var _reactRouter = __webpack_require__(6);
 
-	var _list = __webpack_require__(38);
+	var _list = __webpack_require__(40);
 
 	var _list2 = _interopRequireDefault(_list);
 
@@ -1773,7 +1965,7 @@
 	exports.default = routes;
 
 /***/ },
-/* 38 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1822,7 +2014,7 @@
 	exports.default = List;
 
 /***/ },
-/* 39 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1837,7 +2029,7 @@
 
 	var _reactRouter = __webpack_require__(6);
 
-	var _list = __webpack_require__(40);
+	var _list = __webpack_require__(42);
 
 	var _list2 = _interopRequireDefault(_list);
 
@@ -1852,7 +2044,7 @@
 	exports.default = routes;
 
 /***/ },
-/* 40 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1901,13 +2093,13 @@
 	exports.default = List;
 
 /***/ },
-/* 41 */
+/* 43 */
 /***/ function(module, exports) {
 
 	module.exports = require("path");
 
 /***/ },
-/* 42 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1918,7 +2110,7 @@
 
 	var _express = __webpack_require__(1);
 
-	var _users = __webpack_require__(43);
+	var _users = __webpack_require__(45);
 
 	var _users2 = _interopRequireDefault(_users);
 
@@ -1934,7 +2126,7 @@
 	exports.default = routes;
 
 /***/ },
-/* 43 */
+/* 45 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1967,7 +2159,7 @@
 	exports.default = users;
 
 /***/ },
-/* 44 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1978,7 +2170,7 @@
 
 	var _express = __webpack_require__(1);
 
-	var _contacts = __webpack_require__(45);
+	var _contacts = __webpack_require__(47);
 
 	var _contacts2 = _interopRequireDefault(_contacts);
 
@@ -1994,7 +2186,7 @@
 	exports.default = routes;
 
 /***/ },
-/* 45 */
+/* 47 */
 /***/ function(module, exports) {
 
 	'use strict';

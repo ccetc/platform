@@ -4969,6 +4969,10 @@ rc@^1.1.2, rc@~1.1.0:
     minimist "^1.2.0"
     strip-json-comments "~1.0.4"
 
+react-addons-css-transition-group:
+  version "15.3.2"
+  resolved "https://registry.yarnpkg.com/react-addons-css-transition-group/-/react-addons-css-transition-group-15.3.2.tgz#d8fa52bec9bb61bdfde8b9e4652b80297cbff667"
+
 react-addons-test-utils:
   version "15.3.2"
   resolved "https://registry.yarnpkg.com/react-addons-test-utils/-/react-addons-test-utils-15.3.2.tgz#c09a44f583425a4a9c1b38444d7a6c3e6f0f41f6"

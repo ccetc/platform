@@ -3,29 +3,28 @@
 @import "compass/css3/opacity";
 @import "compass/css3/border-radius";
 
-.chrome {
-  &.expanded {
-    .chrome-drawer {
-      transform: translateX(0);
-    }
-    .chrome-overlay {
-      position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      @include opacity(0.2);
-    }
-  }
-}
 .chrome-overlay {
-  @include opacity(0);
   background-color: rgb(0, 0, 0);
-  transition: opacity 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -webkit-transition: opacity 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -moz-transition: opacity 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  z-index: 1;
+  transition: opacity .25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -webkit-transition: opacity .25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -moz-transition: opacity .25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  @include opacity(0.2);
 }
+.chrome-overlay.expanded-enter,
+.chrome-overlay.expanded-leave.expanded-leave-active {
+  @include opacity(0);
+}
+.chrome-overlay.expanded-enter.expanded-enter-active,
+.chrome-overlay.expanded-leave {
+  @include opacity(0.2);
+}
+
 .chrome-drawer {
   transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -webkit-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
@@ -35,11 +34,19 @@
   top: 0;
   bottom: 0;
   width: 320px;
-  transform: translateX(-100%);
   background-color: rgb(68, 68, 68);
   flex-direction: column;
-  z-index: 2;
+  z-index: 11;
 }
+.chrome-drawer.expanded-enter,
+.chrome-drawer.expanded-leave.expanded-leave-active {
+  transform: translateX(-100%);
+}
+.chrome-drawer.expanded-enter.expanded-enter-active,
+.chrome-drawer.expanded-leave {
+  transform: translateX(0);
+}
+
 .chrome-presence {
   flex: 0 0 43px;
   background-color: rgb(0, 0, 0);
@@ -146,6 +153,36 @@
     }
   }
 }
+.chrome-search-results {
+  border-top: 1px solid #DDD;
+  z-index: 4;
+  position: absolute;
+  top: 42px;
+  left: 0;
+  right: 0;
+}
+.chrome-search-result {
+  padding: 10px;
+  border-bottom: 1px solid #DDD;
+  background-color: #FFF;
+  cursor: pointer;
+  &:hover {
+    background-color: #EEE;
+  }
+  img {
+    display: block;
+    width: 40px;
+    height: 40px;
+    float: left;
+  }
+  p {
+    margin-left: 50px;
+    color: #888;
+  }
+  strong {
+    color: #000;
+  }
+}
 .chrome-canvas {
   flex: 1;
   display: flex;
@@ -153,7 +190,7 @@
 .chrome-header {
   background-color: rgb(208, 25, 25);
   flex: 0 0 65px;
-  z-index: 100;
+  z-index: 3;
   margin: 0;
   width: 100%;
   padding: 10px 15px;
@@ -184,9 +221,7 @@
   display: flex;
   align-items: stretch;
   overflow-y: scroll;
-}
-@media only screen and (min-width: 768px) {
-  .chrome-body {
+  @media only screen and (min-width: 768px) {
     .chrome-sidebar {
       flex: 0 0 300px;
       padding: 20px 0 20px 20px;
@@ -196,9 +231,7 @@
       padding: 20px;
     }
   }
-}
-@media only screen and (max-width: 767px) {
-  .chrome-body {
+  @media only screen and (max-width: 767px) {
     flex-direction: column;
     .chrome-sidebar:nth-child(1)  {
       padding: 20px 20px 0;
@@ -211,6 +244,7 @@
 .chrome-notifications {
   position: absolute;
   @include border-radius(0 !important);
+  z-index: 10;
   .segment {
     position: relative;
     background-color: #FFF !important;

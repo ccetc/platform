@@ -12,3 +12,16 @@ export function changeApp(index) {
     index
   }
 }
+
+export function pushNotification(notification) {
+  return {
+    type: actionTypes.PUSH_NOTIFICATION, notification
+  }
+}
+
+export function readNotification(id) {
+  return {
+    type: actionTypes.READ_NOTIFICATION,
+    id
+  }
+}
