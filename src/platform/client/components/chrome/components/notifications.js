@@ -9,18 +9,18 @@ export class Notifications extends React.Component {
   }
 
   static propTypes: {
-    notifications: React.PropTypes.array.isRequired,
+    queue: React.PropTypes.array.isRequired,
     onPushNotification: React.PropTypes.func.isRequired,
     onReadNotification: React.PropTypes.func.isRequired
   }
 
   render() {
-    const { notifications } = this.props
+    const { queue } = this.props
     return (
       <div className="chrome-notifications">
-        { notifications.length > 0 &&
+        { queue.length > 0 &&
           <div className="ui raised segments">
-            { notifications.map((notification, index) => {
+            { queue.map((notification, index) => {
               return (
                 <div key={`notification_${index}`} className="ui segment">
                   <i className="fa fa-times" onClick={this.readNotification.bind(this, notification.id)}></i>
@@ -53,7 +53,7 @@ export class Notifications extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  notifications: state.chrome.notifications
+  queue: state.chrome.notifications.queue
 })
 
 const mapDispatchToProps = {

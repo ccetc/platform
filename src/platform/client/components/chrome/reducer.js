@@ -7,10 +7,13 @@ const INITIAL_STATE = {
     { name: 'Contacts', icon: 'user', route: '/crm/contacts' },
     { name: 'Settings', icon: 'setting', route: '/settings/apps' }
   ],
-  notifications: [
-    // { story: { text: 'This is what happened' } },
-    // { story: { text: 'This is what happened next' } }
-  ],
+  notifications: {
+    queue: [
+      // { story: { text: 'This is what happened' } },
+      // { story: { text: 'This is what happened next' } }
+    ],
+    unread: 1
+  },
   search: {
     query: '',
     active: false,

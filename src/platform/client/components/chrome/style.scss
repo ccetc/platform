@@ -11,10 +11,15 @@
   display: flex;
   top: 0;
   bottom: 0;
-  width: 320px;
   background-color: rgb(68, 68, 68);
   flex-direction: column;
   z-index: 11;
+  @media only screen and (max-width: 767px) {
+    width: calc(100% - 42px);
+  }
+  @media only screen and (min-width: 768px) {
+    width: 320px;
+  }
 }
 .chrome-drawer.expanded-enter,
 .chrome-drawer.expanded-leave.expanded-leave-active {
@@ -110,8 +115,10 @@
   flex: 0 0 42px;
   display: flex;
 }
-.chrome-toggle {
+.chrome-toggle,
+.chrome-alerts {
   display: flex;
+  position: relative;
   flex: 0 0 42px;
   cursor: pointer;
   width: 42px;
@@ -127,8 +134,21 @@
     margin: auto;
     color: #888;
   }
-  .item {
-    border-right: 1px solid #CCC;
+  .chrome-alerts-label {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    @include border-radius(12px);
+    font-size: 8px;
+    line-height: 16px;
+    padding: 0;
+    background-color: #d01919;
+    color: #FFFFFF;
+    display: block;
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    vertical-align: middle;
   }
 }
 .chrome-search {
@@ -141,6 +161,7 @@
   }
   .ui.input {
     flex: 1;
+    padding-right: 10px;
     input {
       padding: 12px 0 8px;
       width: 100%;

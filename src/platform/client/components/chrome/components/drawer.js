@@ -54,7 +54,6 @@ export class Drawer extends React.Component {
     const app = apps[active]
     if(prevProps.active != active) {
       this.context.history.push(app.route)
-      document.title = 'Platform | ' + app.name
     }
   }
 

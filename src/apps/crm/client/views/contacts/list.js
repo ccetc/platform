@@ -1,9 +1,21 @@
 import React from 'react'
+import Helmet from 'react-helmet'
 
 class List extends React.Component {
 
   render() {
-    return <p>Conatcts List</p>
+    return (
+      <div className="chrome-content">
+        <Helmet {...this._getHead()} />
+        <p>Conatcts List</p>
+      </div>
+    )
+  }
+
+  _getHead() {
+    return {
+      title: 'Platform | Contacts'
+    }
   }
 
 }
