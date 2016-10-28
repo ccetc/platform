@@ -1,29 +1,33 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import client from './platform/server/controllers/client'
+import platform from './platform'
+import settings from './apps/settings'
+import crm from './apps/crm'
 
-const server = express()
-const http = require('http').Server(server)
-const https = require('https').Server(server)
-const io = require('socket.io')(http)
+const app = express()
+const http = require('http').Server(app)
+const https = require('https').Server(app)
+const socket = require('socket.io')(http)
 
-// body aprsing
-server.use(bodyParser.urlencoded({ extended: true }))
-server.use(bodyParser.json())
+// body parsing
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 
 // public assets
-server.use('/', express.static('dist/public'))
-
-// api routes
-server.use('/api/settings', require('./apps/settings/server').default)
-server.use('/api/crm', require('./apps/crm/server').default)
-
-// client routes
-server.get('/[^api]*', client)
+app.use('/', express.static('dist/public'))
 
 // websocket
-io.on('connection', (socket) => {
+socket.on('connection', (channel) => {
 })
+
+// api routes
+app.use(`/api${platform.config.path}`, platform.server)
+app.use(`/api${settings.config.path}`, settings.server)
+app.use(`/api${crm.config.path}`, crm.server)
+
+// client routes
+app.get('/[^api]*', client)
 
 // http app
 http.listen(8080)
