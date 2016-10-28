@@ -1,4 +1,5 @@
 import * as actionTypes from './action_types'
+import _ from 'lodash'
 
 const INITIAL_STATE = {
   expanded: false,
@@ -8,10 +9,7 @@ const INITIAL_STATE = {
     { name: 'Settings', icon: 'setting', route: '/settings/apps' }
   ],
   notifications: {
-    queue: [
-      // { story: { text: 'This is what happened' } },
-      // { story: { text: 'This is what happened next' } }
-    ],
+    queue: [],
     unread: 1
   },
   search: {
@@ -42,6 +40,24 @@ export default (state = INITIAL_STATE, action) => {
       ...state,
       active: action.index,
       expanded: false
+    }
+
+  case actionTypes.PUSH_NOTIFICATION:
+    return {
+      ...state,
+      notifications: {
+        ...state.notifications,
+        queue: [...state.notifications.queue, action.notification]
+      }
+    }
+
+  case actionTypes.READ_NOTIFICATION:
+    return {
+      ...state,
+      notifications: {
+        ...state.notifications,
+        queue: _.reject(state.notifications.queue, { id: action.id })
+      }
     }
 
   case actionTypes.BEGIN_SEARCH:

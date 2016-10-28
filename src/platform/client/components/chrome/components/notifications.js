@@ -5,7 +5,8 @@ import * as actions from '../actions'
 export class Notifications extends React.Component {
 
   static contextTypes = {
-    session: React.PropTypes.object
+    session: React.PropTypes.object,
+    socket: React.PropTypes.object
   }
 
   static propTypes: {
@@ -23,7 +24,7 @@ export class Notifications extends React.Component {
             { queue.map((notification, index) => {
               return (
                 <div key={`notification_${index}`} className="ui segment">
-                  <i className="fa fa-times" onClick={this.readNotification.bind(this, notification.id)}></i>
+                  <i className="remove icon" onClick={this.readNotification.bind(this, notification.id)}></i>
                   {notification.story.text}
                 </div>
               )
@@ -34,13 +35,15 @@ export class Notifications extends React.Component {
     )
   }
 
-  // componentDidMount() {
-  //   Socket.subscribe(`/users/${this.context.session.user.id}/notifications`, this.pushNotification.bind(this))
-  // }
+  componentDidMount() {
+    this.context.socket.on('notification', (message) => {
+      this.props.onPushNotification(message)
+    })
+  }
 
-  // componentWillUnmount() {
-  //   Socket.unsubscribe(`/users/${this.context.session.user.id}/notifications`, this.pushNotification.bind(this))
-  // }
+  componentWillUnmount() {
+    // this.context.socket.unsubscribe(`/users/${this.context.session.user.id}/notifications`, this.pushNotification.bind(this))
+  }
 
   readNotification(id) {
     this.props.onReadNotification(id)

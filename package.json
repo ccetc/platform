@@ -19,6 +19,8 @@
     "body-parser": "~1.0.1",
     "express": "~4.14.0",
     "fs": "^0.0.1-security",
+    "http": "^0.0.0",
+    "https": "^1.0.0",
     "jquery": "^3.1.1",
     "path": "^0.12.7",
     "react": "^15.3.2",
@@ -30,6 +32,8 @@
     "redux": "^3.6.0",
     "redux-logger": "^2.7.0",
     "redux-thunk": "^2.1.0",
+    "socket.io": "^1.5.1",
+    "socket.io-client": "^1.5.1",
     "winston": "^2.2.0"
   },
   "devDependencies": {
@@ -74,8 +78,8 @@
     "start": "node dist/server.js",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "test": "jest .",
-    "test:server": "jest --testPathPattern=/.*\/server/",
-    "test:client": "jest --testPathPattern=/.*\/client/",
+    "test:server": "jest --testPathPattern=/.*/server/",
+    "test:client": "jest --testPathPattern=/.*/client/",
     "coverage": "jest --coverage && codeclimate-test-reporter < coverage/lcov.info",
     "eslint": "eslint ."
   },

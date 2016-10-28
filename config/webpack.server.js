@@ -6,7 +6,7 @@ module.exports = {
   },
   output: {
     path: './dist',
-    filename: 'server.js'
+    filename: '[name].js'
   },
   target: 'node',
   externals: [nodeExternals()],
