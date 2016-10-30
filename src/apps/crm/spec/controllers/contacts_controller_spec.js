@@ -1,6 +1,6 @@
-import controller from '../controllers/contacts'
+import controller from '../../controllers/contacts_controller'
 
-jest.unmock('../controllers/contacts')
+jest.unmock('../../controllers/contacts_controller')
 
 describe('contacts controller', () => {
 
