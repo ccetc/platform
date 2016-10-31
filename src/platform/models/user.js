@@ -1,11 +1,6 @@
-import services from '../../services'
 import checkit from  'checkit'
-
-const unique = function(val) {
-  return services.knex('users').where({ email: val }).whereNot({ id: this.target.id }).then(resp => {
-    if (resp.length > 0) throw new Error('The email address is already in use')
-  })
-}
+import services from '../../services'
+import unique from '../../utils/validations/unique'
 
 const user = services.bookshelf.Model.extend({
 
@@ -16,7 +11,7 @@ const user = services.bookshelf.Model.extend({
   rules: {
     first_name: 'required',
     last_name: 'required',
-    email: ['required', 'email', unique]
+    email: ['required', 'email', unique('users', 'email')]
   },
 
   initialize: function(attrs, opts) {

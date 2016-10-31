@@ -10,16 +10,18 @@ export class Drawer extends React.Component {
   }
 
   static propTypes: {
-    active: React.PropTypes.string.isRequired,
+    app: React.PropTypes.integer.isRequired,
     apps: React.PropTypes.array.isRequired,
     expanded: React.PropTypes.bool.isRequired,
+    item: React.PropTypes.integer.isRequired,
     user: React.PropTypes.object.isRequired,
-    onChangeApp: React.PropTypes.func.isRequired,
+    onChooseApp: React.PropTypes.func.isRequired,
+    onChooseItem: React.PropTypes.func.isRequired,
     onToggleDrawer: React.PropTypes.func.isRequired
   }
 
   render() {
-    const { active, apps, expanded, user } = this.props
+    const { apps, expanded, user } = this.props
     return (
       <Transition transitionName="expanded" transitionAppear={true} transitionEnterTimeout={250} transitionLeaveTimeout={250} transitionAppearTimeout={250}>
         { expanded && <div key="chrome-drawer-overlay" className="chrome-drawer-overlay" onClick={this._handleToggleDrawer.bind(this)} /> }
@@ -33,12 +35,22 @@ export class Drawer extends React.Component {
               </div>
             </div>
             <div className="chrome-apps">
-              {apps.map((app, index) => {
-                let classes = (index === active) ? 'chrome-app active' : 'chrome-app'
+              {apps.map((app, appindex) => {
                 return (
-                  <div key={`app_${index}`} className={classes} onClick={this._handleChangeApp.bind(this, index)}>
-                    <i className={`${app.icon} icon`} />
-                    {app.name}
+                  <div key={`app_${appindex}`} className="chrome-app">
+                    <div className="chrome-app-title" onClick={this._handleChooseApp.bind(this, appindex)}>
+                      <i className={`${app.icon} icon`} />
+                      {app.name}
+                    </div>
+                    <Transition transitionName="expanded" transitionAppear={true} transitionEnterTimeout={10} transitionLeaveTimeout={10} transitionAppearTimeout={10}>
+                      {appindex === this.props.app &&
+                        <div className="chrome-app-menu">
+                          {app.items.map((item, itemindex) => {
+                            return <div key={`appitem_${itemindex}`} className="chrome-app-item" onClick={this._handleChooseItem.bind(this, itemindex)}>{item.name}</div>
+                          })}
+                        </div>
+                      }
+                    </Transition>
                   </div>
                 )
               })}
@@ -50,10 +62,9 @@ export class Drawer extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { active, apps } = this.props
-    const app = apps[active]
-    if(prevProps.active != active) {
-      this.context.history.push(app.route)
+    const { apps, app, item } = this.props
+    if(prevProps.item != item) {
+      this.context.history.push(apps[app].items[item].route)
     }
   }
 
@@ -61,21 +72,27 @@ export class Drawer extends React.Component {
     this.props.onToggleDrawer()
   }
 
-  _handleChangeApp(index) {
-    this.props.onChangeApp(index)
+  _handleChooseApp(index) {
+    this.props.onChooseApp(index)
+  }
+
+  _handleChooseItem(index) {
+    this.props.onChooseItem(index)
   }
 
 }
 
 const mapStateToProps = (state) => ({
-  active: state.chrome.active,
-  apps: state.chrome.apps,
-  expanded: state.chrome.expanded,
+  app: state.chrome.drawer.app,
+  apps: state.chrome.drawer.apps,
+  expanded: state.chrome.drawer.expanded,
+  item: state.chrome.drawer.item,
   user: state.chrome.user
 })
 
 const mapDispatchToProps = {
-  onChangeApp: actions.changeApp,
+  onChooseApp: actions.chooseApp,
+  onChooseItem: actions.chooseItem,
   onToggleDrawer: actions.toggleDrawer
 }
 

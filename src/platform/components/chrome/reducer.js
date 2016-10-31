@@ -2,13 +2,28 @@ import * as actionTypes from './action_types'
 import _ from 'lodash'
 
 const INITIAL_STATE = {
-  expanded: false,
-  active: null,
-  apps: [
-    { name: 'Contacts', icon: 'user', route: '/crm/contacts' },
-    { name: 'Expenses', icon: 'dollar', route: '/expenses' },
-    { name: 'Settings', icon: 'setting', route: '/settings/apps' }
-  ],
+  drawer: {
+    apps: [
+      { name: 'Contacts', icon: 'user', items: [
+        { name: 'Contacts', route: '/crm/contacts' }
+      ] },
+      { name: 'Expenses', icon: 'dollar', items: [
+        { name: 'Advances', route: '/expenses/advances' },
+        { name: 'Expense Types', route: '/expenses/expense_types' },
+        { name: 'Expenses', route: '/expenses/expenses' },
+        { name: 'Projects', route: '/expenses/projects' },
+        { name: 'Trips', route: '/expenses/trips' },
+        { name: 'Vendors', route: '/expenses/vendors' }
+      ] },
+      { name: 'Settings', icon: 'setting', items: [
+        { name: 'Apps', route: '/expenses/apps' },
+        { name: 'Users', route: '/expenses/users' }
+      ] }
+    ],
+    expanded: false,
+    app: null,
+    item: null
+  },
   notifications: {
     queue: [],
     unread: 1
@@ -33,14 +48,31 @@ export default (state = INITIAL_STATE, action) => {
   case actionTypes.TOGGLE_DRAWER:
     return {
       ...state,
-      expanded: !state.expanded
+      drawer: {
+        ...state.drawer,
+        expanded: !state.drawer.expanded,
+        app: null,
+        item: null
+      }
     }
 
-  case actionTypes.CHANGE_APP:
+  case actionTypes.CHOOSE_APP:
     return {
       ...state,
-      active: action.index,
-      expanded: false
+      drawer: {
+        ...state.drawer,
+        app: action.index
+      }
+    }
+
+  case actionTypes.CHOOSE_ITEM:
+    return {
+      ...state,
+      drawer: {
+        ...state.drawer,
+        item: action.index,
+        expanded: false
+      }
     }
 
   case actionTypes.PUSH_NOTIFICATION:

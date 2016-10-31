@@ -6,9 +6,16 @@ export function toggleDrawer() {
   }
 }
 
-export function changeApp(index) {
+export function chooseApp(index) {
   return {
-    type: actionTypes.CHANGE_APP,
+    type: actionTypes.CHOOSE_APP,
+    index
+  }
+}
+
+export function chooseItem(index) {
+  return {
+    type: actionTypes.CHOOSE_ITEM,
     index
   }
 }

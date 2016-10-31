@@ -5,42 +5,80 @@ describe('collection reducer', () => {
 
   it('opens the drawer', () => {
     let state = {
-      expanded: false
+      drawer: {
+        expanded: false,
+        app: 1,
+        item: 1
+      }
     }
     let action = {
       type: actionTypes.TOGGLE_DRAWER
     }
     let expected = {
-      expanded: true
+      drawer: {
+        expanded: true,
+        app: null,
+        item: null
+      }
     }
     expect(reducer(state, action)).toEqual(expected)
   })
 
   it('closes the drawer', () => {
     let state = {
-      expanded: true
+      drawer: {
+        expanded: true,
+        app: 1,
+        item: 1
+      }
     }
     let action = {
       type: actionTypes.TOGGLE_DRAWER
     }
     let expected = {
-      expanded: false
+      drawer: {
+        expanded: false,
+        app: null,
+        item: null
+      }
     }
     expect(reducer(state, action)).toEqual(expected)
   })
 
-  it('changes the app', () => {
+  it('chooses the app', () => {
     let state = {
-      active: null,
-      expanded: true
+      drawer: {
+        app: null
+      }
     }
     let action = {
-      type: actionTypes.CHANGE_APP,
+      type: actionTypes.CHOOSE_APP,
       index: 1
     }
     let expected = {
-      active: 1,
-      expanded: false
+      drawer: {
+        app: 1
+      }
+    }
+    expect(reducer(state, action)).toEqual(expected)
+  })
+
+  it('chooses the item', () => {
+    let state = {
+      drawer: {
+        item: null,
+        expanded: true
+      }
+    }
+    let action = {
+      type: actionTypes.CHOOSE_ITEM,
+      index: 1
+    }
+    let expected = {
+      drawer: {
+        item: 1,
+        expanded: false
+      }
     }
     expect(reducer(state, action)).toEqual(expected)
   })

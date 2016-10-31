@@ -5,7 +5,7 @@ var defaults = {
   },
   migrations: {
     tableName: 'schema_migrations',
-    directory: './db/migrations'
+    directory: '/'
   },
   seeds: {
     directory: './db/seeds'
