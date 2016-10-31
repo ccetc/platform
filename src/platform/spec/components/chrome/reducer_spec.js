@@ -6,9 +6,7 @@ describe('collection reducer', () => {
   it('opens the drawer', () => {
     let state = {
       drawer: {
-        expanded: false,
-        app: 1,
-        item: 1
+        expanded: false
       }
     }
     let action = {
@@ -16,9 +14,7 @@ describe('collection reducer', () => {
     }
     let expected = {
       drawer: {
-        expanded: true,
-        app: null,
-        item: null
+        expanded: true
       }
     }
     expect(reducer(state, action)).toEqual(expected)
@@ -27,9 +23,7 @@ describe('collection reducer', () => {
   it('closes the drawer', () => {
     let state = {
       drawer: {
-        expanded: true,
-        app: 1,
-        item: 1
+        expanded: true
       }
     }
     let action = {
@@ -37,9 +31,7 @@ describe('collection reducer', () => {
     }
     let expected = {
       drawer: {
-        expanded: false,
-        app: null,
-        item: null
+        expanded: false
       }
     }
     expect(reducer(state, action)).toEqual(expected)

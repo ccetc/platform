@@ -50,9 +50,7 @@ export default (state = INITIAL_STATE, action) => {
       ...state,
       drawer: {
         ...state.drawer,
-        expanded: !state.drawer.expanded,
-        app: null,
-        item: null
+        expanded: !state.drawer.expanded
       }
     }
 
