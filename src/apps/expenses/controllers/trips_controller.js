@@ -1,23 +1,23 @@
-let trips = {}
+let controller = {}
 
-trips.index = (req, res) => {
-  res.json({ message: 'trips index' })
+controller.index = (req, res) => {
+  res.json({ message: 'controller index' })
 }
 
-trips.show = (req, res) => {
-  res.json({ message: 'trips show' })
+controller.show = (req, res) => {
+  res.json({ message: 'controller show' })
 }
 
-trips.create = (req, res) => {
-  res.json({ message: 'trips create' })
+controller.create = (req, res) => {
+  res.json({ message: 'controller create' })
 }
 
-trips.update = (req, res) => {
-  res.json({ message: 'trips update' })
+controller.update = (req, res) => {
+  res.json({ message: 'controller update' })
 }
 
-trips.destroy = (req, res) => {
-  res.json({ message: 'trips destroy' })
+controller.destroy = (req, res) => {
+  res.json({ message: 'controller destroy' })
 }
 
-export default trips
+export default controller

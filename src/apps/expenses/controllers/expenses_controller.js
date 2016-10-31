@@ -1,23 +1,23 @@
-let expenses = {}
+let controller = {}
 
-expenses.index = (req, res) => {
-  res.json({ message: 'expenses index' })
+controller.index = (req, res) => {
+  res.json({ message: 'controller index' })
 }
 
-expenses.show = (req, res) => {
-  res.json({ message: 'expenses show' })
+controller.show = (req, res) => {
+  res.json({ message: 'controller show' })
 }
 
-expenses.create = (req, res) => {
-  res.json({ message: 'expenses create' })
+controller.create = (req, res) => {
+  res.json({ message: 'controller create' })
 }
 
-expenses.update = (req, res) => {
-  res.json({ message: 'expenses update' })
+controller.update = (req, res) => {
+  res.json({ message: 'controller update' })
 }
 
-expenses.destroy = (req, res) => {
-  res.json({ message: 'expenses destroy' })
+controller.destroy = (req, res) => {
+  res.json({ message: 'controller destroy' })
 }
 
-export default expenses
+export default controller

@@ -1,23 +1,23 @@
-let projects = {}
+let controller = {}
 
-projects.index = (req, res) => {
-  res.json({ message: 'projects index' })
+controller.index = (req, res) => {
+  res.json({ message: 'controller index' })
 }
 
-projects.show = (req, res) => {
-  res.json({ message: 'projects show' })
+controller.show = (req, res) => {
+  res.json({ message: 'controller show' })
 }
 
-projects.create = (req, res) => {
-  res.json({ message: 'projects create' })
+controller.create = (req, res) => {
+  res.json({ message: 'controller create' })
 }
 
-projects.update = (req, res) => {
-  res.json({ message: 'projects update' })
+controller.update = (req, res) => {
+  res.json({ message: 'controller update' })
 }
 
-projects.destroy = (req, res) => {
-  res.json({ message: 'projects destroy' })
+controller.destroy = (req, res) => {
+  res.json({ message: 'controller destroy' })
 }
 
-export default projects
+export default controller

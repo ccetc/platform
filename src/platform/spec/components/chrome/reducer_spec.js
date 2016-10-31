@@ -1,8 +1,5 @@
-import reducer from '../reducer'
-import * as actionTypes from '../action_types'
-
-jest.unmock('../reducer')
-jest.unmock('lodash')
+import reducer from '../../../components/chrome/reducer'
+import * as actionTypes from '../../../components/chrome/action_types'
 
 describe('collection reducer', () => {
 

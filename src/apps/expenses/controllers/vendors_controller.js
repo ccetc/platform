@@ -1,23 +1,23 @@
-let vendors = {}
+let controller = {}
 
-vendors.index = (req, res) => {
-  res.json({ message: 'vendors index' })
+controller.index = (req, res) => {
+  res.json({ message: 'controller index' })
 }
 
-vendors.show = (req, res) => {
-  res.json({ message: 'vendors show' })
+controller.show = (req, res) => {
+  res.json({ message: 'controller show' })
 }
 
-vendors.create = (req, res) => {
-  res.json({ message: 'vendors create' })
+controller.create = (req, res) => {
+  res.json({ message: 'controller create' })
 }
 
-vendors.update = (req, res) => {
-  res.json({ message: 'vendors update' })
+controller.update = (req, res) => {
+  res.json({ message: 'controller update' })
 }
 
-vendors.destroy = (req, res) => {
-  res.json({ message: 'vendors destroy' })
+controller.destroy = (req, res) => {
+  res.json({ message: 'controller destroy' })
 }
 
-export default vendors
+export default controller

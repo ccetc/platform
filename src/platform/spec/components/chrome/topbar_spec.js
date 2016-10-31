@@ -1,9 +1,7 @@
 import React from 'react'
 import { spy } from 'sinon'
 import { shallow } from 'enzyme'
-import { Topbar } from '../components/topbar'
-
-jest.unmock('../components/topbar')
+import { Topbar } from '../../../components/chrome/components/topbar'
 
 describe('topbar component', () => {
 

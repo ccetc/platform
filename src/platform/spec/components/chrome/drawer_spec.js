@@ -1,9 +1,7 @@
 import React from 'react'
 import { spy } from 'sinon'
 import { shallow } from 'enzyme'
-import { Drawer } from '../components/drawer'
-
-jest.unmock('../components/drawer')
+import { Drawer } from '../../../components/chrome/components/drawer'
 
 describe('drawer component', () => {
 

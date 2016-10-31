@@ -1,23 +1,23 @@
-let advances = {}
+let controller = {}
 
-advances.index = (req, res) => {
-  res.json({ message: 'advances index' })
+controller.index = (req, res) => {
+  res.json({ message: 'controller index' })
 }
 
-advances.show = (req, res) => {
-  res.json({ message: 'advances show' })
+controller.show = (req, res) => {
+  res.json({ message: 'controller show' })
 }
 
-advances.create = (req, res) => {
-  res.json({ message: 'advances create' })
+controller.create = (req, res) => {
+  res.json({ message: 'controller create' })
 }
 
-advances.update = (req, res) => {
-  res.json({ message: 'advances update' })
+controller.update = (req, res) => {
+  res.json({ message: 'controller update' })
 }
 
-advances.destroy = (req, res) => {
-  res.json({ message: 'advances destroy' })
+controller.destroy = (req, res) => {
+  res.json({ message: 'controller destroy' })
 }
 
-export default advances
+export default controller

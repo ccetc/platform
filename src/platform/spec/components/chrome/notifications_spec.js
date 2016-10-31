@@ -1,9 +1,7 @@
 import React from 'react'
 import { spy } from 'sinon'
 import { shallow } from 'enzyme'
-import { Notifications } from '../components/notifications'
-
-jest.unmock('../components/notifications')
+import { Notifications } from '../../../components/chrome/components/notifications'
 
 describe('notifications component', () => {
 

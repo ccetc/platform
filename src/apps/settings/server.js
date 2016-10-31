@@ -1,6 +1,6 @@
 
 import { Router } from 'express'
-import users from './controllers/users'
+import users from './controllers/users_controller'
 
 const routes = Router()
 routes.get('/users', users.index)

@@ -1,9 +1,7 @@
 import React from 'react'
 // import { spy } from 'sinon'
 import { shallow } from 'enzyme'
-import { Search } from '../components/search'
-
-jest.unmock('../components/search')
+import { Search } from '../../../components/chrome/components/search'
 
 describe('search component', () => {
 

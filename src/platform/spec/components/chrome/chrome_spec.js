@@ -1,8 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { Chrome } from '../components/chrome'
-
-jest.unmock('../components/chrome')
+import { Chrome } from '../../../components/chrome/components/chrome'
 
 describe('chrome component', () => {
 

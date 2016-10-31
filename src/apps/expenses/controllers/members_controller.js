@@ -1,23 +1,23 @@
-let members = {}
+let controller = {}
 
-members.index = (req, res) => {
-  res.json({ message: 'members index' })
+controller.index = (req, res) => {
+  res.json({ message: 'controller index' })
 }
 
-members.show = (req, res) => {
-  res.json({ message: 'members show' })
+controller.show = (req, res) => {
+  res.json({ message: 'controller show' })
 }
 
-members.create = (req, res) => {
-  res.json({ message: 'members create' })
+controller.create = (req, res) => {
+  res.json({ message: 'controller create' })
 }
 
-members.update = (req, res) => {
-  res.json({ message: 'members update' })
+controller.update = (req, res) => {
+  res.json({ message: 'controller update' })
 }
 
-members.destroy = (req, res) => {
-  res.json({ message: 'members destroy' })
+controller.destroy = (req, res) => {
+  res.json({ message: 'controller destroy' })
 }
 
-export default members
+export default controller

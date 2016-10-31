@@ -3,3 +3,4 @@ cached_uglify
 dist
 npm-debug.log
 coverage
+db.sqllite3
