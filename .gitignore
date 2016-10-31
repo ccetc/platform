@@ -1,3 +1,4 @@
+config/platform.js
 node_modules
 cached_uglify
 dist

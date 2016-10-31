@@ -1,9 +1,9 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import SocketClient from 'socket.io-client'
-import CreateStore from '../store'
-import reducer from '../reducer'
-import Chrome from './chrome'
+import CreateStore from './store'
+import reducer from './reducer'
+import Chrome from '../chrome'
 
 class Platform extends React.Component {
 

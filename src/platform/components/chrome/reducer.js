@@ -5,19 +5,22 @@ const INITIAL_STATE = {
   drawer: {
     apps: [
       { name: 'Contacts', icon: 'user', items: [
-        { name: 'Contacts', route: '/crm/contacts' }
+        { name: 'Contacts', route: '/admin/crm/contacts' }
       ] },
       { name: 'Expenses', icon: 'dollar', items: [
-        { name: 'Advances', route: '/expenses/advances' },
-        { name: 'Expense Types', route: '/expenses/expense_types' },
-        { name: 'Expenses', route: '/expenses/expenses' },
-        { name: 'Projects', route: '/expenses/projects' },
-        { name: 'Trips', route: '/expenses/trips' },
-        { name: 'Vendors', route: '/expenses/vendors' }
+        { name: 'Advances', route: '/admin/expenses/advances' },
+        { name: 'Expense Types', route: '/admin/expenses/expense_types' },
+        { name: 'Expenses', route: '/admin/expenses/expenses' },
+        { name: 'Projects', route: '/admin/expenses/projects' },
+        { name: 'Trips', route: '/admin/expenses/trips' },
+        { name: 'Vendors', route: '/admin/expenses/vendors' }
       ] },
-      { name: 'Settings', icon: 'setting', items: [
-        { name: 'Apps', route: '/expenses/apps' },
-        { name: 'Users', route: '/expenses/users' }
+      { name: 'Instance', icon: 'setting', items: [
+        { name: 'Activities', route: '/admin/instance/activities' },
+        { name: 'Apps', route: '/admin/instance/apps' },
+        { name: 'Emails', route: '/admin/instance/emails' },
+        { name: 'Settings', route: '/admin/instance/settings' },
+        { name: 'Users', route: '/admin/instance/users' }
       ] }
     ],
     expanded: false,
@@ -59,7 +62,7 @@ export default (state = INITIAL_STATE, action) => {
       ...state,
       drawer: {
         ...state.drawer,
-        app: action.index
+        app: (state.drawer.app === action.index) ? null : action.index
       }
     }
 

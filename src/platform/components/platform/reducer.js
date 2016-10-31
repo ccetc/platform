@@ -1,4 +1,4 @@
-import chrome from './components/chrome/reducer'
+import chrome from '../chrome/reducer'
 
 const Reducer = (state, action) => {
 

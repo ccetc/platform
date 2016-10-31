@@ -1,6 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import client from './platform/controllers/client'
+import admin from './platform/client'
 import platform from './platform'
 import crm from './apps/crm'
 import expenses from './apps/expenses'
@@ -21,13 +21,13 @@ app.use('/', express.static('dist/public'))
 socket.on('connection', (channel) => {
 })
 
-// api routes
-app.use(`/api${platform.config.path}`, platform.server)
-app.use(`/api${crm.config.path}`, crm.server)
-app.use(`/api${expenses.config.path}`, expenses.server)
+// admin api routes
+app.use(`/api/admin${platform.config.path}`, platform.api)
+app.use(`/api/admin${crm.config.path}`, crm.api)
+app.use(`/api/admin${expenses.config.path}`, expenses.api)
 
-// client routes
-app.get('/[^api]*', client)
+// admin routes
+app.get('/admin*', admin)
 
 // http app
 http.listen(8080)

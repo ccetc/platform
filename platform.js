@@ -24,12 +24,14 @@ var migrations = getMigrations()
 var migrator = new Migrator(knex)
 var command = process.argv[2]
 
+migrator.config = migrator.setConfig(config)
+
 if(command == 'migrate:latest') {
-  migrator.config = migrator.setConfig(config)
-  migrator._migrationData()
-    .spread((all, completed) => {
-      return migrator._runBatch(migrations, 'up')
-    })
+  migrator._migrationData().spread((all, completed) => {
+    return migrator._runBatch(migrations, 'up')
+  })
 } else if(command == 'migrate:rollback') {
-  migrator._runBatch(migrations.reverse(), 'down')
+  migrator._migrationData().spread((all, completed) => {
+    return migrator._runBatch(migrations.reverse, 'down')
+  })
 }

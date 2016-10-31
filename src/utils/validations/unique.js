@@ -8,7 +8,7 @@ const unique = function(table, attribute) {
       query = query.whereNot({ id: this.target.id })
     }
     return query.then(resp => {
-      if (resp.length > 0) throw new Error('The email address is already in use')
+      if (resp.length > 0) throw new Error('This '+attribute+' is already in use')
     })
   }
 }

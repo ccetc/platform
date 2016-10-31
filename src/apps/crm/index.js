@@ -1,5 +1,6 @@
-import server from './server'
-import client from './client'
+import api from './api'
+import admin from './admin'
+import website from './website'
 
 const config = {
   name: 'CRM',
@@ -7,12 +8,14 @@ const config = {
   path: '/crm'
 }
 
+export { admin }
+export { api }
 export { config }
-export { server }
-export { client }
+export { website }
 
 export default {
+  admin,
+  api,
   config,
-  server,
-  client
+  website
 }

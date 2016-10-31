@@ -1,27 +1,20 @@
-import React from 'react'
-import { Route, IndexRoute } from 'react-router'
-import Platform from './components/platform'
-import Dashboard from './views/dashboard'
-import Apps from './views/apps'
-import Emails from './views/emails'
-import Users from './views/users'
-import Crm from '../apps/crm/client'
-import Expenses from '../apps/expenses/client'
 
-export default (
-  <Route path="/" component={Platform}>
-    <IndexRoute component={Dashboard} />
-    <Route path="dashboard" component={Dashboard} />
-    <Route path="settings">
-      {Apps}
-      {Emails}
-      {Users}
-    </Route>
-    <Route path="crm">
-      {Crm}
-    </Route>
-    <Route path="expenses">
-      {Expenses}
-    </Route>
-  </Route>
-)
+import routes from './admin'
+import { match } from 'react-router'
+import path from 'path'
+
+const client = (req, res) => {
+  match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
+    if (error) {
+      res.status(500).send(error.message)
+    } else if (redirectLocation) {
+      res.redirect(302, redirectLocation.pathname + redirectLocation.search)
+    } else if (renderProps) {
+      res.sendFile(path.resolve('./src/public/index.html'))
+    } else {
+      res.status(404).send('Not found')
+    }
+  })
+}
+
+export default client

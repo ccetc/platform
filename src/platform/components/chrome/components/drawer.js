@@ -23,7 +23,7 @@ export class Drawer extends React.Component {
   render() {
     const { apps, expanded, user } = this.props
     return (
-      <Transition transitionName="expanded" transitionAppear={true} transitionEnterTimeout={250} transitionLeaveTimeout={250} transitionAppearTimeout={250}>
+      <Transition transitionName="expanded" transitionEnterTimeout={250} transitionLeaveTimeout={250} transitionAppear={true} transitionAppearTimeout={250}>
         { expanded && <div key="chrome-drawer-overlay" className="chrome-drawer-overlay" onClick={this._handleToggleDrawer.bind(this)} /> }
         { expanded &&
           <div key="chrome-drawer" className="chrome-drawer">
@@ -42,7 +42,7 @@ export class Drawer extends React.Component {
                       <i className={`${app.icon} icon`} />
                       {app.name}
                     </div>
-                    <Transition transitionName="expanded" transitionAppear={true} transitionEnterTimeout={10} transitionLeaveTimeout={10} transitionAppearTimeout={10}>
+                    <Transition transitionName="expanded" transitionEnterTimeout={10} transitionLeaveTimeout={10} transitionAppear={true} transitionAppearTimeout={10}>
                       {appindex === this.props.app &&
                         <div className="chrome-app-menu">
                           {app.items.map((item, itemindex) => {

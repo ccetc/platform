@@ -1,8 +1,6 @@
-import _ from 'lodash'
 import models from '../models'
 import serializers from '../serializers'
-
-const permit = (body, allowed) => _(body).pick(allowed).omitBy(_.isNil).value()
+import permit from '../../utils/permit'
 
 let controller = {}
 

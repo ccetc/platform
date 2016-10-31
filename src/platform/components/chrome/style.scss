@@ -112,6 +112,10 @@
     &.expanded-leave.expanded-leave-active {
       max-height: 0;
     }
+    &.expanded-enter.expanded-enter-active,
+    &.expanded-leave {
+      max-height: 500px;
+    }
     .chrome-app-item {
       padding: 10px;
       color: rgb(255, 255, 255);
