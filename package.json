@@ -85,7 +85,7 @@
     "build:client": "cp -rp ./src/public ./dist/public && webpack --config config/webpack.development.client.js",
     "start": "node dist/server.js",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
-    "coverage": "babel-node ./node_modules/.bin/babel-istanbul cover _mocha -- --recursive --require babel-core/register ./src/**/*spec.js",
+    "coverage": "babel-node ./node_modules/.bin/babel-istanbul cover _mocha -- --recursive --require babel-core/register ./src/**/*spec.js && codeclimate-test-reporter < coverage/lcov.info",
     "test": "mocha --recursive --require babel-core/register ./src/**/*spec.js",
     "eslint": "eslint ."
   }
