@@ -6,7 +6,9 @@ describe('user model', function() {
 
   beforeEach(function(done) {
     const platform = new Platform()
-    platform.setupTest(done)
+    platform.setupTest().then(() => {
+      done()
+    })
   })
 
   it('requires first_name, last_name, and email', function(done) {

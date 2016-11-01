@@ -42,11 +42,9 @@ class Platform {
   }
 
   setupTest(cb) {
-    this.migrateRollback().then(() => {
-      this.migrateLatest().then(() => {
-        this.fixturesLoad().then(() => {
-          cb()
-        })
+    return this.migrateRollback().then(() => {
+      return this.migrateLatest().then(() => {
+        return this.fixturesLoad()
       })
     })
   }
@@ -54,7 +52,7 @@ class Platform {
   _getMigrations = (completed, direction) => {
     var timestamps = []
     var migrations = {}
-    fs.readdirSync('./src/platform/db/migrations').filter((migration) => {
+    fs.readdirSync(path.join('./src/platform/db/migrations')).filter((migration) => {
       var fullpath = path.resolve('./src/platform/db/migrations', migration)
       var is_completed = _.includes(completed, fullpath)
       if((direction == 'up' && !is_completed) || (direction == 'down' && is_completed)) {
@@ -86,7 +84,7 @@ class Platform {
     fs.readdirSync(path.join('./src/platform/db', dir)).filter((seed) => {
       seeds.push(path.resolve('./src/platform/db', dir, seed))
     })
-    fs.readdirSync('./src/apps').filter((app) => {
+    fs.readdirSync(path.join('./src/apps')).filter((app) => {
       if(fs.statSync(path.join('./src/apps', app)).isDirectory()) {
         fs.readdirSync(path.join('./src/apps', app, 'db', dir)).filter((seed) => {
           seeds.push(path.resolve('./src/apps', app, 'db', dir, seed))

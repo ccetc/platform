@@ -56,13 +56,21 @@
 	var command = process.argv[2];
 
 	if (command == 'migrate:latest') {
-	  platform.migrateLatest();
+	  platform.migrateLatest().then(function () {
+	    return process.exit(1);
+	  });
 	} else if (command == 'migrate:rollback') {
-	  platform.migrateRollback();
+	  platform.migrateRollback().then(function () {
+	    return process.exit(1);
+	  });
 	} else if (command == 'seeds:load') {
-	  platform.seedsLoad();
+	  platform.seedsLoad().then(function () {
+	    return process.exit(1);
+	  });
 	} else if (command == 'fixtures:load') {
-	  platform.fixturesLoad();
+	  platform.fixturesLoad().then(function () {
+	    return process.exit(1);
+	  });
 	}
 
 /***/ },
@@ -112,7 +120,7 @@
 	    this._getMigrations = function (completed, direction) {
 	      var timestamps = [];
 	      var migrations = {};
-	      _fs2.default.readdirSync('./src/platform/db/migrations').filter(function (migration) {
+	      _fs2.default.readdirSync(_path2.default.join('./src/platform/db/migrations')).filter(function (migration) {
 	        var fullpath = _path2.default.resolve('./src/platform/db/migrations', migration);
 	        var is_completed = _lodash2.default.includes(completed, fullpath);
 	        if (direction == 'up' && !is_completed || direction == 'down' && is_completed) {
@@ -144,7 +152,7 @@
 	      _fs2.default.readdirSync(_path2.default.join('./src/platform/db', dir)).filter(function (seed) {
 	        seeds.push(_path2.default.resolve('./src/platform/db', dir, seed));
 	      });
-	      _fs2.default.readdirSync('./src/apps').filter(function (app) {
+	      _fs2.default.readdirSync(_path2.default.join('./src/apps')).filter(function (app) {
 	        if (_fs2.default.statSync(_path2.default.join('./src/apps', app)).isDirectory()) {
 	          _fs2.default.readdirSync(_path2.default.join('./src/apps', app, 'db', dir)).filter(function (seed) {
 	            seeds.push(_path2.default.resolve('./src/apps', app, 'db', dir, seed));
@@ -163,11 +171,9 @@
 	    value: function migrateLatest() {
 	      var _this = this;
 
-	      this.migrator._migrationData().spread(function (all, completed) {
+	      return this.migrator._migrationData().spread(function (all, completed) {
 	        var migrations = _this._getMigrations(completed, 'up');
-	        _this.migrator._runBatch(migrations, 'up').then(function () {
-	          return process.exit(1);
-	        });
+	        return _this.migrator._runBatch(migrations, 'up');
 	      });
 	    }
 	  }, {
@@ -175,11 +181,9 @@
 	    value: function migrateRollback() {
 	      var _this2 = this;
 
-	      this.migrator._migrationData().spread(function (all, completed) {
+	      return this.migrator._migrationData().spread(function (all, completed) {
 	        var migrations = _this2._getMigrations(completed, 'down');
-	        _this2.migrator._runBatch(migrations.reverse(), 'down').then(function () {
-	          return process.exit(1);
-	        });
+	        return _this2.migrator._runBatch(migrations.reverse(), 'down');
 	      });
 	    }
 	  }, {
@@ -187,11 +191,9 @@
 	    value: function seedsLoad() {
 	      var _this3 = this;
 
-	      this.seeder._seedData().spread(function (all) {
+	      return this.seeder._seedData().spread(function (all) {
 	        var seeds = _this3._getSeeds('seeds');
-	        _this3.seeder._runSeeds(seeds).then(function () {
-	          return process.exit(1);
-	        });
+	        return _this3.seeder._runSeeds(seeds);
 	      });
 	    }
 	  }, {
@@ -199,10 +201,19 @@
 	    value: function fixturesLoad() {
 	      var _this4 = this;
 
-	      this.seeder._seedData().spread(function (all) {
+	      return this.seeder._seedData().spread(function (all) {
 	        var fixtures = _this4._getSeeds('fixtures');
-	        _this4.seeder._runSeeds(fixtures).then(function () {
-	          return process.exit(1);
+	        return _this4.seeder._runSeeds(fixtures);
+	      });
+	    }
+	  }, {
+	    key: 'setupTest',
+	    value: function setupTest(cb) {
+	      var _this5 = this;
+
+	      return this.migrateRollback().then(function () {
+	        return _this5.migrateLatest().then(function () {
+	          return _this5.fixturesLoad();
 	        });
 	      });
 	    }

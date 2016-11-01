@@ -6,7 +6,9 @@ describe('users controller', function() {
 
   beforeEach(function(done) {
     const platform = new Platform()
-    platform.setupTest(done)
+    platform.setupTest().then(() => {
+      done()
+    })
   })
 
   it('renders index', function(done) {
