@@ -14,7 +14,7 @@ export default (
     <IndexRoute component={Dashboard} />
     {Notifications}
     {Account}
-    <Route path="instances">
+    <Route path="instance">
       {Activities}
       {Apps}
       {Emails}
