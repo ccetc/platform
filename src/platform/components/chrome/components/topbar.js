@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 import Search from './search'
@@ -18,12 +19,12 @@ export class Topbar extends React.Component {
           <i className="sidebar icon" />
         </div>
         <Search />
-          <div className="chrome-alerts">
-            <i className="warning sign icon" />
-            {unread > 0 &&
-              <div className="chrome-alerts-label">{unread}</div>
-            }
-          </div>
+        <Link to="/admin/notifications" className="chrome-alerts">
+          <i className="warning sign icon" />
+          {unread > 0 &&
+            <div className="chrome-alerts-label">{unread}</div>
+          }
+        </Link>
       </div>
     )
   }
