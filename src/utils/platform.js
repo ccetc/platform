@@ -52,8 +52,8 @@ class Platform {
   _getMigrations = (completed, direction) => {
     var timestamps = []
     var migrations = {}
-    fs.readdirSync(path.join('./src/platform/db/migrations')).filter((migration) => {
-      var fullpath = path.resolve('./src/platform/db/migrations', migration)
+    fs.readdirSync(path.join(__dirname, '../platform/db/migrations')).filter((migration) => {
+      var fullpath = path.resolve(__dirname, '../platform/db/migrations', migration)
       var is_completed = _.includes(completed, fullpath)
       if((direction == 'up' && !is_completed) || (direction == 'down' && is_completed)) {
         var timestamp = migration.split('_')[0]
@@ -61,10 +61,10 @@ class Platform {
         migrations[timestamp] = fullpath
       }
     })
-    fs.readdirSync('./src/apps').filter((app) => {
-      if(fs.statSync(path.join('./src/apps', app)).isDirectory()) {
-        fs.readdirSync(path.join('./src/apps', app, 'db/migrations')).filter((migration) => {
-          var fullpath = path.resolve('./src/apps', app, 'db/migrations', migration)
+    fs.readdirSync(path.join(__dirname, '../apps')).filter((app) => {
+      if(fs.statSync(path.join(__dirname, '../apps', app)).isDirectory()) {
+        fs.readdirSync(path.join(__dirname, '../apps', app, 'db/migrations')).filter((migration) => {
+          var fullpath = path.resolve(__dirname, '../apps', app, 'db/migrations', migration)
           var is_completed = _.includes(completed, fullpath)
           if((direction == 'up' && !is_completed) || (direction == 'down' && is_completed)) {
             var timestamp = migration.split('_')[0]
@@ -81,13 +81,13 @@ class Platform {
 
   _getSeeds = (dir) => {
     var seeds = []
-    fs.readdirSync(path.join('./src/platform/db', dir)).filter((seed) => {
-      seeds.push(path.resolve('./src/platform/db', dir, seed))
+    fs.readdirSync(path.join(__dirname, '../platform/db', dir)).filter((seed) => {
+      seeds.push(path.resolve(__dirname, '../platform/db', dir, seed))
     })
-    fs.readdirSync(path.join('./src/apps')).filter((app) => {
-      if(fs.statSync(path.join('./src/apps', app)).isDirectory()) {
-        fs.readdirSync(path.join('./src/apps', app, 'db', dir)).filter((seed) => {
-          seeds.push(path.resolve('./src/apps', app, 'db', dir, seed))
+    fs.readdirSync(path.join(__dirname, '../apps')).filter((app) => {
+      if(fs.statSync(path.join(__dirname, '../apps', app)).isDirectory()) {
+        fs.readdirSync(path.join(__dirname, '../apps', app, 'db', dir)).filter((seed) => {
+          seeds.push(path.resolve(__dirname, '../apps', app, 'db', dir, seed))
         })
       }
     })
