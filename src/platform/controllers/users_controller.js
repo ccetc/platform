@@ -7,16 +7,16 @@ let controller = {}
 controller.index = (req, res) => {
   models.user.fetchAll().then((users) => {
     res.json(users.map(user => serializers.user(user.attributes)))
-  }).catch(function(err) {
-    res.status(404).json({ message: 'Unable to fetch this records', errors: err.errors })
+  // }).catch(function(err) {
+  //   res.status(404).json({ message: 'Unable to fetch this records', errors: err.errors })
   })
 }
 
 controller.show = (req, res) => {
   models.user.where({ id: req.params.id }).fetch().then((user) => {
     res.json(serializers.user(user.attributes))
-  }).catch(function(err) {
-    res.status(404).json({ message: 'Unable to fetch this record', errors: err.errors })
+  // }).catch(function(err) {
+  //   res.status(404).json({ message: 'Unable to fetch this record', errors: err.errors })
   })
 }
 

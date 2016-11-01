@@ -1,17 +1,19 @@
+import { request, expect } from 'chai'
 import controller from '../../controllers/users_controller'
-
-require('es6-promise').polyfill()
 
 describe('users controller', () => {
 
   it('renders index', () => {
 
-    const expected = {
-      message: 'users index'
-    }
+    const expected = [{
+      id: 1,
+      first_name: 'Greg',
+      last_name: 'Kops',
+      email: 'greg@thinktopography.com'
+    }]
 
     controller.index({}, { json: (actual) => {
-      expect(actual).toEqual(expected)
+      expect(actual).to.eql(expected)
     }})
 
   })
@@ -19,11 +21,14 @@ describe('users controller', () => {
   it('renders show', () => {
 
     const expected = {
-      message: 'users show'
+      id: 1,
+      first_name: 'Greg',
+      last_name: 'Kops',
+      email: 'greg@thinktopography.com'
     }
 
     controller.show({ params: { id: 1 }}, { json: (actual) => {
-      expect(actual).toEqual(expected)
+      expect(actual).to.eql(expected)
     }})
 
   })
@@ -35,7 +40,7 @@ describe('users controller', () => {
   //   }
   //
   //   controller.create({}, { json: (actual) => {
-  //     expect(actual).toEqual(expected)
+  //     expect(actual).to.equal(expected)
   //   }})
   //
   // })
@@ -47,7 +52,7 @@ describe('users controller', () => {
   //   }
   //
   //   controller.update({}, { json: (actual) => {
-  //     expect(actual).toEqual(expected)
+  //     expect(actual).to.equal(expected)
   //   }})
   //
   // })

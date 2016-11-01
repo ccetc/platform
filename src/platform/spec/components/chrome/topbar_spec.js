@@ -1,4 +1,5 @@
 import React from 'react'
+import { expect } from 'chai'
 import { spy } from 'sinon'
 import { shallow } from 'enzyme'
 import { Topbar } from '../../../components/chrome/components/topbar'
@@ -14,25 +15,25 @@ describe('topbar component', () => {
     const topbar = shallow(
       <Topbar {...config} />
     )
-    expect(topbar.is('div.chrome-topbar')).toBeTruthy()
-    expect(topbar.children().length).toEqual(3)
+    expect(topbar.is('div.chrome-topbar')).to.be.ok
+    expect(topbar.children().length).to.equal(3)
 
     const toggle = topbar.childAt(0)
-    expect(toggle.is('div.chrome-toggle')).toBeTruthy()
-    expect(toggle.children().length).toEqual(1)
-    expect(toggle.childAt(0).is('i.sidebar.icon')).toBeTruthy()
+    expect(toggle.is('div.chrome-toggle')).to.be.ok
+    expect(toggle.children().length).to.equal(1)
+    expect(toggle.childAt(0).is('i.sidebar.icon')).to.be.ok
     toggle.simulate('click')
-    expect(onToggleDrawer.calledOnce).toBeTruthy()
+    expect(onToggleDrawer.calledOnce).to.be.ok
 
     const search = topbar.childAt(1)
-    expect(search.is('Connect(Search)')).toBeTruthy()
+    expect(search.is('Connect(Search)')).to.be.ok
 
     const alerts = topbar.childAt(2)
-    expect(alerts.is('div.chrome-alerts')).toBeTruthy()
-    expect(alerts.children().length).toEqual(2)
-    expect(alerts.childAt(0).is('i.warning.sign.icon')).toBeTruthy()
-    expect(alerts.childAt(1).is('div.chrome-alerts-label')).toBeTruthy()
-    expect(alerts.childAt(1).text()).toEqual('12')
+    expect(alerts.is('Link.chrome-alerts[to="/admin/notifications"]')).to.be.ok
+    expect(alerts.children().length).to.equal(2)
+    expect(alerts.childAt(0).is('i.warning.sign.icon')).to.be.ok
+    expect(alerts.childAt(1).is('div.chrome-alerts-label')).to.be.ok
+    expect(alerts.childAt(1).text()).to.equal('12')
   })
 
 })

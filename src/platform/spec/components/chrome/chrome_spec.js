@@ -1,4 +1,5 @@
 import React from 'react'
+import { expect } from 'chai'
 import { shallow } from 'enzyme'
 import { Chrome } from '../../../components/chrome/components/chrome'
 
@@ -11,22 +12,22 @@ describe('chrome component', () => {
     const chrome = shallow(
       <Chrome {...config}>children</Chrome>
     )
-    expect(chrome.is('div.chrome')).toBeTruthy()
-    expect(chrome.children().length).toEqual(2)
+    expect(chrome.is('div.chrome')).to.be.ok
+    expect(chrome.children().length).to.equal(2)
 
     const drawer = chrome.childAt(0)
-    expect(drawer.is('Connect(Drawer)')).toBeTruthy()
+    expect(drawer.is('Connect(Drawer)')).to.be.ok
 
     const canvas = chrome.childAt(1)
-    expect(canvas.is('div.chrome-canvas')).toBeTruthy()
+    expect(canvas.is('div.chrome-canvas')).to.be.ok
 
     const topbar = canvas.childAt(0)
-    expect(topbar.is('Connect(Topbar)')).toBeTruthy()
+    expect(topbar.is('Connect(Topbar)')).to.be.ok
 
-    const header = canvas.childAt(1)
-    expect(header.is('div.chrome-header')).toBeTruthy()
+    expect(canvas.childAt(1).text()).to.equal('children')
 
-    expect(canvas.childAt(2).text()).toEqual('children')
+    const notifications = canvas.childAt(2)
+    expect(notifications.is('Connect(Notifications)')).to.be.ok
   })
 
 })

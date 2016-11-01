@@ -1,7 +1,8 @@
+import { expect } from 'chai'
 import reducer from '../../../components/chrome/reducer'
 import * as actionTypes from '../../../components/chrome/action_types'
 
-describe('collection reducer', () => {
+describe('chrome reducer', () => {
 
   it('opens the drawer', () => {
     let state = {
@@ -17,7 +18,7 @@ describe('collection reducer', () => {
         expanded: true
       }
     }
-    expect(reducer(state, action)).toEqual(expected)
+    expect(reducer(state, action)).to.eql(expected)
   })
 
   it('closes the drawer', () => {
@@ -34,7 +35,7 @@ describe('collection reducer', () => {
         expanded: false
       }
     }
-    expect(reducer(state, action)).toEqual(expected)
+    expect(reducer(state, action)).to.eql(expected)
   })
 
   it('chooses the app', () => {
@@ -52,7 +53,7 @@ describe('collection reducer', () => {
         app: 1
       }
     }
-    expect(reducer(state, action)).toEqual(expected)
+    expect(reducer(state, action)).to.eql(expected)
   })
 
   it('chooses the item', () => {
@@ -72,7 +73,7 @@ describe('collection reducer', () => {
         expanded: false
       }
     }
-    expect(reducer(state, action)).toEqual(expected)
+    expect(reducer(state, action)).to.eql(expected)
   })
 
   it('begins the search', () => {
@@ -88,7 +89,7 @@ describe('collection reducer', () => {
         active: true
       }
     }
-    expect(reducer(state, action)).toEqual(expected)
+    expect(reducer(state, action)).to.eql(expected)
   })
 
   it('aborts the search but preserves results', () => {
@@ -111,7 +112,7 @@ describe('collection reducer', () => {
         active: false
       }
     }
-    expect(reducer(state, action)).toEqual(expected)
+    expect(reducer(state, action)).to.eql(expected)
   })
 
   it('completes the search abd resets values', () => {
@@ -135,7 +136,7 @@ describe('collection reducer', () => {
         choice: { name: 'Greg Kops' }
       }
     }
-    expect(reducer(state, action)).toEqual(expected)
+    expect(reducer(state, action)).to.eql(expected)
   })
 
 })

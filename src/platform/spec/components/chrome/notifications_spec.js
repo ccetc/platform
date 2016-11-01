@@ -1,4 +1,5 @@
 import React from 'react'
+import { expect } from 'chai'
 import { spy } from 'sinon'
 import { shallow } from 'enzyme'
 import { Notifications } from '../../../components/chrome/components/notifications'
@@ -18,7 +19,7 @@ describe('notifications component', () => {
     const notifications = shallow(
       <Notifications {...config} />
     )
-    expect(notifications.is('div.chrome-notifications')).toBeTruthy()
+    expect(notifications.is('div.chrome-notifications')).to.be.ok
 
   })
 
