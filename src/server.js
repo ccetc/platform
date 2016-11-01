@@ -1,6 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import admin from './platform/client'
+import render from './render'
 import platform from './platform'
 import crm from './apps/crm'
 import expenses from './apps/expenses'
@@ -27,7 +27,7 @@ app.use(`/api/admin${crm.config.path}`, crm.api)
 app.use(`/api/admin${expenses.config.path}`, expenses.api)
 
 // admin routes
-app.get('/admin*', admin)
+app.get('/admin*', render)
 
 // http app
 http.listen(8080)
