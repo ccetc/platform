@@ -1,8 +1,9 @@
 const serializer = (object) => ({
   id: object.id,
-  first_name: object.first_name,
-  last_name: object.last_name,
-  email: object.email,
+  file_name: object.file_name,
+  content_type: object.content_type,
+  file_size: object.file_size,
+  url: object.url,
   created_at: object.created_at,
   updated_at: object.updated_at
 })
