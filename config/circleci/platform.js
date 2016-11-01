@@ -3,8 +3,8 @@ module.exports = {
     database: {
       client: 'postgresql',
       connection: {
-        database: 'platform',
-        user:     'postgres',
+        database: 'circle_test',
+        user:     'ubuntu',
         password: ''
       }
     }
@@ -13,8 +13,8 @@ module.exports = {
     database: {
       client: 'postgresql',
       connection: {
-        database: 'platform',
-        user:     'postgres',
+        database: 'circle_test',
+        user:     'ubuntu',
         password: ''
       }
     }
