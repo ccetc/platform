@@ -21,3 +21,21 @@
     </td>
   </tr>
 </table>
+
+## Getting started
+
+Getting a development server up and running is simple!
+
+```sh
+git clone https://github.com/ccetc/platform.git
+cd platform
+npm install
+npm run build
+npm run start
+```
+
+## Author & Credits
+
+This platform was originally written by [Greg Kops](https://github.com/mochini)
+based upon his work at [Think Topography](http://thinktopography.com) and
+[Cornell Cooperative Extension of Tompkins County](http://ccetompkins.org).

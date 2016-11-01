@@ -25,7 +25,6 @@
     "https": "^1.0.0",
     "jquery": "^3.1.1",
     "knex": "^0.12.6",
-    "morgan": "^1.7.0",
     "path": "^0.12.7",
     "pg": "^6.1.0",
     "react": "^15.3.2",
@@ -80,6 +79,7 @@
     "webpack-uglify-js-plugin": "^1.1.9"
   },
   "scripts": {
+    "build": "npm run build:clean && npm run build:client && npm run build:server",
     "build:clean": "rm -rf ./dist && mkdir ./dist",
     "build:server": "webpack --config config/webpack.development.server.js",
     "build:client": "cp -rp ./src/public ./dist/public && webpack --config config/webpack.development.client.js",
