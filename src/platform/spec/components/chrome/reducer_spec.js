@@ -2,9 +2,9 @@ import { expect } from 'chai'
 import reducer from '../../../components/chrome/reducer'
 import * as actionTypes from '../../../components/chrome/action_types'
 
-describe('chrome reducer', () => {
+describe('chrome reducer', function() {
 
-  it('opens the drawer', () => {
+  it('opens the drawer', function() {
     let state = {
       drawer: {
         expanded: false
@@ -21,7 +21,7 @@ describe('chrome reducer', () => {
     expect(reducer(state, action)).to.eql(expected)
   })
 
-  it('closes the drawer', () => {
+  it('closes the drawer', function() {
     let state = {
       drawer: {
         expanded: true
@@ -38,7 +38,7 @@ describe('chrome reducer', () => {
     expect(reducer(state, action)).to.eql(expected)
   })
 
-  it('chooses the app', () => {
+  it('chooses the app', function() {
     let state = {
       drawer: {
         app: null
@@ -56,7 +56,7 @@ describe('chrome reducer', () => {
     expect(reducer(state, action)).to.eql(expected)
   })
 
-  it('chooses the item', () => {
+  it('chooses the item', function() {
     let state = {
       drawer: {
         item: null,
@@ -76,7 +76,7 @@ describe('chrome reducer', () => {
     expect(reducer(state, action)).to.eql(expected)
   })
 
-  it('begins the search', () => {
+  it('begins the search', function() {
     let state = {
       search: {}
     }
@@ -92,7 +92,7 @@ describe('chrome reducer', () => {
     expect(reducer(state, action)).to.eql(expected)
   })
 
-  it('aborts the search but preserves results', () => {
+  it('aborts the search but preserves results', function() {
     let state = {
       search: {
         results: [
@@ -115,7 +115,7 @@ describe('chrome reducer', () => {
     expect(reducer(state, action)).to.eql(expected)
   })
 
-  it('completes the search abd resets values', () => {
+  it('completes the search abd resets values', function() {
     let state = {
       search: {
         results: [

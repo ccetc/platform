@@ -4,9 +4,9 @@ import { spy } from 'sinon'
 import { shallow } from 'enzyme'
 import { Drawer } from '../../../components/chrome/components/drawer'
 
-describe('drawer component', () => {
+describe('drawer component', function() {
 
-  it('renders expanded drawer', () => {
+  it('renders expanded drawer', function() {
     const onChooseApp = spy()
     const onChooseItem = spy()
     const config = {

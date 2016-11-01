@@ -1,6 +1,6 @@
 exports.up = function(knex, Promise) {
   return Promise.all([
-    knex.schema.createTable('assets', function (table) {
+    knex.schema.createTable('chunks', function (table) {
       table.increments()
       table.integer('instance_id').unsigned()
       table.foreign('instance_id').references('instances.id')
@@ -15,6 +15,6 @@ exports.up = function(knex, Promise) {
 
 exports.down = function(knex, Promise) {
   return Promise.all([
-    knex.schema.dropTable('users')
+    knex.schema.dropTable('chunks')
   ])
 }

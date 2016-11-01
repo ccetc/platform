@@ -4,9 +4,9 @@ import { spy } from 'sinon'
 import { shallow } from 'enzyme'
 import { Notifications } from '../../../components/chrome/components/notifications'
 
-describe('notifications component', () => {
+describe('notifications component', function() {
 
-  it('renders', () => {
+  it('renders', function() {
     const onPushNotification = spy()
     const onReadNotification = spy()
     const config = {

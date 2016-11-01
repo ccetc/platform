@@ -1,57 +1,63 @@
-import { request, expect } from 'chai'
+import { expect } from 'chai'
+import Platform from '../../../utils/platform'
 import controller from '../../controllers/users_controller'
 
-describe('users controller', () => {
+describe('users controller', function() {
 
-  it('renders index', () => {
+  beforeEach(function(done) {
+    const platform = new Platform()
+    platform.setupTest(done)
+  })
 
-    const expected = [{
-      id: 1,
-      first_name: 'Greg',
-      last_name: 'Kops',
-      email: 'greg@thinktopography.com'
-    }]
+  it('renders index', function(done) {
 
-    controller.index({}, { json: (actual) => {
+    const expected = [
+      { id: 1, first_name: 'Greg', last_name: 'Kops', email: 'gmk8@cornell.edu' },
+      { id: 2, first_name: 'Ken', last_name: 'Schlather', email: 'ks47@cornell.edu' }
+    ]
+
+    controller.index({}, { json: actual => {
       expect(actual).to.eql(expected)
+      done()
     }})
 
   })
 
-  it('renders show', () => {
+  it('renders show', function(done) {
 
     const expected = {
       id: 1,
       first_name: 'Greg',
       last_name: 'Kops',
-      email: 'greg@thinktopography.com'
+      email: 'gmk8@cornell.edu'
     }
 
-    controller.show({ params: { id: 1 }}, { json: (actual) => {
+    controller.show({ params: { id: 1 }}, { json: actual => {
       expect(actual).to.eql(expected)
+      done()
     }})
 
   })
 
-  // it('renders create', () => {
+  // it('renders create', function() {
   //
   //   const expected = {
   //     message: 'users create'
   //   }
   //
-  //   controller.create({}, { json: (actual) => {
+  //   controller.create({}, { json: actual => {
   //     expect(actual).to.equal(expected)
   //   }})
   //
   // })
   //
-  // it('renders update', () => {
+  // it('renders update', function() {
   //
   //   const expected = {
   //     message: 'users update'
   //   }
   //
-  //   controller.update({}, { json: (actual) => {
+  //   controller.update({}, { json: actual => {
   //     expect(actual).to.equal(expected)
   //   }})
   //

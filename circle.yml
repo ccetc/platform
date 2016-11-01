@@ -13,7 +13,7 @@ checkout:
     - cp ./config/circleci/* ./config/
 test:
   override:
-    - npm test
+    - npm run test
 deployment:
   production:
     branch: master

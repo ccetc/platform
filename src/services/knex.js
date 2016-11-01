@@ -11,7 +11,7 @@ var defaults = {
     directory: '/'
   },
   seeds: {
-    directory: './db/seeds'
+    directory: '/'
   }
 }
 

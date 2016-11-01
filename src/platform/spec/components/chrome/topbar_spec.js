@@ -4,9 +4,9 @@ import { spy } from 'sinon'
 import { shallow } from 'enzyme'
 import { Topbar } from '../../../components/chrome/components/topbar'
 
-describe('topbar component', () => {
+describe('topbar component', function() {
 
-  it('renders topbar', () => {
+  it('renders topbar', function() {
     const onToggleDrawer = spy()
     const config = {
       unread: 12,

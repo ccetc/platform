@@ -4,9 +4,9 @@ import { expect } from 'chai'
 import { shallow } from 'enzyme'
 import { Search } from '../../../components/chrome/components/search'
 
-describe('search component', () => {
+describe('search component', function() {
 
-  it('renders', () => {
+  it('renders', function() {
     expect(true).to.be.ok
     // const onToggleDrawer = spy()
     const config = {

@@ -3,9 +3,9 @@ import { expect } from 'chai'
 import { shallow } from 'enzyme'
 import { Chrome } from '../../../components/chrome/components/chrome'
 
-describe('chrome component', () => {
+describe('chrome component', function() {
 
-  it('renders', () => {
+  it('renders', function() {
     const config = {
       expanded: true
     }

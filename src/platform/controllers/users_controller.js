@@ -7,16 +7,16 @@ let controller = {}
 controller.index = (req, res) => {
   models.user.fetchAll().then((users) => {
     res.json(users.map(user => serializers.user(user.attributes)))
-  // }).catch(function(err) {
-  //   res.status(404).json({ message: 'Unable to fetch this records', errors: err.errors })
+  }).catch(function(err) {
+    res.json({ message: 'Unable to fetch this records', errors: err.errors }).status(404)
   })
 }
 
 controller.show = (req, res) => {
   models.user.where({ id: req.params.id }).fetch().then((user) => {
     res.json(serializers.user(user.attributes))
-  // }).catch(function(err) {
-  //   res.status(404).json({ message: 'Unable to fetch this record', errors: err.errors })
+  }).catch(function(err) {
+    res.json({ message: 'Unable to fetch this record', errors: err.errors }).status(404)
   })
 }
 
@@ -27,7 +27,7 @@ controller.create = (req, res) => {
     res.json(serializers.user(user.attributes))
   })
   .catch(function (err) {
-    res.status(422).json({ message: 'There were problems with your data', errors: err.errors })
+    res.json({ message: 'There were problems with your data', errors: err.errors }).status(422)
   })
 }
 
@@ -40,11 +40,11 @@ controller.update = (req, res) => {
       res.json(serializers.user(user.attributes))
     })
     .catch(function (err) {
-      res.status(422).json({ message: 'There were problems with your data', errors: err.errors })
+      res.json({ message: 'There were problems with your data', errors: err.errors }).status(422)
     })
   })
   .catch(function (err) {
-    res.status(404).json({ message: 'Unable to fetch this record', errors: err.errors })
+    res.json({ message: 'Unable to fetch this record', errors: err.errors }).status(404)
   })
 }
 
@@ -57,11 +57,11 @@ controller.destroy = (req, res) => {
       res.json(serializers.user(user.attributes))
     })
     .catch(err => {
-      res.status(422).json({ message: 'Unable to delete this record', errors: err.errors })
+      res.json({ message: 'Unable to delete this record', errors: err.errors }).status(422)
     })
   })
   .catch(err => {
-    res.status(404).json({ message: 'Unable to fetch this record', errors: err.errors })
+    res.json({ message: 'Unable to fetch this record', errors: err.errors }).status(404)
   })
 }
 
