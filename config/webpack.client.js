@@ -27,6 +27,9 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    modulesDirectories: ['node_modules', 'src']
+  },
   plugins: [
     new ExtractTextPlugin('css/styles.min.css')
   ]

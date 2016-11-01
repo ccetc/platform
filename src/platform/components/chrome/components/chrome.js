@@ -17,16 +17,7 @@ export class Chrome extends React.Component {
         <Drawer />
         <div className="chrome-canvas">
           <Topbar />
-          <div className="chrome-header">
-            <div className="ui breadcrumb">
-              <a className="section">Dashboard</a>
-              <div className="divider"> / </div>
-              <div className="active section">Contacts</div>
-            </div>
-          </div>
-          <div className="chrome-body">
-            {this.props.children}
-          </div>
+          {this.props.children}
           <Notifications />
         </div>
       </div>

@@ -1,20 +1,23 @@
 import React from 'react'
-import Helmet from 'react-helmet'
+import Main from 'platform/components/chrome/components/main'
 
 class List extends React.Component {
 
   render() {
     return (
-      <div className="chrome-content">
-        <Helmet {...this._getHead()} />
+      <Main {...this._getMain()}>
         <p>Projects List</p>
-      </div>
+      </Main>
     )
   }
 
-  _getHead() {
+  _getMain() {
     return {
-      title: 'Platform | Projects'
+      title: 'Projects',
+      breadcrumbs: [
+        { label: 'Dashboard', route: '/admin' },
+        { label: 'Projects' }
+      ]
     }
   }
 
