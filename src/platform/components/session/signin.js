@@ -1,4 +1,5 @@
 import React from 'react'
+import $ from 'jquery'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import * as actions from './actions'
@@ -20,7 +21,7 @@ export class Signin extends React.Component {
   render() {
     const { flash } = this.props
     return (
-      <div className="ui form">
+      <form className="ui form" onSubmit={this._handleSubmit.bind(this)}>
         {flash !== null &&
           <div className={`ui ${flash.style} message`}>
             {flash.message}
@@ -39,12 +40,12 @@ export class Signin extends React.Component {
           </div>
         </div>
         <div className="field">
-          <button className="ui fluid large submit red button" onClick={this._handleSubmit.bind(this)}>Sign In</button>
+          <button className="ui fluid large submit red button">Sign In</button>
         </div>
         <div className="field">
           <p><Link to="/admin/reset">Forget your password?</Link></p>
         </div>
-      </div>
+      </form>
     )
   }
 
@@ -62,11 +63,13 @@ export class Signin extends React.Component {
     }
   }
 
-  _handleSubmit() {
+  _handleSubmit(event) {
     const email = $(this.refs.email).val()
     const password = $(this.refs.password).val()
     this.props.onClearFlash()
     this.props.onSignin(email, password)
+    event.preventDefault()
+    return false
   }
 
 }

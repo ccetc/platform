@@ -1,4 +1,5 @@
 .platform-session {
+  background: #DB2828;
   position: fixed;
   top: 0px;
   bottom: 0px;
@@ -8,12 +9,32 @@
   flex: 1;
   .ui.segments {
     max-width: 320px;
-    width: calc(100% - 40px);
+    width: 100%;
     margin: auto;
+    border: none !important;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+  }
+  .ui.segment {
+    background: none !important;
   }
   .ui.form .error.message,
   .ui.form .success.message,
   .ui.form .warning.message {
     display: block !important;
+  }
+  button.ui.red.button {
+    background-color: #B90606;
+    color: #FFFFFF;
+    &:hover {
+      background-color: #A80505;
+    }
+  }
+  p {
+    text-align: center;
+  }
+  a {
+    color: #FFF;
   }
 }
