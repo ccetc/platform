@@ -1,17 +1,7 @@
 import { expect } from 'chai'
-import Platform from '../../../utils/platform'
 import models from '../../models'
 
 describe('user model', function() {
-
-  this.timeout(5000);
-
-  beforeEach(function(done) {
-    const platform = new Platform()
-    platform.setupTest().then(() => {
-      done()
-    })
-  })
 
   it('requires first_name, last_name, and email', function(done) {
     models.user.forge({})

@@ -41,7 +41,15 @@ class Platform {
     })
   }
 
-  setupTest(cb) {
+  setupTest() {
+    return this.migrateRollback().then(() => {
+      return this.migrateLatest().then(() => {
+        return this.fixturesLoad()
+      })
+    })
+  }
+
+  setupTest() {
     return this.migrateRollback().then(() => {
       return this.migrateLatest().then(() => {
         return this.fixturesLoad()

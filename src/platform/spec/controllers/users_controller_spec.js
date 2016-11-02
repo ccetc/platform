@@ -1,17 +1,7 @@
 import { expect } from 'chai'
-import Platform from '../../../utils/platform'
 import controller from '../../controllers/users_controller'
 
 describe('users controller', function() {
-
-  this.timeout(5000);
-
-  beforeEach(function(done) {
-    const platform = new Platform()
-    platform.setupTest().then(() => {
-      done()
-    })
-  })
 
   it('renders index', function(done) {
 
