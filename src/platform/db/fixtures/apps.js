@@ -3,12 +3,13 @@ exports.seed = (knex, Promise) => {
     .then(() => {
       return Promise.all([
         knex('apps').insert({
-          id: 1,
           title: 'CRM'
         }),
         knex('apps').insert({
-          id: 2,
           title: 'Expenses'
+        }),
+        knex('apps').insert({
+          title: 'Instance'
         })
       ])
     })

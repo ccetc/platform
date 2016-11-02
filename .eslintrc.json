@@ -18,6 +18,10 @@
   "plugins": [
     "react"
   ],
+  "globals": {
+     "before": true,
+     "after": true
+   },
   "rules": {
     "strict": 0,
     "comma-dangle": [

@@ -14,13 +14,13 @@ before(function(done) {
 })
 
 beforeEach(function(done) {
-  knex.raw("BEGIN TRANSACTION").then(() => {
-     done()
-   })
+  knex.raw('BEGIN TRANSACTION').then(() => {
+    done()
+  })
 })
 
 afterEach(function (done) {
-  knex.raw("ROLLBACK").then(() => {
+  knex.raw('ROLLBACK').then(() => {
     done()
   })
 })

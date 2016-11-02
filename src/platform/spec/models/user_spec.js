@@ -25,13 +25,31 @@ describe('user model', function() {
     })
   })
 
-  it('loads by id', function(done) {
+  it('fetch by id', function(done) {
     let expected = {
       id: 1,
       instance_id: 1,
-      first_name: 'Greg',
-      last_name: 'Kops',
-      email: 'gmk8@cornell.edu',
+      first_name: 'Ken',
+      last_name: 'Schlather',
+      email: 'ks47@cornell.edu',
+      password_hash: null,
+      password_salt: null,
+      created_at: null,
+      updated_at: null
+    }
+    models.user.where({ id: 1}).fetch().then(user => {
+      expect(user.attributes).to.eql(expected)
+      done()
+    })
+  })
+
+  it('fetch by id', function(done) {
+    let expected = {
+      id: 1,
+      instance_id: 1,
+      first_name: 'Ken',
+      last_name: 'Schlather',
+      email: 'ks47@cornell.edu',
       password_hash: null,
       password_salt: null,
       created_at: null,

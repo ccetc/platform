@@ -5,18 +5,24 @@ import permit from '../../utils/permit'
 let controller = {}
 
 controller.index = (req, res) => {
-  models.user.fetchAll().then((users) => {
-    res.json(users.map(user => serializers.user(user.attributes)))
-  }).catch(function(err) {
-    res.json({ message: 'Unable to fetch this records', errors: err.errors }).status(404)
+  models.user.fetchAll()
+  .then(users => {
+    if(users.length) {
+      res.json(users.map(user => serializers.user(user.attributes))).status(200)
+    } else {
+      res.json({ message: 'Unable to fetch records' }).status(404)
+    }
+  }).catch(err => {
+    res.json({ message: 'Application error' }).status(500)
   })
 }
 
 controller.show = (req, res) => {
-  models.user.where({ id: req.params.id }).fetch().then((user) => {
-    res.json(serializers.user(user.attributes))
-  }).catch(function(err) {
-    res.json({ message: 'Unable to fetch this record', errors: err.errors }).status(404)
+  models.user.forge({ id: req.params.id }).fetch({ require: true })
+  .then(user => {
+    res.json(serializers.user(user.attributes)).status(200)
+  }).catch(err => {
+    res.json({ message: 'Unable to fetch record' }).status(404)
   })
 }
 
@@ -24,46 +30,42 @@ controller.create = (req, res) => {
   models.user.forge(permit(req.body, ['first_name', 'last_name', 'email']))
   .save()
   .then(user => {
-    res.json(serializers.user(user.attributes))
+    res.json(serializers.user(user.attributes)).status(201)
   })
-  .catch(function (err) {
-    res.json({ message: 'There were problems with your data', errors: err.errors }).status(422)
+  .catch(err => {
+    res.json({ message: 'There were problems with your data', errors: err.toJSON() }).status(422)
   })
 }
 
 controller.update = (req, res) => {
-  models.user.forge({ id: req.params.id })
-  .fetch({ require: true })
+  models.user.forge({ id: req.params.id }).fetch({ require: true })
   .then(user => {
-    user.save(permit(req.body, ['first_name', 'last_name', 'email']))
+    return user.save(permit(req.body, ['first_name', 'last_name', 'email']))
     .then(user => {
-      res.json(serializers.user(user.attributes))
-    })
-    .catch(function (err) {
-      res.json({ message: 'There were problems with your data', errors: err.errors }).status(422)
+      res.json(serializers.user(user.attributes)).status(201)
+    }).catch(err => {
+      res.json({ message: 'There were problems with your data', errors: err.toJSON() }).status(422)
     })
   })
-  .catch(function (err) {
-    res.json({ message: 'Unable to fetch this record', errors: err.errors }).status(404)
+  .catch(err => {
+    res.json({ message: 'Unable to fetch record' }).status(404)
   })
 }
 
 controller.destroy = (req, res) => {
-  models.user.forge({ id: req.params.id })
-  .fetch({ require: true })
+  models.user.forge({ id: req.params.id }).fetch({ require: true })
   .then(user => {
-    user.destroy()
+    return user.destroy()
     .then(user => {
-      res.json(serializers.user(user.attributes))
+      res.json({}).status(201)
     })
     .catch(err => {
-      res.json({ message: 'Unable to delete this record', errors: err.errors }).status(422)
+      res.json({ message: 'Unable to delete record', errors: err.toJSON() }).status(422)
     })
   })
   .catch(err => {
-    res.json({ message: 'Unable to fetch this record', errors: err.errors }).status(404)
+    res.json({ message: 'Unable to fetch record' }).status(404)
   })
 }
-
 
 export default controller

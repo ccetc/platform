@@ -3,7 +3,6 @@ exports.seed = (knex, Promise) => {
     .then(() => {
       return Promise.all([
         knex('instances').insert({
-          id: 1,
           title: 'Cornell Cooperative Extension of Tompkins County'
         })
       ])
