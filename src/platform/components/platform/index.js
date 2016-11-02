@@ -3,7 +3,6 @@ import { Provider } from 'react-redux'
 import SocketClient from 'socket.io-client'
 import CreateStore from './store'
 import reducer from './reducer'
-import Chrome from '../chrome'
 
 class Platform extends React.Component {
 
@@ -20,9 +19,7 @@ class Platform extends React.Component {
     const store = CreateStore(reducer)
     return (
       <Provider store={store}>
-        <Chrome {...this.props}>
-          {this.props.children}
-        </Chrome>
+        {this.props.children}
       </Provider>
     )
   }

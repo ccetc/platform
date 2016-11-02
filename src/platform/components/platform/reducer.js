@@ -1,9 +1,11 @@
 import chrome from '../chrome/reducer'
+import session from '../session/reducer'
 
 const Reducer = (state, action) => {
 
   const reducers = {
-    chrome
+    chrome,
+    session
   }
 
   const namespace = action.type.split('/')[0]
@@ -17,7 +19,8 @@ const Reducer = (state, action) => {
 
   } else if(state === undefined) {
     return {
-      chrome: chrome(undefined, action)
+      chrome: chrome(undefined, action),
+      session: session(undefined, action)
     }
 
   } else {

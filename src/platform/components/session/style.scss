@@ -1,0 +1,19 @@
+.platform-session {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  display: flex;
+  flex: 1;
+  .ui.segments {
+    max-width: 320px;
+    width: calc(100% - 40px);
+    margin: auto;
+  }
+  .ui.form .error.message,
+  .ui.form .success.message,
+  .ui.form .warning.message {
+    display: block !important;
+  }
+}

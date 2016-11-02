@@ -20,14 +20,14 @@
   @media only screen and (min-width: 768px) {
     width: 320px;
   }
-}
-.chrome-drawer.expanded-enter,
-.chrome-drawer.expanded-leave.expanded-leave-active {
-  transform: translateX(-100%);
-}
-.chrome-drawer.expanded-enter.expanded-enter-active,
-.chrome-drawer.expanded-leave {
-  transform: translateX(0);
+  &.expanded-enter,
+  &.expanded-leave.expanded-leave-active {
+    transform: translateX(-100%);
+  }
+  &.expanded-enter.expanded-enter-active,
+  &.expanded-leave {
+    transform: translateX(0);
+  }
 }
 .chrome-drawer-overlay {
   background-color: rgb(0, 0, 0);
@@ -41,14 +41,36 @@
   bottom: 0;
   left: 0;
   @include opacity(0.2);
+  &.expanded-enter,
+  &.expanded-leave.expanded-leave-active {
+    @include opacity(0);
+  }
+  &.expanded-enter.expanded-enter-active,
+  &.expanded-leave {
+    @include opacity(0.2);
+  }
 }
-.chrome-drawer-overlay.expanded-enter,
-.chrome-drawer-overlay.expanded-leave.expanded-leave-active {
-  @include opacity(0);
-}
-.chrome-drawer-overlay.expanded-enter.expanded-enter-active,
-.chrome-drawer-overlay.expanded-leave {
-  @include opacity(0.2);
+
+.chrome-flash {
+  transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -webkit-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -moz-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 15px;
+  background-color: #000;
+  color: #FFF;
+  z-index: 20;
+  &.expanded-enter,
+  &.expanded-leave.expanded-leave-active {
+    transform: translateY(-100%);
+  }
+  &.expanded-enter.expanded-enter-active,
+  &.expanded-leave {
+    transform: translateY(0);
+  }
 }
 
 .chrome-presence {
@@ -142,7 +164,8 @@
   display: flex;
 }
 .chrome-toggle,
-.chrome-alerts {
+.chrome-alerts,
+.chrome-power {
   display: flex;
   position: relative;
   flex: 0 0 42px;

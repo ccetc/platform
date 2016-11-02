@@ -8,15 +8,19 @@ describe('topbar component', function() {
 
   it('renders topbar', function() {
     const onToggleDrawer = spy()
+    const onSignout = spy()
     const config = {
       unread: 12,
-      onToggleDrawer
+      onToggleDrawer,
+      onSignout
     }
+    const context = { router: { push: (route) => {} } }
     const topbar = shallow(
-      <Topbar {...config} />
+      <Topbar {...config} />,
+      { context }
     )
     expect(topbar.is('div.chrome-topbar')).to.be.ok
-    expect(topbar.children().length).to.equal(3)
+    expect(topbar.children().length).to.equal(4)
 
     const toggle = topbar.childAt(0)
     expect(toggle.is('div.chrome-toggle')).to.be.ok
@@ -34,6 +38,13 @@ describe('topbar component', function() {
     expect(alerts.childAt(0).is('i.warning.sign.icon')).to.be.ok
     expect(alerts.childAt(1).is('div.chrome-alerts-label')).to.be.ok
     expect(alerts.childAt(1).text()).to.equal('12')
+
+    const power = topbar.childAt(3)
+    expect(power.is('div.chrome-power')).to.be.ok
+    expect(power.children().length).to.equal(1)
+    expect(power.childAt(0).is('i.power.icon')).to.be.ok
+    power.simulate('click')
+    expect(onSignout.calledOnce).to.be.ok
   })
 
 })

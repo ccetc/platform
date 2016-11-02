@@ -13,12 +13,15 @@ describe('chrome component', function() {
       <Chrome {...config}>children</Chrome>
     )
     expect(chrome.is('div.chrome')).to.be.ok
-    expect(chrome.children().length).to.equal(2)
+    expect(chrome.children().length).to.equal(3)
 
-    const drawer = chrome.childAt(0)
+    const flash = chrome.childAt(0)
+    expect(flash.is('Connect(Flash)')).to.be.ok
+
+    const drawer = chrome.childAt(1)
     expect(drawer.is('Connect(Drawer)')).to.be.ok
 
-    const canvas = chrome.childAt(1)
+    const canvas = chrome.childAt(2)
     expect(canvas.is('div.chrome-canvas')).to.be.ok
 
     const topbar = canvas.childAt(0)
