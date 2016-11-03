@@ -69,6 +69,27 @@ export default (state = INITIAL_STATE, action) => {
       }
     }
 
+  case actionTypes.RESET_FAILURE:
+    return {
+      ...state,
+      flash: {
+        style: 'error',
+        message: 'Unable to find your account'
+      }
+    }
+
+  case actionTypes.RESET_SUCCESS:
+    return {
+      ...state,
+      flash: {
+        style: 'success',
+        message: 'An email with instructions was sent'
+      },
+      session: {
+        mode: 'signin'
+      }
+    }
+
   case actionTypes.SIGNIN_FAILURE:
     return {
       ...state,

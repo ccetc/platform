@@ -11,7 +11,6 @@ export class Signin extends React.Component {
     flash: React.PropTypes.object.isRequired,
     onChangeMode: React.PropTypes.func.isRequired,
     onClearFlash: React.PropTypes.func.isRequired,
-    onSetFlash: React.PropTypes.func.isRequired,
     onSignin: React.PropTypes.func.isRequired
   }
 
@@ -79,7 +78,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   onChangeMode: actions.changeMode,
   onClearFlash: actions.clearFlash,
-  onSetFlash: actions.setFlash,
   onSignin: actions.signin
 }
 

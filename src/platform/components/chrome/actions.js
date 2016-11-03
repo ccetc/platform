@@ -19,6 +19,18 @@ export function signin(email, password) {
   }
 }
 
+export function reset(email) {
+  if(email == 'gmk8@cornell.edu') {
+    return {
+      type: actionTypes.RESET_SUCCESS
+    }
+  } else  {
+    return {
+      type: actionTypes.RESET_FAILURE
+    }
+  }
+}
+
 export function signout() {
   return {
     type: actionTypes.SIGNOUT
