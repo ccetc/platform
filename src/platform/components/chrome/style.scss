@@ -80,11 +80,15 @@
     padding: 15px;
     margin: auto;
   }
-  h1,
-  h3 {
-    margin: 0 15px 15px;
+  h1,h3 {
     text-align: center;
     color: $primary_color;
+  }
+  h1 {
+    margin: 0 15px 15px;
+  }
+  h3 {
+    margin: 0 15px 40px;
   }
   button.ui.red.button {
     background-color: adjust-lightness($primary_background_color, -10%);
@@ -99,6 +103,7 @@
   }
   p {
     text-align: center;
+    cursor: pointer;
   }
   a {
     color: $primary_color;

@@ -7,11 +7,16 @@ describe('chrome component', function() {
 
   it('renders', function() {
     const config = {
-      expanded: true
+      user: {}
     }
-    const chrome = shallow(
+
+    const transition = shallow(
       <Chrome {...config}>children</Chrome>
     )
+    expect(transition.is('ReactCSSTransitionGroup')).to.be.ok
+    expect(transition.children().length).to.equal(1)
+
+    const chrome = transition.childAt(0).shallow()
     expect(chrome.is('div.chrome')).to.be.ok
     expect(chrome.children().length).to.equal(3)
 
