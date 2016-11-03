@@ -1,7 +1,7 @@
 import React from 'react'
 import Transition from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
-import * as actions from '../../session/actions'
+import * as actions from '../actions'
 
 export class Flash extends React.Component {
 
@@ -33,7 +33,7 @@ export class Flash extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  flash: state.session.flash
+  flash: state.chrome.flash
 })
 
 const mapDispatchToProps = {

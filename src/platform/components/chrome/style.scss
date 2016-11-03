@@ -2,10 +2,107 @@
 @import "compass/css3/transition";
 @import "compass/css3/opacity";
 @import "compass/css3/border-radius";
+@import 'compass/functions/colors';
 
 #platform {
   width: 100%;
   height: 100%;
+}
+.chrome-session {
+  transition: opacity .5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -webkit-transition: opacity .5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -moz-transition: opacity .5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -ms-transition: opacity .5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  &.expanded-appear,
+  &.expanded-enter,
+  &.expanded-leave.expanded-leave-active {
+    @include opacity(0);
+  }
+  &.expanded-appear.expanded-appear-active,
+  &.expanded-enter.expanded-enter-active,
+  &.expanded-leave {
+    @include opacity(1);
+  }
+  .chrome-flash {
+    background-color: $success_background_color;
+    color: $success_color;
+    padding: 12px 24px;
+    margin-bottom: 15px;
+    @include border-radius(.3rem);
+  }
+  .chrome-signin-canvas,
+  .chrome-reset-canvas {
+    background: $primary_background_color;
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    display: flex;
+    flex: 1;
+    transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+    -webkit-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+    -moz-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+    -ms-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  }
+  .chrome-signin-canvas {
+    &.expanded-enter {
+      transform: translateX(-100%);
+    }
+    &.expanded-enter.expanded-enter-active {
+      transform: translateX(0);
+    }
+    &.expanded-leave {
+      transform: translateX(0);
+    }
+    &.expanded-leave.expanded-leave-active {
+      transform: translateX(-100%);
+    }
+  }
+  .chrome-reset-canvas {
+    &.expanded-enter {
+      transform: translateX(100%);
+    }
+    &.expanded-enter.expanded-enter-active {
+      transform: translateX(0);
+    }
+    &.expanded-leave {
+      transform: translateX(0);
+    }
+    &.expanded-leave.expanded-leave-active {
+      transform: translateX(100%);
+    }
+  }
+  .chrome-signin,
+  .chrome-reset {
+    max-width: 320px;
+    width: 100%;
+    padding: 15px;
+    margin: auto;
+  }
+  h1,
+  h3 {
+    margin: 0 15px 15px;
+    text-align: center;
+    color: $primary_color;
+  }
+  button.ui.red.button {
+    background-color: adjust-lightness($primary_background_color, -10%);
+    color: $primary_color;
+    &:hover {
+      transition: background-color 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+      -webkit-transition: background-color 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+      -moz-transition: background-color 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+      -ms-transition: background-color 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+      background-color: adjust-lightness($primary_background_color, -15%);
+    }
+  }
+  p {
+    text-align: center;
+  }
+  a {
+    color: $primary_color;
+  }
 }
 .chrome {
   width: 100%;
@@ -15,10 +112,10 @@
   justify-content: flex-start;
   align-items: stretch;
   align-content: stretch;
-  transition: opacity 1s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -webkit-transition: opacity 1s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -moz-transition: opacity 1s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -ms-transition: opacity 1s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  transition: opacity .5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -webkit-transition: opacity .5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -moz-transition: opacity .5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -ms-transition: opacity .5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   &.expanded-appear,
   &.expanded-enter,
   &.expanded-leave.expanded-leave-active {

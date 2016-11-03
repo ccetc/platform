@@ -1,6 +1,7 @@
 import React from 'react'
+import Transition from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
-import * as actions from '../../session/actions'
+import * as actions from '../actions'
 import Flash from './flash'
 import Drawer from './drawer'
 import Topbar from './topbar'
@@ -18,38 +19,28 @@ export class Chrome extends React.Component {
   }
 
   render() {
+    const { user } = this.props
     return (
-      <div className="chrome">
-        <Flash />
-        <Drawer />
-        <div className="chrome-canvas">
-          <Topbar />
-          {this.props.children}
-          <Notifications />
-        </div>
-      </div>
+      <Transition transitionName="expanded" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+        { user &&
+          <div className="chrome">
+            <Flash />
+            <Drawer />
+            <div className="chrome-canvas">
+              <Topbar />
+              {this.props.children}
+              <Notifications />
+            </div>
+          </div>
+        }
+      </Transition>
     )
-  }
-
-  componentDidMount() {
-    this._handleRedirect()
-  }
-
-  componentDidUpdate() {
-    this._handleRedirect()
-  }
-
-  _handleRedirect() {
-    if(!this.props.user) {
-      this.props.onSetFlash('error', 'You must first login')
-      this.context.router.push('/admin/signin')
-    }
   }
 
 }
 
 const mapStateToProps = (state) => ({
-  user: state.session.user
+  user: state.chrome.user
 })
 
 const mapDispatchToProps = {

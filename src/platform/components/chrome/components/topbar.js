@@ -2,14 +2,9 @@ import React from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
-import * as sessionActions from '../../session/actions'
 import Search from './search'
 
 export class Topbar extends React.Component {
-
-  static contextTypes = {
-    router: React.PropTypes.object
-  }
 
   static propTypes: {
     unread: React.PropTypes.number.isRequired,
@@ -43,7 +38,6 @@ export class Topbar extends React.Component {
   }
 
   _handleSignout() {
-    this.context.router.push('/admin/signin')
     this.props.onSignout()
   }
 
@@ -55,7 +49,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   onToggleDrawer: actions.toggleDrawer,
-  onSignout: sessionActions.signout
+  onSignout: actions.signout
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Topbar)

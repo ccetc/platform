@@ -1,13 +1,17 @@
 import React from 'react'
+import Session from './components/session'
 import Chrome from './components/chrome'
 
 class Index extends React.Component {
 
   render() {
     return (
-      <Chrome>
-        {this.props.children}
-      </Chrome>
+      <div>
+        <Session />
+        <Chrome>
+          {this.props.children}
+        </Chrome>
+      </div>
     )
   }
 
