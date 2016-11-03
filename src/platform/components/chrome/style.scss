@@ -81,16 +81,11 @@
     margin: auto;
   }
   h1,h3 {
+    margin: 0 15px 15px;
     text-align: center;
     color: $primary_color;
   }
-  h1 {
-    margin: 0 15px 15px;
-  }
-  h3 {
-    margin: 0 15px 40px;
-  }
-  button.ui.red.button {
+  button.ui.button {
     background-color: adjust-lightness($primary_background_color, -10%);
     color: $primary_color;
     &:hover {
@@ -144,10 +139,10 @@
   background-color: rgb(68, 68, 68);
   flex-direction: column;
   z-index: 11;
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: 414px) {
     width: calc(100% - 42px);
   }
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: 415px) {
     width: 320px;
   }
   &.expanded-enter,
@@ -249,7 +244,6 @@
     -webkit-transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
     -moz-transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
     -ms-transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-    -o-transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
     max-height: 500px;
     overflow: hidden;
     &.expanded-enter,
@@ -411,31 +405,14 @@
 .chrome-content {
   display: flex;
   flex-direction: column;
+  flex: 1;
+  padding: 20px;
 }
 .chrome-body {
   flex: 1;
   display: flex;
   align-items: stretch;
   overflow-y: scroll;
-  @media only screen and (min-width: 768px) {
-    .chrome-sidebar {
-      flex: 0 0 300px;
-      padding: 20px 0 20px 20px;
-    }
-    .chrome-content {
-      flex: 1;
-      padding: 20px;
-    }
-  }
-  @media only screen and (max-width: 767px) {
-    flex-direction: column;
-    .chrome-sidebar:nth-child(1)  {
-      padding: 20px 20px 0;
-    }
-    .chrome-content:nth-child(2)  {
-      padding: 20px;
-    }
-  }
 }
 .chrome-notifications {
   position: absolute;

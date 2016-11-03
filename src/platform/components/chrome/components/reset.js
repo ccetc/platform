@@ -37,7 +37,7 @@ export class Reset extends React.Component {
                   </div>
                 </div>
                 <div className="field">
-                  <button className="ui fluid large submit red button">Reset Password</button>
+                  <button className="ui fluid large button">Reset Password</button>
                 </div>
                 <div className="field">
                   <p><a onClick={this._handleChangeMode.bind(this)}>Back to Signin</a></p>

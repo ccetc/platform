@@ -19,8 +19,9 @@
     "react"
   ],
   "globals": {
-     "before": true,
-     "after": true
+    "process": true,
+    "before": true,
+    "after": true
    },
   "rules": {
     "strict": 0,

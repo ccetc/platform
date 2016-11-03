@@ -43,7 +43,7 @@ export class Signin extends React.Component {
                   </div>
                 </div>
                 <div className="field">
-                  <button className="ui fluid large submit red button">Sign In</button>
+                  <button className="ui fluid large button">Sign In</button>
                 </div>
                 <div className="field">
                   <p><a onClick={this._handleChangeMode.bind(this)}>Forget your password?</a></p>
