@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import Session from '../components/session'
+import Form from '../components/session'
 
 class Signin extends React.Component {
 
@@ -10,11 +10,11 @@ class Signin extends React.Component {
 
   render() {
     return (
-      <div className="platform-session">
-        <div className="ui segments">
-          <div className="ui segment">
-            <Session />
-          </div>
+      <div className="chrome-session">
+        <div className="chrome-signin">
+          <h1>MyCCE</h1>
+          <h3>Cornell Cooperative Extension of Tompkins County</h3>
+          <Form />
         </div>
       </div>
     )

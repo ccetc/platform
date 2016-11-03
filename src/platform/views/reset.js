@@ -10,25 +10,20 @@ class Reset extends React.Component {
 
   render() {
     return (
-      <div className="platform-session">
-        <div className="ui segments">
-          <div className="ui segment">
-            <div className="ui form">
-              <div className="ui success message">
-                You have been successfully signed out
+      <div className="chrome-session">
+        <div className="chrome-signin">
+          <div className="ui form">
+            <div className="field">
+              <div className="ui left icon input">
+                <i className="user icon"></i>
+                <input className="form-control" autocomplete="off" placeholder="Email" type="email" ref="email" />
               </div>
-              <div className="field">
-                <div className="ui left icon input">
-                  <i className="user icon"></i>
-                  <input className="form-control" autocomplete="off" placeholder="Email" type="email" ref="email" />
-                </div>
-              </div>
-              <div className="field">
-                <button className="ui fluid large submit red button" onClick={this._handleSubmit.bind(this)}>Reset Password</button>
-              </div>
-              <div className="field">
-                <p><Link to="/admin/signin">&laquo; Back to signin</Link></p>
-              </div>
+            </div>
+            <div className="field">
+              <button className="ui fluid large submit red button" onClick={this._handleSubmit.bind(this)}>Reset Password</button>
+            </div>
+            <div className="field">
+              <p><Link to="/admin/signin">&laquo; Back to signin</Link></p>
             </div>
           </div>
         </div>

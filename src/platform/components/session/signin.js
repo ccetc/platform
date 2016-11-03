@@ -23,7 +23,7 @@ export class Signin extends React.Component {
     return (
       <form className="ui form" onSubmit={this._handleSubmit.bind(this)}>
         {flash !== null &&
-          <div className={`ui ${flash.style} message`}>
+          <div className={`chrome-flash ${flash.style}`}>
             {flash.message}
           </div>
         }

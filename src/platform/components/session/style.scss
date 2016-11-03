@@ -1,5 +1,8 @@
-.platform-session {
-  background: #DB2828;
+@import 'compass/functions/colors';
+@import 'compass/css3/border-radius';
+
+.chrome-session {
+  background: $primary_background_color;
   position: fixed;
   top: 0px;
   bottom: 0px;
@@ -7,34 +10,55 @@
   right: 0px;
   display: flex;
   flex: 1;
-  .ui.segments {
+  transition: opacity 1s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -webkit-transition: opacity 1s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -moz-transition: opacity 1s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -ms-transition: opacity 1s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  &.expanded-appear,
+  &.expanded-enter,
+  &.expanded-leave.expanded-leave-active {
+    @include opacity(0);
+  }
+  &.expanded-appear.expanded-appear-active,
+  &.expanded-enter.expanded-enter-active,
+  &.expanded-leave {
+    @include opacity(1);
+  }
+  .chrome-flash {
+    background-color: $success_background_color;
+    color: $success_color;
+    padding: 12px 24px;
+    margin-bottom: 15px;
+    @include border-radius(.3rem);
+  }
+  .chrome-signin {
     max-width: 320px;
     width: 100%;
+    padding: 15px;
     margin: auto;
-    border: none !important;
-    box-shadow: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
   }
-  .ui.segment {
-    background: none !important;
-  }
-  .ui.form .error.message,
-  .ui.form .success.message,
-  .ui.form .warning.message {
-    display: block !important;
+  h1,
+  h3 {
+    margin: 0 15px 15px;
+    text-align: center;
+    color: $primary_color;
   }
   button.ui.red.button {
-    background-color: #B90606;
-    color: #FFFFFF;
+    background-color: adjust-lightness($primary_background_color, -10%);
+    color: $primary_color;
     &:hover {
-      background-color: #A80505;
+      transition: background-color 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+      -webkit-transition: background-color 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+      -moz-transition: background-color 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+      -ms-transition: background-color 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+      -o-transition: background-color 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+      background-color: adjust-lightness($primary_background_color, -15%);
     }
   }
   p {
     text-align: center;
   }
   a {
-    color: #FFF;
+    color: $primary_color;
   }
 }

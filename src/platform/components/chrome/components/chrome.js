@@ -13,13 +13,11 @@ export class Chrome extends React.Component {
   }
 
   static propTypes: {
-    flash: React.PropTypes.object.isRequired,
     user: React.PropTypes.object.isRequired,
     onSetFlash: React.PropTypes.func.isRequired
   }
 
   render() {
-    const { flash } = this.props
     return (
       <div className="chrome">
         <Flash />
@@ -51,7 +49,6 @@ export class Chrome extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  flash: state.session.flash,
   user: state.session.user
 })
 

@@ -1,7 +1,7 @@
 exports.up = function(knex, Promise) {
   return Promise.all([
     knex.schema.createTable('vendors', function (table) {
-      table.increments('id')
+      table.increments('id').primary()
       table.integer('instance_id').unsigned()
       table.foreign('instance_id').references('instances.id')
       table.string('name')

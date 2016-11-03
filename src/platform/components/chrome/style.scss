@@ -3,10 +3,38 @@
 @import "compass/css3/opacity";
 @import "compass/css3/border-radius";
 
+#platform {
+  width: 100%;
+  height: 100%;
+}
+.chrome {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: stretch;
+  transition: opacity 1s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -webkit-transition: opacity 1s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -moz-transition: opacity 1s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -ms-transition: opacity 1s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  &.expanded-appear,
+  &.expanded-enter,
+  &.expanded-leave.expanded-leave-active {
+    @include opacity(0);
+  }
+  &.expanded-appear.expanded-appear-active,
+  &.expanded-enter.expanded-enter-active,
+  &.expanded-leave {
+    @include opacity(1);
+  }
+}
 .chrome-drawer {
   transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -webkit-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -moz-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -ms-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   position: fixed;
   display: flex;
   top: 0;
@@ -34,6 +62,7 @@
   transition: opacity .25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -webkit-transition: opacity .25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -moz-transition: opacity .25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -ms-transition: opacity .25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   z-index: 10;
   position: fixed;
   top: 0;
@@ -51,10 +80,7 @@
   }
 }
 
-.chrome-flash {
-  transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -webkit-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -moz-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+.chrome .chrome-flash {
   position: fixed;
   top: 0;
   left: 0;
@@ -63,14 +89,6 @@
   background-color: #000;
   color: #FFF;
   z-index: 20;
-  &.expanded-enter,
-  &.expanded-leave.expanded-leave-active {
-    transform: translateY(-100%);
-  }
-  &.expanded-enter.expanded-enter-active,
-  &.expanded-leave {
-    transform: translateY(0);
-  }
 }
 
 .chrome-presence {
@@ -111,8 +129,8 @@
       background-color: rgb(85,85,85);
     }
     i {
-      background-color: rgb(208, 25, 25);
-      color: rgb(255, 255, 255);
+      background-color: $primary_background_color;
+      color: $primary_color;
       display: inline-block;
       width: 32px;
       height: 32px;
@@ -128,6 +146,8 @@
     transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
     -webkit-transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
     -moz-transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+    -ms-transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+    -o-transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
     max-height: 500px;
     overflow: hidden;
     &.expanded-enter,
@@ -149,11 +169,7 @@
   }
 }
 .chrome-canvas {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -266,7 +282,7 @@
   display: flex;
 }
 .chrome-header {
-  background-color: rgb(208, 25, 25);
+  background-color: $primary_background_color;
   flex: 0 0 65px;
   z-index: 3;
   margin: 0;
@@ -286,7 +302,7 @@
       font-size: 24px;
       line-height: 32px;
       font-weight: normal;
-      color: #FFF;
+      color: $primary_color;
     }
   }
 }
