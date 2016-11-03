@@ -8,26 +8,38 @@ export function changeMode(mode) {
 }
 
 export function signin(email, password) {
-  if(email == 'gmk8@cornell.edu' && password == 'test') {
-    return {
-      type: actionTypes.SIGNIN_SUCCESS
-    }
-  } else  {
-    return {
-      type: actionTypes.SIGNIN_FAILURE
-    }
+  return {
+    type: actionTypes.SIGNIN_REQUEST
+  }
+}
+
+export function signinSuccess() {
+  return {
+    type: actionTypes.SIGNIN_SUCCESS
+  }
+}
+
+export function signinFailure() {
+  return {
+    type: actionTypes.SIGNIN_FAILURE
   }
 }
 
 export function reset(email) {
-  if(email == 'gmk8@cornell.edu') {
-    return {
-      type: actionTypes.RESET_SUCCESS
-    }
-  } else  {
-    return {
-      type: actionTypes.RESET_FAILURE
-    }
+  return {
+    type: actionTypes.RESET_REQUEST
+  }
+}
+
+export function resetSuccess() {
+  return {
+    type: actionTypes.RESET_SUCCESS
+  }
+}
+
+export function resetFailure() {
+  return {
+    type: actionTypes.RESET_FAILURE
   }
 }
 

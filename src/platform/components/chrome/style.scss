@@ -9,10 +9,10 @@
   height: 100%;
 }
 .chrome-session {
-  transition: opacity .5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -webkit-transition: opacity .5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -moz-transition: opacity .5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -ms-transition: opacity .5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  transition: opacity 1s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -webkit-transition: opacity 1s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -moz-transition: opacity 1s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -ms-transition: opacity 1s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   &.expanded-appear,
   &.expanded-enter,
   &.expanded-leave.expanded-leave-active {
@@ -112,10 +112,10 @@
   justify-content: flex-start;
   align-items: stretch;
   align-content: stretch;
-  transition: opacity .5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -webkit-transition: opacity .5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -moz-transition: opacity .5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -ms-transition: opacity .5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  transition: opacity 1s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -webkit-transition: opacity 1s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -moz-transition: opacity 1s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -ms-transition: opacity 1s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   &.expanded-appear,
   &.expanded-enter,
   &.expanded-leave.expanded-leave-active {

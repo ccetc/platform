@@ -20,7 +20,8 @@ const INITIAL_STATE = {
     choice: null
   },
   session: {
-    mode: 'signin'
+    mode: 'signin',
+    status: 'ready'
   },
   user: null
 }
@@ -33,7 +34,18 @@ export default (state = INITIAL_STATE, action) => {
     return {
       ...state,
       session: {
-        mode: action.mode
+        mode: action.mode,
+        status: 'ready'
+      },
+      flash: null
+    }
+
+  case actionTypes.SIGNIN_REQUEST:
+    return {
+      ...state,
+      session: {
+        ...state.session,
+        status: 'submitting'
       },
       flash: null
     }
@@ -66,27 +78,10 @@ export default (state = INITIAL_STATE, action) => {
         name: 'Greg Kops',
         email: 'gmk8@cornell.edu',
         photo: '/images/greg.jpg'
-      }
-    }
-
-  case actionTypes.RESET_FAILURE:
-    return {
-      ...state,
-      flash: {
-        style: 'error',
-        message: 'Unable to find your account'
-      }
-    }
-
-  case actionTypes.RESET_SUCCESS:
-    return {
-      ...state,
-      flash: {
-        style: 'success',
-        message: 'An email with instructions was sent'
       },
       session: {
-        mode: 'signin'
+        mode: 'signin',
+        status: 'ready'
       }
     }
 
@@ -96,6 +91,46 @@ export default (state = INITIAL_STATE, action) => {
       flash: {
         style: 'error',
         message: 'Unable to find your account'
+      },
+      session: {
+        mode: 'signin',
+        status: 'ready'
+      }
+    }
+
+  case actionTypes.RESET_REQUEST:
+    return {
+      ...state,
+      session: {
+        mode: 'reset',
+        status: 'submitting'
+      },
+      flash: null
+    }
+
+  case actionTypes.RESET_SUCCESS:
+    return {
+      ...state,
+      flash: {
+        style: 'success',
+        message: 'Instructions for resetting your password have been emailed to you'
+      },
+      session: {
+        mode: 'signin',
+        status: 'ready'
+      }
+    }
+
+  case actionTypes.RESET_FAILURE:
+    return {
+      ...state,
+      flash: {
+        style: 'error',
+        message: 'Unable to find your account'
+      },
+      session: {
+        mode: 'reset',
+        status: 'ready'
       }
     }
 

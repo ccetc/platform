@@ -9,13 +9,14 @@ export class Signin extends React.Component {
   static propTypes: {
     mode: React.PropTypes.string.isRequired,
     flash: React.PropTypes.object.isRequired,
+    status: React.PropTypes.string.isRequired,
     onChangeMode: React.PropTypes.func.isRequired,
-    onClearFlash: React.PropTypes.func.isRequired,
-    onSignin: React.PropTypes.func.isRequired
+    onSignin: React.PropTypes.func.isRequired,
+    onSigninSuccess: React.PropTypes.func.isRequired
   }
 
   render() {
-    const { mode, flash} = this.props
+    const { mode, flash, status } = this.props
     return (
       <Transition transitionName="expanded" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
         { mode == 'signin' &&
@@ -42,7 +43,7 @@ export class Signin extends React.Component {
                   </div>
                 </div>
                 <div className="field">
-                  <button className="ui fluid large button">Sign In</button>
+                  <button className={`ui fluid large ${(status == 'submitting') ? 'loading' : ''} button`}>Signin</button>
                 </div>
                 <div className="field">
                   <p><a onClick={this._handleChangeMode.bind(this)}>Forget your password?</a></p>
@@ -56,10 +57,11 @@ export class Signin extends React.Component {
   }
 
   _handleSubmit(event) {
+    const { onSignin, onSigninSuccess } = this.props
     const email = $(this.refs.email).val()
     const password = $(this.refs.password).val()
-    this.props.onClearFlash()
-    this.props.onSignin(email, password)
+    onSignin(email, password)
+    setTimeout(onSigninSuccess, 1500)
     event.preventDefault()
     return false
   }
@@ -72,13 +74,14 @@ export class Signin extends React.Component {
 
 const mapStateToProps = (state) => ({
   mode: state.chrome.session.mode,
+  status: state.chrome.session.status,
   flash: state.chrome.flash
 })
 
 const mapDispatchToProps = {
   onChangeMode: actions.changeMode,
-  onClearFlash: actions.clearFlash,
-  onSignin: actions.signin
+  onSignin: actions.signin,
+  onSigninSuccess: actions.signinSuccess
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signin)

@@ -13,7 +13,7 @@ class Session extends React.Component {
   render() {
     const { user } = this.props
     return (
-      <Transition transitionName="expanded" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+      <Transition transitionName="expanded" transitionEnterTimeout={1000} transitionLeaveTimeout={1000}>
         { !user &&
           <div className="chrome-session">
             <Signin />
