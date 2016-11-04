@@ -9,6 +9,7 @@ describe('drawer component', function() {
   it('renders expanded drawer', function() {
     const onChooseApp = spy()
     const onChooseItem = spy()
+    const onSignout = spy()
     const config = {
       app: 0,
       apps: [
@@ -26,7 +27,8 @@ describe('drawer component', function() {
         photo: '/images/greg.jpg'
       },
       onChooseApp,
-      onChooseItem
+      onChooseItem,
+      onSignout
     }
     const transition = shallow(
       <Drawer {...config} />
@@ -56,7 +58,7 @@ describe('drawer component', function() {
 
     const apps = drawer.childAt(1).shallow()
     expect(apps.is('div.chrome-apps')).to.be.ok
-    expect(apps.children().length).to.equal(2)
+    expect(apps.children().length).to.equal(3)
 
     const app1 = apps.childAt(0).shallow()
     expect(app1.is('div.chrome-app')).to.be.ok
@@ -82,6 +84,14 @@ describe('drawer component', function() {
     expect(app2.childAt(0).text()).to.equal('Settings')
     app2.childAt(0).simulate('click')
     expect(onChooseApp.callCount).to.equal(2)
+
+    const signout = apps.childAt(2).shallow()
+    expect(signout.is('div.chrome-app')).to.be.ok
+    expect(signout.childAt(0).is('div.chrome-app-title')).to.be.ok
+    expect(signout.childAt(0).childAt(0).is('i.power.icon')).to.be.ok
+    expect(signout.childAt(0).text()).to.equal('Sign Out')
+    signout.childAt(0).simulate('click')
+    expect(onSignout.callCount).to.equal(1)
   })
 
 })
