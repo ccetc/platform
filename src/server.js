@@ -1,6 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import authentication from './authentication'
+import authentication from './middleware/authentication'
 import render from './render'
 import platform from './platform'
 import crm from './apps/crm'

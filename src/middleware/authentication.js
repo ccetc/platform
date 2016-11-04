@@ -1,13 +1,13 @@
 import jwt from 'jwt-simple'
-import config from '../config/platform'
+import config from '../../config/platform'
 
 const secret = config[process.env.NODE_ENV].secret
 
 export default (req, res, next) => {
   const timestamp = Math.round(new Date() / 1000)
   if(req.path == '/authenticate') {
-    if(req.query.username && req.query.password) {
-      if(req.query.username == 'gmk8@cornell.edu') {
+    if(req.query.email && req.query.password) {
+      if(req.query.email == 'gmk8@cornell.edu') {
         if(req.query.password == 'test') {
           const encoded = jwt.encode({ timestamp, user: 1 }, secret)
           res.json({ token: encoded }).status(200)
@@ -18,7 +18,7 @@ export default (req, res, next) => {
         res.json({ message: 'cannot find user' }).status(422)
       }
     } else {
-      res.json({ message: 'username and password required' }).status(422)
+      res.json({ message: 'email and password required' }).status(422)
     }
   } else if(req.header('Authorization')) {
     const header = req.header('Authorization')
