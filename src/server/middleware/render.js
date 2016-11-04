@@ -3,7 +3,7 @@ import routes from './admin'
 import { match } from 'react-router'
 import path from 'path'
 
-const render = (req, res) => {
+export default (req, res) => {
   match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
     if (error) {
       res.status(500).send(error.message)
@@ -16,5 +16,3 @@ const render = (req, res) => {
     }
   })
 }
-
-export default render

@@ -1,5 +1,5 @@
 import jwt from 'jwt-simple'
-import config from '../../config/platform'
+import config from '../../../config/platform'
 
 const secret = config[process.env.NODE_ENV].secret
 

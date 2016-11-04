@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import jwt from 'jwt-simple'
-import authentication from './authentication'
-import config from '../../config/platform'
+import authentication from '../middleware/authentication'
+import config from '../../../config/platform'
 
 const testRequest = function(path, request, expected, code, done) {
   authentication(request, { json: actual => {
