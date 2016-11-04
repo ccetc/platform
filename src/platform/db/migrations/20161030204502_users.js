@@ -9,6 +9,7 @@ exports.up = function(knex, Promise) {
       table.string('email')
       table.string('password_hash')
       table.string('password_salt')
+      table.timestamp('logged_out_at')
       table.timestamps()
     })
   ])

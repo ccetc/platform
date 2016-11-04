@@ -7,15 +7,19 @@ export default (req, res, next) => {
   if(req.query.token) {
     try {
       const data = jwt.decode(req.query.token, secret)
-      const current_timestamp = Math.round(new Date() / 1000)
-      if(current_timestamp < data.timestamp + 60 * 60 * 24 * 7 * 2) {
+      const timestamp = Math.round(new Date() / 1000)
+      if(timestamp < data.timestamp + 60 * 60 * 24 * 7 * 2) {
         if(data.user === 1) {
-          if(req.path === '/api/refresh') {
-            const timestamp = Math.round(new Date() / 1000)
-            const encoded = jwt.encode({ timestamp, user: 1 }, secret)
-            res.json({ token: encoded })
+          const user = { logged_out_at: Math.round(new Date() / 1000) - 30 }
+          if(data.timestamp > user.logged_out_at) {
+            if(req.path === '/api/refresh') {
+              const encoded = jwt.encode({ timestamp, user: 1 }, secret)
+              res.json({ token: encoded }).status(200)
+            } else {
+              next()
+            }
           } else {
-            next()
+            res.json({ message: 'expired token' }).status(401)
           }
         } else {
           res.json({ message: 'invalid user' }).status(401)
