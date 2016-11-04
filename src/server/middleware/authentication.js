@@ -3,6 +3,14 @@ import config from '../../../config/platform'
 
 const secret = config[process.env.NODE_ENV].secret
 
+const decode = (token) => {
+  try {
+    return jwt.decode(token, secret)
+  } catch (e) {
+    return null
+  }
+}
+
 export default (req, res, next) => {
   const timestamp = Math.round(new Date() / 1000)
   if(req.path == '/authenticate') {
@@ -25,8 +33,8 @@ export default (req, res, next) => {
     const matches = header.match('Bearer (.*)')
     if(matches) {
       const token = matches[1]
-      try {
-        const data = jwt.decode(token, secret)
+      const data = decode(token)
+      if(data) {
         if(timestamp < data.timestamp + 60 * 60 * 24 * 7 * 2) {
           if(data.user === 1) {
             const user = { logged_out_at: Math.round(new Date() / 1000) - 30 }
@@ -46,7 +54,7 @@ export default (req, res, next) => {
         } else {
           res.json({ message: 'expired token' }).status(401)
         }
-      } catch (e) {
+      } else {
         res.json({ message: 'invalid token' }).status(401)
       }
     } else {
