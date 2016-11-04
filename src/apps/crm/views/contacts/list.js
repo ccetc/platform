@@ -14,6 +14,9 @@ class List extends React.Component {
   _getMain() {
     return {
       title: 'Contacts',
+      permissions: [
+        'can access contacts'
+      ],
       breadcrumbs: [
         { label: 'Dashboard', route: '/admin' },
         { label: 'Contacts' }

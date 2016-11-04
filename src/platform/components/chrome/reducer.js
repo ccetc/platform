@@ -13,6 +13,7 @@ const INITIAL_STATE = {
     queue: [],
     unread: 1
   },
+  permissions: [],
   search: {
     query: '',
     active: false,
@@ -76,7 +77,12 @@ export default (state = INITIAL_STATE, action) => {
       user: {
         name: 'Greg Kops',
         email: 'gmk8@cornell.edu',
-        photo: '/images/greg.jpg'
+        photo: '/images/greg.jpg',
+        permissions: [
+          'can access contacts',
+          'can access expenses',
+          'can access instance'
+        ]
       }
     }
 

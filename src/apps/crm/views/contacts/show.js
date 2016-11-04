@@ -14,6 +14,9 @@ class Show extends React.Component {
   _getMain() {
     return {
       title: 'Ken Schlather',
+      permissions: [
+        'can access contacts'
+      ],
       breadcrumbs: [
         { label: 'Dashboard', route: '/admin' },
         { label: 'Contacts', route: '/admin/crm/contacts' },

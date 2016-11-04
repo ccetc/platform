@@ -426,6 +426,20 @@
   align-items: stretch;
   overflow-y: scroll;
 }
+.chrome-forbidden {
+  text-align: center;
+  width: 320px;
+  color: #CCC;
+  padding-top: 100px;
+  i {
+    font-size: 100px;
+    line-height: 100px;
+  }
+  p {
+    font-size: 32px;
+    line-height: 48px;
+  }
+}
 .chrome-notifications {
   position: absolute;
   @include border-radius(0 !important);
