@@ -1,5 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
+import authentication from './authentication'
 import render from './render'
 import platform from './platform'
 import crm from './apps/crm'
@@ -14,8 +15,11 @@ const socket = require('socket.io')(http)
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
+// api key
+app.use(authentication)
+
 // public assets
-app.use('/', express.static('dist/public'))
+app.use(express.static('dist/public'))
 
 // websocket
 socket.on('connection', (channel) => {
