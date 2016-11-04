@@ -1,0 +1,31 @@
+sudo sed -i 's/#PermitRootLogin/PermitRootLogin/' /etc/ssh/sshd_config
+sudo sed -i 's/.*ssh-rsa/ssh-rsa/' /root/.ssh/authorized_keys
+sudo service sshd restart
+
+yum -y update
+curl http://linuxsoft.cern.ch/cern/scl/slc6-scl.repo > /etc/yum.repos.d/slc6-scl.repo
+rpm --import http://ftp.mirrorservice.org/sites/ftp.scientificlinux.org/linux/scientific/51/i386/RPM-GPG-KEYs/RPM-GPG-KEY-cern
+yum install -y git wget devtoolset-3
+scl enable devtoolset-3 bash
+
+ntpdate -s time.nist.gov
+sudo chkconfig ntpd on
+sudo chkconfig --list ntpd
+sudo service ntpd start
+rm /etc/localtime
+ln -s /usr/share/zoneinfo/US/Eastern /etc/localtime
+
+gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
+curl -L https://get.rvm.io | bash -s stable --ruby
+source /usr/local/rvm/scripts/rvm
+gem update
+
+wget http://nodejs.org/dist/v5.9.0/node-v5.9.0.tar.gz
+tar xzf node-v5.9.0.tar.gz
+cd node-v5.9.0
+./configure
+make
+make install
+
+gem install passenger --no-rdoc --no-ri -v 5.0.30
+passenger-install-nginx-module --auto --languages=nodejs --auto-download --prefix=/opt/nginx

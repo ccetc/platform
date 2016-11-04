@@ -50,11 +50,27 @@ export class Reset extends React.Component {
     )
   }
 
+  componentDidMount() {
+    this._focusEmail()
+  }
+
+  componentDidUpdate(prevProps) {
+    const { mode } = this.props
+    if(mode != prevProps.mode && mode == 'reset') {
+      this._focusEmail()
+    }
+  }
+
+  _focusEmail() {
+    const email = $(this.refs.email)
+    setTimeout(function() { email.focus() }, 500)
+  }
+
   _handleSubmit(event) {
     const { onReset, onResetSuccess } = this.props
     const email = $(this.refs.email).val()
     onReset(email)
-    setTimeout(onResetSuccess, 1500)
+    setTimeout(onResetSuccess, 1000)
     event.preventDefault()
     return false
   }

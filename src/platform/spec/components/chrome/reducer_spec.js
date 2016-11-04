@@ -15,7 +15,9 @@ describe('chrome reducer', function() {
     }
     let expected = {
       drawer: {
-        expanded: true
+        expanded: true,
+        app: null,
+        item: null
       }
     }
     expect(reducer(state, action)).to.eql(expected)
@@ -32,7 +34,9 @@ describe('chrome reducer', function() {
     }
     let expected = {
       drawer: {
-        expanded: false
+        expanded: false,
+        app: null,
+        item: null
       }
     }
     expect(reducer(state, action)).to.eql(expected)

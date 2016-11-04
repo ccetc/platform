@@ -52,7 +52,7 @@ export default (state = INITIAL_STATE, action) => {
 
   case actionTypes.SIGNIN_SUCCESS:
     return {
-      ...state,
+      ...INITIAL_STATE,
       apps: [
         { name: 'Contacts', icon: 'user', items: [
           { name: 'Contacts', route: '/admin/crm/contacts' }
@@ -73,15 +73,10 @@ export default (state = INITIAL_STATE, action) => {
           { name: 'Users', route: '/admin/instance/users' }
         ] }
       ],
-      flash: null,
       user: {
         name: 'Greg Kops',
         email: 'gmk8@cornell.edu',
         photo: '/images/greg.jpg'
-      },
-      session: {
-        mode: 'signin',
-        status: 'ready'
       }
     }
 
@@ -137,6 +132,9 @@ export default (state = INITIAL_STATE, action) => {
   case actionTypes.SIGNOUT:
     return {
       ...state,
+      drawer: {
+        ...state.drawer
+      },
       apps: null,
       user: null
     }
@@ -161,7 +159,9 @@ export default (state = INITIAL_STATE, action) => {
       ...state,
       drawer: {
         ...state.drawer,
-        expanded: !state.drawer.expanded
+        expanded: !state.drawer.expanded,
+        app: null,
+        item: null
       }
     }
 

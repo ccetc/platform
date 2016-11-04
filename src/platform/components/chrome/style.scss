@@ -1,9 +1,3 @@
-@import "compass/css3/box-shadow";
-@import "compass/css3/transition";
-@import "compass/css3/opacity";
-@import "compass/css3/border-radius";
-@import 'compass/functions/colors';
-
 #platform {
   width: 100%;
   height: 100%;
@@ -284,17 +278,16 @@
   cursor: pointer;
   width: 42px;
   height: 42px;
-  background-color: #EEE;
-  margin-right: 1px;
+  background-color: $primary_background_color;
   &:hover {
-    background-color: #DDD;
+    background-color: adjust-lightness($primary_background_color, -10%);
     i {
-      color: #333;
+      color: adjust-lightness($primary_color, -10%);
     }
   }
   i {
     margin: auto;
-    color: #888;
+    color: $primary_color;
   }
   .chrome-alerts-label {
     position: absolute;
@@ -316,8 +309,9 @@
 .chrome-search {
   flex: 1;
   display: flex;
+  background-color: adjust-lightness($primary_background_color, -10%);
   i {
-    color: #AAAAAA;
+    color: $primary_color;
     margin: 14px 0;
     flex: 0 0 42px;
   }
@@ -329,9 +323,25 @@
       width: 100%;
       border-radius: 0;
       background-color: transparent;
+      color: $primary_color;
       border: none !important;
       padding-left: 0;
       padding-right: 0;
+      &::-webkit-input-placeholder {
+        color: adjust-lightness($primary_color, -20%);
+      }
+      &:-moz-placeholder {
+        color: adjust-lightness($primary_color, -20%);
+      }
+      &::-moz-placeholder {
+        color: adjust-lightness($primary_color, -20%);
+      }
+      &::-webkit-input-placeholder,
+      &:-moz-placeholder,
+      &::-moz-placeholder,
+      &:-ms-input-placeholder {
+        color: adjust-lightness($primary_color, -20%);
+      }
     }
   }
 }
@@ -378,7 +388,7 @@
   display: flex;
 }
 .chrome-header {
-  background-color: $primary_background_color;
+  background-color: #EEE;
   flex: 0 0 65px;
   z-index: 3;
   margin: 0;
@@ -387,10 +397,12 @@
   margin: 0;
   .ui.breadcrumb {
     .divider {
-      color: #DDD; font-size: 10px;
+      color: #555;
+      font-size: 10px;
     }
     a {
-      color: #EEE; font-size: 10px;
+      color: #777;
+      font-size: 10px;
     }
     .active {
       display: block;
@@ -398,7 +410,7 @@
       font-size: 24px;
       line-height: 32px;
       font-weight: normal;
-      color: $primary_color;
+      color: #555;
     }
   }
 }

@@ -26,9 +26,6 @@ export class Topbar extends React.Component {
             <div className="chrome-alerts-label">{unread}</div>
           }
         </Link>
-        <div className="chrome-power" onClick={this._handleSignout.bind(this)}>
-          <i className="power icon" />
-        </div>
       </div>
     )
   }

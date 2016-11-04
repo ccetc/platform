@@ -56,12 +56,28 @@ export class Signin extends React.Component {
     )
   }
 
+  componentDidMount() {
+    this._focusEmail()
+  }
+
+  componentDidUpdate(prevProps) {
+    const { mode } = this.props
+    if(mode != prevProps.mode && mode == 'signin') {
+      this._focusEmail()
+    }
+  }
+
+  _focusEmail() {
+    const email = $(this.refs.email)
+    setTimeout(function() { email.focus() }, 500)
+  }
+
   _handleSubmit(event) {
     const { onSignin, onSigninSuccess } = this.props
     const email = $(this.refs.email).val()
     const password = $(this.refs.password).val()
     onSignin(email, password)
-    setTimeout(onSigninSuccess, 1500)
+    setTimeout(onSigninSuccess, 1000)
     event.preventDefault()
     return false
   }

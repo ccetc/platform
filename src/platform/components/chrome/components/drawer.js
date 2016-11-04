@@ -17,7 +17,8 @@ export class Drawer extends React.Component {
     user: React.PropTypes.object.isRequired,
     onChooseApp: React.PropTypes.func.isRequired,
     onChooseItem: React.PropTypes.func.isRequired,
-    onToggleDrawer: React.PropTypes.func.isRequired
+    onToggleDrawer: React.PropTypes.func.isRequired,
+    onSignout: React.PropTypes.func.isRequired
   }
 
   render() {
@@ -54,6 +55,12 @@ export class Drawer extends React.Component {
                   </div>
                 )
               })}
+              <div className="chrome-app">
+                <div className="chrome-app-title" onClick={this._handleSignout.bind(this)}>
+                  <i className="power icon" />
+                  Sign Out
+                </div>
+              </div>
             </div>
           </div>
         }
@@ -80,6 +87,10 @@ export class Drawer extends React.Component {
     this.props.onChooseItem(index)
   }
 
+  _handleSignout() {
+    this.props.onSignout()
+  }
+
 }
 
 const mapStateToProps = (state) => ({
@@ -93,7 +104,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   onChooseApp: actions.chooseApp,
   onChooseItem: actions.chooseItem,
-  onToggleDrawer: actions.toggleDrawer
+  onToggleDrawer: actions.toggleDrawer,
+  onSignout: actions.signout
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Drawer)

@@ -4,4 +4,7 @@ $primary_color: #FFFFFF;
 $success_background_color: #21BA45;
 $success_color: #FFF;
 
-@import 'platform/components/chrome/style';
+@import "compass";
+@import 'apps/crm/admin';
+@import 'apps/expenses/admin';
+@import 'platform/admin';
