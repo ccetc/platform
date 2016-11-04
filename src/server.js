@@ -15,9 +15,6 @@ const socket = require('socket.io')(http)
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-// api key
-app.use(authentication)
-
 // public assets
 app.use(express.static('dist/public'))
 
@@ -26,6 +23,7 @@ socket.on('connection', (channel) => {
 })
 
 // admin api routes
+app.use('/api', authentication)
 app.use(`/api/admin${platform.config.path}`, platform.api)
 app.use(`/api/admin${crm.config.path}`, crm.api)
 app.use(`/api/admin${expenses.config.path}`, expenses.api)

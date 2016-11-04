@@ -4,31 +4,53 @@ import config from '../config/platform'
 const secret = config[process.env.NODE_ENV].secret
 
 export default (req, res, next) => {
-  if(req.query.token) {
-    try {
-      const data = jwt.decode(req.query.token, secret)
-      const timestamp = Math.round(new Date() / 1000)
-      if(timestamp < data.timestamp + 60 * 60 * 24 * 7 * 2) {
-        if(data.user === 1) {
-          const user = { logged_out_at: Math.round(new Date() / 1000) - 30 }
-          if(data.timestamp > user.logged_out_at) {
-            if(req.path === '/api/refresh') {
-              const encoded = jwt.encode({ timestamp, user: 1 }, secret)
-              res.json({ token: encoded }).status(200)
-            } else {
-              next()
-            }
-          } else {
-            res.json({ message: 'expired token' }).status(401)
-          }
+  const timestamp = Math.round(new Date() / 1000)
+  if(req.path == '/authenticate') {
+    if(req.query.username && req.query.password) {
+      if(req.query.username == 'gmk8@cornell.edu') {
+        if(req.query.password == 'test') {
+          const encoded = jwt.encode({ timestamp, user: 1 }, secret)
+          res.json({ token: encoded }).status(200)
         } else {
-          res.json({ message: 'invalid user' }).status(401)
+          res.json({ message: 'invalid password' }).status(422)
         }
       } else {
-        res.json({ message: 'expired token' }).status(401)
+        res.json({ message: 'cannot find user' }).status(422)
       }
-    } catch (e) {
-      res.json({ message: 'invalid token' }).status(401)
+    } else {
+      res.json({ message: 'username and password required' }).status(422)
+    }
+  } else if(req.header('Authorization')) {
+    const header = req.header('Authorization')
+    const matches = header.match('Bearer (.*)')
+    if(matches) {
+      const token = matches[1]
+      try {
+        const data = jwt.decode(token, secret)
+        if(timestamp < data.timestamp + 60 * 60 * 24 * 7 * 2) {
+          if(data.user === 1) {
+            const user = { logged_out_at: Math.round(new Date() / 1000) - 30 }
+            if(!user.logged_out_at || (user.logged_out_at && data.timestamp > user.logged_out_at)) {
+              if(req.path === '/refresh') {
+                const encoded = jwt.encode({ timestamp, user: 1 }, secret)
+                res.json({ token: encoded }).status(200)
+              } else {
+                next()
+              }
+            } else {
+              res.json({ message: 'expired token' }).status(401)
+            }
+          } else {
+            res.json({ message: 'invalid user' }).status(401)
+          }
+        } else {
+          res.json({ message: 'expired token' }).status(401)
+        }
+      } catch (e) {
+        res.json({ message: 'invalid token' }).status(401)
+      }
+    } else {
+      res.json({ message: 'malformed token' }).status(401)
     }
   } else {
     res.json({ message: 'nonexistant token' }).status(401)
