@@ -1,4 +1,8 @@
-import bookshelf from 'bookshelf'
+import Bookshelf from 'bookshelf'
 import knex from './knex'
 
-export default bookshelf(knex)
+const bookshelf = Bookshelf(knex)
+
+bookshelf.plugin('virtuals')
+
+export default bookshelf
