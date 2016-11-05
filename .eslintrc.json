@@ -19,6 +19,7 @@
     "react"
   ],
   "globals": {
+    "__dirname": true,
     "process": true,
     "before": true,
     "after": true

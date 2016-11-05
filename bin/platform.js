@@ -77,7 +77,7 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function(__dirname) {'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -120,8 +120,8 @@
 	    this._getMigrations = function (completed, direction) {
 	      var timestamps = [];
 	      var migrations = {};
-	      _fs2.default.readdirSync(_path2.default.join('./src/platform/db/migrations')).filter(function (migration) {
-	        var fullpath = _path2.default.resolve('./src/platform/db/migrations', migration);
+	      _fs2.default.readdirSync(_path2.default.join(__dirname, '../platform/db/migrations')).filter(function (migration) {
+	        var fullpath = _path2.default.resolve(__dirname, '../platform/db/migrations', migration);
 	        var is_completed = _lodash2.default.includes(completed, fullpath);
 	        if (direction == 'up' && !is_completed || direction == 'down' && is_completed) {
 	          var timestamp = migration.split('_')[0];
@@ -129,10 +129,10 @@
 	          migrations[timestamp] = fullpath;
 	        }
 	      });
-	      _fs2.default.readdirSync('./src/apps').filter(function (app) {
-	        if (_fs2.default.statSync(_path2.default.join('./src/apps', app)).isDirectory()) {
-	          _fs2.default.readdirSync(_path2.default.join('./src/apps', app, 'db/migrations')).filter(function (migration) {
-	            var fullpath = _path2.default.resolve('./src/apps', app, 'db/migrations', migration);
+	      _fs2.default.readdirSync(_path2.default.join(__dirname, '../apps')).filter(function (app) {
+	        if (_fs2.default.statSync(_path2.default.join(__dirname, '../apps', app)).isDirectory()) {
+	          _fs2.default.readdirSync(_path2.default.join(__dirname, '../apps', app, 'db/migrations')).filter(function (migration) {
+	            var fullpath = _path2.default.resolve(__dirname, '../apps', app, 'db/migrations', migration);
 	            var is_completed = _lodash2.default.includes(completed, fullpath);
 	            if (direction == 'up' && !is_completed || direction == 'down' && is_completed) {
 	              var timestamp = migration.split('_')[0];
@@ -147,16 +147,12 @@
 	      });
 	    };
 
-	    this._getSeeds = function (dir) {
+	    this._getSeeds = function (filename) {
 	      var seeds = [];
-	      _fs2.default.readdirSync(_path2.default.join('./src/platform/db', dir)).filter(function (seed) {
-	        seeds.push(_path2.default.resolve('./src/platform/db', dir, seed));
-	      });
-	      _fs2.default.readdirSync(_path2.default.join('./src/apps')).filter(function (app) {
-	        if (_fs2.default.statSync(_path2.default.join('./src/apps', app)).isDirectory()) {
-	          _fs2.default.readdirSync(_path2.default.join('./src/apps', app, 'db', dir)).filter(function (seed) {
-	            seeds.push(_path2.default.resolve('./src/apps', app, 'db', dir, seed));
-	          });
+	      seeds.push(_path2.default.resolve(__dirname, '../platform/db', filename + '.js'));
+	      _fs2.default.readdirSync(_path2.default.join(__dirname, '../apps')).filter(function (app) {
+	        if (_fs2.default.statSync(_path2.default.join(__dirname, '../apps', app)).isDirectory()) {
+	          seeds.push(_path2.default.resolve(__dirname, '../apps', app, 'db', filename + '.js'));
 	        }
 	      });
 	      return seeds;
@@ -208,7 +204,7 @@
 	    }
 	  }, {
 	    key: 'setupTest',
-	    value: function setupTest(cb) {
+	    value: function setupTest() {
 	      var _this5 = this;
 
 	      return this.migrateRollback().then(function () {
@@ -223,6 +219,7 @@
 	}();
 
 	exports.default = Platform;
+	/* WEBPACK VAR INJECTION */}.call(exports, "/"))
 
 /***/ },
 /* 2 */
@@ -294,10 +291,11 @@
 
 	module.exports = {
 	  test: {
+	    secret: 'foo',
 	    database: {
 	      pool: {
-	        min: 2,
-	        max: 10
+	        min: 1,
+	        max: 1
 	      },
 	      migrations: {
 	        tableName: 'schema_migrations',
@@ -314,6 +312,7 @@
 	    }
 	  },
 	  development: {
+	    secret: 'foo',
 	    database: {
 	      pool: {
 	        min: 2,

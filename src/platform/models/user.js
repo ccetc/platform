@@ -1,5 +1,6 @@
 import checkit from  'checkit'
 import bcrypt from 'bcrypt'
+import asset from './asset'
 import services from '../../services'
 import unique from '../../utils/validations/unique'
 
@@ -15,7 +16,14 @@ const user = services.bookshelf.Model.extend({
     email: ['required', 'email', unique('users', 'email')]
   },
 
+  photo: function() {
+    return this.belongsTo(asset, 'photo_id')
+  },
+
   virtuals: {
+    full_name: function() {
+      return this.get('first_name') + ' ' + this.get('last_name')
+    },
     password: {
       get: function() {},
       set: function(value) {

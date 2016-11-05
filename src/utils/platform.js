@@ -49,14 +49,6 @@ class Platform {
     })
   }
 
-  setupTest() {
-    return this.migrateRollback().then(() => {
-      return this.migrateLatest().then(() => {
-        return this.fixturesLoad()
-      })
-    })
-  }
-
   _getMigrations = (completed, direction) => {
     var timestamps = []
     var migrations = {}
@@ -87,16 +79,12 @@ class Platform {
     })
   }
 
-  _getSeeds = (dir) => {
+  _getSeeds = (filename) => {
     var seeds = []
-    fs.readdirSync(path.join(__dirname, '../platform/db', dir)).filter((seed) => {
-      seeds.push(path.resolve(__dirname, '../platform/db', dir, seed))
-    })
+    seeds.push(path.resolve(__dirname, '../platform/db', filename + '.js'))
     fs.readdirSync(path.join(__dirname, '../apps')).filter((app) => {
       if(fs.statSync(path.join(__dirname, '../apps', app)).isDirectory()) {
-        fs.readdirSync(path.join(__dirname, '../apps', app, 'db', dir)).filter((seed) => {
-          seeds.push(path.resolve(__dirname, '../apps', app, 'db', dir, seed))
-        })
+        seeds.push(path.resolve(__dirname, '../apps', app, 'db', filename + '.js'))
       }
     })
     return seeds

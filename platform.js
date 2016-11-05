@@ -36,16 +36,12 @@ const getMigrations = (completed, direction) => {
   })
 }
 
-const getSeeds = (dir) => {
+const getSeeds = (filename) => {
   var seeds = []
-  fs.readdirSync(path.join('./src/platform/db', dir)).filter((seed) => {
-    seeds.push(path.resolve('./src/platform/db', dir, seed))
-  })
+  seeds.push(path.resolve('./src/platform/db', filename+'.js'))
   fs.readdirSync('./src/apps').filter((app) => {
     if(fs.statSync(path.join('./src/apps', app)).isDirectory()) {
-      fs.readdirSync(path.join('./src/apps', app, 'db', dir)).filter((seed) => {
-        seeds.push(path.resolve('./src/apps', app, 'db', dir, seed))
-      })
+      seeds.push(path.resolve('./src/apps', app, 'db', filename+'.js'))
     }
   })
   return seeds
