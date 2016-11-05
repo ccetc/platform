@@ -16,6 +16,7 @@
     "npm": ">= 3.7npm list graceful-fs"
   },
   "dependencies": {
+    "aws-sdk": "^2.6.15",
     "bcrypt-nodejs": "^0.0.3",
     "body-parser": "~1.0.1",
     "bookshelf": "^0.10.2",

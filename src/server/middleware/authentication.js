@@ -68,6 +68,8 @@ export default (req, res, next) => {
 
       next()
 
+      return null
+
     }).catch(err => {
       return res.json({ message: 'cannot find user' }).status(401)
     })

@@ -1,6 +1,7 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import authentication from './server/middleware/authentication'
+import logger from './server/middleware/logger'
 import render from './server/middleware/render'
 import admin from './admin'
 import platform from './platform'
@@ -15,6 +16,9 @@ const socket = require('socket.io')(http)
 // body parsing
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+
+// logger
+app.use(logger)
 
 // public assets
 app.use(express.static('dist/public'))
