@@ -1,6 +1,11 @@
 module.exports = {
   test: {
     secret: 'foo',
+    redis: {
+      host: '127.0.0.1',
+      port: 6379,
+      db: 3
+    },
     database: {
       client: 'postgresql',
       connection: {
@@ -12,6 +17,11 @@ module.exports = {
   },
   development: {
     secret: 'foo',
+    redis: {
+      host: '127.0.0.1',
+      port: 6379,
+      db: 3
+    },
     database: {
       client: 'postgresql',
       connection: {

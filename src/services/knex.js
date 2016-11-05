@@ -1,5 +1,5 @@
 import knex from 'knex'
-import config from '../../config/platform'
+import config from './config'
 
 var defaults = {
   pool: {
@@ -17,5 +17,5 @@ var defaults = {
 
 export default knex({
   ...defaults,
-  ...config[process.env.NODE_ENV].database
+  ...config.database
 })

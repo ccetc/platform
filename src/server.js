@@ -1,5 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
+import kue from './services/kue'
 import authentication from './server/middleware/authentication'
 import logger from './server/middleware/logger'
 import render from './server/middleware/render'
@@ -16,6 +17,9 @@ const socket = require('socket.io')(http)
 // body parsing
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+
+// kue
+app.use('/kue', kue.app)
 
 // logger
 app.use(logger)

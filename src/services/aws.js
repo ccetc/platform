@@ -1,6 +1,6 @@
 import aws from 'aws-sdk'
-import config from '../../config/platform'
+import config from './config'
 
-aws.config.constructor(config[process.env.NODE_ENV].aws)
+aws.config.constructor(config.aws)
 
 export default aws
