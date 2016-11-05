@@ -1,5 +1,6 @@
 module.exports = {
   test: {
+    secret: 'foo',
     database: {
       client: 'postgresql',
       connection: {
@@ -10,6 +11,7 @@ module.exports = {
     }
   },
   development: {
+    secret: 'foo',
     database: {
       client: 'postgresql',
       connection: {
