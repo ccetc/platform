@@ -27,5 +27,8 @@ cd node-v5.9.0
 make
 make install
 
+npm install -g yarn
+npm install -g node-gyp
+
 gem install passenger --no-rdoc --no-ri -v 5.0.30
 passenger-install-nginx-module --auto --languages=nodejs --auto-download --prefix=/opt/nginx
