@@ -25,6 +25,7 @@ const testAuthenticatedRequest = function(path, token, expected, code, done) {
 const testRequest = function(request, expected, code, done) {
 
   authentication(request, { json: actual => {
+
     expect(actual).to.eql(expected)
     return {
       status: status => {
@@ -154,13 +155,15 @@ describe('authentication middleware', function() {
 
   it('rejects authenticated request where user has been logged out of all devices', function(done) {
 
-    const token = jwt.encode({ timestamp: Math.round(new Date() / 1000), user_id: 1 }, secret)
+    const yesterday = Math.round(new Date() / 1000) - 60 * 60 *24
+
+    const token = jwt.encode({ timestamp: yesterday, user_id: 3 }, secret)
 
     const expected = {
       message: 'expired token'
     }
 
-    testAuthenticatedRequest('/admin/users', token, expected, 200, done)
+    testAuthenticatedRequest('/admin/users', token, expected, 401, done)
 
   })
 
