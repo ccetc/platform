@@ -11,6 +11,7 @@ module.exports = {
     filename: 'js/[name].js'
   },
   module: {
+    noParse: /node_modules\/localforage\/dist\/localforage.js/,
     loaders: [
       {
         test: /\.js$/,

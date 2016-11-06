@@ -1,6 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import kue from './services/kue'
+import queue from './services/queue'
 import authentication from './server/middleware/authentication'
 import logger from './server/middleware/logger'
 import render from './server/middleware/render'
@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 // kue
-app.use('/kue', kue.app)
+app.use('/jobs', queue.app)
 
 // logger
 app.use(logger)
