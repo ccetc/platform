@@ -5,9 +5,6 @@ import aws from './services/aws'
 const key = 'assets/1/greg.jpg'
 const stream = fs.createReadStream('/Users/mochini/Workspace/platform/src/public/images/greg.jpg')
 stream.on('error', function (err) {
-  if(err) {
-    return res.end()
-  }
 })
 stream.on('open', function () {
   var s3 = new aws.S3()
@@ -19,6 +16,5 @@ stream.on('open', function () {
     ACL: 'public-read',
     Body: stream
   }, (err, data) => {
-    if(err){
-    }
   })
+})

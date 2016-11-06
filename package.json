@@ -78,6 +78,7 @@
     "sinon": "^1.17.6",
     "sqlite3": "^3.1.8",
     "style-loader": "^0.13.1",
+    "wallaby-webpack": "^0.0.26",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.2",
     "webpack-node-externals": "^1.5.4",
