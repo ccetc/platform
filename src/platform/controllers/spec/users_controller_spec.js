@@ -1,7 +1,7 @@
-import controller from '../users_controller'
+import controllers from '../index'
 import testAction from '../../../utils/test_action'
 
-describe('users controller', function() {
+describe('users controllers.users', function() {
 
   it('can show all records', function(done) {
 
@@ -14,7 +14,7 @@ describe('users controller', function() {
       { id: 4, first_name: 'Greg', last_name: 'Kops', email: 'gmk8@cornell.edu' }
     ]
 
-    testAction(controller.index, request, expected, 200, done)
+    testAction(controllers.users.index, request, expected, 200, done)
 
   })
 
@@ -33,7 +33,7 @@ describe('users controller', function() {
       email: 'ks47@cornell.edu'
     }
 
-    testAction(controller.show, request, expected, 200, done)
+    testAction(controllers.users.show, request, expected, 200, done)
 
   })
 
@@ -49,7 +49,7 @@ describe('users controller', function() {
       message: 'Unable to fetch record'
     }
 
-    testAction(controller.show, request, expected, 404, done)
+    testAction(controllers.users.show, request, expected, 404, done)
 
   })
 
@@ -70,7 +70,7 @@ describe('users controller', function() {
       email: 'mmp246@cornell.edu'
     }
 
-    testAction(controller.create, request, expected, 201, done)
+    testAction(controllers.users.create, request, expected, 201, done)
 
   })
 
@@ -93,7 +93,7 @@ describe('users controller', function() {
       }
     }
 
-    testAction(controller.create, request, expected, 422, done)
+    testAction(controllers.users.create, request, expected, 422, done)
 
   })
 
@@ -115,7 +115,7 @@ describe('users controller', function() {
       email: 'ks47@cornell.edu'
     }
 
-    testAction(controller.update, request, expected, 201, done)
+    testAction(controllers.users.update, request, expected, 201, done)
 
   })
 
@@ -141,7 +141,7 @@ describe('users controller', function() {
       }
     }
 
-    testAction(controller.update, request, expected, 422, done)
+    testAction(controllers.users.update, request, expected, 422, done)
 
   })
 
@@ -158,7 +158,7 @@ describe('users controller', function() {
       message: 'Unable to fetch record'
     }
 
-    testAction(controller.update, request, expected, 404, done)
+    testAction(controllers.users.update, request, expected, 404, done)
 
   })
 
@@ -172,7 +172,7 @@ describe('users controller', function() {
 
     const expected = {}
 
-    testAction(controller.destroy, request, expected, 201, done)
+    testAction(controllers.users.destroy, request, expected, 201, done)
 
   })
 
@@ -188,7 +188,7 @@ describe('users controller', function() {
       message: 'Unable to fetch record'
     }
 
-    testAction(controller.destroy, request, expected, 404, done)
+    testAction(controllers.users.destroy, request, expected, 404, done)
 
   })
 

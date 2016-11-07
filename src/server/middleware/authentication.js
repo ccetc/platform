@@ -15,27 +15,7 @@ const decode = (token) => {
 export default (req, res, next) => {
   const timestamp = Math.round(new Date() / 1000)
 
-  if(req.path == '/authenticate') {
-
-    if(!req.query.email || !req.query.password) {
-      return res.json({ message: 'email and password required' }).status(422)
-    }
-
-    User.where({ email: req.query.email }).fetch({ require: true }).then(user => {
-
-      if(!user.authenticate(req.query.password)) {
-        return res.json({ message: 'invalid password' }).status(422)
-      }
-
-      const encoded = jwt.encode({ timestamp, user_id: user.id }, secret)
-      return res.json({ token: encoded }).status(200)
-
-
-    }).catch(err => {
-      return res.json({ message: 'cannot find user' }).status(422)
-    })
-
-  } else if(req.header('Authorization')) {
+  if(req.header('Authorization')) {
 
     const header = req.header('Authorization')
     const matches = header.match('Bearer (.*)')

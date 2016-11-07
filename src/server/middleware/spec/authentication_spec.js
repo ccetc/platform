@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import jwt from 'jwt-simple'
-import authentication from '../middleware/authentication'
-import config from '../../../config/platform'
+import authentication from '../authentication'
+import config from '../../../../config/platform'
 
 const testUnauthenticatedRequest = function(path, query, expected, code, done) {
 
@@ -43,64 +43,6 @@ const testRequest = function(request, expected, code, done) {
 describe('authentication middleware', function() {
 
   const secret = config[process.env.NODE_ENV].secret
-
-  it('rejects authentication request without email and password', function(done) {
-
-    const query = {
-    }
-
-    const expected = {
-      message: 'email and password required'
-    }
-
-    testUnauthenticatedRequest('/authenticate', query, expected, 422, done)
-
-  })
-
-  it('rejects authentication request with invalid email', function(done) {
-
-    const query = {
-      email: 'mochini@gmail.com',
-      password: 'foo'
-    }
-
-    const expected = {
-      message: 'cannot find user'
-    }
-
-    testUnauthenticatedRequest('/authenticate', query, expected, 422, done)
-
-  })
-
-  it('rejects authentication request with invalid password', function(done) {
-
-    const query = {
-      email: 'ks47@cornell.edu',
-      password: 'foo'
-    }
-
-    const expected = {
-      message: 'invalid password'
-    }
-
-    testUnauthenticatedRequest('/authenticate', query, expected, 422, done)
-
-  })
-
-  it('accepts authentication request with valid email and valid password', function(done) {
-
-    const query = {
-      email: 'ks47@cornell.edu',
-      password: 'cce'
-    }
-
-    const expected = {
-      token: jwt.encode({ timestamp: Math.round(new Date() / 1000), user_id: 1 }, secret)
-    }
-
-    testUnauthenticatedRequest('/authenticate', query, expected, 200, done)
-
-  })
 
   it('rejects authenticated request with malformed token', function(done) {
 
