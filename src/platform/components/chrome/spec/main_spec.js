@@ -1,7 +1,7 @@
 import React from 'react'
 import { expect } from 'chai'
 import { shallow } from 'enzyme'
-import { Main } from '../../../components/chrome/components/main'
+import { Main } from '../components/main'
 
 describe('main component', function() {
 

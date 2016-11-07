@@ -2,7 +2,7 @@ import React from 'react'
 import { expect } from 'chai'
 import { spy } from 'sinon'
 import { shallow } from 'enzyme'
-import { Flash } from '../../../components/chrome/components/flash'
+import { Flash } from '../components/flash'
 
 describe('flash component', function() {
 

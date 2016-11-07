@@ -2,7 +2,7 @@ import React from 'react'
 import { expect } from 'chai'
 // import { spy } from 'sinon'
 import { shallow } from 'enzyme'
-import { Search } from '../../../components/chrome/components/search'
+import { Search } from '../components/search'
 
 describe('search component', function() {
 

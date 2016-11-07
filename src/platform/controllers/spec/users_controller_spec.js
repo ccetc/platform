@@ -1,17 +1,5 @@
-import { expect } from 'chai'
-import controller from '../../controllers/users_controller'
-
-const testAction = function(action, request, expected, code, done) {
-  action(request, { json: actual => {
-    expect(actual).to.eql(expected)
-    return {
-      status: status => {
-        expect(status).to.equal(code)
-        done()
-      }
-    }
-  }})
-}
+import controller from '../users_controller'
+import testAction from '../../../utils/test_action'
 
 describe('users controller', function() {
 

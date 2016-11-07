@@ -2,7 +2,7 @@ import React from 'react'
 import { expect } from 'chai'
 import { spy } from 'sinon'
 import { shallow } from 'enzyme'
-import { Drawer } from '../../../components/chrome/components/drawer'
+import { Drawer } from '../components/drawer'
 
 describe('drawer component', function() {
 

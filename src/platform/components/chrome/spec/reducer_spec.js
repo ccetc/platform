@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import reducer from '../../../components/chrome/reducer'
-import * as actionTypes from '../../../components/chrome/action_types'
+import reducer from '../reducer'
+import * as actionTypes from '../action_types'
 
 describe('chrome reducer', function() {
 

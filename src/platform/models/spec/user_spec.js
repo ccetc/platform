@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import models from '../../models'
+import models from '../index'
 
 describe('user model', function() {
 
@@ -37,7 +37,7 @@ describe('user model', function() {
   //     created_at: null,
   //     updated_at: null
   //   }
-  //   models.user.forge({ id: 1 }).fetch().then(user => {
+  //   user.forge({ id: 1 }).fetch().then(user => {
   //     expect(user.attributes).to.eql(expected)
   //     done()
   //   })
