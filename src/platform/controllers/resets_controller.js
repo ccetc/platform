@@ -1,7 +1,8 @@
 import jwt from 'jwt-simple'
 import config from '../../../config/platform'
-import mail from '../../utils/mail'
 import models from '../../platform/models'
+import { queue } from '../../services/queue'
+import send_reset_email_job from '../jobs/send_reset_email_job'
 
 let controller = {}
 
@@ -21,7 +22,13 @@ controller.create = (req, res) => {
     const timestamp = Math.round(new Date() / 1000)
     const encoded = jwt.encode({ timestamp, user_id: user.id }, secret)
 
-    mail('notifier@cms.cce.cornell.edu', [req.body.email], 'Your password reset', `Here is your password: <a href="/admin/reset/${encoded}">Reset Password</a>`)
+    queue.createJob('send_reset_email', {
+      from: 'notifier@cms.cce.cornell.edu',
+      to: [req.body.email],
+      subject: 'Your password reset',
+      body: `Here is your password: <a href="/admin/reset/${encoded}">Reset Password</a>`
+    }).save()
+
     return res.json({}).status(200)
 
   })

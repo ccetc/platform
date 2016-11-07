@@ -1,20 +1,20 @@
 import aws from '../services/aws'
 
-export default (from, to, subject, body) => {
+export default (messaage) => {
   if(process.env.NODE_ENV != 'test') {
     var ses = new aws.SES()
     ses.sendEmail({
-      Source: from,
+      Source: messaage.from,
       Destination: {
-        ToAddresses: to
+        ToAddresses: messaage.to
       },
       Message: {
         Subject: {
-          Data: subject
+          Data: messaage.subject
         },
         Body: {
           Html: {
-            Data: body
+            Data: messaage.body
           }
         }
       }

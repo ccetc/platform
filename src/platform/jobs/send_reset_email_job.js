@@ -1,11 +1,13 @@
-import { queue } from '../../services/kue'
+import { queue } from '../../services/queue'
+import mail from '../../utils/mail'
 
-queue.process('payment', 20, function(job, done){
+queue.process('send_reset_email', 20, function(job, done){
+  mail(job.data)
   done()
 })
 
 const create = (data, done) => {
-  queue.create('payment', data)
+  queue.create('send_reset_email', data)
   .priority('critical')
   .attempts(8)
   .backoff(true)

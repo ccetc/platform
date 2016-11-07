@@ -4,9 +4,6 @@ import controllers from './controllers'
 
 const routes = Router()
 
-routes.post('/authenticate', controllers.sessions.create)
-routes.post('/reset', controllers.resets.create)
-
 routes.get('/users', controllers.users.index)
 routes.get('/users/:id', controllers.users.show)
 routes.post('/users', controllers.users.create)

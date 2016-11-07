@@ -1,5 +1,6 @@
 import api from './api'
 import admin from './admin'
+import jobs from './jobs'
 import website from './website'
 
 const config = {
@@ -17,5 +18,6 @@ export default {
   admin,
   api,
   config,
+  jobs,
   website
 }

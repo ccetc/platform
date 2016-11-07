@@ -18,7 +18,7 @@ const socket = require('socket.io')(http)
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-// kue
+// job queue
 app.use('/jobs', queue.app)
 
 // logger
@@ -32,6 +32,7 @@ socket.on('connection', (channel) => {
 })
 
 // admin api routes
+app.use('/api/admin', platform.authentication)
 app.use('/api/admin', authentication)
 app.use(`/api/admin${platform.config.path}`, platform.api)
 app.use(`/api/admin${crm.config.path}`, crm.api)
