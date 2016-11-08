@@ -1,4 +1,4 @@
-import controllers from '../index'
+import controllers from '../../controllers'
 import testAction from '../../../utils/test_action'
 
 describe('users controllers.users', function() {

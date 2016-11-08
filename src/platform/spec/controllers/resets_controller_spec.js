@@ -1,11 +1,7 @@
-import jwt from 'jwt-simple'
-import config from '../../../../config/platform'
-import controllers from '../index'
+import controllers from '../../controllers'
 import testAction from '../../../utils/test_action'
 
 describe('resets controller', function() {
-
-  const secret = config[process.env.NODE_ENV].secret
 
   it('rejects request without email', function(done) {
 

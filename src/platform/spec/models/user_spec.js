@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import models from '../index'
+import models from '../../models'
 
 describe('user model', function() {
 

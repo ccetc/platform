@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import serializers from '../index'
+import serializers from '../../serializers'
 import mockModel from '../../../utils/mock_model'
 
 describe('user serializer', function() {

@@ -1,11 +1,11 @@
 import jwt from 'jwt-simple'
-import config from '../../../../config/platform'
-import controllers from '../index'
+import config from '../../../services/config'
+import controllers from '../../controllers'
 import testAction from '../../../utils/test_action'
 
 describe('sessions controller', function() {
 
-  const secret = config[process.env.NODE_ENV].secret
+  const secret = config.secret
 
   it('rejects authentication request without email and password', function(done) {
 

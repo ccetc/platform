@@ -1,15 +1,7 @@
 import { expect } from 'chai'
 import jwt from 'jwt-simple'
-import authentication from '../authentication'
-import config from '../../../../config/platform'
-
-const testUnauthenticatedRequest = function(path, query, expected, code, done) {
-
-  const request = { path, query }
-
-  testRequest(request, expected, code, done)
-
-}
+import authentication from '../middleware/authentication'
+import config from '../../services/config'
 
 const testAuthenticatedRequest = function(path, token, expected, code, done) {
 
@@ -42,7 +34,7 @@ const testRequest = function(request, expected, code, done) {
 
 describe('authentication middleware', function() {
 
-  const secret = config[process.env.NODE_ENV].secret
+  const secret = config.secret
 
   it('rejects authenticated request with malformed token', function(done) {
 
