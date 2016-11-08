@@ -19,7 +19,6 @@ const socket = require('socket.io')(http)
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-
 // job queue
 app.use('/jobs', queue.app)
 
@@ -34,8 +33,8 @@ socket.on('connection', (channel) => {
 })
 
 // admin api routes
-// app.use('/api/admin', platform.authentication)
-// app.use('/api/admin', authentication)
+app.use('/api/admin', platform.authentication)
+app.use('/api/admin', authentication)
 app.use(`/api/admin${platform.config.path}`, platform.api)
 app.use(`/api/admin${crm.config.path}`, crm.api)
 app.use(`/api/admin${expenses.config.path}`, expenses.api)
