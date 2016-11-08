@@ -2,7 +2,7 @@ import checkit from  'checkit'
 import bcrypt from 'bcrypt-nodejs'
 import asset from './asset'
 import services from '../../services'
-import unique from '../../utils/validations/unique'
+import unique from '../../utils/unique_validation'
 
 const user = services.bookshelf.Model.extend({
 

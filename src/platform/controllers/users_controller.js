@@ -5,6 +5,8 @@ import permit from '../../utils/permit'
 let controller = {}
 
 controller.index = (req, res) => {
+  throw new Error('foo')
+
   models.user.fetchAll().then(users => {
     if(users.length) {
       return res.json(users.map(user => serializers.user(user))).status(200)

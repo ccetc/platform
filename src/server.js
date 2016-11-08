@@ -4,6 +4,7 @@ import queue from './services/queue'
 import authentication from './server/middleware/authentication'
 import logger from './server/middleware/logger'
 import render from './server/middleware/render'
+import exceptions from './server/middleware/exceptions'
 import admin from './admin'
 import platform from './platform'
 import crm from './apps/crm'
@@ -17,6 +18,7 @@ const socket = require('socket.io')(http)
 // body parsing
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+
 
 // job queue
 app.use('/jobs', queue.app)
@@ -32,11 +34,12 @@ socket.on('connection', (channel) => {
 })
 
 // admin api routes
-app.use('/api/admin', platform.authentication)
-app.use('/api/admin', authentication)
+// app.use('/api/admin', platform.authentication)
+// app.use('/api/admin', authentication)
 app.use(`/api/admin${platform.config.path}`, platform.api)
 app.use(`/api/admin${crm.config.path}`, crm.api)
 app.use(`/api/admin${expenses.config.path}`, expenses.api)
+app.use('/api', exceptions)
 
 // admin routes
 app.get('/admin*', render(admin))

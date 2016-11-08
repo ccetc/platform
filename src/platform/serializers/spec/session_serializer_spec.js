@@ -1,10 +1,19 @@
 import { expect } from 'chai'
 import serializers from '../index'
-import models from '../../models'
+import mockModel from '../../../utils/mock_model'
 
 describe('session serializer', function() {
 
-  it('can serialize', function(done) {
+  it('can serialize', function() {
+
+    const user = mockModel({
+      id: 1,
+      full_name: 'Ken Schlather',
+      email: 'ks47@cornell.edu',
+      photo: {
+        url: 'https://s3.amazonaws.com/assets/1/ken.jpg'
+      }
+    })
 
     const expected = {
       apps: [
@@ -39,10 +48,7 @@ describe('session serializer', function() {
       }
     }
 
-    models.user.forge({ id: 1 }).fetch({ require: true, withRelated: ['photo'] }).then(user => {
-      expect(serializers.session(user)).to.eql(expected)
-      done()
-    })
+    expect(serializers.session(user)).to.eql(expected)
 
   })
 

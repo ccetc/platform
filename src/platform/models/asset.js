@@ -1,6 +1,6 @@
 import checkit from  'checkit'
 import services from '../../services'
-import unique from '../../utils/validations/unique'
+import unique from '../../utils/unique_validation'
 
 const asset = services.bookshelf.Model.extend({
 

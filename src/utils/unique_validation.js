@@ -1,5 +1,5 @@
 
-import services from '../../services'
+import services from '../services'
 
 const unique = function(table, attribute) {
   return function(val) {
