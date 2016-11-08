@@ -1,6 +1,7 @@
 import checkit from  'checkit'
 import bcrypt from 'bcrypt-nodejs'
 import asset from './asset'
+import security_question from './security_question'
 import services from '../../services'
 import unique from '../../utils/unique_validation'
 
@@ -18,6 +19,14 @@ const user = services.bookshelf.Model.extend({
 
   photo: function() {
     return this.belongsTo(asset, 'photo_id')
+  },
+
+  security_question_1: function() {
+    return this.belongsTo(security_question, 'security_question_1_id')
+  },
+
+  security_question_2: function() {
+    return this.belongsTo(security_question, 'security_question_2_id')
   },
 
   virtuals: {

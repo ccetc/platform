@@ -65,7 +65,7 @@ describe('sessions controller', function() {
     }
 
     const expected = {
-      token: jwt.encode({ timestamp: Math.round(new Date() / 1000), user_id: 1 }, secret)
+      token: jwt.encode({ user_id: 1, timestamp: Math.round(new Date() / 1000) }, secret)
     }
 
     testAction(controllers.sessions.create, request, expected, 200, done)

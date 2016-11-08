@@ -1,5 +1,4 @@
-import jwt from 'jwt-simple'
-import config from '../../../config/platform'
+import jwt from '../../utils/jwt'
 import models from '../../platform/models'
 
 let controller = {}
@@ -20,10 +19,8 @@ controller.create = (req, res) => {
       return res.json({ message: 'invalid password' }).status(422)
     }
 
-    const secret = config[process.env.NODE_ENV].secret
-    const timestamp = Math.round(new Date() / 1000)
-    const encoded = jwt.encode({ timestamp, user_id: user.id }, secret)
-    return res.json({ token: encoded }).status(200)
+    const token = jwt.encode({ user_id: user.id })
+    return res.json({ token }).status(200)
   })
 }
 

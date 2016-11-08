@@ -8,6 +8,24 @@ exports.seed = (knex, Promise) => {
     ])
   })
   .then(() => {
+    return knex('security_questions').del()
+  })
+  .then(() => {
+    return knex('security_questions').insert([
+      {
+        text: 'What is the name of your first pet?'
+      }, {
+        text: 'What is your mother\'s maiden name?'
+      }, {
+        text: 'What is the first name of your maternal grandfather?'
+      }, {
+        text: 'What is the first name of your youngest subling?'
+      }, {
+        text: 'In what city were you born?'
+      }
+    ])
+  })
+  .then(() => {
     return knex('assets').del()
   })
   .then(() => {
@@ -55,7 +73,11 @@ exports.seed = (knex, Promise) => {
         email: 'ks47@cornell.edu',
         password_salt: '$2a$10$wlhVrmkAu7H7Wttks/9vte',
         password_hash: '$2a$10$wlhVrmkAu7H7Wttks/9vte8KTY6afM7XHdKTXadrXlpvpVgfHyx6m',
-        photo_id: 1
+        photo_id: 1,
+        security_question_1_id: 1,
+        security_question_1_answer: 'moly',
+        security_question_2_id: 2,
+        security_question_2_answer: 'zaleski'
       }, {
         instance_id: 1,
         first_name: 'Sharon',
@@ -63,7 +85,11 @@ exports.seed = (knex, Promise) => {
         email: 'ska2@cornell.edu',
         password_salt: '$2a$10$wlhVrmkAu7H7Wttks/9vte',
         password_hash: '$2a$10$wlhVrmkAu7H7Wttks/9vte8KTY6afM7XHdKTXadrXlpvpVgfHyx6m',
-        photo_id: 2
+        photo_id: 2,
+        security_question_1_id: 1,
+        security_question_1_answer: 'moly',
+        security_question_2_id: 2,
+        security_question_2_answer: 'zaleski'
       }, {
         instance_id: 1,
         first_name: 'Sandy',
@@ -72,6 +98,10 @@ exports.seed = (knex, Promise) => {
         password_salt: '$2a$10$wlhVrmkAu7H7Wttks/9vte',
         password_hash: '$2a$10$wlhVrmkAu7H7Wttks/9vte8KTY6afM7XHdKTXadrXlpvpVgfHyx6m',
         photo_id: 3,
+        security_question_1_id: 1,
+        security_question_1_answer: 'moly',
+        security_question_2_id: 2,
+        security_question_2_answer: 'zaleski',
         logged_out_at: new Date()
       }, {
         instance_id: 1,
@@ -80,7 +110,11 @@ exports.seed = (knex, Promise) => {
         email: 'gmk8@cornell.edu',
         password_salt: '$2a$10$wlhVrmkAu7H7Wttks/9vte',
         password_hash: '$2a$10$wlhVrmkAu7H7Wttks/9vte8KTY6afM7XHdKTXadrXlpvpVgfHyx6m',
-        photo_id: 4
+        photo_id: 4,
+        security_question_1_id: 1,
+        security_question_1_answer: 'moly',
+        security_question_2_id: 2,
+        security_question_2_answer: 'zaleski'
       }
     ])
   })
