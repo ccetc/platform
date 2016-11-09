@@ -1,5 +1,6 @@
 import config from './services/config'
 import express from 'express'
+import cors from 'cors'
 import redis from 'socket.io-redis'
 import http from 'http'
 import socketio from 'socket.io'
@@ -26,6 +27,9 @@ server.listen(8080)
 const io = socketio(server)
 io.adapter(redis(config.redis))
 io.use(ioauth)
+
+// enable cors
+app.use(cors())
 
 // body parsing
 app.use(bodyParser.urlencoded({ extended: true }))

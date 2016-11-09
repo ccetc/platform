@@ -1,23 +1,23 @@
-let controller = {}
+export default {
 
-controller.index = (req, res) => {
-  res.json({ message: 'controller index' })
+  index: (req, res) => {
+    res.json({ message: 'contacts index' })
+  },
+
+  show: (req, res) => {
+    res.json({ message: 'contacts show' })
+  },
+
+  create: (req, res) => {
+    res.json({ message: 'contacts create' })
+  },
+
+  update: (req, res) => {
+    res.json({ message: 'contacts update' })
+  },
+
+  destroy: (req, res) => {
+    res.json({ message: 'contacts destroy' })
+  }
+
 }
-
-controller.show = (req, res) => {
-  res.json({ message: 'controller show' })
-}
-
-controller.create = (req, res) => {
-  res.json({ message: 'controller create' })
-}
-
-controller.update = (req, res) => {
-  res.json({ message: 'controller update' })
-}
-
-controller.destroy = (req, res) => {
-  res.json({ message: 'controller destroy' })
-}
-
-export default controller

@@ -1,64 +1,48 @@
-import models from '../models'
-import serializers from '../serializers'
+import services from '../services'
 import permit from '../../utils/permit'
-import io from '../../services/io'
 
-let controller = {}
+export default {
 
-controller.index = (req, res) => {
-  io.emit('notifications', { story: { text: 'test' }})
-  models.user.fetchAll().then(users => {
-    if(users.length) {
-      return res.status(200).json(users.map(user => serializers.user(user)))
-    } else {
-      return res.status(404).json({ message: 'Unable to fetch records' })
-    }
-  })
-}
-
-controller.show = (req, res) => {
-  models.user.where({ id: req.params.id }).fetch().then(user => {
-    if(!user) {
-      return res.status(404).json({ message: 'Unable to fetch record' })
-    }
-    return res.status(200).json(serializers.user(user))
-  })
-}
-
-controller.create = (req, res) => {
-  models.user.forge(permit(req.body, ['first_name', 'last_name', 'email'])).save().then(user => {
-    return res.status(201).json(serializers.user(user))
-  })
-  .catch(err => {
-    return res.status(422).json({ message: 'There were problems with your data', errors: err.toJSON() })
-  })
-}
-
-controller.update = (req, res) => {
-  models.user.where({ id: req.params.id }).fetch().then(user => {
-    if(!user) {
-      return res.status(404).json({ message: 'Unable to fetch record' })
-    }
-    return user.save(permit(req.body, ['first_name', 'last_name', 'email'])).then(user => {
-      return res.status(201).json(serializers.user(user))
-    }).catch(err => {
-      return res.status(422).json({ message: 'There were problems with your data', errors: err.toJSON() })
+  index(req, res) {
+    services.users.fetchAll(req.query, success => {
+      return res.status(200).json(success)
+    }, error => {
+      return res.status(404).json(error)
     })
-  })
-}
+  },
 
-controller.destroy = (req, res) => {
-  models.user.where({ id: req.params.id }).fetch().then(user => {
-    if(!user) {
-      return res.status(404).json({ message: 'Unable to fetch record' })
-    }
-    return user.destroy().then(user => {
-      return res.status(201).json({})
+  show(req, res) {
+    services.users.fetch(req.params.id, success => {
+      return res.status(200).json(success)
+    }, error => {
+      return res.status(404).json(error)
     })
-    .catch(err => {
-      return res.status(422).json({ message: 'Unable to delete record', errors: err.toJSON() })
-    })
-  })
-}
+  },
 
-export default controller
+  create(req, res) {
+    const params = permit(req.body, ['first_name', 'last_name', 'email'])
+    services.users.create(params, success => {
+      return res.status(201).json(success)
+    }, error => {
+      return res.status(422).json(error)
+    })
+  },
+
+  update(req, res) {
+    const params = permit(req.body, ['first_name', 'last_name', 'email'])
+    services.users.update(req.params.id, params, success => {
+      return res.status(201).json(success)
+    }, error => {
+      return res.status(422).json(error)
+    })
+  },
+
+  destroy(req, res) {
+    services.users.destroy(req.params.id, success => {
+      return res.status(201).json(success)
+    }, error => {
+      return res.status(422).json(error)
+    })
+  }
+
+}

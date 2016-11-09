@@ -21,6 +21,7 @@
     "body-parser": "~1.0.1",
     "bookshelf": "^0.10.2",
     "checkit": "^0.7.0",
+    "cors": "^2.8.1",
     "express": "~4.14.0",
     "fs": "^0.0.1-security",
     "handlebars": "^4.0.5",
