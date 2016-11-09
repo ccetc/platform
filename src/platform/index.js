@@ -1,8 +1,11 @@
+import admin from './admin'
 import api from './api'
 import authentication from './authentication'
-import admin from './admin'
-import website from './website'
+import controllers from './controllers'
 import jobs from './jobs'
+import models from './models'
+import queries from './queries'
+import website from './website'
 
 const config = {
   name: 'Platform',
@@ -10,17 +13,14 @@ const config = {
   path: ''
 }
 
-export { admin }
-export { api }
-export { authentication }
-export { config }
-export { website }
-
 export default {
   admin,
   api,
   authentication,
+  controllers,
   config,
   jobs,
+  models,
+  queries,
   website
 }

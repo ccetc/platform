@@ -1,6 +1,9 @@
-import api from './api'
 import admin from './admin'
+import api from './api'
+import controllers from './controllers'
 import jobs from './jobs'
+import models from './models'
+import queries from './queries'
 import website from './website'
 
 const config = {
@@ -9,15 +12,13 @@ const config = {
   path: '/crm'
 }
 
-export { admin }
-export { api }
-export { config }
-export { website }
-
 export default {
   admin,
   api,
+  controllers,
   config,
   jobs,
+  models,
+  queries,
   website
 }
