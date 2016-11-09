@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import jwt from 'jwt-simple'
-import authentication from '../middleware/authentication'
+import authentication from '../middleware/webauth'
 import config from '../../services/config'
 
 const testAuthenticatedRequest = function(path, token, expected, code, done) {

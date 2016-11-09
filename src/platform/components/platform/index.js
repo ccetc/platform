@@ -8,7 +8,9 @@ class Platform extends React.Component {
 
   constructor(props) {
     super(props)
-    this.socket = SocketClient()
+    this.socket = SocketClient('', {
+      query: 'token=123'
+    })
   }
 
   static childContextTypes = {

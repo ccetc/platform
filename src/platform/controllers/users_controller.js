@@ -1,10 +1,12 @@
 import models from '../models'
 import serializers from '../serializers'
 import permit from '../../utils/permit'
+import io from '../../services/io'
 
 let controller = {}
 
 controller.index = (req, res) => {
+  io.emit('notifications', { story: { text: 'test' }})
   models.user.fetchAll().then(users => {
     if(users.length) {
       return res.status(200).json(users.map(user => serializers.user(user)))

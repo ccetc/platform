@@ -1,9 +1,12 @@
+import config from './services/config'
 import express from 'express'
+import redis from 'socket.io-redis'
 import http from 'http'
-import socket from 'socket.io'
+import socketio from 'socket.io'
 import bodyParser from 'body-parser'
 import queue from './services/queue'
-import authentication from './server/middleware/authentication'
+import webauth from './server/middleware/webauth'
+import ioauth from './server/middleware/ioauth'
 import logger from './server/middleware/logger'
 import render from './server/middleware/render'
 import exceptions from './server/middleware/exceptions'
@@ -12,9 +15,17 @@ import platform from './platform'
 import crm from './apps/crm'
 import expenses from './apps/expenses'
 
+// create app
 const app = express()
+
+// create server
 const server = http.createServer(app)
-const io = socket(server)
+server.listen(8080)
+
+// create websocket
+const io = socketio(server)
+io.adapter(redis(config.redis))
+io.use(ioauth)
 
 // body parsing
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -29,13 +40,9 @@ app.use(logger)
 // public assets
 app.use(express.static('dist/public'))
 
-// websocket
-io.on('connection', (channel) => {
-})
-
 // admin api routes
 app.use('/api/admin', platform.authentication)
-app.use('/api/admin', authentication)
+app.use('/api/admin', webauth)
 app.use(`/api/admin${platform.config.path}`, platform.api)
 app.use(`/api/admin${crm.config.path}`, crm.api)
 app.use(`/api/admin${expenses.config.path}`, expenses.api)
@@ -43,6 +50,3 @@ app.use('/api', exceptions)
 
 // admin routes
 app.get('/admin*', render(admin))
-
-// http app
-server.listen(8080)
