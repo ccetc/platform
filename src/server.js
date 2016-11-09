@@ -1,4 +1,6 @@
 import express from 'express'
+import http from 'http'
+import socket from 'socket.io'
 import bodyParser from 'body-parser'
 import queue from './services/queue'
 import authentication from './server/middleware/authentication'
@@ -11,9 +13,8 @@ import crm from './apps/crm'
 import expenses from './apps/expenses'
 
 const app = express()
-const http = require('http').Server(app)
-const https = require('https').Server(app)
-const socket = require('socket.io')(http)
+const server = http.createServer(app)
+const io = socket(server)
 
 // body parsing
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -29,12 +30,12 @@ app.use(logger)
 app.use(express.static('dist/public'))
 
 // websocket
-socket.on('connection', (channel) => {
+io.on('connection', (channel) => {
 })
 
 // admin api routes
 app.use('/api/admin', platform.authentication)
-app.use('/api/admin', authentication)
+// app.use('/api/admin', authentication)
 app.use(`/api/admin${platform.config.path}`, platform.api)
 app.use(`/api/admin${crm.config.path}`, crm.api)
 app.use(`/api/admin${expenses.config.path}`, expenses.api)
@@ -44,7 +45,4 @@ app.use('/api', exceptions)
 app.get('/admin*', render(admin))
 
 // http app
-http.listen(8080)
-
-// https app
-https.listen(8443)
+server.listen(8080)

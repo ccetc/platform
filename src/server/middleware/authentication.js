@@ -10,7 +10,7 @@ export default (req, res, next) => {
 
     if(req.path === '/refresh') {
       const token = jwt.encode({ user_id: user.id })
-      return res.json({ token }).status(200)
+      return res.status(200).json({ token })
     }
 
     next()

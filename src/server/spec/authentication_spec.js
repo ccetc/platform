@@ -16,12 +16,11 @@ const testAuthenticatedRequest = function(path, token, expected, code, done) {
 
 const testRequest = function(request, expected, code, done) {
 
-  authentication(request, { json: actual => {
-
-    expect(actual).to.eql(expected)
+  authentication(request, { status: status => {
+    expect(status).to.equal(code)
     return {
-      status: status => {
-        expect(status).to.equal(code)
+      json: actual => {
+        expect(actual).to.eql(expected)
         done()
       }
     }

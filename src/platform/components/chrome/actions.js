@@ -1,4 +1,5 @@
 import * as actionTypes from './action_types'
+import Api from '../../../utils/api'
 
 export function changeMode(mode) {
   return {
@@ -8,38 +9,60 @@ export function changeMode(mode) {
 }
 
 export function signin(email, password) {
+  return Api.post({
+    params: { email, password },
+    endpoint: '/admin/authenticate',
+    request: signinRequest,
+    success: signinSuccess,
+    failure: signinFailure
+  })
+}
+
+export function signinRequest(request) {
   return {
     type: actionTypes.SIGNIN_REQUEST
   }
 }
 
-export function signinSuccess() {
+export function signinSuccess(response) {
   return {
     type: actionTypes.SIGNIN_SUCCESS
   }
 }
 
-export function signinFailure() {
+export function signinFailure(response) {
   return {
-    type: actionTypes.SIGNIN_FAILURE
+    type: actionTypes.SIGNIN_FAILURE,
+    error: response.entity
   }
 }
 
 export function reset(email) {
+  return Api.post({
+    params: { email },
+    endpoint: '/admin/reset',
+    request: resetRequest,
+    success: resetSuccess,
+    failure: resetFailure
+  })
+}
+
+export function resetRequest(request) {
   return {
     type: actionTypes.RESET_REQUEST
   }
 }
 
-export function resetSuccess() {
+export function resetSuccess(response) {
   return {
     type: actionTypes.RESET_SUCCESS
   }
 }
 
-export function resetFailure() {
+export function resetFailure(response) {
   return {
-    type: actionTypes.RESET_FAILURE
+    type: actionTypes.RESET_FAILURE,
+    error: response.entity
   }
 }
 
@@ -115,9 +138,33 @@ export function completeSearch(index) {
   }
 }
 
-export function lookup(query) {
+export function lookup(q) {
+  return Api.get({
+    params: { q },
+    endpoint: '/admin/search',
+    request: lookupRequest,
+    success: lookupSuccess,
+    failure: lookupFailure
+  })
+}
+
+export function lookupRequest(request) {
   return {
-    type: actionTypes.LOOKUP,
-    query
+    type: actionTypes.LOOKUP_REQUEST,
+    params: request.params
+  }
+}
+
+export function lookupSuccess(response) {
+  return {
+    type: actionTypes.LOOKUP_SUCCESS,
+    results: response.entity.contacts
+  }
+}
+
+export function lookupFailure(response) {
+  return {
+    type: actionTypes.LOOKUP_FAILURE,
+    error: response.entity
   }
 }

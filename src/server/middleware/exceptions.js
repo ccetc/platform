@@ -32,7 +32,7 @@ export default (err, req, res, next) => {
       subject: `${config.exceptions.prefix} ${err}`,
       body: details(err, req)
     })
-    return res.json({ message: 'application error' }).status(500)
+    return res.status(500).json({ message: 'application error' })
 
   default:
     throw err

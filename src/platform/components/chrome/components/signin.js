@@ -11,8 +11,7 @@ export class Signin extends React.Component {
     flash: React.PropTypes.object.isRequired,
     status: React.PropTypes.string.isRequired,
     onChangeMode: React.PropTypes.func.isRequired,
-    onSignin: React.PropTypes.func.isRequired,
-    onSigninSuccess: React.PropTypes.func.isRequired
+    onSignin: React.PropTypes.func.isRequired
   }
 
   render() {
@@ -73,11 +72,10 @@ export class Signin extends React.Component {
   }
 
   _handleSubmit(event) {
-    const { onSignin, onSigninSuccess } = this.props
+    const { onSignin } = this.props
     const email = $(this.refs.email).val()
     const password = $(this.refs.password).val()
     onSignin(email, password)
-    setTimeout(onSigninSuccess, 1000)
     event.preventDefault()
     return false
   }
@@ -96,8 +94,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   onChangeMode: actions.changeMode,
-  onSignin: actions.signin,
-  onSigninSuccess: actions.signinSuccess
+  onSignin: actions.signin
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signin)

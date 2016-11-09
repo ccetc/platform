@@ -6,21 +6,21 @@ let controller = {}
 controller.create = (req, res) => {
 
   if(!req.body.email || !req.body.password) {
-    return res.json({ message: 'email and password required' }).status(422)
+    return res.status(422).json({ message: 'email and password required' })
   }
 
   models.user.where({ email: req.body.email }).fetch().then(user => {
 
     if(!user) {
-      return res.json({ message: 'cannot find user' }).status(422)
+      return res.status(422).json({ message: 'cannot find user' })
     }
 
     if(!user.authenticate(req.body.password)) {
-      return res.json({ message: 'invalid password' }).status(422)
+      return res.status(422).json({ message: 'invalid password' })
     }
 
     const token = jwt.encode({ user_id: user.id })
-    return res.json({ token }).status(200)
+    return res.status(200).json({ token })
   })
 }
 

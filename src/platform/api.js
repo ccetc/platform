@@ -4,6 +4,8 @@ import controllers from './controllers'
 
 const routes = Router()
 
+routes.get('/search', controllers.search.index)
+
 routes.get('/users', controllers.users.index)
 routes.get('/users/:id', controllers.users.show)
 routes.post('/users', controllers.users.create)

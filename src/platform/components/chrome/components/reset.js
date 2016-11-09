@@ -11,8 +11,7 @@ export class Reset extends React.Component {
     flash: React.PropTypes.object.isRequired,
     status: React.PropTypes.string.isRequired,
     onChangeMode: React.PropTypes.func.isRequired,
-    onReset: React.PropTypes.func.isRequired,
-    onResetSuccess: React.PropTypes.func.isRequired
+    onReset: React.PropTypes.func.isRequired
   }
 
   render() {
@@ -67,10 +66,9 @@ export class Reset extends React.Component {
   }
 
   _handleSubmit(event) {
-    const { onReset, onResetSuccess } = this.props
+    const { onReset } = this.props
     const email = $(this.refs.email).val()
     onReset(email)
-    setTimeout(onResetSuccess, 1000)
     event.preventDefault()
     return false
   }
@@ -89,8 +87,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   onChangeMode: actions.changeMode,
-  onReset: actions.reset,
-  onResetSuccess: actions.resetSuccess
+  onReset: actions.reset
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Reset)

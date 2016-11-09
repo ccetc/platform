@@ -51,11 +51,11 @@ describe('jwt', function() {
   describe('extract_token_from_header', function() {
 
     const testExtractTokenFromHeader = function(request, expected, code, done) {
-      jwt.extract_token_from_header(request, { json: actual => {
-        expect(actual).to.eql(expected)
+      jwt.extract_token_from_header(request, { status: status => {
+        expect(status).to.equal(code)
         return {
-          status: status => {
-            expect(status).to.equal(code)
+          json: actual => {
+            expect(actual).to.eql(expected)
             done()
           }
         }
@@ -119,11 +119,11 @@ describe('jwt', function() {
     }
 
     const testWithToken = function(token, expected, code, done) {
-      jwt.with_token({}, { json: actual => {
-        expect(actual).to.eql(expected)
+      jwt.with_token({}, { status: status => {
+        expect(status).to.equal(code)
         return {
-          status: status => {
-            expect(status).to.equal(code)
+          json: actual => {
+            expect(actual).to.eql(expected)
             done()
           }
         }

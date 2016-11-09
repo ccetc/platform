@@ -2,7 +2,7 @@
 exports.seed = (knex, Promise) => {
   return knex('contacts').del()
   .then(() => {
-    knex('contacts').insert([
+    return knex('contacts').insert([
       {
         instance_id: 1,
         first_name: 'Ken',
