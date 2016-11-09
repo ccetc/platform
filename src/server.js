@@ -21,7 +21,6 @@ const app = express()
 
 // create server
 const server = http.createServer(app)
-server.listen(8080)
 
 // create websocket
 const io = socketio(server)
@@ -54,3 +53,5 @@ app.use('/api', exceptions)
 
 // admin routes
 app.get('/admin*', render(admin))
+
+server.listen(8080)
