@@ -13,14 +13,15 @@ import render from './server/middleware/render'
 import exceptions from './server/middleware/exceptions'
 import admin from './admin'
 import platform from './platform'
-import crm from './apps/crm'
-import expenses from './apps/expenses'
 
-// create app
-const app = express()
+import fs from 'fs'
+import path from 'path'
+
+// create sys
+const sys = express()
 
 // create server
-const server = http.createServer(app)
+const server = http.createServer(sys)
 
 // create websocket
 const io = socketio(server)
@@ -28,30 +29,33 @@ io.adapter(redis(config.redis))
 io.use(ioauth)
 
 // enable cors
-app.use(cors())
+sys.use(cors())
 
 // body parsing
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
+sys.use(bodyParser.urlencoded({ extended: true }))
+sys.use(bodyParser.json())
 
 // job queue
-app.use('/jobs', queue.app)
+sys.use('/jobs', queue.app)
 
 // logger
-app.use(logger)
+sys.use(logger)
 
 // public assets
-app.use(express.static('dist/public'))
+sys.use(express.static('dist/public'))
 
 // admin api routes
-app.use('/api/admin', platform.authentication)
-app.use('/api/admin', webauth)
-app.use(`/api/admin${platform.config.path}`, platform.api)
-app.use(`/api/admin${crm.config.path}`, crm.api)
-app.use(`/api/admin${expenses.config.path}`, expenses.api)
-app.use('/api', exceptions)
+sys.use('/api/admin', platform.authentication)
+sys.use('/api/admin', webauth)
+
+sys.use(`/api/admin${platform.config.path}`, platform.api)
+fs.readdirSync(path.join(__dirname, './apps')).filter(path => {
+  const app = require(`./apps/${path}`).default
+  sys.use(`/api/admin/${path}`, app.api)
+})
+sys.use('/api', exceptions)
 
 // admin routes
-app.get('/admin*', render(admin))
+sys.get('/admin*', render(admin))
 
 server.listen(8080)

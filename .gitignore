@@ -5,5 +5,3 @@ dist
 npm-debug.log
 coverage
 db.sqlite3*
-config/platform.key
-config/platform.crt
