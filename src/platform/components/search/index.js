@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import * as actions from '../actions'
+import * as actions from './actions'
 
 export class Search extends React.Component {
 
   static contextTypes = {
-    history: React.PropTypes.object
+    router: React.PropTypes.object
   }
 
   static propTypes: {
@@ -49,7 +49,7 @@ export class Search extends React.Component {
   componentDidUpdate(prevProps) {
     const { choice } = this.props
     if(prevProps.choice != choice) {
-      this.context.history.push(choice.route)
+      this.context.router.push(choice.route)
     }
   }
 
@@ -72,10 +72,10 @@ export class Search extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  active: state.chrome.search.active,
-  query: state.chrome.search.query,
-  results: state.chrome.search.results,
-  choice: state.chrome.search.choice
+  active: state.search.active,
+  query: state.search.query,
+  results: state.search.results,
+  choice: state.search.choice
 })
 
 const mapDispatchToProps = {

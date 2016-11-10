@@ -9,131 +9,13 @@ const INITIAL_STATE = {
     item: null
   },
   flash: null,
-  notifications: {
-    queue: [],
-    unread: 1
-  },
   permissions: [],
-  search: {
-    query: '',
-    active: false,
-    results: [],
-    choice: null
-  },
-  session: {
-    mode: 'signin',
-    status: 'ready'
-  },
   user: null
 }
 
 export default (state = INITIAL_STATE, action) => {
 
   switch (action.type) {
-
-  case actionTypes.CHANGE_MODE:
-    return {
-      ...state,
-      session: {
-        mode: action.mode,
-        status: 'ready'
-      },
-      flash: null
-    }
-
-  case actionTypes.SIGNIN_REQUEST:
-    return {
-      ...state,
-      session: {
-        ...state.session,
-        status: 'submitting'
-      },
-      flash: null
-    }
-
-  case actionTypes.SIGNIN_SUCCESS:
-    return {
-      ...INITIAL_STATE,
-      apps: [
-        { name: 'Contacts', icon: 'user', items: [
-          { name: 'Contacts', route: '/admin/crm/contacts' }
-        ] },
-        { name: 'Expenses', icon: 'dollar', items: [
-          { name: 'Advances', route: '/admin/expenses/advances' },
-          { name: 'Expense Types', route: '/admin/expenses/expense_types' },
-          { name: 'Expenses', route: '/admin/expenses/expenses' },
-          { name: 'Projects', route: '/admin/expenses/projects' },
-          { name: 'Trips', route: '/admin/expenses/trips' },
-          { name: 'Vendors', route: '/admin/expenses/vendors' }
-        ] },
-        { name: 'Instance', icon: 'setting', items: [
-          { name: 'Activities', route: '/admin/instance/activities' },
-          { name: 'Apps', route: '/admin/instance/apps' },
-          { name: 'Emails', route: '/admin/instance/emails' },
-          { name: 'Settings', route: '/admin/instance/settings' },
-          { name: 'Users', route: '/admin/instance/users' }
-        ] }
-      ],
-      user: {
-        name: 'Greg Kops',
-        email: 'gmk8@cornell.edu',
-        photo: '/images/greg.jpg',
-        permissions: [
-          'can access contacts',
-          'can access expenses',
-          'can access instance'
-        ]
-      }
-    }
-
-  case actionTypes.SIGNIN_FAILURE:
-    return {
-      ...state,
-      flash: {
-        style: 'error',
-        message: action.error.message
-      },
-      session: {
-        mode: 'signin',
-        status: 'ready'
-      }
-    }
-
-  case actionTypes.RESET_REQUEST:
-    return {
-      ...state,
-      session: {
-        mode: 'reset',
-        status: 'submitting'
-      },
-      flash: null
-    }
-
-  case actionTypes.RESET_SUCCESS:
-    return {
-      ...state,
-      flash: {
-        style: 'success',
-        message: 'Instructions for resetting your password have been emailed to you'
-      },
-      session: {
-        mode: 'signin',
-        status: 'ready'
-      }
-    }
-
-  case actionTypes.RESET_FAILURE:
-    return {
-      ...state,
-      flash: {
-        style: 'error',
-        message: action.error.message
-      },
-      session: {
-        mode: 'reset',
-        status: 'ready'
-      }
-    }
 
   case actionTypes.SIGNOUT:
     return {
@@ -187,72 +69,6 @@ export default (state = INITIAL_STATE, action) => {
         ...state.drawer,
         item: action.index,
         expanded: false
-      }
-    }
-
-  case actionTypes.PUSH_NOTIFICATION:
-    return {
-      ...state,
-      notifications: {
-        ...state.notifications,
-        queue: [...state.notifications.queue, action.notification]
-      }
-    }
-
-  case actionTypes.READ_NOTIFICATION:
-    return {
-      ...state,
-      notifications: {
-        ...state.notifications,
-        queue: _.reject(state.notifications.queue, { id: action.id })
-      }
-    }
-
-  case actionTypes.BEGIN_SEARCH:
-    return {
-      ...state,
-      search: {
-        ...state.search,
-        active: true
-      }
-    }
-
-  case actionTypes.ABORT_SEARCH:
-    return {
-      ...state,
-      search: {
-        ...state.search,
-        active: false
-      }
-    }
-
-  case actionTypes.COMPLETE_SEARCH:
-    return {
-      ...state,
-      search: {
-        ...state.search,
-        query: '',
-        active: false,
-        results: [],
-        choice: state.search.results[action.index]
-      }
-    }
-
-  case actionTypes.LOOKUP_REQUEST:
-    return {
-      ...state,
-      search: {
-        ...state.search,
-        query: action.params.q
-      }
-    }
-
-  case actionTypes.LOOKUP_SUCCESS:
-    return {
-      ...state,
-      search: {
-        ...state.search,
-        results: action.results
       }
     }
 

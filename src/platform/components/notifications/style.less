@@ -1,0 +1,26 @@
+.chrome-notifications {
+  position: absolute;
+  @include border-radius(0 !important);
+  z-index: 10;
+  .segment {
+    position: relative;
+    background-color: #FFF !important;
+    i {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      font-size: 10px;
+      cursor: pointer;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  @media only screen and (min-width: 601px) {
+    bottom: 10px;
+    left: 10px;
+    width: 240px;
+  }
+}

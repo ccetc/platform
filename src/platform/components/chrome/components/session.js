@@ -27,7 +27,7 @@ class Session extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.chrome.user
+  user: state.user
 })
 
 const mapDispatchToProps = {}

@@ -1,9 +1,13 @@
 import chrome from '../chrome/reducer'
+import reset from '../reset/reducer'
+import signin from '../signin/reducer'
 
 const Reducer = (state, action) => {
 
   const reducers = {
-    chrome
+    chrome,
+    reset,
+    signin
   }
 
   const namespace = action.type.split('/')[0]
@@ -12,12 +16,14 @@ const Reducer = (state, action) => {
 
     return {
       ...state,
-      [namespace]: reducers[namespace](state[namespace], action)
+      ...reducers[namespace](state[namespace], action)
     }
 
   } else if(state === undefined) {
     return {
-      chrome: chrome(undefined, action)
+      ...chrome(undefined, action),
+      ...reset(undefined, action),
+      ...signin(undefined, action)
     }
 
   } else {

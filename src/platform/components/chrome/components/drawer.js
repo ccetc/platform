@@ -94,11 +94,11 @@ export class Drawer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  app: state.chrome.drawer.app,
-  apps: state.chrome.apps,
-  expanded: state.chrome.drawer.expanded,
-  item: state.chrome.drawer.item,
-  user: state.chrome.user
+  app: state.drawer.app,
+  apps: state.apps,
+  expanded: state.drawer.expanded,
+  item: state.drawer.item,
+  user: state.user
 })
 
 const mapDispatchToProps = {

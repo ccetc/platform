@@ -1,13 +1,15 @@
 import controllers from '../../controllers'
 import testAction from '../../../utils/test_action'
 
-describe('users controllers.users', function() {
+describe('users controller', function() {
 
   describe('index action', function() {
 
     it('can show all records', function(done) {
 
-      const request = {}
+      const request = {
+        query: {}
+      }
 
       const expected = [
         { id: 1,first_name: 'Ken', last_name: 'Schlather', email: 'ks47@cornell.edu' },
@@ -172,7 +174,7 @@ describe('users controllers.users', function() {
         message: 'Unable to fetch record'
       }
 
-      testAction(controllers.users.update, request, expected, 404, done)
+      testAction(controllers.users.update, request, expected, 422, done)
 
     })
 
@@ -206,7 +208,7 @@ describe('users controllers.users', function() {
         message: 'Unable to fetch record'
       }
 
-      testAction(controllers.users.destroy, request, expected, 404, done)
+      testAction(controllers.users.destroy, request, expected, 422, done)
 
     })
 

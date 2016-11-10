@@ -1,20 +1,56 @@
 import React from 'react'
-import Session from './components/session'
-import Chrome from './components/chrome'
+import Transition from 'react-addons-css-transition-group'
+import { connect } from 'react-redux'
+import * as actions from './actions'
+import Flash from './components/flash'
+import Drawer from './components/drawer'
+import Topbar from './components/topbar'
+import Notifications from '../notifications'
 
-class Index extends React.Component {
+export class Chrome extends React.Component {
+
+  static contextTypes = {
+    router: React.PropTypes.object
+  }
+
+  static propTypes: {
+    user: React.PropTypes.object.isRequired,
+    onSetFlash: React.PropTypes.func.isRequired
+  }
 
   render() {
+    const { user } = this.props
     return (
-      <div>
-        <Session />
-        <Chrome>
-          {this.props.children}
-        </Chrome>
-      </div>
+      <Transition transitionName="expanded" transitionEnterTimeout={1000} transitionLeaveTimeout={1000}>
+        { user &&
+          <div className="chrome">
+            <Flash />
+            <Drawer />
+            <div className="chrome-canvas">
+              <Topbar />
+              {this.props.children}
+              <Notifications />
+            </div>
+          </div>
+        }
+      </Transition>
     )
+  }
+
+  componentDidMount() {
+    if(!this.props.user) {
+      this.context.router.push('/admin/signin')
+    }
   }
 
 }
 
-export default Index
+const mapStateToProps = (state) => ({
+  user: state.user
+})
+
+const mapDispatchToProps = {
+  onSetFlash: actions.setFlash
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Chrome)

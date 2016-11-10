@@ -61,7 +61,9 @@ const with_token = (req, res, token, lifespan, user_id_key, threshold, callback)
       return res.status(401).json({ message: 'expired token' })
     }
 
-    return callback(req, res, user)
+    req.user = user
+
+    return callback(req, res)
 
   })
 

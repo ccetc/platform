@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import * as actions from '../actions'
+import * as actions from './actions'
 
 export class Notifications extends React.Component {
 
@@ -56,7 +56,7 @@ export class Notifications extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  queue: state.chrome.notifications.queue
+  queue: state.notifications.queue
 })
 
 const mapDispatchToProps = {

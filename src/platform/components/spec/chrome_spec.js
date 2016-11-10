@@ -8,8 +8,6 @@ import { Chrome } from '../chrome/components/chrome'
 import { Drawer } from '../chrome/components/drawer'
 import { Flash } from '../chrome/components/flash'
 import { Main } from '../chrome/components/main'
-import { Notifications } from '../chrome/components/notifications'
-import { Search } from '../chrome/components/search'
 import { Topbar } from '../chrome/components/topbar'
 
 describe('chrome component', function() {
@@ -87,69 +85,6 @@ describe('chrome component', function() {
         drawer: {
           item: 1,
           expanded: false
-        }
-      }
-      expect(reducer(state, action)).to.eql(expected)
-    })
-
-    it('begins the search', function() {
-      let state = {
-        search: {}
-      }
-      let action = {
-        type: actionTypes.BEGIN_SEARCH,
-        index: 1
-      }
-      let expected = {
-        search: {
-          active: true
-        }
-      }
-      expect(reducer(state, action)).to.eql(expected)
-    })
-
-    it('aborts the search but preserves results', function() {
-      let state = {
-        search: {
-          results: [
-            { name: 'Greg Kops' }
-          ],
-          active: true
-        }
-      }
-      let action = {
-        type: actionTypes.ABORT_SEARCH
-      }
-      let expected = {
-        search: {
-          results: [
-            { name: 'Greg Kops' }
-          ],
-          active: false
-        }
-      }
-      expect(reducer(state, action)).to.eql(expected)
-    })
-
-    it('completes the search abd resets values', function() {
-      let state = {
-        search: {
-          results: [
-            { name: 'Greg Kops' }
-          ],
-          active: true
-        }
-      }
-      let action = {
-        type: actionTypes.COMPLETE_SEARCH,
-        index: 0
-      }
-      let expected = {
-        search: {
-          query: '',
-          active: false,
-          results: [],
-          choice: { name: 'Greg Kops' }
         }
       }
       expect(reducer(state, action)).to.eql(expected)
@@ -324,48 +259,6 @@ describe('chrome component', function() {
         <Main {...config} />
       )
       expect(main.is('div.chrome-main')).to.be.ok
-    })
-
-  })
-
-  describe('notifications', function() {
-
-    it('renders', function() {
-      const onPushNotification = spy()
-      const onReadNotification = spy()
-      const config = {
-        queue: [
-          { id: 1, story: { text: 'this is a notification' } }
-        ],
-        onPushNotification,
-        onReadNotification
-      }
-      const notifications = shallow(
-        <Notifications {...config} />
-      )
-      expect(notifications.is('div.chrome-notifications')).to.be.ok
-
-    })
-
-  })
-
-  describe('search', function() {
-
-    it('renders', function() {
-      expect(true).to.be.ok
-      // const onToggleDrawer = spy()
-      const config = {
-      }
-      const search = shallow(
-        <Search {...config} />
-      )
-      expect(search.is('div.chrome-search')).to.be.ok
-      expect(search.children().length).to.equal(2)
-      expect(search.childAt(0).is('i.search.icon')).to.be.ok
-
-      const input = search.childAt(1)
-      expect(input.is('div.ui.input')).to.be.ok
-      expect(input.childAt(0).is('input[type="text"][placeholder="Search"]')).to.be.ok
     })
 
   })

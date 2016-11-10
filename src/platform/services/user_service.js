@@ -5,7 +5,7 @@ import serializers from '../serializers'
 export default {
 
   fetchAll(params, success, failure) {
-    queries.user(models.user, params).fetchAll().then(users => {
+    queries.users(models.user, params).fetchAll().then(users => {
       if(users.length) {
         success(users.map(user => serializers.user(user)))
       } else {

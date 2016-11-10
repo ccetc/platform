@@ -33,7 +33,7 @@ export class Flash extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  flash: state.chrome.flash
+  flash: state.flash
 })
 
 const mapDispatchToProps = {

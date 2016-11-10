@@ -4,7 +4,7 @@ import permit from '../../utils/permit'
 export default {
 
   index(req, res) {
-    services.users.fetchAll(req.query, success => {
+    services.user.fetchAll(req.query, success => {
       return res.status(200).json(success)
     }, error => {
       return res.status(404).json(error)
@@ -12,7 +12,7 @@ export default {
   },
 
   show(req, res) {
-    services.users.fetch(req.params.id, success => {
+    services.user.fetch(req.params.id, success => {
       return res.status(200).json(success)
     }, error => {
       return res.status(404).json(error)
@@ -21,7 +21,7 @@ export default {
 
   create(req, res) {
     const params = permit(req.body, ['first_name', 'last_name', 'email'])
-    services.users.create(params, success => {
+    services.user.create(params, success => {
       return res.status(201).json(success)
     }, error => {
       return res.status(422).json(error)
@@ -30,7 +30,7 @@ export default {
 
   update(req, res) {
     const params = permit(req.body, ['first_name', 'last_name', 'email'])
-    services.users.update(req.params.id, params, success => {
+    services.user.update(req.params.id, params, success => {
       return res.status(201).json(success)
     }, error => {
       return res.status(422).json(error)
@@ -38,7 +38,7 @@ export default {
   },
 
   destroy(req, res) {
-    services.users.destroy(req.params.id, success => {
+    services.user.destroy(req.params.id, success => {
       return res.status(201).json(success)
     }, error => {
       return res.status(422).json(error)

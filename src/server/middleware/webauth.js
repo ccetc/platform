@@ -6,10 +6,10 @@ export default (req, res, next) => {
   if(!token) return null
 
   const two_weeks = 60 * 60 * 24 * 7 * 2
-  jwt.with_token(req, res, token, two_weeks, 'user_id', 'logged_out_at', (req, res, user) => {
+  jwt.with_token(req, res, token, two_weeks, 'user_id', 'logged_out_at', (req, res) => {
 
     if(req.path === '/refresh') {
-      const token = jwt.encode({ user_id: user.id })
+      const token = jwt.encode({ user_id: req.user.get('id') })
       return res.status(200).json({ token })
     }
 
