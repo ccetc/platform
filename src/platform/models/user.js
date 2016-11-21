@@ -1,11 +1,11 @@
 import checkit from  'checkit'
 import bcrypt from 'bcrypt-nodejs'
-import asset from './asset'
-import security_question from './security_question'
-import services from '../../services'
-import unique from '../../utils/unique_validation'
+import asset from 'platform/models/asset'
+import security_question from 'platform/models/security_question'
+import bookshelf from 'services/bookshelf'
+import unique from 'utils/unique_validation'
 
-const user = services.bookshelf.Model.extend({
+export default bookshelf.Model.extend({
 
   tableName: 'users',
 
@@ -56,5 +56,3 @@ const user = services.bookshelf.Model.extend({
   }
 
 })
-
-export default user

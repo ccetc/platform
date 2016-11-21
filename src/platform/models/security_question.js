@@ -1,7 +1,7 @@
 import checkit from  'checkit'
-import services from '../../services'
+import bookshelf from 'services/bookshelf'
 
-const security_question = services.bookshelf.Model.extend({
+export default bookshelf.Model.extend({
 
   tableName: 'security_questions',
 
@@ -20,5 +20,3 @@ const security_question = services.bookshelf.Model.extend({
   }
 
 })
-
-export default security_question

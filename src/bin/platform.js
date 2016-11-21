@@ -1,4 +1,4 @@
-import Platform from '../utils/platform'
+import Platform from 'utils/platform'
 
 var platform = new Platform()
 var command = process.argv[2]

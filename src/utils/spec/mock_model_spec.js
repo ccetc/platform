@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import mockModel from '../mock_model'
+import mockModel from 'utils/mock_model'
 
 describe('mock model', function() {
 

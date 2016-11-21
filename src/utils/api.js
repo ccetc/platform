@@ -49,6 +49,10 @@ class Api {
       mixin: { withCredentials: true }
     }
 
+    if(options.token) {
+      config.headers['Authorization'] = `Bearer ${options.token}`
+    }
+
     if(options.params) {
       if(options.method == 'GET') {
         config.params = options.params

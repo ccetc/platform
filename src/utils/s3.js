@@ -1,6 +1,6 @@
 
 import fs from 'fs'
-import aws from '../services/aws'
+import aws from 'services/aws'
 
 const key = 'assets/1/greg.jpg'
 const stream = fs.createReadStream('/Users/mochini/Workspace/platform/src/public/images/greg.jpg')

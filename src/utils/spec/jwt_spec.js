@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import jwtSimple from 'jwt-simple'
-import config from '../../services/config'
-import jwt from '../jwt'
+import config from 'services/config'
+import jwt from 'utils/jwt'
 
 describe('jwt', function() {
 

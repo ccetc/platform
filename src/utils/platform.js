@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import fs from 'fs'
 import path from 'path'
-import knex from '../services/knex'
+import knex from 'services/knex'
 import Migrator from 'knex/lib/migrate'
 import Seeder from 'knex/lib/seed'
 
@@ -62,7 +62,7 @@ class Platform {
       }
     })
     fs.readdirSync(path.join(__dirname, '../apps')).filter((app) => {
-      if(fs.statSync(path.join(__dirname, '../apps', app)).isDirectory()) {
+      if(fs.exists(path.join(__dirname, '../apps', app, 'db/migrations'))) {
         fs.readdirSync(path.join(__dirname, '../apps', app, 'db/migrations')).filter((migration) => {
           var fullpath = path.resolve(__dirname, '../apps', app, 'db/migrations', migration)
           var is_completed = _.includes(completed, fullpath)
@@ -83,7 +83,7 @@ class Platform {
     var seeds = []
     seeds.push(path.resolve(__dirname, '../platform/db', filename + '.js'))
     fs.readdirSync(path.join(__dirname, '../apps')).filter((app) => {
-      if(fs.statSync(path.join(__dirname, '../apps', app)).isDirectory()) {
+      if(fs.exists(path.join(__dirname, '../apps', app, 'db', filename + '.js'))) {
         seeds.push(path.resolve(__dirname, '../apps', app, 'db', filename + '.js'))
       }
     })

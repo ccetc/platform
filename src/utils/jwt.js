@@ -1,6 +1,6 @@
 import jwtSimple from 'jwt-simple'
-import config from '../services/config'
-import models from '../platform/models'
+import config from 'services/config'
+import models from 'platform/models'
 
 const encode = (json) => {
 

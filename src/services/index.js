@@ -1,5 +1,5 @@
-import bookshelf from './bookshelf'
-import knex from './knex'
+import bookshelf from 'services/bookshelf'
+import knex from 'services/knex'
 
 export default {
   knex,

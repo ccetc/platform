@@ -1,18 +1,17 @@
-import config from './services/config'
+import config from 'services/config'
 import express from 'express'
 import cors from 'cors'
 import redis from 'socket.io-redis'
 import http from 'http'
 import socketio from 'socket.io'
 import bodyParser from 'body-parser'
-import queue from './services/queue'
-import webauth from './server/middleware/webauth'
-import ioauth from './server/middleware/ioauth'
-import logger from './server/middleware/logger'
-import render from './server/middleware/render'
-import exceptions from './server/middleware/exceptions'
-import admin from './admin'
-import platform from './platform'
+import queue from 'services/queue'
+import exceptions from 'middleware/exceptions'
+import ioauth from 'middleware/ioauth'
+import logger from 'middleware/logger'
+import render from 'middleware/render'
+import webauth from 'middleware/webauth'
+import admin from 'admin'
 
 import fs from 'fs'
 import path from 'path'
@@ -45,13 +44,16 @@ sys.use(logger)
 sys.use(express.static('dist/public'))
 
 // admin api routes
-sys.use('/api/admin', platform.authentication)
+const authentication = require(path.join(__dirname, 'platform/admin/api/authentication')).default
+sys.use('/api/admin', authentication)
 sys.use('/api/admin', webauth)
-
-sys.use(`/api/admin${platform.config.path}`, platform.api)
-fs.readdirSync(path.join(__dirname, './apps')).filter(path => {
-  const app = require(`./apps/${path}`).default
-  sys.use(`/api/admin/${path}`, app.api)
+const platform = require(path.join(__dirname, 'platform/admin/api')).default
+sys.use('/api/admin', platform)
+fs.readdirSync(path.join(__dirname, 'apps')).filter(apppath => {
+  if(fs.exists(path.join(__dirname, 'apps', apppath, 'admin/api'))) {
+    const app = require(path.join(__dirname, 'apps', apppath, 'admin/api')).default
+    sys.use(`/api/admin/${apppath}`, app)
+  }
 })
 sys.use('/api', exceptions)
 

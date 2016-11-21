@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import permit from '../permit'
+import permit from 'utils/permit'
 
 describe('permit', function() {
 

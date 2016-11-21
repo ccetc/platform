@@ -1,5 +1,5 @@
 import aws from 'aws-sdk'
-import config from './config'
+import config from 'services/config'
 
 aws.config.constructor(config.aws)
 

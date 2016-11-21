@@ -1,23 +1,13 @@
-import api from './api'
 import admin from './admin'
-import jobs from './jobs'
-import website from './website'
+import models from './models'
 
 const config = {
   name: 'Expenses',
-  description: 'Expense Reimbursement',
-  path: '/expenses'
+  description: 'Expense Reimbursement'
 }
-
-export { admin }
-export { api }
-export { config }
-export { website }
 
 export default {
   admin,
-  api,
   config,
-  jobs,
-  website
+  models
 }

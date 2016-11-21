@@ -1,9 +1,9 @@
 
-import services from '../services'
+import knex from 'services/knex'
 
 const unique = function(table, attribute) {
   return function(val) {
-    let query = services.knex(table).where(attribute, '=', val)
+    let query = knex(table).where(attribute, '=', val)
     if(this.target.id) {
       query = query.whereNot({ id: this.target.id })
     }

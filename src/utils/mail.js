@@ -1,4 +1,4 @@
-import aws from '../services/aws'
+import aws from 'services/aws'
 
 export default (messaage) => {
   if(process.env.NODE_ENV != 'test') {

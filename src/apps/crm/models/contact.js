@@ -1,6 +1,6 @@
 import checkit from  'checkit'
 import services from '../../../services'
-import unique from '../../../utils/unique_validation'
+import unique from 'utils/unique_validation'
 
 const contact = services.bookshelf.Model.extend({
 
