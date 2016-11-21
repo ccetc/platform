@@ -2,10 +2,11 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: {
-    platform: './src/client.js'
+    account: './src/account.js',
+    admin: './src/admin.js'
   },
   output: {
-    path: './dist/public',
+    path: './src/public',
     filename: 'js/[name].js'
   },
   module: {
@@ -30,6 +31,6 @@ module.exports = {
     modulesDirectories: ['node_modules', 'src']
   },
   plugins: [
-    new ExtractTextPlugin('css/styles.min.css')
+    new ExtractTextPlugin('css/[name].min.css')
   ]
 }

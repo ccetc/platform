@@ -1,0 +1,79 @@
+.chrome-drawer {
+  .translate-x-transition(-100%, 0, .25s);
+  position: fixed;
+  display: flex;
+  top: 0;
+  bottom: 0;
+  background-color: rgb(68, 68, 68);
+  flex-direction: column;
+  z-index: 11;
+  @media only screen and (max-width: 414px) {
+    width: ~"calc(100% - 42px)";
+  }
+  @media only screen and (min-width: 415px) {
+    width: 320px;
+  }
+}
+.chrome-drawer-overlay {
+  .opacity-transition(0, 0.2, .25s);
+  .opacity(0.2);
+  background-color: rgb(0, 0, 0);
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.chrome-apps {
+  flex: 1;
+  overflow-y: scroll;
+}
+.chrome-app {
+  .chrome-app-title {
+    display: block;
+    cursor: pointer;
+    color: #CCC;
+    padding: 5px;
+    &.active {
+      color: rgb(255, 255, 255);
+    }
+    &:hover {
+      background-color: rgb(85,85,85);
+    }
+    i {
+      background-color: @primary_background_color;
+      color: @primary_color;
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      font-size: 16px;
+      vertical-align: middle;
+      text-align: center;
+      margin-right: 10px;
+    }
+  }
+  .chrome-app-menu {
+    .transition(max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s);
+    background-color: rgb(51, 51, 51);
+    max-height: 500px;
+    overflow: hidden;
+    &.expanded-enter,
+    &.expanded-leave.expanded-leave-active {
+      max-height: 0;
+    }
+    &.expanded-enter.expanded-enter-active,
+    &.expanded-leave {
+      max-height: 500px;
+    }
+    .chrome-app-item {
+      padding: 10px;
+      color: rgb(255, 255, 255);
+      cursor: pointer;
+      &:hover {
+        background-color: rgb(85, 85, 85);
+      }
+    }
+  }
+}

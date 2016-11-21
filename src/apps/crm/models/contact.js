@@ -1,8 +1,8 @@
 import checkit from  'checkit'
-import services from '../../../services'
+import bookshelf from 'services/bookshelf'
 import unique from 'utils/unique_validation'
 
-const contact = services.bookshelf.Model.extend({
+export default bookshelf.Model.extend({
 
   tableName: 'contacts',
 
@@ -29,5 +29,3 @@ const contact = services.bookshelf.Model.extend({
   }
 
 })
-
-export default contact

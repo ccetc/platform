@@ -1,7 +1,6 @@
 config/platform.js
-node_modules
-cached_uglify
-dist
-npm-debug.log
 coverage
-db.sqlite3*
+cached_uglify
+data
+node_modules
+npm-debug.log

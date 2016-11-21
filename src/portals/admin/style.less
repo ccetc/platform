@@ -1,0 +1,96 @@
+@primary_background_color: #DB2828;
+@primary_color: #FFFFFF;
+
+@success_background_color: #21BA45;
+@success_color: #FFF;
+
+@info_color: #2185D0;
+@warning_color: #F2711C;
+@success_color: #21BA45;
+@error_color: #FBBD08;
+
+.opacity (@opacity: 0.5) {
+	-webkit-opacity: @opacity;
+	-moz-opacity: @opacity;
+	opacity: @opacity;
+}
+.translateX (@x) {
+	-webkit-transform: translateX(@x);
+	-moz-transform: translateX(@x);
+	-ms-transform: translateX(@x);
+  -o-transform: translateX(@x);
+  transform: translateX(@x);
+}
+.translateY (@x) {
+	-webkit-transform: translateY(@x);
+	-moz-transform: translateY(@x);
+	-ms-transform: translateY(@x);
+  -o-transform: translateY(@x);
+  transform: translateY(@x);
+}
+.border-radius(@radius) {
+  -webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	border-radius: @radius;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+}
+.border-radius(@tl, @tr, @br, @bl) {
+  -webkit-border-radius: @tl @tr @br @bl;
+	-moz-border-radius: @tl @tr @br @bl;
+	border-radius: @tl @tr @br @bl;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+}
+.transition (@transition) {
+  transition: @transition;
+  -webkit-transition: @transition;
+  -moz-transition: @transition;
+  -ms-transition: @transition;
+}
+.expanded(@begin, @end) {
+  &.expanded-appear,
+  &.expanded-enter,
+  &.expanded-leave.expanded-leave-active {
+    @begin();
+  }
+  &.expanded-appear.expanded-appear-active,
+  &.expanded-enter.expanded-enter-active,
+  &.expanded-leave {
+    @end();
+  }
+}
+.opacity-transition(@start, @end, @duration) {
+  .transition(opacity @duration cubic-bezier(0.7, 0, 0.175, 1) 0s);
+  .expanded({
+    .opacity(@start);
+  }, {
+    .opacity(@end);
+  })
+}
+.translate-x-transition(@start, @end, @duration) {
+  .transition(transform @duration cubic-bezier(0.7, 0, 0.175, 1) 0s);
+  .expanded({
+    .translateX(@start);
+  }, {
+    .translateX(@end);
+  })
+}
+.translate-y-transition(@start, @end, @duration) {
+  .transition(transform @duration cubic-bezier(0.7, 0, 0.175, 1) 0s);
+  .expanded({
+    .translateY(@start);
+  }, {
+    .translateY(@end);
+  })
+}
+
+@import './components/chrome/style';
+@import './components/drawer/style';
+@import './components/flash/style';
+@import './components/search/style';
+@import './components/notifications/style';
+
+@import '../../ui/style';

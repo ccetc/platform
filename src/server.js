@@ -6,58 +6,47 @@ import http from 'http'
 import socketio from 'socket.io'
 import bodyParser from 'body-parser'
 import queue from 'services/queue'
-import exceptions from 'middleware/exceptions'
-import ioauth from 'middleware/ioauth'
+import exception from 'middleware/exception'
+// import ioauth from 'middleware/ioauth'
 import logger from 'middleware/logger'
 import render from 'middleware/render'
-import webauth from 'middleware/webauth'
-import admin from 'admin'
+import server from 'portals/server'
+import admin from 'portals/admin/client'
 
-import fs from 'fs'
-import path from 'path'
-
-// create sys
-const sys = express()
+// create app
+const app = express()
 
 // create server
-const server = http.createServer(sys)
+const transport = http.createServer(app)
 
 // create websocket
-const io = socketio(server)
+const io = socketio(transport)
 io.adapter(redis(config.redis))
-io.use(ioauth)
+// io.use(ioauth)
 
 // enable cors
-sys.use(cors())
+app.use(cors())
 
 // body parsing
-sys.use(bodyParser.urlencoded({ extended: true }))
-sys.use(bodyParser.json())
-
-// job queue
-sys.use('/jobs', queue.app)
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 
 // logger
-sys.use(logger)
+app.use(logger)
+
+// api
+app.use(server)
+app.use(exception)
+
+// job queue
+app.use('/jobs', queue.app)
 
 // public assets
-sys.use(express.static('dist/public'))
-
-// admin api routes
-const authentication = require(path.join(__dirname, 'platform/admin/api/authentication')).default
-sys.use('/api/admin', authentication)
-sys.use('/api/admin', webauth)
-const platform = require(path.join(__dirname, 'platform/admin/api')).default
-sys.use('/api/admin', platform)
-fs.readdirSync(path.join(__dirname, 'apps')).filter(apppath => {
-  if(fs.exists(path.join(__dirname, 'apps', apppath, 'admin/api'))) {
-    const app = require(path.join(__dirname, 'apps', apppath, 'admin/api')).default
-    sys.use(`/api/admin/${apppath}`, app)
-  }
-})
-sys.use('/api', exceptions)
+app.use(express.static('src/public'))
 
 // admin routes
-sys.get('/admin*', render(admin))
+app.get('/admin*', render(admin))
 
-server.listen(8080)
+transport.listen(8080, () => {
+  console.log('Listening')
+})

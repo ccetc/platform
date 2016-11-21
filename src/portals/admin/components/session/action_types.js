@@ -1,0 +1,18 @@
+// @flow
+
+export const LOAD_TOKEN_REQUEST: string = 'session/LOAD_TOKEN_REQUEST'
+export const LOAD_TOKEN_SUCCESS: string = 'session/LOAD_TOKEN_SUCCESS'
+export const LOAD_TOKEN_FAILURE: string = 'session/LOAD_TOKEN_FAILURE'
+export const SAVE_TOKEN_REQUEST: string = 'session/SAVE_TOKEN_REQUEST'
+export const SAVE_TOKEN_SUCCESS: string = 'session/SAVE_TOKEN_SUCCESS'
+export const SAVE_TOKEN_FAILURE: string = 'session/SAVE_TOKEN_FAILURE'
+export const SIGNIN_REQUEST: string = 'session/SIGNIN_REQUEST'
+export const SIGNIN_SUCCESS: string = 'session/SIGNIN_SUCCESS'
+export const SIGNIN_FAILURE: string = 'session/SIGNIN_FAILURE'
+export const SIGNOUT: string = 'session/SIGNOUT'
+export const SIGNOUT_REQUEST: string = 'session/SIGNOUT_REQUEST'
+export const SIGNOUT_SUCCESS: string = 'session/SIGNOUT_SUCCESS'
+export const SIGNOUT_FAILURE: string = 'session/SIGNOUT_FAILURE'
+export const LOAD_SESSION_REQUEST: string = 'session/LOAD_SESSION_REQUEST'
+export const LOAD_SESSION_SUCCESS: string = 'session/LOAD_SESSION_SUCCESS'
+export const LOAD_SESSION_FAILURE: string = 'session/LOAD_SESSION_FAILURE'

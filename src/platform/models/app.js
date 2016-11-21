@@ -9,7 +9,7 @@ export default bookshelf.Model.extend({
   hasTimestamps: ['created_at', 'updated_at'],
 
   rules: {
-    name: ['required', unique('apps', 'name')]
+    title: ['required', unique('apps', 'title')]
   },
 
   virtuals: {

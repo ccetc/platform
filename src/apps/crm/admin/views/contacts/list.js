@@ -1,22 +1,26 @@
 import React from 'react'
-import Main from 'platform/admin/components/chrome/components/main'
+import Main from 'portals/admin/components/main'
+import Collection from 'ui/components/collection'
 
 class List extends React.Component {
 
   render() {
     return (
       <Main {...this._getMain()}>
-        <p>Conatcts List</p>
+        <Collection {...this._getCollection()} />
       </Main>
     )
+  }
+
+  _getCollection() {
+    return {
+      endpoint: '/admin/crm/contacts'
+    }
   }
 
   _getMain() {
     return {
       title: 'Contacts',
-      permissions: [
-        'can access contacts'
-      ],
       breadcrumbs: [
         { label: 'Dashboard', route: '/admin' },
         { label: 'Contacts' }

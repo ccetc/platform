@@ -1,10 +1,11 @@
 import { expect } from 'chai'
-import models from 'platform/models'
+import User from '../user'
+import bcrypt from 'bcrypt-nodejs'
 
 describe('user model', function() {
 
   it('requires first_name, last_name, and email', function(done) {
-    models.user.forge({})
+    User.forge({})
     .save()
     .then(user => {})
     .catch(err => {
@@ -16,7 +17,7 @@ describe('user model', function() {
   })
 
   it('enforces unique email', function(done) {
-    models.user.forge({ email: 'gmk8@cornell.edu' })
+    User.forge({ email: 'gmk8@cornell.edu' })
     .save()
     .then(user => {})
     .catch(err => {
@@ -25,22 +26,30 @@ describe('user model', function() {
     })
   })
 
-  // it('fetch by id', function(done) {
-  //   let expected = {
-  //     id: 1,
-  //     instance_id: 1,
-  //     first_name: 'Ken',
-  //     last_name: 'Schlather',
-  //     email: 'ks47@cornell.edu',
-  //     password_hash: null,
-  //     password_salt: null,
-  //     created_at: null,
-  //     updated_at: null
-  //   }
-  //   user.forge({ id: 1 }).fetch().then(user => {
-  //     expect(user.attributes).to.eql(expected)
-  //     done()
-  //   })
-  // })
+  it('returns full name', function(done) {
+    User.where({ id: 1 }).fetch().then(user => {
+      expect(user.get('full_name')).to.equal('Ken Schlather')
+      done()
+    })
+  })
+
+  it('does not return password', function(done) {
+    User.where({ id: 1 }).fetch().then(user => {
+      expect(user.get('password')).to.be.undefined
+      done()
+    })
+  })
+
+  it('can set password', function(done) {
+    User.where({ id: 1 }).fetch().then(user => {
+      user.set('password', 'cce')
+      const salt = user.get('password_salt')
+      expect(salt).to.exist
+      const hash = user.get('password_hash')
+      expect(hash).to.exist
+      expect(bcrypt.compareSync('cce', hash))
+      done()
+    })
+  })
 
 })

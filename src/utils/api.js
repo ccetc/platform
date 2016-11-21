@@ -3,6 +3,7 @@ import mime from 'rest/interceptor/mime'
 import defaultRequest from 'rest/interceptor/defaultRequest'
 import errorCode from 'rest/interceptor/errorCode'
 import params from 'rest/interceptor/params'
+import localStorage from 'services/local_storage'
 
 type optionsType = {
   method: string,
@@ -37,21 +38,18 @@ class Api {
     return this.request(options)
   }
 
+  auth(options: optionsType): any {
+
+  }
+
   request(options: optionsType): any {
-    options.requestCallback = options.request ? options.request : () => {}
-    options.successCallback = options.success ? options.success : () => {}
-    options.failureCallback = options.failure ? options.failure : () => {}
 
     let config = {
       method: options.method,
       path: this._path(options.endpoint),
-      headers: { 'Content-Type': 'application/json' },
-      mixin: { withCredentials: true }
+      headers: { 'Content-Type': 'application/json' }
     }
 
-    if(options.token) {
-      config.headers['Authorization'] = `Bearer ${options.token}`
-    }
 
     if(options.params) {
       if(options.method == 'GET') {
@@ -61,36 +59,45 @@ class Api {
       }
     }
 
+    const client = this.client
+
     return dispatch => {
 
-      let request = {}
+      return localStorage.getItem('token', function(err, token) {
 
-      if(options.params) {
-        request.params = options.params
-      }
+        if(token) {
+          config.headers['Authorization'] = `Bearer ${token}`
+        }
 
-      dispatch(options.requestCallback(request))
-
-      return this.client(config)
-        .then(response => response.entity)
-        .then(json => {
-
-          let success = {
-            entity: json
-          }
-
-          dispatch(options.successCallback(success))
-
-        }, response => {
-
-          let failure = {
-            entity: response.entity
-          }
-
-          dispatch(options.failureCallback(failure))
-
+        dispatch({
+          type: options.request,
+          params: options.params,
+          ...options.meta
         })
+
+        return client(config)
+          .then(response => response.entity)
+          .then(json => {
+
+            dispatch({
+              type: options.success,
+              data: json,
+              ...options.meta
+            })
+
+          }, response => {
+
+            dispatch({
+              type: options.failure,
+              error: response.entity,
+              ...options.meta
+            })
+
+          })
+
+      })
     }
+
   }
 
   _path(endpoint: string): string {

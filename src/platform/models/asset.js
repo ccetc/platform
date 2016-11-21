@@ -14,7 +14,7 @@ export default bookshelf.Model.extend({
 
   virtuals: {
     url: function() {
-      return 'https://s3.amazonaws.com/assets/'+this.get('id')+'/'+this.get('file_name')
+      return '/images/'+this.get('file_name')
     }
   },
 
