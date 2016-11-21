@@ -9,6 +9,7 @@ import signin from './components/signin/reducer'
 
 import container from 'ui/components/container/reducer'
 import infinite from 'ui/components/infinite/reducer'
+import tabs from 'ui/components/tabs/reducer'
 
 const Reducer = (state, action) => {
 
@@ -22,7 +23,8 @@ const Reducer = (state, action) => {
     session,
     signin,
     container,
-    infinite
+    infinite,
+    tabs
   }
 
   const namespace = action.type.split('/')[0]
@@ -46,7 +48,8 @@ const Reducer = (state, action) => {
       ...session(undefined, action),
       ...signin(undefined, action),
       ...container(undefined, action),
-      ...infinite(undefined, action)
+      ...infinite(undefined, action),
+      ...tabs(undefined, action)
     }
 
   } else {

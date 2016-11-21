@@ -1,15 +1,14 @@
 import React from 'react'
 import Container from 'ui/components/container'
+import Tabs from 'ui/components/tabs'
 import Main from 'portals/admin/components/main'
 
 class Show extends React.Component {
 
   render() {
-    console.log(this.props)
     return (
       <Main {...this._getMain()}>
-        <p>{this.props.contact.full_name}</p>
-        <p>{this.props.contact.email}</p>
+        <Tabs {...this._getTabs()} />
       </Main>
     )
   }
@@ -28,6 +27,29 @@ class Show extends React.Component {
     }
   }
 
+  _getTabs() {
+    return {
+      id: 'contact-show-tabs',
+      tabs: [
+        { label: 'Tab1', content: One },
+        { label: 'Tab2', content: Two },
+        { label: 'Tab3', content: Three }
+      ]
+    }
+  }
+
+}
+
+const One = (props) => {
+  return <div>one</div>
+}
+
+const Two = (props) => {
+  return <div>Two</div>
+}
+
+const Three = (props) => {
+  return <div>Three</div>
 }
 
 const mapEndpointsToProps = (props) => ({

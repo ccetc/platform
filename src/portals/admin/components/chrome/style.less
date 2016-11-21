@@ -74,36 +74,15 @@
   display: flex;
   flex-direction: column;
 }
-.chrome-presence {
-  flex: 0 0 43px;
-  background-color: rgb(0, 0, 0);
-  padding: 10px;
-  color: rgb(255, 255, 255);
-  img {
-    width: 40px;
-    height: 40px;
-    float: left;
-  }
-  .chrome-user {
-    margin-left: 50px;
-    h2 {
-      margin: 0;
-      font-size: 16px;
-    }
-    p {
-      margin: 0;
-    }
-  }
-}
 .chrome-toggle,
 .chrome-alerts,
 .chrome-power {
   display: flex;
   position: relative;
-  flex: 0 0 42px;
+  flex: 0 0 55px;
   cursor: pointer;
-  width: 42px;
-  height: 42px;
+  width: 55px;
+  height: 55px;
   background-color: @primary_background_color;
   &:hover {
     background-color: lighten(@primary_background_color, -10%);
@@ -134,7 +113,7 @@
 }
 .chrome-topbar {
   display: flex;
-  flex: 0 0 42px;
+  flex: 0 0 55px;
 }
 .chrome-main {
   flex: 1;
@@ -172,9 +151,12 @@
   }
 }
 .chrome-body {
+  box-shadow: inset 1px 1px 0 rgba(0,0,0,.1),inset 0 -1px 0 rgba(0,0,0,.07);
   flex: 1;
-  padding: 15px;
   overflow-y: scroll;
+}
+.chrome-content {
+  padding: 15px;
 }
 .chrome-forbidden {
   text-align: center;
