@@ -7,6 +7,7 @@ import search from './components/search/reducer'
 import session from './components/session/reducer'
 import signin from './components/signin/reducer'
 
+import collection from 'ui/components/collection/reducer'
 import container from 'ui/components/container/reducer'
 import infinite from 'ui/components/infinite/reducer'
 import tabs from 'ui/components/tabs/reducer'
@@ -22,6 +23,7 @@ const Reducer = (state, action) => {
     search,
     session,
     signin,
+    collection,
     container,
     infinite,
     tabs
@@ -47,6 +49,7 @@ const Reducer = (state, action) => {
       ...search(undefined, action),
       ...session(undefined, action),
       ...signin(undefined, action),
+      ...collection(undefined, action),
       ...container(undefined, action),
       ...infinite(undefined, action),
       ...tabs(undefined, action)

@@ -186,7 +186,7 @@
   flex-direction: column;
 }
 .chrome-header {
-  flex: 0 0 65px;
+  flex: 0 0 55px;
   background-color: #EEE;
   z-index: 3;
   width: 100%;
@@ -194,7 +194,7 @@
   margin: 0;
 }
 .chrome-header .ui.breadcrumb {
-  height: 46px;
+  height: 35px;
   display: table-cell;
   vertical-align: bottom;
 }
@@ -209,8 +209,8 @@
 .chrome-header .ui.breadcrumb .active {
   display: block;
   clear: both;
-  font-size: 24px;
-  line-height: 32px;
+  font-size: 18px;
+  line-height: 22px;
   font-weight: normal;
   color: #555;
 }
@@ -218,9 +218,10 @@
   box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07);
   flex: 1;
   overflow-y: scroll;
-}
-.chrome-content {
   padding: 15px;
+}
+.chrome-body > div > .collection {
+  margin: -15px;
 }
 .chrome-forbidden {
   text-align: center;
@@ -478,7 +479,7 @@
 .chrome-search-overlay {
   z-index: 10;
   position: fixed;
-  top: 42px;
+  top: 55px;
   right: 0;
   bottom: 0;
   left: 0;
@@ -492,6 +493,7 @@
   right: 0;
   max-height: calc(100% - 55px);
   overflow-y: scroll;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);
 }
 .chrome-search-result {
   padding: 10px;
@@ -571,6 +573,20 @@
 .table-head {
   display: table-header-group;
 }
+.table-head .table-header {
+  background-color: #F9FAFB;
+  font-weight: bold;
+  position: relative;
+  cursor: pointer;
+}
+.table-head .table-header:hover {
+  background-color: #eaedf1;
+}
+.table-head .table-header i {
+  position: absolute;
+  right: 18px;
+  color: #AAA;
+}
 .table-body {
   display: table-row-group;
 }
@@ -581,18 +597,11 @@
 .table-cell {
   display: table-cell;
   border-bottom: 1px solid #DDD;
-  padding: 18px;
+  padding: 12px 18px;
 }
-.table-header {
-  background-color: #F9FAFB;
-  font-weight: bold;
-  position: relative;
-}
-.table-header i {
-  position: absolute;
-  top: 21px;
-  right: 21px;
-  color: #AAA;
+.loading {
+  padding: 12px 18px;
+  text-align: center;
 }
 @media only screen and (max-width: 600px) {
   .table-header:not(.mobile),

@@ -8,6 +8,7 @@ export default (model) => {
 
     const limit = parseInt(req.query['$limit']) || 50
     const skip = parseInt(req.query['$skip']) || 0
+    const sort = req.query['$sort'] || null
 
     const count = model.query(qb => {
 
@@ -31,6 +32,12 @@ export default (model) => {
 
       if(skip > 0) {
         qb.offset(skip)
+      }
+
+      if(sort) {
+        const sortKey = sort.replace('-', '')
+        const sortOrder = (sort[0] == '-') ? 'desc' : 'asc'
+        qb.orderBy(sortKey, sortOrder)
       }
 
     }).fetchAll()

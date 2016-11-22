@@ -1,6 +1,12 @@
 import * as actionTypes from './action_types'
 import Api from 'utils/api'
 
+export function reset() {
+  return {
+    type: actionTypes.RESET
+  }
+}
+
 export function fetch(endpoint, params) {
   return Api.get({
     endpoint,

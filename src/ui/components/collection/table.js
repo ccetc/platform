@@ -1,5 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import _ from 'lodash'
+import { connect } from 'react-redux'
+import * as actions from './actions'
 
 class Table extends React.Component {
 
@@ -13,7 +16,7 @@ class Table extends React.Component {
 
   render() {
     const { fixed, top } = this.state
-    const { records } = this.props
+    const { columns, records, sort } = this.props
     return (
       <div>
         { fixed &&
@@ -21,8 +24,15 @@ class Table extends React.Component {
             <div className="table">
               <div className="table-head">
                 <div className="table-row">
-                  <div className="table-header mobile">Name <i className="chevron down icon" /></div>
-                  <div className="table-header">Email</div>
+                  {columns.map((column, index) => {
+                    const classes = (column.primary) ? 'table-header mobile' : 'table-header'
+                    return (
+                      <div key={ `fixed_header_${index}` } className={ classes } onClick={ this._handleSort.bind(this, column.key) }>
+                        { column.label }
+                        { (sort.key == column.key) && ((sort.order == 'asc') ? <i className="chevron up icon" /> : <i className="chevron down icon" />) }
+                      </div>
+                    )
+                  })}
                 </div>
               </div>
             </div>
@@ -31,16 +41,26 @@ class Table extends React.Component {
         <div className="table">
           <div className="table-head" ref="head">
             <div className="table-row">
-              <div className="table-header mobile">Name <i className="chevron down icon" /></div>
-              <div className="table-header">Email</div>
+              {columns.map((column, index) => {
+                const classes = (column.primary) ? 'table-header mobile' : 'table-header'
+                return (
+                  <div key={ `header_${index}` } className={ classes } onClick={ this._handleSort.bind(this, column.key) }>
+                    { column.label }
+                    { (sort.key == column.key) && ((sort.order == 'asc') ? <i className="chevron up icon" /> : <i className="chevron down icon" />) }
+                  </div>
+                )
+              })}
             </div>
           </div>
           <div className="table-body">
-            {records.map((record, index) => {
+            {records.map((record, recordIndex) => {
               return (
-                <div className="table-row" key={`record_${index}`}>
-                  <div className="table-cell mobile">{record.full_name}</div>
-                  <div className="table-cell">{record.email}</div>
+                <div key={ `record_${recordIndex}` } className="table-row">
+                  {columns.map((column, columnIndex) => {
+                    const value = _.get(record, column.key)
+                    const classes = (column.primary) ? 'table-cell mobile' : 'table-cell'
+                    return <div key={ `cell_${recordIndex}_${columnIndex}` } className={ classes }>{ value }</div>
+                  })}
                 </div>
               )
             })}
@@ -56,6 +76,10 @@ class Table extends React.Component {
 
   componentWillUnmount() {
     this._detachScrollListener()
+  }
+
+  _handleSort(key) {
+    this.props.onSort(key)
   }
 
   _container() {
@@ -91,4 +115,12 @@ class Table extends React.Component {
 
 }
 
-export default Table
+const mapStateToProps = state => ({
+  sort: state.collection.params.sort
+})
+
+const mapDispatchToProps = {
+  onSort: actions.sort
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Table)

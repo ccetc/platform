@@ -1,7 +1,9 @@
+
+@table_header_background_color: #F9FAFB;
+
 .collection-toolbar {
   padding: 18px;
 }
-
 .table-fixed {
   position: fixed;
   left: 0;
@@ -15,6 +17,20 @@
 }
 .table-head {
   display: table-header-group;
+  .table-header {
+    background-color: @table_header_background_color;
+    font-weight: bold;
+    position: relative;
+    cursor: pointer;
+    &:hover {
+      background-color: lighten(@table_header_background_color, -5%);
+    }
+    i {
+      position: absolute;
+      right: 18px;
+      color: #AAA;
+    }
+  }
 }
 .table-body {
   display: table-row-group;
@@ -26,18 +42,11 @@
 .table-cell {
   display: table-cell;
   border-bottom: 1px solid #DDD;
-  padding: 18px;
+  padding: 12px 18px;
 }
-.table-header {
-  background-color: #F9FAFB;
-  font-weight: bold;
-  position: relative;
-  i {
-    position: absolute;
-    top: 21px;
-    right: 21px;
-    color: #AAA;
-  }
+.loading {
+  padding: 12px 18px;
+  text-align: center;
 }
 @media only screen and (max-width: 600px) {
   .table-header:not(.mobile),

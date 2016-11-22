@@ -13,6 +13,12 @@ export default (state = INITIAL_STATE, action) => {
 
   switch (action.type) {
 
+  case actionTypes.RESET:
+    return {
+      ...state,
+      ...INITIAL_STATE
+    }
+
   case actionTypes.FETCH_REQUEST:
     return {
       ...state,

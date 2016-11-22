@@ -14,7 +14,11 @@ class List extends React.Component {
 
   _getCollection() {
     return {
-      endpoint: '/admin/crm/contacts'
+      endpoint: '/admin/crm/contacts',
+      columns: [
+        { label: 'Name', key: 'first_name', primary: true },
+        { label: 'Email', key: 'email' }
+      ]
     }
   }
 
