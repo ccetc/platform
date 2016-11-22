@@ -1,7 +1,6 @@
+import { expect } from 'chai'
 import reducer from '../reducer'
 import * as actionTypes from '../action_types'
-
-jest.unmock('../reducer')
 
 describe('tabs reducer', () => {
 
@@ -11,23 +10,29 @@ describe('tabs reducer', () => {
       type: ''
     }
     let expected = {
-      active: 0
+      tabs: {
+        active: 0
+      }
     }
-    expect(reducer(state, action)).toEqual(expected)
+    expect(reducer(state, action)).to.be.eql(expected)
   })
 
   it('it changes the tab', () => {
     let state = {
-      active: 0
+      tabs: {
+        active: 0
+      }
     }
     let action = {
       type: actionTypes.CHANGE_TAB,
       index: 1
     }
     let expected = {
-      active: 1
+      tabs: {
+        active: 1
+      }
     }
-    expect(reducer(state, action)).toEqual(expected)
+    expect(reducer(state, action)).to.be.eql(expected)
   })
 
 })

@@ -1,8 +1,7 @@
 import React from 'react'
+import { expect } from 'chai'
 import { shallow } from 'enzyme'
-import Tab from '../components/tab'
-
-jest.unmock('../components/tab')
+import Tab from '../tab'
 
 describe('tab component', () => {
 
@@ -10,16 +9,16 @@ describe('tab component', () => {
     const tab = shallow(
       <Tab label="Details" index={1} active={false} />
     )
-    expect(tab.is('div.item')).toBeTruthy()
-    expect(tab.text()).toEqual('Details')
+    expect(tab.is('div.item')).to.be.truthy
+    expect(tab.text()).to.equal('Details')
   })
 
   it('renders an active tab', () => {
     const tab = shallow(
       <Tab label="Details" index={1} active={true} />
     )
-    expect(tab.is('div.item.active')).toBeTruthy()
-    expect(tab.text()).toEqual('Details')
+    expect(tab.is('div.item.active')).to.be.truthy
+    expect(tab.text()).to.be.equal('Details')
   })
 
 })

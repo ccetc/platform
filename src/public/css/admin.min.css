@@ -142,21 +142,16 @@
   height: 55px;
   background-color: #DB2828;
 }
-.chrome-toggle:hover,
-.chrome-alerts:hover,
-.chrome-power:hover {
-  background-color: #b21e1e;
-}
 .chrome-toggle:hover i,
 .chrome-alerts:hover i,
 .chrome-power:hover i {
-  color: #e6e6e6;
+  color: #FFFFFF;
 }
 .chrome-toggle i,
 .chrome-alerts i,
 .chrome-power i {
   margin: auto;
-  color: #FFFFFF;
+  color: #d9d9d9;
 }
 .chrome-toggle .chrome-alerts-label,
 .chrome-alerts .chrome-alerts-label,
@@ -493,7 +488,7 @@
   right: 0;
   max-height: calc(100% - 55px);
   overflow-y: scroll;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.176);
 }
 .chrome-search-result {
   padding: 10px;

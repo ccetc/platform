@@ -4,7 +4,7 @@ import Tab from './tab'
 import { connect } from 'react-redux'
 import * as actions from './actions'
 
-class Tabs extends React.Component {
+export class Tabs extends React.Component {
 
   static propTypes = {
     tabs: React.PropTypes.arrayOf(React.PropTypes.shape({

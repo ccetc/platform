@@ -1,9 +1,8 @@
 import React from 'react'
+import { expect } from 'chai'
 import { shallow } from 'enzyme'
-import sinon from 'sinon'
-import Tabs from '../components/tabs'
-
-jest.unmock('../components/tabs')
+import { spy } from 'sinon'
+import { Tabs } from '../index'
 
 describe('tabs component', () => {
 
@@ -11,27 +10,29 @@ describe('tabs component', () => {
     const Two = (props) => {
       return <div>Two</div>
     }
-    const onChangeTab = sinon.spy()
+    const onChangeTab = spy()
     const config = {
       tabs: [
         { label: 'One', content: 'One' },
         { label: 'Two', content: Two },
         { label: 'Two', content: <p>Three</p>  }
       ],
+      active: 1,
       onChangeTab
     }
     const tabs = shallow(
       <Tabs {...config} />
     )
-    expect(tabs.is('div.tabs')).toBeTruthy()
-    expect(tabs.children().length).toEqual(2)
+    expect(tabs.is('div.tabs')).to.be.truthy
+    expect(tabs.children().length).to.equal(2)
 
     const menu = tabs.childAt(0)
-    expect(menu.is('div.ui.top.attached.tabular.menu')).toBeTruthy()
-    expect(menu.children().length).toEqual(config.tabs.length)
+    expect(menu.is('div.ui.top.attached.tabular.menu')).to.be.truthy
+    expect(menu.children().length).to.equal(config.tabs.length)
 
     const pane = tabs.childAt(1)
-    expect(pane.is('div.ui.bottom.attached.active.tab.segment')).toBeTruthy()
+    expect(pane.is('div.ui.bottom.attached.active.tab.segment')).to.be.truthy
   })
+
 
 })
