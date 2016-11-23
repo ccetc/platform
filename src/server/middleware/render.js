@@ -11,7 +11,7 @@ export default (routes) => {
       } else if (redirectLocation) {
         res.redirect(302, redirectLocation.pathname + redirectLocation.search)
       } else if (renderProps) {
-        res.sendFile(path.resolve('src/public/index.html'))
+        res.sendFile(path.resolve('public/index.html'))
       } else {
         res.status(404).send('Not found')
       }

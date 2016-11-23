@@ -6,7 +6,7 @@ module.exports = {
     admin: './src/admin.js'
   },
   output: {
-    path: './src/public',
+    path: './public',
     filename: 'js/[name].js'
   },
   module: {

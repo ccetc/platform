@@ -96,6 +96,7 @@
   },
   "scripts": {
     "build": "webpack --config config/webpack.client.js",
+    "compile": "rm -rf ./dist && babel ./src --out-dir dist",
     "start": "DEBUG=knex:query NODE_PATH=./src babel-node src/server",
     "coverage": "NODE_ENV=test NODE_PATH=./src babel-node ./node_modules/.bin/babel-istanbul cover _mocha -- --recursive --require babel-core/register ./src/**/*spec.js",
     "test": "NODE_ENV=test NODE_PATH=./src mocha --recursive --require babel-core/register ./src/**/*spec.js"

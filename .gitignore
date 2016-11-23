@@ -2,5 +2,10 @@ config/platform.js
 coverage
 cached_uglify
 data
+dist
 node_modules
 npm-debug.log
+public/js/account.min.js
+public/js/admin.min.js
+public/css/account.css
+public/css/admin.css
