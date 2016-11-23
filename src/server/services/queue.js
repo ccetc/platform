@@ -1,5 +1,5 @@
 import kue from 'kue'
-import config from 'services/config'
+import config from 'server/services/config'
 
 const queue = kue.createQueue({
   prefix: 'q',

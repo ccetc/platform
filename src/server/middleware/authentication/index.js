@@ -1,6 +1,6 @@
-import passport from 'services/passport'
-import Error from 'utils/error'
-import logger from 'services/logger'
+import passport from 'server/services/passport'
+import Error from 'server/utils/error'
+import logger from 'server/services/logger'
 
 const authentication = (req, res, next) => {
 

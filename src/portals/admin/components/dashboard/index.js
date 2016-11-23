@@ -13,10 +13,7 @@ class Dashboard extends React.Component {
 
   _getMain() {
     return {
-      title: 'Dashboard',
-      breadcrumbs: [
-        { label: 'Dashboard' }
-      ]
+      title: 'Dashboard'
     }
   }
 

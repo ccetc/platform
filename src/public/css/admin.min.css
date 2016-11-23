@@ -181,42 +181,57 @@
   flex-direction: column;
 }
 .chrome-header {
-  flex: 0 0 55px;
+  border-bottom: 5px solid #CCC;
+  flex: 0 0 45px;
   background-color: #EEE;
   z-index: 3;
   width: 100%;
-  padding: 10px 15px;
+  padding: 0;
   margin: 0;
-}
-.chrome-header .ui.breadcrumb {
-  height: 35px;
-  display: table-cell;
-  vertical-align: bottom;
-}
-.chrome-header .ui.breadcrumb .divider {
-  color: #555;
-  font-size: 10px;
-}
-.chrome-header .ui.breadcrumb a {
-  color: #777;
-  font-size: 10px;
-}
-.chrome-header .ui.breadcrumb .active {
-  display: block;
-  clear: both;
   font-size: 18px;
-  line-height: 22px;
+  line-height: 45px;
   font-weight: normal;
   color: #555;
+  display: flex;
+}
+.chrome-header a {
+  padding: 15px;
+  color: #888;
+}
+.chrome-header .chrome-back,
+.chrome-header .chrome-spacer {
+  flex: 0 0 55px;
+}
+.chrome-header .chrome-title {
+  flex: 1;
+  text-align: center;
 }
 .chrome-body {
   box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07);
   flex: 1;
-  overflow-y: scroll;
-  padding: 15px;
+  display: flex;
 }
-.chrome-body > div > .collection {
-  margin: -15px;
+@media only screen and (min-width: 768px) {
+  .chrome-body .chrome-sidebar {
+    flex: 0 0 300px;
+    padding: 20px 0 20px 20px;
+  }
+  .chrome-body .chrome-content {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .chrome-body {
+    flex-direction: column;
+  }
+  .chrome-body .chrome-sidebar {
+    padding: 20px 20px 0;
+  }
+  .chrome-body .chrome-content {
+    padding: 20px;
+  }
 }
 .chrome-forbidden {
   text-align: center;
@@ -551,19 +566,32 @@
     width: 240px;
   }
 }
+.collection {
+  width: 100%;
+  display: flex;
+  flex: 1;
+}
 .collection-toolbar {
   padding: 18px;
+  border-bottom: 1px solid #DDD;
+}
+.collection-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 .table-fixed {
-  position: fixed;
-  left: 0;
-  right: 0;
-  z-index: 10;
+  display: table;
+  width: 100%;
+  flex: 0 0 45px;
+}
+.table-scroll {
+  flex: 1;
+  overflow-y: scroll;
 }
 .table {
   display: table;
   width: 100%;
-  border-top: 1px solid #DDD;
 }
 .table-head {
   display: table-header-group;
@@ -573,6 +601,11 @@
   font-weight: bold;
   position: relative;
   cursor: pointer;
+  border-top: 1px solid #CCC;
+  border-left: 1px solid #CCC;
+}
+.table-head .table-header:first-child {
+  border-left: none;
 }
 .table-head .table-header:hover {
   background-color: #eaedf1;
@@ -610,4 +643,33 @@
 .tabs .ui.bottom.attached.active.tab.segment {
   position: relative;
   overflow: hidden;
+}
+.card {
+  border: none !important;
+  box-shadow: none !important;
+}
+.card .image {
+  background: none;
+}
+.card .image img {
+  border: 5px solid #000;
+  width: 70%;
+  margin: 0 auto;
+}
+.tabs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.tabs .menu {
+  flex: 0 0 42px;
+}
+.tabs .segment {
+  flex: 1;
+}
+.table img {
+  display: inline-block !important;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
 }

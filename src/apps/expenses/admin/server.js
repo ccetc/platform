@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import service from 'middleware/service'
+import service from 'server/middleware/service'
 import project from '../models/project'
 
 var router = Router()

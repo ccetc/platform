@@ -1,9 +1,9 @@
 import { Router } from 'express'
-import jwt from 'services/jwt'
-import queue from 'services/queue'
+import jwt from 'server/services/jwt'
+import queue from 'server/services/queue'
 import User from 'platform/models/user'
-import Error from 'utils/error'
-import passport from 'services/passport'
+import Error from 'server/utils/error'
+import passport from 'server/services/passport'
 
 export const create = (req, res, next) => {
 

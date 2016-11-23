@@ -1,5 +1,5 @@
 import Bookshelf from 'bookshelf'
-import knex from 'services/knex'
+import knex from 'server/services/knex'
 
 const bookshelf = Bookshelf(knex)
 

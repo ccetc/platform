@@ -1,7 +1,7 @@
 import passport from 'passport'
 import { Strategy as LocalStrategy } from 'passport-local'
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt'
-import config from 'services/config'
+import config from 'server/services/config'
 import User from 'platform/models/user'
 
 export default (key) => {

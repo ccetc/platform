@@ -1,7 +1,7 @@
 import { Router } from 'express'
-import Error from 'utils/error'
-import passport from 'services/passport'
-import jwt from 'services/jwt'
+import Error from 'server/utils/error'
+import passport from 'server/services/passport'
+import jwt from 'server/services/jwt'
 
 export const auth = (req, res, next) => {
 

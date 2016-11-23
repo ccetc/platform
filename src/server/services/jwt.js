@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import config from 'services/config'
+import config from 'server/services/config'
 
 const encode = (data, duration) => {
 

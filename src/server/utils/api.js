@@ -3,7 +3,7 @@ import mime from 'rest/interceptor/mime'
 import defaultRequest from 'rest/interceptor/defaultRequest'
 import errorCode from 'rest/interceptor/errorCode'
 import params from 'rest/interceptor/params'
-import localStorage from 'services/local_storage'
+import localStorage from 'server/services/local_storage'
 
 type optionsType = {
   method: string,

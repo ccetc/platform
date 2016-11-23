@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import fs from 'fs'
 import path from 'path'
-import knex from 'services/knex'
+import knex from 'server/services/knex'
 import Migrator from 'knex/lib/migrate'
 import Seeder from 'knex/lib/seed'
 

@@ -1,2 +1,26 @@
 @import './components/collection/style';
 @import './components/tabs/style';
+
+.card {
+  border: none !important;
+  box-shadow: none !important;
+  .image {
+    background: none;
+    img {
+      border: 5px solid #000;
+      width: 70%;
+      margin: 0 auto;
+    }
+  }
+}
+.tabs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  .menu {
+    flex: 0 0 42px;
+  }
+  .segment {
+    flex: 1;
+  }
+}

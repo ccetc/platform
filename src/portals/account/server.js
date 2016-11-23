@@ -1,8 +1,8 @@
 import { Router } from 'express'
-import authentication from 'middleware/authentication'
-import activation from 'middleware/activation'
-import signin from 'middleware/signin'
-import reset from 'middleware/reset'
+import authentication from 'server/middleware/authentication'
+import activation from 'server/middleware/activation'
+import signin from 'server/middleware/signin'
+import reset from 'server/middleware/reset'
 import fs from 'fs'
 import path from 'path'
 

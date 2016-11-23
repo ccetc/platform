@@ -1,4 +1,4 @@
-import logger from 'services/logger'
+import logger from 'server/services/logger'
 import _ from 'lodash'
 
 const loggerMiddleware = (req, res, next) => {

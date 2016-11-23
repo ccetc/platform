@@ -1,6 +1,6 @@
 import checkit from  'checkit'
-import bookshelf from 'services/bookshelf'
-import unique from 'utils/unique_validation'
+import bookshelf from 'server/services/bookshelf'
+import unique from 'server/utils/unique_validation'
 
 export default bookshelf.Model.extend({
 

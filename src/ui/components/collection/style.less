@@ -1,19 +1,32 @@
 
 @table_header_background_color: #F9FAFB;
 
+.collection {
+  width: 100%;
+  display: flex;
+  flex: 1;
+}
 .collection-toolbar {
   padding: 18px;
+  border-bottom: 1px solid #DDD;
+}
+.collection-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 .table-fixed {
-  position: fixed;
-  left: 0;
-  right: 0;
-  z-index: 10;
+  display: table;
+  width: 100%;
+  flex: 0 0 45px;
+}
+.table-scroll {
+  flex: 1;
+  overflow-y: scroll;
 }
 .table {
   display: table;
   width: 100%;
-  border-top: 1px solid #DDD;
 }
 .table-head {
   display: table-header-group;
@@ -22,6 +35,11 @@
     font-weight: bold;
     position: relative;
     cursor: pointer;
+    border-top: 1px solid #CCC;
+    border-left: 1px solid #CCC;
+    &:first-child {
+      border-left: none;
+    }
     &:hover {
       background-color: lighten(@table_header_background_color, -5%);
     }

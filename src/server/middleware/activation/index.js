@@ -1,6 +1,6 @@
 import { Router } from 'express'
-import Error from 'utils/error'
-import passport from 'services/passport'
+import Error from 'server/utils/error'
+import passport from 'server/services/passport'
 
 export const middleware = (req, res, next) => {
 

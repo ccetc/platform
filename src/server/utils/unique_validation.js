@@ -1,5 +1,5 @@
 
-import knex from 'services/knex'
+import knex from 'server/services/knex'
 
 const unique = function(table, attribute) {
   return function(val) {

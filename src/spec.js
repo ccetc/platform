@@ -1,5 +1,5 @@
-import Platform from 'utils/platform'
-import knex from 'services/knex'
+import Platform from 'server/utils/platform'
+import knex from 'server/services/knex'
 
 const platform = new Platform()
 

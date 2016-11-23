@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import Error from 'utils/error'
+import Error from 'server/utils/error'
 import _ from 'lodash'
 
 export default (model) => {

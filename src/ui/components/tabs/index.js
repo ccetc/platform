@@ -33,6 +33,7 @@ export class Tabs extends React.Component {
        <div className="ui bottom attached active tab segment">
          { _.isString(content) && <p>{content}</p> }
          { _.isElement(content) && <content /> }
+         { _.isFunction(content) && content() }
        </div>
      </div>
     )
@@ -43,7 +44,6 @@ export class Tabs extends React.Component {
   }
 
 }
-// { _.isFunction(content) && {content} }
 
 const mapStateToProps = (state) => ({
   active: state.tabs.active

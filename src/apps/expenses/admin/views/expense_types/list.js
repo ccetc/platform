@@ -13,11 +13,8 @@ class List extends React.Component {
 
   _getMain() {
     return {
-      title: 'Expense Types',
-      breadcrumbs: [
-        { label: 'Dashboard', route: '/admin' },
-        { label: 'Expense Types' }
-      ]
+      back: '/admin',
+      title: 'Expense Types'
     }
   }
 

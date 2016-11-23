@@ -1,6 +1,6 @@
 import * as actionTypes from './action_types'
-import local from 'utils/local'
-import api from 'utils/api'
+import local from 'server/utils/local'
+import api from 'server/utils/api'
 
 export function loadToken() {
   return local.get({

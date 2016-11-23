@@ -2,8 +2,8 @@ import checkit from  'checkit'
 import bcrypt from 'bcrypt-nodejs'
 import asset from 'platform/models/asset'
 import security_question from 'platform/models/security_question'
-import bookshelf from 'services/bookshelf'
-import unique from 'utils/unique_validation'
+import bookshelf from 'server/services/bookshelf'
+import unique from 'server/utils/unique_validation'
 
 export default bookshelf.Model.extend({
 

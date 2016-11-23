@@ -1,5 +1,5 @@
 import knex from 'knex'
-import config from 'services/config'
+import config from 'server/services/config'
 
 var defaults = {
   pool: {

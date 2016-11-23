@@ -1,4 +1,5 @@
 import React from 'react'
+import Card from 'ui/components/card'
 import Container from 'ui/components/container'
 import Tabs from 'ui/components/tabs'
 import Main from 'portals/admin/components/main'
@@ -8,21 +9,37 @@ class Show extends React.Component {
   render() {
     return (
       <Main {...this._getMain()}>
-        <Tabs {...this._getTabs()} />
+        <div className="chrome-sidebar">
+          <Card {...this._getCard()} />
+        </div>
+        <div className="chrome-content">
+          <Tabs {...this._getTabs()} />
+        </div>
       </Main>
     )
   }
 
   _getMain() {
+    const { contact } = this.props
     return {
-      title: this.props.contact.full_name,
+      back: '/admin/crm/contacts',
+      title: contact.full_name,
       permissions: [
         'can access contacts'
-      ],
-      breadcrumbs: [
-        { label: 'Dashboard', route: '/admin' },
-        { label: 'Contacts', route: '/admin/crm/contacts' },
-        { label: this.props.contact.full_name }
+      ]
+    }
+  }
+
+  _getCard() {
+    const { contact } = this.props
+    return {
+      id: 'contacts-show-card',
+      image: contact.photo,
+      items: [
+        { label: 'Email ', content: contact.email, format: 'email' },
+        { label: 'Phone ', content: '123-456-7890' },
+        { label: 'Fax ', content: '123-456-7890' },
+        { label: 'Created ', content: contact.created_at, format: 'date' }
       ]
     }
   }
@@ -41,7 +58,7 @@ class Show extends React.Component {
 }
 
 const One = (props) => {
-  return <div>one</div>
+  return <div>one<br />one<br />one<br />one<br />one<br />one<br />one<br />one<br />one<br />one<br />one<br />one<br />one<br />one<br />one<br />one<br />one<br />one<br />one<br />one<br />one<br />one<br />one<br />one<br />one<br />one<br />one<br />one<br />one<br />one<br />one<br />one<br />one<br />one</div>
 }
 
 const Two = (props) => {

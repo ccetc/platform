@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 import { Provider } from 'react-redux'
-import CreateStore from 'utils/create_store'
+import CreateStore from 'server/utils/create_store'
 import reducer from './reducer'
 import Activation from './components/activation'
 import Chrome from './components/chrome'

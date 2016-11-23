@@ -39,6 +39,8 @@
     "kue": "^0.11.5",
     "localforage": "^1.4.3",
     "lodash": "^4.16.6",
+    "moment": "^2.17.0",
+    "numeral": "^1.5.5",
     "passport": "^0.3.2",
     "passport-jwt": "^2.2.1",
     "passport-local": "^1.0.0",

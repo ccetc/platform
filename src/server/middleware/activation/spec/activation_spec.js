@@ -1,5 +1,5 @@
 import { middleware, claim, security, password } from '../index'
-import jwt from 'services/jwt'
+import jwt from 'server/services/jwt'
 import { expect } from 'chai'
 
 describe('activation middleware', function() {

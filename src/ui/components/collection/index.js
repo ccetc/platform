@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Infinite from '../infinite'
-import Toolbar from './toolbar'
 import Table from './table'
 import * as actions from './actions'
 
@@ -10,7 +9,6 @@ class Collection extends React.Component {
   render() {
     return (
       <div className="collection">
-        <Toolbar {...this.props} />
         <Table {...this.props} />
       </div>
     )

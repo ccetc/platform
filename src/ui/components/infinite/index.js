@@ -16,12 +16,7 @@ class Infinite extends React.Component {
 
   render() {
     const { children, loaded, records, status, total } = this.props
-    return (
-      <div>
-        { React.cloneElement(children, { loaded, records, status, total }) }
-        { status === 'loading' ? <div className="loading">Loading...</div> : null }
-      </div>
-    )
+    return React.cloneElement(children, { loaded, records, status, total })
   }
 
   componentDidMount() {

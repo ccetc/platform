@@ -4212,6 +4212,10 @@ mocha@^3.1.2:
     mkdirp "0.5.1"
     supports-color "3.1.2"
 
+moment:
+  version "2.17.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.17.0.tgz#a4c292e02aac5ddefb29a6eed24f51938dd3b74f"
+
 moment@2.x.x:
   version "2.16.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.16.0.tgz#f38f2c97c9889b0ee18fc6cc392e1e443ad2da8e"
@@ -4391,6 +4395,10 @@ num2fraction@^1.2.2:
 number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
+
+numeral:
+  version "1.5.5"
+  resolved "https://registry.yarnpkg.com/numeral/-/numeral-1.5.5.tgz#b7515d64533626124e9196cfc68c8fd5b2dee208"
 
 oauth-sign@~0.8.1:
   version "0.8.2"
