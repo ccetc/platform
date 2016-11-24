@@ -1,5 +1,5 @@
 #!/usr/bin/env babel-node --presets=es2015,react,stage-0
-import Platform from '../src/utils/platform'
+import Platform from '../src/server/utils/platform'
 
 var platform = new Platform()
 var command = process.argv[2]
@@ -12,4 +12,7 @@ if(command == 'migrate:latest') {
   platform.seedsLoad().then(() => process.exit(1))
 } else if(command == 'fixtures:load') {
   platform.fixturesLoad().then(() => process.exit(1))
+} else {
+  console.log('invalid commnad')
+  process.exit(1)
 }
