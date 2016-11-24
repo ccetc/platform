@@ -11,6 +11,8 @@ export class Main extends React.Component {
   static propTypes: {
     back: React.PropTypes.string.isRequired,
     permissions: React.PropTypes.array.isRequired,
+    task: React.PropTypes.object,
+    tasks: React.PropTypes.string,
     title: React.PropTypes.string.isRequired
   }
 
@@ -22,7 +24,7 @@ export class Main extends React.Component {
   }
 
   render() {
-    const { back, title, tasks } = this.props
+    const { back, task, tasks, title } = this.props
     const { permitted } = this.state
     if(permitted) {
       return (
@@ -44,6 +46,11 @@ export class Main extends React.Component {
                 <div onClick={ this._handleToggleTasks.bind(this) }>
                   <i className="ellipsis vertical icon" />
                 </div>
+              }
+              { task &&
+                <Link to={task.route}>
+                  <i className={`${task.icon} icon`} />
+                </Link>
               }
             </div>
           </div>

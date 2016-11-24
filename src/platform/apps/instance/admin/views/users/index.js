@@ -32,7 +32,12 @@ class Index extends React.Component {
   _getMain() {
     return {
       back: '/admin',
-      title: 'Users'
+      title: 'Users',
+      task: {
+        label: 'New User',
+        icon: 'plus',
+        route: '/crm/users/new'
+      }
     }
   }
 
