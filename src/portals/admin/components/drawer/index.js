@@ -7,7 +7,7 @@ import * as sessionActions from '../session/actions'
 export class Drawer extends React.Component {
 
   static contextTypes = {
-    history: React.PropTypes.object
+    router: React.PropTypes.object
   }
 
   static propTypes: {
@@ -71,7 +71,7 @@ export class Drawer extends React.Component {
   componentDidUpdate(prevProps) {
     const { apps, app, item } = this.props
     if(prevProps.item != item) {
-      this.context.history.push(apps[app].items[item].route)
+      this.context.router.push(apps[app].items[item].route)
     }
   }
 

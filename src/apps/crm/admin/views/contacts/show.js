@@ -26,6 +26,9 @@ class Show extends React.Component {
       title: contact.full_name,
       permissions: [
         'can access contacts'
+      ],
+      tasks: [
+        { label: 'Edit Contact', route: '/admin/crm/contacts' }
       ]
     }
   }

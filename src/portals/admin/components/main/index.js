@@ -3,6 +3,8 @@ import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
 import _ from 'lodash'
+import * as actions from './actions'
+import Tasks from './tasks'
 
 export class Main extends React.Component {
 
@@ -20,26 +22,35 @@ export class Main extends React.Component {
   }
 
   render() {
-    const { back, title } = this.props
-    if(this.state.permitted) {
+    const { back, title, tasks } = this.props
+    const { permitted } = this.state
+    if(permitted) {
       return (
         <div className="chrome-main">
           <Helmet title={`Platform | ${title}`} />
           <div className="chrome-header">
             <div className="chrome-back">
-              <Link to={back}>
-                <i className="left chevron icon" />
-              </Link>
+              { back &&
+                <Link to={back}>
+                  <i className="left chevron icon" />
+                </Link>
+              }
             </div>
             <div className="chrome-title">
               {title}
             </div>
-            <div className="chrome-spacer">
+            <div className="chrome-more">
+              { tasks &&
+                <div onClick={ this._handleToggleTasks.bind(this) }>
+                  <i className="ellipsis vertical icon" />
+                </div>
+              }
             </div>
           </div>
           <div className="chrome-body">
             {this.props.children}
           </div>
+          { tasks && <Tasks tasks={ tasks } /> }
         </div>
       )
     } else  {
@@ -84,12 +95,20 @@ export class Main extends React.Component {
     return permit === true
   }
 
+
+  _handleToggleTasks() {
+    this.props.onToggleTasks()
+  }
+
 }
 
 const mapStateToProps = (state) => ({
-  user: state.session.user
+  user: state.session.user,
+  showTasks: state.main.showTasks
 })
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = {
+  onToggleTasks: actions.toggleTasks
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main)

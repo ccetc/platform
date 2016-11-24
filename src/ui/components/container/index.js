@@ -11,9 +11,7 @@ export default (mapEndpointsToProps) => {
 
       render() {
         const { status, data } = this.props.state
-        if(status === 'loading') {
-          return <div>Loading...</div>
-        } else if(status === 'error') {
+        if(status === 'error') {
           return <div>Unable to load resources</div>
         } else if(status === 'loaded') {
           return <WrappedComponent {...this.props} {...data} />
