@@ -67064,8 +67064,9 @@
 	        back: '/admin',
 	        title: 'Users',
 	        task: {
+	          label: 'New User',
 	          icon: 'plus',
-	          route: '/crm/contacts/new'
+	          route: '/instance/users/new'
 	        }
 	      };
 	    }
