@@ -52,8 +52,8 @@ class Platform {
   _getMigrations = (completed, direction) => {
     var timestamps = []
     var migrations = {}
-    fs.readdirSync(path.join(__dirname, '../platform/db/migrations')).filter((migration) => {
-      var fullpath = path.resolve(__dirname, '../platform/db/migrations', migration)
+    fs.readdirSync(path.join(__dirname, '../../platform/db/migrations')).filter((migration) => {
+      var fullpath = path.resolve(__dirname, '../../platform/db/migrations', migration)
       var is_completed = _.includes(completed, fullpath)
       if((direction == 'up' && !is_completed) || (direction == 'down' && is_completed)) {
         var timestamp = migration.split('_')[0]
@@ -61,10 +61,10 @@ class Platform {
         migrations[timestamp] = fullpath
       }
     })
-    fs.readdirSync(path.join(__dirname, '../apps')).filter((app) => {
-      if(fs.existsSync(path.join(__dirname, '../apps', app, 'db/migrations'))) {
-        fs.readdirSync(path.join(__dirname, '../apps', app, 'db/migrations')).filter((migration) => {
-          var fullpath = path.resolve(__dirname, '../apps', app, 'db/migrations', migration)
+    fs.readdirSync(path.join(__dirname, '../../apps')).filter((app) => {
+      if(fs.existsSync(path.join(__dirname, '../../apps', app, 'db/migrations'))) {
+        fs.readdirSync(path.join(__dirname, '../../apps', app, 'db/migrations')).filter((migration) => {
+          var fullpath = path.resolve(__dirname, '../../apps', app, 'db/migrations', migration)
           var is_completed = _.includes(completed, fullpath)
           if((direction == 'up' && !is_completed) || (direction == 'down' && is_completed)) {
             var timestamp = migration.split('_')[0]
@@ -81,10 +81,10 @@ class Platform {
 
   _getSeeds = (filename) => {
     var seeds = []
-    seeds.push(path.resolve(__dirname, '../platform/db', filename + '.js'))
-    fs.readdirSync(path.join(__dirname, '../apps')).filter((app) => {
-      if(fs.existsSync(path.join(__dirname, '../apps', app, 'db', filename + '.js'))) {
-        seeds.push(path.resolve(__dirname, '../apps', app, 'db', filename + '.js'))
+    seeds.push(path.resolve(__dirname, '../../platform/db', filename + '.js'))
+    fs.readdirSync(path.join(__dirname, '../../apps')).filter((app) => {
+      if(fs.existsSync(path.join(__dirname, '../../apps', app, 'db', filename + '.js'))) {
+        seeds.push(path.resolve(__dirname, '../../apps', app, 'db', filename + '.js'))
       }
     })
     return seeds
