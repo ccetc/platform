@@ -7,7 +7,8 @@ export const search = (req, res, next) => {
   let searches = {}
   searches['contacts'] = ContactSearch(req.query)
   searches['users'] = UserSearch(req.query)
-  Promise.all(Object.values(searches)).then(results => {
+  const promises = Object.keys(searches).map(key => searches[key])
+  Promise.all(promises).then(results => {
     let json = {}
     results.map((result, index) => {
       const key = Object.keys(searches)[index]
