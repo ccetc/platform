@@ -10,12 +10,12 @@ export const search = (req, res, next) => {
     let json = {}
     results.map((result, index) => {
       const key = Object.keys(searches)[index]
-      console.log(result)
       json[key] = result
     })
     return res.status(200).json(json)
   }).catch(err => {
-    return res.status(500).json(err)
+    const error = new Error({ code: 500, message: err.message })
+    return next(error)
   })
 }
 
