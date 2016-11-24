@@ -1,10 +1,14 @@
 import React from 'react'
-import { Route } from 'react-router'
-import contacts from './views/contacts'
+import { Route, IndexRoute } from 'react-router'
+import ContactsIndex from './views/contacts/index'
+import ContactsShow from './views/contacts/show'
 
 const routes = (
   <Route>
-    {contacts}
+    <Route path="contacts">
+      <IndexRoute component={ContactsIndex} />
+      <Route path=":id" component={ContactsShow} />
+    </Route>
   </Route>
 )
 

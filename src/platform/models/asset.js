@@ -14,7 +14,7 @@ export default bookshelf.Model.extend({
 
   virtuals: {
     url: function() {
-      return '/images/'+this.get('file_name')
+      return `/images/${this.get('file_name')}`
     }
   },
 

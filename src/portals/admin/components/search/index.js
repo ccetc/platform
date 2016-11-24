@@ -29,13 +29,22 @@ export class Search extends React.Component {
         { active && <div key="chrome-search-overlay" className="chrome-search-overlay" onClick={this._handleAbortSearch.bind(this)}  /> }
         { active &&
           <div className="chrome-search-results">
-            {results.map((result, index) => {
+            {Object.keys(results).map((model, modelIndex) => {
               return (
-                <div key={`result_${index}`} className="chrome-search-result" onClick={this._handleCompleteSearch.bind(this, index)}>
-                  <p>
-                    <strong>{result.name}</strong><br />
-                    {result.email}
-                  </p>
+                <div className="chrom-search-section">
+                  <div key={`model_${modelIndex}`} className="chrome-search-model" >
+                    {model}
+                  </div>
+                  {results[model].map((result, index) => {
+                    return (
+                      <div key={`result_${modelIndex}_${index}`} className="chrome-search-result" onClick={this._handleCompleteSearch.bind(this, model, index)}>
+                        <p>
+                          <strong>{result.name}</strong><br />
+                          {result.email}
+                        </p>
+                      </div>
+                    )
+                  })}
                 </div>
               )
             })}
@@ -60,8 +69,8 @@ export class Search extends React.Component {
     this.props.onAbortSearch()
   }
 
-  _handleCompleteSearch(index) {
-    this.props.onCompleteSearch(index)
+  _handleCompleteSearch(model, index) {
+    this.props.onCompleteSearch(model, index)
   }
 
   _handleLookup(event) {

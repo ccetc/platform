@@ -136,10 +136,10 @@
 .chrome-power {
   display: flex;
   position: relative;
-  flex: 0 0 55px;
+  flex: 0 0 45px;
   cursor: pointer;
-  width: 55px;
-  height: 55px;
+  width: 45px;
+  height: 45px;
   background-color: #DB2828;
 }
 .chrome-toggle:hover i,
@@ -173,7 +173,7 @@
 }
 .chrome-topbar {
   display: flex;
-  flex: 0 0 55px;
+  flex: 0 0 45px;
 }
 .chrome-main {
   flex: 1;
@@ -182,31 +182,31 @@
 }
 .chrome-header {
   border-bottom: 5px solid #CCC;
-  flex: 0 0 55px;
+  flex: 0 0 50px;
   background-color: #EEE;
   z-index: 3;
   width: 100%;
   padding: 0;
   margin: 0;
   font-size: 18px;
-  line-height: 55px;
+  line-height: 45px;
   font-weight: normal;
   color: #555;
   display: flex;
 }
 .chrome-header a {
-  padding: 20px;
+  padding: 15px;
   color: #888;
 }
 .chrome-header .chrome-back {
-  flex: 0 0 55px;
+  flex: 0 0 45px;
 }
 .chrome-header .chrome-title {
   flex: 1;
   text-align: center;
 }
 .chrome-header .chrome-more {
-  flex: 0 0 55px;
+  flex: 0 0 45px;
   color: #888;
   text-align: center;
 }
@@ -218,23 +218,16 @@
 @media only screen and (min-width: 768px) {
   .chrome-body .chrome-sidebar {
     flex: 0 0 300px;
-    padding: 20px 0 20px 20px;
+    background: #EEE;
   }
   .chrome-body .chrome-content {
     flex: 1;
-    padding: 20px;
     display: flex;
   }
 }
 @media only screen and (max-width: 767px) {
   .chrome-body {
     flex-direction: column;
-  }
-  .chrome-body .chrome-sidebar {
-    padding: 20px 20px 0;
-  }
-  .chrome-body .chrome-content {
-    padding: 20px;
   }
 }
 .chrome-forbidden {
@@ -549,9 +542,9 @@
 .chrome-cancel {
   background-color: #FFF;
   display: block;
-  padding: 10px;
+  padding: 15px;
   text-align: center;
-  color: #000;
+  color: #1e70bf;
 }
 .chrome-search {
   flex: 1;
@@ -560,8 +553,8 @@
 }
 .chrome-search i {
   color: #FFFFFF;
-  margin: 20px 0;
-  flex: 0 0 55px;
+  margin: 15px 0;
+  flex: 0 0 45px;
 }
 .chrome-search .ui.input {
   flex: 1;
@@ -595,16 +588,24 @@
 .chrome-search-overlay {
   z-index: 10;
   position: fixed;
-  top: 55px;
+  top: 45px;
   right: 0;
   bottom: 0;
   left: 0;
+}
+.chrome-search-model {
+  font-size: 0.8em;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #333;
+  padding: 6px 14px;
+  background-color: #DDDDDD;
 }
 .chrome-search-results {
   border-top: 1px solid #DDD;
   z-index: 11;
   position: absolute;
-  top: 55px;
+  top: 45px;
   left: 0;
   right: 0;
   max-height: calc(100% - 55px);
@@ -743,12 +744,14 @@
     display: none;
   }
 }
+.tabs .menu {
+  margin: 0 !important;
+}
 .tabs .item {
   cursor: pointer;
 }
-.tabs .ui.bottom.attached.active.tab.segment {
-  position: relative;
-  overflow: hidden;
+.tabs .tab-pane {
+  padding: 20px;
 }
 .card {
   border: none !important;
@@ -756,11 +759,20 @@
 }
 .card .image {
   background: none;
+  margin: 20px 0;
 }
 .card .image img {
   border: 5px solid #000;
   width: 50%;
   margin: 0 auto;
+}
+.card .ui.list {
+  border-bottom: 1px solid #DDD;
+  margin-bottom: 20px !important;
+}
+.card .item {
+  padding: 10px 20px !important;
+  border-top: 1px solid #DDD;
 }
 .tabs {
   flex: 1;

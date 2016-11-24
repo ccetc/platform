@@ -7,10 +7,6 @@ import session from './middleware/session'
 import search from './middleware/search'
 import fs from 'fs'
 import path from 'path'
-import service from 'server/middleware/service'
-import App from 'platform/models/app'
-import Asset from 'platform/models/asset'
-import User from 'platform/models/user'
 
 const admin = Router()
 
@@ -29,9 +25,6 @@ admin.use(authentication)
 // core admin api
 admin.use(session)
 admin.use(search)
-admin.use('/apps', service(App))
-admin.use('/assets', service(Asset))
-admin.use('/users', service(User))
 
 // app routes
 const directories = ['../../platform/apps','../../apps']

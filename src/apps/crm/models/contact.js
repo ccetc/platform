@@ -17,9 +17,6 @@ export default bookshelf.Model.extend({
   virtuals: {
     full_name: function() {
       return this.get('first_name') + ' ' + this.get('last_name')
-    },
-    photo: function() {
-      return '/images/greg.jpg'
     }
   },
 

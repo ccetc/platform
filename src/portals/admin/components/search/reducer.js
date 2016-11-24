@@ -27,6 +27,7 @@ export default (state = INITIAL_STATE, action) => {
       ...state,
       search: {
         ...state.search,
+        query: '',
         active: false
       }
     }
@@ -39,7 +40,7 @@ export default (state = INITIAL_STATE, action) => {
         query: '',
         active: false,
         results: [],
-        choice: state.search.results[action.index]
+        choice: state.search.results[action.model][action.index]
       }
     }
 
@@ -57,7 +58,7 @@ export default (state = INITIAL_STATE, action) => {
       ...state,
       search: {
         ...state.search,
-        results: (state.search.query.length) ? action.data.contacts : []
+        results: (state.search.query.length) ? action.data : []
       }
     }
 

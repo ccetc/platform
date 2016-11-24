@@ -1,19 +1,17 @@
 import { Router } from 'express'
-import ContactQuery from 'apps/crm/queries/contact_query'
-import Contact from 'apps/crm/models/contact'
+import ContactSearch from 'apps/crm/searches/contact_search'
+import UserSearch from 'platform/searches/user_search'
 
 export const search = (req, res, next) => {
-  let queries = []
-  queries.push(ContactQuery(Contact, req.query).fetchAll())
-  Promise.all(queries).then(results => {
+  let searches = {}
+  searches['contacts'] = ContactSearch(req.query)
+  searches['users'] = UserSearch(req.query)
+  Promise.all(Object.values(searches)).then(results => {
     let json = {}
-    results.map((result) => {
-      json['contacts'] = result.map(contact => ({
-        id: contact.get('id'),
-        name: contact.get('full_name'),
-        email: contact.get('email'),
-        route: `/admin/crm/contacts/${contact.get('id')}`
-      }))
+    results.map((result, index) => {
+      const key = Object.keys(searches)[index]
+      console.log(result)
+      json[key] = result
     })
     return res.status(200).json(json)
   }).catch(err => {

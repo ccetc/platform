@@ -2,7 +2,12 @@ import { Router } from 'express'
 import Error from 'server/utils/error'
 import _ from 'lodash'
 
-export default (model) => {
+export default (model, options = {}) => {
+
+  let fetchOptions = {}
+  if(options.include) {
+    fetchOptions.withRelated = options.include
+  }
 
   const find = (req, res, next) => {
 
@@ -40,40 +45,42 @@ export default (model) => {
         qb.orderBy(sortKey, sortOrder)
       }
 
-    }).fetchAll()
+    }).fetchAll(fetchOptions)
 
     Promise.all([count,paged]).then(response => {
 
       const total = parseInt(response[0].toJSON()[0].count)
 
-      let data = response[1]
-      if(req.query['$select']) {
-        data = data.map(record => {
-          return _.pick(record, ['id', ...req.query['$select']])
-        })
-      }
+      const data = response[1].map(record => {
+        record = (options.serializer) ? options.serializer(record) : record
+        return (req.query['$select']) ? _.pick(record, ['id', ...req.query['$select']]) : record
+      })
 
       res.json({ total, limit, skip, data })
 
     }).catch(err => {
-      next(err)
+      const error = new Error({ code: 500, message: err.message })
+      return next(error)
     })
 
   }
 
   const get = (req, res, next) => {
 
-    model.where({ id: req.params.id }).fetch().then(record => {
+    model.where({ id: req.params.id }).fetch(fetchOptions).then(record => {
 
       if(!record) {
         const error = new Error({ code: 404, message: 'unable to load record' })
         next(error)
       }
 
+      record = (options.serializer) ? options.serializer(record) : record
+
       res.status(200).json(record)
 
     }).catch(err => {
-      next(err)
+      const error = new Error({ code: 500, message: err.message })
+      return next(error)
     })
 
   }

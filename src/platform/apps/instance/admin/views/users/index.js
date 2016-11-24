@@ -15,16 +15,16 @@ class Index extends React.Component {
 
   _getCollection() {
     return {
-      endpoint: '/admin/crm/contacts',
+      endpoint: '/admin/instance/users',
       columns: [
         { label: 'Name', key: 'first_name', primary: true, format: NameCell },
         { label: 'Email', key: 'email' }
       ],
       sort: { key: 'created_at', order: 'desc' },
       entity: 'contact',
-      empty: 'There are no contacts',
+      empty: 'There are no users',
       recordActions: [
-        { label: 'edit', icon: 'edit', redirect: '/admin/crm/contacts/#{id}/edit'}
+        { label: 'edit', icon: 'edit', redirect: '/admin/instance/users/#{id}/edit'}
       ]
     }
   }
@@ -32,7 +32,7 @@ class Index extends React.Component {
   _getMain() {
     return {
       back: '/admin',
-      title: 'Contacts'
+      title: 'Users'
     }
   }
 
@@ -40,33 +40,10 @@ class Index extends React.Component {
 
 var NameCell = (props) => {
   return (
-    <Link to={`/admin/crm/contacts/${props.id}` }>
+    <Link to={`/admin/instance/users/${props.id}` }>
+      <img src={props.photo} className="ui circular image" />
       {props.first_name} {props.last_name}
     </Link>
-  )
-}
-
-const ContentCard = (props) => {
-  return (
-    <div>
-      <h4>{props.first_name} {props.last_name}</h4>
-      <p>{props.email}</p>
-    </div>
-  )
-}
-
-var AddToList = (props) => {
-  return (
-    <div className="modal">
-      <div className="ui dimmer modals page transition visible active">
-        <div className="ui standard modal media transition visible active scrolling">
-          <div className="header">
-            Add to List
-          </div>
-          {props.ids.join('+')}
-        </div>
-      </div>
-    </div>
   )
 }
 

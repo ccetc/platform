@@ -79,10 +79,10 @@
 .chrome-power {
   display: flex;
   position: relative;
-  flex: 0 0 55px;
+  flex: 0 0 45px;
   cursor: pointer;
-  width: 55px;
-  height: 55px;
+  width: 45px;
+  height: 45px;
   background-color: @primary_background_color;
   &:hover {
     i {
@@ -112,7 +112,7 @@
 }
 .chrome-topbar {
   display: flex;
-  flex: 0 0 55px;
+  flex: 0 0 45px;
 }
 .chrome-main {
   flex: 1;
@@ -121,7 +121,7 @@
 }
 .chrome-header {
   border-bottom: 5px solid #CCC;
-  flex: 0 0 55px;
+  flex: 0 0 50px;
   background-color: #EEE;
   z-index: 3;
   margin: 0;
@@ -129,23 +129,23 @@
   padding: 0;
   margin: 0;
   font-size: 18px;
-  line-height: 55px;
+  line-height: 45px;
   font-weight: normal;
   color: #555;
   display: flex;
   a {
-    padding: 20px;
+    padding: 15px;
     color: #888;
   }
   .chrome-back {
-    flex: 0 0 55px;
+    flex: 0 0 45px;
   }
   .chrome-title {
     flex: 1;
     text-align: center;
   }
   .chrome-more {
-    flex: 0 0 55px;
+    flex: 0 0 45px;
     color: #888;
     text-align: center;
   }
@@ -157,22 +157,15 @@
   @media only screen and (min-width: 768px) {
     .chrome-sidebar {
       flex: 0 0 300px;
-      padding: 20px 0 20px 20px;
+      background: #EEE;
     }
     .chrome-content {
       flex: 1;
-      padding: 20px;
       display: flex;
     }
   }
   @media only screen and (max-width: 767px) {
     flex-direction: column;
-    .chrome-sidebar {
-      padding: 20px 20px 0;
-    }
-    .chrome-content {
-      padding: 20px;
-    }
   }
 }
 .chrome-forbidden {

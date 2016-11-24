@@ -13,9 +13,10 @@ export function abortSearch() {
   }
 }
 
-export function completeSearch(index) {
+export function completeSearch(model, index) {
   return {
     type: actionTypes.COMPLETE_SEARCH,
+    model,
     index
   }
 }

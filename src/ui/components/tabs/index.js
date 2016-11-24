@@ -24,13 +24,13 @@ export class Tabs extends React.Component {
     const content = tabs[active].content
     return (
       <div className="tabs">
-        <div className="ui top attached tabular menu">
+        <div className="ui secondary pointing menu">
           {tabs.map((tab, index) => {
             let isActive = (index == active)
             return <Tab key={`tab_${index}`} active={isActive} label={tab.label} onChangeTab={this._handleChangeTab.bind(this, index)} />
           })}
        </div>
-       <div className="ui bottom attached active tab segment">
+       <div className="tab-pane">
          { _.isString(content) && <p>{content}</p> }
          { _.isElement(content) && <content /> }
          { _.isFunction(content) && content() }
