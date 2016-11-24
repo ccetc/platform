@@ -15,7 +15,12 @@
   }
   .ui.list {
     border-bottom: 1px solid #DDD;
-    margin-bottom: 20px !important;
+    @media only screen and (max-width: 767px) {
+      border-left: 1px solid #DDD;
+      border-right: 1px solid #DDD;
+      background-color: #FFF;
+      margin: 20px !important;
+    }
   }
   .item {
     padding: 10px 20px !important;

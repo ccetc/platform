@@ -738,7 +738,7 @@
   padding: 12px 18px;
   text-align: center;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 767px) {
   .table-header:not(.mobile),
   .table-cell:not(.mobile) {
     display: none;
@@ -768,7 +768,14 @@
 }
 .card .ui.list {
   border-bottom: 1px solid #DDD;
-  margin-bottom: 20px !important;
+}
+@media only screen and (max-width: 767px) {
+  .card .ui.list {
+    border-left: 1px solid #DDD;
+    border-right: 1px solid #DDD;
+    background-color: #FFF;
+    margin: 20px !important;
+  }
 }
 .card .item {
   padding: 10px 20px !important;

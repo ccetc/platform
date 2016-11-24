@@ -83610,16 +83610,18 @@
 	                'div',
 	                { className: 'ui list' },
 	                items.map(function (item, index) {
-	                  return _react2.default.createElement(
-	                    'div',
-	                    { key: 'item_' + index, className: 'item' },
-	                    _react2.default.createElement(
+	                  if (item.content) {
+	                    return _react2.default.createElement(
 	                      'div',
-	                      { className: 'header' },
-	                      item.label
-	                    ),
-	                    _react2.default.createElement(_format2.default, { format: item.format, value: item.content })
-	                  );
+	                      { key: 'item_' + index, className: 'item' },
+	                      _react2.default.createElement(
+	                        'div',
+	                        { className: 'header' },
+	                        item.label
+	                      ),
+	                      _react2.default.createElement(_format2.default, { format: item.format, value: item.content })
+	                    );
+	                  }
 	                })
 	              )
 	            );
