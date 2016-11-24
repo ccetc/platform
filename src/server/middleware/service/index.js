@@ -1,3 +1,4 @@
+import Promise from 'bluebird'
 import { Router } from 'express'
 import Error from 'server/utils/error'
 import _ from 'lodash'

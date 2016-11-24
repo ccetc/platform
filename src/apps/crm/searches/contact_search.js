@@ -1,7 +1,8 @@
+import Promise from 'bluebird'
 import ContactQuery from '../queries/contact_query'
 import Contact from '../models/contact'
 
-export default (query) => {
+export default query => {
   return new Promise((resolve, reject) => {
     ContactQuery(Contact, query).fetchAll().then(results => {
       const json = results.map(result => ({

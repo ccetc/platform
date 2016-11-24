@@ -1,3 +1,4 @@
+import Promise from 'bluebird'
 import { Router } from 'express'
 import ContactSearch from 'apps/crm/searches/contact_search'
 import UserSearch from 'platform/searches/user_search'

@@ -1,7 +1,8 @@
+import Promise from 'bluebird'
 import UserQuery from '../queries/user_query'
 import User from '../models/user'
 
-export default (query) => {
+export default query => {
   return new Promise((resolve, reject) => {
     UserQuery(User, query).fetchAll().then(results => {
       const json = results.map(result => ({
