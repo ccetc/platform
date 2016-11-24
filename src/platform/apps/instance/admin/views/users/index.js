@@ -36,7 +36,7 @@ class Index extends React.Component {
       task: {
         label: 'New User',
         icon: 'plus',
-        route: '/instances/users/new'
+        route: '/instance/users/new'
       }
     }
   }
