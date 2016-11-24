@@ -4,11 +4,10 @@ import path from 'path'
 
 const website = Router()
 
-const root = path.resolve('.')
-const directories = ['src/platform/apps','src/apps']
+const directories = ['../../platform/apps','../../apps']
 directories.map(function(directory) {
-  fs.readdirSync(path.join(root, directory)).filter(function(apppath) {
-    const server = path.join(root, directory, apppath, 'public/server.js')
+  fs.readdirSync(path.join(__dirname, directory)).filter(function(apppath) {
+    const server = path.join(__dirname, directory, apppath, 'public/server.js')
     if(fs.existsSync(server)) {
       website.use(`/${apppath}`, require(server).default)
     }

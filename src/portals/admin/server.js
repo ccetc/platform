@@ -34,11 +34,10 @@ admin.use('/assets', service(Asset))
 admin.use('/users', service(User))
 
 // app routes
-const root = path.resolve('.')
-const directories = ['src/platform/apps','src/apps']
+const directories = ['../../platform/apps','../../apps']
 directories.map(function(directory) {
-  fs.readdirSync(path.join(root, directory)).filter(function(app) {
-    const server = path.join(root, directory, app, 'admin/server.js')
+  fs.readdirSync(path.join(__dirname, directory)).filter(function(app) {
+    const server = path.join(__dirname, directory, app, 'admin/server.js')
     if(fs.existsSync(server)) {
       admin.use(`/${app}`, require(server).default)
     }
