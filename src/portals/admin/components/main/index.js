@@ -65,10 +65,9 @@ export class Main extends React.Component {
         <div className="chrome-main">
           <Helmet title="Platform | 403 Forbidden" />
           <div className="chrome-header">
-            <div className="ui breadcrumb">
-              <a className="section" href="/admin">Dashboard</a> <div className="divider"> / </div>
-              <div className="active section">403 Forbidden</div>
-            </div>
+            <div className="chrome-back"></div>
+            <div className="chrome-title">Access Denied</div>
+            <div className="chrome-more"></div>
           </div>
           <div className="chrome-body">
             <div className="chrome-forbidden">

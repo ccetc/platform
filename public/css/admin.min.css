@@ -230,20 +230,6 @@
     flex-direction: column;
   }
 }
-.chrome-forbidden {
-  text-align: center;
-  width: 320px;
-  color: #CCC;
-  padding-top: 100px;
-}
-.chrome-forbidden i {
-  font-size: 100px;
-  line-height: 100px;
-}
-.chrome-forbidden p {
-  font-size: 32px;
-  line-height: 48px;
-}
 .chrome-drawer {
   transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -webkit-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
@@ -545,6 +531,20 @@
   padding: 15px;
   text-align: center;
   color: #1e70bf;
+}
+.chrome-forbidden {
+  margin: auto;
+  text-align: center;
+  width: 320px;
+  color: #CCC;
+}
+.chrome-forbidden i {
+  font-size: 100px;
+  line-height: 100px;
+}
+.chrome-forbidden p {
+  font-size: 32px;
+  line-height: 48px;
 }
 .chrome-search {
   flex: 1;
