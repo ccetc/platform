@@ -1,10 +1,11 @@
 import * as actionTypes from './action_types'
 
 export const INITIAL_STATE = {
-  main: {
-    showTasks: false,
+  tasks: {
+    show: false,
     task: null
-  }
+  },
+  modal: false
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -14,8 +15,8 @@ export default (state = INITIAL_STATE, action) => {
   case actionTypes.TOGGLE_TASKS:
     return {
       ...state,
-      main: {
-        showTasks: !state.main.showTasks,
+      tasks: {
+        show: !state.tasks.show,
         task: null
       }
     }
@@ -23,10 +24,22 @@ export default (state = INITIAL_STATE, action) => {
   case actionTypes.CHOOSE_TASK:
     return {
       ...state,
-      main: {
-        showTasks: false,
+      tasks: {
+        show: false,
         task: action.index
       }
+    }
+
+  case actionTypes.OPEN_MODAL:
+    return {
+      ...state,
+      modal: true
+    }
+
+  case actionTypes.CLOSE_MODAL:
+    return {
+      ...state,
+      modal: false
     }
 
   default:

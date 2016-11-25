@@ -12,3 +12,15 @@ export function chooseTask(index) {
     index
   }
 }
+
+export function openModal() {
+  return {
+    type: actionTypes.OPEN_MODAL
+  }
+}
+
+export function closeModal() {
+  return {
+    type: actionTypes.CLOSE_MODAL
+  }
+}

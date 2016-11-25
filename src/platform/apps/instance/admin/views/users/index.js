@@ -1,15 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router'
-import Main from 'portals/admin/components/main'
+import Page from 'portals/admin/components/page'
 import Collection from 'ui/components/collection'
+import New from './new'
 
 class Index extends React.Component {
 
   render() {
     return (
-      <Main {...this._getMain()}>
+      <Page {...this._getMain()}>
         <Collection {...this._getCollection()} />
-      </Main>
+      </Page>
     )
   }
 
@@ -36,7 +37,7 @@ class Index extends React.Component {
       task: {
         label: 'New User',
         icon: 'plus',
-        route: '/admin/instance/users/new'
+        component: <New />
       }
     }
   }

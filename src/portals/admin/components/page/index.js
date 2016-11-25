@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
 import _ from 'lodash'
 import * as actions from './actions'
+import Task from './task'
 import Tasks from './tasks'
 
 export class Main extends React.Component {
@@ -47,11 +48,7 @@ export class Main extends React.Component {
                   <i className="ellipsis vertical icon" />
                 </div>
               }
-              { task &&
-                <Link to={task.route}>
-                  <i className={`${task.icon} icon`} />
-                </Link>
-              }
+              { task && <Task {...task} /> }
             </div>
           </div>
           <div className="chrome-body">
@@ -109,8 +106,7 @@ export class Main extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.session.user,
-  showTasks: state.main.showTasks
+  user: state.session.user
 })
 
 const mapDispatchToProps = {

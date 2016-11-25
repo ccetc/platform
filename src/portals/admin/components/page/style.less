@@ -53,3 +53,43 @@
     line-height: 48px;
   }
 }
+.chrome-modal {
+  .translate-y-transition(100%, 0, .25s);
+  z-index: 50;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #FFF;
+  display: flex;
+  flex-direction: column;
+}
+.form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.form-header {
+  flex: 0 0 50px;
+  display: flex;
+  background-color: @primary_background_color;
+}
+.form-header a {
+  display: block;
+  color: #FFF;
+  padding: 15px;
+  cursor: pointer;
+}
+.form-header-left {
+  flex: 1;
+}
+.form-header-right {
+  flex: 1;
+  text-align: right;
+}
+.form-body {
+  flex: 1;
+  padding: 20px;
+  overflow-y: scroll;
+}

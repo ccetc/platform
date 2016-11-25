@@ -1,20 +1,19 @@
 import React from 'react'
 import Card from 'ui/components/card'
 import Container from 'ui/components/container'
-import Main from 'portals/admin/components/main'
-import Modal from 'portals/admin/components/modal'
+import Page from 'portals/admin/components/page'
+import Edit from './edit'
 
 class Show extends React.Component {
 
   render() {
     return (
-      <Main {...this._getMain()}>
+      <Page {...this._getMain()}>
         <div className="chrome-sidebar">
           <Card {...this._getCard()} />
         </div>
-        <div className="chrome-content">
-        </div>
-      </Main>
+        <div className="chrome-content"></div>
+      </Page>
     )
   }
 
@@ -26,8 +25,7 @@ class Show extends React.Component {
       permissions: [
       ],
       tasks: [
-        { label: 'Test', component: <Modal /> },
-        { label: 'Edit User', route: `/admin/instance/users/${user.id}/edit` },
+        { label: 'Edit User', component: <Edit /> },
         { label: 'Reset Password', route: `/admin/instance/users/${user.id}/reset` }
       ]
     }

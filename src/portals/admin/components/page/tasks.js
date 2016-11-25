@@ -2,6 +2,7 @@ import React from 'react'
 import Transition from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
 import * as actions from './actions'
+import Modal from './Modal'
 
 export class Tasks extends React.Component {
 
@@ -10,19 +11,20 @@ export class Tasks extends React.Component {
   }
 
   static propTypes: {
-    showTasks: React.PropTypes.bool,
+    show: React.PropTypes.bool,
     tasks: React.PropTypes.array.isRequired,
     task: React.PropTypes.number,
     onChooseTask: React.PropTypes.func.isRequired,
-    onToggleTasks: React.PropTypes.func.isRequired
+    onToggleTasks: React.PropTypes.func.isRequired,
+    onOpenModal: React.PropTypes.func.isRequired
   }
 
   render() {
-    const { showTasks, tasks, task } = this.props
+    const { show, tasks, task } = this.props
     return (
       <Transition transitionName="expanded" transitionEnterTimeout={250} transitionLeaveTimeout={250} transitionAppear={true} transitionAppearTimeout={250}>
-        { showTasks && <div className="chrome-tasks-overlay" onClick={ this._handleToggleTasks.bind(this) } /> }
-        { showTasks &&
+        { show && <div className="chrome-tasks-overlay" onClick={ this._handleToggleTasks.bind(this) } /> }
+        { show &&
           <div className="chrome-tasks">
             {tasks.map((task, index) => {
               return (
@@ -36,7 +38,11 @@ export class Tasks extends React.Component {
             </div>
           </div>
         }
-        { task !== null && tasks[task] && tasks[task].component }
+        { task !== null && tasks[task] && tasks[task].component !== null &&
+          <Modal>
+            { tasks[task].component }
+          </Modal>
+        }
       </Transition>
     )
   }
@@ -46,6 +52,8 @@ export class Tasks extends React.Component {
     if(prevProps.task !== task && task !== null) {
       if(tasks[task].route) {
         this.context.router.push(tasks[task].route)
+      } else if(tasks[task].component){
+        this.props.onOpenModal()
       }
     }
   }
@@ -61,13 +69,14 @@ export class Tasks extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  showTasks: state.main.showTasks,
-  task: state.main.task
+  show: state.tasks.show,
+  task: state.tasks.task
 })
 
 const mapDispatchToProps = {
   onChooseTask: actions.chooseTask,
-  onToggleTasks: actions.toggleTasks
+  onToggleTasks: actions.toggleTasks,
+  onOpenModal: actions.openModal
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tasks)

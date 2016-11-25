@@ -1,24 +1,33 @@
 import React from 'react'
-import Main from 'portals/admin/components/main'
 
-class New extends React.Component {
+class Edit extends React.Component {
+
+  static contextTypes = {
+    modal: React.PropTypes.object
+  }
 
   render() {
     return (
-      <Main {...this._getMain()}>
-        New User!
-      </Main>
+      <div className="form">
+        <div className="form-header">
+          <div className="form-header-left" onClick={ this._handleClose.bind(this) }>
+            Cancel
+          </div>
+          <div className="form-header-right">
+            Save
+          </div>
+        </div>
+        <div className="form-body">
+          New User!
+        </div>
+      </div>
     )
   }
 
-  _getMain() {
-    return {
-      back: '/admin/instance/users',
-      title: 'New User',
-      permissions: []
-    }
+  _handleClose() {
+    this.context.modal.close()
   }
 
 }
 
-export default New
+export default Edit

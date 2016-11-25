@@ -1,13 +1,13 @@
 import React from 'react'
-import Main from 'portals/admin/components/main'
+import Page from 'portals/admin/components/page'
 
 class List extends React.Component {
 
   render() {
     return (
-      <Main {...this._getMain()}>
+      <Page {...this._getMain()}>
         <p>Expenses List</p>
-      </Main>
+      </Page>
     )
   }
 

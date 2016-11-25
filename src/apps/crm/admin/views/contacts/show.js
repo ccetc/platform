@@ -2,20 +2,20 @@ import React from 'react'
 import Card from 'ui/components/card'
 import Container from 'ui/components/container'
 import Tabs from 'ui/components/tabs'
-import Main from 'portals/admin/components/main'
+import Page from 'portals/admin/components/page'
 
 class Show extends React.Component {
 
   render() {
     return (
-      <Main {...this._getMain()}>
+      <Page {...this._getMain()}>
         <div className="chrome-sidebar">
           <Card {...this._getCard()} />
         </div>
         <div className="chrome-content">
           <Tabs {...this._getTabs()} />
         </div>
-      </Main>
+      </Page>
     )
   }
 
