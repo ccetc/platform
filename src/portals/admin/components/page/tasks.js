@@ -2,7 +2,7 @@ import React from 'react'
 import Transition from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
 import * as actions from './actions'
-import Modal from './Modal'
+import Modal from './modal'
 
 export class Tasks extends React.Component {
 
