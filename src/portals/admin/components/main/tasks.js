@@ -18,7 +18,7 @@ export class Tasks extends React.Component {
   }
 
   render() {
-    const { showTasks, tasks } = this.props
+    const { showTasks, tasks, task } = this.props
     return (
       <Transition transitionName="expanded" transitionEnterTimeout={250} transitionLeaveTimeout={250} transitionAppear={true} transitionAppearTimeout={250}>
         { showTasks && <div className="chrome-tasks-overlay" onClick={ this._handleToggleTasks.bind(this) } /> }
@@ -36,6 +36,7 @@ export class Tasks extends React.Component {
             </div>
           </div>
         }
+        { task !== null && tasks[task] && tasks[task].component }
       </Transition>
     )
   }
@@ -43,7 +44,9 @@ export class Tasks extends React.Component {
   componentDidUpdate(prevProps) {
     const { tasks, task } = this.props
     if(prevProps.task !== task && task !== null) {
-      this.context.router.push(tasks[task].route)
+      if(tasks[task].route) {
+        this.context.router.push(tasks[task].route)
+      }
     }
   }
 

@@ -1,0 +1,31 @@
+.chrome-modal {
+  .translate-y-transition(100%, 0, .25s);
+  z-index: 50;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #FFF;
+  display: flex;
+  flex-direction: column;
+}
+.chrome-modal-header {
+  flex: 0 0 50px;
+  display: flex;
+  background-color: @primary_background_color;
+}
+.chrome-modal-header-left {
+  flex: 1;
+  color: #FFF;
+  padding: 15px;
+}
+.chrome-modal-header-right {
+  flex: 1;
+  text-align: right;
+  color: #FFF;
+  padding: 15px;
+}
+.chrome-modal-body {
+  overflow-y: scroll;
+}

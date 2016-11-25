@@ -546,6 +546,58 @@
   font-size: 32px;
   line-height: 48px;
 }
+.chrome-modal {
+  transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -webkit-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -moz-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -ms-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  z-index: 50;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #FFF;
+  display: flex;
+  flex-direction: column;
+}
+.chrome-modal.expanded-appear,
+.chrome-modal.expanded-enter,
+.chrome-modal.expanded-leave.expanded-leave-active {
+  -webkit-transform: translateY(100%);
+  -moz-transform: translateY(100%);
+  -ms-transform: translateY(100%);
+  -o-transform: translateY(100%);
+  transform: translateY(100%);
+}
+.chrome-modal.expanded-appear.expanded-appear-active,
+.chrome-modal.expanded-enter.expanded-enter-active,
+.chrome-modal.expanded-leave {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+}
+.chrome-modal-header {
+  flex: 0 0 50px;
+  display: flex;
+  background-color: #DB2828;
+}
+.chrome-modal-header-left {
+  flex: 1;
+  color: #FFF;
+  padding: 15px;
+}
+.chrome-modal-header-right {
+  flex: 1;
+  text-align: right;
+  color: #FFF;
+  padding: 15px;
+}
+.chrome-modal-body {
+  overflow-y: scroll;
+}
 .chrome-search {
   flex: 1;
   display: flex;

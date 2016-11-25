@@ -2,6 +2,7 @@ import React from 'react'
 import Card from 'ui/components/card'
 import Container from 'ui/components/container'
 import Main from 'portals/admin/components/main'
+import Modal from 'portals/admin/components/modal'
 
 class Show extends React.Component {
 
@@ -25,6 +26,7 @@ class Show extends React.Component {
       permissions: [
       ],
       tasks: [
+        { label: 'Test', component: <Modal /> },
         { label: 'Edit User', route: `/admin/instance/users/${user.id}/edit` },
         { label: 'Reset Password', route: `/admin/instance/users/${user.id}/reset` }
       ]
