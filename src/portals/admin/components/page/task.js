@@ -21,10 +21,10 @@ export class Task extends React.Component {
   render() {
     const { icon, component } = this.props
     return (
-      <div>
-        <div onClick={this._handleClick.bind(this)}>
+      <div className="chrome-more">
+        <a onClick={this._handleClick.bind(this)}>
           <i className={`${icon} icon`} />
-        </div>
+        </a>
         { component !== null &&
           <Modal>
             { component }

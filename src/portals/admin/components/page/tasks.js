@@ -22,28 +22,33 @@ export class Tasks extends React.Component {
   render() {
     const { show, tasks, task } = this.props
     return (
-      <Transition transitionName="expanded" transitionEnterTimeout={500} transitionLeaveTimeout={500} transitionAppear={true} transitionAppearTimeout={500}>
-        { show && <div className="chrome-tasks-overlay" onClick={ this._handleToggleTasks.bind(this) } /> }
-        { show &&
-          <div className="chrome-tasks">
-            {tasks.map((task, index) => {
-              return (
-                <div key={`task_${index}`} className="chrome-task" onClick={ this._handleChooseTask.bind(this, index) }>
-                  { task.label }
-                </div>
-              )
-            })}
-            <div className="chrome-cancel" onClick={ this._handleToggleTasks.bind(this) }>
-              Cancel
+      <div className="chrome-more">
+        <a onClick={ this._handleToggleTasks.bind(this) }>
+          <i className="ellipsis vertical icon" />
+        </a>
+        <Transition transitionName="expanded" transitionEnterTimeout={500} transitionLeaveTimeout={500} transitionAppear={true} transitionAppearTimeout={500}>
+          { show && <div className="chrome-tasks-overlay" onClick={ this._handleToggleTasks.bind(this) } /> }
+          { show &&
+            <div className="chrome-tasks">
+              {tasks.map((task, index) => {
+                return (
+                  <div key={`task_${index}`} className="chrome-task" onClick={ this._handleChooseTask.bind(this, index) }>
+                    { task.label }
+                  </div>
+                )
+              })}
+              <div className="chrome-cancel" onClick={ this._handleToggleTasks.bind(this) }>
+                Cancel
+              </div>
             </div>
-          </div>
-        }
-        { task !== null && tasks[task] && tasks[task].component !== null &&
-          <Modal>
-            { tasks[task].component }
-          </Modal>
-        }
-      </Transition>
+          }
+          { task !== null && tasks[task] && tasks[task].component !== null &&
+            <Modal>
+              { tasks[task].component }
+            </Modal>
+          }
+        </Transition>
+      </div>
     )
   }
 

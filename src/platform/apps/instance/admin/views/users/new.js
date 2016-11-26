@@ -10,11 +10,15 @@ class Edit extends React.Component {
     return (
       <div className="form">
         <div className="form-header">
-          <div className="form-header-left" onClick={ this._handleClose.bind(this) }>
-            Cancel
+          <div className="form-header-left">
+            <a onClick={ this._handleClose.bind(this) }>
+              Cancel
+            </a>
           </div>
           <div className="form-header-right">
-            Save
+            <a onClick={ this._handleClose.bind(this) }>
+              Save
+            </a>
           </div>
         </div>
         <div className="form-body">

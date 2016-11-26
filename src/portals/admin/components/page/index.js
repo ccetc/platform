@@ -3,7 +3,6 @@ import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
 import _ from 'lodash'
-import * as actions from './actions'
 import Task from './task'
 import Tasks from './tasks'
 
@@ -42,19 +41,12 @@ export class Page extends React.Component {
             <div className="chrome-title">
               {title}
             </div>
-            <div className="chrome-more">
-              { tasks &&
-                <div onClick={ this._handleToggleTasks.bind(this) }>
-                  <i className="ellipsis vertical icon" />
-                </div>
-              }
-              { task && <Task {...task} /> }
-            </div>
+            { tasks && <Tasks tasks={ tasks } /> }
+            { task && <Task {...task} /> }
           </div>
           <div className="chrome-body">
             {this.props.children}
           </div>
-          { tasks && <Tasks tasks={ tasks } /> }
         </div>
       )
     } else  {
@@ -98,19 +90,12 @@ export class Page extends React.Component {
     return permit === true
   }
 
-
-  _handleToggleTasks() {
-    this.props.onToggleTasks()
-  }
-
 }
 
 const mapStateToProps = (state) => ({
   user: state.session.user
 })
 
-const mapDispatchToProps = {
-  onToggleTasks: actions.toggleTasks
-}
+const mapDispatchToProps = {}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Page)
