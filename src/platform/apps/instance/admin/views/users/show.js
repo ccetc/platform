@@ -24,8 +24,7 @@ class Show extends React.Component {
       title: user.full_name,
       permissions: [],
       tasks: [
-        { label: 'Edit User', component: <Edit /> },
-        { label: 'Reset Password', route: `/admin/instance/users/${user.id}/reset` }
+        { label: 'Edit User', component: <Edit /> }
       ]
     }
   }

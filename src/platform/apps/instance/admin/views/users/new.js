@@ -1,37 +1,24 @@
 import React from 'react'
+import Form from 'ui/components/form'
 
-class Edit extends React.Component {
-
-  static contextTypes = {
-    modal: React.PropTypes.object
-  }
+class New extends React.Component {
 
   render() {
-    return (
-      <div className="form">
-        <div className="form-header">
-          <div className="form-header-left">
-            <a onClick={ this._handleClose.bind(this) }>
-              Cancel
-            </a>
-          </div>
-          <div className="form-header-right">
-            <a onClick={ this._handleClose.bind(this) }>
-              Save
-            </a>
-          </div>
-        </div>
-        <div className="form-body">
-          New User!
-        </div>
-      </div>
-    )
+    return <Form {...this._getForm()} />
   }
 
-  _handleClose() {
-    this.context.modal.close()
+  _getForm() {
+    return {
+      title: 'New User',
+      fields: [
+        { label: 'First Name', name: 'first_name', type: 'textfield', placeholder: 'First Name' },
+        { label: 'Last Name', name: 'last_name', type: 'textfield', placeholder: 'Last Name' },
+        { label: 'Email', name: 'email', type: 'textfield', placeholder: 'Email' },
+        { label: 'Phone', name: 'phone', type: 'textfield', placeholder: 'Phone' }
+      ]
+    }
   }
 
 }
 
-export default Edit
+export default New

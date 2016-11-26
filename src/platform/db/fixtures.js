@@ -527,7 +527,12 @@ exports.seed = (knex, Promise) => {
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
-      }, {
+      }
+    ])
+  })
+  .then(() => {
+    return knex('assets').insert([
+      {
         instance_id: 1,
         original_file_name: 'Ethan-Cramton.jpg',
         file_name: 'Ethan-Cramton.jpg',
@@ -1575,7 +1580,12 @@ exports.seed = (knex, Promise) => {
         security_question_1_answer: 'moly',
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
-      }, {
+      }
+    ])
+  })
+  .then(() => {
+    return knex('users').insert([
+      {
         instance_id: 1,
         first_name: 'Ethan',
         last_name: 'Cramton',

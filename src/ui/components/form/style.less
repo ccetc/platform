@@ -1,0 +1,36 @@
+.form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.form-header {
+  flex: 0 0 50px;
+  display: flex;
+  background-color: @primary_background_color;
+}
+.form-header a {
+  display: block;
+  color: #FFF;
+  padding: 15px;
+  cursor: pointer;
+}
+.form-header-cancel {
+  flex: 0 0 100px;
+}
+.form-header-title {
+  flex: 1;
+  color: #FFF;
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+}
+.form-header-proceed {
+  flex: 0 0 100px;
+  text-align: right;
+}
+.form-body {
+  flex: 1;
+  padding: 20px;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}

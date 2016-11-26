@@ -28,7 +28,7 @@ describe('user model', function() {
 
   it('returns full name', function(done) {
     User.where({ id: 1 }).fetch().then(user => {
-      expect(user.get('full_name')).to.equal('Ken Schlather')
+      expect(user.get('full_name')).to.equal('Greg Kops')
       done()
     })
   })

@@ -22,22 +22,22 @@ export class Tasks extends React.Component {
   render() {
     const { show, tasks, task } = this.props
     return (
-      <div className="chrome-more">
+      <div className="chrome-tasks">
         <a onClick={ this._handleToggleTasks.bind(this) }>
           <i className="ellipsis vertical icon" />
         </a>
         <Transition transitionName="expanded" transitionEnterTimeout={250} transitionLeaveTimeout={250} transitionAppear={true} transitionAppearTimeout={250}>
           { show && <div className="chrome-tasks-overlay" onClick={ this._handleToggleTasks.bind(this) } /> }
           { show &&
-            <div className="chrome-tasks">
+            <div className="chrome-tasks-list">
               {tasks.map((task, index) => {
                 return (
-                  <div key={`task_${index}`} className="chrome-task" onClick={ this._handleChooseTask.bind(this, index) }>
+                  <div key={`task_${index}`} className="chrome-tasks-item" onClick={ this._handleChooseTask.bind(this, index) }>
                     { task.label }
                   </div>
                 )
               })}
-              <div className="chrome-cancel" onClick={ this._handleToggleTasks.bind(this) }>
+              <div className="chrome-tasks-item" onClick={ this._handleToggleTasks.bind(this) }>
                 Cancel
               </div>
             </div>

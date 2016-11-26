@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import * as actions from './actions'
+import $ from 'jquery'
 
 class Infinite extends React.Component {
 
@@ -37,7 +38,7 @@ class Infinite extends React.Component {
   }
 
   _container() {
-    return ReactDOM.findDOMNode(this).parentNode
+    return $('.table-scroll')[0]
   }
 
   _attachScrollListener() {

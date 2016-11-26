@@ -598,11 +598,13 @@
   display: flex;
 }
 .chrome-back,
-.chrome-more {
+.chrome-tasks,
+.chrome-task {
   flex: 0 0 45px;
 }
 .chrome-back > a,
-.chrome-more > a {
+.chrome-tasks > a,
+.chrome-task > a {
   display: block;
   text-align: center;
   padding: 14px;
@@ -667,13 +669,13 @@
   -moz-opacity: 0.5;
   opacity: 0.5;
 }
-.chrome-tasks {
+.chrome-tasks-list {
   z-index: 21;
   position: absolute;
   border: 1px solid #CCC;
 }
 @media only screen and (max-width: 414px) {
-  .chrome-tasks {
+  .chrome-tasks-list {
     transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
     -webkit-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
     -moz-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
@@ -683,18 +685,18 @@
     right: 0;
     margin: 10px;
   }
-  .chrome-tasks.expanded-appear,
-  .chrome-tasks.expanded-enter,
-  .chrome-tasks.expanded-leave.expanded-leave-active {
+  .chrome-tasks-list.expanded-appear,
+  .chrome-tasks-list.expanded-enter,
+  .chrome-tasks-list.expanded-leave.expanded-leave-active {
     -webkit-transform: translateY(100%);
     -moz-transform: translateY(100%);
     -ms-transform: translateY(100%);
     -o-transform: translateY(100%);
     transform: translateY(100%);
   }
-  .chrome-tasks.expanded-appear.expanded-appear-active,
-  .chrome-tasks.expanded-enter.expanded-enter-active,
-  .chrome-tasks.expanded-leave {
+  .chrome-tasks-list.expanded-appear.expanded-appear-active,
+  .chrome-tasks-list.expanded-enter.expanded-enter-active,
+  .chrome-tasks-list.expanded-leave {
     -webkit-transform: translateY(0);
     -moz-transform: translateY(0);
     -ms-transform: translateY(0);
@@ -703,7 +705,7 @@
   }
 }
 @media only screen and (min-width: 415px) {
-  .chrome-tasks {
+  .chrome-tasks-list {
     transition: opacity 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
     -webkit-transition: opacity 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
     -moz-transition: opacity 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
@@ -713,31 +715,31 @@
     left: 50%;
     margin-left: -160px;
   }
-  .chrome-tasks.expanded-appear,
-  .chrome-tasks.expanded-enter,
-  .chrome-tasks.expanded-leave.expanded-leave-active {
+  .chrome-tasks-list.expanded-appear,
+  .chrome-tasks-list.expanded-enter,
+  .chrome-tasks-list.expanded-leave.expanded-leave-active {
     -webkit-opacity: 0;
     -moz-opacity: 0;
     opacity: 0;
   }
-  .chrome-tasks.expanded-appear.expanded-appear-active,
-  .chrome-tasks.expanded-enter.expanded-enter-active,
-  .chrome-tasks.expanded-leave {
+  .chrome-tasks-list.expanded-appear.expanded-appear-active,
+  .chrome-tasks-list.expanded-enter.expanded-enter-active,
+  .chrome-tasks-list.expanded-leave {
     -webkit-opacity: 1;
     -moz-opacity: 1;
     opacity: 1;
   }
 }
-.chrome-task {
+.chrome-tasks-list .chrome-tasks-item {
   border-bottom: 1px solid #CCC;
-}
-.chrome-task,
-.chrome-cancel {
   background-color: #FFF;
   display: block;
   padding: 15px;
   text-align: center;
   color: #1e70bf;
+}
+.chrome-tasks-list .chrome-tasks-item:last-child {
+  border-bottom: none;
 }
 .chrome-forbidden {
   margin: auto;
@@ -785,35 +787,6 @@
   -ms-transform: translateY(0);
   -o-transform: translateY(0);
   transform: translateY(0);
-}
-.form {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-.form-header {
-  flex: 0 0 50px;
-  display: flex;
-  background-color: #DB2828;
-}
-.form-header a {
-  display: block;
-  color: #FFF;
-  padding: 15px;
-  cursor: pointer;
-}
-.form-header-left {
-  flex: 1;
-}
-.form-header-right {
-  flex: 1;
-  text-align: right;
-}
-.form-body {
-  flex: 1;
-  padding: 20px;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
 }
 .collection {
   width: 100%;
@@ -910,6 +883,42 @@
 }
 .card .item {
   padding: 10px 20px !important;
+}
+.form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.form-header {
+  flex: 0 0 50px;
+  display: flex;
+  background-color: #DB2828;
+}
+.form-header a {
+  display: block;
+  color: #FFF;
+  padding: 15px;
+  cursor: pointer;
+}
+.form-header-cancel {
+  flex: 0 0 100px;
+}
+.form-header-title {
+  flex: 1;
+  color: #FFF;
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+}
+.form-header-proceed {
+  flex: 0 0 100px;
+  text-align: right;
+}
+.form-body {
+  flex: 1;
+  padding: 20px;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 .tabs .menu {
   margin: 0 !important;

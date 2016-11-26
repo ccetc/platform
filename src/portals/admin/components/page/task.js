@@ -21,7 +21,7 @@ export class Task extends React.Component {
   render() {
     const { icon, component } = this.props
     return (
-      <div className="chrome-more">
+      <div className="chrome-task">
         <a onClick={this._handleClick.bind(this)}>
           <i className={`${icon} icon`} />
         </a>
