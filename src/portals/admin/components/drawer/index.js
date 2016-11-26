@@ -71,7 +71,7 @@ export class Drawer extends React.Component {
   componentDidUpdate(prevProps) {
     const { apps, app, item } = this.props
     if(prevProps.item != item) {
-      this.context.router.push(apps[app].items[item].route)
+      this.context.router.push({ pathname: apps[app].items[item].route, state: 'static' })
     }
   }
 

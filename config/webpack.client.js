@@ -7,7 +7,7 @@ module.exports = {
   },
   output: {
     path: './public',
-    filename: 'js/[name].js'
+    filename: 'js/[name].min.js'
   },
   module: {
     noParse: /node_modules\/localforage\/dist\/localforage.js/,

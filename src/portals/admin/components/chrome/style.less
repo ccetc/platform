@@ -74,15 +74,19 @@
   display: flex;
   flex-direction: column;
 }
+.chrome-topbar {
+  height: 50px;
+  display: flex;
+}
 .chrome-toggle,
 .chrome-alerts,
 .chrome-power {
   display: flex;
   position: relative;
-  flex: 0 0 45px;
+  flex: 0 0 50px;
   cursor: pointer;
-  width: 45px;
-  height: 45px;
+  width: 50px;
+  height: 50px;
   background-color: @primary_background_color;
   &:hover {
     i {
@@ -108,63 +112,5 @@
     height: 16px;
     text-align: center;
     vertical-align: middle;
-  }
-}
-.chrome-topbar {
-  display: flex;
-  flex: 0 0 45px;
-}
-.chrome-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-.chrome-header {
-  border-bottom: 5px solid #CCC;
-  flex: 0 0 50px;
-  background-color: #EEE;
-  z-index: 3;
-  margin: 0;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  font-size: 18px;
-  line-height: 45px;
-  font-weight: normal;
-  color: #555;
-  display: flex;
-  a {
-    padding: 15px;
-    color: #888;
-  }
-  .chrome-back {
-    flex: 0 0 45px;
-  }
-  .chrome-title {
-    flex: 1;
-    text-align: center;
-  }
-  .chrome-more {
-    flex: 0 0 45px;
-    color: #888;
-    text-align: center;
-  }
-}
-.chrome-body {
-  box-shadow: inset 1px 1px 0 rgba(0,0,0,.1),inset 0 -1px 0 rgba(0,0,0,.07);
-  flex: 1;
-  display: flex;
-  @media only screen and (min-width: 768px) {
-    .chrome-sidebar {
-      flex: 0 0 300px;
-      background: #EEE;
-    }
-    .chrome-content {
-      flex: 1;
-      display: flex;
-    }
-  }
-  @media only screen and (max-width: 767px) {
-    flex-direction: column;
   }
 }

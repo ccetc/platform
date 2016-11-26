@@ -28,6 +28,22 @@ class Root extends React.Component {
 
 }
 
+class Panel extends React.Component {
+
+  render() {
+    const { children } = this.props
+    return (
+      <div className="chrome-panel">
+        { children }
+      </div>
+    )
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    return false
+  }
+
+}
+
 export default (
   <Route component={ Root }>
     <Route component={ Session }>
@@ -37,8 +53,9 @@ export default (
       </Route>
       <Route component={ Activation } path="admin/activation/:id" />
       <Route component={ Reset } path="admin/reset/:id" />
-      <Route component={ Chrome } path="admin">
-        <IndexRoute component={ Dashboard } />
+        <Route component={ Chrome } path="admin">
+          <Route component={ Panel }>
+          <IndexRoute component={ Dashboard } />
           <Route path="instance">
             {Instance}
           </Route>
@@ -48,6 +65,7 @@ export default (
           <Route path="expenses">
             {Expenses}
           </Route>
+        </Route>
       </Route>
     </Route>
   </Route>

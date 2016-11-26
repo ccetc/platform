@@ -7,5 +7,5 @@ node_modules
 npm-debug.log
 public/js/account.min.js
 public/js/admin.min.js
-public/css/account.css
-public/css/admin.css
+public/css/account.min.css
+public/css/admin.min.css

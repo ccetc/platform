@@ -7,7 +7,7 @@ import * as actions from './actions'
 import Task from './task'
 import Tasks from './tasks'
 
-export class Main extends React.Component {
+export class Page extends React.Component {
 
   static propTypes: {
     back: React.PropTypes.string.isRequired,
@@ -29,12 +29,12 @@ export class Main extends React.Component {
     const { permitted } = this.state
     if(permitted) {
       return (
-        <div className="chrome-main">
+        <div className="chrome-page">
           <Helmet title={`Platform | ${title}`} />
           <div className="chrome-header">
             <div className="chrome-back">
               { back &&
-                <Link to={back}>
+                <Link to={{ pathname: back, state: 'back' }}>
                   <i className="left chevron icon" />
                 </Link>
               }
@@ -59,7 +59,7 @@ export class Main extends React.Component {
       )
     } else  {
       return (
-        <div className="chrome-main">
+        <div className="chrome-page">
           <Helmet title="Platform | 403 Forbidden" />
           <div className="chrome-header">
             <div className="chrome-back"></div>
@@ -113,4 +113,4 @@ const mapDispatchToProps = {
   onToggleTasks: actions.toggleTasks
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main)
+export default connect(mapStateToProps, mapDispatchToProps)(Page)

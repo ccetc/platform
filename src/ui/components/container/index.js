@@ -16,7 +16,7 @@ export default (mapEndpointsToProps) => {
         } else if(status === 'loaded') {
           return <WrappedComponent {...this.props} {...data} />
         } else  {
-          return null
+          return <div />
         }
       }
 
