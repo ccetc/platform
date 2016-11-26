@@ -22,7 +22,7 @@ export class Tasks extends React.Component {
   render() {
     const { show, tasks, task } = this.props
     return (
-      <Transition transitionName="expanded" transitionEnterTimeout={250} transitionLeaveTimeout={250} transitionAppear={true} transitionAppearTimeout={250}>
+      <Transition transitionName="expanded" transitionEnterTimeout={500} transitionLeaveTimeout={500} transitionAppear={true} transitionAppearTimeout={500}>
         { show && <div className="chrome-tasks-overlay" onClick={ this._handleToggleTasks.bind(this) } /> }
         { show &&
           <div className="chrome-tasks">
