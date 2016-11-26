@@ -24,51 +24,59 @@ class Edit extends React.Component {
         <div className="form-body">
           <form className="ui form">
             <div className="field">
+              <label>First Name</label>
               <input type="text" name="first-name" placeholder="First Name" />
             </div>
             <div className="field">
+              <label>Last Name</label>
               <input type="text" name="last-name" placeholder="Last Name" />
             </div>
             <div className="field">
+              <label>First Name</label>
               <input type="text" name="first-name" placeholder="First Name" />
             </div>
             <div className="field">
+              <label>Last Name</label>
               <input type="text" name="last-name" placeholder="Last Name" />
             </div>
             <div className="field">
+              <label>First Name</label>
               <input type="text" name="first-name" placeholder="First Name" />
             </div>
             <div className="field">
+              <label>Last Name</label>
               <input type="text" name="last-name" placeholder="Last Name" />
             </div>
             <div className="field">
+              <label>First Name</label>
               <input type="text" name="first-name" placeholder="First Name" />
             </div>
             <div className="field">
+              <label>Last Name</label>
               <input type="text" name="last-name" placeholder="Last Name" />
             </div>
             <div className="field">
+              <label>First Name</label>
               <input type="text" name="first-name" placeholder="First Name" />
             </div>
             <div className="field">
+              <label>Last Name</label>
               <input type="text" name="last-name" placeholder="Last Name" />
             </div>
             <div className="field">
+              <label>First Name</label>
               <input type="text" name="first-name" placeholder="First Name" />
             </div>
             <div className="field">
+              <label>Last Name</label>
               <input type="text" name="last-name" placeholder="Last Name" />
             </div>
             <div className="field">
+              <label>First Name</label>
               <input type="text" name="first-name" placeholder="First Name" />
             </div>
             <div className="field">
-              <input type="text" name="last-name" placeholder="Last Name" />
-            </div>
-            <div className="field">
-              <input type="text" name="first-name" placeholder="First Name" />
-            </div>
-            <div className="field">
+              <label>Last Name</label>
               <input type="text" name="last-name" placeholder="Last Name" />
             </div>
           </form>

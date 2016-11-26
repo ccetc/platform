@@ -26,7 +26,7 @@ export class Tasks extends React.Component {
         <a onClick={ this._handleToggleTasks.bind(this) }>
           <i className="ellipsis vertical icon" />
         </a>
-        <Transition transitionName="expanded" transitionEnterTimeout={500} transitionLeaveTimeout={500} transitionAppear={true} transitionAppearTimeout={500}>
+        <Transition transitionName="expanded" transitionEnterTimeout={250} transitionLeaveTimeout={250} transitionAppear={true} transitionAppearTimeout={250}>
           { show && <div className="chrome-tasks-overlay" onClick={ this._handleToggleTasks.bind(this) } /> }
           { show &&
             <div className="chrome-tasks">

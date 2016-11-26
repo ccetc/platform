@@ -21,7 +21,7 @@ class Modal extends React.Component {
   render() {
     const { open } = this.props
     return (
-      <Transition transitionName="expanded" transitionEnterTimeout={250} transitionLeaveTimeout={250} transitionAppear={true} transitionAppearTimeout={250}>
+      <Transition transitionName="expanded" transitionEnterTimeout={500} transitionLeaveTimeout={500} transitionAppear={true} transitionAppearTimeout={500}>
         { open &&
           <div className="chrome-modal">
             { this.props.children }

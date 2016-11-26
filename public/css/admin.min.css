@@ -605,8 +605,9 @@
 .chrome-more > a {
   display: block;
   text-align: center;
-  padding: 15px;
-  line-height: 15px;
+  padding: 14px;
+  font-size: 17px;
+  line-height: 17px;
   color: #888;
 }
 .chrome-title {
@@ -673,10 +674,10 @@
 }
 @media only screen and (max-width: 414px) {
   .chrome-tasks {
-    transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-    -webkit-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-    -moz-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-    -ms-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+    transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+    -webkit-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+    -moz-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+    -ms-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
     bottom: 0;
     left: 0;
     right: 0;
@@ -753,10 +754,10 @@
   line-height: 48px;
 }
 .chrome-modal {
-  transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -webkit-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -moz-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -ms-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -webkit-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -moz-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -ms-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   z-index: 50;
   position: fixed;
   top: 0;
