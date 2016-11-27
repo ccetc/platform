@@ -1,9 +1,12 @@
 import { Router } from 'express'
-import service from 'server/middleware/service'
-import project from '../models/project'
+import resources from 'server/middleware/resources'
+import Project from '../models/project'
 
 var router = Router()
 
-router.use('/projects', service(project))
+router.use(resources({
+  path: '/projects',
+  model: Project
+}))
 
 export default router

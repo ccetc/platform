@@ -1,5 +1,4 @@
 import React from 'react'
-import Transition from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 import * as actions from './actions'
@@ -7,7 +6,8 @@ import * as actions from './actions'
 class Session extends React.Component {
 
   static childContextTypes = {
-    socket: React.PropTypes.object
+    socket: React.PropTypes.object,
+    session: React.PropTypes.object
   }
 
   static contextTypes = {
@@ -72,8 +72,12 @@ class Session extends React.Component {
   }
 
   getChildContext() {
+    const { signout } = this.props
     return {
-      socket: this.socket
+      socket: this.socket,
+      session: {
+        signout
+      }
     }
   }
 

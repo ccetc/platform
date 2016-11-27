@@ -63,12 +63,6 @@ export class Drawer extends React.Component {
                   Account
                 </div>
               </div>
-              <div className="chrome-app">
-                <div className="chrome-app-title" onClick={this._handleSignout.bind(this)}>
-                  <i className="power icon" />
-                  Sign Out
-                </div>
-              </div>
             </div>
           </div>
         }
@@ -79,7 +73,6 @@ export class Drawer extends React.Component {
   componentDidUpdate(prevProps) {
     const { route } = this.props
     if(prevProps.route != route) {
-      console.log(route)
       this.context.router.push({ pathname: route, state: 'static' })
     }
   }
@@ -94,10 +87,6 @@ export class Drawer extends React.Component {
 
   _handleTransitionTo(route) {
     this.props.onTransitionTo(route)
-  }
-
-  _handleSignout() {
-    this.props.onSignout()
   }
 
 }

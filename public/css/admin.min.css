@@ -909,7 +909,7 @@
   cursor: pointer;
 }
 .form-header-cancel {
-  flex: 0 0 100px;
+  flex: 0 0 50px;
 }
 .form-header-title {
   flex: 1;
@@ -919,7 +919,7 @@
   font-weight: bold;
 }
 .form-header-proceed {
-  flex: 0 0 100px;
+  flex: 0 0 50px;
   text-align: right;
 }
 .form-body {

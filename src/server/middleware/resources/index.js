@@ -3,7 +3,7 @@ import { Router } from 'express'
 import Error from 'server/utils/error'
 import _ from 'lodash'
 
-export default (model, options = {}) => {
+export default (options = {}) => {
 
   let fetchOptions = {}
   if(options.include) {
@@ -16,7 +16,7 @@ export default (model, options = {}) => {
     const skip = parseInt(req.query['$skip']) || 0
     const sort = req.query['$sort'] || null
 
-    const count = model.query(qb => {
+    const count = options.model.query(qb => {
 
       if(req.query['$exclude_ids']) {
         qb.whereNotIn('id', req.query['$exclude_ids'])
@@ -26,7 +26,7 @@ export default (model, options = {}) => {
 
     }).fetchAll()
 
-    const paged = model.query(qb => {
+    const paged = options.model.query(qb => {
 
       if(req.query['$exclude_ids']) {
         qb.whereNotIn('id', req.query['$exclude_ids'])
@@ -68,7 +68,7 @@ export default (model, options = {}) => {
 
   const get = (req, res, next) => {
 
-    model.where({ id: req.params.id }).fetch(fetchOptions).then(record => {
+    options.model.where({ id: req.params.id }).fetch(fetchOptions).then(record => {
 
       if(!record) {
         const error = new Error({ code: 404, message: 'unable to load record' })
@@ -88,7 +88,7 @@ export default (model, options = {}) => {
 
   const create = (req, res, next) => {
 
-    model.forge(req.body).save().then(record => {
+    options.model.forge(req.body).save().then(record => {
 
       if(!record) {
         const error = new Error({ code: 422, message: 'There were problems with your data' })
@@ -106,7 +106,7 @@ export default (model, options = {}) => {
 
   const update = (req, res, next) => {
 
-    model.where({ id: req.params.id }).fetch().then(record => {
+    options.model.where({ id: req.params.id }).fetch().then(record => {
 
       if(!record) {
         const error = new Error({ code: 404, message: 'unable to load record'})
@@ -132,7 +132,7 @@ export default (model, options = {}) => {
 
   const patch = (req, res, next) => {
 
-    model.where({ id: req.params.id }).fetch().then(record => {
+    options.model.where({ id: req.params.id }).fetch().then(record => {
 
       if(!record) {
         const error = new Error({ code: 404, message: 'unable to load record'})
@@ -158,7 +158,7 @@ export default (model, options = {}) => {
 
   const remove = (req, res, next) => {
 
-    model.where({ id: req.params.id }).fetch().then(record => {
+    options.model.where({ id: req.params.id }).fetch().then(record => {
 
       if(!record) {
         const error = new Error({ code: 404, message: 'unable to load record'})
@@ -181,14 +181,14 @@ export default (model, options = {}) => {
 
   }
 
-  const service = Router()
-  service.get('/', find)
-  service.post('/', create)
-  service.get('/:id', get)
-  service.put('/:id', update)
-  service.patch('/:id', patch)
-  service.delete('/:id', remove)
+  const resources = Router()
+  resources.get(`${options.path}`, find)
+  resources.post(`${options.path}`, create)
+  resources.get(`${options.path}/:id`, get)
+  resources.put(`${options.path}/:id`, update)
+  resources.patch(`${options.path}/:id`, patch)
+  resources.delete(`${options.path}/:id`, remove)
 
-  return service
+  return resources
 
 }

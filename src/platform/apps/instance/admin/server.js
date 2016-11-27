@@ -1,15 +1,31 @@
 import { Router } from 'express'
-import service from 'server/middleware/service'
+import resources from 'server/middleware/resources'
 import App from 'platform/models/app'
 import Asset from 'platform/models/asset'
 import User from 'platform/models/user'
-import AppSerializer from './serializers/app_serializer'
-import AssetSerializer from './serializers/asset_serializer'
-import UserSerializer from './serializers/user_serializer'
+import AppSerializer from 'platform/serializers/app_serializer'
+import AssetSerializer from 'platform/serializers/asset_serializer'
+import UserSerializer from 'platform/serializers/user_serializer'
 
 const admin = Router()
-admin.use('/apps', service(App, { serializer: AppSerializer }))
-admin.use('/assets', service(Asset, { serializer: AssetSerializer }))
-admin.use('/users', service(User, { serializer: UserSerializer, include: ['photo'] }))
+
+admin.use(resources({
+  path: '/apps',
+  model: App,
+  serializer: AppSerializer
+}))
+
+admin.use(resources({
+  path: '/assets',
+  model: Asset,
+  serializer: AssetSerializer
+}))
+
+admin.use(resources({
+  path: '/users',
+  model: User,
+  serializer: UserSerializer,
+  include: ['photo']
+}))
 
 export default admin

@@ -3,8 +3,13 @@ import Card from 'ui/components/card'
 import Container from 'ui/components/container'
 import Page from 'portals/admin/components/page'
 import Edit from './edit'
+import Password from './password'
 
 class Account extends React.Component {
+
+  static contextTypes = {
+    session: React.PropTypes.object
+  }
 
   render() {
     return (
@@ -23,7 +28,9 @@ class Account extends React.Component {
       title: 'Account',
       permissions: [],
       tasks: [
-        { label: 'Edit Profile', component: <Edit /> }
+        { label: 'Edit Profile', component: <Edit /> },
+        { label: 'Change Password', component: <Password /> },
+        { label: 'Sign Out', handler: this._handleSignout.bind(this) }
       ]
     }
   }
@@ -39,11 +46,14 @@ class Account extends React.Component {
     }
   }
 
+  _handleSignout() {
+    this.context.session.signout()
+  }
 
 }
 
 const mapEndpointsToProps = (props) => ({
-  user: `/admin/instance/users/1`
+  user: '/admin/account/account'
 })
 
 export default Container(mapEndpointsToProps)(Account)

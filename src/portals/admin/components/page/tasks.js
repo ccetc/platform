@@ -59,6 +59,8 @@ export class Tasks extends React.Component {
         this.context.router.push(tasks[task].route)
       } else if(tasks[task].component){
         this.props.onOpenModal()
+      } else if(tasks[task].handler){
+        tasks[task].handler()
       }
     }
   }

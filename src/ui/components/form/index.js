@@ -1,4 +1,5 @@
 import React from 'react'
+import $ from 'jquery'
 
 class Form extends React.Component {
 
@@ -26,7 +27,7 @@ class Form extends React.Component {
           </div>
         </div>
         <div className="form-body">
-          <form className="ui form">
+          <form className="ui form" ref="form">
             {fields.map((field, index) => {
               return (
                 <div key={`field_${index}`} className="field">
@@ -39,6 +40,11 @@ class Form extends React.Component {
         </div>
       </div>
     )
+  }
+
+  componentDidMount() {
+    const input = $(this.refs.form).find('input:first')
+    setTimeout(function() { input.focus() }, 500)
   }
 
   _handleClose() {
