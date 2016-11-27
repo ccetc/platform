@@ -9,6 +9,7 @@ export class Flash extends React.Component {
   static propTypes: {
     message: React.PropTypes.string.isRequired,
     style: React.PropTypes.string.isRequired,
+    onSet: React.PropTypes.func.isRequired,
     onClear: React.PropTypes.func.isRequired
   }
 
@@ -18,17 +19,32 @@ export class Flash extends React.Component {
       <Transition transitionName="expanded" transitionEnterTimeout={250} transitionLeaveTimeout={250} transitionAppear={true} transitionAppearTimeout={250}>
         {message &&
           <div className={`chrome-flash ${style}`}>
-            <p>{message}</p>
+            <p>
+              { this._getIcon(style) }
+              {message}
+            </p>
           </div>
         }
       </Transition>
     )
   }
 
-  componentDidMount() {
+  componentDidUpdate(prevProps) {
     const { message, onClear } = this.props
-    if(message) {
-      setTimeout(onClear, 5000)
+    if(prevProps.message !== message && message) {
+      window.setTimeout(onClear, 2500)
+    }
+  }
+
+  _getIcon(style) {
+    if(style == 'success') {
+      return <i className="check circle icon" />
+    } else if(style == 'info') {
+      return <i className="info circle icon" />
+    } else if(style == 'warning') {
+      return <i className="warning sign icon" />
+    } else if(style == 'error') {
+      return <i className="remove circle icon" />
     }
   }
 
@@ -40,6 +56,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
+  onSet: actions.set,
   onClear: actions.clear
 }
 

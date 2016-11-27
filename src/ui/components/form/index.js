@@ -4,7 +4,14 @@ import $ from 'jquery'
 class Form extends React.Component {
 
   static contextTypes = {
-    modal: React.PropTypes.object
+    modal: React.PropTypes.object,
+    flash: React.PropTypes.object
+  }
+
+  static propTypes = {
+    title: React.PropTypes.string,
+    fields: React.PropTypes.array,
+    successMessage: React.PropTypes.string
   }
 
   render() {
@@ -13,7 +20,7 @@ class Form extends React.Component {
       <div className="form">
         <div className="form-header">
           <div className="form-header-cancel">
-            <a onClick={ this._handleClose.bind(this) }>
+            <a onClick={ this._handleCancel.bind(this) }>
               Cancel
             </a>
           </div>
@@ -21,7 +28,7 @@ class Form extends React.Component {
             { title }
           </div>
           <div className="form-header-proceed">
-            <a onClick={ this._handleClose.bind(this) }>
+            <a onClick={ this._handleSave.bind(this) }>
               Save
             </a>
           </div>
@@ -47,7 +54,13 @@ class Form extends React.Component {
     setTimeout(function() { input.focus() }, 500)
   }
 
-  _handleClose() {
+  _handleCancel() {
+    this.context.modal.close()
+  }
+
+  _handleSave() {
+    const message = this.props.successMessage || 'Your form was successfully saved!'
+    this.context.flash.set('success', message)
     this.context.modal.close()
   }
 

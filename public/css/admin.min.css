@@ -364,10 +364,18 @@
   -o-transform: translateY(0);
   transform: translateY(0);
 }
-.chrome .chrome-flash p {
-  margin: 0;
-  text-align: center;
-  margin: auto;
+@media only screen and (max-width: 767px) {
+  .chrome .chrome-flash i {
+    font-size: 1.8em;
+    display: block;
+    margin: 0 auto;
+  }
+  .chrome .chrome-flash p {
+    font-size: 1.3em;
+    margin: 0;
+    text-align: center;
+    margin: auto;
+  }
 }
 .chrome-flash {
   color: #FFF;

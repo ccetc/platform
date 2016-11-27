@@ -22,7 +22,7 @@ class Index extends React.Component {
         { label: 'Email', key: 'email' }
       ],
       sort: { key: 'created_at', order: 'desc' },
-      entity: 'contact',
+      entity: 'user',
       empty: 'There are no users',
       recordActions: [
         { label: 'edit', icon: 'edit', redirect: '/admin/instance/users/#{id}/edit'}
