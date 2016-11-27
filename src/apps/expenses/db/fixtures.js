@@ -26,35 +26,43 @@ exports.seed = (knex, Promise) => {
       {
         instance_id: 1,
         project_id: 1,
-        user_id: 2
+        user_id: 64
       }, {
         instance_id: 1,
         project_id: 1,
-        user_id: 80
+        user_id: 54
       }, {
         instance_id: 1,
         project_id: 1,
-        user_id: 5
+        user_id: 49
       }, {
         instance_id: 1,
         project_id: 1,
-        user_id: 4
+        user_id: 95
       }, {
         instance_id: 1,
         project_id: 1,
+        user_id: 63
+      }, {
+        instance_id: 1,
+        project_id: 2,
+        user_id: 13
+      }, {
+        instance_id: 1,
+        project_id: 2,
+        user_id: 48
+      }, {
+        instance_id: 1,
+        project_id: 3,
         user_id: 19
       }, {
         instance_id: 1,
-        project_id: 1,
-        user_id: 70
+        project_id: 21,
+        user_id: 19
       }, {
         instance_id: 1,
-        project_id: 1,
-        user_id: 9
-      }, {
-        instance_id: 1,
-        project_id: 1,
-        user_id: 72
+        project_id: 3,
+        user_id: 1
       }
     ])
   })
