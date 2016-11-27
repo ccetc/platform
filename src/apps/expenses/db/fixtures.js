@@ -53,12 +53,16 @@ exports.seed = (knex, Promise) => {
         user_id: 48
       }, {
         instance_id: 1,
+        project_id: 2,
+        user_id: 1
+      }, {
+        instance_id: 1,
         project_id: 3,
         user_id: 19
       }, {
         instance_id: 1,
-        project_id: 21,
-        user_id: 19
+        project_id: 3,
+        user_id: 21
       }, {
         instance_id: 1,
         project_id: 3,
