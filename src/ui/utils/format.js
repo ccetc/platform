@@ -28,6 +28,8 @@ class Format extends React.Component {
       return Email(this.props)
     } else if(format === 'raw') {
       return Raw(this.props)
+    } else if(format === 'element') {
+      return Element(this.props)
     } else if(this.props.value === '') {
       return Empty(this.props)
     } else {
@@ -39,6 +41,10 @@ class Format extends React.Component {
 
 const Default = (props) => {
   return <span>{props.value}</span>
+}
+
+const Element = (props) => {
+  return <props.value />
 }
 
 const Raw = (props) => {

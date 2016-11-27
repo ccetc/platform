@@ -963,3 +963,14 @@
   height: 32px;
   margin-right: 10px;
 }
+.project-members {
+  display: flex;
+  flex-wrap: wrap;
+}
+.project-member {
+  flex: 0 0 calc(20%);
+  padding: 5px;
+}
+.project-member img {
+  margin: 0 !important;
+}
