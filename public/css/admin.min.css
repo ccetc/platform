@@ -385,8 +385,8 @@
   }
 }
 .chrome-flash {
-  color: #FFF;
   padding: 15px;
+  color: #FFF;
 }
 .chrome-flash.info {
   background-color: #2185D0;

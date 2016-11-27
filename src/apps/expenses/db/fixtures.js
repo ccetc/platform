@@ -45,10 +45,14 @@ exports.seed = (knex, Promise) => {
   .then(() => {
     return knex('expense_types').del()
   })
-  // .then(() => {
-  //   return knex('expense_types').insert([
-  //   ])
-  // })
+  .then(() => {
+    return knex('expense_types').insert([
+      {
+        title: 'Test Expense Type',
+        code: '1234'
+      }
+    ])
+  })
   .then(() => {
     return knex('advances').del()
   })

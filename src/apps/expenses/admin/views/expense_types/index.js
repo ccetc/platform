@@ -1,11 +1,55 @@
 import React from 'react'
-import { Route, IndexRoute } from 'react-router'
-import List from './list'
+import { Link } from 'react-router'
+import Page from 'portals/admin/components/page'
+import Collection from 'ui/components/collection'
+import New from './new'
 
-const routes = (
-  <Route path="expense_types">
-    <IndexRoute component={List} />
-  </Route>
-)
+class Index extends React.Component {
 
-export default routes
+  render() {
+    return (
+      <Page {...this._getMain()}>
+        <Collection {...this._getCollection()} />
+      </Page>
+    )
+  }
+
+  _getCollection() {
+    return {
+      endpoint: '/admin/expenses/expense_types',
+      columns: [
+        { label: 'Title', key: 'title', primary: true, format: TitleCell },
+        { label: 'Code', key: 'code', primary: true }
+      ],
+      sort: { key: 'created_at', order: 'desc' },
+      entity: 'expense_type',
+      empty: 'There are no expense_types',
+      recordActions: [
+        { label: 'edit', icon: 'edit', redirect: '/admin/expenses/expense_types/#{id}/edit'}
+      ]
+    }
+  }
+
+  _getMain() {
+    return {
+      back: '/admin',
+      title: 'Expense Types',
+      task: {
+        label: 'New Expense Type',
+        icon: 'plus',
+        component: <New />
+      }
+    }
+  }
+
+}
+
+var TitleCell = (props) => {
+  return (
+    <Link to={`/admin/expenses/expense_types/${props.id}` }>
+      {props.title}
+    </Link>
+  )
+}
+
+export default Index

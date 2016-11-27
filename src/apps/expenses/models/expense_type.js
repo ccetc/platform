@@ -4,7 +4,7 @@ import unique from 'server/utils/unique_validation'
 
 export default bookshelf.Model.extend({
 
-  tableName: 'projects',
+  tableName: 'expense_types',
 
   hasTimestamps: ['created_at', 'updated_at'],
 
