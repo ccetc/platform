@@ -37,7 +37,7 @@ export class Tasks extends React.Component {
                   </div>
                 )
               })}
-              <div className="chrome-tasks-item" onClick={ this._handleToggleTasks.bind(this) }>
+              <div className="chrome-tasks-cancel" onClick={ this._handleToggleTasks.bind(this) }>
                 Cancel
               </div>
             </div>

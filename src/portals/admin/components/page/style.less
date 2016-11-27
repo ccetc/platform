@@ -112,7 +112,6 @@
 .chrome-tasks-list {
   z-index: 21;
   position: absolute;
-  border: 1px solid #CCC;
   @media only screen and (max-width: 414px) {
     .translate-y-transition(100%, 0, .25s);
     bottom: 0;
@@ -127,13 +126,19 @@
     left: 50%;
     margin-left: -160px;
   }
-  .chrome-tasks-item {
-    border-bottom: 1px solid #CCC;
+  .chrome-tasks-item,
+  .chrome-tasks-cancel {
     background-color: #FFF;
     display: block;
     padding: 15px;
     text-align: center;
     color: #1e70bf;
+  }
+  .chrome-tasks-cancel {
+    margin-top: 10px;
+  }
+  .chrome-tasks-item {
+    border-bottom: 1px solid #CCC;
     &:last-child {
       border-bottom: none;
     }
