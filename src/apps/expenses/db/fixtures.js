@@ -21,10 +21,43 @@ exports.seed = (knex, Promise) => {
   .then(() => {
     return knex('members').del()
   })
-  // .then(() => {
-  //   return knex('members').insert([
-  //   ])
-  // })
+  .then(() => {
+    return knex('members').insert([
+      {
+        instance_id: 1,
+        project_id: 1,
+        user_id: 2
+      }, {
+        instance_id: 1,
+        project_id: 1,
+        user_id: 80
+      }, {
+        instance_id: 1,
+        project_id: 1,
+        user_id: 5
+      }, {
+        instance_id: 1,
+        project_id: 1,
+        user_id: 4
+      }, {
+        instance_id: 1,
+        project_id: 1,
+        user_id: 19
+      }, {
+        instance_id: 1,
+        project_id: 1,
+        user_id: 70
+      }, {
+        instance_id: 1,
+        project_id: 1,
+        user_id: 9
+      }, {
+        instance_id: 1,
+        project_id: 1,
+        user_id: 72
+      }
+    ])
+  })
   .then(() => {
     return knex('vendors').del()
   })

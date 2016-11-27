@@ -1,11 +1,27 @@
 .project-members {
-  display: flex;
-  flex-wrap: wrap;
-}
-.project-member {
-  flex: 0 0 calc(100%/5);
-  padding: 5px;
-  img {
-    margin: 0 !important;
+  border: 1px solid #DDD;
+  .border-radius(10px);
+  .project-member {
+    &:first-child {
+      border: none;
+    }
+    border-top: 1px solid #DDD;
+    display: flex;
+    padding: 10px;
+    img {
+      flex: 0 0 40px;
+      margin: 0 !important;
+      display: block;
+      width: 40px;
+      height: 40px;
+    }
+    p {
+      flex: 1;
+      padding: 0 10px;
+      color: #666;
+      strong {
+        color: #000;
+      }
+    }
   }
 }

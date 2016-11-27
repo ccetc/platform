@@ -6,6 +6,7 @@ import ExpenseTypesShow from './views/expense_types/show'
 import expenses from './views/expenses'
 import ProjectsIndex from './views/projects/index'
 import ProjectsShow from './views/projects/show'
+import ProjectsMember from './views/projects/member'
 import trips from './views/trips'
 import vendors from './views/vendors'
 
@@ -20,6 +21,7 @@ const routes = (
     <Route path="projects">
       <IndexRoute component={ProjectsIndex} />
       <Route path=":id" component={ProjectsShow} />
+      <Route path=":project_id/members/:id" component={ProjectsMember} />
     </Route>
     {trips}
     {vendors}

@@ -6,7 +6,8 @@ import ContactSerializer from './serializers/contact_serializer'
 var router = Router()
 
 router.use(resources({
-  path: '/contacts',
+  name: 'contact',
+  path: 'contacts',
   model: Contact,
   serializer: ContactSerializer
 }))

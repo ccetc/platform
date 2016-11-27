@@ -1,16 +1,26 @@
 import { Router } from 'express'
 import resources from 'server/middleware/resources'
 import Project from '../models/project'
+import Member from '../models/member'
+import MemberQuery from '../queries/member_query'
 import ExpenseType from '../models/expense_type'
 
 var router = Router()
 
 router.use(resources({
-  path: '/projects',
-  model: Project
+  name: 'project',
+  model: Project,
+  resources: [
+    {
+      name: 'member',
+      model: Member,
+      query: MemberQuery,
+      include: ['user.photo']
+    }
+  ]
 }))
 router.use(resources({
-  path: '/expense_types',
+  name: 'expense_type',
   model: ExpenseType
 }))
 

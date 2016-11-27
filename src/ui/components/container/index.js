@@ -32,8 +32,9 @@ export default (mapEndpointsToProps) => {
 
       _fetchResources() {
         const resources = mapEndpointsToProps(this.props)
+        const keys = Object.keys(resources)
         _.forOwn(resources, (endpoint, prop) => {
-          this.props.onFetchResource(prop, endpoint)
+          this.props.onFetchResource(keys, prop, endpoint)
         })
       }
 

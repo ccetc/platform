@@ -16,6 +16,7 @@ export const search = (req, res, next) => {
     })
     return res.status(200).json(json)
   }).catch(err => {
+    console.log(err)
     const error = new Error({ code: 500, message: err.message })
     return next(error)
   })

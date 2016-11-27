@@ -11,10 +11,11 @@ class Card extends React.Component {
     items: React.PropTypes.arrayOf(
       React.PropTypes.shape({
         label: React.PropTypes.string,
-        content: React.PropTypes.string,
+        content: React.PropTypes.any,
         format: React.PropTypes.oneOfType([
           React.PropTypes.string,
-          React.PropTypes.element
+          React.PropTypes.element,
+          React.PropTypes.func
         ])
       })
     ),
@@ -27,9 +28,6 @@ class Card extends React.Component {
         onClick: React.PropTypes.func
       })
     )
-  }
-
-  static defaultProps = {
   }
 
   render() {
@@ -69,14 +67,12 @@ class Card extends React.Component {
               <div className="ui content">
                 <div className="ui list">
                   {items.map((item, index) => {
-                    if(item.content) {
-                      return (
-                        <div key={`item_${index}`} className="item">
-                          <div className="header">{item.label}</div>
-                          <Format format={item.format} value={item.content} />
-                        </div>
-                      )
-                    }
+                    return (
+                      <div key={`item_${index}`} className="item">
+                        <div className="header">{item.label}</div>
+                        <Format format={item.format} value={item.content} />
+                      </div>
+                    )
                   })}
                 </div>
               </div>

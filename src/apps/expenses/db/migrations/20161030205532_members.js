@@ -2,6 +2,8 @@ exports.up = function(knex, Promise) {
   return Promise.all([
     knex.schema.createTable('members', function (table) {
       table.increments('id').primary()
+      table.integer('instance_id').unsigned()
+      table.foreign('instance_id').references('instances.id')
       table.integer('project_id').unsigned()
       table.foreign('project_id').references('projects.id')
       table.integer('user_id').unsigned()

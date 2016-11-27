@@ -10,19 +10,22 @@ import UserSerializer from 'platform/serializers/user_serializer'
 const admin = Router()
 
 admin.use(resources({
-  path: '/apps',
+  name: 'app',
+  path: 'apps',
   model: App,
   serializer: AppSerializer
 }))
 
 admin.use(resources({
-  path: '/assets',
+  name: 'asset',
+  path: 'assets',
   model: Asset,
   serializer: AssetSerializer
 }))
 
 admin.use(resources({
-  path: '/users',
+  name: 'user',
+  path: 'users',
   model: User,
   serializer: UserSerializer,
   include: ['photo']

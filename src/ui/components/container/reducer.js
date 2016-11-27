@@ -22,15 +22,16 @@ export default (state = INITIAL_STATE, action) => {
     }
 
   case actionTypes.FETCH_RESOURCE_SUCCESS:
-    let data = (action.data.data) ? action.data.data : action.data
+    let data = {
+      ...state.container.data,
+      [action.prop]: (action.data.data) ? action.data.data : action.data
+    }
+    let status = _.isEqual(Object.keys(data).sort(), action.keys.sort()) ? 'loaded' : state.container.status
     return {
       ...state,
       container: {
-        data: {
-          ...state.container.data,
-          [action.prop]: data
-        },
-        status: 'loaded'
+        data,
+        status
       }
     }
 

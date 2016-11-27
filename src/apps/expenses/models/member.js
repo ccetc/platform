@@ -1,21 +1,25 @@
 import checkit from  'checkit'
 import bookshelf from 'server/services/bookshelf'
-import unique from 'server/utils/unique_validation'
-import member from './member'
+import project from './project'
+import user from 'platform/models/user'
 
 export default bookshelf.Model.extend({
 
-  tableName: 'projects',
+  tableName: 'members',
 
   hasTimestamps: ['created_at', 'updated_at'],
 
   rules: {
-    title: ['required', unique('users', 'email')],
-    code: ['required', unique('users', 'email')]
+    user_id: ['required'],
+    project_id: ['required']
   },
 
-  members: function() {
-    return this.hasMany(member, 'project_id')
+  project: function() {
+    return this.belongsTo(project, 'project_id')
+  },
+
+  user: function() {
+    return this.belongsTo(user, 'user_id')
   },
 
   initialize: function(attrs, opts) {

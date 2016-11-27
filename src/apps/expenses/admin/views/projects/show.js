@@ -1,14 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router'
 import Card from 'ui/components/card'
 import Container from 'ui/components/container'
 import Page from 'portals/admin/components/page'
 import Edit from './edit'
 
 class Show extends React.Component {
-
-  static contextTypes = {
-    flash: React.PropTypes.object
-  }
 
   render() {
     return (
@@ -35,48 +32,39 @@ class Show extends React.Component {
   }
 
   _getCard() {
-    const { project } = this.props
+    const { project, members } = this.props
     return {
       items: [
         { label: 'Code ', content: project.code, format: 'code' },
-        { label: 'Members ', content: Members, format: 'element' }
+        { label: 'Members ', content: members, format: Members }
       ]
     }
   }
 
 }
 
-const Members = () => (
-  <div className="project-members">
-    <div className="project-member">
-      <img src="/images/sharon-anderson150x150.jpg" className="ui circular image" />
+const Members = (props) => {
+  const members = props.value
+  return (
+    <div className="project-members">
+      {members.map((member, index) => {
+        return (
+          <Link key={`member_${index}`} className="project-member" to={`/admin/expenses/projects/${member.project_id}/members/${member.id}`}>
+            <img src={ member.user.photo.url } className="ui circular image" title={ member.user.full_name } />
+            <p>
+              <strong>{member.user.full_name}</strong><br />
+              {member.user.email}
+            </p>
+          </Link>
+        )
+      })}
     </div>
-    <div className="project-member">
-      <img src="/images/Khulani-Mkhonza150px.jpg" className="ui circular image" />
-    </div>
-    <div className="project-member">
-      <img src="/images/jim-blizzard150.jpg" className="ui circular image" />
-    </div>
-    <div className="project-member">
-      <img src="/images/karim-beers150.jpg" className="ui circular image" />
-    </div>
-    <div className="project-member">
-      <img src="/images/sandy.jpg" className="ui circular image" />
-    </div>
-    <div className="project-member">
-      <img src="/images/Aloja-Airwele.jpg" className="ui circular image" />
-    </div>
-    <div className="project-member">
-      <img src="/images/theresa-emerick150.jpg" className="ui circular image" />
-    </div>
-    <div className="project-member">
-      <img src="/images/hector-chang-150px.jpg" className="ui circular image" />
-    </div>
-  </div>
-)
+  )
+}
 
 const mapEndpointsToProps = (props) => ({
-  project: `/admin/expenses/projects/${props.params.id}`
+  project: `/admin/expenses/projects/${props.params.id}`,
+  members: `/admin/expenses/projects/${props.params.id}/members`
 })
 
 export default Container(mapEndpointsToProps)(Show)

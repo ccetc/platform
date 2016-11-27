@@ -1,194 +1,237 @@
 import Promise from 'bluebird'
 import { Router } from 'express'
+import pluralize from 'pluralize'
 import Error from 'server/utils/error'
 import _ from 'lodash'
 
 export default (options = {}) => {
 
-  let fetchOptions = {}
-  if(options.include) {
-    fetchOptions.withRelated = options.include
-  }
+  const service = (options) => {
 
-  const find = (req, res, next) => {
+    let fetchOptions = {}
+    if(options.include) {
+      fetchOptions.withRelated = options.include
+    }
 
-    const limit = parseInt(req.query['$limit']) || 50
-    const skip = parseInt(req.query['$skip']) || 0
-    const sort = req.query['$sort'] || null
+    const find = (req, res, next) => {
 
-    const count = options.model.query(qb => {
+      const limit = parseInt(req.query['$limit']) || 50
+      const skip = parseInt(req.query['$skip']) || 0
+      const sort = req.query['$sort'] || null
 
-      if(req.query['$exclude_ids']) {
-        qb.whereNotIn('id', req.query['$exclude_ids'])
-      }
+      const count = options.model.query(qb => {
 
-      qb.count('*')
+        if(options.query) {
+          const filters = {
+            ...req.query,
+            ...req.params
+          }
+          qb = options.query(qb, filters)
+        }
 
-    }).fetchAll()
+        if(req.query['$exclude_ids']) {
+          qb.whereNotIn('id', req.query['$exclude_ids'])
+        }
 
-    const paged = options.model.query(qb => {
+        qb.count('*')
 
-      if(req.query['$exclude_ids']) {
-        qb.whereNotIn('id', req.query['$exclude_ids'])
-      }
+      }).fetchAll()
 
-      if(limit > 0) {
-        qb.limit(limit)
-      }
+      const paged = options.model.query(qb => {
 
-      if(skip > 0) {
-        qb.offset(skip)
-      }
+        if(options.query) {
+          const filters = {
+            ...req.query,
+            ...req.params
+          }
+          qb = options.query(qb, filters)
+        }
 
-      if(sort) {
-        const sortKey = sort.replace('-', '')
-        const sortOrder = (sort[0] == '-') ? 'desc' : 'asc'
-        qb.orderBy(sortKey, sortOrder)
-      }
+        if(req.query['$exclude_ids']) {
+          qb.whereNotIn('id', req.query['$exclude_ids'])
+        }
 
-    }).fetchAll(fetchOptions)
+        if(limit > 0) {
+          qb.limit(limit)
+        }
 
-    Promise.all([count,paged]).then(response => {
+        if(skip > 0) {
+          qb.offset(skip)
+        }
 
-      const total = parseInt(response[0].toJSON()[0].count)
+        if(sort) {
+          const sortKey = sort.replace('-', '')
+          const sortOrder = (sort[0] == '-') ? 'desc' : 'asc'
+          qb.orderBy(sortKey, sortOrder)
+        }
 
-      const data = response[1].map(record => {
+      }).fetchAll(fetchOptions)
+
+      Promise.all([count,paged]).then(response => {
+
+        const total = parseInt(response[0].toJSON()[0].count)
+
+        const data = response[1].map(record => {
+          record = (options.serializer) ? options.serializer(record) : record
+          return (req.query['$select']) ? _.pick(record, ['id', ...req.query['$select']]) : record
+        })
+
+        res.json({ total, limit, skip, data })
+
+      }).catch(err => {
+        const error = new Error({ code: 500, message: err.message })
+        return next(error)
+      })
+
+    }
+
+    const get = (req, res, next) => {
+
+      options.model.where({ id: req.params.id }).fetch(fetchOptions).then(record => {
+
+        if(!record) {
+          const error = new Error({ code: 404, message: 'unable to load record' })
+          next(error)
+        }
+
         record = (options.serializer) ? options.serializer(record) : record
-        return (req.query['$select']) ? _.pick(record, ['id', ...req.query['$select']]) : record
+
+        res.status(200).json(record)
+
+      }).catch(err => {
+        const error = new Error({ code: 500, message: err.message })
+        return next(error)
       })
 
-      res.json({ total, limit, skip, data })
+    }
 
-    }).catch(err => {
-      const error = new Error({ code: 500, message: err.message })
-      return next(error)
-    })
+    const create = (req, res, next) => {
 
-  }
+      options.model.forge(req.body).save().then(record => {
 
-  const get = (req, res, next) => {
+        if(!record) {
+          const error = new Error({ code: 422, message: 'There were problems with your data' })
+          next(error)
+        }
 
-    options.model.where({ id: req.params.id }).fetch(fetchOptions).then(record => {
+        return res.status(201).json(record)
 
-      if(!record) {
-        const error = new Error({ code: 404, message: 'unable to load record' })
+      }).catch(err => {
+        const error = new Error({ code: 422, message: 'There were problems with your data', errors: err.toJSON() })
         next(error)
-      }
+      })
 
-      record = (options.serializer) ? options.serializer(record) : record
+    }
 
-      res.status(200).json(record)
+    const update = (req, res, next) => {
 
-    }).catch(err => {
-      const error = new Error({ code: 500, message: err.message })
-      return next(error)
-    })
+      options.model.where({ id: req.params.id }).fetch().then(record => {
 
-  }
+        if(!record) {
+          const error = new Error({ code: 404, message: 'unable to load record'})
+          next(error)
+        }
 
-  const create = (req, res, next) => {
+        return record.save(req.body).then(record => {
 
-    options.model.forge(req.body).save().then(record => {
+          res.status(201).json(record)
 
-      if(!record) {
-        const error = new Error({ code: 422, message: 'There were problems with your data' })
-        next(error)
-      }
+        }).catch(err => {
+          const error = new Error({ code: 500, message: 'application error', errors: err.toJSON() })
+          next(error)
+        })
 
-      return res.status(201).json(record)
-
-    }).catch(err => {
-      const error = new Error({ code: 422, message: 'There were problems with your data', errors: err.toJSON() })
-      next(error)
-    })
-
-  }
-
-  const update = (req, res, next) => {
-
-    options.model.where({ id: req.params.id }).fetch().then(record => {
-
-      if(!record) {
-        const error = new Error({ code: 404, message: 'unable to load record'})
-        next(error)
-      }
-
-      return record.save(req.body).then(record => {
-
-        res.status(201).json(record)
 
       }).catch(err => {
         const error = new Error({ code: 500, message: 'application error', errors: err.toJSON() })
         next(error)
       })
 
+    }
 
-    }).catch(err => {
-      const error = new Error({ code: 500, message: 'application error', errors: err.toJSON() })
-      next(error)
-    })
+    const patch = (req, res, next) => {
 
-  }
+      options.model.where({ id: req.params.id }).fetch().then(record => {
 
-  const patch = (req, res, next) => {
+        if(!record) {
+          const error = new Error({ code: 404, message: 'unable to load record'})
+          next(error)
+        }
 
-    options.model.where({ id: req.params.id }).fetch().then(record => {
+        return record.save(req.body).then(record => {
 
-      if(!record) {
-        const error = new Error({ code: 404, message: 'unable to load record'})
-        next(error)
-      }
+          res.status(201).json(record)
 
-      return record.save(req.body).then(record => {
+        }).catch(err => {
+          const error = new Error({ code: 500, message: 'application error', errors: err.toJSON() })
+          next(error)
+        })
 
-        res.status(201).json(record)
 
       }).catch(err => {
         const error = new Error({ code: 500, message: 'application error', errors: err.toJSON() })
         next(error)
       })
 
+    }
 
-    }).catch(err => {
-      const error = new Error({ code: 500, message: 'application error', errors: err.toJSON() })
-      next(error)
-    })
+    const remove = (req, res, next) => {
 
-  }
+      options.model.where({ id: req.params.id }).fetch().then(record => {
 
-  const remove = (req, res, next) => {
+        if(!record) {
+          const error = new Error({ code: 404, message: 'unable to load record'})
+          next(error)
+        }
 
-    options.model.where({ id: req.params.id }).fetch().then(record => {
+        return record.destroy().then(record => {
 
-      if(!record) {
-        const error = new Error({ code: 404, message: 'unable to load record'})
-        next(error)
-      }
+          res.status(201).json({})
 
-      return record.destroy().then(record => {
-
-        res.status(201).json({})
+        }).catch(err => {
+          const error = new Error({ code: 500, message: 'application error', errors: err.toJSON() })
+          next(error)
+        })
 
       }).catch(err => {
         const error = new Error({ code: 500, message: 'application error', errors: err.toJSON() })
         next(error)
       })
 
-    }).catch(err => {
-      const error = new Error({ code: 500, message: 'application error', errors: err.toJSON() })
-      next(error)
+    }
+
+    if(!options.path) {
+      options.path = pluralize(options.name)
+    }
+
+    const path = (options.prefix) ? `${options.prefix}/${options.path}` : options.path
+
+    const router = Router()
+    router.get(`/${path}`, find)
+    router.post(`/${path}`, create)
+    router.get(`/${path}/:id`, get)
+    router.put(`/${path}/:id`, update)
+    router.patch(`/${path}/:id`, patch)
+    router.delete(`/${path}/:id`, remove)
+
+    return router
+
+  }
+
+  const router = service(options)
+
+  if(options.resources) {
+
+    options.resources.map(resource => {
+
+      resource.prefix = (resource.on === 'collection') ? options.path : `${options.path}/:${options.name}_id`
+      const subrouter = service(resource)
+      router.use(subrouter)
+
     })
 
   }
 
-  const resources = Router()
-  resources.get(`${options.path}`, find)
-  resources.post(`${options.path}`, create)
-  resources.get(`${options.path}/:id`, get)
-  resources.put(`${options.path}/:id`, update)
-  resources.patch(`${options.path}/:id`, patch)
-  resources.delete(`${options.path}/:id`, remove)
-
-  return resources
+  return router
 
 }
