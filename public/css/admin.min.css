@@ -343,7 +343,7 @@
   left: 0;
   right: 0;
   z-index: 20;
-  height: 100px;
+  height: 50px;
   display: flex;
 }
 .chrome .chrome-flash.expanded-appear,
@@ -364,18 +364,11 @@
   -o-transform: translateY(0);
   transform: translateY(0);
 }
-@media only screen and (max-width: 767px) {
-  .chrome .chrome-flash i {
-    font-size: 1.8em;
-    display: block;
-    margin: 0 auto;
-  }
-  .chrome .chrome-flash p {
-    font-size: 1.3em;
-    margin: 0;
-    text-align: center;
-    margin: auto;
-  }
+.chrome .chrome-flash p {
+  margin: 0;
+  text-align: center;
+  margin: auto;
+  font-size: 1.3em;
 }
 .chrome-flash {
   color: #FFF;

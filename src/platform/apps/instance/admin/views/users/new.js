@@ -10,7 +10,7 @@ class New extends React.Component {
   _getForm() {
     return {
       title: 'New User',
-      successMessage: 'Your user was successfully updated',
+      successMessage: 'This user was successfully created',
       fields: [
         { label: 'First Name', name: 'first_name', type: 'textfield', placeholder: 'First Name' },
         { label: 'Last Name', name: 'last_name', type: 'textfield', placeholder: 'Last Name' },
