@@ -7,7 +7,6 @@ const admin = Router()
 
 admin.use(resource({
   name: 'account',
-  path: 'account',
   model: User,
   serializer: UserSerializer,
   include: ['photo']
