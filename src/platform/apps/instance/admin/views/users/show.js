@@ -46,7 +46,7 @@ class Show extends React.Component {
   }
 
   _handleResetPassword() {
-    this.context.flash.set('info', 'A password reset email has been sent to the user')
+    this.context.flash.set('info', 'A reset email has been sent to the user')
   }
 
 }
