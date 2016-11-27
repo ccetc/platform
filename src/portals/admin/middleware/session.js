@@ -7,7 +7,7 @@ session.get('/session', (req, res, next) => {
   User.where({ id: req.user.id }).fetch({ withRelated: ['photo'] }).then(user => {
     res.json({
       apps: [
-        { name: 'Contacts', icon: 'user', items: [
+        { name: 'Contacts', icon: 'users', items: [
           { name: 'Contacts', route: '/admin/crm/contacts' }
         ] },
         { name: 'Expenses', icon: 'dollar', items: [

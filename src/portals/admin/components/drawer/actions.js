@@ -13,9 +13,9 @@ export function chooseApp(index) {
   }
 }
 
-export function chooseItem(index) {
+export function transitionTo(route) {
   return {
-    type: actionTypes.CHOOSE_ITEM,
-    index
+    type: actionTypes.TRANSITION_TO,
+    route
   }
 }

@@ -41,8 +41,10 @@ export class Page extends React.Component {
             <div className="chrome-title">
               {title}
             </div>
-            { tasks && <Tasks tasks={ tasks } /> }
-            { task && <Task {...task} /> }
+            <div className="chrome-more">
+              { tasks && <Tasks tasks={ tasks } /> }
+              { task && <Task {...task} /> }
+            </div>
           </div>
           <div className="chrome-body">
             {this.props.children}
@@ -55,13 +57,13 @@ export class Page extends React.Component {
           <Helmet title="Platform | 403 Forbidden" />
           <div className="chrome-header">
             <div className="chrome-back"></div>
-            <div className="chrome-title">Access Denied</div>
+            <div className="chrome-title">Access Denied!</div>
             <div className="chrome-more"></div>
           </div>
           <div className="chrome-body">
             <div className="chrome-forbidden">
               <i className="warning sign icon" />
-              <p>You do not have the permission to access this content</p>
+              <p>You do not have permission to access this content</p>
             </div>
           </div>
         </div>

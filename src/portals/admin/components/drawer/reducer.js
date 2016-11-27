@@ -5,7 +5,7 @@ export const INITIAL_STATE = {
   drawer: {
     expanded: false,
     app: null,
-    item: null
+    route: null
   }
 }
 
@@ -20,7 +20,7 @@ export default (state = INITIAL_STATE, action) => {
       drawer: {
         expanded: !state.drawer.expanded,
         app: null,
-        item: null
+        route: null
       }
     }
 
@@ -34,13 +34,13 @@ export default (state = INITIAL_STATE, action) => {
       }
     }
 
-  case actionTypes.CHOOSE_ITEM:
+  case actionTypes.TRANSITION_TO:
     return {
       ...state,
       ...SEARCH_INITIAL_STATE,
       drawer: {
         ...state.drawer,
-        item: action.index,
+        route: action.route,
         expanded: false
       }
     }

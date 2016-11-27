@@ -11,6 +11,7 @@ import Gateway from './components/gateway'
 import Reset from './components/reset'
 import Session from './components/session'
 import Signin from './components/signin'
+import Account from 'platform/apps/account/admin/client'
 import Instance from 'platform/apps/instance/admin/client'
 import Crm from 'apps/crm/admin/client'
 import Expenses from 'apps/expenses/admin/client'
@@ -56,6 +57,9 @@ export default (
         <Route component={ Chrome } path="admin">
           <Route component={ Panel }>
           <IndexRoute component={ Dashboard } />
+          <Route path="account">
+            {Account}
+          </Route>
           <Route path="instance">
             {Instance}
           </Route>

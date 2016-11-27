@@ -17,7 +17,7 @@ export class Drawer extends React.Component {
     item: React.PropTypes.integer.isRequired,
     user: React.PropTypes.object.isRequired,
     onChooseApp: React.PropTypes.func.isRequired,
-    onChooseItem: React.PropTypes.func.isRequired,
+    onTransitionTo: React.PropTypes.func.isRequired,
     onSignout: React.PropTypes.func.isRequired
   }
 
@@ -36,9 +36,6 @@ export class Drawer extends React.Component {
                 <h2>{user.name}</h2>
                 <p>{user.email}</p>
               </div>
-              <div className="chrome-presence-settings">
-                <i className="setting icon" />
-              </div>
             </div>
             <div className="chrome-apps">
               {apps.map((app, appindex) => {
@@ -52,7 +49,7 @@ export class Drawer extends React.Component {
                       {appindex === this.props.app &&
                         <div className="chrome-app-menu">
                           {app.items.map((item, itemindex) => {
-                            return <div key={`appitem_${itemindex}`} className="chrome-app-item" onClick={this._handleChooseItem.bind(this, itemindex)}>{item.name}</div>
+                            return <div key={`appitem_${itemindex}`} className="chrome-app-item" onClick={this._handleTransitionTo.bind(this, item.route)}>{item.name}</div>
                           })}
                         </div>
                       }
@@ -60,6 +57,12 @@ export class Drawer extends React.Component {
                   </div>
                 )
               })}
+              <div className="chrome-app">
+                <div className="chrome-app-title" onClick={this._handleTransitionTo.bind(this, '/admin/account')}>
+                  <i className="user icon" />
+                  Account
+                </div>
+              </div>
               <div className="chrome-app">
                 <div className="chrome-app-title" onClick={this._handleSignout.bind(this)}>
                   <i className="power icon" />
@@ -74,9 +77,10 @@ export class Drawer extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { apps, app, item } = this.props
-    if(prevProps.item != item) {
-      this.context.router.push({ pathname: apps[app].items[item].route, state: 'static' })
+    const { route } = this.props
+    if(prevProps.route != route) {
+      console.log(route)
+      this.context.router.push({ pathname: route, state: 'static' })
     }
   }
 
@@ -88,8 +92,8 @@ export class Drawer extends React.Component {
     this.props.onChooseApp(index)
   }
 
-  _handleChooseItem(index) {
-    this.props.onChooseItem(index)
+  _handleTransitionTo(route) {
+    this.props.onTransitionTo(route)
   }
 
   _handleSignout() {
@@ -102,14 +106,14 @@ const mapStateToProps = (state) => ({
   app: state.drawer.app,
   apps: state.session.apps,
   expanded: state.drawer.expanded,
-  item: state.drawer.item,
+  route: state.drawer.route,
   user: state.session.user
 })
 
 const mapDispatchToProps = {
   onToggle: actions.toggle,
   onChooseApp: actions.chooseApp,
-  onChooseItem: actions.chooseItem,
+  onTransitionTo: actions.transitionTo,
   onSignout: sessionActions.signout
 }
 

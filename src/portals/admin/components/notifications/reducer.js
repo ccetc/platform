@@ -4,7 +4,7 @@ import _ from 'lodash'
 export const INITIAL_STATE = {
   notifications: {
     queue: [],
-    unread: 1
+    unread: 0
   }
 }
 
