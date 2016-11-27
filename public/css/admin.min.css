@@ -343,7 +343,7 @@
   left: 0;
   right: 0;
   z-index: 20;
-  height: 50px;
+  height: 100px;
   display: flex;
 }
 .chrome .chrome-flash.expanded-appear,
@@ -368,7 +368,21 @@
   margin: 0;
   text-align: center;
   margin: auto;
-  font-size: 1.3em;
+}
+@media only screen and (max-width: 767px) {
+  .chrome .chrome-flash p {
+    font-size: 1.3em;
+  }
+  .chrome .chrome-flash i {
+    display: block;
+    margin: 0 auto;
+    font-size: 1.8em;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .chrome .chrome-flash p {
+    font-size: 1.3em;
+  }
 }
 .chrome-flash {
   color: #FFF;
@@ -682,7 +696,7 @@
   z-index: 21;
   position: absolute;
 }
-@media only screen and (max-width: 414px) {
+@media only screen and (max-width: 767px) {
   .chrome-tasks-list {
     transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
     -webkit-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
@@ -712,7 +726,7 @@
     transform: translateY(0);
   }
 }
-@media only screen and (min-width: 415px) {
+@media only screen and (min-width: 768px) {
   .chrome-tasks-list {
     transition: opacity 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
     -webkit-transition: opacity 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;

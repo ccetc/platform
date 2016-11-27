@@ -6,6 +6,10 @@ import Edit from './edit'
 
 class Show extends React.Component {
 
+  static contextTypes = {
+    flash: React.PropTypes.object
+  }
+
   render() {
     return (
       <Page {...this._getMain()}>
@@ -24,6 +28,7 @@ class Show extends React.Component {
       title: user.full_name,
       permissions: [],
       tasks: [
+        { label: 'Reset Password', handler: this._handleResetPassword.bind(this) },
         { label: 'Edit User', component: <Edit /> }
       ]
     }
@@ -40,6 +45,9 @@ class Show extends React.Component {
     }
   }
 
+  _handleResetPassword() {
+    this.context.flash.set('info', 'A password reset email has been sent to the user')
+  }
 
 }
 
