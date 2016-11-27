@@ -29,10 +29,15 @@ export class Drawer extends React.Component {
         { expanded &&
           <div key="chrome-drawer" className="chrome-drawer">
             <div className="chrome-presence">
-              <img src={user.photo} className="ui image circular" />
-              <div className="chrome-user">
+              <div className="chrome-presence-avatar">
+                <img src={user.photo} className="ui image circular" />
+              </div>
+              <div className="chrome-presence-identity">
                 <h2>{user.name}</h2>
                 <p>{user.email}</p>
+              </div>
+              <div className="chrome-presence-settings">
+                <i className="setting icon" />
               </div>
             </div>
             <div className="chrome-apps">

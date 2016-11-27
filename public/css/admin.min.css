@@ -247,28 +247,57 @@
   opacity: 0.2;
 }
 .chrome-presence {
-  flex: 0 0 55px;
+  flex: 0 0 50px;
   background-color: #000000;
-  padding: 10px 5px;
   color: #ffffff;
+  display: flex;
 }
-.chrome-presence img {
+.chrome-presence .chrome-presence-avatar {
+  flex: 0 0 50px;
+  padding: 8px;
+}
+.chrome-presence .chrome-presence-avatar img {
+  display: block;
   width: 34px;
   height: 34px;
-  float: left;
 }
-.chrome-presence .chrome-user {
-  margin-left: 50px;
+.chrome-presence .chrome-presence-identity {
+  flex: 1;
+  padding: 8px 0;
 }
-.chrome-presence .chrome-user h2 {
+.chrome-presence .chrome-presence-identity h2 {
   margin: 0;
   font-size: 16px;
   line-height: 17px;
 }
-.chrome-presence .chrome-user p {
+.chrome-presence .chrome-presence-identity p {
   margin: 0;
   font-size: 12px;
   line-height: 17px;
+}
+.chrome-presence .chrome-presence-settings {
+  flex: 0 0 50px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+.chrome-presence .chrome-presence-settings i {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  font-size: 20px;
+  color: #AAA;
+  border: 1px solid #AAA;
+  padding: 5px;
+  display: block;
+  width: 30px;
+  height: 30px;
+}
+.chrome-presence .chrome-presence-settings:hover i {
+  border: 1px solid #FFF;
+  color: #FFF;
 }
 .chrome-apps {
   flex: 1;
