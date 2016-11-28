@@ -7,7 +7,7 @@ import Edit from './edit'
 class Show extends React.Component {
 
   static contextTypes = {
-    flash: React.PropTypes.object
+    chrome: React.PropTypes.object
   }
 
   render() {
@@ -47,11 +47,11 @@ class Show extends React.Component {
   }
 
   _handleResetPassword() {
-    this.context.flash.set('success', 'A reset email has been sent to the user')
+    this.context.chrome.setFlash('success', 'A reset email has been sent to the user')
   }
 
   _handleSignOutAllDevices() {
-    this.context.flash.set('success', 'The user has been signed out of all devices')
+    this.context.chrome.setFlash('success', 'The user has been signed out of all devices')
 
   }
 

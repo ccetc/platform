@@ -1,6 +1,5 @@
 import chrome from './components/chrome/reducer'
 import drawer from './components/drawer/reducer'
-import flash from './components/flash/reducer'
 import forgot from './components/forgot/reducer'
 import notifications from './components/notifications/reducer'
 import page from './components/page/reducer'
@@ -18,7 +17,6 @@ const Reducer = (state, action) => {
   const reducers = {
     chrome,
     drawer,
-    flash,
     forgot,
     notifications,
     page,
@@ -35,17 +33,27 @@ const Reducer = (state, action) => {
 
   if(reducers[namespace]) {
 
-    return {
-      ...state,
-      ...reducers[namespace](state, action)
+    if(action.cid) {
+      return {
+        ...state,
+        [namespace]: {
+          ...state[namespace],
+          [action.cid]: reducers[namespace](state[namespace][action.cid], action)
+        }
+      }
+    } else {
+      return {
+        ...state,
+        ...reducers[namespace](state, action)
+      }
     }
+
 
   } else if(state === undefined) {
 
     return {
       ...chrome(undefined, action),
       ...drawer(undefined, action),
-      ...flash(undefined, action),
       ...forgot(undefined, action),
       ...notifications(undefined, action),
       ...page(undefined, action),
@@ -53,9 +61,9 @@ const Reducer = (state, action) => {
       ...session(undefined, action),
       ...signin(undefined, action),
       ...collection(undefined, action),
-      ...container(undefined, action),
       ...infinite(undefined, action),
-      ...tabs(undefined, action)
+      ...tabs(undefined, action),
+      container: []
     }
 
   } else {

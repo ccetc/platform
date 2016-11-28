@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
-import * as drawerActions from '../drawer/actions'
+import * as actions from './actions'
 import Search from '../search'
 
 export class Topbar extends React.Component {
@@ -15,7 +15,7 @@ export class Topbar extends React.Component {
     const { unread } = this.props
     return (
       <div className="chrome-topbar">
-        <div className="chrome-toggle" onClick={this._handleToggle.bind(this)}>
+        <div className="chrome-toggle" onClick={this._handleToggleDrawer.bind(this)}>
           <i className="sidebar icon" />
         </div>
         <Search />
@@ -29,8 +29,8 @@ export class Topbar extends React.Component {
     )
   }
 
-  _handleToggle() {
-    this.props.onToggle()
+  _handleToggleDrawer() {
+    this.props.onToggleDrawer()
   }
 
 }
@@ -40,7 +40,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  onToggle: drawerActions.toggle
+  onToggleDrawer: actions.toggleDrawer
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Topbar)

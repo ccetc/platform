@@ -1,15 +1,19 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import * as flashActions from '../flash/actions'
-import Flash from '../flash'
-import Drawer from '../drawer'
+import * as actions from './actions'
+import Flash from './flash'
+import Drawer from './drawer'
 import Topbar from './topbar'
 import Notifications from '../notifications'
 
 export class Chrome extends React.Component {
 
   static childContextTypes = {
-    flash: React.PropTypes.object
+    chrome: React.PropTypes.object
+  }
+
+  static contextTypes = {
+    router: React.PropTypes.object
   }
 
   static propTypes: {
@@ -29,30 +33,45 @@ export class Chrome extends React.Component {
     )
   }
 
+  componentDidUpdate(prevProps) {
+    const { route } = this.props
+    if(prevProps.route != route) {
+      this.context.router.push(route)
+    }
+  }
+
   _handleSetFlash(style, message) {
-    this.props.set(style, message)
+    this.props.setFlash(style, message)
   }
 
   _handleClearFlash() {
-    this.props.clear()
+    this.props.clearFlash()
+  }
+
+  _handleTransitionTo(route) {
+    this.props.onTransitionTo(route)
   }
 
   getChildContext() {
     return {
-      flash: {
-        set: this._handleSetFlash.bind(this),
-        clear: this._handleClearFlash.bind(this)
+      chrome: {
+        setFlash: this._handleSetFlash.bind(this),
+        clearFlash: this._handleClearFlash.bind(this),
+        transitionTo: this._handleTransitionTo.bind(this)
       }
     }
   }
 
 }
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = (state) => ({
+  route: state.chrome.route
+})
 
 const mapDispatchToProps = {
-  set: flashActions.set,
-  clear: flashActions.clear
+  onTransitionTo: actions.transitionTo,
+  setFlash: actions.setFlash,
+  clearFlash: actions.clearFlash
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chrome)

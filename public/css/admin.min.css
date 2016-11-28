@@ -303,6 +303,64 @@
   text-align: center;
   vertical-align: middle;
 }
+.chrome .chrome-flash {
+  transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -webkit-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -moz-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -ms-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  height: 100px;
+  display: flex;
+}
+.chrome .chrome-flash.expanded-appear,
+.chrome .chrome-flash.expanded-enter,
+.chrome .chrome-flash.expanded-leave.expanded-leave-active {
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+.chrome .chrome-flash.expanded-appear.expanded-appear-active,
+.chrome .chrome-flash.expanded-enter.expanded-enter-active,
+.chrome .chrome-flash.expanded-leave {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+}
+.chrome .chrome-flash p {
+  margin: 0;
+  text-align: center;
+  margin: auto;
+  font-size: 1.3em;
+}
+.chrome .chrome-flash i {
+  display: block;
+  margin: 0 auto;
+  font-size: 1.8em;
+}
+.chrome-flash {
+  padding: 15px;
+  color: #FFF;
+}
+.chrome-flash.info {
+  background-color: #2185D0;
+}
+.chrome-flash.warning {
+  background-color: #F2711C;
+}
+.chrome-flash.success {
+  background-color: #21BA45;
+}
+.chrome-flash.error {
+  background-color: #DB2828;
+}
 .chrome-drawer {
   transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -webkit-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
@@ -461,73 +519,26 @@
   height: 1px;
   background-color: #EEE;
 }
-.chrome .chrome-flash {
-  transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -webkit-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -moz-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -ms-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 20;
-  height: 100px;
-  display: flex;
-}
-.chrome .chrome-flash.expanded-appear,
-.chrome .chrome-flash.expanded-enter,
-.chrome .chrome-flash.expanded-leave.expanded-leave-active {
-  -webkit-transform: translateY(-100%);
-  -moz-transform: translateY(-100%);
-  -ms-transform: translateY(-100%);
-  -o-transform: translateY(-100%);
-  transform: translateY(-100%);
-}
-.chrome .chrome-flash.expanded-appear.expanded-appear-active,
-.chrome .chrome-flash.expanded-enter.expanded-enter-active,
-.chrome .chrome-flash.expanded-leave {
-  -webkit-transform: translateY(0);
-  -moz-transform: translateY(0);
-  -ms-transform: translateY(0);
-  -o-transform: translateY(0);
-  transform: translateY(0);
-}
-.chrome .chrome-flash p {
-  margin: 0;
-  text-align: center;
-  margin: auto;
-  font-size: 1.3em;
-}
-.chrome .chrome-flash i {
-  display: block;
-  margin: 0 auto;
-  font-size: 1.8em;
-}
-.chrome-flash {
-  padding: 15px;
-  color: #FFF;
-}
-.chrome-flash.info {
-  background-color: #2185D0;
-}
-.chrome-flash.warning {
-  background-color: #F2711C;
-}
-.chrome-flash.success {
-  background-color: #21BA45;
-}
-.chrome-flash.error {
-  background-color: #DB2828;
-}
 .chrome-search {
   flex: 1;
   display: flex;
   background-color: #b21e1e;
 }
-.chrome-search i {
+.chrome-search > i {
   color: #FFFFFF;
   margin: 15px 0;
   flex: 0 0 45px;
+}
+.chrome-search .chrome-search-cancel {
+  flex: 0 0 45px;
+  padding: 15px;
+}
+.chrome-search .chrome-search-cancel i {
+  color: #cccccc;
+  cursor: pointer;
+}
+.chrome-search .chrome-search-cancel i:hover {
+  color: #FFFFFF;
 }
 .chrome-search .ui.input {
   flex: 1;

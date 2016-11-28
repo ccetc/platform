@@ -2,10 +2,21 @@
   flex: 1;
   display: flex;
   background-color: lighten(@primary_background_color, -10%);
-  i {
+  & > i {
     color: @primary_color;
     margin: 15px 0;
     flex: 0 0 45px;
+  }
+  .chrome-search-cancel {
+    flex: 0 0 45px;
+    padding: 15px;
+    i {
+      color: lighten(@primary_color, -20%);
+      cursor: pointer;
+      &:hover {
+        color: @primary_color;
+      }
+    }
   }
   .ui.input {
     flex: 1;

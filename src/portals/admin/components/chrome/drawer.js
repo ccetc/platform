@@ -7,7 +7,7 @@ import * as sessionActions from '../session/actions'
 export class Drawer extends React.Component {
 
   static contextTypes = {
-    router: React.PropTypes.object
+    chrome: React.PropTypes.object
   }
 
   static propTypes: {
@@ -17,7 +17,6 @@ export class Drawer extends React.Component {
     item: React.PropTypes.integer.isRequired,
     user: React.PropTypes.object.isRequired,
     onChooseApp: React.PropTypes.func.isRequired,
-    onTransitionTo: React.PropTypes.func.isRequired,
     onSignout: React.PropTypes.func.isRequired
   }
 
@@ -25,7 +24,7 @@ export class Drawer extends React.Component {
     const { apps, expanded, user } = this.props
     return (
       <Transition transitionName="expanded" transitionEnterTimeout={250} transitionLeaveTimeout={250} transitionAppear={true} transitionAppearTimeout={250}>
-        { expanded && <div key="chrome-drawer-overlay" className="chrome-drawer-overlay" onClick={this._handleToggle.bind(this)} /> }
+        { expanded && <div key="chrome-drawer-overlay" className="chrome-drawer-overlay" onClick={this._handleToggleDrawer.bind(this)} /> }
         { expanded &&
           <div key="chrome-drawer" className="chrome-drawer">
             <div className="chrome-presence">
@@ -70,39 +69,31 @@ export class Drawer extends React.Component {
     )
   }
 
-  componentDidUpdate(prevProps) {
-    const { route } = this.props
-    if(prevProps.route != route) {
-      this.context.router.push({ pathname: route, state: 'static' })
-    }
-  }
-
-  _handleToggle() {
-    this.props.onToggle()
+  _handleToggleDrawer() {
+    this.props.onToggleDrawer()
   }
 
   _handleChooseApp(index) {
     this.props.onChooseApp(index)
   }
 
-  _handleTransitionTo(route) {
-    this.props.onTransitionTo(route)
+  _handleTransitionTo(pathname) {
+    this.context.chrome.transitionTo({ pathname, state: 'static' })
   }
 
 }
 
 const mapStateToProps = (state) => ({
-  app: state.drawer.app,
+  app: state.chrome.drawer.app,
   apps: state.session.apps,
-  expanded: state.drawer.expanded,
-  route: state.drawer.route,
+  expanded: state.chrome.drawer.expanded,
+  route: state.chrome.drawer.route,
   user: state.session.user
 })
 
 const mapDispatchToProps = {
-  onToggle: actions.toggle,
+  onToggleDrawer: actions.toggleDrawer,
   onChooseApp: actions.chooseApp,
-  onTransitionTo: actions.transitionTo,
   onSignout: sessionActions.signout
 }
 

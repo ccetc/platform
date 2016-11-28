@@ -24,16 +24,21 @@ export class Search extends React.Component {
       <div className="chrome-search">
         <i className="search icon" />
         <div className="ui input">
-          <input type="text" placeholder="Search" ref="query" onFocus={this._handleBeginSearch.bind(this)} onChange={this._handleLookup.bind(this)} value={query} />
+          <input type="text" placeholder="Search" ref="query" onFocus={this._handleBeginSearch.bind(this)} onChange={this._handleLookup.bind(this)} onBlur={this._handleAbortSearch.bind(this)} value={query} />
         </div>
-        { active && <div key="chrome-search-overlay" className="chrome-search-overlay" onClick={this._handleAbortSearch.bind(this)}  /> }
+        { active && query.length > 0 &&
+          <div className="chrome-search-cancel" onClick={this._handleAbortSearch.bind(this)}>
+            <i className="remove circle icon" />
+          </div>
+        }
+        { active && <div className="chrome-search-overlay" onClick={this._handleAbortSearch.bind(this)}  /> }
         { active &&
           <div className="chrome-search-results">
             {Object.keys(results).map((model, modelIndex) => {
               if(results[model].length) {
                 return (
-                  <div className="chrome-search-section">
-                    <div key={`model_${modelIndex}`} className="chrome-search-model" >
+                  <div key={`model_${modelIndex}`} className="chrome-search-section">
+                    <div className="chrome-search-model" >
                       {model}
                     </div>
                     {results[model].map((result, index) => {
@@ -68,7 +73,8 @@ export class Search extends React.Component {
   }
 
   _handleAbortSearch() {
-    this.props.onAbortSearch()
+    const abort = this.props.onAbortSearch.bind(this)
+    setTimeout(function() { abort() }, 250)
   }
 
   _handleCompleteSearch(model, index) {

@@ -3,16 +3,12 @@
 import * as actionTypes from './action_types'
 import Api from 'server/utils/api'
 
-export const fetchResource = (keys, prop, endpoint) => {
+export const fetchResource = (cid, keys, prop, endpoint) => {
   return Api.get({
     endpoint,
-    meta: { prop, keys },
+    meta: { cid, prop, keys },
     request: actionTypes.FETCH_RESOURCE_REQUEST,
     success: actionTypes.FETCH_RESOURCE_SUCCESS,
     failure: actionTypes.FETCH_RESOURCE_FAILURE
   })
 }
-
-export const reset = () => ({
-  type: actionTypes.RESET
-})

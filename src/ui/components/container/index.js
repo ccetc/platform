@@ -7,10 +7,12 @@ export default (mapEndpointsToProps) => {
 
   return function wrapWithConnect(WrappedComponent) {
 
+    const cid = _.random(100000, 999999)
+
     class Container extends React.Component {
 
       render() {
-        const { status, data } = this.props.state
+        const { status, data } = this.props
         if(status === 'error') {
           return <div>Unable to load resources</div>
         } else if(status === 'loaded') {
@@ -24,10 +26,6 @@ export default (mapEndpointsToProps) => {
         this._fetchResources()
       }
 
-      componentWillUnmount() {
-        this.props.onReset()
-      }
-
       componentDidUpdate(prevProps) {
         if(prevProps.location.pathname != this.props.location.pathname) {
           this._fetchResources()
@@ -38,19 +36,19 @@ export default (mapEndpointsToProps) => {
         const resources = mapEndpointsToProps(this.props)
         const keys = Object.keys(resources)
         _.forOwn(resources, (endpoint, prop) => {
-          this.props.onFetchResource(keys, prop, endpoint)
+          this.props.onFetchResource(cid, keys, prop, endpoint)
         })
       }
 
     }
 
-    const mapStateToProps = state => ({
-      state: state.container
-    })
+    const mapStateToProps = (state, props) => {
+      console.log(props)
+      return (state.container && state.container[cid]) ? state.container[cid] : {}
+    }
 
     const mapDispatchToProps = {
-      onFetchResource: actions.fetchResource,
-      onReset: actions.reset
+      onFetchResource: actions.fetchResource
     }
 
     return connect(mapStateToProps, mapDispatchToProps)(Container)

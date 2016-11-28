@@ -51,8 +51,8 @@ export class Flash extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  style: state.flash.style,
-  message: state.flash.message
+  style: state.chrome.flash.style,
+  message: state.chrome.flash.message
 })
 
 const mapDispatchToProps = {
