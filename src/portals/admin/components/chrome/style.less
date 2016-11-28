@@ -45,10 +45,19 @@
   &.chrome-forgot {
     .translate-x-transition(100%, 0, .5s);
   }
-  h1,h3 {
+  &.chrome-reset-security {
+    .translate-x-transition(-100%, 0, .5s);
+  }
+  &.chrome-reset-password {
+    .translate-x-transition(100%, 0, .5s);
+  }
+  h1, h3, p {
     margin: 0 15px 15px;
     text-align: center;
     color: @primary_color;
+  }
+  label {
+    color: @primary_color !important;
   }
   button.ui.button {
     background-color: lighten(@primary_background_color, -10%);

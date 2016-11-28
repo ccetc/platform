@@ -7,8 +7,11 @@ import Activation from './components/activation'
 import Chrome from './components/chrome'
 import Dashboard from './components/dashboard'
 import Forgot from './components/forgot'
-import Gateway from './components/gateway'
-import Reset from './components/reset'
+import Transition from './components/transition'
+import Layout from './components/layout'
+import ResetClaim from './components/reset/claim'
+import ResetSecurity from './components/reset/security'
+import ResetPassword from './components/reset/password'
 import Session from './components/session'
 import Signin from './components/signin'
 import Account from 'platform/apps/account/admin/client'
@@ -48,22 +51,28 @@ class Panel extends React.Component {
 export default (
   <Route component={ Root }>
     <Route component={ Session }>
-      <Route component={ Gateway }>
-        <Route component={ Signin } path="admin/signin" />
-        <Route component={ Forgot } path="admin/forgot" />
+      <Route component={ Transition }>
+        <Route component={ Layout }>
+          <Route component={ Signin } path="admin/signin" />
+          <Route component={ Forgot } path="admin/forgot" />
+          <Route component={ Activation } path="admin/activation/:id" />
+          <Route component={ ResetSecurity } path="admin/reset/security" />
+          <Route component={ ResetPassword } path="admin/reset/password" />
+          <Route component={ ResetClaim } path="admin/reset/:id" />
+        </Route>
       </Route>
-      <Route component={ Activation } path="admin/activation/:id" />
-      <Route component={ Reset } path="admin/reset/:id" />
-        <Route component={ Chrome } path="admin">
+      <Route component={ Chrome } path="admin">
+        <Route component={ Transition }>
           <Route component={ Panel }>
-          <IndexRoute component={ Dashboard } />
-          {Account}
-          {Instance}
-          <Route path="crm">
-            {Crm}
-          </Route>
-          <Route path="expenses">
-            {Expenses}
+            <IndexRoute component={ Dashboard } />
+            {Account}
+            {Instance}
+            <Route path="crm">
+              {Crm}
+            </Route>
+            <Route path="expenses">
+              {Expenses}
+            </Route>
           </Route>
         </Route>
       </Route>

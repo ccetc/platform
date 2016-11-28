@@ -19,37 +19,31 @@ export class Signin extends React.Component {
   render() {
     const { flash, status } = this.props
     return (
-      <div className="chrome-session chrome-signin">
-        <div className="chrome-session-widget">
-          <h1>MyCCE</h1>
-          <h3>Cornell Cooperative Extension of Tompkins County</h3>
-          <form className="ui form" onSubmit={this._handleSubmit.bind(this)}>
-            {flash &&
-              <div className={`chrome-flash ${flash.style}`}>
-                {flash.message}
-              </div>
-            }
-            <div className="field email-field">
-              <div className="ui left icon input">
-                <i className="user icon"></i>
-                <input className="form-control" autoComplete="off" placeholder="Email" type="email" ref="email" />
-              </div>
-            </div>
-            <div className="field password-field">
-              <div className="ui left icon input">
-                <i className="lock icon"></i>
-                <input className="form-control" autoComplete="off" placeholder="Password" type="password" ref="password" />
-              </div>
-            </div>
-            <div className="field">
-              <button className={`ui fluid large ${(status == 'submitting') ? 'loading' : ''} button`}>Signin</button>
-            </div>
-            <div className="field">
-              <p><Link to="/admin/forgot">Forget your password?</Link></p>
-            </div>
-          </form>
+      <form className="ui form" onSubmit={this._handleSubmit.bind(this)}>
+        {flash &&
+          <div className={`chrome-flash ${flash.style}`}>
+            {flash.message}
+          </div>
+        }
+        <div className="field email-field">
+          <div className="ui left icon input">
+            <i className="user icon"></i>
+            <input className="form-control" autoComplete="off" placeholder="Email" type="email" ref="email" />
+          </div>
         </div>
-      </div>
+        <div className="field password-field">
+          <div className="ui left icon input">
+            <i className="lock icon"></i>
+            <input className="form-control" autoComplete="off" placeholder="Password" type="password" ref="password" />
+          </div>
+        </div>
+        <div className="field">
+          <button className={`ui fluid large ${(status == 'submitting') ? 'loading' : ''} button`}>Signin</button>
+        </div>
+        <div className="field">
+          <p><Link to="/admin/forgot">Forget your password?</Link></p>
+        </div>
+      </form>
     )
   }
 

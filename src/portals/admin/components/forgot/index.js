@@ -16,31 +16,25 @@ export class Forgot extends React.Component {
   render() {
     const { flash, status } = this.props
     return (
-      <div className="chrome-session chrome-forgot">
-        <div className="chrome-session-widget">
-          <h1>MyCCE</h1>
-          <h3>Cornell Cooperative Extension of Tompkins County</h3>
-          <form className="ui form" onSubmit={this._handleSubmit.bind(this)}>
-            {flash &&
-              <div className={`chrome-flash ${flash.style}`}>
-                {flash.message}
-              </div>
-            }
-            <div className="field">
-              <div className="ui left icon input">
-                <i className="user icon"></i>
-                <input className="form-control" autoComplete="off" placeholder="Email" type="email" ref="email" />
-              </div>
-            </div>
-            <div className="field">
-              <button className={`ui fluid large ${(status == 'submitting') ? 'loading' : ''} button`}>Reset Password</button>
-            </div>
-            <div className="field">
-              <p><Link to="/admin/signin">Back to Signin</Link></p>
-            </div>
-          </form>
+      <form className="ui form" onSubmit={this._handleSubmit.bind(this)}>
+        {flash &&
+          <div className={`chrome-flash ${flash.style}`}>
+            {flash.message}
+          </div>
+        }
+        <div className="field">
+          <div className="ui left icon input">
+            <i className="user icon"></i>
+            <input className="form-control" autoComplete="off" placeholder="Email" type="email" ref="email" />
+          </div>
         </div>
-      </div>
+        <div className="field">
+          <button className={`ui fluid large ${(status == 'submitting') ? 'loading' : ''} button`}>Reset Password</button>
+        </div>
+        <div className="field">
+          <p><Link to={{ pathname: '/admin/signin', state: 'back' }}>Back to Signin</Link></p>
+        </div>
+      </form>
     )
   }
 

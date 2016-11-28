@@ -1,5 +1,4 @@
 import React from 'react'
-import Transition from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
 import * as flashActions from '../flash/actions'
 import Flash from '../flash'
@@ -19,16 +18,13 @@ export class Chrome extends React.Component {
   }
 
   render() {
-    const { location, children } = this.props
-    const transitionName = location.state || 'next'
+    const { children } = this.props
     return (
       <div className="chrome">
         <Flash />
         <Drawer />
         <Topbar />
-        <Transition component="div" transitionName={ transitionName } transitionEnterTimeout={ 500 } transitionLeaveTimeout={ 500 }>
-          { React.cloneElement(children, { key: location.pathname }) }
-        </Transition>
+        { children }
       </div>
     )
   }
