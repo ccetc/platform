@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import * as actions from './actions'
-import Search from '../search'
+import Search from './search'
 
 export class Topbar extends React.Component {
 

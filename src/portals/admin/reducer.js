@@ -1,9 +1,7 @@
 import chrome from './components/chrome/reducer'
-import drawer from './components/drawer/reducer'
 import forgot from './components/forgot/reducer'
 import notifications from './components/notifications/reducer'
 import page from './components/page/reducer'
-import search from './components/search/reducer'
 import session from './components/session/reducer'
 import signin from './components/signin/reducer'
 
@@ -16,11 +14,9 @@ const Reducer = (state, action) => {
 
   const reducers = {
     chrome,
-    drawer,
     forgot,
     notifications,
     page,
-    search,
     session,
     signin,
     collection,
@@ -53,11 +49,9 @@ const Reducer = (state, action) => {
 
     return {
       ...chrome(undefined, action),
-      ...drawer(undefined, action),
       ...forgot(undefined, action),
       ...notifications(undefined, action),
       ...page(undefined, action),
-      ...search(undefined, action),
       ...session(undefined, action),
       ...signin(undefined, action),
       ...collection(undefined, action),

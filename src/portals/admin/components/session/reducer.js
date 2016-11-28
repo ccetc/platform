@@ -1,6 +1,4 @@
 import * as actionTypes from './action_types'
-import { INITIAL_STATE as DRAWER_INITIAL_STATE } from '../drawer/reducer'
-import { INITIAL_STATE as SEARCH_INITIAL_STATE } from '../search/reducer'
 
 const INITIAL_STATE = {
   session: {
@@ -78,8 +76,6 @@ export default (state = INITIAL_STATE, action) => {
   case actionTypes.SIGNOUT_SUCCESS:
     return {
       ...state,
-      ...SEARCH_INITIAL_STATE,
-      ...DRAWER_INITIAL_STATE,
       session: {
         apps: null,
         token: null,

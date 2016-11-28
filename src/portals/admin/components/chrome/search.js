@@ -87,12 +87,7 @@ export class Search extends React.Component {
 
 }
 
-const mapStateToProps = (state) => ({
-  active: state.search.active,
-  query: state.search.query,
-  results: state.search.results,
-  choice: state.search.choice
-})
+const mapStateToProps = (state) => state.chrome.search
 
 const mapDispatchToProps = {
   onBeginSearch: actions.beginSearch,

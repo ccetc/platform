@@ -10,6 +10,12 @@ export const INITIAL_STATE = {
       expanded: false,
       app: null,
       route: null
+    },
+    search: {
+      query: '',
+      active: false,
+      results: [],
+      choice: null
     }
   }
 }
@@ -17,6 +23,20 @@ export const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
 
   switch (action.type) {
+
+  case actionTypes.TRANSITION_TO:
+    return {
+      ...state,
+      chrome: {
+        ...state.chrome,
+        drawer: {
+          expanded: false,
+          app: null,
+          route: null
+        },
+        route: action.route
+      }
+    }
 
   case actionTypes.SET_FLASH:
     return {
@@ -67,17 +87,67 @@ export default (state = INITIAL_STATE, action) => {
       }
     }
 
-  case actionTypes.TRANSITION_TO:
+  case actionTypes.BEGIN_SEARCH:
     return {
       ...state,
       chrome: {
         ...state.chrome,
-        drawer: {
-          expanded: false,
-          app: null,
-          route: null
-        },
-        route: action.route
+        search: {
+          ...state.chrome.search,
+          active: true
+        }
+      }
+    }
+
+  case actionTypes.ABORT_SEARCH:
+    return {
+      ...state,
+      chrome: {
+        ...state.chrome,
+        search: {
+          ...state.chrome.search,
+          query: '',
+          active: false
+        }
+      }
+    }
+
+  case actionTypes.COMPLETE_SEARCH:
+    return {
+      ...state,
+      chrome: {
+        ...state.chrome,
+        search: {
+          ...state.chrome.search,
+          query: '',
+          active: false,
+          results: [],
+          choice: state.chrome.search.results[action.model][action.index]
+        }
+      }
+    }
+
+  case actionTypes.LOOKUP_REQUEST:
+    return {
+      ...state,
+      chrome: {
+        ...state.chrome,
+        search: {
+          ...state.chrome.search,
+          query: action.params.q
+        }
+      }
+    }
+
+  case actionTypes.LOOKUP_SUCCESS:
+    return {
+      ...state,
+      chrome: {
+        ...state.chrome,
+        search: {
+          ...state.chrome.search,
+          results: (state.chrome.search.query.length) ? action.data : []
+        }
       }
     }
 
