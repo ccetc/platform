@@ -22,14 +22,14 @@ class Show extends React.Component {
   }
 
   _getMain() {
-    const { user } = this.props
     return {
       back: '/admin/users',
-      title: user.full_name,
+      title: 'User',
       permissions: [],
       tasks: [
+        { label: 'Edit User', component: <Edit /> },
         { label: 'Reset Password', handler: this._handleResetPassword.bind(this) },
-        { label: 'Edit User', component: <Edit /> }
+        { label: 'Sign Out of All Devices', handler: this._handleSignOutAllDevices.bind(this) }
       ]
     }
   }
@@ -39,6 +39,7 @@ class Show extends React.Component {
     return {
       image: user.photo,
       items: [
+        { label: 'Name ', content: user.full_name },
         { label: 'Email ', content: user.email, format: 'email' },
         { label: 'Created ', content: user.created_at, format: 'date' }
       ]
@@ -46,7 +47,12 @@ class Show extends React.Component {
   }
 
   _handleResetPassword() {
-    this.context.flash.set('info', 'A reset email has been sent to the user')
+    this.context.flash.set('success', 'A reset email has been sent to the user')
+  }
+
+  _handleSignOutAllDevices() {
+    this.context.flash.set('success', 'The user has been signed out of all devices')
+
   }
 
 }

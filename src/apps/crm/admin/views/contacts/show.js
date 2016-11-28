@@ -20,10 +20,9 @@ class Show extends React.Component {
   }
 
   _getMain() {
-    const { contact } = this.props
     return {
       back: '/admin/crm/contacts',
-      title: contact.full_name,
+      title: 'Contact',
       permissions: [
         'can access contacts'
       ],
@@ -39,9 +38,8 @@ class Show extends React.Component {
       id: 'contacts-show-card',
       image: contact.photo,
       items: [
+        { label: 'Name ', content: contact.full_name },
         { label: 'Email ', content: contact.email, format: 'email' },
-        { label: 'Phone ', content: '123-456-7890' },
-        { label: 'Fax ', content: '123-456-7890' },
         { label: 'Created ', content: contact.created_at, format: 'date' }
       ]
     }

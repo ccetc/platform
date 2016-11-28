@@ -956,21 +956,13 @@
   margin-right: 10px;
 }
 .project-members {
-  border: 1px solid #DDD;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
+  width: 100%;
+  border-top: 1px solid #DDD;
 }
 .project-members .project-member {
-  border-top: 1px solid #DDD;
+  border-bottom: 1px solid #DDD;
   display: flex;
   padding: 10px;
-}
-.project-members .project-member:first-child {
-  border: none;
 }
 .project-members .project-member img {
   flex: 0 0 40px;
