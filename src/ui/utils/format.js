@@ -12,8 +12,8 @@ class Format extends React.Component {
       return format(this.props)
     } else if(format === 'status') {
       return Status(this.props)
-    } else if(format === 'price') {
-      return Price(this.props)
+    } else if(format === 'currency') {
+      return Currency(this.props)
     } else if(format === 'date') {
       return Date(this.props, 'MM/DD/YY')
     } else if(format === 'datetime') {
@@ -64,7 +64,7 @@ const Check = (props, times) => {
   return ((props.value !== false && !_.isNull(props.value)) || props.value === true) ? <i className="icon green check" /> : alternate
 }
 
-const Price = (props) => {
+const Currency = (props) => {
   return <span>{numeral(props.value).format('$0,0.00')}</span>
 }
 

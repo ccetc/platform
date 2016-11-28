@@ -19,11 +19,11 @@ session.get('/session', (req, res, next) => {
           { name: 'Vendors', route: '/admin/expenses/vendors' }
         ] },
         { name: 'Instance', icon: 'setting', items: [
-          { name: 'Activities', route: '/admin/instance/activities' },
-          { name: 'Apps', route: '/admin/instance/apps' },
-          { name: 'Emails', route: '/admin/instance/emails' },
-          { name: 'Settings', route: '/admin/instance/settings' },
-          { name: 'Users', route: '/admin/instance/users' }
+          { name: 'Activities', route: '/admin/activities' },
+          { name: 'Apps', route: '/admin/apps' },
+          { name: 'Emails', route: '/admin/emails' },
+          { name: 'Settings', route: '/admin/settings' },
+          { name: 'Users', route: '/admin/users' }
         ] }
       ],
       user: {

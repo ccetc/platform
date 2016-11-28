@@ -1,11 +1,47 @@
 import React from 'react'
-import { Route, IndexRoute } from 'react-router'
-import List from './list'
+import Page from 'portals/admin/components/page'
+import Collection from 'ui/components/collection'
+import New from './new'
 
-const routes = (
-  <Route path="expenses">
-    <IndexRoute component={List} />
-  </Route>
-)
+class Index extends React.Component {
 
-export default routes
+  render() {
+    return (
+      <Page {...this._getMain()}>
+        <Collection {...this._getCollection()} />
+      </Page>
+    )
+  }
+
+  _getCollection() {
+    return {
+      endpoint: '/admin/expenses/expenses',
+      columns: [
+        { label: 'User', key: 'user.full_name', primary: true },
+        { label: 'Project', key: 'project.title', primary: true },
+        { label: 'Amount', key: 'amount', primary: true, formt: 'currency' }
+      ],
+      sort: { key: 'created_at', order: 'desc' },
+      entity: 'expense',
+      empty: 'There are no expenses',
+      recordActions: [
+        { label: 'edit', icon: 'edit', redirect: '/admin/expenses/expenses/#{id}/edit'}
+      ]
+    }
+  }
+
+  _getMain() {
+    return {
+      back: '/admin',
+      title: 'Expenses',
+      task: {
+        label: 'New Expense',
+        icon: 'plus',
+        component: <New />
+      }
+    }
+  }
+
+}
+
+export default Index

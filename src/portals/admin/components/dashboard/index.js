@@ -6,7 +6,6 @@ class Dashboard extends React.Component {
   render() {
     return (
       <Page {...this._getMain()}>
-        <p>Dashboard</p>
       </Page>
     )
   }

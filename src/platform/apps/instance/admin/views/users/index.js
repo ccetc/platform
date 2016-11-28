@@ -16,7 +16,7 @@ class Index extends React.Component {
 
   _getCollection() {
     return {
-      endpoint: '/admin/instance/users',
+      endpoint: '/admin/users',
       columns: [
         { label: 'Name', key: 'first_name', primary: true, format: NameCell },
         { label: 'Email', key: 'email' }
@@ -25,7 +25,7 @@ class Index extends React.Component {
       entity: 'user',
       empty: 'There are no users',
       recordActions: [
-        { label: 'edit', icon: 'edit', redirect: '/admin/instance/users/#{id}/edit'}
+        { label: 'edit', icon: 'edit', redirect: '/admin/users/#{id}/edit'}
       ]
     }
   }
@@ -46,7 +46,7 @@ class Index extends React.Component {
 
 var NameCell = (props) => {
   return (
-    <Link to={`/admin/instance/users/${props.id}` }>
+    <Link to={`/admin/users/${props.id}` }>
       <img src={props.photo} className="ui circular image" />
       {props.first_name} {props.last_name}
     </Link>

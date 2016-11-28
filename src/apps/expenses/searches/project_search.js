@@ -1,17 +1,16 @@
 import Promise from 'bluebird'
-import UserQuery from '../queries/user_query'
-import User from '../models/user'
+import ProjectQuery from '../queries/project_query'
+import Project from '../models/project'
 
 export default filters => {
   return new Promise((resolve, reject) => {
-    User.query(qb => {
-      qb = UserQuery(qb, filters)
+    Project.query(qb => {
+      qb = ProjectQuery(qb, filters)
     }).fetchAll().then(results => {
       const json = results.map(result => ({
         id: result.get('id'),
-        name: result.get('full_name'),
-        email: result.get('email'),
-        route: `/admin/users/${result.get('id')}`
+        name: result.get('title'),
+        route: `/admin/expenses/projects/${result.get('id')}`
       }))
       resolve(json)
     }).catch(err => {

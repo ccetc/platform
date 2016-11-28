@@ -19,13 +19,16 @@ export default (options = {}) => {
       const skip = parseInt(req.query['$skip']) || 0
       const sort = req.query['$sort'] || null
 
+      const filters = {
+        ...req.query,
+        ...req.params
+      }
+
       const count = options.model.query(qb => {
 
+        qb.where({ instance_id: req.instance.get('id') })
+
         if(options.query) {
-          const filters = {
-            ...req.query,
-            ...req.params
-          }
           qb = options.query(qb, filters)
         }
 
@@ -39,11 +42,9 @@ export default (options = {}) => {
 
       const paged = options.model.query(qb => {
 
+        qb.where({ instance_id: req.instance.get('id') })
+
         if(options.query) {
-          const filters = {
-            ...req.query,
-            ...req.params
-          }
           qb = options.query(qb, filters)
         }
 

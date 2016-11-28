@@ -57,12 +57,8 @@ export default (
         <Route component={ Chrome } path="admin">
           <Route component={ Panel }>
           <IndexRoute component={ Dashboard } />
-          <Route path="account">
-            {Account}
-          </Route>
-          <Route path="instance">
-            {Instance}
-          </Route>
+          {Account}
+          {Instance}
           <Route path="crm">
             {Crm}
           </Route>

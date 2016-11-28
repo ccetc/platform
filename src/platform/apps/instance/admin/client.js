@@ -10,7 +10,7 @@ const routes = (
   <Route>
     <Route path="apps">
       <IndexRoute component={AppsIndex} />
-      </Route>
+    </Route>
     <Route path="users">
       <IndexRoute component={UsersIndex} />
       <Route path="new" component={UsersNew} />

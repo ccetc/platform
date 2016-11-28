@@ -53,7 +53,7 @@ class Account extends React.Component {
 }
 
 const mapEndpointsToProps = (props) => ({
-  user: '/admin/account/account'
+  user: '/admin/account'
 })
 
 export default Container(mapEndpointsToProps)(Account)

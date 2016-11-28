@@ -30,23 +30,25 @@ export class Search extends React.Component {
         { active &&
           <div className="chrome-search-results">
             {Object.keys(results).map((model, modelIndex) => {
-              return (
-                <div className="chrom-search-section">
-                  <div key={`model_${modelIndex}`} className="chrome-search-model" >
-                    {model}
+              if(results[model].length) {
+                return (
+                  <div className="chrome-search-section">
+                    <div key={`model_${modelIndex}`} className="chrome-search-model" >
+                      {model}
+                    </div>
+                    {results[model].map((result, index) => {
+                      return (
+                        <div key={`result_${modelIndex}_${index}`} className="chrome-search-result" onClick={this._handleCompleteSearch.bind(this, model, index)}>
+                          <p>
+                            <strong>{result.name}</strong><br />
+                            {result.email}
+                          </p>
+                        </div>
+                      )
+                    })}
                   </div>
-                  {results[model].map((result, index) => {
-                    return (
-                      <div key={`result_${modelIndex}_${index}`} className="chrome-search-result" onClick={this._handleCompleteSearch.bind(this, model, index)}>
-                        <p>
-                          <strong>{result.name}</strong><br />
-                          {result.email}
-                        </p>
-                      </div>
-                    )
-                  })}
-                </div>
-              )
+                )
+              }
             })}
           </div>
         }

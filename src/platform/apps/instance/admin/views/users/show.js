@@ -24,7 +24,7 @@ class Show extends React.Component {
   _getMain() {
     const { user } = this.props
     return {
-      back: '/admin/instance/users',
+      back: '/admin/users',
       title: user.full_name,
       permissions: [],
       tasks: [
@@ -52,7 +52,7 @@ class Show extends React.Component {
 }
 
 const mapEndpointsToProps = (props) => ({
-  user: `/admin/instance/users/${props.params.id}`
+  user: `/admin/users/${props.params.id}`
 })
 
 export default Container(mapEndpointsToProps)(Show)

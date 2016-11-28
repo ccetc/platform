@@ -9,7 +9,7 @@ class New extends React.Component {
 
   _getForm() {
     return {
-      title: 'Edit Expense Type',
+      title: 'New Expense Type',
       successMessage: 'This expense type was successfully created',
       fields: [
         { label: 'Title', name: 'title', type: 'textfield', placeholder: 'Title' },

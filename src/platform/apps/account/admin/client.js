@@ -3,7 +3,7 @@ import { Route, IndexRoute } from 'react-router'
 import Account from './views/account'
 
 const routes = (
-  <Route>
+  <Route path="account">
     <IndexRoute component={Account} />
   </Route>
 )

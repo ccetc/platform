@@ -14,7 +14,7 @@ class New extends React.Component {
   _getMain() {
     const { params } = this.props
     return {
-      back: `/admin/instance/users/${params.id}`,
+      back: `/admin/users/${params.id}`,
       title: 'Edit User',
       permissions: ['foo']
     }

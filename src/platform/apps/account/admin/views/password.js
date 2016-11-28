@@ -10,6 +10,7 @@ class Password extends React.Component {
   _getForm() {
     return {
       title: 'Change Password',
+      successMessage: 'Your password was successfully reset',
       fields: [
         { label: 'Old Password', name: 'old_password', type: 'password', placeholder: 'Old Password' },
         { label: 'New Password', name: 'new_password', type: 'password', placeholder: 'New Password' },

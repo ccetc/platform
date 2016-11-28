@@ -18,7 +18,7 @@ class Index extends React.Component {
     return {
       endpoint: '/admin/expenses/expense_types',
       columns: [
-        { label: 'Title', key: 'title', primary: true, format: TitleCell },
+        { label: 'Title', key: 'title', primary: true },
         { label: 'Code', key: 'code', primary: true }
       ],
       sort: { key: 'created_at', order: 'desc' },
@@ -42,14 +42,6 @@ class Index extends React.Component {
     }
   }
 
-}
-
-var TitleCell = (props) => {
-  return (
-    <Link to={`/admin/expenses/expense_types/${props.id}` }>
-      {props.title}
-    </Link>
-  )
 }
 
 export default Index

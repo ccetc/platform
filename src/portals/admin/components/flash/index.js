@@ -32,7 +32,7 @@ export class Flash extends React.Component {
   componentDidUpdate(prevProps) {
     const { message, onClear } = this.props
     if(prevProps.message !== message && message) {
-      window.setTimeout(onClear, 2500)
+      window.setTimeout(onClear, 1500)
     }
   }
 

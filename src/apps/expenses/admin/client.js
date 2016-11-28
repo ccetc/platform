@@ -1,30 +1,24 @@
 import React from 'react'
 import { IndexRoute, Route } from 'react-router'
-import advances from './views/advances'
+import AdvancesIndex from './views/advances'
 import ExpenseTypesIndex from './views/expense_types/index'
-import ExpenseTypesShow from './views/expense_types/show'
-import expenses from './views/expenses'
+import ExpensesIndex from './views/expenses'
 import ProjectsIndex from './views/projects/index'
 import ProjectsShow from './views/projects/show'
-import ProjectsMember from './views/projects/member'
-import trips from './views/trips'
-import vendors from './views/vendors'
+import TripsIndex from './views/trips'
+import VendorsIndex from './views/vendors/index'
 
 const routes = (
   <Route>
-    {advances}
-    <Route path="expense_types">
-      <IndexRoute component={ExpenseTypesIndex} />
-      <Route path=":id" component={ExpenseTypesShow} />
-    </Route>
-    {expenses}
+    <Route path="advances" component={AdvancesIndex} />
+    <Route path="expense_types" component={ExpenseTypesIndex} />
+    <Route path="expenses" component={ExpensesIndex} />
     <Route path="projects">
       <IndexRoute component={ProjectsIndex} />
       <Route path=":id" component={ProjectsShow} />
-      <Route path=":project_id/members/:id" component={ProjectsMember} />
     </Route>
-    {trips}
-    {vendors}
+    <Route path="trips" component={TripsIndex} />
+    <Route path="vendors" component={VendorsIndex} />
   </Route>
 )
 

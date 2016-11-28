@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import instance from 'server/middleware/instance'
 import authentication from 'server/middleware/authentication'
 import activation from 'server/middleware/activation'
 import signin from 'server/middleware/signin'
@@ -9,6 +10,9 @@ import fs from 'fs'
 import path from 'path'
 
 const admin = Router()
+
+// signin
+admin.use(instance)
 
 // signin
 admin.use(signin)
@@ -27,14 +31,18 @@ admin.use(session)
 admin.use(search)
 
 // app routes
-const directories = ['../../platform/apps','../../apps']
-directories.map(function(directory) {
-  fs.readdirSync(path.join(__dirname, directory)).filter(function(app) {
-    const server = path.join(__dirname, directory, app, 'admin/server.js')
-    if(fs.existsSync(server)) {
-      admin.use(`/${app}`, require(server).default)
-    }
-  })
+fs.readdirSync(path.join(__dirname, '../../platform/apps')).filter(function(app) {
+  const server = path.join(__dirname, '../../platform/apps', app, 'admin/server.js')
+  if(fs.existsSync(server)) {
+    admin.use(require(server).default)
+  }
 })
+fs.readdirSync(path.join(__dirname, '../../apps')).filter(function(app) {
+  const server = path.join(__dirname, '../../apps', app, 'admin/server.js')
+  if(fs.existsSync(server)) {
+    admin.use(`/${app}`, require(server).default)
+  }
+})
+
 
 export default admin

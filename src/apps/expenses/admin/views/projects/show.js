@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router'
 import Card from 'ui/components/card'
 import Container from 'ui/components/container'
 import Page from 'portals/admin/components/page'
@@ -49,13 +48,13 @@ const Members = (props) => {
     <div className="project-members">
       {members.map((member, index) => {
         return (
-          <Link key={`member_${index}`} className="project-member" to={`/admin/expenses/projects/${member.project_id}/members/${member.id}`}>
+          <div key={`member_${index}`} className="project-member" to={`/admin/expenses/projects/${member.project_id}/members/${member.id}`}>
             <img src={ member.user.photo.url } className="ui circular image" title={ member.user.full_name } />
             <p>
               <strong>{member.user.full_name}</strong><br />
               {member.user.email}
             </p>
-          </Link>
+          </div>
         )
       })}
     </div>
