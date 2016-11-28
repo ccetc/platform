@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import * as actions from './actions'
 import $ from 'jquery'
@@ -21,17 +20,20 @@ class Infinite extends React.Component {
   }
 
   componentDidMount() {
-    if(this._container()) {
-      this._attachScrollListener()
-    }
+    const { endpoint, sort } = this.props
+    this.props.onFetch(endpoint, { '$skip': 0, $sort: sort })
   }
 
   componentDidUpdate(prevProps) {
-    const { endpoint, loaded, sort, status } = this.props
+    const { endpoint, loaded, records, sort, status } = this.props
     if(prevProps.sort != sort) {
       this.props.onReset()
-    } else if(prevProps.status != status && status === 'pending') {
-      this.props.onFetch(endpoint, { '$skip': loaded, $sort: sort })
+    } else if(prevProps.status != status) {
+      if(status === 'loaded' && records.length > 0) {
+        this._attachScrollListener()
+      } else if(status === 'pending') {
+        this.props.onFetch(endpoint, { '$skip': loaded, $sort: sort })
+      }
     }
   }
 

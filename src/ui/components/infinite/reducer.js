@@ -24,6 +24,7 @@ export default (state = INITIAL_STATE, action) => {
       ...state,
       infinite: {
         ...state.infinite,
+        records: (action.params['$skip'] > 0) ? state.infinite.records : [],
         status: 'loading'
       }
     }

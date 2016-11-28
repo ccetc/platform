@@ -3,6 +3,7 @@ import Card from 'ui/components/card'
 import Container from 'ui/components/container'
 import Page from 'portals/admin/components/page'
 import Edit from './edit'
+import Member from './member'
 
 class Show extends React.Component {
 
@@ -33,14 +34,13 @@ class Show extends React.Component {
   }
 
   _getMain() {
-    const { project } = this.props
     return {
       back: '/admin/expenses/projects',
       title: 'Project',
       permissions: [],
       tasks: [
-        { label: 'Add Member', component: <Edit /> },
-        { label: 'Edit Project', component: <Edit /> }
+        { label: 'Edit Project', component: <Edit /> },
+        { label: 'Add Member', component: <Member /> }
       ]
     }
   }

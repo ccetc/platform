@@ -899,7 +899,7 @@
   margin: 0 0 20px;
   color: #888;
 }
-.table-empty-message a.ui.basic.red.button {
+.table-empty-message .ui.basic.red.button {
   display: block;
   background: #FFF !important;
 }

@@ -10,7 +10,7 @@ class Table extends React.Component {
 
   render() {
     const { columns, empty, entity, records, sort, status } = this.props
-    if(records.length) {
+    if(records.length > 0) {
       return (
         <div className="collection-layout">
           <div className="table-fixed" ref="head">
@@ -52,17 +52,19 @@ class Table extends React.Component {
           </div>
         </div>
       )
-    } else  {
+    } else if(status === 'loaded' && records.length === 0) {
       return (
         <div className="table-empty">
           <div className="table-empty-message">
             <h2><i className={`circular ${empty.icon} icon`} /></h2>
-            <h3>No {_.capitalize(pluralize(entity))}</h3>
-            <p>You have not yet created any {pluralize(entity)}.</p>
-            <div className="ui basic button red"><i className="plus icon" /> Create New {_.capitalize(entity)}</div>
+            <h3>No {_.startCase(pluralize(entity.replace('_', ' ')))}</h3>
+            <p>You have not yet created any {pluralize(entity.replace('_', ' '))}.</p>
+            <div className="ui basic button red"><i className="plus icon" /> Create New {_.startCase(entity.replace('_', ' '))}</div>
           </div>
         </div>
       )
+    } else {
+      return null
     }
   }
 

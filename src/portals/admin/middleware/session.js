@@ -16,7 +16,8 @@ session.get('/session', (req, res, next) => {
           { name: 'Expenses', route: '/admin/expenses/expenses' },
           { name: 'Projects', route: '/admin/expenses/projects' },
           { name: 'Trips', route: '/admin/expenses/trips' },
-          { name: 'Vendors', route: '/admin/expenses/vendors' }
+          { name: 'Vendors', route: '/admin/expenses/vendors' },
+          { name: 'Reports', route: '/admin/expenses/reports' }
         ] },
         { name: 'Instance', icon: 'setting', items: [
           { name: 'Activities', route: '/admin/activities' },
