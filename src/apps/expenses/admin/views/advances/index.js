@@ -23,7 +23,10 @@ class Index extends React.Component {
       ],
       sort: { key: 'created_at', order: 'desc' },
       entity: 'advance',
-      empty: 'There are no advances',
+      empty: {
+        icon: 'dollar',
+        component: <New />
+      },
       recordActions: [
         { label: 'edit', icon: 'edit', redirect: '/admin/expenses/advances/#{id}/edit'}
       ]
@@ -43,5 +46,6 @@ class Index extends React.Component {
   }
 
 }
+
 
 export default Index

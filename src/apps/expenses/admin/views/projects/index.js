@@ -23,7 +23,10 @@ class Index extends React.Component {
       ],
       sort: { key: 'created_at', order: 'desc' },
       entity: 'project',
-      empty: 'There are no projects',
+      empty: {
+        icon: 'folder',
+        component: <New />
+      },
       recordActions: [
         { label: 'edit', icon: 'edit', redirect: '/admin/expenses/projects/#{id}/edit'}
       ]

@@ -21,7 +21,9 @@ class Infinite extends React.Component {
   }
 
   componentDidMount() {
-    this._attachScrollListener()
+    if(this._container()) {
+      this._attachScrollListener()
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -34,7 +36,9 @@ class Infinite extends React.Component {
   }
 
   componentWillUnmount() {
-    this._detachScrollListener()
+    if(this._container()) {
+      this._detachScrollListener()
+    }
   }
 
   _container() {
