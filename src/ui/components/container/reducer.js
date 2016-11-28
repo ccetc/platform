@@ -12,12 +12,18 @@ export default (state = INITIAL_STATE, action) => {
 
   switch (action.type) {
 
+  case actionTypes.RESET:
+    return {
+      ...state,
+      ...INITIAL_STATE
+    }
+
   case actionTypes.FETCH_RESOURCE_REQUEST:
     return {
       ...state,
       container: {
-        ...state.container,
-        status: 'loading'
+        status: 'loading',
+        data: {}
       }
     }
 

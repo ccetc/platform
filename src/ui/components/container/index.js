@@ -24,6 +24,10 @@ export default (mapEndpointsToProps) => {
         this._fetchResources()
       }
 
+      componentWillUnmount() {
+        this.props.onReset()
+      }
+
       componentDidUpdate(prevProps) {
         if(prevProps.location.pathname != this.props.location.pathname) {
           this._fetchResources()
@@ -45,7 +49,8 @@ export default (mapEndpointsToProps) => {
     })
 
     const mapDispatchToProps = {
-      onFetchResource: actions.fetchResource
+      onFetchResource: actions.fetchResource,
+      onReset: actions.reset
     }
 
     return connect(mapStateToProps, mapDispatchToProps)(Container)

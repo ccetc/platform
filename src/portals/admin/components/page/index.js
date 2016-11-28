@@ -3,10 +3,15 @@ import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
 import _ from 'lodash'
+import * as actions from './actions'
 import Task from './task'
 import Tasks from './tasks'
 
 export class Page extends React.Component {
+
+  static childContextTypes = {
+    page: React.PropTypes.object
+  }
 
   static propTypes: {
     back: React.PropTypes.string.isRequired,
@@ -82,6 +87,14 @@ export class Page extends React.Component {
     }
   }
 
+  getChildContext() {
+    return {
+      page: {
+        openModal: this._handleOpenModal.bind(this)
+      }
+    }
+  }
+
   _userHasPermission(user, permissions) {
     let permit = true
     permissions.map((permission) => {
@@ -92,12 +105,18 @@ export class Page extends React.Component {
     return permit === true
   }
 
+  _handleOpenModal() {
+    this.props.onOpenModal()
+  }
+
 }
 
 const mapStateToProps = (state) => ({
   user: state.session.user
 })
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = ({
+  onOpenModal: actions.openModal
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Page)

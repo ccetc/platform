@@ -50,7 +50,6 @@ export class Chrome extends React.Component {
     }
   }
 
-
 }
 
 const mapStateToProps = (state) => ({})

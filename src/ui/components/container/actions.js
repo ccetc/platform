@@ -12,3 +12,7 @@ export const fetchResource = (keys, prop, endpoint) => {
     failure: actionTypes.FETCH_RESOURCE_FAILURE
   })
 }
+
+export const reset = () => ({
+  type: actionTypes.RESET
+})
