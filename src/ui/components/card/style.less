@@ -1,22 +1,27 @@
 .card {
   border: none !important;
   box-shadow: none !important;
-  .image {
-    background: none;
-    margin: 20px 0;
+  div.image {
+    background: #EEE;
+    padding: 20px 0;
     img {
       border: 5px solid #000;
-      width: 50%;
+      width: 40%;
       margin: 0 auto;
     }
   }
   .ui.list {
-    padding: 10px 0;
+    padding: 0;
     @media only screen and (max-width: 767px) {
       background-color: #FFF;
     }
   }
   .item {
     padding: 10px 20px !important;
+    border-bottom: 1px solid #DDD;
+    color: #666;
+    .header {
+      color: #000;
+    }
   }
 }

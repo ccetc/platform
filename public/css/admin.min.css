@@ -603,7 +603,6 @@
   flex-direction: column;
 }
 .chrome-header {
-  border-bottom: 5px solid #CCC;
   flex: 0 0 50px;
   background-color: #EEE;
   z-index: 3;
@@ -613,25 +612,30 @@
   font-weight: normal;
   display: flex;
 }
+@media only screen and (min-width: 768px) {
+  .chrome-header {
+    border-bottom: 5px solid #CCC;
+  }
+}
 .chrome-back,
 .chrome-more {
-  flex: 0 0 45px;
+  flex: 0 0 50px;
 }
 .chrome-back > a,
 .chrome-tasks > a,
 .chrome-task > a {
   display: block;
   text-align: center;
-  padding: 14px;
+  padding: 16px;
   font-size: 17px;
-  line-height: 17px;
+  line-height: 18px;
   color: #888;
 }
 .chrome-title {
   flex: 1;
   text-align: center;
   font-size: 18px;
-  line-height: 45px;
+  line-height: 50px;
   color: #555;
 }
 .chrome-body {
@@ -917,17 +921,17 @@
   border: none !important;
   box-shadow: none !important;
 }
-.card .image {
-  background: none;
-  margin: 20px 0;
+.card div.image {
+  background: #EEE;
+  padding: 20px 0;
 }
-.card .image img {
+.card div.image img {
   border: 5px solid #000;
-  width: 50%;
+  width: 40%;
   margin: 0 auto;
 }
 .card .ui.list {
-  padding: 10px 0;
+  padding: 0;
 }
 @media only screen and (max-width: 767px) {
   .card .ui.list {
@@ -936,6 +940,11 @@
 }
 .card .item {
   padding: 10px 20px !important;
+  border-bottom: 1px solid #DDD;
+  color: #666;
+}
+.card .item .header {
+  color: #000;
 }
 .form {
   flex: 1;
@@ -990,12 +999,18 @@
 }
 .project-members {
   width: 100%;
-  border-top: 1px solid #DDD;
+}
+.project-members h2 {
+  padding: 10px 20px;
+  background-color: #EEE;
+  margin: 0;
+  font-size: 14px;
+  line-height: 14px;
 }
 .project-members .project-member {
   border-bottom: 1px solid #DDD;
   display: flex;
-  padding: 10px;
+  padding: 10px 20px;
 }
 .project-members .project-member img {
   flex: 0 0 40px;

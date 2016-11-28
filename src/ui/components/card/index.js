@@ -67,12 +67,14 @@ class Card extends React.Component {
               <div className="ui content">
                 <div className="ui list">
                   {items.map((item, index) => {
-                    return (
-                      <div key={`item_${index}`} className="item">
-                        <div className="header">{item.label}</div>
-                        <Format format={item.format} value={item.content} />
-                      </div>
-                    )
+                    if(item.content) {
+                      return (
+                        <div key={`item_${index}`} className="item">
+                          <div className="header">{item.label}</div>
+                          <Format format={item.format} value={item.content} />
+                        </div>
+                      )
+                    }
                   })}
                 </div>
               </div>

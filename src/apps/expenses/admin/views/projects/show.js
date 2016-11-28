@@ -16,6 +16,7 @@ class Show extends React.Component {
         </div>
         <div className="chrome-content">
           <div className="project-members">
+            <h2>Members</h2>
             {members.map((member, index) => {
               return (
                 <div key={`member_${index}`} className="project-member" to={`/admin/expenses/projects/${member.project_id}/members/${member.id}`}>
