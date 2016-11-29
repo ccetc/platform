@@ -159,7 +159,7 @@ export default (options = {}) => {
           next(error)
         }
 
-        return record.save(req.body).then(record => {
+        return record.save(req.body, { patch: true }).then(record => {
 
           res.status(201).json(record)
 

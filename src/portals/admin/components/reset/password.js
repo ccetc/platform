@@ -1,10 +1,23 @@
 import React from 'react'
+import $ from 'jquery'
+import { connect } from 'react-redux'
+import * as actions from './actions'
 
 class Password extends React.Component {
 
+  static contextTypes = {
+    router: React.PropTypes.object
+  }
+
   render() {
+    const { flash } = this.props
     return (
       <form className="ui form" onSubmit={this._handleSubmit.bind(this)}>
+        {flash &&
+          <div className={`chrome-flash ${flash.style}`}>
+            {flash.message}
+          </div>
+        }
         <div className="field email-field">
           <div className="ui left icon input">
             <i className="user icon"></i>
@@ -24,11 +37,35 @@ class Password extends React.Component {
     )
   }
 
+  componentDidMount() {
+    const password = $(this.refs.password)
+    setTimeout(function() { password.focus() }, 500)
+  }
+
+  componentDidUpdate(prevProps) {
+    const { status } = this.props
+    if(prevProps.status != status) {
+      if(status === 'complete') {
+        this.context.router.push('/admin/reset/confirm')
+      }
+    }
+  }
+
   _handleSubmit(event) {
+    const { onReset, token } = this.props
+    const password = $(this.refs.password).val()
+    const confirm = $(this.refs.confirm).val()
+    onReset(token, password, confirm)
     event.preventDefault()
     return false
   }
 
 }
 
-export default Password
+const mapStateToProps = state => state.reset
+
+const mapDispatchToProps = {
+  onReset: actions.reset
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Password)

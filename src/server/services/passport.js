@@ -22,7 +22,7 @@ export default (key) => {
       return done(null, false, { message: 'invalid jwt' })
     }
 
-    User.where({ id: payload.data[key] }).fetch().then(user => {
+    return User.where({ id: payload.data[key] }).fetch().then(user => {
 
       if(!user) {
         return done(null, false, { message: 'cannot find user' })
@@ -38,7 +38,7 @@ export default (key) => {
 
   passport.use(new LocalStrategy({ usernameField: 'email' }, (username, password, done) => {
 
-    User.where({ email: username }).fetch().then(user => {
+    return User.where({ email: username }).fetch().then(user => {
 
       if(!user) {
         return done(null, false, { message: 'cannot find user' })

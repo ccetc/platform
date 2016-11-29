@@ -8,7 +8,7 @@ export const auth = (req, res, next) => {
   const strategy = (req.header('Authorization')) ? 'jwt' : 'local'
   const options = (req.header('Authorization')) ? { session: false } : { badRequestMessage: 'email and password required' }
 
-  passport('user_id').authenticate(strategy, options, (err, user, info) => {
+  return passport('user_id').authenticate(strategy, options, (err, user, info) => {
 
     if(err) {
       const error = new Error({ code: 401, message: 'unable to load user' })

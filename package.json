@@ -19,7 +19,7 @@
     "platform": "bin/platform.js"
   },
   "dependencies": {
-    "aws-sdk": "^2.6.15",
+    "aws-sdk": "^2.7.7",
     "babel-cli": "^6.18.0",
     "babel-core": "^6.18.2",
     "bcrypt-nodejs": "^0.0.3",

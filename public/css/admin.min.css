@@ -232,11 +232,11 @@
 .chrome-session label {
   color: #FFFFFF !important;
 }
-.chrome-session button.ui.button {
+.chrome-session .ui.button {
   background-color: #b21e1e;
   color: #FFFFFF;
 }
-.chrome-session button.ui.button:hover {
+.chrome-session .ui.button:hover {
   transition: background-color 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -webkit-transition: background-color 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -moz-transition: background-color 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;

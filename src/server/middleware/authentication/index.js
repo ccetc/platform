@@ -4,7 +4,7 @@ import logger from 'server/services/logger'
 
 const authentication = (req, res, next) => {
 
-  passport('user_id').authenticate('jwt', { session: false }, (err, user, info) => {
+  return passport('user_id').authenticate('jwt', { session: false }, (err, user, info) => {
 
     if(err) {
       const error = new Error({ code: 401, message: 'unable to load user' })
