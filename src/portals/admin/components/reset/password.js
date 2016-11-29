@@ -2,6 +2,8 @@ import React from 'react'
 import $ from 'jquery'
 import { connect } from 'react-redux'
 import * as actions from './actions'
+import * as sessionActions from '../session/actions'
+import * as chromeActions from '../chrome/actions'
 
 class Password extends React.Component {
 
@@ -10,9 +12,10 @@ class Password extends React.Component {
   }
 
   render() {
-    const { flash } = this.props
+    const { flash, status } = this.props
     return (
       <form className="ui form" onSubmit={this._handleSubmit.bind(this)}>
+        <p>Please enter and confirm your new password.</p>
         {flash &&
           <div className={`chrome-flash ${flash.style}`}>
             {flash.message}
@@ -31,7 +34,7 @@ class Password extends React.Component {
           </div>
         </div>
         <div className="field">
-          <button className="ui fluid large button">Reset Password</button>
+          <button className={`ui fluid large ${(status == 'submitting') ? 'loading' : ''} button`}>Reset Password</button>
         </div>
       </form>
     )
@@ -43,10 +46,13 @@ class Password extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { status } = this.props
+    const { status, token, onSetFlash, onSaveToken } = this.props
     if(prevProps.status != status) {
       if(status === 'complete') {
-        this.context.router.push('/admin/reset/confirm')
+        onSaveToken(token)
+        window.setTimeout(function() {
+          onSetFlash('success', 'Your password was successfully reset')
+        }, 100)
       }
     }
   }
@@ -65,7 +71,9 @@ class Password extends React.Component {
 const mapStateToProps = state => state.reset
 
 const mapDispatchToProps = {
-  onReset: actions.reset
+  onReset: actions.reset,
+  onSaveToken: sessionActions.saveToken,
+  onSetFlash: chromeActions.setFlash
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Password)

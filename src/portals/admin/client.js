@@ -12,7 +12,6 @@ import Layout from './components/layout'
 import ResetClaim from './components/reset/claim'
 import ResetSecurity from './components/reset/security'
 import ResetPassword from './components/reset/password'
-import ResetConfirmation from './components/reset/confirm'
 import Session from './components/session'
 import Signin from './components/signin'
 import Account from 'platform/apps/account/admin/client'
@@ -59,7 +58,6 @@ export default (
           <Route component={ Activation } path="admin/activation/:id" />
           <Route component={ ResetSecurity } path="admin/reset/security" />
           <Route component={ ResetPassword } path="admin/reset/password" />
-          <Route component={ ResetConfirmation } path="admin/reset/confirm" />
           <Route component={ ResetClaim } path="admin/reset/:id" />
         </Route>
       </Route>

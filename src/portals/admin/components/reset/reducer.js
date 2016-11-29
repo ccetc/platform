@@ -22,6 +22,18 @@ export default (state = INITIAL_STATE, action) => {
       }
     }
 
+  case actionTypes.CLAIM_REQUEST:
+  case actionTypes.SECURITY_REQUEST:
+  case actionTypes.PASSWORD_REQUEST:
+    return {
+      ...state,
+      reset: {
+        ...state.reset,
+        flash: null,
+        status: 'submitting'
+      }
+    }
+
   case actionTypes.CLAIM_SUCCESS:
     return {
       ...state,
@@ -37,7 +49,6 @@ export default (state = INITIAL_STATE, action) => {
       ...state,
       reset: {
         ...state.reset,
-        flash: null,
         status: 'verified'
       }
     }
@@ -47,8 +58,7 @@ export default (state = INITIAL_STATE, action) => {
       ...state,
       reset: {
         ...state.reset,
-        token: null,
-        flash: null,
+        token: action.data.token,
         status: 'complete'
       }
     }
@@ -60,9 +70,9 @@ export default (state = INITIAL_STATE, action) => {
       ...state,
       reset: {
         ...state.reset,
-        status: 'error',
+        status: 'failed',
         flash: {
-          style: 'error',
+          style: 'failed',
           message: action.error.message
         }
       }

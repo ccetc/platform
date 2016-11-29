@@ -9,7 +9,22 @@ class Claim extends React.Component {
   }
 
   render() {
-    return null
+    const { flash, status } = this.props
+    return (
+      <div className="ui form">
+        {status === 'initialized' &&
+          <div>
+            <div className="ui active centered inline loader"></div>
+            <p>Fetching your account...</p>
+          </div>
+        }
+        {flash &&
+          <div className={`chrome-flash ${flash.style}`}>
+            {flash.message}
+          </div>
+        }
+      </div>
+    )
   }
 
   componentDidMount() {
@@ -17,10 +32,12 @@ class Claim extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { status, token } = this.props
+    const { status, token, onClaim } = this.props
     if(prevProps.status != status) {
       if(status === 'initialized') {
-        this.props.onClaim(token)
+        window.setTimeout(function() {
+          onClaim(token)
+        }, 1500)
       } else if(status == 'claimed') {
         this.context.router.push('/admin/reset/security')
       }

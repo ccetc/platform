@@ -19,6 +19,8 @@ const authentication = (req, res, next) => {
     logger.info(`USER: ${JSON.stringify({ id: user.get('id'), email: user.get('email')})}`)
 
     req.user = user
+    req.jwt = info
+
     next()
     return null
 

@@ -10,9 +10,10 @@ class Security extends React.Component {
   }
 
   render() {
-    const { question, flash } = this.props
+    const { question, flash, status } = this.props
     return (
       <form className="ui form" onSubmit={this._handleSubmit.bind(this)}>
+        <p>Before we reset your password, please answer the following security question.</p>
         {flash &&
           <div className={`chrome-flash ${flash.style}`}>
             {flash.message}
@@ -23,7 +24,7 @@ class Security extends React.Component {
           <input className="form-control" autoComplete="off" placeholder="Answer" type="text" ref="answer" />
         </div>
         <div className="field">
-          <button className="ui fluid large button">Next &raquo;</button>
+          <button className={`ui fluid large ${(status == 'submitting') ? 'loading' : ''} button`}>Next &raquo;</button>
         </div>
       </form>
     )

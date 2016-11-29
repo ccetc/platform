@@ -39,19 +39,28 @@ export const create = (req, res, next) => {
 
 export const middleware = (req, res, next) => {
 
-  passport('reset_user_id').authenticate('jwt', { session: false }, (err, user, info) => {
+  return passport('reset_user_id').authenticate('jwt', { session: false }, (err, user, info) => {
 
     if(err) {
       const error = new Error({ code: 401, message: 'unable to load user' })
-      next(error)
+      return next(error)
     }
 
     if(!user) {
       const error = new Error({ code: 401, message: info.message })
-      next(error)
+      return next(error)
+    }
+
+    const reset_at = user.get('reset_at')
+
+    if(reset_at && info.iat <= Math.floor(reset_at / 1000)) {
+      const error = new Error({ code: 401, message: 'this token has expired' })
+      return next(error)
     }
 
     req.user = user
+    req.jwt = info
+
     next()
     return null
 
@@ -102,7 +111,10 @@ export const password = (req, res, next) => {
 
   return req.user.save({ password: req.body.password, reset_at: new Date() }, { patch: true }).then(record => {
 
-    res.status(200).json({ success: true })
+    const two_weeks = 60 * 60 * 24 * 7 * 2
+    const token = jwt.encode({ user_id: req.user.id }, two_weeks)
+
+    res.status(200).json({ token })
 
   }).catch(err => {
     const error = new Error({ code: 500, message: 'application error', errors: err.message })

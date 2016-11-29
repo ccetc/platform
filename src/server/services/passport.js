@@ -28,7 +28,7 @@ export default (key) => {
         return done(null, false, { message: 'cannot find user' })
       }
 
-      return done(null, user)
+      return done(null, user, payload)
 
     }).catch(err => {
       return done(null, false, { message: 'unable to load user' })

@@ -30,9 +30,9 @@ export class Flash extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { message, onClear } = this.props
+    const { onClear, message } = this.props
     if(prevProps.message !== message && message) {
-      window.setTimeout(onClear, 1500)
+      window.setTimeout(onClear , 1500)
     }
   }
 
@@ -56,8 +56,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  onSet: actions.set,
-  onClear: actions.clear
+  onSet: actions.setFlash,
+  onClear: actions.clearFlash
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Flash)
