@@ -32,7 +32,7 @@ export class Forgot extends React.Component {
           <button className={`ui fluid large ${(status == 'submitting') ? 'loading' : ''} button`}>Reset Password</button>
         </div>
         <div className="field">
-          <p><Link to={{ pathname: '/admin/signin', state: 'back' }}>Back to Signin</Link></p>
+          <p><Link to={{ pathname: '/admin/signin', state: 'slide-back' }}>Back to Signin</Link></p>
         </div>
       </form>
     )

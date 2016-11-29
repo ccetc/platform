@@ -55,8 +55,6 @@ export class Chrome extends React.Component {
   getChildContext() {
     return {
       chrome: {
-        setFlash: this._handleSetFlash.bind(this),
-        clearFlash: this._handleClearFlash.bind(this),
         transitionTo: this._handleTransitionTo.bind(this)
       }
     }

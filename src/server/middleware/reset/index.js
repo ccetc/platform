@@ -11,10 +11,10 @@ export const create = (req, res, next) => {
 
   if(!req.body.email) {
     const error = new Error({ code: 422, message: 'email required' })
-    next(error)
+    return next(error)
   }
 
-  User.where({ email: req.body.email }).fetch().then(user => {
+  return User.where({ email: req.body.email }).fetch().then(user => {
 
     if(!user) {
       const error = new Error({ code: 401, message: 'unable to load user' })

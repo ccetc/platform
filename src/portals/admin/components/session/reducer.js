@@ -5,13 +5,35 @@ const INITIAL_STATE = {
     apps: null,
     token: null,
     status: 'pending',
-    user: null
+    user: null,
+    flash: null
   }
 }
 
 export default (state = INITIAL_STATE, action) => {
 
   switch (action.type) {
+
+  case actionTypes.SET_FLASH:
+    return {
+      ...state,
+      session: {
+        ...state.session,
+        flash: {
+          style: action.style,
+          message: action.message
+        }
+      }
+    }
+
+  case actionTypes.CLEAR_FLASH:
+    return {
+      ...state,
+      session: {
+        ...state.session,
+        flash: null
+      }
+    }
 
   case actionTypes.LOAD_TOKEN_SUCCESS:
     return {

@@ -41,7 +41,7 @@ export class Signin extends React.Component {
           <button className={`ui fluid large ${(status == 'submitting') ? 'loading' : ''} button`}>Signin</button>
         </div>
         <div className="field">
-          <p><Link to="/admin/forgot">Forget your password?</Link></p>
+          <p><Link to={{ pathname: '/admin/forgot', state: 'slide-next' }}>Forget your password?</Link></p>
         </div>
       </form>
     )

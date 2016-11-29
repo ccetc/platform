@@ -2,26 +2,28 @@
 import React from 'react'
 import Transition from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
-import * as actions from './actions'
 
 export class Flash extends React.Component {
 
-  static propTypes: {
-    message: React.PropTypes.string.isRequired,
-    style: React.PropTypes.string.isRequired,
+  static contextTypes = {
+    session: React.PropTypes.object
+  }
+
+  static propTypes = {
+    flash: React.PropTypes.object.isRequired,
     onSet: React.PropTypes.func.isRequired,
     onClear: React.PropTypes.func.isRequired
   }
 
   render() {
-    const { message, style } = this.props
+    const { flash } = this.props
     return (
       <Transition transitionName="expanded" transitionEnterTimeout={250} transitionLeaveTimeout={250} transitionAppear={true} transitionAppearTimeout={250}>
-        {message &&
-          <div className={`chrome-flash ${style}`}>
+        {flash &&
+          <div className={`chrome-flash ${flash.style}`}>
             <p>
-              { this._getIcon(style) }
-              {message}
+              { this._getIcon(flash.style) }
+              { flash.message }
             </p>
           </div>
         }
@@ -30,9 +32,10 @@ export class Flash extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { onClear, message } = this.props
-    if(prevProps.message !== message && message) {
-      window.setTimeout(onClear , 1500)
+    const { flash } = this.props
+    const { clearFlash } = this.context.session
+    if(prevProps.flash !== flash && flash) {
+      window.setTimeout(clearFlash , 1500)
     }
   }
 
@@ -50,14 +53,8 @@ export class Flash extends React.Component {
 
 }
 
-const mapStateToProps = (state) => ({
-  style: state.chrome.flash.style,
-  message: state.chrome.flash.message
+const mapStateToProps = state => ({
+  flash: state.session.flash
 })
 
-const mapDispatchToProps = {
-  onSet: actions.setFlash,
-  onClear: actions.clearFlash
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Flash)
+export default connect(mapStateToProps)(Flash)

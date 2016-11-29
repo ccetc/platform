@@ -8,20 +8,6 @@ export function transitionTo(route) {
   }
 }
 
-export function setFlash(style, message) {
-  return {
-    type: actionTypes.SET_FLASH,
-    style,
-    message
-  }
-}
-
-export function clearFlash() {
-  return {
-    type: actionTypes.CLEAR_FLASH
-  }
-}
-
 export function toggleDrawer() {
   return {
     type: actionTypes.TOGGLE_DRAWER

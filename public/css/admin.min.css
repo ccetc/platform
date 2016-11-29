@@ -73,6 +73,77 @@
   -o-transform: translateX(0);
   transform: translateX(0);
 }
+.slide-next-appear,
+.slide-next-enter,
+.slide-next-leave,
+.slide-back-appear,
+.slide-back-enter,
+.slide-back-leave {
+  transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -webkit-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -moz-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -ms-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+}
+.slide-next-appear,
+.slide-next-enter {
+  -webkit-transform: translateX(100%);
+  -moz-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  -o-transform: translateX(100%);
+  transform: translateX(100%);
+}
+.slide-next-appear.slide-next-appear-active,
+.slide-next-enter.slide-next-enter-active {
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+  transform: translateX(0);
+}
+.slide-next-leave {
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+  transform: translateX(0);
+}
+.slide-next-leave.slide-next-leave-active {
+  -webkit-transform: translateX(-100%);
+  -moz-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  -o-transform: translateX(-100%);
+  transform: translateX(-100%);
+}
+.slide-back-leave {
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+  transform: translateX(0);
+}
+.slide-back-leave.slide-back-leave-active {
+  -webkit-transform: translateX(100%);
+  -moz-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  -o-transform: translateX(100%);
+  transform: translateX(100%);
+}
+.slide-back-appear,
+.slide-back-enter {
+  -webkit-transform: translateX(-100%);
+  -moz-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  -o-transform: translateX(-100%);
+  transform: translateX(-100%);
+}
+.slide-back-appear.slide-back-appear-active,
+.slide-back-enter.slide-back-enter-active {
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+  transform: translateX(0);
+}
 #platform {
   width: 100%;
   height: 100%;

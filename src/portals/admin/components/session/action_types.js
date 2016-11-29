@@ -1,5 +1,7 @@
 // @flow
 
+export const SET_FLASH: string = 'session/SET_FLASH'
+export const CLEAR_FLASH: string = 'session/CLEAR_FLASH'
 export const LOAD_TOKEN_REQUEST: string = 'session/LOAD_TOKEN_REQUEST'
 export const LOAD_TOKEN_SUCCESS: string = 'session/LOAD_TOKEN_SUCCESS'
 export const LOAD_TOKEN_FAILURE: string = 'session/LOAD_TOKEN_FAILURE'

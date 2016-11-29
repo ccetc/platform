@@ -5,7 +5,7 @@ class Form extends React.Component {
 
   static contextTypes = {
     modal: React.PropTypes.object,
-    chrome: React.PropTypes.object
+    session: React.PropTypes.object
   }
 
   static propTypes = {
@@ -60,7 +60,7 @@ class Form extends React.Component {
 
   _handleSave() {
     const message = this.props.successMessage || 'Your form was successfully saved!'
-    this.context.chrome.setFlash('success', message)
+    this.context.session.setFlash('success', message)
     this.context.modal.close()
   }
 
