@@ -6,22 +6,21 @@ import * as actions from './actions'
 
 export class Forgot extends React.Component {
 
-  static propTypes: {
-    flash: React.PropTypes.string.isRequired,
+  static contextTypes = {
+    router: React.PropTypes.object.isRequired
+  }
+
+  static propTypes = {
     status: React.PropTypes.string.isRequired,
     onReset: React.PropTypes.func.isRequired,
     onSetup: React.PropTypes.func.isRequired
   }
 
   render() {
-    const { flash, status } = this.props
+    const { status } = this.props
     return (
       <form className="ui form" onSubmit={this._handleSubmit.bind(this)}>
-        {flash &&
-          <div className={`chrome-flash ${flash.style}`}>
-            {flash.message}
-          </div>
-        }
+        <p>Please enter your email address to reset your password.</p>
         <div className="field">
           <div className="ui left icon input">
             <i className="user icon"></i>
@@ -47,6 +46,15 @@ export class Forgot extends React.Component {
     setTimeout(function() { email.focus() }, 500)
   }
 
+  componentDidUpdate(prevProps) {
+    const { status } = this.props
+    if(prevProps.status !== status) {
+      if(status == 'success') {
+        this.context.router.push({ pathname: '/admin/signin', state: 'slide-back' })
+      }
+    }
+  }
+
   _handleSubmit(event) {
     const { onReset } = this.props
     const email = $(this.refs.email).val()
@@ -58,7 +66,6 @@ export class Forgot extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  flash: state.forgot.flash,
   status: state.forgot.status
 })
 

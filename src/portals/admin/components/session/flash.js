@@ -2,15 +2,12 @@
 import React from 'react'
 import Transition from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
+import * as actions from './actions'
 
 export class Flash extends React.Component {
 
-  static contextTypes = {
-    session: React.PropTypes.object
-  }
-
   static propTypes = {
-    flash: React.PropTypes.object.isRequired,
+    flash: React.PropTypes.object,
     onSet: React.PropTypes.func.isRequired,
     onClear: React.PropTypes.func.isRequired
   }
@@ -32,10 +29,9 @@ export class Flash extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { flash } = this.props
-    const { clearFlash } = this.context.session
+    const { flash, onClear } = this.props
     if(prevProps.flash !== flash && flash) {
-      window.setTimeout(clearFlash , 1500)
+      window.setTimeout(onClear , 2000)
     }
   }
 
@@ -57,4 +53,9 @@ const mapStateToProps = state => ({
   flash: state.session.flash
 })
 
-export default connect(mapStateToProps)(Flash)
+const mapDispatchToProps = {
+  onSet: actions.setFlash,
+  onClear: actions.clearFlash
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Flash)

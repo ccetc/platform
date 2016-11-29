@@ -10,14 +10,14 @@ import passport from 'server/services/passport'
 export const create = (req, res, next) => {
 
   if(!req.body.email) {
-    const error = new Error({ code: 422, message: 'email required' })
+    const error = new Error({ code: 422, message: 'Please enter an email.' })
     return next(error)
   }
 
   return User.where({ email: req.body.email }).fetch().then(user => {
 
     if(!user) {
-      const error = new Error({ code: 401, message: 'unable to load user' })
+      const error = new Error({ code: 401, message: 'Unable to find user.' })
       return next(error)
     }
 
@@ -42,7 +42,7 @@ export const middleware = (req, res, next) => {
   return passport('reset_user_id').authenticate('jwt', { session: false }, (err, user, info) => {
 
     if(err) {
-      const error = new Error({ code: 401, message: 'unable to load user' })
+      const error = new Error({ code: 401, message: 'Unable to find user.' })
       return next(error)
     }
 
@@ -52,9 +52,11 @@ export const middleware = (req, res, next) => {
     }
 
     const reset_at = user.get('reset_at')
+    const is_expired = info.exp <= Math.floor(reset_at / 1000) <= Math.floor(Date.now() / 1000)
+    const was_used = reset_at && info.iat <= Math.floor(reset_at / 1000)
 
-    if(reset_at && info.iat <= Math.floor(reset_at / 1000)) {
-      const error = new Error({ code: 401, message: 'this token has expired' })
+    if(is_expired || was_used) {
+      const error = new Error({ code: 401, message: 'This reset token has expired. Please request a new one.' })
       return next(error)
     }
 

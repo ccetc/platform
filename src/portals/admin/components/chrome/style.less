@@ -11,13 +11,6 @@
   right: 0px;
   display: flex;
   flex: 1;
-  .chrome-flash {
-    .border-radius(.3rem);
-    background-color: #FBBD08 !important;
-    margin-bottom: 15px;
-    padding: 10px;
-    text-align: center;
-  }
   .chrome-session-widget {
     max-width: 320px;
     width: 100%;
@@ -125,7 +118,7 @@
     vertical-align: middle;
   }
 }
-.chrome .chrome-flash {
+.chrome-flash {
   .translate-y-transition(-100%, 0, .25s);
   position: absolute;
   top: 0;
@@ -134,6 +127,10 @@
   z-index: 20;
   height: 100px;
   display: flex;
+  padding: 15px;
+  color: #FFF;
+  z-index: 10;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.176);
   p {
     margin: 0;
     text-align: center;
@@ -145,10 +142,6 @@
     margin: 0 auto;
     font-size: 1.8em;
   }
-}
-.chrome-flash {
-  padding: 15px;
-  color: #FFF;
   &.info {
     background-color: @info_color;
   }

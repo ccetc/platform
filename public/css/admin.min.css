@@ -158,18 +158,6 @@
   display: flex;
   flex: 1;
 }
-.chrome-session .chrome-flash {
-  -webkit-border-radius: 0.3rem;
-  -moz-border-radius: 0.3rem;
-  border-radius: 0.3rem;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-  background-color: #FBBD08 !important;
-  margin-bottom: 15px;
-  padding: 10px;
-  text-align: center;
-}
 .chrome-session .chrome-session-widget {
   max-width: 320px;
   width: 100%;
@@ -375,7 +363,7 @@
   text-align: center;
   vertical-align: middle;
 }
-.chrome .chrome-flash {
+.chrome-flash {
   transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -webkit-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -moz-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
@@ -387,39 +375,39 @@
   z-index: 20;
   height: 100px;
   display: flex;
+  padding: 15px;
+  color: #FFF;
+  z-index: 10;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.176);
 }
-.chrome .chrome-flash.expanded-appear,
-.chrome .chrome-flash.expanded-enter,
-.chrome .chrome-flash.expanded-leave.expanded-leave-active {
+.chrome-flash.expanded-appear,
+.chrome-flash.expanded-enter,
+.chrome-flash.expanded-leave.expanded-leave-active {
   -webkit-transform: translateY(-100%);
   -moz-transform: translateY(-100%);
   -ms-transform: translateY(-100%);
   -o-transform: translateY(-100%);
   transform: translateY(-100%);
 }
-.chrome .chrome-flash.expanded-appear.expanded-appear-active,
-.chrome .chrome-flash.expanded-enter.expanded-enter-active,
-.chrome .chrome-flash.expanded-leave {
+.chrome-flash.expanded-appear.expanded-appear-active,
+.chrome-flash.expanded-enter.expanded-enter-active,
+.chrome-flash.expanded-leave {
   -webkit-transform: translateY(0);
   -moz-transform: translateY(0);
   -ms-transform: translateY(0);
   -o-transform: translateY(0);
   transform: translateY(0);
 }
-.chrome .chrome-flash p {
+.chrome-flash p {
   margin: 0;
   text-align: center;
   margin: auto;
   font-size: 1.3em;
 }
-.chrome .chrome-flash i {
+.chrome-flash i {
   display: block;
   margin: 0 auto;
   font-size: 1.8em;
-}
-.chrome-flash {
-  padding: 15px;
-  color: #FFF;
 }
 .chrome-flash.info {
   background-color: #2185D0;

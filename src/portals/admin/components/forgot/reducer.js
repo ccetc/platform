@@ -2,7 +2,6 @@ import * as actionTypes from './action_types'
 
 export const INITIAL_STATE = {
   forgot: {
-    flash: null,
     status: 'ready'
   }
 }
@@ -21,8 +20,11 @@ export default (state = INITIAL_STATE, action) => {
     return {
       ...state,
       forgot: {
-        flash: null,
         status: 'submitting'
+      },
+      session: {
+        ...state.session,
+        flash: null
       }
     }
 
@@ -30,11 +32,14 @@ export default (state = INITIAL_STATE, action) => {
     return {
       ...state,
       forgot: {
+        status: 'success'
+      },
+      session: {
+        ...state.session,
         flash: {
           style: 'info',
           message: 'Instructions for resetting your password have been emailed to you'
-        },
-        status: 'ready'
+        }
       }
     }
 
@@ -42,11 +47,14 @@ export default (state = INITIAL_STATE, action) => {
     return {
       ...state,
       forgot: {
-        flash: {
-          style: 'error',
-          message: action.error.message
-        },
         status: 'ready'
+      },
+      session: {
+        ...state.session,
+        flash: {
+          style: 'info',
+          message: action.error.message
+        }
       }
     }
 

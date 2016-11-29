@@ -2,7 +2,6 @@ import * as actionTypes from './action_types'
 
 const INITIAL_STATE = {
   reset: {
-    flash: null,
     token: null,
     question: null,
     status: 'pending'
@@ -29,7 +28,6 @@ export default (state = INITIAL_STATE, action) => {
       ...state,
       reset: {
         ...state.reset,
-        flash: null,
         status: 'submitting'
       }
     }
@@ -70,9 +68,12 @@ export default (state = INITIAL_STATE, action) => {
       ...state,
       reset: {
         ...state.reset,
-        status: 'failed',
+        status: 'failed'
+      },
+      session: {
+        ...state.session,
         flash: {
-          style: 'failed',
+          style: 'info',
           message: action.error.message
         }
       }

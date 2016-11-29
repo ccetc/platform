@@ -9,18 +9,13 @@ class Claim extends React.Component {
   }
 
   render() {
-    const { flash, status } = this.props
+    const { status } = this.props
     return (
       <div className="ui form">
         {status === 'initialized' &&
           <div>
             <div className="ui active centered inline loader"></div>
             <p>Fetching your account...</p>
-          </div>
-        }
-        {flash &&
-          <div className={`chrome-flash ${flash.style}`}>
-            {flash.message}
           </div>
         }
       </div>
@@ -38,6 +33,8 @@ class Claim extends React.Component {
         window.setTimeout(function() {
           onClaim(token)
         }, 1500)
+      } else if(status == 'failed') {
+        this.context.router.push('/admin/forgot')
       } else if(status == 'claimed') {
         this.context.router.push('/admin/reset/security')
       }

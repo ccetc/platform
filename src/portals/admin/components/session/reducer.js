@@ -101,7 +101,7 @@ export default (state = INITIAL_STATE, action) => {
       session: {
         apps: null,
         token: null,
-        status: 'initialized',
+        status: 'signed_out',
         user: null
       }
     }

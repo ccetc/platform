@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
+import Flash from './flash'
 import * as actions from './actions'
 
 class Session extends React.Component {
@@ -36,6 +37,7 @@ class Session extends React.Component {
     const { children, status } = this.props
     return (
       <div>
+        <Flash />
         { status !== 'pending' ? children : null }
       </div>
     )
@@ -51,41 +53,44 @@ class Session extends React.Component {
   componentWillReceiveProps(nextProps) {
     const { token, status, user } = nextProps
     if(this.props.status !== status) {
-      if(status == 'initialized') {
+      if(status === 'initialized') {
         if(token) {
           this.props.signin(token)
         } else if (!this._isExternalRoute()) {
+          this.props.setFlash('info', 'You must first signin to access this resource.')
           this.context.router.push('/admin/signin')
         }
-      } else if(status == 'failed') {
+      } else if(status === 'failed') {
         this.props.signout()
       } else if(status == 'active') {
         this.props.loadSession(token)
+      } else if(status === 'signed_out') {
+        this.props.setFlash('info', 'You have been successfully signed out.')
+        this.context.router.push('/admin/signin')
       }
     }
-    if(this.props.user !== user) {
-      if(user) {
-        const redirect = this.state.redirect
-        this.setState({ redirect: '/admin' })
-        this.context.router.push(redirect)
-      }
+    if(this.props.user !== user && user) {
+      const redirect = this.state.redirect
+      this.setState({ redirect: '/admin' })
+      this.context.router.push(redirect)
     }
   }
 
   getChildContext() {
-    const { signout } = this.props
+    const { signout, setFlash, clearFlash } = this.props
     return {
       socket: this.socket,
       session: {
-        setFlash: this.props.setFlash,
-        clearFlash: this.props.clearFlash,
+        setFlash,
+        clearFlash,
         signout
       }
     }
   }
 
   _isExternalRoute() {
-    const parts = this.props.location.pathname.split('/')
+    const { location } = this.props
+    const parts = location.pathname.split('/')
     const context = (parts.length > 2) ? parts[2] : null
     return _.includes(['signin','forgot','reset','activation'], context)
   }

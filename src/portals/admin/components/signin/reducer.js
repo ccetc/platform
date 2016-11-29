@@ -2,7 +2,6 @@ import * as actionTypes from './action_types'
 
 export const INITIAL_STATE = {
   signin: {
-    flash: null,
     status: 'ready',
     token: null
   }
@@ -23,7 +22,6 @@ export default (state = INITIAL_STATE, action) => {
       ...state,
       signin: {
         ...state.signin,
-        flash: null,
         status: 'submitting'
       }
     }
@@ -34,7 +32,6 @@ export default (state = INITIAL_STATE, action) => {
       signin: {
         ...state.signin,
         token: action.data.token,
-        flash: null,
         status: 'success'
       }
     }
@@ -44,11 +41,14 @@ export default (state = INITIAL_STATE, action) => {
       ...state,
       signin: {
         ...state.signin,
-        flash: {
-          style: 'error',
-          message: action.error.message
-        },
         status: 'failure'
+      },
+      session: {
+        ...state.session,
+        flash: {
+          style: 'info',
+          message: action.error.message
+        }
       }
     }
 

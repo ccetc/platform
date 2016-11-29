@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from './actions'
-import Flash from './flash'
 import Drawer from './drawer'
 import Topbar from './topbar'
 import Notifications from '../notifications'
@@ -25,7 +24,6 @@ export class Chrome extends React.Component {
     const { children } = this.props
     return (
       <div className="chrome">
-        <Flash />
         <Drawer />
         <Topbar />
         { children }
