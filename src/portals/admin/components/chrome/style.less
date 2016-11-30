@@ -341,11 +341,16 @@
   top: 50px;
   left: 0;
   right: 0;
-  height: ~"calc(100vh - 50px)";
+  bottom: 0;
   display: flex;
   background-color: #F9F9F9;
   .chrome-search-landing-message {
-    margin: auto;
+    @media only screen and (max-width: 767px) {
+      margin: auto auto 380px;
+    }
+    @media only screen and (min-width: 768px) {
+      margin: auto;
+    }
     text-align: center;
     padding: 20px;
     h2 {
