@@ -3,9 +3,6 @@ import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
 import _ from 'lodash'
-import * as actions from './actions'
-import Task from './task'
-import Tasks from './tasks'
 
 export class Page extends React.Component {
 
@@ -13,11 +10,15 @@ export class Page extends React.Component {
     page: React.PropTypes.object
   }
 
-  static propTypes: {
+  static contextTypes = {
+    chrome: React.PropTypes.object
+  }
+
+  static propTypes = {
     back: React.PropTypes.string.isRequired,
-    permissions: React.PropTypes.array.isRequired,
+    permissions: React.PropTypes.array,
     task: React.PropTypes.object,
-    tasks: React.PropTypes.string,
+    tasks: React.PropTypes.array,
     title: React.PropTypes.string.isRequired
   }
 
@@ -47,8 +48,20 @@ export class Page extends React.Component {
               {title}
             </div>
             <div className="chrome-more">
-              { tasks && <Tasks tasks={ tasks } /> }
-              { task && <Task {...task} /> }
+              { tasks &&
+                <div className="chrome-tasks">
+                  <a onClick={ this._handleOpenTasks.bind(this) }>
+                    <i className="ellipsis vertical icon" />
+                  </a>
+                </div>
+              }
+              { task &&
+                <div className="chrome-task">
+                  <a onClick={this._handleOpenTask.bind(this)}>
+                    <i className={`${task.icon} icon`} />
+                  </a>
+                </div>
+              }
             </div>
           </div>
           <div className="chrome-body">
@@ -109,14 +122,23 @@ export class Page extends React.Component {
     this.props.onOpenModal()
   }
 
+  _handleOpenTasks() {
+    this.context.chrome.openTasks(this.props.tasks)
+  }
+
+  _handleOpenTask() {
+    const { route, component } = this.props.task
+    if(route) {
+      this.context.chrome.transitionTo(route)
+    } else if(component) {
+      this.context.chrome.openModal(component)
+    }
+  }
+
 }
 
 const mapStateToProps = (state) => ({
   user: state.session.user
 })
 
-const mapDispatchToProps = ({
-  onOpenModal: actions.openModal
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Page)
+export default connect(mapStateToProps)(Page)

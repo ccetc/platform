@@ -1,7 +1,7 @@
 import React from 'react'
-import Transition from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
-import * as actions from '../chrome/actions'
+import Edit from './edit'
+import Password from './password'
 
 export class Account extends React.Component {
 
@@ -11,36 +11,32 @@ export class Account extends React.Component {
   }
 
   render() {
-    const { expanded, user } = this.props
+    const { user } = this.props
     return (
-      <Transition transitionName="expanded" transitionEnterTimeout={500} transitionLeaveTimeout={500} transitionAppear={true} transitionAppearTimeout={500}>
-        {expanded && <div className="chrome-account-overlay" onClick={this._handleToggleAccount.bind(this)} />}
-        {expanded &&
-          <div className="chrome-account-panel">
-            <div className="chrome-account-identity">
-              <img src={user.photo} className="ui image circular" />
-              <h2>{user.name}</h2>
-              <p>{user.email}</p>
-            </div>
-            <div className="chrome-account-tasks">
-              <div className="chrome-account-task">
-                <i className="edit icon" /> Edit Account
-              </div>
-              <div className="chrome-account-task">
-                <i className="lock icon" /> Change Password
-              </div>
-              <div className="chrome-account-task" onClick={this._handleSignout.bind(this)}>
-                <i className="power icon" /> Sign Out
-              </div>
-            </div>
+      <div className="chrome-account-panel">
+        <div className="chrome-account-identity">
+          <img src={user.photo} className="ui image circular" />
+          <h2>{user.name}</h2>
+          <p>{user.email}</p>
+        </div>
+        <div className="chrome-account-tasks">
+          <div className="chrome-account-task" onClick={this._handleModal.bind(this, Edit)}>
+            <i className="edit icon" /> Edit Account
           </div>
-        }
-      </Transition>
+          <div className="chrome-account-task" onClick={this._handleModal.bind(this, Password)}>
+            <i className="lock icon" /> Change Password
+          </div>
+          <div className="chrome-account-task" onClick={this._handleSignout.bind(this)}>
+            <i className="power icon" /> Sign Out
+          </div>
+        </div>
+      </div>
     )
   }
 
-  _handleToggleAccount() {
-    this.props.onToggleAccount()
+  _handleModal(component) {
+    this.context.chrome.closeDrawer()
+    this.context.chrome.openModal(component)
   }
 
   _handleSignout() {
@@ -55,8 +51,4 @@ const mapStateToProps = state => ({
   user: state.session.user
 })
 
-const mapDispatchToProps = {
-  onToggleAccount: actions.toggleAccount
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Account)
+export default connect(mapStateToProps)(Account)

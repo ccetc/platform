@@ -7,7 +7,7 @@ import * as sessionActions from '../session/actions'
 
 export class Signin extends React.Component {
 
-  static propTypes: {
+  static propTypes = {
     flash: React.PropTypes.string.isRequired,
     status: React.PropTypes.string.isRequired,
     token: React.PropTypes.string.isRequired,

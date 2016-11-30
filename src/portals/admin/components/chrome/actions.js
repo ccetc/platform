@@ -8,15 +8,43 @@ export function transitionTo(route) {
   }
 }
 
-export function toggleAccount() {
+export function openModal(component) {
   return {
-    type: actionTypes.TOGGLE_ACCOUNT
+    type: actionTypes.OPEN_MODAL,
+    component
   }
 }
 
-export function toggleDrawer() {
+export function closeModal() {
   return {
-    type: actionTypes.TOGGLE_DRAWER
+    type: actionTypes.CLOSE_MODAL
+  }
+}
+
+export function openDrawer(component, location) {
+  return {
+    type: actionTypes.OPEN_DRAWER,
+    component,
+    location
+  }
+}
+
+export function closeDrawer() {
+  return {
+    type: actionTypes.CLOSE_DRAWER
+  }
+}
+
+export function openTasks(tasks) {
+  return {
+    type: actionTypes.OPEN_TASKS,
+    tasks
+  }
+}
+
+export function closeTasks() {
+  return {
+    type: actionTypes.CLOSE_TASKS
   }
 }
 

@@ -2,19 +2,25 @@ import React from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import * as actions from './actions'
+import Search from './search'
+import Account from '../account'
+import Navigation from './navigation'
 
 export class Topbar extends React.Component {
 
-  static propTypes: {
-    unread: React.PropTypes.number.isRequired,
-    onToggle: React.PropTypes.func.isRequired
+  static contextTypes = {
+    chrome: React.PropTypes.object
+  }
+
+  static propTypes = {
+    unread: React.PropTypes.number.isRequired
   }
 
   render() {
     const { unread } = this.props
     return (
       <div className="chrome-topbar">
-        <div className="chrome-toggle" onClick={this._handleToggleDrawer.bind(this)}>
+        <div className="chrome-navigation" onClick={this._handleOpenDrawer.bind(this)}>
           <i className="sidebar icon" />
         </div>
         <div className="chrome-filler"></div>
@@ -34,16 +40,16 @@ export class Topbar extends React.Component {
     )
   }
 
-  _handleToggleDrawer() {
-    this.props.onToggleDrawer()
+  _handleOpenDrawer() {
+    this.context.chrome.openDrawer(Navigation, 'left')
   }
 
   _handleToggleSearch() {
-    this.props.onBeginSearch()
+    this.context.chrome.openModal(Search)
   }
 
   _handleToggleAccount() {
-    this.props.onToggleAccount()
+    this.context.chrome.openDrawer(Account, 'right')
   }
 
 }

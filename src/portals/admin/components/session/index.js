@@ -17,9 +17,9 @@ class Session extends React.Component {
     location: React.PropTypes.object
   }
 
-  static propTypes: {
-    token: React.PropTypes.string.isRequired,
-    user: React.PropTypes.object.isRequired,
+  static propTypes = {
+    token: React.PropTypes.string,
+    user: React.PropTypes.object,
     loadToken: React.PropTypes.func.isRequired,
     saveToken: React.PropTypes.func.isRequired,
     signin: React.PropTypes.func.isRequired

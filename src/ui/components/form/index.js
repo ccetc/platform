@@ -4,8 +4,8 @@ import $ from 'jquery'
 class Form extends React.Component {
 
   static contextTypes = {
-    modal: React.PropTypes.object,
-    session: React.PropTypes.object
+    session: React.PropTypes.object,
+    chrome: React.PropTypes.object
   }
 
   static propTypes = {
@@ -55,13 +55,13 @@ class Form extends React.Component {
   }
 
   _handleCancel() {
-    this.context.modal.close()
+    this.context.chrome.closeModal()
   }
 
   _handleSave() {
     const message = this.props.successMessage || 'Your form was successfully saved!'
     this.context.session.setFlash('success', message)
-    this.context.modal.close()
+    this.context.chrome.closeModal()
   }
 
 }

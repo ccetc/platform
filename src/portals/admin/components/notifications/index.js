@@ -9,7 +9,7 @@ export class Notifications extends React.Component {
     socket: React.PropTypes.object
   }
 
-  static propTypes: {
+  static propTypes = {
     queue: React.PropTypes.array.isRequired,
     onPushNotification: React.PropTypes.func.isRequired,
     onReadNotification: React.PropTypes.func.isRequired

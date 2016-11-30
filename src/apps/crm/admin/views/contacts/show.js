@@ -2,7 +2,7 @@ import React from 'react'
 import Card from 'ui/components/card'
 import Container from 'ui/components/container'
 import Tabs from 'ui/components/tabs'
-import Page from 'portals/admin/components/page'
+import Page from 'portals/admin/components/chrome/page'
 
 class Show extends React.Component {
 

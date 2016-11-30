@@ -327,7 +327,7 @@
 .chrome-filler {
   flex: 1;
 }
-.chrome-toggle,
+.chrome-navigation,
 .chrome-search,
 .chrome-alerts,
 .chrome-account {
@@ -339,14 +339,14 @@
   height: 50px;
   font-size: 18px;
 }
-.chrome-toggle i,
+.chrome-navigation i,
 .chrome-search i,
 .chrome-alerts i,
 .chrome-account i {
   margin: auto;
   color: #FFFFFF;
 }
-.chrome-toggle .chrome-alerts-label,
+.chrome-navigation .chrome-alerts-label,
 .chrome-search .chrome-alerts-label,
 .chrome-alerts .chrome-alerts-label,
 .chrome-account .chrome-alerts-label {
@@ -431,30 +431,57 @@
   background-color: #DB2828;
 }
 .chrome-drawer {
-  transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -webkit-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -moz-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -ms-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   position: fixed;
   display: flex;
   top: 0;
   bottom: 0;
-  background-color: #444444;
   flex-direction: column;
   z-index: 11;
 }
-.chrome-drawer.expanded-appear,
-.chrome-drawer.expanded-enter,
-.chrome-drawer.expanded-leave.expanded-leave-active {
+.chrome-drawer.chrome-drawer-left {
+  transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -webkit-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -moz-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -ms-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  left: 0;
+}
+.chrome-drawer.chrome-drawer-left.expanded-appear,
+.chrome-drawer.chrome-drawer-left.expanded-enter,
+.chrome-drawer.chrome-drawer-left.expanded-leave.expanded-leave-active {
   -webkit-transform: translateX(-100%);
   -moz-transform: translateX(-100%);
   -ms-transform: translateX(-100%);
   -o-transform: translateX(-100%);
   transform: translateX(-100%);
 }
-.chrome-drawer.expanded-appear.expanded-appear-active,
-.chrome-drawer.expanded-enter.expanded-enter-active,
-.chrome-drawer.expanded-leave {
+.chrome-drawer.chrome-drawer-left.expanded-appear.expanded-appear-active,
+.chrome-drawer.chrome-drawer-left.expanded-enter.expanded-enter-active,
+.chrome-drawer.chrome-drawer-left.expanded-leave {
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+  transform: translateX(0);
+}
+.chrome-drawer.chrome-drawer-right {
+  transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -webkit-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -moz-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -ms-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  right: 0;
+}
+.chrome-drawer.chrome-drawer-right.expanded-appear,
+.chrome-drawer.chrome-drawer-right.expanded-enter,
+.chrome-drawer.chrome-drawer-right.expanded-leave.expanded-leave-active {
+  -webkit-transform: translateX(100%);
+  -moz-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  -o-transform: translateX(100%);
+  transform: translateX(100%);
+}
+.chrome-drawer.chrome-drawer-right.expanded-appear.expanded-appear-active,
+.chrome-drawer.chrome-drawer-right.expanded-enter.expanded-enter-active,
+.chrome-drawer.chrome-drawer-right.expanded-leave {
   -webkit-transform: translateX(0);
   -moz-transform: translateX(0);
   -ms-transform: translateX(0);
@@ -479,7 +506,7 @@
   -webkit-opacity: 0.2;
   -moz-opacity: 0.2;
   opacity: 0.2;
-  background-color: #000000;
+  background-color: #000;
   z-index: 10;
   position: fixed;
   top: 0;
@@ -501,13 +528,17 @@
   -moz-opacity: 0.2;
   opacity: 0.2;
 }
-.chrome-drawer-instance {
+.chrome-navigation-panel {
+  flex: 1;
+  background-color: #333;
+}
+.chrome-navigation-instance {
   background: #EEE;
   padding: 20px;
   display: flex;
   height: 100px;
 }
-.chrome-drawer-instance h3 {
+.chrome-navigation-instance h3 {
   text-align: center;
   margin: auto;
 }
@@ -727,76 +758,8 @@
   color: #000;
 }
 .chrome-account-panel {
-  transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -webkit-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -moz-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -ms-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  position: fixed;
-  display: flex;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  background-color: #FFF;
-  flex-direction: column;
-  z-index: 11;
-}
-.chrome-account-panel.expanded-appear,
-.chrome-account-panel.expanded-enter,
-.chrome-account-panel.expanded-leave.expanded-leave-active {
-  -webkit-transform: translateX(100%);
-  -moz-transform: translateX(100%);
-  -ms-transform: translateX(100%);
-  -o-transform: translateX(100%);
-  transform: translateX(100%);
-}
-.chrome-account-panel.expanded-appear.expanded-appear-active,
-.chrome-account-panel.expanded-enter.expanded-enter-active,
-.chrome-account-panel.expanded-leave {
-  -webkit-transform: translateX(0);
-  -moz-transform: translateX(0);
-  -ms-transform: translateX(0);
-  -o-transform: translateX(0);
-  transform: translateX(0);
-}
-@media only screen and (max-width: 380px) {
-  .chrome-account-panel {
-    width: calc(100% - 60px);
-  }
-}
-@media only screen and (min-width: 381px) {
-  .chrome-account-panel {
-    width: 320px;
-  }
-}
-.chrome-account-overlay {
-  transition: opacity 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -webkit-transition: opacity 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -moz-transition: opacity 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -ms-transition: opacity 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -webkit-opacity: 0.2;
-  -moz-opacity: 0.2;
-  opacity: 0.2;
-  background-color: #000;
-  z-index: 10;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-.chrome-account-overlay.expanded-appear,
-.chrome-account-overlay.expanded-enter,
-.chrome-account-overlay.expanded-leave.expanded-leave-active {
-  -webkit-opacity: 0;
-  -moz-opacity: 0;
-  opacity: 0;
-}
-.chrome-account-overlay.expanded-appear.expanded-appear-active,
-.chrome-account-overlay.expanded-enter.expanded-enter-active,
-.chrome-account-overlay.expanded-leave {
-  -webkit-opacity: 0.2;
-  -moz-opacity: 0.2;
-  opacity: 0.2;
+  flex: 1;
+  background: #FFF;
 }
 .chrome-account-identity {
   background: #EEE;
@@ -829,36 +792,6 @@
   color: #666666;
   font-size: 18px;
   margin-right: 10px;
-}
-.chrome-notifications {
-  position: absolute;
-  @include border-radius(0 !important);
-  z-index: 10;
-}
-.chrome-notifications .segment {
-  position: relative;
-  background-color: #FFF !important;
-}
-.chrome-notifications .segment i {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  font-size: 10px;
-  cursor: pointer;
-}
-@media only screen and (max-width: 600px) {
-  .chrome-notifications {
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-}
-@media only screen and (min-width: 601px) {
-  .chrome-notifications {
-    bottom: 10px;
-    left: 10px;
-    width: 240px;
-  }
 }
 .chrome-panel {
   position: fixed;
@@ -1083,6 +1016,36 @@
   -ms-transform: translateY(0);
   -o-transform: translateY(0);
   transform: translateY(0);
+}
+.chrome-notifications {
+  position: absolute;
+  @include border-radius(0 !important);
+  z-index: 10;
+}
+.chrome-notifications .segment {
+  position: relative;
+  background-color: #FFF !important;
+}
+.chrome-notifications .segment i {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 10px;
+  cursor: pointer;
+}
+@media only screen and (max-width: 600px) {
+  .chrome-notifications {
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+}
+@media only screen and (min-width: 601px) {
+  .chrome-notifications {
+    bottom: 10px;
+    left: 10px;
+    width: 240px;
+  }
 }
 .collection {
   width: 100%;

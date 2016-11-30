@@ -1,7 +1,6 @@
 import chrome from './components/chrome/reducer'
 import forgot from './components/forgot/reducer'
 import notifications from './components/notifications/reducer'
-import page from './components/page/reducer'
 import reset from './components/reset/reducer'
 import session from './components/session/reducer'
 import signin from './components/signin/reducer'
@@ -17,7 +16,6 @@ const Reducer = (state, action) => {
     chrome,
     forgot,
     notifications,
-    page,
     reset,
     session,
     signin,
@@ -53,7 +51,6 @@ const Reducer = (state, action) => {
       ...chrome(undefined, action),
       ...forgot(undefined, action),
       ...notifications(undefined, action),
-      ...page(undefined, action),
       ...reset(undefined, action),
       ...session(undefined, action),
       ...signin(undefined, action),

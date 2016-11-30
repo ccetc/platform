@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from 'ui/components/card'
 import Container from 'ui/components/container'
-import Page from 'portals/admin/components/page'
+import Page from 'portals/admin/components/chrome/page'
 import Edit from './edit'
 
 class Show extends React.Component {
@@ -27,7 +27,7 @@ class Show extends React.Component {
       title: 'User',
       permissions: [],
       tasks: [
-        { label: 'Edit User', component: <Edit /> },
+        { label: 'Edit User', component: Edit },
         { label: 'Reset Password', handler: this._handleResetPassword.bind(this) },
         { label: 'Sign Out of All Devices', handler: this._handleSignOutAllDevices.bind(this) }
       ]

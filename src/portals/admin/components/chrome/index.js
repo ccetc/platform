@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from './actions'
+import Modal from './modal'
 import Drawer from './drawer'
+import Tasks from './tasks'
 import Topbar from './topbar'
-import Account from '../account'
-import Search from './search'
 import Notifications from '../notifications'
 
 export class Chrome extends React.Component {
@@ -17,19 +17,18 @@ export class Chrome extends React.Component {
     router: React.PropTypes.object
   }
 
-  static propTypes: {
-    token: React.PropTypes.string.isRequired,
-    set: React.PropTypes.func.isRequired
+  static propTypes = {
+    token: React.PropTypes.string
   }
 
   render() {
     const { children } = this.props
     return (
       <div className="chrome">
-        <Drawer />
         <Topbar />
-        <Search />
-        <Account />
+        <Modal />
+        <Drawer />
+        <Tasks />
         { children }
       </div>
     )
@@ -42,22 +41,17 @@ export class Chrome extends React.Component {
     }
   }
 
-  _handleSetFlash(style, message) {
-    this.props.setFlash(style, message)
-  }
-
-  _handleClearFlash() {
-    this.props.clearFlash()
-  }
-
-  _handleTransitionTo(route) {
-    this.props.onTransitionTo(route)
-  }
-
   getChildContext() {
+    const { transitionTo, openModal, closeModal, openDrawer, closeDrawer, openTasks, closeTasks } = this.props
     return {
       chrome: {
-        transitionTo: this._handleTransitionTo.bind(this)
+        transitionTo,
+        openModal,
+        closeModal,
+        openDrawer,
+        closeDrawer,
+        openTasks,
+        closeTasks
       }
     }
   }
@@ -69,7 +63,13 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  onTransitionTo: actions.transitionTo,
+  transitionTo: actions.transitionTo,
+  openModal: actions.openModal,
+  closeModal: actions.closeModal,
+  openDrawer: actions.openDrawer,
+  closeDrawer: actions.closeDrawer,
+  openTasks: actions.openTasks,
+  closeTasks: actions.closeTasks,
   setFlash: actions.setFlash,
   clearFlash: actions.clearFlash
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import Page from 'portals/admin/components/page'
+import Page from 'portals/admin/components/chrome/page'
 import Collection from 'ui/components/collection'
 
 class Index extends React.Component {

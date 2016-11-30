@@ -1,5 +1,5 @@
 import React from 'react'
-import Page from 'portals/admin/components/page'
+import Page from 'portals/admin/components/chrome/page'
 import Collection from 'ui/components/collection'
 import New from './new'
 
@@ -23,7 +23,7 @@ class Index extends React.Component {
       entity: 'trip',
       empty: {
         icon: 'car',
-        component: <New />
+        component: New
       },
       recordActions: [
         { label: 'edit', icon: 'edit', redirect: '/admin/expenses/trips/#{id}/edit'}
@@ -38,7 +38,7 @@ class Index extends React.Component {
       task: {
         label: 'New Trip',
         icon: 'plus',
-        component: <New />
+        component: New
       }
     }
   }

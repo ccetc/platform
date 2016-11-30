@@ -5,7 +5,7 @@ import $ from 'jquery'
 
 class Infinite extends React.Component {
 
-  static propTypes: {
+  static propTypes = {
     endpoint: React.PropTypes.string.isRequired,
     sort: React.PropTypes.string.isRequired,
     loaded: React.PropTypes.number.isRequired,
