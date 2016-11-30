@@ -653,7 +653,6 @@
   left: 0;
   right: 0;
   height: calc(100vh - 50px);
-  bottom: 0;
   display: flex;
   background-color: #F9F9F9;
 }
