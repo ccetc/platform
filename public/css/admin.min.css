@@ -337,7 +337,8 @@
   cursor: pointer;
   width: 50px;
   height: 50px;
-  font-size: 22px;
+  font-size: 18px;
+  padding: 16px;
 }
 .chrome-navigation i,
 .chrome-search i,
@@ -366,11 +367,11 @@
   vertical-align: middle;
 }
 .chrome-account {
-  padding: 10px;
+  padding: 11px;
 }
 .chrome-account img {
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
 }
 .chrome-flash {
   transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
@@ -530,17 +531,17 @@
 }
 .chrome-navigation-panel {
   flex: 1;
-  background-color: #333;
+  background-color: #444444;
 }
-.chrome-navigation-instance {
-  background: #EEE;
-  padding: 20px;
+.chrome-navigation-title {
+  background: #000;
+  height: 50px;
   display: flex;
-  height: 100px;
 }
-.chrome-navigation-instance h3 {
-  text-align: center;
+.chrome-navigation-title h3 {
   margin: auto;
+  color: #FFF;
+  text-align: center;
 }
 .chrome-apps {
   flex: 1;
@@ -551,7 +552,7 @@
   display: block;
   cursor: pointer;
   color: #CCC;
-  padding: 5px 10px;
+  padding: 10px;
 }
 .chrome-app .chrome-app-title.active {
   color: #ffffff;
@@ -560,7 +561,6 @@
   background-color: #555555;
 }
 .chrome-app .chrome-app-title i {
-  background-color: #DB2828;
   color: #FFFFFF;
   display: inline-block;
   width: 32px;
@@ -793,7 +793,7 @@
   background-color: #EEE;
 }
 .chrome-account-task i {
-  color: #666666;
+  color: #888888;
   font-size: 18px;
   margin-right: 10px;
 }

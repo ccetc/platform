@@ -1,9 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router'
 import { connect } from 'react-redux'
-import * as actions from './actions'
 import Search from './search'
 import Account from '../account'
+import Notifications from './notifications'
 import Navigation from './navigation'
 
 export class Topbar extends React.Component {
@@ -20,35 +19,39 @@ export class Topbar extends React.Component {
     const { unread } = this.props
     return (
       <div className="chrome-topbar">
-        <div className="chrome-navigation" onClick={this._handleOpenDrawer.bind(this)}>
+        <div className="chrome-navigation" onClick={this._handleOpenNavigation.bind(this)}>
           <i className="sidebar icon" />
         </div>
         <div className="chrome-filler"></div>
-        <div className="chrome-search" onClick={this._handleToggleSearch.bind(this)}>
+        <div className="chrome-search" onClick={this._handleOpenSearch.bind(this)}>
           <i className="search icon" />
         </div>
-        <Link to="/admin/notifications" className="chrome-alerts">
+        <div className="chrome-alerts" onClick={this._handleOpenNotifications.bind(this)}>
           <i className="alarm icon" />
           {unread > 0 &&
             <div className="chrome-alerts-label">{unread}</div>
           }
-        </Link>
-        <div className="chrome-account" onClick={this._handleToggleAccount.bind(this)}>
+        </div>
+        <div className="chrome-account" onClick={this._handleOpenAccount.bind(this)}>
           <img src="/images/greg.jpg" className="ui image circular" />
         </div>
       </div>
     )
   }
 
-  _handleOpenDrawer() {
+  _handleOpenNavigation() {
     this.context.chrome.openDrawer(Navigation, 'left')
   }
 
-  _handleToggleSearch() {
+  _handleOpenSearch() {
     this.context.chrome.openModal(Search)
   }
 
-  _handleToggleAccount() {
+  _handleOpenNotifications() {
+    this.context.chrome.openModal(Notifications)
+  }
+
+  _handleOpenAccount() {
     this.context.chrome.openDrawer(Account, 'right')
   }
 
@@ -58,10 +61,4 @@ const mapStateToProps = (state) => ({
   unread: state.notifications.unread
 })
 
-const mapDispatchToProps = {
-  onToggleAccount: actions.toggleAccount,
-  onToggleDrawer: actions.toggleDrawer,
-  onBeginSearch: actions.beginSearch
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Topbar)
+export default connect(mapStateToProps)(Topbar)

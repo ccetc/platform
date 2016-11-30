@@ -2,7 +2,6 @@ import React from 'react'
 import Transition from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
 import * as actions from './actions'
-import * as sessionActions from '../session/actions'
 
 export class Navigation extends React.Component {
 
@@ -22,8 +21,8 @@ export class Navigation extends React.Component {
     const { apps } = this.props
     return (
       <div className="chrome-navigation-panel">
-        <div className="chrome-navigation-instance">
-          <h3>Cornell Cooperative Extension of Tompkins County</h3>
+        <div className="chrome-navigation-title">
+          <h3>Apps</h3>
         </div>
         <div className="chrome-apps">
           {apps.map((app, appindex) => {
@@ -68,8 +67,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  onChooseApp: actions.chooseApp,
-  onSignout: sessionActions.signout
+  onChooseApp: actions.chooseApp
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation)
