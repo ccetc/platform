@@ -198,7 +198,7 @@
 }
 .chrome-navigation-panel {
   flex: 1;
-  background-color: #444444;
+  background-color: #FFF;
 }
 .chrome-navigation-title  {
   background: #000;
@@ -219,20 +219,17 @@
   .chrome-app-title {
     display: block;
     cursor: pointer;
-    color: #CCC;
+    color: #000;
     padding: 10px;
-    &.active {
-      color: rgb(255, 255, 255);
-    }
     &:hover {
-      background-color: rgb(85,85,85);
+      background-color: #DDD;
     }
     i {
-      color: @primary_color;
+      color: #888;
       display: inline-block;
-      width: 32px;
-      height: 32px;
-      line-height: 32px;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
       font-size: 16px;
       vertical-align: middle;
       text-align: center;
@@ -241,7 +238,7 @@
   }
   .chrome-app-menu {
     .transition(max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s);
-    background-color: rgb(51, 51, 51);
+    background-color: #EEE;
     max-height: 500px;
     overflow: hidden;
     &.expanded-enter,
@@ -253,12 +250,12 @@
       max-height: 500px;
     }
     .chrome-app-item {
-      padding: 10px;
-      color: rgb(255, 255, 255);
+      padding: 10px 20px;
+      color: #888;
       cursor: pointer;
       line-height: 25px;
       &:hover {
-        background-color: rgb(85, 85, 85);
+        background-color: #DDD;
       }
     }
   }
@@ -421,14 +418,10 @@
     color: #888;
   }
 }
-.chrome-account-tasks {
-  border-top: 1px solid #EEE;
-}
 .chrome-account-task {
   background-color: #FFF;
   display: block;
   padding: 15px;
-  border-bottom: 1px solid #EEE;
   cursor: pointer;
   &:hover {
     background-color: #EEE;
