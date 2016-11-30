@@ -341,16 +341,16 @@
   top: 50px;
   left: 0;
   right: 0;
-  bottom: 0;
+  @media only screen and (max-width: 767px) {
+    bottom: 340px;
+  }
+  @media only screen and (min-width: 768px) {
+    bottom: 0;
+  }
   display: flex;
   background-color: #F9F9F9;
   .chrome-search-landing-message {
-    @media only screen and (max-width: 767px) {
-      margin: auto auto 340px;
-    }
-    @media only screen and (min-width: 768px) {
-      margin: auto;
-    }
+    margin: auto;
     text-align: center;
     padding: 20px;
     h2 {
