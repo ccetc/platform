@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 import chrome from './components/chrome/reducer'
 import forgot from './components/forgot/reducer'
 import notifications from './components/notifications/reducer'
@@ -38,9 +40,16 @@ const Reducer = (state, action) => {
         }
       }
     } else {
-      return {
-        ...state,
-        ...reducers[namespace](state, action)
+      if(_.includes(['chrome','forgot','notifications','reset'], namespace)) {
+        return {
+          ...state,
+          [namespace]: reducers[namespace](state[namespace], action)
+        }
+      } else  {
+        return {
+          ...state,
+          ...reducers[namespace](state, action)
+        }
       }
     }
 
@@ -48,10 +57,10 @@ const Reducer = (state, action) => {
   } else if(state === undefined) {
 
     return {
-      ...chrome(undefined, action),
-      ...forgot(undefined, action),
-      ...notifications(undefined, action),
-      ...reset(undefined, action),
+      chrome: chrome(undefined, action),
+      forgot: forgot(undefined, action),
+      notifications: notifications(undefined, action),
+      reset: reset(undefined, action),
       ...session(undefined, action),
       ...signin(undefined, action),
       ...collection(undefined, action),

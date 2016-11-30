@@ -2,12 +2,12 @@ import React from 'react'
 import $ from 'jquery'
 import { connect } from 'react-redux'
 import * as actions from './actions'
-import * as sessionActions from '../session/actions'
 
 class Password extends React.Component {
 
   static contextTypes = {
-    router: React.PropTypes.object
+    router: React.PropTypes.object,
+    session: React.PropTypes.object
   }
 
   render() {
@@ -40,11 +40,14 @@ class Password extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { status, token, onSetFlash, onSaveToken } = this.props
+    const { session } = this.context
+    const { error, status, token} = this.props
     if(prevProps.status != status) {
       if(status === 'complete') {
-        onSaveToken(token)
-        onSetFlash('success', 'Your password was successfully reset')
+        session.saveToken(token)
+        session.setFlash('success', 'Your password was successfully reset')
+      } else if(status == 'failed') {
+        session.setFlash('info', error)
       }
     }
   }
@@ -63,9 +66,7 @@ class Password extends React.Component {
 const mapStateToProps = state => state.reset
 
 const mapDispatchToProps = {
-  onReset: actions.reset,
-  onSaveToken: sessionActions.saveToken,
-  onSetFlash: sessionActions.setFlash
+  onReset: actions.reset
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Password)

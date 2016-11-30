@@ -7,10 +7,12 @@ import * as actions from './actions'
 export class Forgot extends React.Component {
 
   static contextTypes = {
-    router: React.PropTypes.object.isRequired
+    router: React.PropTypes.object.isRequired,
+    session: React.PropTypes.object.isRequired
   }
 
   static propTypes = {
+    error: React.PropTypes.string,
     status: React.PropTypes.string.isRequired,
     onReset: React.PropTypes.func.isRequired,
     onSetup: React.PropTypes.func.isRequired
@@ -47,10 +49,13 @@ export class Forgot extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { status } = this.props
+    const { status, error } = this.props
     if(prevProps.status !== status) {
       if(status == 'success') {
+        this.context.session.setFlash('info', 'Instructions for resetting your password have been emailed to you')
         this.context.router.push({ pathname: '/admin/signin', state: 'slide-back' })
+      } else if(status == 'failed') {
+        this.context.session.setFlash('info', error)
       }
     }
   }
@@ -66,7 +71,7 @@ export class Forgot extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  status: state.forgot.status
+  ...state.forgot
 })
 
 const mapDispatchToProps = {

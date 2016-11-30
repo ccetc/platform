@@ -1,9 +1,8 @@
 import * as actionTypes from './action_types'
 
 export const INITIAL_STATE = {
-  forgot: {
-    status: 'ready'
-  }
+  status: 'ready',
+  error: null
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -11,51 +10,24 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
 
   case actionTypes.SETUP:
-    return {
-      ...state,
-      ...INITIAL_STATE
-    }
+    return INITIAL_STATE
 
   case actionTypes.RESET_REQUEST:
     return {
-      ...state,
-      forgot: {
-        status: 'submitting'
-      },
-      session: {
-        ...state.session,
-        flash: null
-      }
+      status: 'submitting',
+      error: null
     }
 
   case actionTypes.RESET_SUCCESS:
     return {
-      ...state,
-      forgot: {
-        status: 'success'
-      },
-      session: {
-        ...state.session,
-        flash: {
-          style: 'info',
-          message: 'Instructions for resetting your password have been emailed to you'
-        }
-      }
+      status: 'success',
+      error: null
     }
 
   case actionTypes.RESET_FAILURE:
     return {
-      ...state,
-      forgot: {
-        status: 'ready'
-      },
-      session: {
-        ...state.session,
-        flash: {
-          style: 'info',
-          message: action.error.message
-        }
-      }
+      status: 'failed',
+      error: action.error.message
     }
 
   default:

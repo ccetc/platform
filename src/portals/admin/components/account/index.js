@@ -40,7 +40,7 @@ export class Account extends React.Component {
   }
 
   _handleSignout() {
-    this.props.onToggleAccount()
+    this.context.chrome.closeDrawer()
     this.context.session.signout()
   }
 

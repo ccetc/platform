@@ -8,8 +8,7 @@ class Session extends React.Component {
 
   static childContextTypes = {
     socket: React.PropTypes.object,
-    session: React.PropTypes.object,
-    flash: React.PropTypes.object
+    session: React.PropTypes.object
   }
 
   static contextTypes = {
@@ -77,10 +76,11 @@ class Session extends React.Component {
   }
 
   getChildContext() {
-    const { signout, setFlash, clearFlash } = this.props
+    const { signout, setFlash, clearFlash, saveToken } = this.props
     return {
       socket: this.socket,
       session: {
+        saveToken,
         setFlash,
         clearFlash,
         signout

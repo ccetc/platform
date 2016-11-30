@@ -52,7 +52,7 @@ export const middleware = (req, res, next) => {
     }
 
     const reset_at = user.get('reset_at')
-    const is_expired = info.exp <= Math.floor(reset_at / 1000) <= Math.floor(Date.now() / 1000)
+    const is_expired = info.exp <= Math.floor(Date.now() / 1000)
     const was_used = reset_at && info.iat <= Math.floor(reset_at / 1000)
 
     if(is_expired || was_used) {

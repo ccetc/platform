@@ -787,6 +787,10 @@
   display: block;
   padding: 15px;
   border-bottom: 1px solid #EEE;
+  cursor: pointer;
+}
+.chrome-account-task:hover {
+  background-color: #EEE;
 }
 .chrome-account-task i {
   color: #666666;

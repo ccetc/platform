@@ -6,7 +6,8 @@ import * as actions from './actions'
 class Security extends React.Component {
 
   static contextTypes = {
-    router: React.PropTypes.object
+    router: React.PropTypes.object,
+    session: React.PropTypes.object
   }
 
   render() {
@@ -36,10 +37,12 @@ class Security extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { status } = this.props
+    const { error, status } = this.props
     if(prevProps.status != status) {
       if(status === 'verified') {
         this.context.router.push('/admin/reset/password')
+      } else if(status == 'failed') {
+        this.context.session.setFlash('info', error)
       }
     }
   }

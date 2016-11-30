@@ -1,11 +1,10 @@
 import * as actionTypes from './action_types'
 
 const INITIAL_STATE = {
-  reset: {
-    token: null,
-    question: null,
-    status: 'pending'
-  }
+  token: null,
+  question: null,
+  status: 'pending',
+  error: null
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -15,10 +14,8 @@ export default (state = INITIAL_STATE, action) => {
   case actionTypes.SET_TOKEN:
     return {
       ...state,
-      reset: {
-        token: action.token,
-        status: 'initialized'
-      }
+      token: action.token,
+      status: 'initialized'
     }
 
   case actionTypes.CLAIM_REQUEST:
@@ -26,39 +23,27 @@ export default (state = INITIAL_STATE, action) => {
   case actionTypes.PASSWORD_REQUEST:
     return {
       ...state,
-      reset: {
-        ...state.reset,
-        status: 'submitting'
-      }
+      status: 'submitting'
     }
 
   case actionTypes.CLAIM_SUCCESS:
     return {
       ...state,
-      reset: {
-        ...state.reset,
-        question: action.data.question,
-        status: 'claimed'
-      }
+      question: action.data.question,
+      status: 'claimed'
     }
 
   case actionTypes.SECURITY_SUCCESS:
     return {
       ...state,
-      reset: {
-        ...state.reset,
-        status: 'verified'
-      }
+      status: 'verified'
     }
 
   case actionTypes.PASSWORD_SUCCESS:
     return {
       ...state,
-      reset: {
-        ...state.reset,
-        token: action.data.token,
-        status: 'complete'
-      }
+      token: action.data.token,
+      status: 'complete'
     }
 
   case actionTypes.CLAIM_FAILURE:
@@ -66,17 +51,8 @@ export default (state = INITIAL_STATE, action) => {
   case actionTypes.PASSWORD_FAILURE:
     return {
       ...state,
-      reset: {
-        ...state.reset,
-        status: 'failed'
-      },
-      session: {
-        ...state.session,
-        flash: {
-          style: 'info',
-          message: action.error.message
-        }
-      }
+      status: 'failed',
+      error: action.error.message
     }
 
   default:
