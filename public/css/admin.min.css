@@ -504,9 +504,9 @@
   -webkit-transition: opacity 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -moz-transition: opacity 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -ms-transition: opacity 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -webkit-opacity: 0.2;
-  -moz-opacity: 0.2;
-  opacity: 0.2;
+  -webkit-opacity: 0.5;
+  -moz-opacity: 0.5;
+  opacity: 0.5;
   background-color: #000;
   z-index: 10;
   position: fixed;
@@ -525,9 +525,9 @@
 .chrome-drawer-overlay.expanded-appear.expanded-appear-active,
 .chrome-drawer-overlay.expanded-enter.expanded-enter-active,
 .chrome-drawer-overlay.expanded-leave {
-  -webkit-opacity: 0.2;
-  -moz-opacity: 0.2;
-  opacity: 0.2;
+  -webkit-opacity: 0.5;
+  -moz-opacity: 0.5;
+  opacity: 0.5;
 }
 .chrome-navigation-panel {
   flex: 1;
@@ -554,9 +554,6 @@
   color: #000;
   padding: 10px;
 }
-.chrome-app .chrome-app-title:hover {
-  background-color: #DDD;
-}
 .chrome-app .chrome-app-title i {
   color: #888;
   display: inline-block;
@@ -567,6 +564,13 @@
   vertical-align: middle;
   text-align: center;
   margin-right: 10px;
+}
+.chrome-app .chrome-app-title.active {
+  background-color: #2185D0;
+  color: #FFF;
+}
+.chrome-app .chrome-app-title.active i {
+  color: #FFF;
 }
 .chrome-app .chrome-app-menu {
   transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
@@ -587,7 +591,7 @@
 }
 .chrome-app .chrome-app-menu .chrome-app-item {
   padding: 10px 20px;
-  color: #888;
+  color: #666;
   cursor: pointer;
   line-height: 25px;
 }
@@ -777,14 +781,10 @@
   margin: 0;
   color: #888;
 }
-.chrome-account-tasks {
-  border-top: 1px solid #EEE;
-}
 .chrome-account-task {
   background-color: #FFF;
   display: block;
   padding: 15px;
-  border-bottom: 1px solid #EEE;
   cursor: pointer;
 }
 .chrome-account-task:hover {
@@ -1178,7 +1178,6 @@
 }
 .card .item {
   padding: 10px 20px !important;
-  border-bottom: 1px solid #DDD;
   color: #666;
 }
 .card .item .header {

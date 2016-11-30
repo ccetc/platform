@@ -28,7 +28,7 @@ export class Navigation extends React.Component {
           {apps.map((app, appindex) => {
             return (
               <div key={`app_${appindex}`} className="chrome-app">
-                <div className="chrome-app-title" onClick={this._handleChooseApp.bind(this, appindex)}>
+                <div className={`chrome-app-title ${this.props.app === appindex ? 'active' : ''}`} onClick={this._handleChooseApp.bind(this, appindex)}>
                   <i className={`${app.icon} icon`} />
                   {app.name}
                 </div>
