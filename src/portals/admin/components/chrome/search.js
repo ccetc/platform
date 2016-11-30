@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import _ from 'lodash'
 import * as actions from './actions'
 
 export class Search extends React.Component {
@@ -32,7 +33,27 @@ export class Search extends React.Component {
           </div>
         }
         { active && <div className="chrome-search-overlay" onClick={this._handleAbortSearch.bind(this)}  /> }
-        { active &&
+        { active && !results &&
+          <div className="chrome-search-landing">
+            <div className="chrome-search-landing-message">
+              <h2>
+                <i className="circular search icon" />
+              </h2>
+              <h3>Search for Anything</h3>
+            </div>
+          </div>
+        }
+        { active && results && _.isEmpty(results) &&
+          <div className="chrome-search-landing">
+            <div className="chrome-search-landing-message">
+              <h2>
+                <i className="circular remove icon" />
+              </h2>
+              <h3>No results matched your query</h3>
+            </div>
+          </div>
+        }
+        { active && results && !_.isEmpty(results) &&
           <div className="chrome-search-results">
             {Object.keys(results).map((model, modelIndex) => {
               if(results[model].length) {
@@ -74,7 +95,7 @@ export class Search extends React.Component {
 
   _handleAbortSearch() {
     const abort = this.props.onAbortSearch.bind(this)
-    setTimeout(function() { abort() }, 250)
+    setTimeout(function() { abort() }, 100)
   }
 
   _handleCompleteSearch(model, index) {

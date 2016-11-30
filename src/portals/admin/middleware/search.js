@@ -14,7 +14,9 @@ export const search = (req, res, next) => {
     let json = {}
     results.map((result, index) => {
       const key = Object.keys(searches)[index]
-      json[key] = result
+      if(result.length > 0) {
+        json[key] = result
+      }
     })
     return res.status(200).json(json)
   }).catch(err => {

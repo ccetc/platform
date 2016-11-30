@@ -321,6 +321,7 @@
 .chrome-search-overlay {
   z-index: 10;
   position: absolute;
+  background-color: #F9F9F9;
   top: 50px;
   right: 0;
   bottom: 0;
@@ -334,17 +335,43 @@
   padding: 6px 14px;
   background-color: #DDDDDD;
 }
-.chrome-search-results {
-  border-top: 1px solid #DDD;
+.chrome-search-landing {
   z-index: 11;
   position: absolute;
   top: 50px;
   left: 0;
   right: 0;
-  max-height: ~"calc(100% - 50px)";
+  bottom: 0;
+  display: flex;
+  background-color: #F9F9F9;
+  .chrome-search-landing-message {
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+    h2 {
+      margin: 0 0 20px;
+      font-size: 50px;
+      i {
+        color: #DDD;
+      }
+    }
+    h3 {
+      font-size: 22px;
+      line-height: 28px;
+      margin: 0;
+      color: #DDD;
+    }
+  }
+}
+.chrome-search-results {
+  z-index: 11;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 0;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.176);
 }
 .chrome-search-result {
   padding: 10px;

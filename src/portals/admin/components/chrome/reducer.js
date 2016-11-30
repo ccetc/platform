@@ -10,7 +10,7 @@ export const INITIAL_STATE = {
     search: {
       query: '',
       active: false,
-      results: [],
+      results: null,
       choice: null
     }
   }
@@ -79,6 +79,7 @@ export default (state = INITIAL_STATE, action) => {
         search: {
           ...state.chrome.search,
           query: '',
+          results: null,
           active: false
         }
       }
@@ -92,8 +93,8 @@ export default (state = INITIAL_STATE, action) => {
         search: {
           ...state.chrome.search,
           query: '',
+          results: null,
           active: false,
-          results: [],
           choice: state.chrome.search.results[action.model][action.index]
         }
       }
@@ -118,7 +119,7 @@ export default (state = INITIAL_STATE, action) => {
         ...state.chrome,
         search: {
           ...state.chrome.search,
-          results: (state.chrome.search.query.length) ? action.data : []
+          results: (state.chrome.search.query.length) ? action.data : null
         }
       }
     }
