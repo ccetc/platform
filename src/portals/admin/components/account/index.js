@@ -24,13 +24,13 @@ export class Account extends React.Component {
             </div>
             <div className="chrome-account-tasks">
               <div className="chrome-account-task">
-                Edit Account
+                <i className="edit icon" /> Edit Account
               </div>
               <div className="chrome-account-task">
-                Change Password
+                <i className="lock icon" /> Change Password
               </div>
               <div className="chrome-account-task" onClick={this._handleSignout.bind(this)}>
-                Sign Out
+                <i className="power icon" /> Sign Out
               </div>
             </div>
           </div>

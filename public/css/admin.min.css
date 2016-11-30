@@ -337,12 +337,7 @@
   cursor: pointer;
   width: 50px;
   height: 50px;
-}
-.chrome-toggle:hover,
-.chrome-search:hover,
-.chrome-alerts:hover,
-.chrome-account:hover {
-  background-color: #b21e1e;
+  font-size: 18px;
 }
 .chrome-toggle i,
 .chrome-search i,
@@ -362,8 +357,8 @@
   font-size: 8px;
   line-height: 16px;
   padding: 0;
-  background-color: #d01919;
-  color: #FFFFFF;
+  background-color: #FFFFFF;
+  color: #DB2828;
   display: block;
   width: 16px;
   height: 16px;
@@ -466,12 +461,12 @@
   -o-transform: translateX(0);
   transform: translateX(0);
 }
-@media only screen and (max-width: 414px) {
+@media only screen and (max-width: 380px) {
   .chrome-drawer {
-    width: calc(100% - 42px);
+    width: calc(100% - 60px);
   }
 }
-@media only screen and (min-width: 415px) {
+@media only screen and (min-width: 381px) {
   .chrome-drawer {
     width: 320px;
   }
@@ -615,6 +610,7 @@
   margin: 15px 0;
   flex: 0 0 50px;
   cursor: pointer;
+  font-size: 18px;
 }
 .chrome-search-bar .ui.input {
   flex: 1;
@@ -762,12 +758,12 @@
   -o-transform: translateX(0);
   transform: translateX(0);
 }
-@media only screen and (max-width: 414px) {
+@media only screen and (max-width: 380px) {
   .chrome-account-panel {
-    width: calc(100% - 42px);
+    width: calc(100% - 60px);
   }
 }
-@media only screen and (min-width: 415px) {
+@media only screen and (min-width: 381px) {
   .chrome-account-panel {
     width: 320px;
   }
@@ -820,13 +816,19 @@
   margin: 0;
   color: #888;
 }
+.chrome-account-tasks {
+  border-top: 1px solid #EEE;
+}
 .chrome-account-task {
   background-color: #FFF;
   display: block;
   padding: 15px;
-  text-align: center;
-  color: #1e70bf;
-  border-bottom: 1px solid #CCC;
+  border-bottom: 1px solid #EEE;
+}
+.chrome-account-task i {
+  color: #666666;
+  font-size: 18px;
+  margin-right: 10px;
 }
 .chrome-notifications {
   position: absolute;
