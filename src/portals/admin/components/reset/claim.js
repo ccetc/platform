@@ -34,7 +34,7 @@ class Claim extends React.Component {
         window.setTimeout(function() {
           onClaim(token)
         }, 1500)
-      } else if(status == 'failed') {
+      } else if(status == 'failure') {
         this.context.session.setFlash('info', error)
         this.context.router.push('/admin/forgot')
       } else if(status == 'claimed') {

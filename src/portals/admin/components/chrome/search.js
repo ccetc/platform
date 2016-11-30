@@ -13,8 +13,8 @@ export class Search extends React.Component {
   static propTypes = {
     active: React.PropTypes.bool.isRequired,
     choice: React.PropTypes.number,
-    query: React.PropTypes.string.isRequired,
-    results: React.PropTypes.array.isRequired,
+    query: React.PropTypes.string,
+    results: React.PropTypes.array,
     onAbortSearch: React.PropTypes.func.isRequired,
     onCompleteSearch: React.PropTypes.func.isRequired
   }

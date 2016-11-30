@@ -26,7 +26,7 @@ export default (state = INITIAL_STATE, action) => {
 
   case actionTypes.RESET_FAILURE:
     return {
-      status: 'failed',
+      status: 'failure',
       error: action.error.message
     }
 

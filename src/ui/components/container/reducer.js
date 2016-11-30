@@ -30,7 +30,7 @@ export default (state = INITIAL_STATE, action) => {
   case actionTypes.FETCH_RESOURCE_FAILURE:
     return {
       ...state,
-      status: 'failed'
+      status: 'failure'
     }
 
   default:

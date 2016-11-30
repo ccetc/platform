@@ -41,7 +41,7 @@ class Security extends React.Component {
     if(prevProps.status != status) {
       if(status === 'verified') {
         this.context.router.push('/admin/reset/password')
-      } else if(status == 'failed') {
+      } else if(status == 'failure') {
         this.context.session.setFlash('info', error)
       }
     }

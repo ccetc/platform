@@ -7,8 +7,12 @@ import * as sessionActions from '../session/actions'
 
 export class Signin extends React.Component {
 
+  static contextType = {
+    chrome: React.PropTypes.object
+  }
+
   static propTypes = {
-    flash: React.PropTypes.string.isRequired,
+    error: React.PropTypes.string,
     status: React.PropTypes.string.isRequired,
     token: React.PropTypes.string.isRequired,
     onSaveToken: React.PropTypes.func.isRequired,
@@ -57,12 +61,13 @@ export class Signin extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { token, status } = nextProps
+    const { error, token, status } = nextProps
     if(this.props.status !== status) {
       if(status === 'success') {
         this.props.onSaveToken(token)
-      } else if(status === 'failure') {
+      } else if(status == 'failure') {
         $(this.refs.password).val('')
+        this.context.session.setFlash('info', error)
       }
     }
   }

@@ -40,7 +40,7 @@ const Reducer = (state, action) => {
         }
       }
     } else {
-      if(_.includes(['chrome','forgot','notifications','reset'], namespace)) {
+      if(_.includes(['chrome','forgot','notifications','reset','session','signin'], namespace)) {
         return {
           ...state,
           [namespace]: reducers[namespace](state[namespace], action)
@@ -61,8 +61,8 @@ const Reducer = (state, action) => {
       forgot: forgot(undefined, action),
       notifications: notifications(undefined, action),
       reset: reset(undefined, action),
-      ...session(undefined, action),
-      ...signin(undefined, action),
+      session: session(undefined, action),
+      signin: signin(undefined, action),
       ...collection(undefined, action),
       ...infinite(undefined, action),
       ...tabs(undefined, action),

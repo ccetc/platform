@@ -51,7 +51,7 @@ export default (state = INITIAL_STATE, action) => {
   case actionTypes.PASSWORD_FAILURE:
     return {
       ...state,
-      status: 'failed',
+      status: 'failure',
       error: action.error.message
     }
 

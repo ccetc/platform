@@ -9,7 +9,7 @@ import Format from 'ui/utils/format'
 class Table extends React.Component {
 
   static contextTypes = {
-    page: React.PropTypes.object
+    chrome: React.PropTypes.object
   }
 
   render() {
@@ -63,7 +63,7 @@ class Table extends React.Component {
             <h2><i className={`circular ${empty.icon} icon`} /></h2>
             <h3>No {_.startCase(pluralize(entity.replace('_', ' ')))}</h3>
             <p>You have not yet created any {pluralize(entity.replace('_', ' '))}.</p>
-            <div className="ui basic button red" onClick={ this._handleAddNew.bind(this)}><i className="plus icon" /> Create New {_.startCase(entity.replace('_', ' '))}</div>
+            { empty.component && <div className="ui basic button red" onClick={ this._handleAddNew.bind(this)}><i className="plus icon" /> Create New {_.startCase(entity.replace('_', ' '))}</div> }
           </div>
         </div>
       )
@@ -92,7 +92,7 @@ class Table extends React.Component {
   }
 
   _handleAddNew() {
-    this.context.page.openModal()
+    this.context.chrome.openModal(this.props.empty.component)
   }
 
 }

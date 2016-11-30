@@ -59,7 +59,7 @@ class Session extends React.Component {
           this.props.setFlash('info', 'You must first signin to access this resource.')
           this.context.router.push('/admin/signin')
         }
-      } else if(status === 'failed') {
+      } else if(status === 'failure') {
         this.props.signout()
       } else if(status == 'active') {
         this.props.loadSession(token)

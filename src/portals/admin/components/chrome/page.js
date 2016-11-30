@@ -6,16 +6,12 @@ import _ from 'lodash'
 
 export class Page extends React.Component {
 
-  static childContextTypes = {
-    page: React.PropTypes.object
-  }
-
   static contextTypes = {
     chrome: React.PropTypes.object
   }
 
   static propTypes = {
-    back: React.PropTypes.string.isRequired,
+    back: React.PropTypes.string,
     permissions: React.PropTypes.array,
     task: React.PropTypes.object,
     tasks: React.PropTypes.array,
@@ -100,14 +96,6 @@ export class Page extends React.Component {
     }
   }
 
-  getChildContext() {
-    return {
-      page: {
-        openModal: this._handleOpenModal.bind(this)
-      }
-    }
-  }
-
   _userHasPermission(user, permissions) {
     let permit = true
     permissions.map((permission) => {
@@ -116,10 +104,6 @@ export class Page extends React.Component {
       }
     })
     return permit === true
-  }
-
-  _handleOpenModal() {
-    this.props.onOpenModal()
   }
 
   _handleOpenTasks() {

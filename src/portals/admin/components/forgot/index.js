@@ -54,7 +54,7 @@ export class Forgot extends React.Component {
       if(status == 'success') {
         this.context.session.setFlash('info', 'Instructions for resetting your password have been emailed to you')
         this.context.router.push({ pathname: '/admin/signin', state: 'slide-back' })
-      } else if(status == 'failed') {
+      } else if(status == 'failure') {
         this.context.session.setFlash('info', error)
       }
     }

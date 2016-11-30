@@ -1,13 +1,11 @@
 import * as actionTypes from './action_types'
 
 const INITIAL_STATE = {
-  session: {
-    apps: null,
-    token: null,
-    status: 'pending',
-    user: null,
-    flash: null
-  }
+  apps: null,
+  token: null,
+  status: 'pending',
+  user: null,
+  flash: null
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -17,93 +15,64 @@ export default (state = INITIAL_STATE, action) => {
   case actionTypes.SET_FLASH:
     return {
       ...state,
-      session: {
-        ...state.session,
-        flash: {
-          style: action.style,
-          message: action.message
-        }
+      flash: {
+        style: action.style,
+        message: action.message
       }
     }
 
   case actionTypes.CLEAR_FLASH:
     return {
       ...state,
-      session: {
-        ...state.session,
-        flash: null
-      }
+      flash: null
     }
 
   case actionTypes.LOAD_TOKEN_SUCCESS:
     return {
       ...state,
-      session: {
-        ...state.session,
-        status: 'initialized',
-        token: action.value
-      }
+      status: 'initialized',
+      token: action.value
     }
 
   case actionTypes.LOAD_TOKEN_FAILURE:
     return {
       ...state,
-      session: {
-        ...state.session,
-        status: 'initialized'
-      }
+      status: 'initialized'
     }
 
   case actionTypes.SAVE_TOKEN_SUCCESS:
     return {
       ...state,
-      session: {
-        ...state.session,
-        status: 'active',
-        token: action.value
-      }
+      status: 'active',
+      token: action.value
     }
 
   case actionTypes.SIGNIN_SUCCESS:
     return {
       ...state,
-      session: {
-        ...state.session,
-        status: 'active',
-        token: action.data.token
-      }
+      status: 'active',
+      token: action.data.token
     }
 
   case actionTypes.SIGNIN_FAILURE:
     return {
       ...state,
-      session: {
-        ...state.session,
-        status: 'failed',
-        token: null
-      }
+      status: 'failure',
+      token: null
     }
 
   case actionTypes.LOAD_SESSION_SUCCESS:
     return {
       ...state,
-      session: {
-        ...state.session,
-        status: 'active',
-        apps: action.data.apps,
-        user: action.data.user
-      }
+      status: 'active',
+      apps: action.data.apps,
+      user: action.data.user
     }
 
   case actionTypes.SIGNOUT_SUCCESS:
     return {
-      ...state,
-      session: {
-        apps: null,
-        token: null,
-        status: 'signed_out',
-        user: null
-      }
+      ...INITIAL_STATE,
+      status: 'signed_out'
     }
 
   default:

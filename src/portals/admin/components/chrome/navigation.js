@@ -55,6 +55,7 @@ export class Navigation extends React.Component {
   }
 
   _handleTransitionTo(pathname) {
+    this.context.chrome.closeDrawer()
     this.context.chrome.transitionTo({ pathname, state: 'static' })
   }
 

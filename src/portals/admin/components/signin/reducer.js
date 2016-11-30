@@ -1,10 +1,9 @@
 import * as actionTypes from './action_types'
 
 export const INITIAL_STATE = {
-  signin: {
-    status: 'ready',
-    token: null
-  }
+  status: 'ready',
+  token: null,
+  error: null
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -12,44 +11,26 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
 
   case actionTypes.SETUP:
-    return {
-      ...state,
-      ...INITIAL_STATE
-    }
+    return INITIAL_STATE
 
   case actionTypes.SIGNIN_REQUEST:
     return {
       ...state,
-      signin: {
-        ...state.signin,
-        status: 'submitting'
-      }
+      status: 'submitting'
     }
 
   case actionTypes.SIGNIN_SUCCESS:
     return {
       ...state,
-      signin: {
-        ...state.signin,
-        token: action.data.token,
-        status: 'success'
-      }
+      token: action.data.token,
+      status: 'success'
     }
 
   case actionTypes.SIGNIN_FAILURE:
     return {
       ...state,
-      signin: {
-        ...state.signin,
-        status: 'failure'
-      },
-      session: {
-        ...state.session,
-        flash: {
-          style: 'info',
-          message: action.error.message
-        }
-      }
+      status: 'failure',
+      error: action.error.message
     }
 
   default:

@@ -46,7 +46,7 @@ class Password extends React.Component {
       if(status === 'complete') {
         session.saveToken(token)
         session.setFlash('success', 'Your password was successfully reset')
-      } else if(status == 'failed') {
+      } else if(status == 'failure') {
         session.setFlash('info', error)
       }
     }
