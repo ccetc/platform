@@ -5,13 +5,13 @@ class New extends React.Component {
 
   render() {
     return (
-      <Page {...this._getMain()}>
+      <Page {...this._getPage()}>
         Apps
       </Page>
     )
   }
 
-  _getMain() {
+  _getPage() {
     const { params } = this.props
     return {
       back: `/admin/users/${params.id}`,

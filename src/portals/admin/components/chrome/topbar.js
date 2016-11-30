@@ -16,7 +16,7 @@ export class Topbar extends React.Component {
   }
 
   render() {
-    const { unread } = this.props
+    const { unread, user } = this.props
     return (
       <div className="chrome-topbar">
         <div className="chrome-navigation" onClick={this._handleOpenNavigation.bind(this)}>
@@ -33,7 +33,7 @@ export class Topbar extends React.Component {
           }
         </div>
         <div className="chrome-account" onClick={this._handleOpenAccount.bind(this)}>
-          <img src="/images/greg.jpg" className="ui image circular" />
+          <img src={user.photo} className="ui image circular" />
         </div>
       </div>
     )
@@ -48,7 +48,7 @@ export class Topbar extends React.Component {
   }
 
   _handleOpenNotifications() {
-    this.context.chrome.openModal(Notifications)
+    this.context.chrome.transitionTo('/admin/notifications')
   }
 
   _handleOpenAccount() {
@@ -58,7 +58,8 @@ export class Topbar extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  unread: state.notifications.unread
+  unread: state.notifications.unread,
+  user: state.session.user
 })
 
 export default connect(mapStateToProps)(Topbar)

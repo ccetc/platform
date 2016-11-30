@@ -10,7 +10,7 @@ class Show extends React.Component {
   render() {
     const { members } = this.props
     return (
-      <Page {...this._getMain()}>
+      <Page {...this._getPage()}>
         <div className="chrome-sidebar">
           <Card {...this._getCard()} />
         </div>
@@ -34,7 +34,7 @@ class Show extends React.Component {
     )
   }
 
-  _getMain() {
+  _getPage() {
     return {
       back: '/admin/expenses/projects',
       title: 'Project',

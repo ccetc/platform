@@ -12,7 +12,7 @@ class Show extends React.Component {
 
   render() {
     return (
-      <Page {...this._getMain()}>
+      <Page {...this._getPage()}>
         <div className="chrome-sidebar">
           <Card {...this._getCard()} />
         </div>
@@ -21,7 +21,7 @@ class Show extends React.Component {
     )
   }
 
-  _getMain() {
+  _getPage() {
     return {
       back: '/admin/users',
       title: 'User',

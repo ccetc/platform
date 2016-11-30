@@ -3,7 +3,7 @@ import _ from 'lodash'
 
 export const INITIAL_STATE = {
   queue: [],
-  unread: 0
+  unread: 7
 }
 
 export default (state = INITIAL_STATE, action) => {

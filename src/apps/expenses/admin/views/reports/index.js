@@ -5,13 +5,13 @@ class Reports extends React.Component {
 
   render() {
     return (
-      <Page {...this._getMain()}>
+      <Page {...this._getPage()}>
         <div>Reports</div>
       </Page>
     )
   }
 
-  _getMain() {
+  _getPage() {
     return {
       back: '/admin',
       title: 'Reports'

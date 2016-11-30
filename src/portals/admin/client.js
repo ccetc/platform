@@ -6,6 +6,7 @@ import reducer from './reducer'
 import Activation from './components/activation'
 import Chrome from './components/chrome'
 import Dashboard from './components/dashboard'
+import Notifications from './components/notifications/list'
 import Forgot from './components/forgot'
 import Transition from './components/transition'
 import Layout from './components/layout'
@@ -64,6 +65,7 @@ export default (
         <Route component={ Transition }>
           <Route component={ Panel }>
             <IndexRoute component={ Dashboard } />
+            <Route component={ Notifications } path="notifications" />
             {Instance}
             <Route path="crm">
               {Crm}

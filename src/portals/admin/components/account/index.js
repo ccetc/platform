@@ -21,7 +21,7 @@ export class Account extends React.Component {
         </div>
         <div className="chrome-account-tasks">
           <div className="chrome-account-task" onClick={this._handleModal.bind(this, Edit)}>
-            <i className="edit icon" /> Edit Account
+            <i className="write icon" /> Edit Account
           </div>
           <div className="chrome-account-task" onClick={this._handleModal.bind(this, Password)}>
             <i className="lock icon" /> Change Password

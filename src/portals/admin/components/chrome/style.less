@@ -104,19 +104,20 @@
   }
   .chrome-alerts-label {
     position: absolute;
-    top: 3px;
-    right: 3px;
-    @include border-radius(12px);
+    top: 6px;
+    right: 6px;
     font-size: 8px;
+    font-weight: bold;
     line-height: 16px;
     padding: 0;
-    background-color: @primary_color;
+    background-color: rgba(255, 255, 255, 0.7);
     color: @primary_background_color;
     display: block;
     width: 16px;
     height: 16px;
     text-align: center;
     vertical-align: middle;
+    .border-radius(50%);
   }
 }
 .chrome-account {
@@ -221,7 +222,7 @@
     color: #000;
     padding: 10px;
     i {
-      color: #888;
+      color: #666;
       display: inline-block;
       width: 30px;
       height: 30px;
@@ -430,7 +431,7 @@
     background-color: #EEE;
   }
   i {
-    color: #888888;
+    color: #666;
     font-size: 18px;
     margin-right: 10px;
   }

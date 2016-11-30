@@ -5,12 +5,12 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <Page {...this._getMain()}>
+      <Page {...this._getPage()}>
       </Page>
     )
   }
 
-  _getMain() {
+  _getPage() {
     return {
       title: 'Dashboard'
     }

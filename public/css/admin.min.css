@@ -352,19 +352,25 @@
 .chrome-alerts .chrome-alerts-label,
 .chrome-account .chrome-alerts-label {
   position: absolute;
-  top: 3px;
-  right: 3px;
-  @include border-radius(12px);
+  top: 6px;
+  right: 6px;
   font-size: 8px;
+  font-weight: bold;
   line-height: 16px;
   padding: 0;
-  background-color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.7);
   color: #DB2828;
   display: block;
   width: 16px;
   height: 16px;
   text-align: center;
   vertical-align: middle;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
 }
 .chrome-account {
   padding: 11px;
@@ -554,7 +560,7 @@
   padding: 10px;
 }
 .chrome-app .chrome-app-title i {
-  color: #888;
+  color: #666;
   display: inline-block;
   width: 30px;
   height: 30px;
@@ -790,7 +796,7 @@
   background-color: #EEE;
 }
 .chrome-account-task i {
-  color: #888888;
+  color: #666;
   font-size: 18px;
   margin-right: 10px;
 }

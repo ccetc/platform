@@ -8,7 +8,7 @@ class Index extends React.Component {
 
   render() {
     return (
-      <Page {...this._getMain()}>
+      <Page {...this._getPage()}>
         <Collection {...this._getCollection()} />
       </Page>
     )
@@ -30,7 +30,7 @@ class Index extends React.Component {
     }
   }
 
-  _getMain() {
+  _getPage() {
     return {
       back: '/admin',
       title: 'Users',
