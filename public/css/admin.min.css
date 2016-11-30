@@ -150,7 +150,7 @@
 }
 .chrome-session {
   background: #DB2828;
-  position: absolute;
+  position: fixed;
   top: 0px;
   bottom: 0px;
   left: 0px;
@@ -311,7 +311,7 @@
   color: #FFFFFF;
 }
 .chrome {
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
@@ -322,32 +322,39 @@
 .chrome-topbar {
   height: 50px;
   display: flex;
+  background-color: #DB2828;
+}
+.chrome-filler {
+  flex: 1;
 }
 .chrome-toggle,
+.chrome-search,
 .chrome-alerts,
-.chrome-power {
+.chrome-account {
   display: flex;
   position: relative;
   flex: 0 0 50px;
   cursor: pointer;
   width: 50px;
   height: 50px;
-  background-color: #DB2828;
 }
-.chrome-toggle:hover i,
-.chrome-alerts:hover i,
-.chrome-power:hover i {
-  color: #FFFFFF;
+.chrome-toggle:hover,
+.chrome-search:hover,
+.chrome-alerts:hover,
+.chrome-account:hover {
+  background-color: #b21e1e;
 }
 .chrome-toggle i,
+.chrome-search i,
 .chrome-alerts i,
-.chrome-power i {
+.chrome-account i {
   margin: auto;
-  color: #d9d9d9;
+  color: #FFFFFF;
 }
 .chrome-toggle .chrome-alerts-label,
+.chrome-search .chrome-alerts-label,
 .chrome-alerts .chrome-alerts-label,
-.chrome-power .chrome-alerts-label {
+.chrome-account .chrome-alerts-label {
   position: absolute;
   top: 3px;
   right: 3px;
@@ -363,17 +370,24 @@
   text-align: center;
   vertical-align: middle;
 }
+.chrome-account {
+  padding: 12px;
+}
+.chrome-account img {
+  width: 26px;
+  height: 26px;
+}
 .chrome-flash {
   transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -webkit-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -moz-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -ms-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 20;
-  height: 100px;
+  min-height: 100px;
   display: flex;
   padding: 15px;
   color: #FFF;
@@ -426,7 +440,7 @@
   -webkit-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -moz-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -ms-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  position: absolute;
+  position: fixed;
   display: flex;
   top: 0;
   bottom: 0;
@@ -472,7 +486,7 @@
   opacity: 0.2;
   background-color: #000000;
   z-index: 10;
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
@@ -492,34 +506,15 @@
   -moz-opacity: 0.2;
   opacity: 0.2;
 }
-.chrome-presence {
-  flex: 0 0 50px;
-  background-color: #000000;
-  color: #ffffff;
+.chrome-drawer-instance {
+  background: #EEE;
+  padding: 20px;
   display: flex;
+  height: 100px;
 }
-.chrome-presence .chrome-presence-avatar {
-  flex: 0 0 50px;
-  padding: 8px;
-}
-.chrome-presence .chrome-presence-avatar img {
-  display: block;
-  width: 34px;
-  height: 34px;
-}
-.chrome-presence .chrome-presence-identity {
-  flex: 1;
-  padding: 8px 0;
-}
-.chrome-presence .chrome-presence-identity h2 {
-  margin: 0;
-  font-size: 16px;
-  line-height: 17px;
-}
-.chrome-presence .chrome-presence-identity p {
-  margin: 0;
-  font-size: 12px;
-  line-height: 17px;
+.chrome-drawer-instance h3 {
+  text-align: center;
+  margin: auto;
 }
 .chrome-apps {
   flex: 1;
@@ -530,7 +525,7 @@
   display: block;
   cursor: pointer;
   color: #CCC;
-  padding: 5px;
+  padding: 5px 10px;
 }
 .chrome-app .chrome-app-title.active {
   color: #ffffff;
@@ -575,36 +570,57 @@
 .chrome-app .chrome-app-menu .chrome-app-item:hover {
   background-color: #555555;
 }
-.chrome-app-divider {
-  height: 1px;
-  background-color: #EEE;
-}
-.chrome-search {
-  flex: 1;
+.chrome-search-panel {
+  transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -webkit-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -moz-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -ms-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  z-index: 50;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #F9F9F9;
   display: flex;
-  background-color: #b21e1e;
+  flex-direction: column;
+  flex: 1;
 }
-.chrome-search > i {
+.chrome-search-panel.expanded-appear,
+.chrome-search-panel.expanded-enter,
+.chrome-search-panel.expanded-leave.expanded-leave-active {
+  -webkit-transform: translateY(100%);
+  -moz-transform: translateY(100%);
+  -ms-transform: translateY(100%);
+  -o-transform: translateY(100%);
+  transform: translateY(100%);
+}
+.chrome-search-panel.expanded-appear.expanded-appear-active,
+.chrome-search-panel.expanded-enter.expanded-enter-active,
+.chrome-search-panel.expanded-leave {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+}
+.chrome-search-bar {
+  flex: 0 0 50px;
+  display: flex;
+  background-color: #DB2828;
+}
+.chrome-search-bar .search.icon,
+.chrome-search-bar .remove.icon {
   color: #FFFFFF;
   margin: 15px 0;
-  flex: 0 0 45px;
-}
-.chrome-search .chrome-search-cancel {
-  flex: 0 0 45px;
-  padding: 15px;
-}
-.chrome-search .chrome-search-cancel i {
-  color: #cccccc;
+  flex: 0 0 50px;
   cursor: pointer;
 }
-.chrome-search .chrome-search-cancel i:hover {
-  color: #FFFFFF;
-}
-.chrome-search .ui.input {
+.chrome-search-bar .ui.input {
   flex: 1;
   padding-right: 10px;
 }
-.chrome-search .ui.input input {
+.chrome-search-bar .ui.input input {
   padding: 12px 0 8px;
   width: 100%;
   border-radius: 0;
@@ -614,29 +630,20 @@
   padding-left: 0;
   padding-right: 0;
 }
-.chrome-search .ui.input input::-webkit-input-placeholder {
+.chrome-search-bar .ui.input input::-webkit-input-placeholder {
   color: #cccccc;
 }
-.chrome-search .ui.input input:-moz-placeholder {
+.chrome-search-bar .ui.input input:-moz-placeholder {
   color: #cccccc;
 }
-.chrome-search .ui.input input::-moz-placeholder {
+.chrome-search-bar .ui.input input::-moz-placeholder {
   color: #cccccc;
 }
-.chrome-search .ui.input input::-webkit-input-placeholder,
-.chrome-search .ui.input input:-moz-placeholder,
-.chrome-search .ui.input input::-moz-placeholder,
-.chrome-search .ui.input input:-ms-input-placeholder {
+.chrome-search-bar .ui.input input::-webkit-input-placeholder,
+.chrome-search-bar .ui.input input:-moz-placeholder,
+.chrome-search-bar .ui.input input::-moz-placeholder,
+.chrome-search-bar .ui.input input:-ms-input-placeholder {
   color: #cccccc;
-}
-.chrome-search-overlay {
-  z-index: 10;
-  position: absolute;
-  background-color: #F9F9F9;
-  top: 50px;
-  right: 0;
-  bottom: 0;
-  left: 0;
 }
 .chrome-search-model {
   font-size: 0.8em;
@@ -648,27 +655,26 @@
 }
 .chrome-search-landing {
   z-index: 11;
-  position: absolute;
+  position: fixed;
   top: 50px;
   left: 0;
   right: 0;
-  bottom: 0;
   display: flex;
-  background-color: #F9F9F9;
-}
-.chrome-search-landing .chrome-search-landing-message {
-  text-align: center;
-  padding: 20px;
 }
 @media only screen and (max-width: 767px) {
-  .chrome-search-landing .chrome-search-landing-message {
-    margin: auto auto 380px;
+  .chrome-search-landing {
+    bottom: 250px;
   }
 }
 @media only screen and (min-width: 768px) {
-  .chrome-search-landing .chrome-search-landing-message {
-    margin: auto;
+  .chrome-search-landing {
+    bottom: 0;
   }
+}
+.chrome-search-landing .chrome-search-landing-message {
+  margin: auto;
+  text-align: center;
+  padding: 20px;
 }
 .chrome-search-landing .chrome-search-landing-message h2 {
   margin: 0 0 20px;
@@ -685,7 +691,7 @@
 }
 .chrome-search-results {
   z-index: 11;
-  position: absolute;
+  position: fixed;
   top: 50px;
   left: 0;
   right: 0;
@@ -724,6 +730,104 @@
 .chrome-search-result strong {
   color: #000;
 }
+.chrome-account-panel {
+  transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -webkit-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -moz-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -ms-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  position: fixed;
+  display: flex;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #FFF;
+  flex-direction: column;
+  z-index: 11;
+}
+.chrome-account-panel.expanded-appear,
+.chrome-account-panel.expanded-enter,
+.chrome-account-panel.expanded-leave.expanded-leave-active {
+  -webkit-transform: translateX(100%);
+  -moz-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  -o-transform: translateX(100%);
+  transform: translateX(100%);
+}
+.chrome-account-panel.expanded-appear.expanded-appear-active,
+.chrome-account-panel.expanded-enter.expanded-enter-active,
+.chrome-account-panel.expanded-leave {
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+  transform: translateX(0);
+}
+@media only screen and (max-width: 414px) {
+  .chrome-account-panel {
+    width: calc(100% - 42px);
+  }
+}
+@media only screen and (min-width: 415px) {
+  .chrome-account-panel {
+    width: 320px;
+  }
+}
+.chrome-account-overlay {
+  transition: opacity 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -webkit-transition: opacity 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -moz-transition: opacity 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -ms-transition: opacity 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -webkit-opacity: 0.2;
+  -moz-opacity: 0.2;
+  opacity: 0.2;
+  background-color: #000;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.chrome-account-overlay.expanded-appear,
+.chrome-account-overlay.expanded-enter,
+.chrome-account-overlay.expanded-leave.expanded-leave-active {
+  -webkit-opacity: 0;
+  -moz-opacity: 0;
+  opacity: 0;
+}
+.chrome-account-overlay.expanded-appear.expanded-appear-active,
+.chrome-account-overlay.expanded-enter.expanded-enter-active,
+.chrome-account-overlay.expanded-leave {
+  -webkit-opacity: 0.2;
+  -moz-opacity: 0.2;
+  opacity: 0.2;
+}
+.chrome-account-identity {
+  background: #EEE;
+  padding: 45px 0;
+}
+.chrome-account-identity img {
+  border: 5px solid #000;
+  width: 40%;
+  margin: 0 auto 20px;
+}
+.chrome-account-identity h2 {
+  text-align: center;
+  margin: 0;
+}
+.chrome-account-identity p {
+  text-align: center;
+  margin: 0;
+  color: #888;
+}
+.chrome-account-task {
+  background-color: #FFF;
+  display: block;
+  padding: 15px;
+  text-align: center;
+  color: #1e70bf;
+  border-bottom: 1px solid #CCC;
+}
 .chrome-notifications {
   position: absolute;
   @include border-radius(0 !important);
@@ -755,7 +859,7 @@
   }
 }
 .chrome-panel {
-  position: absolute;
+  position: fixed;
   top: 50px;
   left: 0;
   right: 0;
@@ -833,8 +937,8 @@
   -moz-opacity: 0.5;
   opacity: 0.5;
   z-index: 20;
-  position: absolute;
-  top: -50px;
+  position: fixed;
+  top: 0;
   bottom: 0;
   left: 0;
   right: 0;
@@ -856,7 +960,7 @@
 }
 .chrome-tasks-list {
   z-index: 21;
-  position: absolute;
+  position: fixed;
 }
 @media only screen and (max-width: 767px) {
   .chrome-tasks-list {
@@ -951,8 +1055,8 @@
   -moz-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -ms-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   z-index: 50;
-  position: absolute;
-  top: -50px;
+  position: fixed;
+  top: 0;
   right: 0;
   bottom: 0;
   left: 0;

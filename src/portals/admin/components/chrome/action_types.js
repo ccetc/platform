@@ -1,6 +1,7 @@
 // @flow
 
 export const TRANSITION_TO: string = 'chrome/TRANSITION_TO'
+export const TOGGLE_ACCOUNT: string = 'chrome/TOGGLE_ACCOUNT'
 export const TOGGLE_DRAWER: string = 'chrome/TOGGLE_DRAWER'
 export const CHOOSE_APP: string = 'chrome/CHOOSE_APP'
 export const BEGIN_SEARCH: string = 'chrome/BEGIN_SEARCH'

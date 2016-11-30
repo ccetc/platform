@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import * as actions from './actions'
 import Drawer from './drawer'
 import Topbar from './topbar'
+import Account from '../account'
+import Search from './search'
 import Notifications from '../notifications'
 
 export class Chrome extends React.Component {
@@ -26,6 +28,8 @@ export class Chrome extends React.Component {
       <div className="chrome">
         <Drawer />
         <Topbar />
+        <Search />
+        <Account />
         { children }
       </div>
     )

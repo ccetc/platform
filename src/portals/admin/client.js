@@ -14,7 +14,6 @@ import ResetSecurity from './components/reset/security'
 import ResetPassword from './components/reset/password'
 import Session from './components/session'
 import Signin from './components/signin'
-import Account from 'platform/apps/account/admin/client'
 import Instance from 'platform/apps/instance/admin/client'
 import Crm from 'apps/crm/admin/client'
 import Expenses from 'apps/expenses/admin/client'
@@ -65,7 +64,6 @@ export default (
         <Route component={ Transition }>
           <Route component={ Panel }>
             <IndexRoute component={ Dashboard } />
-            {Account}
             {Instance}
             <Route path="crm">
               {Crm}

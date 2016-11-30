@@ -21,20 +21,14 @@ export class Drawer extends React.Component {
   }
 
   render() {
-    const { apps, expanded, user } = this.props
+    const { apps, expanded } = this.props
     return (
       <Transition transitionName="expanded" transitionEnterTimeout={250} transitionLeaveTimeout={250} transitionAppear={true} transitionAppearTimeout={250}>
         { expanded && <div key="chrome-drawer-overlay" className="chrome-drawer-overlay" onClick={this._handleToggleDrawer.bind(this)} /> }
         { expanded &&
-          <div key="chrome-drawer" className="chrome-drawer">
-            <div className="chrome-presence">
-              <div className="chrome-presence-avatar">
-                <img src={user.photo} className="ui image circular" />
-              </div>
-              <div className="chrome-presence-identity">
-                <h2>{user.name}</h2>
-                <p>{user.email}</p>
-              </div>
+          <div className="chrome-drawer">
+            <div className="chrome-drawer-instance">
+              <h3>Cornell Cooperative Extension of Tompkins County</h3>
             </div>
             <div className="chrome-apps">
               {apps.map((app, appindex) => {
@@ -56,12 +50,6 @@ export class Drawer extends React.Component {
                   </div>
                 )
               })}
-              <div className="chrome-app">
-                <div className="chrome-app-title" onClick={this._handleTransitionTo.bind(this, '/admin/account')}>
-                  <i className="user icon" />
-                  Account
-                </div>
-              </div>
             </div>
           </div>
         }
@@ -87,8 +75,7 @@ const mapStateToProps = (state) => ({
   app: state.chrome.drawer.app,
   apps: state.session.apps,
   expanded: state.chrome.drawer.expanded,
-  route: state.chrome.drawer.route,
-  user: state.session.user
+  route: state.chrome.drawer.route
 })
 
 const mapDispatchToProps = {

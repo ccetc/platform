@@ -4,7 +4,7 @@
 }
 .chrome-session {
   background: @primary_background_color;
-  position: absolute;
+  position: fixed;
   top: 0px;
   bottom: 0px;
   left: 0px;
@@ -70,7 +70,7 @@
   }
 }
 .chrome {
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
@@ -81,25 +81,27 @@
 .chrome-topbar {
   height: 50px;
   display: flex;
+  background-color: @primary_background_color;
+}
+.chrome-filler {
+  flex: 1
 }
 .chrome-toggle,
+.chrome-search,
 .chrome-alerts,
-.chrome-power {
+.chrome-account {
   display: flex;
   position: relative;
   flex: 0 0 50px;
   cursor: pointer;
   width: 50px;
   height: 50px;
-  background-color: @primary_background_color;
   &:hover {
-    i {
-      color: @primary_color;
-    }
+    background-color: lighten(@primary_background_color, -10);
   }
   i {
     margin: auto;
-    color: lighten(@primary_color, -15%);
+    color: @primary_color;
   }
   .chrome-alerts-label {
     position: absolute;
@@ -118,9 +120,16 @@
     vertical-align: middle;
   }
 }
+.chrome-account {
+  padding: 12px;
+  img {
+    width: 26px;
+    height: 26px;
+  }
+}
 .chrome-flash {
   .translate-y-transition(-100%, 0, .25s);
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -157,7 +166,7 @@
 }
 .chrome-drawer {
   .translate-x-transition(-100%, 0, .25s);
-  position: absolute;
+  position: fixed;
   display: flex;
   top: 0;
   bottom: 0;
@@ -176,39 +185,20 @@
   .opacity(0.2);
   background-color: rgb(0, 0, 0);
   z-index: 10;
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
 }
-.chrome-presence {
-  flex: 0 0 50px;
-  background-color: rgb(0, 0, 0);
-  color: rgb(255, 255, 255);
+.chrome-drawer-instance  {
+  background: #EEE;
+  padding: 20px;
   display: flex;
-  .chrome-presence-avatar {
-    flex: 0 0 50px;
-    padding: 8px;
-    img {
-      display: block;
-      width: 34px;
-      height: 34px;
-    }
-  }
-  .chrome-presence-identity {
-    flex: 1;
-    padding: 8px 0;
-    h2 {
-      margin: 0;
-      font-size: 16px;
-      line-height: 17px;
-    }
-    p {
-      margin: 0;
-      font-size: 12px;
-      line-height: 17px;
-    }
+  height: 100px;
+  h3 {
+    text-align: center;
+    margin: auto;
   }
 }
 .chrome-apps {
@@ -221,7 +211,7 @@
     display: block;
     cursor: pointer;
     color: #CCC;
-    padding: 5px;
+    padding: 5px 10px;
     &.active {
       color: rgb(255, 255, 255);
     }
@@ -264,29 +254,29 @@
     }
   }
 }
-.chrome-app-divider {
-  height: 1px;
-  background-color: #EEE;
-}
-.chrome-search {
-  flex: 1;
+.chrome-search-panel {
+  .translate-y-transition(100%, 0, .5s);
+  z-index: 50;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #F9F9F9;
   display: flex;
-  background-color: lighten(@primary_background_color, -10%);
-  & > i {
+  flex-direction: column;
+  flex: 1;
+}
+.chrome-search-bar {
+  flex: 0 0 50px;
+  display: flex;
+  background-color: @primary_background_color;
+  .search.icon,
+  .remove.icon {
     color: @primary_color;
     margin: 15px 0;
-    flex: 0 0 45px;
-  }
-  .chrome-search-cancel {
-    flex: 0 0 45px;
-    padding: 15px;
-    i {
-      color: lighten(@primary_color, -20%);
-      cursor: pointer;
-      &:hover {
-        color: @primary_color;
-      }
-    }
+    flex: 0 0 50px;
+    cursor: pointer;
   }
   .ui.input {
     flex: 1;
@@ -318,15 +308,6 @@
     }
   }
 }
-.chrome-search-overlay {
-  z-index: 10;
-  position: absolute;
-  background-color: #F9F9F9;
-  top: 50px;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
 .chrome-search-model {
   font-size: 0.8em;
   font-weight: bold;
@@ -337,7 +318,7 @@
 }
 .chrome-search-landing {
   z-index: 11;
-  position: absolute;
+  position: fixed;
   top: 50px;
   left: 0;
   right: 0;
@@ -348,7 +329,6 @@
     bottom: 0;
   }
   display: flex;
-  background-color: #F9F9F9;
   .chrome-search-landing-message {
     margin: auto;
     text-align: center;
@@ -370,7 +350,7 @@
 }
 .chrome-search-results {
   z-index: 11;
-  position: absolute;
+  position: fixed;
   top: 50px;
   left: 0;
   right: 0;
@@ -408,4 +388,59 @@
   strong {
     color: #000;
   }
+}
+
+.chrome-account-panel {
+  .translate-x-transition(100%, 0, .25s);
+  position: fixed;
+  display: flex;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #FFF;
+  flex-direction: column;
+  z-index: 11;
+  @media only screen and (max-width: 414px) {
+    width: ~"calc(100% - 42px)";
+  }
+  @media only screen and (min-width: 415px) {
+    width: 320px;
+  }
+}
+.chrome-account-overlay {
+  .opacity-transition(0, 0.2, .25s);
+  .opacity(0.2);
+  background-color: #000;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.chrome-account-identity  {
+  background: #EEE;
+  padding: 45px 0;
+  img {
+    border: 5px solid #000;
+    width: 40%;
+    margin: 0 auto 20px;
+  }
+  h2 {
+    text-align: center;
+    margin: 0;
+  }
+  p {
+    text-align: center;
+    margin: 0;
+    color: #888;
+  }
+}
+.chrome-account-task {
+  background-color: #FFF;
+  display: block;
+  padding: 15px;
+  text-align: center;
+  color: #1e70bf;
+  border-bottom: 1px solid #CCC;
 }

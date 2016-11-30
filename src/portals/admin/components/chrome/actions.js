@@ -8,6 +8,12 @@ export function transitionTo(route) {
   }
 }
 
+export function toggleAccount() {
+  return {
+    type: actionTypes.TOGGLE_ACCOUNT
+  }
+}
+
 export function toggleDrawer() {
   return {
     type: actionTypes.TOGGLE_DRAWER

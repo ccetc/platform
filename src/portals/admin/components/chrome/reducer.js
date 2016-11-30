@@ -2,6 +2,9 @@ import * as actionTypes from './action_types'
 
 export const INITIAL_STATE = {
   chrome: {
+    account: {
+      expanded: false
+    },
     drawer: {
       expanded: false,
       app: null,
@@ -43,6 +46,17 @@ export default (state = INITIAL_STATE, action) => {
           expanded: !state.chrome.drawer.expanded,
           app: null,
           route: null
+        }
+      }
+    }
+
+  case actionTypes.TOGGLE_ACCOUNT:
+    return {
+      ...state,
+      chrome: {
+        ...state.chrome,
+        account: {
+          expanded: !state.chrome.account.expanded
         }
       }
     }

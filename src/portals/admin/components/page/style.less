@@ -1,5 +1,5 @@
 .chrome-panel {
-  position: absolute;
+  position: fixed;
   top: 50px;
   left: 0;
   right: 0;
@@ -71,8 +71,8 @@
   .opacity-transition(0, 0.5, .25s);
   .opacity(0.5);
   z-index: 20;
-  position: absolute;
-  top: -50px;
+  position: fixed;
+  top: 0;
   bottom: 0;
   left: 0;
   right: 0;
@@ -80,7 +80,7 @@
 }
 .chrome-tasks-list {
   z-index: 21;
-  position: absolute;
+  position: fixed;
   @media only screen and (max-width: 767px) {
     .translate-y-transition(100%, 0, .25s);
     bottom: 0;
@@ -130,8 +130,8 @@
 .chrome-modal {
   .translate-y-transition(100%, 0, .5s);
   z-index: 50;
-  position: absolute;
-  top: -50px;
+  position: fixed;
+  top: 0;
   right: 0;
   bottom: 0;
   left: 0;
