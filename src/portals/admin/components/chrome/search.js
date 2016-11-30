@@ -89,9 +89,9 @@ export class Search extends React.Component {
     const { active, choice } = this.props
     const { router } = this.context
     if(prevProps.active !== active) {
-      const { query } = this.refs
+      const query = $(this.refs.query)
       window.setTimeout(function() {
-        $(query).focus()
+        query.focus()
       }, 500)
     }
     if(prevProps.choice !== choice) {
