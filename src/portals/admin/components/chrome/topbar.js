@@ -48,7 +48,7 @@ export class Topbar extends React.Component {
   }
 
   _handleOpenNotifications() {
-    this.context.chrome.transitionTo('/admin/notifications')
+    this.context.chrome.transitionTo({ pathname: '/admin/notifications', state: 'static' })
   }
 
   _handleOpenAccount() {
