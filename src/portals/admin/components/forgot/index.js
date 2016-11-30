@@ -70,9 +70,7 @@ export class Forgot extends React.Component {
 
 }
 
-const mapStateToProps = (state) => ({
-  ...state.forgot
-})
+const mapStateToProps = state => state.forgot
 
 const mapDispatchToProps = {
   onReset: actions.reset,

@@ -388,7 +388,6 @@
   padding: 15px;
   color: #FFF;
   z-index: 10;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.176);
 }
 .chrome-flash.expanded-appear,
 .chrome-flash.expanded-enter,
@@ -420,7 +419,7 @@
   font-size: 1.8em;
 }
 .chrome-flash.info {
-  background-color: #2185D0;
+  background-color: #A333C8;
 }
 .chrome-flash.warning {
   background-color: #F2711C;

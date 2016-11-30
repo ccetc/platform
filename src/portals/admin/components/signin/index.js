@@ -3,12 +3,11 @@ import { connect } from 'react-redux'
 import { Link } from  'react-router'
 import $ from 'jquery'
 import * as actions from './actions'
-import * as sessionActions from '../session/actions'
 
 export class Signin extends React.Component {
 
-  static contextType = {
-    chrome: React.PropTypes.object
+  static contextTypes = {
+    session: React.PropTypes.object
   }
 
   static propTypes = {
@@ -60,11 +59,11 @@ export class Signin extends React.Component {
     setTimeout(function() { email.focus() }, 500)
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { error, token, status } = nextProps
-    if(this.props.status !== status) {
+  componentDidUpdate(prevProps) {
+    const { error, token, status } = this.props
+    if(prevProps.status !== status) {
       if(status === 'success') {
-        this.props.onSaveToken(token)
+        this.context.session.saveToken(token)
       } else if(status == 'failure') {
         $(this.refs.password).val('')
         this.context.session.setFlash('info', error)
@@ -83,15 +82,10 @@ export class Signin extends React.Component {
 
 }
 
-const mapStateToProps = (state) => ({
-  flash: state.signin.flash,
-  status: state.signin.status,
-  token: state.signin.token
-})
+const mapStateToProps = state => state.signin
 
 const mapDispatchToProps = {
   onSignin: actions.signin,
-  onSaveToken: sessionActions.saveToken,
   onSetup: actions.setup
 }
 
