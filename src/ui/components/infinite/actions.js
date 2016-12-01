@@ -1,5 +1,5 @@
 import * as actionTypes from './action_types'
-import Api from 'server/utils/api'
+import api from 'ui/utils/api'
 
 export function reset() {
   return {
@@ -8,7 +8,7 @@ export function reset() {
 }
 
 export function fetch(endpoint, params) {
-  return Api.get({
+  return api.get({
     endpoint,
     params,
     request: actionTypes.FETCH_REQUEST,

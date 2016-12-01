@@ -1,5 +1,5 @@
 import * as actionTypes from './action_types'
-import Api from 'server/utils/api'
+import api from 'ui/utils/api'
 
 export function transitionTo(route) {
   return {
@@ -76,7 +76,7 @@ export function completeSearch(model, index) {
 }
 
 export function lookup(q) {
-  return Api.get({
+  return api.get({
     params: { q },
     endpoint: '/admin/search',
     request: actionTypes.LOOKUP_REQUEST,

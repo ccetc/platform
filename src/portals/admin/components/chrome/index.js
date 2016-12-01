@@ -42,9 +42,10 @@ export class Chrome extends React.Component {
   }
 
   getChildContext() {
-    const { transitionTo, openModal, closeModal, openDrawer, closeDrawer, openTasks, closeTasks } = this.props
+    const { params, transitionTo, openModal, closeModal, openDrawer, closeDrawer, openTasks, closeTasks } = this.props
     return {
       chrome: {
+        params,
         transitionTo,
         openModal,
         closeModal,

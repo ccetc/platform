@@ -1,9 +1,7 @@
 import * as actionTypes from './action_types'
 
 const INITIAL_STATE = {
-  tabs: {
-    active: 0
-  }
+  active: 0
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -12,10 +10,7 @@ export default (state = INITIAL_STATE, action) => {
 
   case actionTypes.CHANGE_TAB:
     return {
-      ...state,
-      tabs: {
-        active: action.index
-      }
+      active: action.index
     }
 
   default:

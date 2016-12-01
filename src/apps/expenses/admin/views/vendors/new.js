@@ -3,6 +3,10 @@ import Form from 'ui/components/form'
 
 class New extends React.Component {
 
+  static contextTypes = {
+    chrome: React.PropTypes.object
+  }
+
   render() {
     return <Form {...this._getForm()} />
   }
@@ -10,9 +14,16 @@ class New extends React.Component {
   _getForm() {
     return {
       title: 'New Vendor',
-      successMessage: 'This vendor was successfully created',
-      fields: [
-        { label: 'Name', name: 'name', type: 'textfield', placeholder: 'Name' }
+      method: 'post',
+      action: '/admin/expenses/vendors',
+      onCancel: this.context.chrome.closeModal,
+      onSuccess: this.context.chrome.closeModal,
+      sections: [
+        {
+          fields: [
+            { label: 'Name', name: 'name', type: 'textfield', placeholder: 'Name' }
+          ]
+        }
       ]
     }
   }

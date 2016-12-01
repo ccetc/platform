@@ -1,5 +1,3 @@
-import _ from 'lodash'
-
 import chrome from './components/chrome/reducer'
 import forgot from './components/forgot/reducer'
 import notifications from './components/notifications/reducer'
@@ -9,6 +7,7 @@ import signin from './components/signin/reducer'
 
 import collection from 'ui/components/collection/reducer'
 import container from 'ui/components/container/reducer'
+import form from 'ui/components/form/reducer'
 import infinite from 'ui/components/infinite/reducer'
 import tabs from 'ui/components/tabs/reducer'
 
@@ -23,6 +22,7 @@ const Reducer = (state, action) => {
     signin,
     collection,
     container,
+    form,
     infinite,
     tabs
   }
@@ -40,16 +40,9 @@ const Reducer = (state, action) => {
         }
       }
     } else {
-      if(_.includes(['chrome','forgot','notifications','reset','session','signin'], namespace)) {
-        return {
-          ...state,
-          [namespace]: reducers[namespace](state[namespace], action)
-        }
-      } else  {
-        return {
-          ...state,
-          ...reducers[namespace](state, action)
-        }
+      return {
+        ...state,
+        [namespace]: reducers[namespace](state[namespace], action)
       }
     }
 
@@ -63,9 +56,10 @@ const Reducer = (state, action) => {
       reset: reset(undefined, action),
       session: session(undefined, action),
       signin: signin(undefined, action),
-      ...collection(undefined, action),
-      ...infinite(undefined, action),
-      ...tabs(undefined, action),
+      collection: collection(undefined, action),
+      form: form(undefined, action),
+      infinite: infinite(undefined, action),
+      tabs: tabs(undefined, action),
       container: []
     }
 

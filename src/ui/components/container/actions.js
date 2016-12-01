@@ -1,10 +1,10 @@
 // @flow
 
 import * as actionTypes from './action_types'
-import Api from 'server/utils/api'
+import api from 'ui/utils/api'
 
 export const fetchResource = (cid, keys, prop, endpoint) => {
-  return Api.get({
+  return api.get({
     endpoint,
     meta: { cid, prop, keys },
     request: actionTypes.FETCH_RESOURCE_REQUEST,

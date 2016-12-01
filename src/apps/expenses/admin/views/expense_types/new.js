@@ -3,6 +3,10 @@ import Form from 'ui/components/form'
 
 class New extends React.Component {
 
+  static contextTypes = {
+    chrome: React.PropTypes.object
+  }
+
   render() {
     return <Form {...this._getForm()} />
   }
@@ -10,11 +14,18 @@ class New extends React.Component {
   _getForm() {
     return {
       title: 'New Expense Type',
-      successMessage: 'This expense type was successfully created',
-      fields: [
-        { label: 'Title', name: 'title', type: 'textfield', placeholder: 'Title' },
-        { label: 'Code', name: 'code', type: 'textfield', placeholder: 'Code' },
-        { label: 'Description', name: 'description', type: 'textarea', placeholder: 'Description' }
+      method: 'post',
+      action: '/admin/expenses/expense_types',
+      onCancel: this.context.chrome.closeModal,
+      onSuccess: this.context.chrome.closeModal,
+      sections: [
+        {
+          fields: [
+            { label: 'Title', name: 'title', type: 'textfield', placeholder: 'Title' },
+            { label: 'Code', name: 'code', type: 'textfield', placeholder: 'Code' },
+            { label: 'Description', name: 'description', type: 'textarea', placeholder: 'Description' }
+          ]
+        }
       ]
     }
   }

@@ -49,7 +49,7 @@ class Api {
       path: this._path(options.endpoint),
       headers: { 'Content-Type': 'application/json' }
     }
-
+    console.log(config)
 
     if(options.params) {
       if(options.method == 'GET') {

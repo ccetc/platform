@@ -108,7 +108,12 @@ export default (options = {}) => {
 
     const create = (req, res, next) => {
 
-      options.model.forge(req.body).save().then(record => {
+      const params = {
+        instance_id: req.instance.get('id'),
+        ...req.body
+      }
+
+      options.model.forge(params).save().then(record => {
 
         if(!record) {
           const error = new Error({ code: 422, message: 'There were problems with your data' })

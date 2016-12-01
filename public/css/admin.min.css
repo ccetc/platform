@@ -1220,9 +1220,56 @@
 }
 .form-body {
   flex: 1;
-  padding: 20px;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+}
+.form-body .ui.segment {
+  padding: 0;
+  margin: 0 0 1px;
+}
+.form-body .ui.segment > h4 {
+  position: relative;
+  background-color: #EEE;
+  padding: 1em;
+  font-size: 1em;
+  line-height: 1em;
+  color: #999;
+  margin: 0;
+}
+.form-body .ui.segment > h4 i {
+  position: absolute;
+  right: 1em;
+  font-size: 1em;
+}
+.form-body .ui.segment.collapsing {
+  cursor: pointer;
+}
+.form-body .ui.segment.collapsing.collapsed .section {
+  display: none;
+}
+.form-body .section {
+  padding: 1em;
+}
+.form-body .section > .field {
+  line-height: 1.8em;
+  margin-bottom: 1em;
+}
+.form-body .section > .field > label {
+  margin-bottom: 0;
+}
+.form-body .section > .field:last-child {
+  margin-bottom: 0;
+}
+.form-body .section > .instructions {
+  margin-bottom: 1em;
+}
+.form-body .instructions {
+  color: #AAAAAA;
+}
+.form-body .instructions p {
+  color: #AAAAAA;
+  font-size: 1em;
+  line-height: 1em;
 }
 .tabs .menu {
   margin: 0 !important;
@@ -1232,6 +1279,9 @@
 }
 .tabs .tab-pane {
   padding: 20px;
+}
+.datefield .calendar.icon {
+  margin: 0;
 }
 .table img {
   display: inline-block !important;

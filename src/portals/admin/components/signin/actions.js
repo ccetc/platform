@@ -1,5 +1,5 @@
 import * as actionTypes from './action_types'
-import Api from 'server/utils/api'
+import api from 'ui/utils/api'
 
 export function setup() {
   return {
@@ -8,7 +8,7 @@ export function setup() {
 }
 
 export function signin(email, password) {
-  return Api.post({
+  return api.post({
     params: { email, password },
     endpoint: '/admin/auth',
     request: actionTypes.SIGNIN_REQUEST,

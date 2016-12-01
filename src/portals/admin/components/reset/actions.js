@@ -1,5 +1,5 @@
 import * as actionTypes from './action_types'
-import Api from 'server/utils/api'
+import api from 'ui/utils/api'
 
 export function setToken(token) {
   return {
@@ -9,7 +9,7 @@ export function setToken(token) {
 }
 
 export function claim(token) {
-  return Api.get({
+  return api.get({
     params: { token },
     endpoint: '/admin/reset/claim',
     request: actionTypes.CLAIM_REQUEST,
@@ -19,7 +19,7 @@ export function claim(token) {
 }
 
 export function verify(token, security_question_index, answer) {
-  return Api.post({
+  return api.post({
     params: { token, security_question_index, answer },
     endpoint: '/admin/reset/security',
     request: actionTypes.SECURITY_REQUEST,
@@ -29,7 +29,7 @@ export function verify(token, security_question_index, answer) {
 }
 
 export function reset(token, password, confirm) {
-  return Api.post({
+  return api.post({
     params: { token, password, confirm },
     endpoint: '/admin/reset/password',
     request: actionTypes.PASSWORD_REQUEST,

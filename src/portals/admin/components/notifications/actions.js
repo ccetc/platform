@@ -1,5 +1,5 @@
 import * as actionTypes from './action_types'
-import Api from 'server/utils/api'
+import api from 'ui/utils/api'
 
 export function pushNotification(notification) {
   return {
