@@ -30,6 +30,7 @@ class New extends React.Component {
   }
 
   _handleSuccess(project) {
+    console.log(project)
     this.context.chrome.closeModal()
     this.context.chrome.transitionTo(`/admin/expenses/projects/${project.id}`)
   }

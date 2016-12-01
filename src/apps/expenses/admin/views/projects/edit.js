@@ -18,7 +18,7 @@ class Edit extends React.Component {
       endpoint: `/admin/expenses/projects/${this.context.chrome.params.id}`,
       action: `/admin/expenses/projects/${this.context.chrome.params.id}`,
       onCancel: this.context.chrome.closeModal,
-      onSuccess: this.context.chrome.closeModal,
+      onSuccess: this._handleSuccess.bind(this),
       sections: [
         {
           fields: [
@@ -28,6 +28,12 @@ class Edit extends React.Component {
         }
       ]
     }
+  }
+
+  _handleSuccess(project) {
+    // this.context.container.refresh()
+    this.context.chrome.closeModal()
+    this.context.chrome.transitionTo(`/admin/expenses/projects/${project.id}`)
   }
 
 }

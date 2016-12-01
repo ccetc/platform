@@ -11,6 +11,10 @@ export default (mapEndpointsToProps) => {
 
     class Container extends React.Component {
 
+      static childContextTypes = {
+        container: React.PropTypes.object
+      }
+
       render() {
         const { status, data } = this.props
         if(status === 'error') {
@@ -32,6 +36,14 @@ export default (mapEndpointsToProps) => {
         }
       }
 
+      getChildContext() {
+        return {
+          container: {
+            refresh: this._fetchResources.bind(this)
+          }
+        }
+      }
+
       _fetchResources() {
         const resources = mapEndpointsToProps(this.props)
         const keys = Object.keys(resources)
@@ -43,7 +55,6 @@ export default (mapEndpointsToProps) => {
     }
 
     const mapStateToProps = (state, props) => {
-      console.log(props)
       return (state.container && state.container[cid]) ? state.container[cid] : {}
     }
 

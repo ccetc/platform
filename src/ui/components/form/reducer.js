@@ -31,7 +31,6 @@ export default (state = INITIAL_STATE, action) => {
     return {
       ...state,
       status: 'ready',
-      entity: action.data,
       data: action.data
     }
 

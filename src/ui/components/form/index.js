@@ -90,14 +90,14 @@ class Form extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { status } = this.props
+    const { entity, status } = this.props
     if(prevProps.status !== status) {
       if(status === 'configured') {
         this._handleLoadData()
       } else if(status === 'validated') {
         this._handleSubmit()
       } else if(status === 'success') {
-        this._handleSuccess(this.props.entity)
+        this._handleSuccess(entity)
       } else if(status === 'failure') {
         this._handleFailure()
       }
@@ -130,10 +130,10 @@ class Form extends React.Component {
     }
   }
 
-  _handleSuccess() {
+  _handleSuccess(entity) {
     const message = this.props.successMessage || 'Your form was successfully saved!'
     this.context.session.setFlash('success', message)
-    this.props.onSuccess()
+    this.props.onSuccess(entity)
   }
 
   _handleFailure() {
@@ -150,6 +150,7 @@ class Form extends React.Component {
 
 const mapStateToProps = state => ({
   data: state.form.data,
+  entity: state.form.entity,
   errors: state.form.errors,
   status: state.form.status
 })
