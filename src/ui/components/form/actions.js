@@ -1,6 +1,11 @@
 import * as actionTypes from './action_types'
 import api from 'ui/utils/api'
 
+export const setSections = (sections) => ({
+  type: actionTypes.SET_SECTIONS,
+  sections
+})
+
 export function fetchData(endpoint) {
   return api.get({
     endpoint,

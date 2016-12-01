@@ -17,7 +17,7 @@ class New extends React.Component {
       method: 'post',
       action: '/admin/expenses/projects',
       onCancel: this.context.chrome.closeModal,
-      onSuccess: this.context.chrome.closeModal,
+      onSuccess: this._handleSuccess.bind(this),
       sections: [
         {
           fields: [
@@ -27,6 +27,11 @@ class New extends React.Component {
         }
       ]
     }
+  }
+
+  _handleSuccess(project) {
+    this.context.chrome.closeModal()
+    this.context.chrome.transitionTo(`/admin/expenses/projects/${project.id}`)
   }
 
 }

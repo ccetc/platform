@@ -1,5 +1,6 @@
 // @flow
 
+export const SET_SECTIONS: string = 'form/SET_SECTIONS'
 export const FETCH_DATA_REQUEST: string = 'form/FETCH_DATA_REQUEST'
 export const FETCH_DATA_SUCCESS: string = 'form/FETCH_DATA_SUCCESS'
 export const FETCH_DATA_FAILURE: string = 'form/FETCH_DATA_FAILURE'

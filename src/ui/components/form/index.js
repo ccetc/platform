@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 import { connect } from 'react-redux'
-import mapFields from './map_fields'
+import { getDefaults, collectData } from './utils'
 import * as actions from './actions'
 import Section from './section'
 
@@ -36,8 +36,8 @@ class Form extends React.Component {
     onChange: () => {},
     onChangeField: () => {},
     onSubmit: () => {},
-    onFailure: () => {},
-    onSuccess: () => {}
+    onFailure: (error) => {},
+    onSuccess: (entity) => {}
   }
 
   render() {
@@ -86,41 +86,41 @@ class Form extends React.Component {
   }
 
   componentDidMount() {
-    if(this.props.endpoint) {
-      this._handleFetchData()
-    } else {
-      this._handleSetReady()
-    }
+    this.props.onSetSections(this.props.sections)
   }
 
   componentDidUpdate(prevProps) {
     const { status } = this.props
     if(prevProps.status !== status) {
-      if(status === 'validated') {
+      if(status === 'configured') {
+        this._handleLoadData()
+      } else if(status === 'validated') {
         this._handleSubmit()
       } else if(status === 'success') {
-        this._handleSuccess()
+        this._handleSuccess(this.props.entity)
       } else if(status === 'failure') {
         this._handleFailure()
       }
     }
   }
 
-  _handleSetReady() {
-    this.props.onSetReady()
-  }
-
-  _handleFetchData() {
-    this.props.onFetchData(this.props.endpoint)
+  _handleLoadData() {
+    const { endpoint, sections, onFetchData, onSetData } = this.props
+    if(endpoint) {
+      onFetchData(this.props.endpoint)
+    } else {
+      const data = getDefaults(sections)
+      onSetData(data)
+    }
   }
 
   _handleSubmit() {
-    const { method, action, onSubmit, onSubmitForm } = this.props
-    let data = this._collectData()
+    const { action, data, method, sections, onSubmit, onSubmitForm } = this.props
+    let filtered = collectData(sections, data)
     if(action) {
-      onSubmitForm(method, action, data)
+      onSubmitForm(method, action, filtered)
     } else if(onSubmit) {
-      if(onSubmit(data)) {
+      if(onSubmit(filtered)) {
         this._handleSuccess()
       } else {
         this._handleFailure()
@@ -146,17 +146,6 @@ class Form extends React.Component {
     this.props.onCancel()
   }
 
-  _collectData() {
-    const { sections, data } = this.props
-    let entity = {}
-    mapFields(sections, (field) => {
-      if(field.include !== false) {
-        entity[field.name] = data[field.name]
-      }
-    })
-    return entity
-  }
-
 }
 
 const mapStateToProps = state => ({
@@ -166,8 +155,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
+  onSetSections: actions.setSections,
   onFetchData: actions.fetchData,
-  onSetReady: actions.setReady,
+  onSetData: actions.setData,
   onSubmitForm: actions.submitForm,
   onUpdateData: actions.updateData
 }

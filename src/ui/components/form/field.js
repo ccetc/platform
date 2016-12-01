@@ -5,37 +5,39 @@ import Control from 'ui/controls/control'
 class Field extends React.Component {
 
   static propTypes = {
-    name: React.PropTypes.string,
-    include: React.PropTypes.bool,
-    show: React.PropTypes.bool,
-    label: React.PropTypes.string,
-    instructions: React.PropTypes.string,
-    required: React.PropTypes.bool,
     columns: React.PropTypes.array,
-    options: React.PropTypes.array,
     data: React.PropTypes.object,
-    fields: React.PropTypes.array,
+    endpoint: React.PropTypes.string,
     errors: React.PropTypes.object,
+    fields: React.PropTypes.array,
+    include: React.PropTypes.bool,
+    instructions: React.PropTypes.string,
+    label: React.PropTypes.string,
+    name: React.PropTypes.string.isRequired,
+    options: React.PropTypes.array,
+    required: React.PropTypes.bool,
+    type: React.PropTypes.string.isRequired,
+    show: React.PropTypes.bool,
     onUpdateData: React.PropTypes.func
   }
 
   static defaultProps = {
-    name: null,
-    include: true,
-    show: true,
-    label: null,
-    instructions: null,
-    required: false,
     columns: [],
-    options: [],
     data: {},
+    errors: [],
     fields: [],
+    include: true,
+    options: [],
+    required: false,
+    show: true,
     onUpdateData: () => {}
   }
 
   render() {
-    const { name, type, include, show, label, style, instructions, required, datasource, columns, options, data, errors, fields, onUpdateData } = this.props
-    const error = (errors[name]) ? errors[name][0] : null
+    const { columns, data, endpoint, errors, fields, include, instructions } = this.props
+    const { label, name, options, required, type, show, onUpdateData } = this.props
+    const error = (errors && errors[name]) ? errors[name][0] : null
+    const value = data[name]
     let classes = ['field']
     if(error) {
       classes.push('error')
@@ -43,34 +45,32 @@ class Field extends React.Component {
     if(required) {
       classes.push('required')
     }
-    if(include && show) {
-      return (
-        <div className={classes.join(' ')}>
-          {(label) ? <label>{label}</label> : null}
-          {(instructions) ? <div className="instructions">{instructions}</div> : null}
-          {(() => {
-            if(type == 'fields') {
-              return <Fields fields={fields}
-                             onChange={this._handleUpdateData.bind(this)}
-                             onUpdateData={onUpdateData} />
-            } else  {
-              const value = data[name]
-              return <Control type={type}
-                              label={label}
-                              style={style}
-                              datasource={datasource}
-                              columns={columns}
-                              options={options}
-                              defaultValue={value}
-                              onChange={this._handleUpdateData.bind(this)} />
-            }
-          })()}
-          {(error) ? <div className="ui pointing red basic label">{error}</div> : null}
-        </div>
-      )
-    } else {
+    if(!include || !show) {
       return null
     }
+    return (
+      <div className={classes.join(' ')}>
+        {(label) ? <label>{label}</label> : null}
+        {(instructions) ? <div className="instructions">{instructions}</div> : null}
+        { type === 'fields' ?
+          <Fields fields={fields}
+                  onChange={this._handleUpdateData.bind(this)}
+                  onUpdateData={onUpdateData} /> :
+          <Control type={type}
+                   label={label}
+                   endpoint={endpoint}
+                   columns={columns}
+                   options={options}
+                   defaultValue={value}
+                   onChange={this._handleUpdateData.bind(this)} />
+        }
+        { error &&
+          <div className="ui pointing red basic label">
+            {error}
+          </div>
+        }
+      </div>
+    )
   }
 
   _handleUpdateData(value) {

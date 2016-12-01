@@ -45,14 +45,15 @@ class Api {
   request(options: optionsType): any {
 
     let config = {
-      method: options.method,
+      method: options.method.toUpperCase(),
       path: this._path(options.endpoint),
       headers: { 'Content-Type': 'application/json' }
     }
-    console.log(config)
+
+    options.method = options.method.toUpperCase()
 
     if(options.params) {
-      if(options.method == 'GET') {
+      if(config.method == 'GET') {
         config.params = options.params
       } else  {
         config.entity = options.params

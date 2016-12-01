@@ -1,39 +1,24 @@
 import * as actionTypes from './action_types'
-import _ from 'lodash'
+import { validateForm } from './utils'
 
 const INITIAL_STATE = {
   status: 'pending',
   sections: [],
+  entity: {},
   data: {},
-  errors: {},
-  result: {},
-  message: null
-}
-
-const getDefaults = function(sections) {
-  // let defaults = {}
-  // mapFields(sections, (field) => {
-  //   if(field.include !== false) {
-  //     defaults[field.name] = field.defaultValue || null
-  //   }
-  // })
-  // return defaults
-}
-
-const validateForm = function(sections, data) {
-  // let errors = {}
-  // mapFields(sections, (field) => {
-  //   let value = data[field.name]
-  //   if(field.required && _.isEmpty(value)) {
-  //     errors[field.name] = ['field is required']
-  //   }
-  // })
-  // return errors
+  errors: {}
 }
 
 export default (state = INITIAL_STATE, action) => {
 
   switch (action.type) {
+
+  case actionTypes.SET_SECTIONS:
+    return {
+      ...state,
+      sections: action.sections,
+      status: 'configured'
+    }
 
   case actionTypes.FETCH_DATA_REQUEST:
     return {
@@ -46,6 +31,7 @@ export default (state = INITIAL_STATE, action) => {
     return {
       ...state,
       status: 'ready',
+      entity: action.data,
       data: action.data
     }
 
@@ -53,18 +39,7 @@ export default (state = INITIAL_STATE, action) => {
     return {
       ...state,
       status: 'error',
-      errors: action.error.errors,
-      message: {
-        type: 'error',
-        title: 'Unable to load form data',
-        text: action.error.message
-      }
-    }
-
-  case actionTypes.SET_READY:
-    return {
-      ...state,
-      status: 'ready'
+      error: action.error
     }
 
   case actionTypes.UPDATE_DATA:
@@ -77,11 +52,12 @@ export default (state = INITIAL_STATE, action) => {
     }
 
   case actionTypes.VALIDATE_FORM:
-    let errors = validateForm(state.sections, state.data)
+    let error = validateForm(state.sections, state.data)
     return {
       ...state,
-      errors,
-      status: (_.isEmpty(errors)) ? 'validated' : state.status
+      message: error ? error.errors.message : null,
+      errors: error ? error.errors : null,
+      status: error ? 'validated' : state.status
     }
 
   case actionTypes.SUBMIT_REQUEST:
@@ -94,7 +70,7 @@ export default (state = INITIAL_STATE, action) => {
     return {
       ...state,
       status: 'success',
-      result: action.data
+      entity: action.data
     }
 
   case actionTypes.SUBMIT_FAILURE:
@@ -102,21 +78,15 @@ export default (state = INITIAL_STATE, action) => {
       ...state,
       status: 'failure',
       errors: action.error.errors,
-      message: {
-        type: 'error',
-        title: 'Unable to submit your data',
-        text: action.error.message
-      }
+      message: action.error.message
     }
 
   case actionTypes.RESET_FORM:
     return {
-      ...state,
+      ...INITIAL_STATE,
       status: 'ready',
-      data: {},
-      errors: {},
-      result: {},
-      message: null
+      sections: state.sections,
+      data: state.entity
     }
 
   default:

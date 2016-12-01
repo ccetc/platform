@@ -1,5 +1,4 @@
 import * as actionTypes from './action_types'
-import _ from 'lodash'
 
 export const INITIAL_STATE = {
   params: {
