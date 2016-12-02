@@ -3,6 +3,10 @@ import Form from 'ui/components/form'
 
 class Edit extends React.Component {
 
+  static contextTypes = {
+    chrome: React.PropTypes.object
+  }
+
   render() {
     return <Form {...this._getForm()} />
   }
@@ -10,7 +14,12 @@ class Edit extends React.Component {
   _getForm() {
     return {
       title: 'Edit Profile',
-      secions: [
+      method: 'patch',
+      endpoint: '/admin/account',
+      action: '/admin/account',
+      onCancel: this.context.chrome.closeModal,
+      onSuccess: this.context.chrome.closeModal,
+      sections: [
         {
           fields: [
             { label: 'First Name', name: 'first_name', type: 'textfield', placeholder: 'First Name' },

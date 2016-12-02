@@ -12,6 +12,7 @@ import Select from './select'
 // import TableField from './tablefield'
 import TextArea from './textarea'
 import TextField from './textfield'
+import Password from './password'
 import DateField from './datefield'
 
 const standardControls = {
@@ -23,6 +24,7 @@ const standardControls = {
   // 'radios': Radios,
   'select': Select,
   'textfield': TextField,
+  'password': Password,
   'textarea': TextArea,
   'datefield': DateField
   // 'tablefield': TableField

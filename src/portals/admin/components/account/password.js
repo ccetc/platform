@@ -3,6 +3,10 @@ import Form from 'ui/components/form'
 
 class Password extends React.Component {
 
+  static contextTypes = {
+    chrome: React.PropTypes.object
+  }
+
   render() {
     return <Form {...this._getForm()} />
   }
@@ -10,10 +14,19 @@ class Password extends React.Component {
   _getForm() {
     return {
       title: 'Change Password',
-      fields: [
-        { label: 'Old Password', name: 'old_password', type: 'password', placeholder: 'Old Password' },
-        { label: 'New Password', name: 'new_password', type: 'password', placeholder: 'New Password' },
-        { label: 'Confirm Password', name: 'confirm_password', type: 'password', placeholder: 'Confirm Password' }
+      method: 'patch',
+      endpoint: '/admin/account/password',
+      action: '/admin/account/password',
+      onCancel: this.context.chrome.closeModal,
+      onSuccess: this.context.chrome.closeModal,
+      sections: [
+        {
+          fields: [
+            { label: 'Old Password', name: 'old_password', type: 'password', placeholder: 'Old Password' },
+            { label: 'New Password', name: 'new_password', type: 'password', placeholder: 'New Password' },
+            { label: 'Confirm Password', name: 'confirm_password', type: 'password', placeholder: 'Confirm Password' }
+          ]
+        }
       ]
     }
   }
