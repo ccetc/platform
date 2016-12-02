@@ -336,6 +336,11 @@
   height: 50px;
   font-size: 18px;
   padding: 16px;
+  padding: 11px;
+}
+.chrome-topbar-icon img {
+  width: 28px;
+  height: 28px;
 }
 .chrome-topbar-icon i {
   margin: auto;
