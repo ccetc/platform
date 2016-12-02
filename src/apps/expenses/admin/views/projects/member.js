@@ -10,9 +10,12 @@ class Member extends React.Component {
   _getForm() {
     return {
       title: 'Add Member',
-      successMessage: 'This member was successfully added',
-      fields: [
-        { label: 'User', name: 'user_id', type: 'select', placeholder: 'User', endpoint: '/admin/users', key: 'id', value: 'full_name' }
+      sections: [
+        {
+          fields: [
+            { label: 'User', name: 'user_id', type: 'select', placeholder: 'User', endpoint: '/admin/users', key: 'id', value: 'full_name' }
+          ]
+        }
       ]
     }
   }

@@ -10,11 +10,14 @@ class Edit extends React.Component {
   _getForm() {
     return {
       title: 'Edit Expense Type',
-      successMessage: 'This expense type was successfully updated',
-      fields: [
-        { label: 'Title', name: 'title', type: 'textfield', placeholder: 'Title' },
-        { label: 'Code', name: 'code', type: 'textfield', placeholder: 'Code' },
-        { label: 'Description', name: 'description', type: 'textarea', placeholder: 'Description' }
+      sections: [
+        {
+          fields: [
+            { label: 'Title', name: 'title', type: 'textfield', placeholder: 'Title' },
+            { label: 'Code', name: 'code', type: 'textfield', placeholder: 'Code' },
+            { label: 'Description', name: 'description', type: 'textarea', placeholder: 'Description' }
+          ]
+        }
       ]
     }
   }

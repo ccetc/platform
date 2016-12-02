@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Search from './search'
+import Search from '../search'
 import Account from '../account'
 import Notifications from './notifications'
-import Navigation from './navigation'
+import Navigation from '../navigation'
 
 export class Topbar extends React.Component {
 
@@ -19,20 +19,20 @@ export class Topbar extends React.Component {
     const { unread, user } = this.props
     return (
       <div className="chrome-topbar">
-        <div className="chrome-navigation" onClick={this._handleOpenNavigation.bind(this)}>
+        <div className="chrome-topbar-icon" onClick={this._handleOpenNavigation.bind(this)}>
           <i className="sidebar icon" />
         </div>
         <div className="chrome-filler"></div>
-        <div className="chrome-search" onClick={this._handleOpenSearch.bind(this)}>
+        <div className="chrome-topbar-icon" onClick={this._handleOpenSearch.bind(this)}>
           <i className="search icon" />
         </div>
-        <div className="chrome-alerts" onClick={this._handleOpenNotifications.bind(this)}>
+        <div className="chrome-topbar-icon" onClick={this._handleOpenNotifications.bind(this)}>
           <i className="alarm icon" />
           {unread > 0 &&
             <div className="chrome-alerts-label">{unread}</div>
           }
         </div>
-        <div className="chrome-account" onClick={this._handleOpenAccount.bind(this)}>
+        <div className="chrome-topbar-icon" onClick={this._handleOpenAccount.bind(this)}>
           <img src={user.photo} className="ui image circular" />
         </div>
       </div>

@@ -20,7 +20,6 @@ class Form extends React.Component {
     redirect: React.PropTypes.string,
     status: React.PropTypes.string,
     title: React.PropTypes.string,
-    successMessage: React.PropTypes.string,
     onChange: React.PropTypes.func,
     onChangeField: React.PropTypes.func,
     onSubmit: React.PropTypes.func,
@@ -131,13 +130,13 @@ class Form extends React.Component {
   }
 
   _handleSuccess(entity) {
-    const message = this.props.successMessage || 'Your form was successfully saved!'
+    const message = 'Your form was successfully saved!'
     this.context.session.setFlash('success', message)
     this.props.onSuccess(entity)
   }
 
   _handleFailure() {
-    const message = this.props.successMessage || 'There were problems with your data'
+    const message = 'There were problems with your data'
     this.context.session.setFlash('error', message)
     this.props.onFailure()
   }

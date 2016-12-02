@@ -18,11 +18,15 @@ export class Chrome extends React.Component {
   }
 
   static propTypes = {
-    token: React.PropTypes.string
+    token: React.PropTypes.string,
+    user:React.PropTypes.object
   }
 
   render() {
-    const { children } = this.props
+    const { children, user } = this.props
+    if(!user) {
+      return null
+    }
     return (
       <div className="chrome">
         <Topbar />
@@ -60,7 +64,8 @@ export class Chrome extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  route: state.chrome.route
+  route: state.chrome.route,
+  user: state.session.user
 })
 
 const mapDispatchToProps = {

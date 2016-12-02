@@ -65,7 +65,7 @@ class Field extends React.Component {
                    onChange={this._handleUpdateData.bind(this)} />
         }
         { error &&
-          <div className="ui pointing red basic label">
+          <div className="ui pointing red label">
             {error}
           </div>
         }

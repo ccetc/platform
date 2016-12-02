@@ -4,7 +4,8 @@ import Form from 'ui/components/form'
 class Edit extends React.Component {
 
   static contextTypes = {
-    chrome: React.PropTypes.object
+    chrome: React.PropTypes.object,
+    container: React.PropTypes.object
   }
 
   render() {
@@ -31,7 +32,7 @@ class Edit extends React.Component {
   }
 
   _handleSuccess(project) {
-    // this.context.container.refresh()
+    this.context.container.refresh()
     this.context.chrome.closeModal()
     this.context.chrome.transitionTo(`/admin/expenses/projects/${project.id}`)
   }

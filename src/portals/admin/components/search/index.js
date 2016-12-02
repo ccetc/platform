@@ -16,7 +16,8 @@ export class Search extends React.Component {
     query: React.PropTypes.string,
     results: React.PropTypes.array,
     onAbortSearch: React.PropTypes.func.isRequired,
-    onCompleteSearch: React.PropTypes.func.isRequired
+    onCompleteSearch: React.PropTypes.func.isRequired,
+    onLookup: React.PropTypes.func.isRequired
   }
 
   render() {
@@ -115,7 +116,7 @@ export class Search extends React.Component {
 
 }
 
-const mapStateToProps = state => state.chrome.search
+const mapStateToProps = state => state.search
 
 const mapDispatchToProps = {
   onAbortSearch: actions.abortSearch,

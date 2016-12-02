@@ -327,10 +327,7 @@
 .chrome-filler {
   flex: 1;
 }
-.chrome-navigation,
-.chrome-search,
-.chrome-alerts,
-.chrome-account {
+.chrome-topbar-icon {
   display: flex;
   position: relative;
   flex: 0 0 50px;
@@ -340,17 +337,11 @@
   font-size: 18px;
   padding: 16px;
 }
-.chrome-navigation i,
-.chrome-search i,
-.chrome-alerts i,
-.chrome-account i {
+.chrome-topbar-icon i {
   margin: auto;
   color: #FFFFFF;
 }
-.chrome-navigation .chrome-alerts-label,
-.chrome-search .chrome-alerts-label,
-.chrome-alerts .chrome-alerts-label,
-.chrome-account .chrome-alerts-label {
+.chrome-topbar-icon .chrome-alerts-label {
   position: absolute;
   top: 6px;
   right: 6px;
@@ -533,236 +524,6 @@
   -webkit-opacity: 0.5;
   -moz-opacity: 0.5;
   opacity: 0.5;
-}
-.chrome-navigation-panel {
-  flex: 1;
-  background-color: #FFF;
-}
-.chrome-navigation-title {
-  background: #000;
-  height: 50px;
-  display: flex;
-}
-.chrome-navigation-title h3 {
-  margin: auto;
-  color: #FFF;
-  text-align: center;
-}
-.chrome-apps {
-  flex: 1;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-}
-.chrome-app .chrome-app-title {
-  display: block;
-  cursor: pointer;
-  color: #000;
-  padding: 10px;
-}
-.chrome-app .chrome-app-title i {
-  color: #666;
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
-  font-size: 16px;
-  vertical-align: middle;
-  text-align: center;
-  margin-right: 10px;
-}
-.chrome-app .chrome-app-title.active {
-  background-color: #2185D0;
-  color: #FFF;
-}
-.chrome-app .chrome-app-title.active i {
-  color: #FFF;
-}
-.chrome-app .chrome-app-menu {
-  transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -webkit-transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -moz-transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -ms-transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  background-color: #EEE;
-  max-height: 500px;
-  overflow: hidden;
-}
-.chrome-app .chrome-app-menu.expanded-enter,
-.chrome-app .chrome-app-menu.expanded-leave.expanded-leave-active {
-  max-height: 0;
-}
-.chrome-app .chrome-app-menu.expanded-enter.expanded-enter-active,
-.chrome-app .chrome-app-menu.expanded-leave {
-  max-height: 500px;
-}
-.chrome-app .chrome-app-menu .chrome-app-item {
-  padding: 10px 20px;
-  color: #666;
-  cursor: pointer;
-  line-height: 25px;
-}
-.chrome-app .chrome-app-menu .chrome-app-item:hover {
-  background-color: #DDD;
-}
-.chrome-search-panel {
-  transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -webkit-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -moz-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -ms-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  z-index: 50;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: #F9F9F9;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-.chrome-search-panel.expanded-appear,
-.chrome-search-panel.expanded-enter,
-.chrome-search-panel.expanded-leave.expanded-leave-active {
-  -webkit-transform: translateY(100%);
-  -moz-transform: translateY(100%);
-  -ms-transform: translateY(100%);
-  -o-transform: translateY(100%);
-  transform: translateY(100%);
-}
-.chrome-search-panel.expanded-appear.expanded-appear-active,
-.chrome-search-panel.expanded-enter.expanded-enter-active,
-.chrome-search-panel.expanded-leave {
-  -webkit-transform: translateY(0);
-  -moz-transform: translateY(0);
-  -ms-transform: translateY(0);
-  -o-transform: translateY(0);
-  transform: translateY(0);
-}
-.chrome-search-bar {
-  flex: 0 0 50px;
-  display: flex;
-  background-color: #DB2828;
-}
-.chrome-search-bar .search.icon,
-.chrome-search-bar .remove.icon {
-  color: #FFFFFF;
-  margin: 15px 0;
-  flex: 0 0 50px;
-  cursor: pointer;
-  font-size: 18px;
-}
-.chrome-search-bar .ui.input {
-  flex: 1;
-  padding-right: 10px;
-}
-.chrome-search-bar .ui.input input {
-  padding: 12px 0 8px;
-  width: 100%;
-  border-radius: 0;
-  background-color: transparent;
-  color: #FFFFFF;
-  border: none !important;
-  padding-left: 0;
-  padding-right: 0;
-}
-.chrome-search-bar .ui.input input::-webkit-input-placeholder {
-  color: #cccccc;
-}
-.chrome-search-bar .ui.input input:-moz-placeholder {
-  color: #cccccc;
-}
-.chrome-search-bar .ui.input input::-moz-placeholder {
-  color: #cccccc;
-}
-.chrome-search-bar .ui.input input::-webkit-input-placeholder,
-.chrome-search-bar .ui.input input:-moz-placeholder,
-.chrome-search-bar .ui.input input::-moz-placeholder,
-.chrome-search-bar .ui.input input:-ms-input-placeholder {
-  color: #cccccc;
-}
-.chrome-search-model {
-  font-size: 0.8em;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #333;
-  padding: 6px 14px;
-  background-color: #DDDDDD;
-}
-.chrome-search-landing {
-  z-index: 11;
-  position: fixed;
-  top: 50px;
-  left: 0;
-  right: 0;
-  display: flex;
-}
-@media only screen and (max-width: 767px) {
-  .chrome-search-landing {
-    bottom: 250px;
-  }
-}
-@media only screen and (min-width: 768px) {
-  .chrome-search-landing {
-    bottom: 0;
-  }
-}
-.chrome-search-landing .chrome-search-landing-message {
-  margin: auto;
-  text-align: center;
-  padding: 20px;
-}
-.chrome-search-landing .chrome-search-landing-message h2 {
-  margin: 0 0 20px;
-  font-size: 50px;
-}
-.chrome-search-landing .chrome-search-landing-message h2 i {
-  color: #DDD;
-}
-.chrome-search-landing .chrome-search-landing-message h3 {
-  font-size: 22px;
-  line-height: 28px;
-  margin: 0;
-  color: #DDD;
-}
-.chrome-search-results {
-  z-index: 11;
-  position: fixed;
-  top: 50px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-}
-.chrome-search-result {
-  padding: 10px;
-  border-bottom: 1px solid #DDD;
-  background-color: #FFF;
-  cursor: pointer;
-}
-.chrome-search-result:hover {
-  background-color: #EEE;
-}
-.chrome-search-result:after {
-  visibility: hidden;
-  display: block;
-  font-size: 0;
-  content: " ";
-  clear: both;
-  height: 0;
-}
-.chrome-search-result img {
-  display: block;
-  width: 40px;
-  height: 40px;
-  float: left;
-  margin-right: 10px;
-}
-.chrome-search-result p {
-  float: left;
-  color: #888;
-}
-.chrome-search-result strong {
-  color: #000;
 }
 .chrome-account-panel {
   flex: 1;
@@ -1024,6 +785,75 @@
   -o-transform: translateY(0);
   transform: translateY(0);
 }
+.chrome-navigation-panel {
+  flex: 1;
+  background-color: #FFF;
+}
+.chrome-navigation-title {
+  background: #000;
+  height: 50px;
+  display: flex;
+}
+.chrome-navigation-title h3 {
+  margin: auto;
+  color: #FFF;
+  text-align: center;
+}
+.chrome-apps {
+  flex: 1;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+.chrome-app .chrome-app-title {
+  display: block;
+  cursor: pointer;
+  color: #000;
+  padding: 10px;
+}
+.chrome-app .chrome-app-title i {
+  color: #666;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 16px;
+  vertical-align: middle;
+  text-align: center;
+  margin-right: 10px;
+}
+.chrome-app .chrome-app-title.active {
+  background-color: #2185D0;
+  color: #FFF;
+}
+.chrome-app .chrome-app-title.active i {
+  color: #FFF;
+}
+.chrome-app .chrome-app-menu {
+  transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -webkit-transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -moz-transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -ms-transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  background-color: #EEE;
+  max-height: 500px;
+  overflow: hidden;
+}
+.chrome-app .chrome-app-menu.expanded-enter,
+.chrome-app .chrome-app-menu.expanded-leave.expanded-leave-active {
+  max-height: 0;
+}
+.chrome-app .chrome-app-menu.expanded-enter.expanded-enter-active,
+.chrome-app .chrome-app-menu.expanded-leave {
+  max-height: 500px;
+}
+.chrome-app .chrome-app-menu .chrome-app-item {
+  padding: 10px 20px;
+  color: #666;
+  cursor: pointer;
+  line-height: 25px;
+}
+.chrome-app .chrome-app-menu .chrome-app-item:hover {
+  background-color: #DDD;
+}
 .chrome-notifications {
   position: absolute;
   @include border-radius(0 !important);
@@ -1053,6 +883,167 @@
     left: 10px;
     width: 240px;
   }
+}
+.chrome-search-panel {
+  transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -webkit-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -moz-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -ms-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  z-index: 50;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #F9F9F9;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.chrome-search-panel.expanded-appear,
+.chrome-search-panel.expanded-enter,
+.chrome-search-panel.expanded-leave.expanded-leave-active {
+  -webkit-transform: translateY(100%);
+  -moz-transform: translateY(100%);
+  -ms-transform: translateY(100%);
+  -o-transform: translateY(100%);
+  transform: translateY(100%);
+}
+.chrome-search-panel.expanded-appear.expanded-appear-active,
+.chrome-search-panel.expanded-enter.expanded-enter-active,
+.chrome-search-panel.expanded-leave {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+}
+.chrome-search-bar {
+  flex: 0 0 50px;
+  display: flex;
+  background-color: #DB2828;
+}
+.chrome-search-bar .search.icon,
+.chrome-search-bar .remove.icon {
+  color: #FFFFFF;
+  margin: 15px 0;
+  flex: 0 0 50px;
+  cursor: pointer;
+  font-size: 18px;
+}
+.chrome-search-bar .ui.input {
+  flex: 1;
+  padding-right: 10px;
+}
+.chrome-search-bar .ui.input input {
+  padding: 12px 0 8px;
+  width: 100%;
+  border-radius: 0;
+  background-color: transparent;
+  color: #FFFFFF;
+  border: none !important;
+  padding-left: 0;
+  padding-right: 0;
+}
+.chrome-search-bar .ui.input input::-webkit-input-placeholder {
+  color: #cccccc;
+}
+.chrome-search-bar .ui.input input:-moz-placeholder {
+  color: #cccccc;
+}
+.chrome-search-bar .ui.input input::-moz-placeholder {
+  color: #cccccc;
+}
+.chrome-search-bar .ui.input input::-webkit-input-placeholder,
+.chrome-search-bar .ui.input input:-moz-placeholder,
+.chrome-search-bar .ui.input input::-moz-placeholder,
+.chrome-search-bar .ui.input input:-ms-input-placeholder {
+  color: #cccccc;
+}
+.chrome-search-model {
+  font-size: 0.8em;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #333;
+  padding: 6px 14px;
+  background-color: #DDDDDD;
+}
+.chrome-search-landing {
+  z-index: 11;
+  position: fixed;
+  top: 50px;
+  left: 0;
+  right: 0;
+  display: flex;
+}
+@media only screen and (max-width: 767px) {
+  .chrome-search-landing {
+    bottom: 250px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .chrome-search-landing {
+    bottom: 0;
+  }
+}
+.chrome-search-landing .chrome-search-landing-message {
+  margin: auto;
+  text-align: center;
+  padding: 20px;
+}
+.chrome-search-landing .chrome-search-landing-message h2 {
+  margin: 0 0 20px;
+  font-size: 50px;
+}
+.chrome-search-landing .chrome-search-landing-message h2 i {
+  color: #DDD;
+}
+.chrome-search-landing .chrome-search-landing-message h3 {
+  font-size: 22px;
+  line-height: 28px;
+  margin: 0;
+  color: #DDD;
+}
+.chrome-search-results {
+  z-index: 11;
+  position: fixed;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+.chrome-search-result {
+  padding: 10px;
+  border-bottom: 1px solid #DDD;
+  background-color: #FFF;
+  cursor: pointer;
+}
+.chrome-search-result:hover {
+  background-color: #EEE;
+}
+.chrome-search-result:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.chrome-search-result img {
+  display: block;
+  width: 40px;
+  height: 40px;
+  float: left;
+  margin-right: 10px;
+}
+.chrome-search-result p {
+  float: left;
+  color: #888;
+}
+.chrome-search-result strong {
+  color: #000;
 }
 .collection {
   width: 100%;
@@ -1282,12 +1273,6 @@
 }
 .datefield .calendar.icon {
   margin: 0;
-}
-.table img {
-  display: inline-block !important;
-  width: 32px;
-  height: 32px;
-  margin-right: 10px;
 }
 .project-members {
   width: 100%;

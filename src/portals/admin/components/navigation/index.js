@@ -60,9 +60,9 @@ export class Navigation extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  app: state.chrome.navigation.app,
+  app: state.navigation.app,
   apps: state.session.apps,
-  route: state.chrome.navigation.route
+  route: state.navigation.route
 })
 
 const mapDispatchToProps = {
