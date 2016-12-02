@@ -570,6 +570,138 @@
   display: flex;
   background-color: #FFF;
 }
+.chrome-modal {
+  transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -webkit-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -moz-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -ms-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  z-index: 50;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #FFF;
+  display: flex;
+  flex-direction: column;
+}
+.chrome-modal.expanded-appear,
+.chrome-modal.expanded-enter,
+.chrome-modal.expanded-leave.expanded-leave-active {
+  -webkit-transform: translateY(100%);
+  -moz-transform: translateY(100%);
+  -ms-transform: translateY(100%);
+  -o-transform: translateY(100%);
+  transform: translateY(100%);
+}
+.chrome-modal.expanded-appear.expanded-appear-active,
+.chrome-modal.expanded-enter.expanded-enter-active,
+.chrome-modal.expanded-leave {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+}
+.chrome-navigation-panel {
+  flex: 1;
+  background-color: #FFF;
+}
+.chrome-navigation-title {
+  background: #000;
+  height: 50px;
+  display: flex;
+}
+.chrome-navigation-title h3 {
+  margin: auto;
+  color: #FFF;
+  text-align: center;
+}
+.chrome-apps {
+  flex: 1;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+.chrome-app .chrome-app-title {
+  display: block;
+  cursor: pointer;
+  color: #000;
+  padding: 10px;
+}
+.chrome-app .chrome-app-title i {
+  color: #666;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 16px;
+  vertical-align: middle;
+  text-align: center;
+  margin-right: 10px;
+}
+.chrome-app .chrome-app-title.active {
+  background-color: #2185D0;
+  color: #FFF;
+}
+.chrome-app .chrome-app-title.active i {
+  color: #FFF;
+}
+.chrome-app .chrome-app-menu {
+  transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -webkit-transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -moz-transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -ms-transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  background-color: #EEE;
+  max-height: 500px;
+  overflow: hidden;
+}
+.chrome-app .chrome-app-menu.expanded-enter,
+.chrome-app .chrome-app-menu.expanded-leave.expanded-leave-active {
+  max-height: 0;
+}
+.chrome-app .chrome-app-menu.expanded-enter.expanded-enter-active,
+.chrome-app .chrome-app-menu.expanded-leave {
+  max-height: 500px;
+}
+.chrome-app .chrome-app-menu .chrome-app-item {
+  padding: 10px 20px;
+  color: #666;
+  cursor: pointer;
+  line-height: 25px;
+}
+.chrome-app .chrome-app-menu .chrome-app-item:hover {
+  background-color: #DDD;
+}
+.chrome-notifications {
+  position: absolute;
+  @include border-radius(0 !important);
+  z-index: 10;
+}
+.chrome-notifications .segment {
+  position: relative;
+  background-color: #FFF !important;
+}
+.chrome-notifications .segment i {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 10px;
+  cursor: pointer;
+}
+@media only screen and (max-width: 600px) {
+  .chrome-notifications {
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+}
+@media only screen and (min-width: 601px) {
+  .chrome-notifications {
+    bottom: 10px;
+    left: 10px;
+    width: 240px;
+  }
+}
 .chrome-page {
   flex: 1;
   display: flex;
@@ -751,138 +883,6 @@
 .chrome-forbidden p {
   font-size: 32px;
   line-height: 48px;
-}
-.chrome-modal {
-  transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -webkit-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -moz-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -ms-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  z-index: 50;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: #FFF;
-  display: flex;
-  flex-direction: column;
-}
-.chrome-modal.expanded-appear,
-.chrome-modal.expanded-enter,
-.chrome-modal.expanded-leave.expanded-leave-active {
-  -webkit-transform: translateY(100%);
-  -moz-transform: translateY(100%);
-  -ms-transform: translateY(100%);
-  -o-transform: translateY(100%);
-  transform: translateY(100%);
-}
-.chrome-modal.expanded-appear.expanded-appear-active,
-.chrome-modal.expanded-enter.expanded-enter-active,
-.chrome-modal.expanded-leave {
-  -webkit-transform: translateY(0);
-  -moz-transform: translateY(0);
-  -ms-transform: translateY(0);
-  -o-transform: translateY(0);
-  transform: translateY(0);
-}
-.chrome-navigation-panel {
-  flex: 1;
-  background-color: #FFF;
-}
-.chrome-navigation-title {
-  background: #000;
-  height: 50px;
-  display: flex;
-}
-.chrome-navigation-title h3 {
-  margin: auto;
-  color: #FFF;
-  text-align: center;
-}
-.chrome-apps {
-  flex: 1;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-}
-.chrome-app .chrome-app-title {
-  display: block;
-  cursor: pointer;
-  color: #000;
-  padding: 10px;
-}
-.chrome-app .chrome-app-title i {
-  color: #666;
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
-  font-size: 16px;
-  vertical-align: middle;
-  text-align: center;
-  margin-right: 10px;
-}
-.chrome-app .chrome-app-title.active {
-  background-color: #2185D0;
-  color: #FFF;
-}
-.chrome-app .chrome-app-title.active i {
-  color: #FFF;
-}
-.chrome-app .chrome-app-menu {
-  transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -webkit-transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -moz-transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -ms-transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  background-color: #EEE;
-  max-height: 500px;
-  overflow: hidden;
-}
-.chrome-app .chrome-app-menu.expanded-enter,
-.chrome-app .chrome-app-menu.expanded-leave.expanded-leave-active {
-  max-height: 0;
-}
-.chrome-app .chrome-app-menu.expanded-enter.expanded-enter-active,
-.chrome-app .chrome-app-menu.expanded-leave {
-  max-height: 500px;
-}
-.chrome-app .chrome-app-menu .chrome-app-item {
-  padding: 10px 20px;
-  color: #666;
-  cursor: pointer;
-  line-height: 25px;
-}
-.chrome-app .chrome-app-menu .chrome-app-item:hover {
-  background-color: #DDD;
-}
-.chrome-notifications {
-  position: absolute;
-  @include border-radius(0 !important);
-  z-index: 10;
-}
-.chrome-notifications .segment {
-  position: relative;
-  background-color: #FFF !important;
-}
-.chrome-notifications .segment i {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  font-size: 10px;
-  cursor: pointer;
-}
-@media only screen and (max-width: 600px) {
-  .chrome-notifications {
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-}
-@media only screen and (min-width: 601px) {
-  .chrome-notifications {
-    bottom: 10px;
-    left: 10px;
-    width: 240px;
-  }
 }
 .chrome-search-panel {
   transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;

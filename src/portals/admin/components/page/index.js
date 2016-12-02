@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
+import * as actions from './actions'
+import Tasks from './tasks'
 import _ from 'lodash'
 
 export class Page extends React.Component {
@@ -63,6 +65,7 @@ export class Page extends React.Component {
           <div className="chrome-body">
             {this.props.children}
           </div>
+          <Tasks />
         </div>
       )
     } else  {
@@ -107,7 +110,7 @@ export class Page extends React.Component {
   }
 
   _handleOpenTasks() {
-    this.context.chrome.openTasks(this.props.tasks)
+    this.props.openTasks(this.props.tasks)
   }
 
   _handleOpenTask() {
@@ -125,4 +128,8 @@ const mapStateToProps = (state) => ({
   user: state.session.user
 })
 
-export default connect(mapStateToProps)(Page)
+const mapDispatchToProps = {
+  openTasks: actions.openTasks
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Page)

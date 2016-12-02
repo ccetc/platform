@@ -2,6 +2,7 @@ import chrome from './components/chrome/reducer'
 import forgot from './components/forgot/reducer'
 import navigation from './components/navigation/reducer'
 import notifications from './components/notifications/reducer'
+import page from './components/page/reducer'
 import reset from './components/reset/reducer'
 import session from './components/session/reducer'
 import search from './components/search/reducer'
@@ -20,6 +21,7 @@ const Reducer = (state, action) => {
     forgot,
     navigation,
     notifications,
+    page,
     reset,
     session,
     search,
@@ -58,6 +60,7 @@ const Reducer = (state, action) => {
       forgot: forgot(undefined, action),
       navigation: navigation(undefined, action),
       notifications: notifications(undefined, action),
+      page: page(undefined, action),
       reset: reset(undefined, action),
       session: session(undefined, action),
       search: search(undefined, action),

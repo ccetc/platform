@@ -2,6 +2,8 @@ import React from 'react'
 import Transition from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
 
+import * as actions from './actions'
+
 class Tasks extends React.Component {
 
   static contextTypes = {
@@ -37,7 +39,7 @@ class Tasks extends React.Component {
 
   _handleChooseTask(index) {
     const { tasks } = this.props
-    this.context.chrome.closeTasks()
+    this._handleCloseTasks()
     if(tasks[index].route) {
       this.context.chrome.transitionTo(tasks[index].route)
     } else if(tasks[index].component){
@@ -48,13 +50,18 @@ class Tasks extends React.Component {
   }
 
   _handleCloseTasks() {
-    this.context.chrome.closeTasks()
+    this.props.closeTasks()
   }
 
 }
 
-const mapStateToProps = (state) => ({
-  tasks: state.chrome.tasks
+
+const mapStateToProps = state => ({
+  tasks: state.page.tasks
 })
 
-export default connect(mapStateToProps)(Tasks)
+const mapDispatchToProps = {
+  closeTasks: actions.closeTasks
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tasks)

@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import * as actions from './actions'
 import Modal from './modal'
 import Drawer from './drawer'
-import Tasks from './tasks'
 import Topbar from './topbar'
 import Notifications from '../notifications'
 
@@ -32,7 +31,6 @@ export class Chrome extends React.Component {
         <Topbar />
         <Modal />
         <Drawer />
-        <Tasks />
         { children }
       </div>
     )
@@ -46,7 +44,7 @@ export class Chrome extends React.Component {
   }
 
   getChildContext() {
-    const { params, transitionTo, openModal, closeModal, openDrawer, closeDrawer, openTasks, closeTasks } = this.props
+    const { params, transitionTo, openModal, closeModal, openDrawer, closeDrawer } = this.props
     return {
       chrome: {
         params,
@@ -54,9 +52,7 @@ export class Chrome extends React.Component {
         openModal,
         closeModal,
         openDrawer,
-        closeDrawer,
-        openTasks,
-        closeTasks
+        closeDrawer
       }
     }
   }
@@ -74,8 +70,6 @@ const mapDispatchToProps = {
   closeModal: actions.closeModal,
   openDrawer: actions.openDrawer,
   closeDrawer: actions.closeDrawer,
-  openTasks: actions.openTasks,
-  closeTasks: actions.closeTasks,
   setFlash: actions.setFlash,
   clearFlash: actions.clearFlash
 }
