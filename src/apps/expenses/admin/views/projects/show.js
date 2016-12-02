@@ -52,7 +52,7 @@ class Show extends React.Component {
       items: [
         { label: 'Title ', content: project.title },
         { label: 'Code ', content: project.code, format: 'code' },
-        { label: 'Created ', content: project.created_at, format: 'datatime' }
+        { label: 'Created ', content: project.created_at, format: 'datetime' }
       ]
     }
   }

@@ -1098,6 +1098,12 @@
 .table-body {
   display: table-row-group;
 }
+.table-body img {
+  display: inline-block !important;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+}
 .table-row {
   display: table-row;
 }

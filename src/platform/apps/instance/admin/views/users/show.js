@@ -41,7 +41,7 @@ class Show extends React.Component {
       items: [
         { label: 'Name ', content: user.full_name },
         { label: 'Email ', content: user.email, format: 'email' },
-        { label: 'Created ', content: user.created_at, format: 'date' }
+        { label: 'Created ', content: user.created_at, format: 'datetime' }
       ]
     }
   }
