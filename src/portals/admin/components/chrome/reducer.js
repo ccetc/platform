@@ -2,7 +2,8 @@ import * as actionTypes from './action_types'
 
 export const INITIAL_STATE = {
   drawer: null,
-  modal: null
+  modal: null,
+  tasks: null
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -40,6 +41,18 @@ export default (state = INITIAL_STATE, action) => {
     return {
       ...state,
       drawer: null
+    }
+
+  case actionTypes.OPEN_TASKS:
+    return {
+      ...state,
+      tasks: action.tasks
+    }
+
+  case actionTypes.CLOSE_TASKS:
+    return {
+      ...state,
+      tasks: null
     }
 
   default:

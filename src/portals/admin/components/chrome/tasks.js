@@ -57,7 +57,7 @@ class Tasks extends React.Component {
 
 
 const mapStateToProps = state => ({
-  tasks: state.page.tasks
+  tasks: state.chrome.tasks
 })
 
 const mapDispatchToProps = {
