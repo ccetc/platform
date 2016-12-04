@@ -8,9 +8,9 @@ class Index extends React.Component {
 
   render() {
     return (
-      <Page {...this._getPage()}>
+      <div className="chrome-body">
         <Collection {...this._getCollection()} />
-      </Page>
+      </div>
     )
   }
 
@@ -30,18 +30,6 @@ class Index extends React.Component {
     }
   }
 
-  _getPage() {
-    return {
-      back: '/admin',
-      title: 'Users',
-      task: {
-        label: 'New User',
-        icon: 'plus',
-        component: New
-      }
-    }
-  }
-
 }
 
 var NameCell = (props) => {
@@ -53,4 +41,14 @@ var NameCell = (props) => {
   )
 }
 
-export default Index
+const details = props => ({
+  back: '/admin',
+  title: 'Users',
+  task: {
+    label: 'New User',
+    icon: 'plus',
+    component: New
+  }
+})
+
+export default Page(details)(Index)

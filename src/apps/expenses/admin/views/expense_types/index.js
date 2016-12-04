@@ -7,9 +7,9 @@ class Index extends React.Component {
 
   render() {
     return (
-      <Page {...this._getPage()}>
+      <div className="chrome-body">
         <Collection {...this._getCollection()} />
-      </Page>
+      </div>
     )
   }
 
@@ -32,18 +32,16 @@ class Index extends React.Component {
     }
   }
 
-  _getPage() {
-    return {
-      back: '/admin',
-      title: 'Expense Types',
-      task: {
-        label: 'New Expense Type',
-        icon: 'plus',
-        component: New
-      }
-    }
-  }
-
 }
 
-export default Index
+const details = props => ({
+  back: '/admin',
+  title: 'Expense Types',
+  task: {
+    label: 'New Expense Type',
+    icon: 'plus',
+    component: New
+  }
+})
+
+export default Page(details)(Index)

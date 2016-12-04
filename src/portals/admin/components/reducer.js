@@ -17,6 +17,7 @@ const Reducer = (state, action) => {
 
   const reducers = {
     chrome,
+    container,
     forgot,
     navigation,
     notifications,
@@ -25,7 +26,6 @@ const Reducer = (state, action) => {
     search,
     signin,
     collection,
-    container,
     form,
     infinite,
     tabs

@@ -1,6 +1,5 @@
 import React from 'react'
 import Card from 'ui/components/card'
-import Container from 'ui/components/container'
 import Page from 'portals/admin/components/page'
 import Edit from './edit'
 import Member from './member'
@@ -10,7 +9,7 @@ class Show extends React.Component {
   render() {
     const { members } = this.props
     return (
-      <Page {...this._getPage()}>
+      <div className="chrome-body">
         <div className="chrome-sidebar">
           <Card {...this._getCard()} />
         </div>
@@ -30,20 +29,8 @@ class Show extends React.Component {
             })}
           </div>
         </div>
-      </Page>
+      </div>
     )
-  }
-
-  _getPage() {
-    return {
-      back: '/admin/expenses/projects',
-      title: 'Project',
-      permissions: [],
-      tasks: [
-        { label: 'Edit Project', component: Edit },
-        { label: 'Add Member', component: Member }
-      ]
-    }
   }
 
   _getCard() {
@@ -59,10 +46,18 @@ class Show extends React.Component {
 
 }
 
-
-const mapEndpointsToProps = (props) => ({
-  project: `/admin/expenses/projects/${props.params.id}`,
-  members: `/admin/expenses/projects/${props.params.id}/members`
+const details = props => ({
+  back: '/admin/expenses/projects',
+  title: 'Project',
+  permissions: [],
+  tasks: [
+    { label: 'Edit Project', component: Edit },
+    { label: 'Add Member', component: Member }
+  ],
+  resources: {
+    project: `/admin/expenses/projects/${props.params.id}`,
+    members: `/admin/expenses/projects/${props.params.id}/members`
+  }
 })
 
-export default Container(mapEndpointsToProps)(Show)
+export default Page(details)(Show)

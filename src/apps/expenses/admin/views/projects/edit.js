@@ -32,7 +32,7 @@ class Edit extends React.Component {
   }
 
   _handleSuccess(project) {
-    // this.context.container.refresh()
+    this.context.container.refresh('project')
     this.context.chrome.closeModal()
     this.context.chrome.transitionTo(`/admin/expenses/projects/${project.id}`)
   }

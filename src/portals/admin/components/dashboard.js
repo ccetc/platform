@@ -5,17 +5,15 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <Page {...this._getPage()}>
-      </Page>
+      <div className="chrome-body">
+      </div>
     )
-  }
-
-  _getPage() {
-    return {
-      title: 'Dashboard'
-    }
   }
 
 }
 
-export default Dashboard
+const details = props => ({
+  title: 'Dashboard'
+})
+
+export default Page(details)(Dashboard)

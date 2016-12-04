@@ -3,6 +3,7 @@ import _ from 'lodash'
 
 export const INITIAL_STATE = {
   status: 'uninitialized',
+  routes: {},
   data: {}
 }
 
@@ -12,8 +13,12 @@ export default (state = INITIAL_STATE, action) => {
 
   case actionTypes.FETCH_RESOURCE_REQUEST:
     return {
+      ...state,
       status: 'loading',
-      data: {}
+      routes: {
+        ...state.routes,
+        [action.prop]: action.endpoint
+      }
     }
 
   case actionTypes.FETCH_RESOURCE_SUCCESS:
@@ -21,8 +26,9 @@ export default (state = INITIAL_STATE, action) => {
       ...state.data,
       [action.prop]: (action.data.data) ? action.data.data : action.data
     }
-    let status = _.isEqual(Object.keys(data).sort(), action.keys.sort()) ? 'loaded' : state.status
+    let status = _.isEqual(Object.keys(data).sort(), Object.keys(state.routes).sort()) ? 'loaded' : state.status
     return {
+      ...state,
       data,
       status
     }

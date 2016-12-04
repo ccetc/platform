@@ -5,19 +5,17 @@ class Reports extends React.Component {
 
   render() {
     return (
-      <Page {...this._getPage()}>
+      <div className="chrome-body">
         <div>Reports</div>
-      </Page>
+      </div>
     )
-  }
-
-  _getPage() {
-    return {
-      back: '/admin',
-      title: 'Reports'
-    }
   }
 
 }
 
-export default Reports
+const details = props => ({
+  back: '/admin',
+  title: 'Reports'
+})
+
+export default Page(details)(Reports)
