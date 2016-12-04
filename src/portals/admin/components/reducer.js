@@ -8,6 +8,7 @@ import reset from './reset/reducer'
 import session from './session/reducer'
 import search from './search/reducer'
 import signin from './signin/reducer'
+import tasks from './tasks/reducer'
 
 import collection from 'ui/components/collection/reducer'
 import form from 'ui/components/form/reducer'
@@ -27,6 +28,7 @@ const Reducer = (state, action) => {
     session,
     search,
     signin,
+    tasks,
     collection,
     form,
     infinite,
@@ -66,6 +68,7 @@ const Reducer = (state, action) => {
       session: session(undefined, action),
       search: search(undefined, action),
       signin: signin(undefined, action),
+      tasks: tasks(undefined, action),
       collection: collection(undefined, action),
       form: form(undefined, action),
       infinite: infinite(undefined, action),

@@ -4,7 +4,7 @@ import * as actions from './actions'
 import Modal from '../modal'
 import Drawer from './drawer'
 import Topbar from './topbar'
-import Tasks from './tasks'
+import Tasks from '../tasks'
 import Notifications from '../notifications'
 
 export class Chrome extends React.Component {
@@ -30,10 +30,11 @@ export class Chrome extends React.Component {
     return (
       <div className="chrome">
         <Modal>
-          <Topbar />
-          <Drawer />
-          <Tasks />
-          { children }
+          <Tasks>
+            <Topbar />
+            <Drawer />
+            { children }
+          </Tasks>
         </Modal>
       </div>
     )
@@ -47,15 +48,13 @@ export class Chrome extends React.Component {
   }
 
   getChildContext() {
-    const { params, transitionTo, openDrawer, closeDrawer, openTasks, closeTasks } = this.props
+    const { params, transitionTo, openDrawer, closeDrawer } = this.props
     return {
       chrome: {
         params,
         transitionTo,
         openDrawer,
-        closeDrawer,
-        openTasks,
-        closeTasks
+        closeDrawer
       }
     }
   }
@@ -69,14 +68,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   transitionTo: actions.transitionTo,
-  openModal: actions.openModal,
-  closeModal: actions.closeModal,
   openDrawer: actions.openDrawer,
   closeDrawer: actions.closeDrawer,
   setFlash: actions.setFlash,
-  clearFlash: actions.clearFlash,
-  openTasks: actions.openTasks,
-  closeTasks: actions.openTasks
+  clearFlash: actions.clearFlash
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chrome)

@@ -13,7 +13,9 @@ export default (pageProps) => {
 
       static contextTypes = {
         chrome: React.PropTypes.object,
-        container: React.PropTypes.object
+        container: React.PropTypes.object,
+        modal: React.PropTypes.object,
+        tasks: React.PropTypes.object
       }
 
       static propTypes = {
@@ -85,7 +87,7 @@ export default (pageProps) => {
       }
 
       _handleOpenTasks() {
-        this.context.chrome.openTasks(this.page.tasks)
+        this.context.tasks.open(this.page.tasks)
       }
 
       _handleOpenTask() {

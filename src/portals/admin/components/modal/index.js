@@ -12,14 +12,16 @@ class Modal extends React.Component {
   render() {
     const { children, modal } = this.props
     return (
-      <Transition transitionName="expanded" transitionEnterTimeout={500} transitionLeaveTimeout={500} transitionAppear={true} transitionAppearTimeout={500}>
+      <div>
         { children }
-        { modal &&
-          <div className="chrome-modal">
-            { React.createElement(modal) }
-          </div>
-        }
-      </Transition>
+        <Transition transitionName="expanded" transitionEnterTimeout={500} transitionLeaveTimeout={500} transitionAppear={true} transitionAppearTimeout={500}>
+          { modal &&
+            <div className="chrome-modal">
+              { React.createElement(modal) }
+            </div>
+          }
+        </Transition>
+      </div>
     )
   }
 

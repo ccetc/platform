@@ -20,16 +20,3 @@ export function closeDrawer() {
     type: actionTypes.CLOSE_DRAWER
   }
 }
-
-export function openTasks(tasks) {
-  return {
-    type: actionTypes.OPEN_TASKS,
-    tasks
-  }
-}
-
-export function closeTasks() {
-  return {
-    type: actionTypes.CLOSE_TASKS
-  }
-}

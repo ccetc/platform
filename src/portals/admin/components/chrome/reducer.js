@@ -1,9 +1,7 @@
 import * as actionTypes from './action_types'
 
 export const INITIAL_STATE = {
-  drawer: null,
-  modal: null,
-  tasks: null
+  drawer: null
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -14,18 +12,6 @@ export default (state = INITIAL_STATE, action) => {
     return {
       ...state,
       route: action.route
-    }
-
-  case actionTypes.OPEN_MODAL:
-    return {
-      ...state,
-      modal: action.component
-    }
-
-  case actionTypes.CLOSE_MODAL:
-    return {
-      ...state,
-      modal: null
     }
 
   case actionTypes.OPEN_DRAWER:
@@ -41,18 +27,6 @@ export default (state = INITIAL_STATE, action) => {
     return {
       ...state,
       drawer: null
-    }
-
-  case actionTypes.OPEN_TASKS:
-    return {
-      ...state,
-      tasks: action.tasks
-    }
-
-  case actionTypes.CLOSE_TASKS:
-    return {
-      ...state,
-      tasks: null
     }
 
   default:
