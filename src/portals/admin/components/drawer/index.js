@@ -3,21 +3,26 @@ import CSSTransitionGroup from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
 import * as actions from './actions'
 
-class Modal extends React.Component {
+class Drawer extends React.Component {
 
   static childContextTypes = {
-    modal: React.PropTypes.object
+    drawer: React.PropTypes.object
+  }
+
+  static propTypes = {
+
   }
 
   render() {
-    const { children, modal } = this.props
+    const { children, drawer } = this.props
     return (
       <div>
         { children }
         <CSSTransitionGroup transitionName="expanded" transitionEnterTimeout={500} transitionLeaveTimeout={500} transitionAppear={true} transitionAppearTimeout={500}>
-          { modal &&
-            <div className="chrome-modal">
-              { React.createElement(modal) }
+          { drawer && <div className="chrome-drawer-overlay" onClick={this._handleCloseDrawer.bind(this)} /> }
+          { drawer &&
+            <div className={`chrome-drawer chrome-drawer-${drawer.location}`}>
+              { React.createElement(drawer.component) }
             </div>
           }
         </CSSTransitionGroup>
@@ -28,17 +33,21 @@ class Modal extends React.Component {
   getChildContext() {
     const { open, close } = this.props
     return {
-      modal: {
+      drawer: {
         open,
         close
       }
     }
   }
 
+  _handleCloseDrawer() {
+    this.props.close()
+  }
+
 }
 
-const mapStateToProps = (state) => ({
-  modal: state.modal
+const mapStateToProps = state => ({
+  drawer: state.drawer
 })
 
 const mapDispatchToProps = {
@@ -46,4 +55,4 @@ const mapDispatchToProps = {
   close: actions.close
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Modal)
+export default connect(mapStateToProps, mapDispatchToProps)(Drawer)

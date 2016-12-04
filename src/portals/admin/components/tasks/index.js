@@ -1,5 +1,5 @@
 import React from 'react'
-import Transition from 'react-addons-css-transition-group'
+import CSSTransitionGroup from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
 
 import * as actions from './actions'
@@ -24,7 +24,7 @@ class Tasks extends React.Component {
     return (
       <div>
         { children }
-        <Transition transitionName="expanded" transitionEnterTimeout={250} transitionLeaveTimeout={250} transitionAppear={true} transitionAppearTimeout={250}>
+        <CSSTransitionGroup transitionName="expanded" transitionEnterTimeout={250} transitionLeaveTimeout={250} transitionAppear={true} transitionAppearTimeout={250}>
           { tasks && <div className="chrome-tasks-overlay" onClick={ this._handleCloseTasks.bind(this) } /> }
           { tasks &&
             <div className="chrome-tasks-list">
@@ -40,7 +40,7 @@ class Tasks extends React.Component {
               </div>
             </div>
           }
-        </Transition>
+        </CSSTransitionGroup>
       </div>
     )
   }

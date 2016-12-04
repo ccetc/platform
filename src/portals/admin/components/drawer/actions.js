@@ -1,48 +1,15 @@
 import * as actionTypes from './action_types'
 
-export function transitionTo(route) {
+export function open(component, location) {
   return {
-    type: actionTypes.TRANSITION_TO,
-    route
-  }
-}
-
-export function openModal(component) {
-  return {
-    type: actionTypes.OPEN_MODAL,
-    component
-  }
-}
-
-export function closeModal() {
-  return {
-    type: actionTypes.CLOSE_MODAL
-  }
-}
-
-export function openDrawer(component, location) {
-  return {
-    type: actionTypes.OPEN_DRAWER,
+    type: actionTypes.OPEN,
     component,
     location
   }
 }
 
-export function closeDrawer() {
+export function close() {
   return {
-    type: actionTypes.CLOSE_DRAWER
-  }
-}
-
-export function openTasks(tasks) {
-  return {
-    type: actionTypes.OPEN_TASKS,
-    tasks
-  }
-}
-
-export function closeTasks() {
-  return {
-    type: actionTypes.CLOSE_TASKS
+    type: actionTypes.CLOSE
   }
 }

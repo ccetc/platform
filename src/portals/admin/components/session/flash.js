@@ -1,6 +1,6 @@
 
 import React from 'react'
-import Transition from 'react-addons-css-transition-group'
+import CSSTransitionGroup from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
 import * as actions from './actions'
 
@@ -15,7 +15,7 @@ export class Flash extends React.Component {
   render() {
     const { flash } = this.props
     return (
-      <Transition transitionName="expanded" transitionEnterTimeout={250} transitionLeaveTimeout={250} transitionAppear={true} transitionAppearTimeout={250}>
+      <CSSTransitionGroup transitionName="expanded" transitionEnterTimeout={250} transitionLeaveTimeout={250} transitionAppear={true} transitionAppearTimeout={250}>
         {flash &&
           <div className={`chrome-flash ${flash.style}`}>
             <p>
@@ -24,7 +24,7 @@ export class Flash extends React.Component {
             </p>
           </div>
         }
-      </Transition>
+      </CSSTransitionGroup>
     )
   }
 

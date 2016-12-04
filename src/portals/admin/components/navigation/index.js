@@ -1,12 +1,13 @@
 import React from 'react'
-import Transition from 'react-addons-css-transition-group'
+import CSSTransitionGroup from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
 import * as actions from './actions'
 
 export class Navigation extends React.Component {
 
   static contextTypes = {
-    chrome: React.PropTypes.object
+    chrome: React.PropTypes.object,
+    drawer: React.PropTypes.object
   }
 
   static propTypes = {
@@ -30,7 +31,7 @@ export class Navigation extends React.Component {
                   <i className={`${app.icon} icon`} />
                   {app.name}
                 </div>
-                <Transition transitionName="expanded" transitionEnterTimeout={250} transitionLeaveTimeout={250} transitionAppear={true} transitionAppearTimeout={250}>
+                <CSSTransitionGroup transitionName="expanded" transitionEnterTimeout={250} transitionLeaveTimeout={250} transitionAppear={true} transitionAppearTimeout={250}>
                   {appindex === this.props.app &&
                     <div className="chrome-app-menu">
                       {app.items.map((item, itemindex) => {
@@ -38,7 +39,7 @@ export class Navigation extends React.Component {
                       })}
                     </div>
                   }
-                </Transition>
+                </CSSTransitionGroup>
               </div>
             )
           })}
@@ -53,7 +54,7 @@ export class Navigation extends React.Component {
 
   _handleTransitionTo(pathname) {
     this.props.onChooseApp(null)
-    this.context.chrome.closeDrawer()
+    this.context.drawer.close()
     this.context.chrome.transitionTo({ pathname, state: 'static' })
   }
 

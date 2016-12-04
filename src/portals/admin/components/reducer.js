@@ -1,5 +1,6 @@
 import chrome from './chrome/reducer'
 import container from './container/reducer'
+import drawer from './drawer/reducer'
 import forgot from './forgot/reducer'
 import modal from './modal/reducer'
 import navigation from './navigation/reducer'
@@ -20,6 +21,7 @@ const Reducer = (state, action) => {
   const reducers = {
     chrome,
     container,
+    drawer,
     forgot,
     modal,
     navigation,
@@ -60,6 +62,7 @@ const Reducer = (state, action) => {
     return {
       chrome: chrome(undefined, action),
       container: container(undefined, action),
+      drawer: drawer(undefined, action),
       forgot: forgot(undefined, action),
       modal: modal(undefined, action),
       navigation: navigation(undefined, action),

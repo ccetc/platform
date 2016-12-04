@@ -7,6 +7,7 @@ export class Account extends React.Component {
 
   static contextTypes = {
     chrome: React.PropTypes.object,
+    drawer: React.PropTypes.object,
     modal: React.PropTypes.object,
     session: React.PropTypes.object
   }
@@ -36,12 +37,12 @@ export class Account extends React.Component {
   }
 
   _handleModal(component) {
-    this.context.chrome.closeDrawer()
+    this.context.drawer.close()
     this.context.modal.open(component)
   }
 
   _handleSignout() {
-    this.context.chrome.closeDrawer()
+    this.context.drawer.close()
     this.context.session.signout()
   }
 

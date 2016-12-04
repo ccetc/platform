@@ -9,6 +9,7 @@ export class Topbar extends React.Component {
 
   static contextTypes = {
     chrome: React.PropTypes.object,
+    drawer: React.PropTypes.object,
     modal: React.PropTypes.object
   }
 
@@ -41,7 +42,7 @@ export class Topbar extends React.Component {
   }
 
   _handleOpenNavigation() {
-    this.context.chrome.openDrawer(Navigation, 'left')
+    this.context.drawer.open(Navigation, 'left')
   }
 
   _handleOpenSearch() {
@@ -53,7 +54,7 @@ export class Topbar extends React.Component {
   }
 
   _handleOpenAccount() {
-    this.context.chrome.openDrawer(Account, 'right')
+    this.context.drawer.open(Account, 'right')
   }
 
 }

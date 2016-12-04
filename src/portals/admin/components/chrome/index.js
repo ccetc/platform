@@ -2,9 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from './actions'
 import Modal from '../modal'
-import Drawer from './drawer'
-import Topbar from './topbar'
+import Drawer from '../drawer'
 import Tasks from '../tasks'
+import Topbar from './topbar'
 import Notifications from '../notifications'
 
 export class Chrome extends React.Component {
@@ -30,11 +30,12 @@ export class Chrome extends React.Component {
     return (
       <div className="chrome">
         <Modal>
-          <Tasks>
-            <Topbar />
-            <Drawer />
-            { children }
-          </Tasks>
+          <Drawer>
+            <Tasks>
+              <Topbar />
+              { children }
+            </Tasks>
+          </Drawer>
         </Modal>
       </div>
     )
@@ -48,13 +49,11 @@ export class Chrome extends React.Component {
   }
 
   getChildContext() {
-    const { params, transitionTo, openDrawer, closeDrawer } = this.props
+    const { params, transitionTo } = this.props
     return {
       chrome: {
         params,
-        transitionTo,
-        openDrawer,
-        closeDrawer
+        transitionTo
       }
     }
   }
@@ -67,11 +66,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  transitionTo: actions.transitionTo,
-  openDrawer: actions.openDrawer,
-  closeDrawer: actions.closeDrawer,
-  setFlash: actions.setFlash,
-  clearFlash: actions.clearFlash
+  transitionTo: actions.transitionTo
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chrome)

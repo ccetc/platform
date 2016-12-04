@@ -6,17 +6,3 @@ export function transitionTo(route) {
     route
   }
 }
-
-export function openDrawer(component, location) {
-  return {
-    type: actionTypes.OPEN_DRAWER,
-    component,
-    location
-  }
-}
-
-export function closeDrawer() {
-  return {
-    type: actionTypes.CLOSE_DRAWER
-  }
-}
