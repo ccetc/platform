@@ -7,7 +7,8 @@ import * as actions from './actions'
 class Tasks extends React.Component {
 
   static contextTypes = {
-    chrome: React.PropTypes.object
+    chrome: React.PropTypes.object,
+    modal: React.PropTypes.object
   }
 
   static propsTypes = {
@@ -43,7 +44,7 @@ class Tasks extends React.Component {
     if(tasks[index].route) {
       this.context.chrome.transitionTo(tasks[index].route)
     } else if(tasks[index].component){
-      this.context.chrome.openModal(tasks[index].component)
+      this.context.modal.open(tasks[index].component)
     } else if(tasks[index].handler){
       tasks[index].handler()
     }

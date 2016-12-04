@@ -8,7 +8,8 @@ import Navigation from '../navigation'
 export class Topbar extends React.Component {
 
   static contextTypes = {
-    chrome: React.PropTypes.object
+    chrome: React.PropTypes.object,
+    modal: React.PropTypes.object
   }
 
   static propTypes = {
@@ -44,7 +45,7 @@ export class Topbar extends React.Component {
   }
 
   _handleOpenSearch() {
-    this.context.chrome.openModal(Search)
+    this.context.modal.open(Search)
   }
 
   _handleOpenNotifications() {

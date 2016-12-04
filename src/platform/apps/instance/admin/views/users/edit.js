@@ -4,7 +4,8 @@ import Form from 'ui/components/form'
 class Edit extends React.Component {
 
   static contextTypes = {
-    chrome: React.PropTypes.object
+    chrome: React.PropTypes.object,
+    modal: React.PropTypes.object
   }
 
   render() {
@@ -17,8 +18,8 @@ class Edit extends React.Component {
       method: 'patch',
       endpoint: `/admin/users/${this.context.chrome.params.id}`,
       action: `/admin/users/${this.context.chrome.params.id}`,
-      onCancel: this.context.chrome.closeModal,
-      onSuccess: this.context.chrome.closeModal,
+      onCancel: this.context.modal.close,
+      onSuccess: this.context.modal.close,
       sections: [
         {
           fields: [

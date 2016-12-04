@@ -5,7 +5,8 @@ class Edit extends React.Component {
 
   static contextTypes = {
     chrome: React.PropTypes.object,
-    container: React.PropTypes.object
+    container: React.PropTypes.object,
+    modal: React.PropTypes.object
   }
 
   render() {
@@ -18,7 +19,7 @@ class Edit extends React.Component {
       method: 'patch',
       endpoint: `/admin/expenses/projects/${this.context.chrome.params.id}`,
       action: `/admin/expenses/projects/${this.context.chrome.params.id}`,
-      onCancel: this.context.chrome.closeModal,
+      onCancel: this.context.modal.close,
       onSuccess: this._handleSuccess.bind(this),
       sections: [
         {
@@ -33,7 +34,7 @@ class Edit extends React.Component {
 
   _handleSuccess(project) {
     this.context.container.refresh('project')
-    this.context.chrome.closeModal()
+    this.context.modal.close()
     this.context.chrome.transitionTo(`/admin/expenses/projects/${project.id}`)
   }
 

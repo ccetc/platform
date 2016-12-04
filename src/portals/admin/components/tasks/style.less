@@ -243,6 +243,18 @@
   display: flex;
   background-color: #FFF;
 }
+.chrome-modal {
+  .translate-y-transition(100%, 0, .5s);
+  z-index: 50;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #FFF;
+  display: flex;
+  flex-direction: column;
+}
 .chrome-tasks-overlay {
   .opacity-transition(0, 0.5, .25s);
   .opacity(0.5);

@@ -575,39 +575,6 @@
   display: flex;
   background-color: #FFF;
 }
-.chrome-modal {
-  transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -webkit-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -moz-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -ms-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  z-index: 50;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: #FFF;
-  display: flex;
-  flex-direction: column;
-}
-.chrome-modal.expanded-appear,
-.chrome-modal.expanded-enter,
-.chrome-modal.expanded-leave.expanded-leave-active {
-  -webkit-transform: translateY(100%);
-  -moz-transform: translateY(100%);
-  -ms-transform: translateY(100%);
-  -o-transform: translateY(100%);
-  transform: translateY(100%);
-}
-.chrome-modal.expanded-appear.expanded-appear-active,
-.chrome-modal.expanded-enter.expanded-enter-active,
-.chrome-modal.expanded-leave {
-  -webkit-transform: translateY(0);
-  -moz-transform: translateY(0);
-  -ms-transform: translateY(0);
-  -o-transform: translateY(0);
-  transform: translateY(0);
-}
 .chrome-tasks-overlay {
   transition: opacity 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -webkit-transition: opacity 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
@@ -714,6 +681,39 @@
 }
 .chrome-tasks-list .chrome-tasks-item:last-child {
   border-bottom: none;
+}
+.chrome-modal {
+  transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -webkit-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -moz-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -ms-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  z-index: 50;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #FFF;
+  display: flex;
+  flex-direction: column;
+}
+.chrome-modal.expanded-appear,
+.chrome-modal.expanded-enter,
+.chrome-modal.expanded-leave.expanded-leave-active {
+  -webkit-transform: translateY(100%);
+  -moz-transform: translateY(100%);
+  -ms-transform: translateY(100%);
+  -o-transform: translateY(100%);
+  transform: translateY(100%);
+}
+.chrome-modal.expanded-appear.expanded-appear-active,
+.chrome-modal.expanded-enter.expanded-enter-active,
+.chrome-modal.expanded-leave {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
 }
 .chrome-navigation-panel {
   flex: 1;

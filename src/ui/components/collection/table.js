@@ -9,7 +9,8 @@ import Format from 'ui/utils/format'
 class Table extends React.Component {
 
   static contextTypes = {
-    chrome: React.PropTypes.object
+    chrome: React.PropTypes.object,
+    modal: React.PropTypes.object
   }
 
   render() {
@@ -92,7 +93,7 @@ class Table extends React.Component {
   }
 
   _handleAddNew() {
-    this.context.chrome.openModal(this.props.empty.component)
+    this.context.modal.open(this.props.empty.component)
   }
 
 }

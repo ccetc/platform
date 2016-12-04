@@ -4,7 +4,8 @@ import Form from 'ui/components/form'
 class New extends React.Component {
 
   static contextTypes = {
-    chrome: React.PropTypes.object
+    chrome: React.PropTypes.object,
+    modal: React.PropTypes.object
   }
 
   render() {
@@ -16,8 +17,8 @@ class New extends React.Component {
       title: 'New Expense',
       method: 'post',
       action: '/admin/expenses/expenses',
-      onCancel: this.context.chrome.closeModal,
-      onSuccess: this.context.chrome.closeModal,
+      onCancel: this.context.modal.close,
+      onSuccess: this.context.modal.close,
       sections: [
         {
           fields: [

@@ -4,7 +4,8 @@ import Form from 'ui/components/form'
 class Password extends React.Component {
 
   static contextTypes = {
-    chrome: React.PropTypes.object
+    chrome: React.PropTypes.object,
+    modal: React.PropTypes.object
   }
 
   render() {
@@ -17,8 +18,8 @@ class Password extends React.Component {
       method: 'patch',
       endpoint: '/admin/account/password',
       action: '/admin/account/password',
-      onCancel: this.context.chrome.closeModal,
-      onSuccess: this.context.chrome.closeModal,
+      onCancel: this.context.modal.close,
+      onSuccess: this.context.modal.close,
       sections: [
         {
           fields: [

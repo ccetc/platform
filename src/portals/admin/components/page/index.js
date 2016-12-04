@@ -93,7 +93,7 @@ export default (pageProps) => {
         if(route) {
           this.context.chrome.transitionTo(route)
         } else if(component) {
-          this.context.chrome.openModal(component)
+          this.context.modal.open(component)
         }
       }
 

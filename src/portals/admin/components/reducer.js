@@ -1,6 +1,7 @@
 import chrome from './chrome/reducer'
 import container from './container/reducer'
 import forgot from './forgot/reducer'
+import modal from './modal/reducer'
 import navigation from './navigation/reducer'
 import notifications from './notifications/reducer'
 import reset from './reset/reducer'
@@ -19,6 +20,7 @@ const Reducer = (state, action) => {
     chrome,
     container,
     forgot,
+    modal,
     navigation,
     notifications,
     reset,
@@ -57,6 +59,7 @@ const Reducer = (state, action) => {
       chrome: chrome(undefined, action),
       container: container(undefined, action),
       forgot: forgot(undefined, action),
+      modal: modal(undefined, action),
       navigation: navigation(undefined, action),
       notifications: notifications(undefined, action),
       reset: reset(undefined, action),

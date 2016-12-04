@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from './actions'
-import Modal from './modal'
+import Modal from '../modal'
 import Drawer from './drawer'
 import Topbar from './topbar'
 import Tasks from './tasks'
@@ -29,11 +29,12 @@ export class Chrome extends React.Component {
     }
     return (
       <div className="chrome">
-        <Topbar />
-        <Modal />
-        <Drawer />
-        <Tasks />
-        { children }
+        <Modal>
+          <Topbar />
+          <Drawer />
+          <Tasks />
+          { children }
+        </Modal>
       </div>
     )
   }
@@ -46,13 +47,11 @@ export class Chrome extends React.Component {
   }
 
   getChildContext() {
-    const { params, transitionTo, openModal, closeModal, openDrawer, closeDrawer, openTasks, closeTasks } = this.props
+    const { params, transitionTo, openDrawer, closeDrawer, openTasks, closeTasks } = this.props
     return {
       chrome: {
         params,
         transitionTo,
-        openModal,
-        closeModal,
         openDrawer,
         closeDrawer,
         openTasks,

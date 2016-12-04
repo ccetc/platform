@@ -7,6 +7,19 @@ export function transitionTo(route) {
   }
 }
 
+export function openModal(component) {
+  return {
+    type: actionTypes.OPEN_MODAL,
+    component
+  }
+}
+
+export function closeModal() {
+  return {
+    type: actionTypes.CLOSE_MODAL
+  }
+}
+
 export function openDrawer(component, location) {
   return {
     type: actionTypes.OPEN_DRAWER,
