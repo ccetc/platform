@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Search from '../search'
 import Account from '../account'
-import Notifications from './notifications'
+import Notifications from '../notifications/list'
 import Navigation from '../navigation'
 
 export class Topbar extends React.Component {
@@ -53,7 +53,7 @@ export class Topbar extends React.Component {
   }
 
   _handleOpenNotifications() {
-    this.context.router.push('/admin/notifications')
+    this.context.modal.open(Notifications)
   }
 
   _handleOpenAccount() {

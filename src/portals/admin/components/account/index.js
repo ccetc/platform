@@ -16,6 +16,9 @@ export class Account extends React.Component {
     return (
       <div className="chrome-account-panel">
         <div className="chrome-account-identity">
+          <div className="chrome-account-close">
+            <i className="remove icon" onClick={this._handleCloseDrawer.bind(this)} />
+          </div>
           <img src={user.photo} className="ui image circular" />
           <h2>{user.name}</h2>
           <p>{user.email}</p>
@@ -43,6 +46,10 @@ export class Account extends React.Component {
   _handleSignout() {
     this.context.drawer.close()
     this.context.session.signout()
+  }
+
+  _handleCloseDrawer() {
+    this.context.drawer.close()
   }
 
 }

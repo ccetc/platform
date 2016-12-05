@@ -21,6 +21,9 @@ export class Navigation extends React.Component {
     return (
       <div className="chrome-navigation-panel">
         <div className="chrome-navigation-title">
+          <div className="chrome-navigation-close">
+            <i className="remove icon" onClick={this._handleCloseDrawer.bind(this)} />
+          </div>
           <h3>Apps</h3>
         </div>
         <div className="chrome-apps">
@@ -56,6 +59,10 @@ export class Navigation extends React.Component {
     this.props.onChooseApp(null)
     this.context.drawer.close()
     this.context.router.push({ pathname, state: 'static' })
+  }
+
+  _handleCloseDrawer(index) {
+    this.context.drawer.close()
   }
 
 }

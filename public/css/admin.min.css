@@ -144,6 +144,65 @@
   -o-transform: translateX(0);
   transform: translateX(0);
 }
+.chrome-account {
+  padding: 11px;
+}
+.chrome-account img {
+  width: 28px;
+  height: 28px;
+}
+.chrome-account-panel {
+  flex: 1;
+  background: #FFF;
+}
+.chrome-account-identity {
+  background: #EEE;
+  padding: 45px 0;
+  position: relative;
+}
+.chrome-account-identity img {
+  border: 5px solid #000;
+  width: 40%;
+  margin: 0 auto 20px;
+}
+.chrome-account-identity h2 {
+  text-align: center;
+  margin: 0;
+}
+.chrome-account-identity p {
+  text-align: center;
+  margin: 0;
+  color: #888;
+}
+.chrome-account-identity .chrome-account-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  font-size: 18px;
+  padding: 11px;
+  display: flex;
+}
+.chrome-account-identity .chrome-account-close i {
+  margin: auto;
+  color: #888;
+}
+.chrome-account-task {
+  background-color: #FFF;
+  display: block;
+  padding: 15px;
+  cursor: pointer;
+}
+.chrome-account-task:hover {
+  background-color: #EEE;
+}
+.chrome-account-task i {
+  color: #666;
+  font-size: 18px;
+  margin-right: 10px;
+}
 #platform {
   width: 100%;
   height: 100%;
@@ -372,13 +431,6 @@
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-}
-.chrome-account {
-  padding: 11px;
-}
-.chrome-account img {
-  width: 28px;
-  height: 28px;
 }
 .chrome-flash {
   transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
@@ -619,42 +671,6 @@
   -moz-opacity: 0.5;
   opacity: 0.5;
 }
-.chrome-account-panel {
-  flex: 1;
-  background: #FFF;
-}
-.chrome-account-identity {
-  background: #EEE;
-  padding: 45px 0;
-}
-.chrome-account-identity img {
-  border: 5px solid #000;
-  width: 40%;
-  margin: 0 auto 20px;
-}
-.chrome-account-identity h2 {
-  text-align: center;
-  margin: 0;
-}
-.chrome-account-identity p {
-  text-align: center;
-  margin: 0;
-  color: #888;
-}
-.chrome-account-task {
-  background-color: #FFF;
-  display: block;
-  padding: 15px;
-  cursor: pointer;
-}
-.chrome-account-task:hover {
-  background-color: #EEE;
-}
-.chrome-account-task i {
-  color: #666;
-  font-size: 18px;
-  margin-right: 10px;
-}
 .chrome-modal-window {
   transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -webkit-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
@@ -693,6 +709,7 @@
   background-color: #FFF;
 }
 .chrome-navigation-title {
+  position: relative;
   background: #000;
   height: 50px;
   display: flex;
@@ -701,6 +718,21 @@
   margin: auto;
   color: #FFF;
   text-align: center;
+}
+.chrome-navigation-title .chrome-navigation-close {
+  position: absolute;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  font-size: 18px;
+  padding: 11px;
+  display: flex;
+}
+.chrome-navigation-title .chrome-navigation-close i {
+  margin: auto;
+  color: #EEE;
 }
 .chrome-apps {
   flex: 1;
@@ -758,15 +790,88 @@
   background-color: #DDD;
 }
 .chrome-notifications {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.chrome-notifications-header {
+  flex: 0 0 50px;
+  display: flex;
+  background-color: #DB2828;
+}
+.chrome-notifications-header a {
+  display: block;
+  color: #FFF;
+  padding: 15px;
+  cursor: pointer;
+}
+.chrome-notifications-header-cancel {
+  flex: 0 0 50px;
+}
+.chrome-notifications-header-title {
+  flex: 1;
+  color: #FFF;
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+}
+.chrome-notifications-header-proceed {
+  flex: 0 0 50px;
+  text-align: right;
+}
+.chrome-notifications-body {
+  flex: 1;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+.chrome-notifications {
+  flex: 1;
+  overflow-y: scroll;
+}
+.chrome-notification {
+  padding: 10px 20px;
+  border-bottom: 1px solid #EEE;
+  display: flex;
+}
+.chrome-notification.unread {
+  background-color: #FFE;
+}
+.chrome-notification-avatar {
+  flex: 0 0 50px;
+  padding-right: 10px;
+}
+.chrome-notification-avatar img {
+  width: 100%;
+}
+.chrome-notification-details {
+  flex: 1;
+}
+.chrome-notification-story span {
+  margin-right: 3px;
+  color: #000;
+}
+.chrome-notification-user {
+  font-weight: bold;
+}
+.chrome-notification-subject {
+  font-weight: bold;
+}
+.chrome-notification-object {
+  font-weight: bold;
+}
+.chrome-notification-timestamp {
+  color: #888;
+}
+.chrome-notifications-popup {
   position: absolute;
   @include border-radius(0 !important);
   z-index: 10;
 }
-.chrome-notifications .segment {
+.chrome-notifications-popup .segment {
   position: relative;
   background-color: #FFF !important;
 }
-.chrome-notifications .segment i {
+.chrome-notifications-popup .segment i {
   position: absolute;
   top: 5px;
   right: 5px;
@@ -774,14 +879,14 @@
   cursor: pointer;
 }
 @media only screen and (max-width: 600px) {
-  .chrome-notifications {
+  .chrome-notifications-popup {
     top: 0;
     left: 0;
     right: 0;
   }
 }
 @media only screen and (min-width: 601px) {
-  .chrome-notifications {
+  .chrome-notifications-popup {
     bottom: 10px;
     left: 10px;
     width: 240px;
@@ -1289,6 +1394,40 @@
 }
 .datefield .calendar.icon {
   margin: 0;
+}
+.activities {
+  flex: 1;
+  overflow-y: scroll;
+}
+.activity {
+  padding: 10px 20px;
+  border-bottom: 1px solid #EEE;
+  display: flex;
+}
+.activity-avatar {
+  flex: 0 0 50px;
+  padding-right: 10px;
+}
+.activity-avatar img {
+  width: 100%;
+}
+.activity-details {
+  flex: 1;
+}
+.activity-story span {
+  margin-right: 3px;
+}
+.activity-user {
+  font-weight: bold;
+}
+.activity-subject {
+  font-weight: bold;
+}
+.activity-object {
+  font-weight: bold;
+}
+.activity-timestamp {
+  color: #888;
 }
 .project-members {
   width: 100%;

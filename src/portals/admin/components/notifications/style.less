@@ -1,4 +1,79 @@
 .chrome-notifications {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.chrome-notifications-header {
+  flex: 0 0 50px;
+  display: flex;
+  background-color: @primary_background_color;
+}
+.chrome-notifications-header a {
+  display: block;
+  color: #FFF;
+  padding: 15px;
+  cursor: pointer;
+}
+.chrome-notifications-header-cancel {
+  flex: 0 0 50px;
+}
+.chrome-notifications-header-title {
+  flex: 1;
+  color: #FFF;
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+}
+.chrome-notifications-header-proceed {
+  flex: 0 0 50px;
+  text-align: right;
+}
+.chrome-notifications-body {
+  flex: 1;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+.chrome-notifications {
+  flex: 1;
+  overflow-y: scroll;
+}
+.chrome-notification {
+  padding: 10px 20px;
+  border-bottom: 1px solid #EEE;
+  display: flex;
+  &.unread {
+    background-color: #FFE;
+  }
+}
+.chrome-notification-avatar {
+  flex: 0 0 50px;
+  padding-right: 10px;
+  img {
+    width: 100%;
+  }
+}
+.chrome-notification-details {
+  flex: 1;
+}
+.chrome-notification-story span {
+  margin-right: 3px;
+  color: #000
+}
+.chrome-notification-user {
+  font-weight: bold;
+}
+.chrome-notification-subject {
+  font-weight: bold;
+}
+.chrome-notification-object {
+  font-weight: bold;
+}
+.chrome-notification-timestamp {
+  color: #888;
+}
+
+
+.chrome-notifications-popup {
   position: absolute;
   @include border-radius(0 !important);
   z-index: 10;
