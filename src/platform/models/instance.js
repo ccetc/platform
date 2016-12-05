@@ -1,5 +1,6 @@
 import checkit from  'checkit'
 import bookshelf from 'server/services/bookshelf'
+import asset from 'platform/models/asset'
 
 export default bookshelf.Model.extend({
 
@@ -9,6 +10,10 @@ export default bookshelf.Model.extend({
 
   rules: {
     title: 'required'
+  },
+
+  logo: function() {
+    return this.belongsTo(asset, 'logo_id')
   },
 
   initialize: function(attrs, opts) {

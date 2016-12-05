@@ -3,10 +3,14 @@ import Helmet from 'react-helmet'
 
 export class Forbidden extends React.Component {
 
+  static contextTypes = {
+    instance: React.PropTypes.object
+  }
+
   render() {
     return (
       <div className="chrome-page">
-        <Helmet title="Platform | 403 Forbidden" />
+        <Helmet title={`${this.context.instance.title} | 403 Forbidden`} />
         <div className="chrome-header">
           <div className="chrome-back"></div>
           <div className="chrome-title">Access Denied!</div>

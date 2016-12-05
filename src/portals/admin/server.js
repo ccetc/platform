@@ -4,15 +4,17 @@ import authentication from 'server/middleware/authentication'
 import activation from 'server/middleware/activation'
 import signin from 'server/middleware/signin'
 import reset from 'server/middleware/reset'
-import session from './middleware/session'
-import search from './middleware/search'
+import sessionService from './middleware/session'
+import searchService from './middleware/search'
+import instanceService from './middleware/instance'
 import fs from 'fs'
 import path from 'path'
 
 const admin = Router()
 
-// signin
+// load instance
 admin.use(instance)
+admin.use(instanceService)
 
 // signin
 admin.use(signin)
@@ -27,8 +29,8 @@ admin.use(reset)
 admin.use(authentication)
 
 // core admin api
-admin.use(session)
-admin.use(search)
+admin.use(sessionService)
+admin.use(searchService)
 
 // app routes
 fs.readdirSync(path.join(__dirname, '../../platform/apps')).filter(function(app) {

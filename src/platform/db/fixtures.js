@@ -3,7 +3,8 @@ exports.seed = (knex, Promise) => {
   .then(() => {
     return knex('instances').insert([
       {
-        title: 'Cornell Cooperative Extension of Tompkins County'
+        title: 'MyCCE',
+        subtitle: 'Cornell Cooperative Extension of Tompkins County'
       }
     ])
   })
@@ -756,8 +757,22 @@ exports.seed = (knex, Promise) => {
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
+      }, {
+        instance_id: 1,
+        original_file_name: 'cornell.png',
+        file_name: 'cornell.jpg',
+        content_type: 'image/jpeg',
+        file_size: 12345,
+        fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }
     ])
+  })
+  .then(() => {
+    return knex('instances').where({
+      id: 1
+    }).update({
+      logo_id: 104
+    })
   })
   .then(() => {
     return knex('users').del()

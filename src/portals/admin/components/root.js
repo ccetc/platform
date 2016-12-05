@@ -7,9 +7,10 @@ class Root extends React.Component {
 
   render() {
     const store = CreateStore(reducer)
+    const { children } = this.props
     return (
       <Provider store={ store }>
-        {this.props.children}
+        { children }
       </Provider>
     )
   }

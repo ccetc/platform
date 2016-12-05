@@ -104,7 +104,7 @@ class Card extends React.Component {
 
 }
 
-const mapStateToProps = (state) => state
+const mapStateToProps = state => state
 
 const mapDispatchToProps = {}
 

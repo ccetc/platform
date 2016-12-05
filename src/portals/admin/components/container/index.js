@@ -46,7 +46,7 @@ class Container extends React.Component {
 
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   routes: state.container.routes
 })
 

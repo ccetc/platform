@@ -62,7 +62,7 @@ export class Topbar extends React.Component {
 
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   unread: state.notifications.unread,
   user: state.session.user
 })

@@ -1,6 +1,7 @@
 import container from './container/reducer'
 import drawer from './drawer/reducer'
 import forgot from './forgot/reducer'
+import instance from './instance/reducer'
 import modal from './modal/reducer'
 import navigation from './navigation/reducer'
 import notifications from './notifications/reducer'
@@ -21,6 +22,7 @@ const Reducer = (state, action) => {
     container,
     drawer,
     forgot,
+    instance,
     modal,
     navigation,
     notifications,
@@ -61,6 +63,7 @@ const Reducer = (state, action) => {
       container: container(undefined, action),
       drawer: drawer(undefined, action),
       forgot: forgot(undefined, action),
+      instance: instance(undefined, action),
       modal: modal(undefined, action),
       navigation: navigation(undefined, action),
       notifications: notifications(undefined, action),

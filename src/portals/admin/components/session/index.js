@@ -97,7 +97,7 @@ class Session extends React.Component {
 
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   status: state.session.status,
   token: state.session.token,
   user: state.session.user

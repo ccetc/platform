@@ -60,7 +60,7 @@ export class Navigation extends React.Component {
 
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   app: state.navigation.app,
   apps: state.session.apps,
   route: state.navigation.route

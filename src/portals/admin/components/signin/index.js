@@ -12,9 +12,9 @@ export class Signin extends React.Component {
 
   static propTypes = {
     error: React.PropTypes.string,
+    flash: React.PropTypes.string,
     status: React.PropTypes.string.isRequired,
-    token: React.PropTypes.string.isRequired,
-    onSaveToken: React.PropTypes.func.isRequired,
+    token: React.PropTypes.string,
     onSignin: React.PropTypes.func.isRequired,
     onSetup: React.PropTypes.func.isRequired
   }

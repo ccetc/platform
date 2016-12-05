@@ -13,6 +13,7 @@ export default (pageProps) => {
 
       static contextTypes = {
         container: React.PropTypes.object,
+        instance: React.PropTypes.object,
         modal: React.PropTypes.object,
         router: React.PropTypes.object,
         session: React.PropTypes.object,
@@ -39,7 +40,7 @@ export default (pageProps) => {
         }
         return (
           <div className="chrome-page">
-            <Helmet title={`Platform | ${title}`} />
+            <Helmet title={`${this.context.instance.title} | ${title}`} />
             <div className="chrome-header">
               <div className="chrome-back">
                 { back &&

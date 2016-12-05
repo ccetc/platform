@@ -163,6 +163,7 @@
   width: 100%;
   padding: 15px;
   margin: auto;
+  text-align: center;
 }
 .chrome-session.chrome-signin {
   transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
@@ -281,6 +282,10 @@
   -ms-transform: translateX(0);
   -o-transform: translateX(0);
   transform: translateX(0);
+}
+.chrome-session img {
+  width: 150px;
+  margin-bottom: 20px;
 }
 .chrome-session h1,
 .chrome-session h3,
