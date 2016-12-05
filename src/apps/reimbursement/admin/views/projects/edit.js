@@ -1,9 +1,10 @@
 import React from 'react'
 import Form from 'ui/components/form'
 
-class New extends React.Component {
+class Edit extends React.Component {
 
   static contextTypes = {
+    container: React.PropTypes.object,
     modal: React.PropTypes.object,
     router: React.PropTypes.object
   }
@@ -14,9 +15,10 @@ class New extends React.Component {
 
   _getForm() {
     return {
-      title: 'New Project',
-      method: 'post',
-      action: '/admin/expenses/projects',
+      title: 'Edit Project',
+      method: 'patch',
+      endpoint: `/admin/reimbursement/projects/${this.context.container.params.id}`,
+      action: `/admin/reimbursement/projects/${this.context.container.params.id}`,
       onCancel: this.context.modal.close,
       onSuccess: this._handleSuccess.bind(this),
       sections: [
@@ -31,10 +33,11 @@ class New extends React.Component {
   }
 
   _handleSuccess(project) {
+    this.context.container.refresh('project')
     this.context.modal.close()
-    this.context.router.push(`/admin/expenses/projects/${project.id}`)
+    this.context.router.push(`/admin/reimbursement/projects/${project.id}`)
   }
 
 }
 
-export default New
+export default Edit

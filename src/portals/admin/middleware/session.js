@@ -8,13 +8,13 @@ session.get('/session', (req, res, next) => {
     res.json({
       apps: [
         { name: 'Reimbursement', icon: 'dollar', items: [
-          { name: 'Advances', route: '/admin/expenses/advances' },
-          { name: 'Expense Types', route: '/admin/expenses/expense_types' },
-          { name: 'Expenses', route: '/admin/expenses/expenses' },
-          { name: 'Projects', route: '/admin/expenses/projects' },
-          { name: 'Trips', route: '/admin/expenses/trips' },
-          { name: 'Vendors', route: '/admin/expenses/vendors' },
-          { name: 'Reports', route: '/admin/expenses/reports' }
+          { name: 'Advances', route: '/admin/reimbursement/advances' },
+          { name: 'Expense Types', route: '/admin/reimbursement/expense_types' },
+          { name: 'Expenses', route: '/admin/reimbursement/expenses' },
+          { name: 'Projects', route: '/admin/reimbursement/projects' },
+          { name: 'Trips', route: '/admin/reimbursement/trips' },
+          { name: 'Vendors', route: '/admin/reimbursement/vendors' },
+          { name: 'Reports', route: '/admin/reimbursement/reports' }
         ] },
         { name: 'Instance', icon: 'setting', items: [
           { name: 'Activities', route: '/admin/activities' },

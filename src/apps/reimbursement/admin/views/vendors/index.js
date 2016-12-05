@@ -15,7 +15,7 @@ class Index extends React.Component {
 
   _getCollection() {
     return {
-      endpoint: '/admin/expenses/vendors',
+      endpoint: '/admin/reimbursement/vendors',
       columns: [
         { label: 'Name', key: 'name', primary: true }
       ],
@@ -26,7 +26,7 @@ class Index extends React.Component {
         component: New
       },
       recordActions: [
-        { label: 'edit', icon: 'edit', redirect: '/admin/expenses/vendors/#{id}/edit'}
+        { label: 'edit', icon: 'edit', redirect: '/admin/reimbursement/vendors/#{id}/edit'}
       ]
     }
   }

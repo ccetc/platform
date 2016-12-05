@@ -18,7 +18,7 @@ class Show extends React.Component {
             <h2>Members</h2>
             {members.map((member, index) => {
               return (
-                <div key={`member_${index}`} className="project-member" to={`/admin/expenses/projects/${member.project_id}/members/${member.id}`}>
+                <div key={`member_${index}`} className="project-member" to={`/admin/reimbursement/projects/${member.project_id}/members/${member.id}`}>
                   <img src={ member.user.photo.url } className="ui circular image" title={ member.user.full_name } />
                   <p>
                     <strong>{member.user.full_name}</strong><br />
@@ -47,7 +47,7 @@ class Show extends React.Component {
 }
 
 const mapPropsToPage = (props, context) => ({
-  back: '/admin/expenses/projects',
+  back: '/admin/reimbursement/projects',
   title: 'Project',
   permissions: [],
   tasks: [
@@ -55,8 +55,8 @@ const mapPropsToPage = (props, context) => ({
     { label: 'Add Member', component: Member }
   ],
   resources: {
-    project: `/admin/expenses/projects/${props.params.id}`,
-    members: `/admin/expenses/projects/${props.params.id}/members`
+    project: `/admin/reimbursement/projects/${props.params.id}`,
+    members: `/admin/reimbursement/projects/${props.params.id}/members`
   }
 })
 

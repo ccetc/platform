@@ -1,6 +1,6 @@
 import Promise from 'bluebird'
 import { Router } from 'express'
-import ProjectSearch from 'apps/expenses/searches/project_search'
+import ProjectSearch from 'apps/reimbursement/searches/project_search'
 import UserSearch from 'platform/searches/user_search'
 
 export const search = (req, res, next) => {

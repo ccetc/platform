@@ -20,7 +20,7 @@ import ResetSecurity from './components/reset/security'
 import ResetPassword from './components/reset/password'
 import Signin from './components/signin'
 import InstanceApp from 'platform/apps/instance/admin/client'
-import ExpensesApp from 'apps/expenses/admin/client'
+import ReimbursementApp from 'apps/reimbursement/admin/client'
 
 export default (
   <Route component={ Root }>
@@ -46,8 +46,8 @@ export default (
                       <IndexRoute component={ Dashboard } />
                       <Route component={ Notifications } path="notifications" />
                       {InstanceApp}
-                      <Route path="expenses">
-                        {ExpensesApp}
+                      <Route path="reimbursement">
+                        {ReimbursementApp}
                       </Route>
                     </Route>
                   </Route>

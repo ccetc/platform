@@ -15,20 +15,20 @@ class Index extends React.Component {
 
   _getCollection() {
     return {
-      endpoint: '/admin/expenses/advances',
+      endpoint: '/admin/reimbursement/expenses',
       columns: [
         { label: 'User', key: 'user.full_name', primary: true },
         { label: 'Project', key: 'project.title', primary: true },
         { label: 'Amount', key: 'amount', primary: true, formt: 'currency' }
       ],
       sort: { key: 'created_at', order: 'desc' },
-      entity: 'advance',
+      entity: 'expense',
       empty: {
         icon: 'dollar',
         component: New
       },
       recordActions: [
-        { label: 'edit', icon: 'edit', redirect: '/admin/expenses/advances/#{id}/edit'}
+        { label: 'edit', icon: 'edit', redirect: '/admin/reimbursement/expenses/#{id}/edit'}
       ]
     }
   }
@@ -37,9 +37,9 @@ class Index extends React.Component {
 
 const mapPropsToPage = (props, context) => ({
   back: '/admin',
-  title: 'Advances',
+  title: 'Expenses',
   task: {
-    label: 'New Advance',
+    label: 'New Expense',
     icon: 'plus',
     component: New
   }

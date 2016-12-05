@@ -9,14 +9,14 @@ class Index extends React.Component {
 
   render() {
     const notifications = [
-      { id: 1, is_read: false, story: { text: 'assigned the task {subject} to you' }, user: { id: 1, full_name: 'Ken Schlather', photo: '/images/ken.jpg'}, subject: { text: 'finish the platform', url: '/admin/expenses/projects/1' }, created_at: new Date() },
-      { id: 1, is_read: false, story: { text: 'assigned the task {subject} to you' }, user: { id: 1, full_name: 'Ken Schlather', photo: '/images/ken.jpg'}, subject: { text: 'finish the platform', url: '/admin/expenses/projects/1' }, created_at: new Date() },
-      { id: 1, is_read: false, story: { text: 'assigned the task {subject} to you' }, user: { id: 1, full_name: 'Ken Schlather', photo: '/images/ken.jpg'}, subject: { text: 'finish the platform', url: '/admin/expenses/projects/1' }, created_at: new Date() },
-      { id: 1, is_read: false, story: { text: 'assigned the task {subject} to you' }, user: { id: 1, full_name: 'Ken Schlather', photo: '/images/ken.jpg'}, subject: { text: 'finish the platform', url: '/admin/expenses/projects/1' }, created_at: new Date() },
-      { id: 1, is_read: true, story: { text: 'assigned the task {subject} to you' }, user: { id: 1, full_name: 'Ken Schlather', photo: '/images/ken.jpg'}, subject: { text: 'finish the platform', url: '/admin/expenses/projects/1' }, created_at: new Date() },
-      { id: 1, is_read: true, story: { text: 'assigned the task {subject} to you' }, user: { id: 1, full_name: 'Ken Schlather', photo: '/images/ken.jpg'}, subject: { text: 'finish the platform', url: '/admin/expenses/projects/1' }, created_at: new Date() },
-      { id: 1, is_read: true, story: { text: 'assigned the task {subject} to you' }, user: { id: 1, full_name: 'Ken Schlather', photo: '/images/ken.jpg'}, subject: { text: 'finish the platform', url: '/admin/expenses/projects/1' }, created_at: new Date() },
-      { id: 1, is_read: true, story: { text: 'assigned the task {subject} to you' }, user: { id: 1, full_name: 'Ken Schlather', photo: '/images/ken.jpg'}, subject: { text: 'finish the platform', url: '/admin/expenses/projects/1' }, created_at: new Date() }
+      { id: 1, is_read: false, story: { text: 'assigned the task {subject} to you' }, user: { id: 1, full_name: 'Ken Schlather', photo: '/images/ken.jpg'}, subject: { text: 'finish the platform', url: '/admin/reimbursement/projects/1' }, created_at: new Date() },
+      { id: 1, is_read: false, story: { text: 'assigned the task {subject} to you' }, user: { id: 1, full_name: 'Ken Schlather', photo: '/images/ken.jpg'}, subject: { text: 'finish the platform', url: '/admin/reimbursement/projects/1' }, created_at: new Date() },
+      { id: 1, is_read: false, story: { text: 'assigned the task {subject} to you' }, user: { id: 1, full_name: 'Ken Schlather', photo: '/images/ken.jpg'}, subject: { text: 'finish the platform', url: '/admin/reimbursement/projects/1' }, created_at: new Date() },
+      { id: 1, is_read: false, story: { text: 'assigned the task {subject} to you' }, user: { id: 1, full_name: 'Ken Schlather', photo: '/images/ken.jpg'}, subject: { text: 'finish the platform', url: '/admin/reimbursement/projects/1' }, created_at: new Date() },
+      { id: 1, is_read: true, story: { text: 'assigned the task {subject} to you' }, user: { id: 1, full_name: 'Ken Schlather', photo: '/images/ken.jpg'}, subject: { text: 'finish the platform', url: '/admin/reimbursement/projects/1' }, created_at: new Date() },
+      { id: 1, is_read: true, story: { text: 'assigned the task {subject} to you' }, user: { id: 1, full_name: 'Ken Schlather', photo: '/images/ken.jpg'}, subject: { text: 'finish the platform', url: '/admin/reimbursement/projects/1' }, created_at: new Date() },
+      { id: 1, is_read: true, story: { text: 'assigned the task {subject} to you' }, user: { id: 1, full_name: 'Ken Schlather', photo: '/images/ken.jpg'}, subject: { text: 'finish the platform', url: '/admin/reimbursement/projects/1' }, created_at: new Date() },
+      { id: 1, is_read: true, story: { text: 'assigned the task {subject} to you' }, user: { id: 1, full_name: 'Ken Schlather', photo: '/images/ken.jpg'}, subject: { text: 'finish the platform', url: '/admin/reimbursement/projects/1' }, created_at: new Date() }
     ]
     return (
       <div className="chrome-notifications">

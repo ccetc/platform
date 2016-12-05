@@ -15,7 +15,7 @@ class New extends React.Component {
     return {
       title: 'New Expense',
       method: 'post',
-      action: '/admin/expenses/expenses',
+      action: '/admin/reimbursement/expenses',
       onCancel: this.context.modal.close,
       onSuccess: this.context.modal.close,
       sections: [

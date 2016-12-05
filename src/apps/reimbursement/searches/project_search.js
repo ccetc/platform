@@ -11,7 +11,7 @@ export default filters => {
         text: result.get('title'),
         subtext: null,
         photo: null,
-        route: `/admin/expenses/projects/${result.get('id')}`
+        route: `/admin/reimbursement/projects/${result.get('id')}`
       }))
       resolve(json)
     }).catch(err => {

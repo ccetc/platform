@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router'
 import Page from 'portals/admin/components/chrome/page'
 import Collection from 'ui/components/collection'
 import New from './new'
@@ -16,38 +15,31 @@ class Index extends React.Component {
 
   _getCollection() {
     return {
-      endpoint: '/admin/expenses/projects',
+      endpoint: '/admin/reimbursement/advances',
       columns: [
-        { label: 'Title', key: 'title', primary: true, format: TitleCell },
-        { label: 'Code', key: 'code', primary: true }
+        { label: 'User', key: 'user.full_name', primary: true },
+        { label: 'Project', key: 'project.title', primary: true },
+        { label: 'Amount', key: 'amount', primary: true, formt: 'currency' }
       ],
       sort: { key: 'created_at', order: 'desc' },
-      entity: 'project',
+      entity: 'advance',
       empty: {
-        icon: 'folder',
+        icon: 'dollar',
         component: New
       },
       recordActions: [
-        { label: 'edit', icon: 'edit', redirect: '/admin/expenses/projects/#{id}/edit'}
+        { label: 'edit', icon: 'edit', redirect: '/admin/reimbursement/advances/#{id}/edit'}
       ]
     }
   }
 
 }
 
-var TitleCell = (props) => {
-  return (
-    <Link to={`/admin/expenses/projects/${props.id}` }>
-      {props.title}
-    </Link>
-  )
-}
-
 const mapPropsToPage = (props, context) => ({
   back: '/admin',
-  title: 'Projects',
+  title: 'Advances',
   task: {
-    label: 'New Project',
+    label: 'New Advance',
     icon: 'plus',
     component: New
   }
