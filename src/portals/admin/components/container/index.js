@@ -27,6 +27,7 @@ class Container extends React.Component {
       container: {
         fetch: this._fetchResources.bind(this),
         refresh: this._refreshResource.bind(this),
+        clear: this._clearResources.bind(this),
         params: this.props.params
       }
     }
@@ -45,6 +46,12 @@ class Container extends React.Component {
     }
   }
 
+  _clearResources(resources) {
+    resources.map(prop => {
+      this.props.onClearResource(prop)
+    })
+  }
+
 }
 
 const mapStateToProps = state => ({
@@ -52,7 +59,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  onFetchResource: actions.fetchResource
+  onFetchResource: actions.fetchResource,
+  onClearResource: actions.clearResource
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Container)

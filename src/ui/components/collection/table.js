@@ -52,7 +52,11 @@ class Table extends React.Component {
                 })}
               </div>
             </div>
-            { status === 'loading' && <div className="loading">Loading...</div> }
+            { status === 'loading' &&
+              <div className="ui active inverted dimmer">
+                <div className="ui large text loader">Loading</div>
+              </div>
+            }
           </div>
         </div>
       )

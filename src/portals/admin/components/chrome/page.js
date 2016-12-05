@@ -38,6 +38,7 @@ export default (pageProps) => {
         if(permissions && !this._userHasPermission(user, permissions)) {
           return <Forbidden />
         }
+        const loaded = !resources || _.isEqual(Object.keys(data).sort(), Object.keys(resources).sort())
         return (
           <div className="chrome-page">
             <Helmet title={`${this.context.instance.title} | ${title}`} />
@@ -69,10 +70,13 @@ export default (pageProps) => {
                 }
               </div>
             </div>
-            { resources && status === 'loading' && <p>Loading...</p> }
+            { resources && status === 'loading' &&
+              <div className="ui active inverted dimmer">
+                <div className="ui large text loader">Loading</div>
+              </div>
+            }
             { resources && status === 'failure' && <p>Unable to load</p> }
-            { resources && !_.includes(['loading','failed','uninitialized'], status) && <BodyComponent {...this.props} {...data} /> }
-            { !resources && <BodyComponent {...this.props} /> }
+            { loaded && <BodyComponent {...this.props} {...data} /> }
           </div>
         )
       }
@@ -81,6 +85,14 @@ export default (pageProps) => {
         const { resources } = this.page()
         if(resources) {
           this.context.container.fetch(resources)
+        }
+      }
+
+      componentWillUnmount() {
+        const { resources } = this.page()
+        if(resources) {
+          const keys = Object.keys(resources)
+          this.context.container.clear(keys)
         }
       }
 

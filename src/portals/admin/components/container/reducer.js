@@ -39,6 +39,13 @@ export default (state = INITIAL_STATE, action) => {
       status: 'failure'
     }
 
+  case actionTypes.CLEAR_RESOURCE:
+    return {
+      ...state,
+      routes: _.omit(state.routes, action.prop),
+      data: _.omit(state.data, action.prop)
+    }
+
   default:
     return state
 

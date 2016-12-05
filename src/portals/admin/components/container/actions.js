@@ -12,3 +12,10 @@ export const fetchResource = (prop, endpoint) => {
     failure: actionTypes.FETCH_RESOURCE_FAILURE
   })
 }
+
+export function clearResource(prop) {
+  return {
+    type: actionTypes.CLEAR_RESOURCE,
+    prop
+  }
+}
