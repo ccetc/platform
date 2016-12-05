@@ -10,43 +10,30 @@ describe('signin reducer', function() {
       type: ''
     }
     let expected = {
-      signin: {
-        flash: null,
-        status: 'ready',
-        token: null
-      }
+      status: 'ready',
+      token: null,
+      error: null
     }
     expect(reducer(state, action)).to.be.eql(expected)
   })
 
-  it('it removes flash and updates status upon request', function() {
+  it('it updates status upon request', function() {
     let state = {
-      signin: {
-        flash: 'something',
-        status: 'ready',
-        token: null
-      }
+      status: 'ready'
     }
     let action = {
       type: actionTypes.SIGNIN_REQUEST
     }
     let expected = {
-      signin: {
-        flash: null,
-        status: 'submitting',
-        token: null
-      }
+      status: 'submitting'
     }
     expect(reducer(state, action)).to.be.eql(expected)
   })
 
-  it('it removes flash and updates status and sets token upon success', function() {
+  it('it updates status and sets token upon success', function() {
     let state = {
-      signin: {
-        flash: 'something',
-        status: 'submitting',
-        token: null
-      }
+      status: 'submitting',
+      token: null
     }
     let action = {
       type: actionTypes.SIGNIN_SUCCESS,
@@ -55,22 +42,15 @@ describe('signin reducer', function() {
       }
     }
     let expected = {
-      signin: {
-        flash: null,
-        status: 'success',
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE0Nzk3OTIzNzksImV4cCI6MTQ4MTAwMTk3OSwiZGF0YSI6eyJ1c2VyX2lkIjo0fX0.R5AuKNbHGPLpDxhcfH0854_a04I4C8SdCbEh_QtRNJQ'
-      }
+      status: 'success',
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE0Nzk3OTIzNzksImV4cCI6MTQ4MTAwMTk3OSwiZGF0YSI6eyJ1c2VyX2lkIjo0fX0.R5AuKNbHGPLpDxhcfH0854_a04I4C8SdCbEh_QtRNJQ'
     }
     expect(reducer(state, action)).to.be.eql(expected)
   })
 
-  it('it sets flash and updates status upon failure', function() {
+  it('it updates status upon failure', function() {
     let state = {
-      signin: {
-        flash: null,
-        status: 'submitting',
-        token: null
-      }
+      status: 'submitting'
     }
     let action = {
       type: actionTypes.SIGNIN_FAILURE,
@@ -79,14 +59,8 @@ describe('signin reducer', function() {
       }
     }
     let expected = {
-      signin: {
-        flash: {
-          style: 'error',
-          message: 'unable to find user'
-        },
-        status: 'failure',
-        token: null
-      }
+      status: 'failure',
+      error: 'unable to find user'
     }
     expect(reducer(state, action)).to.be.eql(expected)
   })

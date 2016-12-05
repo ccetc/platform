@@ -22,7 +22,7 @@ class Tasks extends React.Component {
   render() {
     const { children, tasks } = this.props
     return (
-      <div>
+      <div class="chrome-tasks">
         { children }
         <CSSTransitionGroup transitionName="expanded" transitionEnterTimeout={250} transitionLeaveTimeout={250} transitionAppear={true} transitionAppearTimeout={250}>
           { tasks && <div className="chrome-tasks-overlay" onClick={ this._handleCloseTasks.bind(this) } /> }

@@ -14,7 +14,7 @@ describe('app model', function() {
   })
 
   it('enforces unique title', function(done) {
-    App.forge({ title: 'CRM' })
+    App.forge({ title: 'Expenses' })
     .save()
     .then(user => {})
     .catch(err => {
