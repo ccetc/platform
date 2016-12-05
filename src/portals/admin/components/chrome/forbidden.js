@@ -16,10 +16,10 @@ export class Forbidden extends React.Component {
           <div className="chrome-title">Access Denied!</div>
           <div className="chrome-more"></div>
         </div>
-        <div className="chrome-body">
-          <div className="chrome-forbidden">
+        <div className="chrome-error">
+          <div className="chrome-error-message">
             <i className="warning sign icon" />
-            <p>You do not have permission to access this content</p>
+            <h2>You do not have permission to access this content</h2>
           </div>
         </div>
       </div>

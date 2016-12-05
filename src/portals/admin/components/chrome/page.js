@@ -75,7 +75,15 @@ export default (pageProps) => {
                 <div className="ui large text loader">Loading</div>
               </div>
             }
-            { resources && status === 'failure' && <p>Unable to load</p> }
+            { resources && status === 'failure' &&
+              <div className="chrome-error">
+                <div className="chrome-error-message">
+                  <i className="warning sign icon" />
+                  <h2>Unable to load<br /> this page</h2>
+                  <Link className="ui basic red button" onClick={this._refreshResources.bind(this)}>Try again</Link>
+                </div>
+              </div>
+            }
             { loaded && <BodyComponent {...this.props} {...data} /> }
           </div>
         )
@@ -85,6 +93,14 @@ export default (pageProps) => {
         const { resources } = this.page()
         if(resources) {
           this.context.container.fetch(resources)
+        }
+      }
+
+      _refreshResources() {
+        const { resources } = this.page()
+        if(resources) {
+          const props = Object.keys(resources)
+          this.context.container.refresh(props)
         }
       }
 

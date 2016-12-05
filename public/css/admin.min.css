@@ -559,19 +559,27 @@
     flex-direction: column;
   }
 }
-.chrome-forbidden {
+.chrome-error {
+  flex: 1;
+  display: flex;
+}
+.chrome-error-message {
   margin: auto;
-  text-align: center;
   width: 320px;
+  text-align: center;
   color: #CCC;
 }
-.chrome-forbidden i {
+.chrome-error-message h2 {
+  font-size: 32px;
+  line-height: 48px;
+  margin-top: 0;
+}
+.chrome-error-message i {
   font-size: 100px;
   line-height: 100px;
 }
-.chrome-forbidden p {
-  font-size: 32px;
-  line-height: 48px;
+.chrome-error-message .ui.button {
+  background-color: #FFF !important;
 }
 .chrome-drawer {
   position: fixed;

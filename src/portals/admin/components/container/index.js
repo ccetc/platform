@@ -26,7 +26,7 @@ class Container extends React.Component {
     return {
       container: {
         fetch: this._fetchResources.bind(this),
-        refresh: this._refreshResource.bind(this),
+        refresh: this._refreshResources.bind(this),
         clear: this._clearResources.bind(this),
         params: this.props.params
       }
@@ -39,15 +39,18 @@ class Container extends React.Component {
     })
   }
 
-  _refreshResource(prop) {
-    const endpoint = this.props.routes[prop]
-    if(endpoint) {
-      this.props.onFetchResource(prop, endpoint)
-    }
+  _refreshResources(props) {
+    props = (_.isString(props)) ? [props] : props
+    props.map(prop => {
+      const endpoint = this.props.routes[prop]
+      if(endpoint) {
+        this.props.onFetchResource(prop, endpoint)
+      }
+    })
   }
 
-  _clearResources(resources) {
-    resources.map(prop => {
+  _clearResources(props) {
+    props.map(prop => {
       this.props.onClearResource(prop)
     })
   }
