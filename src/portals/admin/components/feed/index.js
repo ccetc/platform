@@ -46,7 +46,7 @@ export class Feed extends React.Component {
   }
 
   render() {
-    const { records } = this.props
+    const { records, status } = this.props
     if(records.length > 0) {
       return (
         <div className="chrome-feed">
@@ -81,6 +81,7 @@ export class Feed extends React.Component {
                 </Link>
               )
             })}
+            { status === 'loading' && <div className="loading">Loading...</div> }
           </div>
         </div>
       )

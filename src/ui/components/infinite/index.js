@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import _ from 'lodash'
 import { connect } from 'react-redux'
 import * as actions from './actions'
 
@@ -50,19 +51,26 @@ class Infinite extends React.Component {
     return this.container
   }
 
+  _listener() {
+    if(!this.listener) {
+      this.listener = _.throttle(this._scrollListener.bind(this), 250)
+    }
+    return this.listener
+  }
+
   _attachScrollListener() {
     const { status } = this.props
     if(status == 'loading') return
     const el = this._container()
-    el.addEventListener('scroll', this._scrollListener.bind(this), true)
-    el.addEventListener('resize', this._scrollListener.bind(this), true)
+    el.addEventListener('scroll', this._listener(), true)
+    el.addEventListener('resize', this._listener(), true)
     this._scrollListener()
   }
 
   _detachScrollListener() {
     const el = this._container()
-    el.removeEventListener('scroll', this._scrollListener.bind(this), true)
-    el.removeEventListener('resize', this._scrollListener.bind(this), true)
+    el.removeEventListener('scroll', this._listener(), true)
+    el.removeEventListener('resize', this._listener(), true)
   }
 
   _scrollListener() {
@@ -71,8 +79,8 @@ class Infinite extends React.Component {
     const el = this._container()
     const bottomScrollPos = el.scrollTop + el.offsetHeight
     const bottomPosition = (el.scrollHeight - bottomScrollPos)
-    if (status === 'pending' || (bottomPosition < 100 && loaded < total)) {
-      this._detachScrollListener()
+    const threshold = el.scrollHeight / 30
+    if (status === 'pending' || (bottomPosition < threshold && loaded < total)) {
       this.props.onFetch(endpoint, { '$skip': loaded, $sort: sort })
     }
   }
