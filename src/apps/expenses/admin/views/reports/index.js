@@ -1,5 +1,5 @@
 import React from 'react'
-import Page from 'portals/admin/components/page'
+import Page from 'portals/admin/components/chrome/page'
 
 class Reports extends React.Component {
 
@@ -13,9 +13,9 @@ class Reports extends React.Component {
 
 }
 
-const details = props => ({
+const mapPropsToPage = (props, context) => ({
   back: '/admin',
   title: 'Reports'
 })
 
-export default Page(details)(Reports)
+export default Page(mapPropsToPage)(Reports)

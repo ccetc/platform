@@ -1,4 +1,3 @@
-import chrome from './chrome/reducer'
 import container from './container/reducer'
 import drawer from './drawer/reducer'
 import forgot from './forgot/reducer'
@@ -19,7 +18,6 @@ import tabs from 'ui/components/tabs/reducer'
 const Reducer = (state, action) => {
 
   const reducers = {
-    chrome,
     container,
     drawer,
     forgot,
@@ -60,7 +58,6 @@ const Reducer = (state, action) => {
   } else if(state === undefined) {
 
     return {
-      chrome: chrome(undefined, action),
       container: container(undefined, action),
       drawer: drawer(undefined, action),
       forgot: forgot(undefined, action),

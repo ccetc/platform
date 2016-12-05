@@ -8,8 +8,9 @@ export default filters => {
       qb = ProjectQuery(qb, filters)
     }).fetchAll().then(results => {
       const json = results.map(result => ({
-        id: result.get('id'),
-        name: result.get('title'),
+        text: result.get('title'),
+        subtext: null,
+        photo: null,
         route: `/admin/expenses/projects/${result.get('id')}`
       }))
       resolve(json)

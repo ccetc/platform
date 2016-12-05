@@ -1,6 +1,6 @@
 import React from 'react'
 import Card from 'ui/components/card'
-import Page from 'portals/admin/components/page'
+import Page from 'portals/admin/components/chrome/page'
 import Edit from './edit'
 
 class Show extends React.Component {
@@ -42,18 +42,29 @@ class Show extends React.Component {
 
 }
 
-const details = props => ({
-  back: '/admin/users',
-  title: 'User',
-  permissions: [],
-  tasks: [
-    { label: 'Edit User', component: Edit },
-    { label: 'Reset Password', handler: this._handleResetPassword.bind(this) },
-    { label: 'Sign Out of All Devices', handler: this._handleSignOutAllDevices.bind(this) }
-  ],
-  resources: {
-    user: `/admin/users/${props.params.id}`
-  }
-})
+const mapPropsToPage = (props, context) => {
 
-export default Page(details)(Show)
+  const _handleResetPassword = () => {
+    context.session.setFlash('success', 'The user has been signed out of all devices')
+  }
+
+  const _handleSignOutAllDevices = () => {
+    context.session.setFlash('success', 'The user has been signed out of all devices')
+  }
+
+  return {
+    back: '/admin/users',
+    title: 'User',
+    permissions: [],
+    tasks: [
+      { label: 'Edit User', component: Edit },
+      { label: 'Reset Password', handler: _handleResetPassword },
+      { label: 'Sign Out of All Devices', handler: _handleSignOutAllDevices }
+    ],
+    resources: {
+      user: `/admin/users/${props.params.id}`
+    }
+  }
+}
+
+export default Page(mapPropsToPage)(Show)

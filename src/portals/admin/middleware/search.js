@@ -23,6 +23,10 @@ export const search = (req, res, next) => {
   })
 }
 
+export const create = (req, res, next) => {
+
+}
+
 const session = Router()
 session.get('/search', search)
 

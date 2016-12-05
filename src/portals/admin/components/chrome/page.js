@@ -12,9 +12,10 @@ export default (pageProps) => {
     class Page extends React.Component {
 
       static contextTypes = {
-        chrome: React.PropTypes.object,
         container: React.PropTypes.object,
         modal: React.PropTypes.object,
+        router: React.PropTypes.object,
+        session: React.PropTypes.object,
         tasks: React.PropTypes.object
       }
 
@@ -24,13 +25,14 @@ export default (pageProps) => {
         user: React.PropTypes.object
       }
 
-      constructor(props) {
-        super(props)
-        this.page = pageProps(props)
+      page() {
+        if(this.pageProps)  return this.pageProps
+        this.pageProps = pageProps(this.props, this.context)
+        return this.pageProps
       }
 
       render() {
-        const { back, permissions, resources, task, tasks, title } = this.page
+        const { back, permissions, resources, task, tasks, title } = this.page()
         const { data, status, user } = this.props
         if(permissions && !this._userHasPermission(user, permissions)) {
           return <Forbidden />
@@ -75,8 +77,9 @@ export default (pageProps) => {
       }
 
       componentDidMount() {
-        if(this.page.resources) {
-          this.context.container.fetch(this.page.resources)
+        const { resources } = this.page()
+        if(resources) {
+          this.context.container.fetch(resources)
         }
       }
 
@@ -87,15 +90,16 @@ export default (pageProps) => {
       }
 
       _handleOpenTasks() {
-        this.context.tasks.open(this.page.tasks)
+        const { tasks } = this.page()
+        this.context.tasks.open(tasks)
       }
 
       _handleOpenTask() {
-        const { route, component } = this.page.task
-        if(route) {
-          this.context.chrome.transitionTo(route)
-        } else if(component) {
-          this.context.modal.open(component)
+        const { task } = this.page()
+        if(task.route) {
+          this.context.router.push(task.route)
+        } else if(task.component) {
+          this.context.modal.open(task.component)
         }
       }
 

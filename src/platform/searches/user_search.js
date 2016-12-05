@@ -8,9 +8,9 @@ export default filters => {
       qb = UserQuery(qb, filters)
     }).fetchAll().then(results => {
       const json = results.map(result => ({
-        id: result.get('id'),
-        name: result.get('full_name'),
-        email: result.get('email'),
+        text: result.get('full_name'),
+        subtext: result.get('email'),
+        photo: result.related('photo').get('url'),
         route: `/admin/users/${result.get('id')}`
       }))
       resolve(json)

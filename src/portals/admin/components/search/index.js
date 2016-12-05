@@ -7,8 +7,8 @@ import * as actions from './actions'
 export class Search extends React.Component {
 
   static contextTypes = {
-    chrome: React.PropTypes.object,
-    modal: React.PropTypes.object
+    modal: React.PropTypes.object,
+    router: React.PropTypes.object
   }
 
   static propTypes = {
@@ -65,8 +65,8 @@ export class Search extends React.Component {
                       return (
                         <div key={`result_${modelIndex}_${index}`} className="chrome-search-result" onClick={this._handleCompleteSearch.bind(this, model, index)}>
                           <p>
-                            <strong>{result.name}</strong><br />
-                            {result.email}
+                            <strong>{result.text}</strong><br />
+                            {result.subtext}
                           </p>
                         </div>
                       )
@@ -91,7 +91,8 @@ export class Search extends React.Component {
   componentDidUpdate(prevProps) {
     const { choice } = this.props
     if(prevProps.choice !== choice) {
-      this.context.chrome.transitionTo({ pathname: choice.route, state: 'static' })
+      console.log(choice)
+      this.context.router.push({ pathname: choice.route, state: 'static' })
       this.context.modal.close()
     }
   }

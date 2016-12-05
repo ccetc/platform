@@ -3,10 +3,6 @@ import { connect } from 'react-redux'
 
 export class Notifications extends React.Component {
 
-  static contextTypes = {
-    chrome: React.PropTypes.object
-  }
-
   static propTypes = {
   }
 

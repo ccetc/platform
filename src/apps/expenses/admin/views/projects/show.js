@@ -1,6 +1,6 @@
 import React from 'react'
 import Card from 'ui/components/card'
-import Page from 'portals/admin/components/page'
+import Page from 'portals/admin/components/chrome/page'
 import Edit from './edit'
 import Member from './member'
 
@@ -46,7 +46,7 @@ class Show extends React.Component {
 
 }
 
-const details = props => ({
+const mapPropsToPage = (props, context) => ({
   back: '/admin/expenses/projects',
   title: 'Project',
   permissions: [],
@@ -60,4 +60,4 @@ const details = props => ({
   }
 })
 
-export default Page(details)(Show)
+export default Page(mapPropsToPage)(Show)

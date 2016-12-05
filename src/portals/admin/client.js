@@ -6,6 +6,9 @@ import Container from './components/container'
 import Panel from './components/panel'
 import Activation from './components/activation'
 import Chrome from './components/chrome'
+import Modal from './components/modal'
+import Drawer from './components/drawer'
+import Tasks from './components/tasks'
 import Dashboard from './components/dashboard'
 import Notifications from './components/notifications/list'
 import Forgot from './components/forgot'
@@ -32,14 +35,20 @@ export default (
             <Route component={ ResetClaim } path="admin/reset/:id" />
           </Route>
         </Route>
-        <Route component={ Chrome } path="admin">
-          <Route component={ Transition }>
-            <Route component={ Panel }>
-              <IndexRoute component={ Dashboard } />
-              <Route component={ Notifications } path="notifications" />
-              {Instance}
-              <Route path="expenses">
-                {Expenses}
+        <Route component={ Modal }>
+          <Route component={ Drawer }>
+            <Route component={ Tasks }>
+              <Route component={ Chrome } path="admin">
+                <Route component={ Transition }>
+                  <Route component={ Panel }>
+                    <IndexRoute component={ Dashboard } />
+                    <Route component={ Notifications } path="notifications" />
+                    {Instance}
+                    <Route path="expenses">
+                      {Expenses}
+                    </Route>
+                  </Route>
+                </Route>
               </Route>
             </Route>
           </Route>

@@ -6,7 +6,6 @@ import Password from './password'
 export class Account extends React.Component {
 
   static contextTypes = {
-    chrome: React.PropTypes.object,
     drawer: React.PropTypes.object,
     modal: React.PropTypes.object,
     session: React.PropTypes.object
@@ -49,7 +48,6 @@ export class Account extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  ...state.chrome.account,
   user: state.session.user
 })
 

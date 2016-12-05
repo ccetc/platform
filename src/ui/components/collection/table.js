@@ -9,7 +9,6 @@ import Format from 'ui/utils/format'
 class Table extends React.Component {
 
   static contextTypes = {
-    chrome: React.PropTypes.object,
     modal: React.PropTypes.object
   }
 

@@ -4,9 +4,10 @@ import Form from 'ui/components/form'
 class Edit extends React.Component {
 
   static contextTypes = {
-    chrome: React.PropTypes.object,
     container: React.PropTypes.object,
-    modal: React.PropTypes.object
+    location: React.PropTypes.object,
+    modal: React.PropTypes.object,
+    router: React.PropTypes.object
   }
 
   render() {
@@ -17,8 +18,8 @@ class Edit extends React.Component {
     return {
       title: 'Edit Project',
       method: 'patch',
-      endpoint: `/admin/expenses/projects/${this.context.chrome.params.id}`,
-      action: `/admin/expenses/projects/${this.context.chrome.params.id}`,
+      endpoint: `/admin/expenses/projects/${this.context.location.params.id}`,
+      action: `/admin/expenses/projects/${this.context.location.params.id}`,
       onCancel: this.context.modal.close,
       onSuccess: this._handleSuccess.bind(this),
       sections: [
@@ -35,7 +36,7 @@ class Edit extends React.Component {
   _handleSuccess(project) {
     this.context.container.refresh('project')
     this.context.modal.close()
-    this.context.chrome.transitionTo(`/admin/expenses/projects/${project.id}`)
+    this.context.router.push(`/admin/expenses/projects/${project.id}`)
   }
 
 }

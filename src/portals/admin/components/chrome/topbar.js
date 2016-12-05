@@ -8,9 +8,9 @@ import Navigation from '../navigation'
 export class Topbar extends React.Component {
 
   static contextTypes = {
-    chrome: React.PropTypes.object,
     drawer: React.PropTypes.object,
-    modal: React.PropTypes.object
+    modal: React.PropTypes.object,
+    router: React.PropTypes.object
   }
 
   static propTypes = {
@@ -18,25 +18,28 @@ export class Topbar extends React.Component {
   }
 
   render() {
-    const { unread, user } = this.props
+    const { children, unread, user } = this.props
     return (
-      <div className="chrome-topbar">
-        <div className="chrome-topbar-icon" onClick={this._handleOpenNavigation.bind(this)}>
-          <i className="sidebar icon" />
+      <div>
+        <div className="chrome-topbar">
+          <div className="chrome-topbar-icon" onClick={this._handleOpenNavigation.bind(this)}>
+            <i className="sidebar icon" />
+          </div>
+          <div className="chrome-filler"></div>
+          <div className="chrome-topbar-icon" onClick={this._handleOpenSearch.bind(this)}>
+            <i className="search icon" />
+          </div>
+          <div className="chrome-topbar-icon" onClick={this._handleOpenNotifications.bind(this)}>
+            <i className="alarm icon" />
+            {unread > 0 &&
+              <div className="chrome-alerts-label">{unread}</div>
+            }
+          </div>
+          <div className="chrome-topbar-icon" onClick={this._handleOpenAccount.bind(this)}>
+            <img src={user.photo} className="ui image circular" />
+          </div>
         </div>
-        <div className="chrome-filler"></div>
-        <div className="chrome-topbar-icon" onClick={this._handleOpenSearch.bind(this)}>
-          <i className="search icon" />
-        </div>
-        <div className="chrome-topbar-icon" onClick={this._handleOpenNotifications.bind(this)}>
-          <i className="alarm icon" />
-          {unread > 0 &&
-            <div className="chrome-alerts-label">{unread}</div>
-          }
-        </div>
-        <div className="chrome-topbar-icon" onClick={this._handleOpenAccount.bind(this)}>
-          <img src={user.photo} className="ui image circular" />
-        </div>
+        { children }
       </div>
     )
   }
@@ -50,7 +53,7 @@ export class Topbar extends React.Component {
   }
 
   _handleOpenNotifications() {
-    this.context.chrome.transitionTo('/admin/notifications')
+    this.context.router.push('/admin/notifications')
   }
 
   _handleOpenAccount() {

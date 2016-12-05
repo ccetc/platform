@@ -4,8 +4,8 @@ import Form from 'ui/components/form'
 class New extends React.Component {
 
   static contextTypes = {
-    chrome: React.PropTypes.object,
-    modal: React.PropTypes.object
+    modal: React.PropTypes.object,
+    router: React.PropTypes.object
   }
 
   render() {

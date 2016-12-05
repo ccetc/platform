@@ -441,6 +441,81 @@
   display: flex;
   background-color: #FFF;
 }
+.chrome-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.chrome-header {
+  flex: 0 0 50px;
+  background-color: #EEE;
+  z-index: 3;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-weight: normal;
+  display: flex;
+}
+@media only screen and (min-width: 768px) {
+  .chrome-header {
+    border-bottom: 5px solid #CCC;
+  }
+}
+.chrome-back,
+.chrome-more {
+  flex: 0 0 50px;
+}
+.chrome-back > a,
+.chrome-tasks > a,
+.chrome-task > a {
+  display: block;
+  text-align: center;
+  padding: 16px;
+  font-size: 17px;
+  line-height: 18px;
+  color: #888;
+}
+.chrome-title {
+  flex: 1;
+  text-align: center;
+  font-size: 18px;
+  line-height: 50px;
+  color: #555;
+}
+.chrome-body {
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+  flex: 1;
+  display: flex;
+}
+@media only screen and (min-width: 768px) {
+  .chrome-body .chrome-sidebar {
+    flex: 0 0 300px;
+    background: #EEE;
+  }
+  .chrome-body .chrome-content {
+    flex: 1;
+    display: flex;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .chrome-body {
+    flex-direction: column;
+  }
+}
+.chrome-forbidden {
+  margin: auto;
+  text-align: center;
+  width: 320px;
+  color: #CCC;
+}
+.chrome-forbidden i {
+  font-size: 100px;
+  line-height: 100px;
+}
+.chrome-forbidden p {
+  font-size: 32px;
+  line-height: 48px;
+}
 .chrome-drawer {
   position: fixed;
   display: flex;
@@ -706,81 +781,6 @@
     left: 10px;
     width: 240px;
   }
-}
-.chrome-page {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-.chrome-header {
-  flex: 0 0 50px;
-  background-color: #EEE;
-  z-index: 3;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  font-weight: normal;
-  display: flex;
-}
-@media only screen and (min-width: 768px) {
-  .chrome-header {
-    border-bottom: 5px solid #CCC;
-  }
-}
-.chrome-back,
-.chrome-more {
-  flex: 0 0 50px;
-}
-.chrome-back > a,
-.chrome-tasks > a,
-.chrome-task > a {
-  display: block;
-  text-align: center;
-  padding: 16px;
-  font-size: 17px;
-  line-height: 18px;
-  color: #888;
-}
-.chrome-title {
-  flex: 1;
-  text-align: center;
-  font-size: 18px;
-  line-height: 50px;
-  color: #555;
-}
-.chrome-body {
-  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07);
-  flex: 1;
-  display: flex;
-}
-@media only screen and (min-width: 768px) {
-  .chrome-body .chrome-sidebar {
-    flex: 0 0 300px;
-    background: #EEE;
-  }
-  .chrome-body .chrome-content {
-    flex: 1;
-    display: flex;
-  }
-}
-@media only screen and (max-width: 767px) {
-  .chrome-body {
-    flex-direction: column;
-  }
-}
-.chrome-forbidden {
-  margin: auto;
-  text-align: center;
-  width: 320px;
-  color: #CCC;
-}
-.chrome-forbidden i {
-  font-size: 100px;
-  line-height: 100px;
-}
-.chrome-forbidden p {
-  font-size: 32px;
-  line-height: 48px;
 }
 .chrome-search-panel {
   transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;

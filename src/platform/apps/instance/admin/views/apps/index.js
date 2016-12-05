@@ -1,5 +1,5 @@
 import React from 'react'
-import Page from 'portals/admin/components/page'
+import Page from 'portals/admin/components/chrome/page'
 
 class Index extends React.Component {
 
@@ -13,10 +13,10 @@ class Index extends React.Component {
 
 }
 
-const details = props => ({
+const mapPropsToPage = (props, context) => ({
   back: '/admin',
   title: 'Apps',
   permissions: ['foo']
 })
 
-export default Page(details)(Index)
+export default Page(mapPropsToPage)(Index)

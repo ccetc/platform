@@ -4,7 +4,6 @@ import Form from 'ui/components/form'
 class Password extends React.Component {
 
   static contextTypes = {
-    chrome: React.PropTypes.object,
     modal: React.PropTypes.object
   }
 

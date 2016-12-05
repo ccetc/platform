@@ -6,8 +6,8 @@ import * as actions from './actions'
 export class Navigation extends React.Component {
 
   static contextTypes = {
-    chrome: React.PropTypes.object,
-    drawer: React.PropTypes.object
+    drawer: React.PropTypes.object,
+    router: React.PropTypes.object
   }
 
   static propTypes = {
@@ -55,7 +55,7 @@ export class Navigation extends React.Component {
   _handleTransitionTo(pathname) {
     this.props.onChooseApp(null)
     this.context.drawer.close()
-    this.context.chrome.transitionTo({ pathname, state: 'static' })
+    this.context.router.push({ pathname, state: 'static' })
   }
 
 }

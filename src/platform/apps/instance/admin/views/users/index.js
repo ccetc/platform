@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import Page from 'portals/admin/components/page'
+import Page from 'portals/admin/components/chrome/page'
 import Collection from 'ui/components/collection'
 import New from './new'
 
@@ -41,7 +41,7 @@ var NameCell = (props) => {
   )
 }
 
-const details = props => ({
+const mapPropsToPage = (props, context) => ({
   back: '/admin',
   title: 'Users',
   task: {
@@ -51,4 +51,4 @@ const details = props => ({
   }
 })
 
-export default Page(details)(Index)
+export default Page(mapPropsToPage)(Index)

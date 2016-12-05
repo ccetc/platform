@@ -1,5 +1,5 @@
 import React from 'react'
-import Page from 'portals/admin/components/page'
+import Page from 'portals/admin/components/chrome/page'
 
 class Index extends React.Component {
 
@@ -13,7 +13,7 @@ class Index extends React.Component {
 
 }
 
-const details = props => ({
+const mapPropsToPage = (props, context) => ({
   title: 'Notifications',
   breadcrumbs: [
     { label: 'Dashboard', route: '/admin' },
@@ -21,4 +21,4 @@ const details = props => ({
   ]
 })
 
-export default Page(details)(Index)
+export default Page(mapPropsToPage)(Index)

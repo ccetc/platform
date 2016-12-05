@@ -1978,11 +1978,33 @@ exports.seed = (knex, Promise) => {
   .then(() => {
     return knex('apps').insert([
       {
-        title: 'CRM'
-      }, {
         title: 'Expenses'
-      }, {
-        title: 'Instance'
+      }
+    ])
+  })
+  .then(() => {
+    return knex('installations').del()
+  })
+  .then(() => {
+    return knex('installations').insert([
+      {
+        instance_id: 1,
+        app_id: 1
+      }
+    ])
+  })
+  .then(() => {
+    return knex('searches').del()
+  })
+  .then(() => {
+    return knex('searches').insert([
+      {
+        instance_id: 1,
+        user_id: 1,
+        text: 'Ken Schlather',
+        subtext: 'ks47@cornell.edu',
+        photo: '/image/ken.jpg',
+        route: '/admin/contacts/21'
       }
     ])
   })

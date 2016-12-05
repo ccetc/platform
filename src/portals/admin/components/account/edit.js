@@ -4,7 +4,7 @@ import Form from 'ui/components/form'
 class Edit extends React.Component {
 
   static contextTypes = {
-    chrome: React.PropTypes.object
+    modal: React.PropTypes.object
   }
 
   render() {
@@ -13,7 +13,7 @@ class Edit extends React.Component {
 
   _getForm() {
     return {
-      title: 'Edit Profile',
+      title: 'Edit Account',
       method: 'patch',
       endpoint: '/admin/account',
       action: '/admin/account',
