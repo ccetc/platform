@@ -680,6 +680,10 @@
   opacity: 0.5;
 }
 .chrome-feed {
+  display: flex;
+  flex: 1;
+}
+.chrome-feed-items {
   flex: 1;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
@@ -864,8 +868,7 @@
 }
 .chrome-notifications-body {
   flex: 1;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
+  display: flex;
 }
 .chrome-notifications-popup {
   position: absolute;
@@ -1177,14 +1180,6 @@
 .collection-layout {
   display: flex;
   flex-direction: column;
-  flex: 1;
-}
-.table-fixed {
-  display: table;
-  width: 100%;
-  flex: 0 0 45px;
-}
-.table-scroll {
   flex: 1;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;

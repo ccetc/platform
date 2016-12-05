@@ -1,7 +1,7 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import * as actions from './actions'
-import $ from 'jquery'
 
 class Infinite extends React.Component {
 
@@ -11,7 +11,7 @@ class Infinite extends React.Component {
     loaded: React.PropTypes.number.isRequired,
     records: React.PropTypes.array.isRequired,
     status: React.PropTypes.string.isRequired,
-    total: React.PropTypes.number.isRequired,
+    total: React.PropTypes.number.isRequired
   }
 
   render() {
@@ -44,7 +44,10 @@ class Infinite extends React.Component {
   }
 
   _container() {
-    return $('.table-scroll')[0]
+    if(!this.container) {
+      this.container = ReactDOM.findDOMNode(this).firstChild
+    }
+    return this.container
   }
 
   _attachScrollListener() {

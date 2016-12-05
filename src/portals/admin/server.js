@@ -7,6 +7,7 @@ import reset from 'server/middleware/reset'
 import sessionService from './middleware/session'
 import searchService from './middleware/search'
 import instanceService from './middleware/instance'
+import notificationsService from './middleware/notifications'
 import fs from 'fs'
 import path from 'path'
 
@@ -29,6 +30,7 @@ admin.use(reset)
 admin.use(authentication)
 
 // core admin api
+admin.use(notificationsService)
 admin.use(sessionService)
 admin.use(searchService)
 

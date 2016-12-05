@@ -17,7 +17,7 @@ class Table extends React.Component {
     if(records.length > 0) {
       return (
         <div className="collection-layout">
-          <div className="table-fixed" ref="head">
+          <div className="table">
             <div className="table-head">
               <div className="table-row">
                 {columns.map((column, index) => {
@@ -31,33 +31,25 @@ class Table extends React.Component {
                 })}
               </div>
             </div>
-          </div>
-          <div className="table-scroll">
-            <div className="table" ref="body">
-              <div className="table-body">
-                {records.map((record, recordIndex) => {
-                  return (
-                    <div key={ `record_${recordIndex}` } className="table-row">
-                      {columns.map((column, columnIndex) => {
-                        const value = _.get(record, column.key)
-                        const classes = (column.primary) ? 'table-cell mobile' : 'table-cell'
-                        return (
-                          <div key={ `cell_${recordIndex}_${columnIndex}` } className={ classes }>
-                            <Format {...record} format={column.format} value={value} />
-                          </div>
-                        )
-                      })}
-                    </div>
-                  )
-                })}
-              </div>
+            <div className="table-body">
+              {records.map((record, recordIndex) => {
+                return (
+                  <div key={ `record_${recordIndex}` } className="table-row">
+                    {columns.map((column, columnIndex) => {
+                      const value = _.get(record, column.key)
+                      const classes = (column.primary) ? 'table-cell mobile' : 'table-cell'
+                      return (
+                        <div key={ `cell_${recordIndex}_${columnIndex}` } className={ classes }>
+                          <Format {...record} format={column.format} value={value} />
+                        </div>
+                      )
+                    })}
+                  </div>
+                )
+              })}
             </div>
-            { status === 'loading' &&
-              <div className="ui active inverted dimmer">
-                <div className="ui large text loader">Loading</div>
-              </div>
-            }
           </div>
+          { status === 'loading' && <div className="loading">Loading...</div> }
         </div>
       )
     } else if(status === 'loaded' && records.length === 0) {
