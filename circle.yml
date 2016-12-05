@@ -1,0 +1,21 @@
+machine:
+  node:
+    version: 5.9.0
+  services:
+    - redis
+    - postgresql
+general:
+  branches:
+    ignore:
+      - gh-pages
+checkout:
+  post:
+    - cp ./config/circleci/* ./config/
+test:
+  override:
+    - npm run test
+deployment:
+  production:
+    branch: master
+    commands:
+      - npm run coverage
