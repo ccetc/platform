@@ -655,7 +655,7 @@
   font-size: 18px;
   margin-right: 10px;
 }
-.chrome-modal {
+.chrome-modal-window {
   transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -webkit-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -moz-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
@@ -670,18 +670,18 @@
   display: flex;
   flex-direction: column;
 }
-.chrome-modal.expanded-appear,
-.chrome-modal.expanded-enter,
-.chrome-modal.expanded-leave.expanded-leave-active {
+.chrome-modal-window.expanded-appear,
+.chrome-modal-window.expanded-enter,
+.chrome-modal-window.expanded-leave.expanded-leave-active {
   -webkit-transform: translateY(100%);
   -moz-transform: translateY(100%);
   -ms-transform: translateY(100%);
   -o-transform: translateY(100%);
   transform: translateY(100%);
 }
-.chrome-modal.expanded-appear.expanded-appear-active,
-.chrome-modal.expanded-enter.expanded-enter-active,
-.chrome-modal.expanded-leave {
+.chrome-modal-window.expanded-appear.expanded-appear-active,
+.chrome-modal-window.expanded-enter.expanded-enter-active,
+.chrome-modal-window.expanded-leave {
   -webkit-transform: translateY(0);
   -moz-transform: translateY(0);
   -ms-transform: translateY(0);

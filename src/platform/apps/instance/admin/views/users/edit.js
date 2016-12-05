@@ -4,7 +4,7 @@ import Form from 'ui/components/form'
 class Edit extends React.Component {
 
   static contextTypes = {
-    location: React.PropTypes.object,
+    container: React.PropTypes.object,
     modal: React.PropTypes.object
   }
 
@@ -16,8 +16,8 @@ class Edit extends React.Component {
     return {
       title: 'Edit User',
       method: 'patch',
-      endpoint: `/admin/users/${this.context.location.params.id}`,
-      action: `/admin/users/${this.context.location.params.id}`,
+      endpoint: `/admin/users/${this.context.container.params.id}`,
+      action: `/admin/users/${this.context.container.params.id}`,
       onCancel: this.context.modal.close,
       onSuccess: this.context.modal.close,
       sections: [

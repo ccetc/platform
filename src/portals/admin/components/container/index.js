@@ -26,7 +26,8 @@ class Container extends React.Component {
     return {
       container: {
         fetch: this._fetchResources.bind(this),
-        refresh: this._refreshResource.bind(this)
+        refresh: this._refreshResource.bind(this),
+        params: this.props.params
       }
     }
   }

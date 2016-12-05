@@ -12,8 +12,7 @@ class Session extends React.Component {
   }
 
   static contextTypes = {
-    router: React.PropTypes.object,
-    location: React.PropTypes.object
+    router: React.PropTypes.object
   }
 
   static propTypes = {

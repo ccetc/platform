@@ -8,10 +8,6 @@ class Instance extends React.Component {
     instance: React.PropTypes.object
   }
 
-  static contextTypes = {
-    location: React.PropTypes.object
-  }
-
   static propTypes = {
     status: React.PropTypes.string,
     subtitle: React.PropTypes.string,

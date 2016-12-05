@@ -5,7 +5,6 @@ class Edit extends React.Component {
 
   static contextTypes = {
     container: React.PropTypes.object,
-    location: React.PropTypes.object,
     modal: React.PropTypes.object,
     router: React.PropTypes.object
   }
@@ -18,8 +17,8 @@ class Edit extends React.Component {
     return {
       title: 'Edit Project',
       method: 'patch',
-      endpoint: `/admin/expenses/projects/${this.context.location.params.id}`,
-      action: `/admin/expenses/projects/${this.context.location.params.id}`,
+      endpoint: `/admin/expenses/projects/${this.context.container.params.id}`,
+      action: `/admin/expenses/projects/${this.context.container.params.id}`,
       onCancel: this.context.modal.close,
       onSuccess: this._handleSuccess.bind(this),
       sections: [
