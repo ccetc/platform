@@ -671,6 +671,40 @@
   -moz-opacity: 0.5;
   opacity: 0.5;
 }
+.chrome-feed {
+  flex: 1;
+  overflow-y: scroll;
+}
+.chrome-feed-item {
+  padding: 10px 20px;
+  border-bottom: 1px solid #EEE;
+  display: flex;
+}
+.chrome-feed-item.unread {
+  background-color: #FFE;
+}
+.chrome-feed-item-avatar {
+  flex: 0 0 50px;
+  padding-right: 10px;
+}
+.chrome-feed-item-avatar img {
+  width: 100%;
+}
+.chrome-feed-item-details {
+  flex: 1;
+}
+.chrome-feed-item-story {
+  color: #000;
+}
+.chrome-feed-item-user,
+.chrome-feed-item-subject,
+.chrome-feed-item-object {
+  font-weight: bold;
+  margin-right: 3px;
+}
+.chrome-feed-item-timestamp {
+  color: #888;
+}
 .chrome-modal-window {
   transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -webkit-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
@@ -823,44 +857,6 @@
   flex: 1;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
-}
-.chrome-notifications {
-  flex: 1;
-  overflow-y: scroll;
-}
-.chrome-notification {
-  padding: 10px 20px;
-  border-bottom: 1px solid #EEE;
-  display: flex;
-}
-.chrome-notification.unread {
-  background-color: #FFE;
-}
-.chrome-notification-avatar {
-  flex: 0 0 50px;
-  padding-right: 10px;
-}
-.chrome-notification-avatar img {
-  width: 100%;
-}
-.chrome-notification-details {
-  flex: 1;
-}
-.chrome-notification-story span {
-  margin-right: 3px;
-  color: #000;
-}
-.chrome-notification-user {
-  font-weight: bold;
-}
-.chrome-notification-subject {
-  font-weight: bold;
-}
-.chrome-notification-object {
-  font-weight: bold;
-}
-.chrome-notification-timestamp {
-  color: #888;
 }
 .chrome-notifications-popup {
   position: absolute;
@@ -1394,40 +1390,6 @@
 }
 .datefield .calendar.icon {
   margin: 0;
-}
-.activities {
-  flex: 1;
-  overflow-y: scroll;
-}
-.activity {
-  padding: 10px 20px;
-  border-bottom: 1px solid #EEE;
-  display: flex;
-}
-.activity-avatar {
-  flex: 0 0 50px;
-  padding-right: 10px;
-}
-.activity-avatar img {
-  width: 100%;
-}
-.activity-details {
-  flex: 1;
-}
-.activity-story span {
-  margin-right: 3px;
-}
-.activity-user {
-  font-weight: bold;
-}
-.activity-subject {
-  font-weight: bold;
-}
-.activity-object {
-  font-weight: bold;
-}
-.activity-timestamp {
-  color: #888;
 }
 .project-members {
   width: 100%;

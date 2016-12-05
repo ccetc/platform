@@ -1,6 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router'
-import moment from 'moment'
+import Feed from 'portals/admin/components/feed'
 
 class Index extends React.Component {
 
@@ -34,30 +33,7 @@ class Index extends React.Component {
           </div>
         </div>
         <div className="chrome-notifications-body">
-          <div className="chrome-notifications">
-
-            {notifications.map((notification, index) => {
-              let story = notification.story.text
-              if(notification.subject) {
-                story = story.replace('{subject}', `<span class="chrome-notification-subject">${notification.subject.text}</span>`)
-              }
-              return (
-                <Link key={`notification_${index}`} to={{ pathname: notification.subject.url, state: 'static' }} className={`chrome-notification${!notification.is_read ? ' unread' : ''}`} onClick={ this._handleClose.bind(this) }>
-                  <div className="chrome-notification-avatar">
-                    <img src={ notification.user.photo } className="ui circular image" />
-                  </div>
-                  <div className="chrome-notification-details">
-                    <div className="chrome-notification-story">
-                      <span className="chrome-notification-user">{ notification.user.full_name }</span>
-                      <span dangerouslySetInnerHTML={{__html: story }} />
-                    </div>
-                    <div className="chrome-notification-timestamp">{ moment(notification.created_at).fromNow() } on { moment(notification.created_at).format('dddd, MMMM Do @ h:mm a') }</div>
-                  </div>
-                </Link>
-              )
-            })}
-
-          </div>
+          <Feed items={notifications} onChoose={this._handleClose.bind(this)} />
         </div>
       </div>
     )
