@@ -22,15 +22,16 @@ export default (state = INITIAL_STATE, action) => {
     }
 
   case actionTypes.FETCH_SUCCESS:
+    const loaded = state.records.length + action.data.data.length
     return {
       ...state,
       records: [
         ...state.records,
         ...action.data.data
       ],
-      loaded: state.records.length + action.data.data.length,
+      loaded,
       total: action.data.total,
-      status: 'loaded'
+      status: (loaded === action.data.total) ? 'complete' : 'loaded'
     }
 
   default:
