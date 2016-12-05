@@ -32,20 +32,12 @@ class Show extends React.Component {
     }
   }
 
-  _handleResetPassword() {
-    this.context.session.setFlash('success', 'A reset email has been sent to the user')
-  }
-
-  _handleSignOutAllDevices() {
-    this.context.session.setFlash('success', 'The user has been signed out of all devices')
-  }
-
 }
 
 const mapPropsToPage = (props, context) => {
 
   const _handleResetPassword = () => {
-    context.session.setFlash('success', 'The user has been signed out of all devices')
+    context.session.setFlash('success', 'A reset email has been sent to the user')
   }
 
   const _handleSignOutAllDevices = () => {

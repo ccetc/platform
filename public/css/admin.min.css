@@ -674,9 +674,10 @@
 .chrome-feed {
   flex: 1;
   overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 .chrome-feed-item {
-  padding: 10px 20px;
+  padding: 10px;
   border-bottom: 1px solid #EEE;
   display: flex;
 }
