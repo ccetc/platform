@@ -69,7 +69,7 @@ export default (options = {}) => {
       }).fetchAll(fetchOptions)
 
       Promise.all([count,paged]).then(response => {
-
+        console.log(response[0].toJSON())
         const total = parseInt(response[0].toJSON()[0].count)
 
         const data = response[1].map(record => {
@@ -123,7 +123,7 @@ export default (options = {}) => {
         return res.status(201).json(record)
 
       }).catch(err => {
-        const error = new Error({ code: 422, message: 'There were problems with your data', errors: err.toJSON() })
+        const error = new Error({ code: 422, message: 'There were problems with your data', errors: err })
         next(error)
       })
 
@@ -143,15 +143,13 @@ export default (options = {}) => {
           res.status(201).json(record)
 
         }).catch(err => {
-          console.log(err)
-          const error = new Error({ code: 500, message: 'application error', errors: err.toJSON() })
+          const error = new Error({ code: 500, message: 'application error', errors: err })
           next(error)
         })
 
 
       }).catch(err => {
-        console.log(err)
-        const error = new Error({ code: 500, message: 'application error', errors: err.toJSON() })
+        const error = new Error({ code: 500, message: 'application error', errors: err })
         next(error)
       })
 
@@ -171,15 +169,13 @@ export default (options = {}) => {
           res.status(201).json(record)
 
         }).catch(err => {
-          console.log(err)
-          const error = new Error({ code: 500, message: 'application error', errors: err.toJSON() })
+          const error = new Error({ code: 500, message: 'application error', errors: err })
           next(error)
         })
 
 
       }).catch(err => {
-        console.log(err)
-        const error = new Error({ code: 500, message: 'application error', errors: err.toJSON() })
+        const error = new Error({ code: 500, message: 'application error', errors: err })
         next(error)
       })
 
@@ -199,12 +195,12 @@ export default (options = {}) => {
           res.status(201).json({})
 
         }).catch(err => {
-          const error = new Error({ code: 500, message: 'application error', errors: err.toJSON() })
+          const error = new Error({ code: 500, message: 'application error', errors: err })
           next(error)
         })
 
       }).catch(err => {
-        const error = new Error({ code: 500, message: 'application error', errors: err.toJSON() })
+        const error = new Error({ code: 500, message: 'application error', errors: err })
         next(error)
       })
 

@@ -74,7 +74,6 @@ class Infinite extends React.Component {
   }
 
   _detachScrollListener() {
-    console.log('dettached')
     const el = this._container()
     if(!el) return
     el.removeEventListener('scroll', this._listener(), true)
@@ -82,7 +81,6 @@ class Infinite extends React.Component {
   }
 
   _scrollListener() {
-    console.log('scrolling')
     const { endpoint, sort, loaded, status, total } = this.props
     const el = this._container()
     if(!el || status == 'loading') return
