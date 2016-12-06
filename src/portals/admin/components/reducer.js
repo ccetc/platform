@@ -1,5 +1,6 @@
 import container from './container/reducer'
 import drawer from './drawer/reducer'
+import flash from './flash/reducer'
 import forgot from './forgot/reducer'
 import instance from './instance/reducer'
 import modal from './modal/reducer'
@@ -21,6 +22,7 @@ const Reducer = (state, action) => {
   const reducers = {
     container,
     drawer,
+    flash,
     forgot,
     instance,
     modal,
@@ -62,6 +64,7 @@ const Reducer = (state, action) => {
     return {
       container: container(undefined, action),
       drawer: drawer(undefined, action),
+      flash: flash(undefined, action),
       forgot: forgot(undefined, action),
       instance: instance(undefined, action),
       modal: modal(undefined, action),

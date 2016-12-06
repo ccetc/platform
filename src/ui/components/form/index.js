@@ -8,7 +8,7 @@ import Section from './section'
 class Form extends React.Component {
 
   static contextTypes = {
-    session: React.PropTypes.object
+    flash: React.PropTypes.object
   }
 
   static propTypes = {
@@ -131,13 +131,13 @@ class Form extends React.Component {
 
   _handleSuccess(entity) {
     const message = 'Your form was successfully saved!'
-    this.context.session.setFlash('success', message)
+    this.context.flash.set('success', message)
     this.props.onSuccess(entity)
   }
 
   _handleFailure() {
     const message = 'There were problems with your data'
-    this.context.session.setFlash('error', message)
+    this.context.flash.set('error', message)
     this.props.onFailure()
   }
 

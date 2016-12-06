@@ -6,6 +6,10 @@ import * as actions from './actions'
 
 export class Flash extends React.Component {
 
+  static childContextTypes = {
+    flash: React.PropTypes.object
+  }
+
   static propTypes = {
     flash: React.PropTypes.object,
     onSet: React.PropTypes.func.isRequired,
@@ -13,18 +17,21 @@ export class Flash extends React.Component {
   }
 
   render() {
-    const { flash } = this.props
+    const { children, flash } = this.props
     return (
-      <CSSTransitionGroup transitionName="expanded" transitionEnterTimeout={250} transitionLeaveTimeout={250} transitionAppear={true} transitionAppearTimeout={250}>
-        {flash &&
-          <div className={`chrome-flash ${flash.style}`}>
-            <p>
-              { this._getIcon(flash.style) }
-              { flash.message }
-            </p>
-          </div>
-        }
-      </CSSTransitionGroup>
+      <div>
+        <CSSTransitionGroup transitionName="expanded" transitionEnterTimeout={250} transitionLeaveTimeout={250} transitionAppear={true} transitionAppearTimeout={250}>
+          {flash &&
+            <div className={`chrome-flash ${flash.style}`}>
+              <p>
+                { this._getIcon(flash.style) }
+                { flash.message }
+              </p>
+            </div>
+          }
+        </CSSTransitionGroup>
+        { children }
+      </div>
     )
   }
 
@@ -47,15 +54,25 @@ export class Flash extends React.Component {
     }
   }
 
+  getChildContext() {
+    const { onSet, onClear } = this.props
+    return {
+      flash: {
+        set: onSet,
+        clear: onClear
+      }
+    }
+  }
+
 }
 
 const mapStateToProps = state => ({
-  flash: state.session.flash
+  flash: state.flash
 })
 
 const mapDispatchToProps = {
-  onSet: actions.setFlash,
-  onClear: actions.clearFlash
+  onSet: actions.set,
+  onClear: actions.clear
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Flash)

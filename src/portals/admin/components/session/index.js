@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
-import Flash from './flash'
 import * as actions from './actions'
 
 class Session extends React.Component {
@@ -12,7 +11,8 @@ class Session extends React.Component {
   }
 
   static contextTypes = {
-    router: React.PropTypes.object
+    router: React.PropTypes.object,
+    flash: React.PropTypes.object
   }
 
   static propTypes = {
@@ -33,12 +33,7 @@ class Session extends React.Component {
 
   render() {
     const { children, status } = this.props
-    return (
-      <div>
-        <Flash />
-        { status !== 'pending' ? children : null }
-      </div>
-    )
+    return status !== 'pending' ? children : null
   }
 
   componentDidMount() {
@@ -55,7 +50,7 @@ class Session extends React.Component {
         if(token) {
           this.props.signin(token)
         } else if (!this._isExternalRoute()) {
-          this.props.setFlash('info', 'You must first signin to access this resource.')
+          this.context.flash.set('info', 'You must first signin to access this resource.')
           this.context.router.push('/admin/signin')
         }
       } else if(status === 'failure') {
@@ -63,7 +58,7 @@ class Session extends React.Component {
       } else if(status == 'active') {
         this.props.loadSession(token)
       } else if(status === 'signed_out') {
-        this.props.setFlash('info', 'You have been successfully signed out.')
+        this.context.flash.set('info', 'You have been successfully signed out.')
         this.context.router.push('/admin/signin')
       }
     }
@@ -75,13 +70,11 @@ class Session extends React.Component {
   }
 
   getChildContext() {
-    const { signout, setFlash, clearFlash, saveToken } = this.props
+    const { signout, saveToken } = this.props
     return {
       socket: this.socket,
       session: {
         saveToken,
-        setFlash,
-        clearFlash,
         signout
       }
     }
@@ -107,8 +100,6 @@ const mapDispatchToProps = {
   saveToken: actions.saveToken,
   signin: actions.signin,
   signout: actions.signout,
-  setFlash: actions.setFlash,
-  clearFlash: actions.clearFlash,
   loadSession: actions.loadSession
 }
 

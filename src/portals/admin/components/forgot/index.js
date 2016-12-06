@@ -7,8 +7,8 @@ import * as actions from './actions'
 export class Forgot extends React.Component {
 
   static contextTypes = {
-    router: React.PropTypes.object.isRequired,
-    session: React.PropTypes.object.isRequired
+    flash: React.PropTypes.object.isRequired,
+    router: React.PropTypes.object.isRequired
   }
 
   static propTypes = {
@@ -52,10 +52,10 @@ export class Forgot extends React.Component {
     const { status, error } = this.props
     if(prevProps.status !== status) {
       if(status == 'success') {
-        this.context.session.setFlash('info', 'Instructions for resetting your password have been emailed to you')
+        this.context.flash.set('info', 'Instructions for resetting your password have been emailed to you')
         this.context.router.push({ pathname: '/admin/signin', state: 'slide-back' })
       } else if(status == 'failure') {
-        this.context.session.setFlash('info', error)
+        this.context.flash.set('info', error)
       }
     }
   }

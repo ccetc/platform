@@ -2,20 +2,6 @@ import * as actionTypes from './action_types'
 import local from 'server/utils/local'
 import api from 'ui/utils/api'
 
-export function setFlash(style, message) {
-  return {
-    type: actionTypes.SET_FLASH,
-    style,
-    message
-  }
-}
-
-export function clearFlash() {
-  return {
-    type: actionTypes.CLEAR_FLASH
-  }
-}
-
 export function loadToken() {
   return local.get({
     key: 'token',

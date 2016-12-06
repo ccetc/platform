@@ -6,7 +6,7 @@ import Edit from './edit'
 class Show extends React.Component {
 
   static contextTypes = {
-    session: React.PropTypes.object
+    flash: React.PropTypes.object
   }
 
   render() {
@@ -37,11 +37,11 @@ class Show extends React.Component {
 const mapPropsToPage = (props, context) => {
 
   const _handleResetPassword = () => {
-    context.session.setFlash('success', 'A reset email has been sent to the user')
+    context.flash.set('success', 'A reset email has been sent to the user')
   }
 
   const _handleSignOutAllDevices = () => {
-    context.session.setFlash('success', 'The user has been signed out of all devices')
+    context.flash.set('success', 'The user has been signed out of all devices')
   }
 
   return {

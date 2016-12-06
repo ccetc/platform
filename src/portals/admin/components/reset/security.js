@@ -6,8 +6,8 @@ import * as actions from './actions'
 class Security extends React.Component {
 
   static contextTypes = {
-    router: React.PropTypes.object,
-    session: React.PropTypes.object
+    flash: React.PropTypes.object,
+    router: React.PropTypes.object
   }
 
   render() {
@@ -42,7 +42,7 @@ class Security extends React.Component {
       if(status === 'verified') {
         this.context.router.push('/admin/reset/password')
       } else if(status == 'failure') {
-        this.context.session.setFlash('info', error)
+        this.context.flash.set('info', error)
       }
     }
   }

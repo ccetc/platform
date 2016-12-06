@@ -3,6 +3,12 @@ import Form from 'ui/components/form'
 
 class Member extends React.Component {
 
+  static contextTypes = {
+    container: React.PropTypes.object,
+    modal: React.PropTypes.object,
+    router: React.PropTypes.object
+  }
+
   render() {
     return <Form {...this._getForm()} />
   }
@@ -10,6 +16,8 @@ class Member extends React.Component {
   _getForm() {
     return {
       title: 'Add Member',
+      onCancel: this.context.modal.close,
+      onSuccess: this._handleSuccess.bind(this),
       sections: [
         {
           fields: [
@@ -18,6 +26,11 @@ class Member extends React.Component {
         }
       ]
     }
+  }
+
+  _handleSuccess(project) {
+    this.context.container.refresh('members')
+    this.context.modal.close()
   }
 
 }

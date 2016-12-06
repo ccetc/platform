@@ -5,8 +5,8 @@ import * as actions from './actions'
 class Claim extends React.Component {
 
   static contextTypes = {
-    router: React.PropTypes.object,
-    session: React.PropTypes.object
+    flash: React.PropTypes.object,
+    router: React.PropTypes.object
   }
 
   render() {
@@ -35,7 +35,7 @@ class Claim extends React.Component {
           onClaim(token)
         }, 1500)
       } else if(status == 'failure') {
-        this.context.session.setFlash('info', error)
+        this.context.flash.set('info', error)
         this.context.router.push('/admin/forgot')
       } else if(status == 'claimed') {
         this.context.router.push('/admin/reset/security')

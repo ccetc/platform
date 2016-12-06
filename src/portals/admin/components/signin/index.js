@@ -7,6 +7,7 @@ import * as actions from './actions'
 export class Signin extends React.Component {
 
   static contextTypes = {
+    flash: React.PropTypes.object,
     session: React.PropTypes.object
   }
 
@@ -66,7 +67,7 @@ export class Signin extends React.Component {
         this.context.session.saveToken(token)
       } else if(status == 'failure') {
         $(this.refs.password).val('')
-        this.context.session.setFlash('info', error)
+        this.context.flash.set('info', error)
       }
     }
   }
