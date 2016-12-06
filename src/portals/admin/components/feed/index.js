@@ -85,6 +85,8 @@ export class Feed extends React.Component {
           </div>
         </div>
       )
+    } else if(status === 'completed' && records.length === 0) {
+      return <div>nada</div>
     } else {
       return null
     }

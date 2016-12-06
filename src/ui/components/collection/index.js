@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import multicomponent from 'ui/components/multicomponent'
 import Infinite from '../infinite'
 import Table from './table'
-import * as actions from './actions'
 
 class Collection extends React.Component {
 
@@ -36,12 +36,10 @@ class Container extends React.Component {
 
 }
 
-const mapStateToProps = state => ({
-  params: state.collection.params
+const mapStateToProps = (state, props) => ({
+  params: state.collection[props.cid].params
 })
 
-const mapDispatchToProps = {
-  onSort: actions.sort
-}
+Container = connect(mapStateToProps)(Container)
 
-export default connect(mapStateToProps, mapDispatchToProps)(Container)
+export default multicomponent(Container, 'collection')

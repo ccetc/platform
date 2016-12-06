@@ -84,7 +84,8 @@ class Table extends React.Component {
   }
 
   _handleSort(key) {
-    this.props.onSort(key)
+    const { cid, onSort } = this.props
+    onSort(cid, key)
   }
 
   _handleAddNew() {
@@ -93,8 +94,8 @@ class Table extends React.Component {
 
 }
 
-const mapStateToProps = state => ({
-  sort: state.collection.params.sort
+const mapStateToProps = (state, props) => ({
+  sort: state.collection[props.cid].params.sort
 })
 
 const mapDispatchToProps = {
