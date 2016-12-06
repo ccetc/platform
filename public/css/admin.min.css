@@ -1061,6 +1061,15 @@
 .chrome-search-result strong {
   color: #000;
 }
+.tabs .menu {
+  margin: 0 !important;
+}
+.tabs .item {
+  cursor: pointer;
+}
+.tabs .tab-pane {
+  padding: 20px;
+}
 .chrome-tasks-overlay {
   transition: opacity 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -webkit-transition: opacity 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
@@ -1168,6 +1177,34 @@
 .chrome-tasks-list .chrome-tasks-item:last-child {
   border-bottom: none;
 }
+.card {
+  border: none !important;
+  box-shadow: none !important;
+}
+.card div.image {
+  background: #EEE;
+  padding: 20px 0;
+}
+.card div.image img {
+  border: 5px solid #000;
+  width: 40%;
+  margin: 0 auto;
+}
+.card .ui.list {
+  padding: 0;
+}
+@media only screen and (max-width: 767px) {
+  .card .ui.list {
+    background-color: #FFF;
+  }
+}
+.card .item {
+  padding: 10px 20px !important;
+  color: #666;
+}
+.card .item .header {
+  color: #000;
+}
 .collection {
   width: 100%;
   display: flex;
@@ -1272,34 +1309,6 @@
     display: none;
   }
 }
-.card {
-  border: none !important;
-  box-shadow: none !important;
-}
-.card div.image {
-  background: #EEE;
-  padding: 20px 0;
-}
-.card div.image img {
-  border: 5px solid #000;
-  width: 40%;
-  margin: 0 auto;
-}
-.card .ui.list {
-  padding: 0;
-}
-@media only screen and (max-width: 767px) {
-  .card .ui.list {
-    background-color: #FFF;
-  }
-}
-.card .item {
-  padding: 10px 20px !important;
-  color: #666;
-}
-.card .item .header {
-  color: #000;
-}
 .form {
   flex: 1;
   display: flex;
@@ -1382,15 +1391,6 @@
   color: #AAAAAA;
   font-size: 1em;
   line-height: 1em;
-}
-.tabs .menu {
-  margin: 0 !important;
-}
-.tabs .item {
-  cursor: pointer;
-}
-.tabs .tab-pane {
-  padding: 20px;
 }
 .datefield .calendar.icon {
   margin: 0;

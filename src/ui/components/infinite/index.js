@@ -79,8 +79,7 @@ class Infinite extends React.Component {
     const el = this._container()
     const bottomScrollPos = el.scrollTop + el.offsetHeight
     const bottomPosition = (el.scrollHeight - bottomScrollPos)
-    const threshold = el.offsetHeight / 3
-    if (status === 'pending' || (bottomPosition < threshold && loaded < total)) {
+    if (status === 'pending' || (bottomPosition < 250 && loaded < total)) {
       this.props.onFetch(endpoint, { '$skip': loaded, $sort: sort })
     } else if(status === 'complete') {
       this._detachScrollListener()

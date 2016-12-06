@@ -9,12 +9,12 @@ import reset from './reset/reducer'
 import session from './session/reducer'
 import search from './search/reducer'
 import signin from './signin/reducer'
+import tabs from './tabs/reducer'
 import tasks from './tasks/reducer'
 
 import collection from 'ui/components/collection/reducer'
 import form from 'ui/components/form/reducer'
 import infinite from 'ui/components/infinite/reducer'
-import tabs from 'ui/components/tabs/reducer'
 
 const Reducer = (state, action) => {
 
