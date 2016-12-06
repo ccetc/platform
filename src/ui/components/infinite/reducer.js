@@ -1,13 +1,14 @@
+import multireducer from 'ui/components/multicomponent/multireducer'
 import * as actionTypes from './action_types'
 
-export const INITIAL_STATE = {
+const INITIAL_STATE = {
   status: 'pending',
   records: [],
   loaded: 0,
   total: 0
 }
 
-export default (state = INITIAL_STATE, action) => {
+export default multireducer((state = INITIAL_STATE, action) => {
 
   switch (action.type) {
 
@@ -38,4 +39,4 @@ export default (state = INITIAL_STATE, action) => {
     return state
   }
 
-}
+})

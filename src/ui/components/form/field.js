@@ -24,7 +24,7 @@ class Field extends React.Component {
   static defaultProps = {
     columns: [],
     data: {},
-    errors: [],
+    errors: {},
     fields: [],
     include: true,
     options: [],

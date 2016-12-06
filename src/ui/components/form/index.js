@@ -1,5 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
+import multicomponent from 'ui/components/multicomponent'
 import { connect } from 'react-redux'
 import { getDefaults, collectData } from './utils'
 import * as actions from './actions'
@@ -12,6 +13,7 @@ class Form extends React.Component {
   }
 
   static propTypes = {
+    cid: React.PropTypes.string,
     action: React.PropTypes.string,
     data: React.PropTypes.object,
     errors: React.PropTypes.object,
@@ -41,7 +43,6 @@ class Form extends React.Component {
 
   render() {
     const { title, instructions, status, sections, data, errors } = this.props
-    const { onUpdateData } = this.props
     let formClasses = ['ui', 'form', status]
     if(_.includes(['pending', 'submitting'], status)) {
       formClasses.push('loading')
@@ -74,7 +75,7 @@ class Form extends React.Component {
                                 data={data}
                                 errors={errors}
                                 key={`section_${index}`}
-                                onUpdateData={onUpdateData} />
+                                onUpdateData={this._handleUpdateData.bind(this)} />
               })}
             </div> :
             <div className="ui active centered inline loader" />
@@ -85,7 +86,8 @@ class Form extends React.Component {
   }
 
   componentDidMount() {
-    this.props.onSetSections(this.props.sections)
+    const { cid, sections, onSetSections } = this.props
+    onSetSections(cid, sections)
   }
 
   componentDidUpdate(prevProps) {
@@ -104,20 +106,25 @@ class Form extends React.Component {
   }
 
   _handleLoadData() {
-    const { endpoint, sections, onFetchData, onSetData } = this.props
+    const { cid, endpoint, sections, onFetchData, onSetData } = this.props
     if(endpoint) {
-      onFetchData(this.props.endpoint)
+      onFetchData(cid, endpoint)
     } else {
       const data = getDefaults(sections)
-      onSetData(data)
+      onSetData(cid, data)
     }
   }
 
+  _handleUpdateData(key, value) {
+    const { cid, onUpdateData } = this.props
+    onUpdateData(cid, key, value)
+  }
+
   _handleSubmit() {
-    const { action, data, method, sections, onSubmit, onSubmitForm } = this.props
+    const { cid, action, data, method, sections, onSubmit, onSubmitForm } = this.props
     let filtered = collectData(sections, data)
     if(action) {
-      onSubmitForm(method, action, filtered)
+      onSubmitForm(cid, method, action, filtered)
     } else if(onSubmit) {
       if(onSubmit(filtered)) {
         this._handleSuccess()
@@ -147,11 +154,11 @@ class Form extends React.Component {
 
 }
 
-const mapStateToProps = state => ({
-  data: state.form.data,
-  entity: state.form.entity,
-  errors: state.form.errors,
-  status: state.form.status
+const mapStateToProps = (state, props) => ({
+  data: state.form[props.cid].data,
+  entity: state.form[props.cid].entity,
+  errors: state.form[props.cid].errors,
+  status: state.form[props.cid].status
 })
 
 const mapDispatchToProps = {
@@ -162,4 +169,6 @@ const mapDispatchToProps = {
   onUpdateData: actions.updateData
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Form)
+Form = connect(mapStateToProps, mapDispatchToProps)(Form)
+
+export default multicomponent(Form, 'form')

@@ -1,5 +1,5 @@
 import * as actionTypes from './action_types'
-import local from 'server/utils/local'
+import local from 'ui/utils/local'
 import api from 'ui/utils/api'
 
 export function loadToken() {

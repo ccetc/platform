@@ -1,3 +1,4 @@
+import multireducer from 'ui/components/multicomponent/multireducer'
 import * as actionTypes from './action_types'
 import { validateForm } from './utils'
 
@@ -9,7 +10,7 @@ const INITIAL_STATE = {
   errors: {}
 }
 
-export default (state = INITIAL_STATE, action) => {
+export default multireducer((state = INITIAL_STATE, action) => {
 
   switch (action.type) {
 
@@ -92,4 +93,4 @@ export default (state = INITIAL_STATE, action) => {
     return state
 
   }
-}
+})

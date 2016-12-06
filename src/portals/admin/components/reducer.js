@@ -13,6 +13,7 @@ import signin from './signin/reducer'
 import tabs from './tabs/reducer'
 import tasks from './tasks/reducer'
 
+import multicomponent from 'ui/components/multicomponent/reducer'
 import collection from 'ui/components/collection/reducer'
 import form from 'ui/components/form/reducer'
 import infinite from 'ui/components/infinite/reducer'
@@ -41,23 +42,16 @@ const Reducer = (state, action) => {
 
   const namespace = action.type.split('/')[0]
 
-  if(reducers[namespace]) {
+  if(namespace === 'multicomponent') {
 
-    if(action.fid) {
-      return {
-        ...state,
-        [namespace]: {
-          ...state[namespace],
-          [action.fid]: reducers[namespace](state[namespace][action.fid], action)
-        }
-      }
-    } else {
-      return {
-        ...state,
-        [namespace]: reducers[namespace](state[namespace], action)
-      }
+    return multicomponent(state, action, reducers[action.namespace])
+
+  } else if(reducers[namespace]) {
+
+    return {
+      ...state,
+      [namespace]: reducers[namespace](state[namespace], action)
     }
-
 
   } else if(state === undefined) {
 
@@ -74,11 +68,11 @@ const Reducer = (state, action) => {
       session: session(undefined, action),
       search: search(undefined, action),
       signin: signin(undefined, action),
+      tabs: tabs(undefined, action),
       tasks: tasks(undefined, action),
       collection: collection(undefined, action),
       form: form(undefined, action),
-      infinite: infinite(undefined, action),
-      tabs: tabs(undefined, action)
+      infinite: infinite(undefined, action)
     }
 
   } else {

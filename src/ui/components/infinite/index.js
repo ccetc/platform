@@ -2,17 +2,19 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import _ from 'lodash'
 import { connect } from 'react-redux'
+import multicomponent from 'ui/components/multicomponent'
 import * as actions from './actions'
 
 class Infinite extends React.Component {
 
   static propTypes = {
-    endpoint: React.PropTypes.string.isRequired,
-    loaded: React.PropTypes.number.isRequired,
-    records: React.PropTypes.array.isRequired,
-    status: React.PropTypes.string.isRequired,
+    cid: React.PropTypes.string,
+    endpoint: React.PropTypes.string,
+    loaded: React.PropTypes.number,
+    records: React.PropTypes.array,
+    status: React.PropTypes.string,
     sort: React.PropTypes.string,
-    total: React.PropTypes.number.isRequired
+    total: React.PropTypes.number
   }
 
   render() {
@@ -22,18 +24,18 @@ class Infinite extends React.Component {
 
   componentDidMount() {
     const { endpoint, sort } = this.props
-    this.props.onFetch(endpoint, { '$skip': 0, $sort: sort })
+    this.props.onFetch(this.props.cid, endpoint, { '$skip': 0, $sort: sort })
   }
 
   componentDidUpdate(prevProps) {
-    const { endpoint, loaded, records, sort, status } = this.props
+    const { endpoint, sort, loaded, records, status } = this.props
     if(prevProps.sort != sort) {
-      this.props.onReset()
+      this.props.onReset(this.props.cid)
     } else if(prevProps.status != status) {
       if(status === 'loaded' && records.length > 0) {
         this._attachScrollListener()
       } else if(status === 'pending') {
-        this.props.onFetch(endpoint, { '$skip': loaded, $sort: sort })
+        this.props.onFetch(this.props.cid, endpoint, { '$skip': loaded, $sort: sort })
       }
     }
   }
@@ -46,7 +48,8 @@ class Infinite extends React.Component {
 
   _container() {
     if(!this.container) {
-      this.container = ReactDOM.findDOMNode(this).firstChild
+      const el = ReactDOM.findDOMNode(this)
+      this.container = (el) ? el.firstChild : null
     }
     return this.container
   }
@@ -60,8 +63,8 @@ class Infinite extends React.Component {
 
   _attachScrollListener() {
     const { status } = this.props
-    if(status == 'loading') return
     const el = this._container()
+    if(!el || status == 'loading') return
     el.addEventListener('scroll', this._listener(), true)
     el.addEventListener('resize', this._listener(), true)
     this._scrollListener()
@@ -69,18 +72,19 @@ class Infinite extends React.Component {
 
   _detachScrollListener() {
     const el = this._container()
+    if(!el) return
     el.removeEventListener('scroll', this._listener(), true)
     el.removeEventListener('resize', this._listener(), true)
   }
 
   _scrollListener() {
     const { endpoint, sort, loaded, status, total } = this.props
-    if(status == 'loading') return
     const el = this._container()
+    if(!el || status == 'loading') return
     const bottomScrollPos = el.scrollTop + el.offsetHeight
     const bottomPosition = (el.scrollHeight - bottomScrollPos)
     if (status === 'pending' || (bottomPosition < 250 && loaded < total)) {
-      this.props.onFetch(endpoint, { '$skip': loaded, $sort: sort })
+      this.props.onFetch(this.props.cid, endpoint, { '$skip': loaded, $sort: sort })
     } else if(status === 'complete') {
       this._detachScrollListener()
     }
@@ -88,11 +92,11 @@ class Infinite extends React.Component {
 
 }
 
-const mapStateToProps = state => ({
-  loaded: state.infinite.loaded,
-  records: state.infinite.records,
-  status: state.infinite.status,
-  total: state.infinite.total
+const mapStateToProps = (state, props) => ({
+  loaded: state.infinite[props.cid].loaded,
+  records: state.infinite[props.cid].records,
+  status: state.infinite[props.cid].status,
+  total: state.infinite[props.cid].total
 })
 
 const mapDispatchToProps = {
@@ -100,4 +104,6 @@ const mapDispatchToProps = {
   onReset: actions.reset
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Infinite)
+Infinite = connect(mapStateToProps, mapDispatchToProps)(Infinite)
+
+export default multicomponent(Infinite, 'infinite')
