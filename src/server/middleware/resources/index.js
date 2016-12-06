@@ -69,7 +69,6 @@ export default (options = {}) => {
       }).fetchAll(fetchOptions)
 
       Promise.all([count,paged]).then(response => {
-        console.log(response[0].toJSON())
         const total = parseInt(response[0].toJSON()[0].count)
 
         const data = response[1].map(record => {

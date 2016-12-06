@@ -64,7 +64,6 @@ class Infinite extends React.Component {
   }
 
   _attachScrollListener() {
-    console.log('attached')
     const { status } = this.props
     const el = this._container()
     if(!el || status == 'loading') return

@@ -91,7 +91,6 @@ export class Search extends React.Component {
   componentDidUpdate(prevProps) {
     const { choice } = this.props
     if(prevProps.choice !== choice) {
-      console.log(choice)
       this.context.router.push({ pathname: choice.route, state: 'static' })
       this.context.modal.close()
     }
