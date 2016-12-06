@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import multicomponent from 'ui/components/multicomponent'
+import multicomponent from 'ui/multicomponent'
 import Infinite from '../infinite'
 import Table from './table'
 

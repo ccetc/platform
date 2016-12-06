@@ -1,4 +1,4 @@
-import multireducer from 'ui/components/multicomponent/multireducer'
+import multireducer from 'ui/multireducer'
 import * as actionTypes from './action_types'
 
 export const INITIAL_STATE = {

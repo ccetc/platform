@@ -1,6 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
-import multicomponent from 'ui/components/multicomponent'
+import multicomponent from 'ui/multicomponent'
 import { connect } from 'react-redux'
 import { getDefaults, collectData } from './utils'
 import * as actions from './actions'

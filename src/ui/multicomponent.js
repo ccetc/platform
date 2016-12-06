@@ -1,19 +1,21 @@
 import React from 'react'
 import _ from 'lodash'
 import { connect } from 'react-redux'
-import * as actions from './actions'
+import { addComponent, removeComponent } from './reducer'
 
-export default (WrappedComponent, namespace) => {
+export default (WrappedComponent, namespace, singleton) => {
 
   class MutliComponent extends React.Component {
 
     constructor(props) {
       super(props)
-      this.cid = _.random(100000, 999999).toString(36)
+      this.cid = (!singleton) ? _.random(100000, 999999).toString(36) : null
     }
 
     render() {
-      if(this.props.state[namespace][this.cid]) {
+      if(singleton && this.props.state[namespace]) {
+        return <WrappedComponent {..._.omit(this.props, ['state'])} />
+      } else if(!singleton && this.props.state[namespace][this.cid]) {
         return <WrappedComponent cid={this.cid} {..._.omit(this.props, ['state'])} />
       } else  {
         return null
@@ -35,8 +37,8 @@ export default (WrappedComponent, namespace) => {
   })
 
   const mapDispatchToProps = {
-    onAddComponent: actions.addComponent,
-    onRemoveComponent: actions.removeComponent
+    onAddComponent: addComponent,
+    onRemoveComponent: removeComponent
   }
 
   return connect(mapStateToProps, mapDispatchToProps)(MutliComponent)

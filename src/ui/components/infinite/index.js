@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import _ from 'lodash'
 import { connect } from 'react-redux'
-import multicomponent from 'ui/components/multicomponent'
+import multicomponent from 'ui/multicomponent'
 import * as actions from './actions'
 
 class Infinite extends React.Component {
