@@ -53,21 +53,21 @@ export class Feed extends React.Component {
           <div className="chrome-feed-items">
             {records.map((item, index) => {
               let story = item.story.text
-              if(item.subject) {
-                story = story.replace('{subject}', `<span class="chrome-feed-item-subject">${item.subject.text}</span>`)
+              if(item.subject_text) {
+                story = story.replace('{subject}', `the ${item.subject_type} <span class="chrome-feed-item-subject">${item.subject_text}</span>`)
               }
-              if(item.object1) {
-                story = story.replace('{object1}', `<span class="chrome-feed-item-object">${item.object1.text}</span>`)
+              if(item.object1_text) {
+                story = story.replace('{object1}', `the ${item.object1_type} <span class="chrome-feed-item-object">${item.object1_text}</span>`)
               }
-              if(item.object2) {
-                story = story.replace('{object2}', `<span class="chrome-feed-item-object">${item.object2.text}</span>`)
+              if(item.object2_text) {
+                story = story.replace('{object2}', `the ${item.object2_type} <span class="chrome-feed-item-object">${item.object2_text}</span>`)
               }
               let classes = ['chrome-feed-item']
               if(item.is_read !== undefined && !item.is_read) {
                 classes.push('unread')
               }
               return (
-                <Link key={`item_${index}`} className={classes.join(' ')} to={{ pathname: item.subject.url, state: 'static' }} onClick={this.props.onChoose}>
+                <Link key={`item_${index}`} className={classes.join(' ')} to={{ pathname: item.url, state: 'static' }} onClick={this.props.onChoose}>
                   <div className="chrome-feed-item-avatar">
                     <img src={ item.user.photo } className="ui circular image" />
                   </div>

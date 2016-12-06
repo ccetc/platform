@@ -1,9 +1,10 @@
 import checkit from  'checkit'
 import bcrypt from 'bcrypt-nodejs'
-import asset from 'platform/models/asset'
-import security_question from 'platform/models/security_question'
 import bookshelf from 'server/services/bookshelf'
 import unique from 'server/utils/unique_validation'
+
+import Asset from 'platform/models/asset'
+import SecurityQuestion from 'platform/models/security_question'
 
 export default bookshelf.Model.extend({
 
@@ -18,15 +19,15 @@ export default bookshelf.Model.extend({
   },
 
   photo: function() {
-    return this.belongsTo(asset, 'photo_id')
+    return this.belongsTo(Asset, 'photo_id')
   },
 
   security_question_1: function() {
-    return this.belongsTo(security_question, 'security_question_1_id')
+    return this.belongsTo(SecurityQuestion, 'security_question_1_id')
   },
 
   security_question_2: function() {
-    return this.belongsTo(security_question, 'security_question_2_id')
+    return this.belongsTo(SecurityQuestion, 'security_question_2_id')
   },
 
   virtuals: {

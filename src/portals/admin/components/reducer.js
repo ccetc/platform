@@ -30,23 +30,23 @@ const Reducer = (state, action) => {
     session,
     search,
     signin,
+    tabs,
     tasks,
     collection,
-    form,
     infinite,
-    tabs
+    form
   }
 
   const namespace = action.type.split('/')[0]
 
   if(reducers[namespace]) {
 
-    if(action.cid) {
+    if(action.fid) {
       return {
         ...state,
         [namespace]: {
           ...state[namespace],
-          [action.cid]: reducers[namespace](state[namespace][action.cid], action)
+          [action.fid]: reducers[namespace](state[namespace][action.fid], action)
         }
       }
     } else {

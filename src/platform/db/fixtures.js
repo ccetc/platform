@@ -2023,4 +2023,42 @@ exports.seed = (knex, Promise) => {
       }
     ])
   })
+  .then(() => {
+    return knex('stories').del()
+  })
+  .then(() => {
+    return knex('stories').insert([
+      {
+        text: 'created {subject}'
+      }, {
+        text: 'created {subject} in {object1}'
+      }
+    ])
+  })
+  .then(() => {
+    return knex('activities').del()
+  })
+  .then(() => {
+    return knex('activities').insert([
+      {
+        instance_id: 1,
+        user_id: 1,
+        story_id: 1,
+        url: '/admin/reimbursement/projects/1',
+        subject_type: 'project',
+        subject_text: 'Primitive Pursuits',
+        created_at: '2016-04-01'
+      }, {
+        instance_id: 1,
+        user_id: 1,
+        story_id: 2,
+        url: '/admin/reimbursement/expenses',
+        subject_type: 'expense',
+        subject_text: 'food for party',
+        object1_type: 'project',
+        object1_text: 'Primitive Pursuits',
+        created_at: '2016-04-02'
+      }
+    ])
+  })
 }

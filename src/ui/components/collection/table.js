@@ -52,7 +52,7 @@ class Table extends React.Component {
           { status === 'loading' && <div className="loading">Loading...</div> }
         </div>
       )
-    } else if(status === 'loaded' && records.length === 0) {
+    } else if(status === 'completed' && records.length === 0) {
       return (
         <div className="table-empty">
           <div className="table-empty-message">
