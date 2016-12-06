@@ -36,6 +36,8 @@ class Infinite extends React.Component {
         this._attachScrollListener()
       } else if(status === 'pending') {
         this.props.onFetch(this.props.cid, endpoint, { '$skip': loaded, $sort: sort })
+      } else if(status === 'completed') {
+        this._detachScrollListener()
       }
     }
   }
@@ -62,6 +64,7 @@ class Infinite extends React.Component {
   }
 
   _attachScrollListener() {
+    console.log('attached')
     const { status } = this.props
     const el = this._container()
     if(!el || status == 'loading') return
@@ -71,6 +74,7 @@ class Infinite extends React.Component {
   }
 
   _detachScrollListener() {
+    console.log('dettached')
     const el = this._container()
     if(!el) return
     el.removeEventListener('scroll', this._listener(), true)
@@ -78,6 +82,7 @@ class Infinite extends React.Component {
   }
 
   _scrollListener() {
+    console.log('scrolling')
     const { endpoint, sort, loaded, status, total } = this.props
     const el = this._container()
     if(!el || status == 'loading') return
@@ -85,8 +90,6 @@ class Infinite extends React.Component {
     const bottomPosition = (el.scrollHeight - bottomScrollPos)
     if (status === 'pending' || (bottomPosition < 250 && loaded < total)) {
       this.props.onFetch(this.props.cid, endpoint, { '$skip': loaded, $sort: sort })
-    } else if(status === 'complete') {
-      this._detachScrollListener()
     }
   }
 

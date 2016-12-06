@@ -143,12 +143,14 @@ export default (options = {}) => {
           res.status(201).json(record)
 
         }).catch(err => {
+          console.log(err)
           const error = new Error({ code: 500, message: 'application error', errors: err.toJSON() })
           next(error)
         })
 
 
       }).catch(err => {
+        console.log(err)
         const error = new Error({ code: 500, message: 'application error', errors: err.toJSON() })
         next(error)
       })
@@ -169,12 +171,14 @@ export default (options = {}) => {
           res.status(201).json(record)
 
         }).catch(err => {
+          console.log(err)
           const error = new Error({ code: 500, message: 'application error', errors: err.toJSON() })
           next(error)
         })
 
 
       }).catch(err => {
+        console.log(err)
         const error = new Error({ code: 500, message: 'application error', errors: err.toJSON() })
         next(error)
       })
