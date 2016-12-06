@@ -8,10 +8,10 @@ class Infinite extends React.Component {
 
   static propTypes = {
     endpoint: React.PropTypes.string.isRequired,
-    sort: React.PropTypes.string.isRequired,
     loaded: React.PropTypes.number.isRequired,
     records: React.PropTypes.array.isRequired,
     status: React.PropTypes.string.isRequired,
+    sort: React.PropTypes.string,
     total: React.PropTypes.number.isRequired
   }
 

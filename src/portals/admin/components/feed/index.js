@@ -34,10 +34,10 @@ export class Container extends React.Component {
 export class Feed extends React.Component {
 
   static propTypes = {
-    loaded: React.PropTypes.number.isRequired,
-    records: React.PropTypes.array.isRequired,
-    status: React.PropTypes.string.isRequired,
-    total: React.PropTypes.number.isRequired,
+    loaded: React.PropTypes.number,
+    records: React.PropTypes.array,
+    status: React.PropTypes.string,
+    total: React.PropTypes.number,
     onChoose: React.PropTypes.func
   }
 

@@ -1,26 +1,16 @@
 import { Router } from 'express'
-// import Notification from 'platform/models/notification'
+import resources from 'server/middleware/resources'
+import Notification from 'platform/models/notification'
+import NotificationSerializer from 'platform/serializers/notification_serializer'
 
 const notifications = Router()
 
-notifications.get('/notifications', (req, res, next) => {
-  res.status(200).json({
-    data: [
-      { id: 1, is_read: false, story: { text: 'assigned the task {subject} to you' }, user: { id: 1, full_name: 'Ken Schlather', photo: '/images/ken.jpg'}, subject: { text: 'finish the platform', url: '/admin/reimbursement/projects/1' }, created_at: new Date() },
-      { id: 1, is_read: false, story: { text: 'assigned the task {subject} to you' }, user: { id: 1, full_name: 'Ken Schlather', photo: '/images/ken.jpg'}, subject: { text: 'finish the platform', url: '/admin/reimbursement/projects/1' }, created_at: new Date() },
-      { id: 1, is_read: false, story: { text: 'assigned the task {subject} to you' }, user: { id: 1, full_name: 'Ken Schlather', photo: '/images/ken.jpg'}, subject: { text: 'finish the platform', url: '/admin/reimbursement/projects/1' }, created_at: new Date() },
-      { id: 1, is_read: false, story: { text: 'assigned the task {subject} to you' }, user: { id: 1, full_name: 'Ken Schlather', photo: '/images/ken.jpg'}, subject: { text: 'finish the platform', url: '/admin/reimbursement/projects/1' }, created_at: new Date() },
-      { id: 1, is_read: true, story: { text: 'assigned the task {subject} to you' }, user: { id: 1, full_name: 'Ken Schlather', photo: '/images/ken.jpg'}, subject: { text: 'finish the platform', url: '/admin/reimbursement/projects/1' }, created_at: new Date() },
-      { id: 1, is_read: true, story: { text: 'assigned the task {subject} to you' }, user: { id: 1, full_name: 'Ken Schlather', photo: '/images/ken.jpg'}, subject: { text: 'finish the platform', url: '/admin/reimbursement/projects/1' }, created_at: new Date() },
-      { id: 1, is_read: true, story: { text: 'assigned the task {subject} to you' }, user: { id: 1, full_name: 'Ken Schlather', photo: '/images/ken.jpg'}, subject: { text: 'finish the platform', url: '/admin/reimbursement/projects/1' }, created_at: new Date() },
-      { id: 1, is_read: true, story: { text: 'assigned the task {subject} to you' }, user: { id: 1, full_name: 'Ken Schlather', photo: '/images/ken.jpg'}, subject: { text: 'finish the platform', url: '/admin/reimbursement/projects/1' }, created_at: new Date() },
-      { id: 1, is_read: true, story: { text: 'assigned the task {subject} to you' }, user: { id: 1, full_name: 'Ken Schlather', photo: '/images/ken.jpg'}, subject: { text: 'finish the platform', url: '/admin/reimbursement/projects/1' }, created_at: new Date() },
-      { id: 1, is_read: true, story: { text: 'assigned the task {subject} to you' }, user: { id: 1, full_name: 'Ken Schlather', photo: '/images/ken.jpg'}, subject: { text: 'finish the platform', url: '/admin/reimbursement/projects/1' }, created_at: new Date() }
-    ],
-    skip: 0,
-    limit: 10,
-    total: 100
-  })
-})
+notifications.use(resources({
+  name: 'notification',
+  path: 'notifications',
+  model: Notification,
+  serializer: NotificationSerializer,
+  include: ['story','user.photo']
+}))
 
 export default notifications
