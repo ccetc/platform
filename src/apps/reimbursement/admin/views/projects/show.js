@@ -1,6 +1,6 @@
 import React from 'react'
 import Card from 'ui/components/card'
-import Page from 'portals/admin/components/chrome/page'
+import Page from 'portals/admin/components/page'
 import Edit from './edit'
 import Member from './member'
 

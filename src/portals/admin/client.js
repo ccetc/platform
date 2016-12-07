@@ -23,7 +23,7 @@ import ResetPassword from './components/reset/password'
 import Signin from './components/signin'
 import InstanceApp from 'platform/apps/instance/admin/client'
 import ReimbursementApp from 'apps/reimbursement/admin/client'
-import NotFound from './components/not_found'
+import NotFound from './components/page/not_found'
 
 export default (
   <Route component={ Root }>

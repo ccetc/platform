@@ -1,6 +1,6 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import Search from './search'
+import Search from '../search'
 
 export class Forbidden extends React.Component {
 

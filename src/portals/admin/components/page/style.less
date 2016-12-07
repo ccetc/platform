@@ -1,0 +1,92 @@
+.chrome-panel {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  background-color: #FFF;
+}
+.chrome-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.chrome-header {
+  flex: 0 0 50px;
+  background-color: #EEE;
+  z-index: 3;
+  margin: 0;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-weight: normal;
+  display: flex;
+  @media only screen and (min-width: 768px) {
+    border-bottom: 5px solid #CCC;
+  }
+}
+.chrome-back,
+.chrome-more {
+  flex: 0 0 50px;
+}
+.chrome-back,
+.chrome-tasks,
+.chrome-task {
+  & > a {
+    display: block;
+    text-align: center;
+    padding: 16px;
+    font-size: 17px;
+    line-height: 18px;
+    color: #888;
+  }
+}
+.chrome-title {
+  flex: 1;
+  text-align: center;
+  font-size: 18px;
+  line-height: 50px;
+  color: #555;
+}
+.chrome-body {
+  box-shadow: inset 1px 1px 0 rgba(0,0,0,.1),inset 0 -1px 0 rgba(0,0,0,.07);
+  flex: 1;
+  display: flex;
+  @media only screen and (min-width: 768px) {
+    .chrome-sidebar {
+      flex: 0 0 300px;
+      background: #EEE;
+    }
+    .chrome-content {
+      flex: 1;
+      display: flex;
+    }
+  }
+  @media only screen and (max-width: 767px) {
+    flex-direction: column;
+  }
+}
+
+.chrome-error {
+  flex: 1;
+  display: flex;
+}
+.chrome-error-message {
+  margin: 20vh auto 0;
+  width: 320px;
+  text-align: center;
+  color: #CCC;
+  h2 {
+     font-size: 32px;
+     line-height: 48px;
+     margin-top: 0;
+  }
+  i {
+    font-size: 100px;
+    line-height: 100px;
+  }
+  .ui.button {
+    background-color: #FFF !important;
+  }
+}
