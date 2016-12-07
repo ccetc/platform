@@ -14,41 +14,62 @@
 .chrome-search-bar {
   flex: 0 0 50px;
   display: flex;
+  flex-direction: row;
   background-color: @primary_background_color;
-  .search.icon,
-  .remove.icon {
-    color: @primary_color;
-    margin: 15px 0;
-    flex: 0 0 50px;
-    cursor: pointer;
-    font-size: 18px;
-  }
-  .ui.input {
+  .chrome-search-form {
     flex: 1;
-    padding-right: 10px;
-    input {
-      padding: 12px 0 8px;
-      width: 100%;
-      border-radius: 0;
-      background-color: transparent;
+    padding: 8px;
+  }
+  .chrome-search-cancel {
+    flex: 0 0 60px;
+    padding: 15px 5px;
+    color: #FFF;
+  }
+  .chrome-search-input {
+    background: rgba(0, 0, 0, .2);
+    .border-radius(5px);
+    display: flex;
+    .search.icon {
       color: @primary_color;
-      border: none !important;
-      padding-left: 0;
-      padding-right: 0;
-      &::-webkit-input-placeholder {
-        color: lighten(@primary_color, -20%);
-      }
-      &:-moz-placeholder {
-        color: lighten(@primary_color, -20%);
-      }
-      &::-moz-placeholder {
-        color: lighten(@primary_color, -20%);
-      }
-      &::-webkit-input-placeholder,
-      &:-moz-placeholder,
-      &::-moz-placeholder,
-      &:-ms-input-placeholder {
-        color: lighten(@primary_color, -20%);
+      margin: 8px 0;
+      flex: 0 0 40px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    .remove.icon {
+      color: lighten(@primary_background_color, -30);
+      margin: 8px 0;
+      flex: 0 0 30px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    .ui.input {
+      flex: 1;
+      padding-right: 10px;
+      input {
+        padding: 8px;
+        width: 100%;
+        border-radius: 0;
+        background-color: transparent;
+        color: @primary_color;
+        border: none !important;
+        padding-left: 0;
+        padding-right: 0;
+        &::-webkit-input-placeholder {
+          color: lighten(@primary_color, -20%);
+        }
+        &:-moz-placeholder {
+          color: lighten(@primary_color, -20%);
+        }
+        &::-moz-placeholder {
+          color: lighten(@primary_color, -20%);
+        }
+        &::-webkit-input-placeholder,
+        &:-moz-placeholder,
+        &::-moz-placeholder,
+        &:-ms-input-placeholder {
+          color: lighten(@primary_color, -20%);
+        }
       }
     }
   }

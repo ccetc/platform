@@ -937,22 +937,48 @@
 .chrome-search-bar {
   flex: 0 0 50px;
   display: flex;
+  flex-direction: row;
   background-color: #DB2828;
 }
-.chrome-search-bar .search.icon,
-.chrome-search-bar .remove.icon {
+.chrome-search-bar .chrome-search-form {
+  flex: 1;
+  padding: 8px;
+}
+.chrome-search-bar .chrome-search-cancel {
+  flex: 0 0 60px;
+  padding: 15px 5px;
+  color: #FFF;
+}
+.chrome-search-bar .chrome-search-input {
+  background: rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  display: flex;
+}
+.chrome-search-bar .chrome-search-input .search.icon {
   color: #FFFFFF;
-  margin: 15px 0;
-  flex: 0 0 50px;
+  margin: 8px 0;
+  flex: 0 0 40px;
   cursor: pointer;
   font-size: 18px;
 }
-.chrome-search-bar .ui.input {
+.chrome-search-bar .chrome-search-input .remove.icon {
+  color: #5b0f0f;
+  margin: 8px 0;
+  flex: 0 0 30px;
+  cursor: pointer;
+  font-size: 18px;
+}
+.chrome-search-bar .chrome-search-input .ui.input {
   flex: 1;
   padding-right: 10px;
 }
-.chrome-search-bar .ui.input input {
-  padding: 12px 0 8px;
+.chrome-search-bar .chrome-search-input .ui.input input {
+  padding: 8px;
   width: 100%;
   border-radius: 0;
   background-color: transparent;
@@ -961,19 +987,19 @@
   padding-left: 0;
   padding-right: 0;
 }
-.chrome-search-bar .ui.input input::-webkit-input-placeholder {
+.chrome-search-bar .chrome-search-input .ui.input input::-webkit-input-placeholder {
   color: #cccccc;
 }
-.chrome-search-bar .ui.input input:-moz-placeholder {
+.chrome-search-bar .chrome-search-input .ui.input input:-moz-placeholder {
   color: #cccccc;
 }
-.chrome-search-bar .ui.input input::-moz-placeholder {
+.chrome-search-bar .chrome-search-input .ui.input input::-moz-placeholder {
   color: #cccccc;
 }
-.chrome-search-bar .ui.input input::-webkit-input-placeholder,
-.chrome-search-bar .ui.input input:-moz-placeholder,
-.chrome-search-bar .ui.input input::-moz-placeholder,
-.chrome-search-bar .ui.input input:-ms-input-placeholder {
+.chrome-search-bar .chrome-search-input .ui.input input::-webkit-input-placeholder,
+.chrome-search-bar .chrome-search-input .ui.input input:-moz-placeholder,
+.chrome-search-bar .chrome-search-input .ui.input input::-moz-placeholder,
+.chrome-search-bar .chrome-search-input .ui.input input:-ms-input-placeholder {
   color: #cccccc;
 }
 .chrome-search-model {

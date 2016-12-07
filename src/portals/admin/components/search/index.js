@@ -17,6 +17,7 @@ export class Search extends React.Component {
     choice: React.PropTypes.number,
     query: React.PropTypes.string,
     results: React.PropTypes.array,
+    onClearSearch: React.PropTypes.func.isRequired,
     onAbortSearch: React.PropTypes.func.isRequired,
     onCompleteSearch: React.PropTypes.func.isRequired,
     onLookup: React.PropTypes.func.isRequired
@@ -27,11 +28,18 @@ export class Search extends React.Component {
     return (
       <div className="chrome-search-panel">
         <div className="chrome-search-bar">
-          <i className="search icon" />
-          <div className="ui input">
-            <input type="text" placeholder="Search" ref="query" onChange={this._handleLookup.bind(this)} onBlur={this._handleBlur.bind(this)} value={query} />
+          <div className="chrome-search-form">
+            <div className="chrome-search-input">
+              <i className="search icon" />
+              <div className="ui input">
+                <input type="text" placeholder="Search" ref="query" onChange={this._handleLookup.bind(this)} onBlur={this._handleBlur.bind(this)} value={query} />
+              </div>
+              { query.length > 0 && <i className="remove circle icon" onClick={this._handleClearSearch.bind(this)} /> }
+            </div>
           </div>
-          <i className="remove icon" onClick={this._handleAbortSearch.bind(this)} />
+          <div className="chrome-search-cancel" onClick={this._handleAbortSearch.bind(this)}>
+            Cancel
+          </div>
         </div>
         { !results &&
           <div className="chrome-search-landing">
@@ -104,6 +112,10 @@ export class Search extends React.Component {
     }, 250)
   }
 
+  _handleClearSearch() {
+    this.props.onClearSearch()
+  }
+
   _handleAbortSearch() {
     this.context.modal.close()
   }
@@ -123,6 +135,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
+  onClearSearch: actions.clearSearch,
   onAbortSearch: actions.abortSearch,
   onCompleteSearch: actions.completeSearch,
   onLookup: actions.lookup

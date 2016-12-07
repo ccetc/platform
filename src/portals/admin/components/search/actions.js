@@ -1,6 +1,12 @@
 import * as actionTypes from './action_types'
 import api from 'ui/utils/api'
 
+export function clearSearch() {
+  return {
+    type: actionTypes.CLEAR_SEARCH
+  }
+}
+
 export function abortSearch() {
   return {
     type: actionTypes.ABORT_SEARCH
