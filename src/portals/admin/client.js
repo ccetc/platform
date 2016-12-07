@@ -23,6 +23,7 @@ import ResetPassword from './components/reset/password'
 import Signin from './components/signin'
 import InstanceApp from 'platform/apps/instance/admin/client'
 import ReimbursementApp from 'apps/reimbursement/admin/client'
+import NotFound from './components/not_found'
 
 export default (
   <Route component={ Root }>
@@ -53,6 +54,7 @@ export default (
                           <Route path="reimbursement">
                             {ReimbursementApp}
                           </Route>
+                          <Route path="*" component={ NotFound }/>
                         </Route>
                       </Route>
                     </Route>
