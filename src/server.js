@@ -44,7 +44,7 @@ app.use(exception)
 app.use('/jobs', queue.app)
 
 // public assets
-app.use(express.static('public'))
+app.use(express.static('www'))
 
 // admin routes
 app.get('/admin*', render(admin))
