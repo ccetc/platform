@@ -14,7 +14,8 @@ class Index extends React.Component {
 
   _getFeed() {
     return {
-      endpoint: '/admin/activities'
+      endpoint: '/admin/activities',
+      state: 'next'
     }
   }
 

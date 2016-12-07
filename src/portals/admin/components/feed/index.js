@@ -36,6 +36,7 @@ export class Feed extends React.Component {
   static propTypes = {
     loaded: React.PropTypes.number,
     records: React.PropTypes.array,
+    state: React.PropTypes.string,
     status: React.PropTypes.string,
     total: React.PropTypes.number,
     onChoose: React.PropTypes.func
@@ -46,7 +47,7 @@ export class Feed extends React.Component {
   }
 
   render() {
-    const { records, status } = this.props
+    const { records, status, state } = this.props
     if(records.length > 0) {
       return (
         <div className="chrome-feed">
@@ -67,7 +68,7 @@ export class Feed extends React.Component {
                 classes.push('unread')
               }
               return (
-                <Link key={`item_${index}`} className={classes.join(' ')} to={{ pathname: item.url, state: 'static' }} onClick={this.props.onChoose}>
+                <Link key={`item_${index}`} className={classes.join(' ')} to={{ pathname: item.url, state }} onClick={this.props.onChoose}>
                   <div className="chrome-feed-item-avatar">
                     <img src={ item.user.photo } className="ui circular image" />
                   </div>

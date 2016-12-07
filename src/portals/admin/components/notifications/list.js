@@ -32,8 +32,8 @@ class Index extends React.Component {
   _getFeed() {
     return {
       endpoint: '/admin/notifications',
+      state: 'static',
       onChoose: this._handleClose.bind(this)
-
     }
   }
 

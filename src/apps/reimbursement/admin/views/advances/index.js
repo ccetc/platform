@@ -24,7 +24,7 @@ class Index extends React.Component {
       sort: { key: 'created_at', order: 'desc' },
       entity: 'advance',
       empty: {
-        icon: 'dollar',
+        icon: 'arrow circle right',
         component: New
       },
       recordActions: [
