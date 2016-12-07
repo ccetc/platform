@@ -14,6 +14,7 @@ export default (pageProps) => {
       static contextTypes = {
         container: React.PropTypes.object,
         instance: React.PropTypes.object,
+        flash: React.PropTypes.object,
         modal: React.PropTypes.object,
         router: React.PropTypes.object,
         session: React.PropTypes.object,

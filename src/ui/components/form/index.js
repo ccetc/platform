@@ -1,6 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
-import multicomponent from 'ui/multicomponent'
+import component from 'ui/component'
 import { connect } from 'react-redux'
 import { getDefaults, collectData } from './utils'
 import * as actions from './actions'
@@ -169,6 +169,4 @@ const mapDispatchToProps = {
   onUpdateData: actions.updateData
 }
 
-Form = connect(mapStateToProps, mapDispatchToProps)(Form)
-
-export default multicomponent(Form, 'form')
+export default component(connect(mapStateToProps, mapDispatchToProps)(Form), 'form', false)

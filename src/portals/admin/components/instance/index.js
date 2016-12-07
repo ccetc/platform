@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import component from 'ui/component'
 import * as actions from './actions'
 
 class Instance extends React.Component {
@@ -51,4 +52,4 @@ const mapDispatchToProps = {
   load: actions.load
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Instance)
+export default component(connect(mapStateToProps, mapDispatchToProps)(Instance), 'instance', true)

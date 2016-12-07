@@ -5,21 +5,25 @@ import { addComponent, removeComponent } from './reducer'
 
 export default (WrappedComponent, namespace, singleton) => {
 
-  class MutliComponent extends React.Component {
+  class Component extends React.Component {
 
     constructor(props) {
       super(props)
       this.cid = (!singleton) ? _.random(100000, 999999).toString(36) : null
+      this.identifier = (singleton) ? namespace : `${namespace}-${this.cid}`
     }
 
     render() {
-      if(singleton && this.props.state[namespace]) {
-        return <WrappedComponent {..._.omit(this.props, ['state'])} />
-      } else if(!singleton && this.props.state[namespace][this.cid]) {
-        return <WrappedComponent cid={this.cid} {..._.omit(this.props, ['state'])} />
-      } else  {
-        return null
+      const { children, components } = this.props
+      if(components && _.includes(components, this.identifier)) {
+        const childProps = _.omit(this.props, ['components'])
+        if(singleton) {
+          return <WrappedComponent {...childProps}>{ children }</WrappedComponent>
+        } else {
+          return <WrappedComponent {...childProps} cid={this.cid}>{ children }</WrappedComponent>
+        }
       }
+      return null
     }
 
     componentDidMount() {
@@ -33,7 +37,7 @@ export default (WrappedComponent, namespace, singleton) => {
   }
 
   const mapStateToProps = state => ({
-    state
+    components: state.components
   })
 
   const mapDispatchToProps = {
@@ -41,6 +45,6 @@ export default (WrappedComponent, namespace, singleton) => {
     onRemoveComponent: removeComponent
   }
 
-  return connect(mapStateToProps, mapDispatchToProps)(MutliComponent)
+  return connect(mapStateToProps, mapDispatchToProps)(Component)
 
 }

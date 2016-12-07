@@ -2,6 +2,7 @@ import React from 'react'
 import _ from 'lodash'
 import Tab from './tab'
 import { connect } from 'react-redux'
+import component from 'ui/component'
 import * as actions from './actions'
 
 export class Tabs extends React.Component {
@@ -53,4 +54,4 @@ const mapDispatchToProps = {
   onChangeTab: actions.changeTab
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Tabs)
+export default component(connect(mapStateToProps, mapDispatchToProps)(Tabs), 'tabs', true)

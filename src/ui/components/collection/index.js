@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import multicomponent from 'ui/multicomponent'
+import component from 'ui/component'
 import Infinite from '../infinite'
 import Table from './table'
 
@@ -37,9 +37,7 @@ class Container extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  params: state.collection[props.cid].params
+  ...state.collection[props.cid]
 })
 
-Container = connect(mapStateToProps)(Container)
-
-export default multicomponent(Container, 'collection')
+export default component(connect(mapStateToProps)(Container), 'collection', false)

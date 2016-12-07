@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import component from 'ui/component'
 import * as actions from './actions'
 
 export class Notifications extends React.Component {
@@ -16,42 +17,45 @@ export class Notifications extends React.Component {
   }
 
   render() {
-    const { queue } = this.props
+    const { children, queue } = this.props
     return (
-      <div className="chrome-notifications">
-        { queue.length > 0 &&
-          <div className="ui raised segments">
-            { queue.map((notification, index) => {
-              return (
-                <div key={`notification_${index}`} className="ui segment">
-                  <i className="remove icon" onClick={this.readNotification.bind(this, notification.id)}></i>
-                  {notification.story.text}
-                </div>
-              )
-            })}
-          </div>
-        }
+      <div>
+        <div className="chrome-notifications">
+          { queue.length > 0 &&
+            <div className="ui raised segments">
+              { queue.map((notification, index) => {
+                return (
+                  <div key={`notification_${index}`} className="ui segment">
+                    <i className="remove icon" onClick={this.readNotification.bind(this, notification.id)}></i>
+                    {notification.story.text}
+                  </div>
+                )
+              })}
+            </div>
+          }
+        </div>
+        { children }
       </div>
     )
   }
 
   componentDidMount() {
-    this.context.socket.on('notification', (message) => {
-      this.props.onPushNotification(message)
-    })
+    // this.context.socket.on('notification', (message) => {
+    //   this.props.onPushNotification(message)
+    // })
   }
 
   componentWillUnmount() {
     // this.context.socket.unsubscribe(`/users/${this.context.session.user.id}/notifications`, this.pushNotification.bind(this))
   }
 
-  readNotification(id) {
-    this.props.onReadNotification(id)
-  }
-
-  pushNotification(payload) {
-    this.props.onPushNotification(payload.message)
-  }
+  // readNotification(id) {
+  //   this.props.onReadNotification(id)
+  // }
+  //
+  // pushNotification(payload) {
+  //   this.props.onPushNotification(payload.message)
+  // }
 
 }
 
@@ -64,4 +68,4 @@ const mapDispatchToProps = {
   onPushNotification: actions.pushNotification
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Notifications)
+export default component(connect(mapStateToProps, mapDispatchToProps)(Notifications), 'notifications', true)

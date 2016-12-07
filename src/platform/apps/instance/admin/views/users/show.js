@@ -5,10 +5,6 @@ import Edit from './edit'
 
 class Show extends React.Component {
 
-  static contextTypes = {
-    flash: React.PropTypes.object
-  }
-
   render() {
     return (
       <div className="chrome-body">

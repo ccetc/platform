@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import component from 'ui/component'
 import * as actions from './actions'
 
 class Claim extends React.Component {
@@ -52,4 +53,4 @@ const mapDispatchToProps = {
   onClaim: actions.claim
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Claim)
+export default component(connect(mapStateToProps, mapDispatchToProps)(Claim), 'claim', true)

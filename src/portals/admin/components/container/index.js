@@ -1,6 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 import { connect } from 'react-redux'
+import component from 'ui/component'
 import * as actions from './actions'
 
 class Container extends React.Component {
@@ -66,4 +67,4 @@ const mapDispatchToProps = {
   onClearResource: actions.clearResource
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Container)
+export default component(connect(mapStateToProps, mapDispatchToProps)(Container), 'container', true)

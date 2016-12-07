@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import component from 'ui/component'
 import $ from 'jquery'
 import _ from 'lodash'
 import * as actions from './actions'
@@ -117,7 +118,9 @@ export class Search extends React.Component {
 
 }
 
-const mapStateToProps = state => state.search
+const mapStateToProps = state => ({
+  ...state.search
+})
 
 const mapDispatchToProps = {
   onAbortSearch: actions.abortSearch,
@@ -125,4 +128,4 @@ const mapDispatchToProps = {
   onLookup: actions.lookup
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search)
+export default component(connect(mapStateToProps, mapDispatchToProps)(Search), 'search', true)

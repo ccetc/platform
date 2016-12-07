@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import component from 'ui/component'
 import _ from 'lodash'
 import * as actions from './actions'
 
@@ -103,4 +104,4 @@ const mapDispatchToProps = {
   loadSession: actions.loadSession
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Session)
+export default component(connect(mapStateToProps, mapDispatchToProps)(Session), 'session', true)

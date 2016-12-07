@@ -10,6 +10,7 @@ class Panel extends React.Component {
       </div>
     )
   }
+  
   shouldComponentUpdate(nextProps, nextState) {
     return false
   }

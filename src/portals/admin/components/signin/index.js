@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import component from 'ui/component'
 import { Link } from  'react-router'
 import $ from 'jquery'
 import * as actions from './actions'
@@ -90,4 +91,4 @@ const mapDispatchToProps = {
   onSetup: actions.setup
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Signin)
+export default component(connect(mapStateToProps, mapDispatchToProps)(Signin), 'signin', true)

@@ -1,4 +1,3 @@
-import multireducer from 'ui/multireducer'
 import * as actionTypes from './action_types'
 
 const INITIAL_STATE = {
@@ -8,7 +7,7 @@ const INITIAL_STATE = {
   total: 0
 }
 
-export default multireducer((state = INITIAL_STATE, action) => {
+export default (state = INITIAL_STATE, action) => {
 
   switch (action.type) {
 
@@ -39,4 +38,4 @@ export default multireducer((state = INITIAL_STATE, action) => {
     return state
   }
 
-})
+}

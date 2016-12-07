@@ -3,8 +3,8 @@ import collection from 'ui/components/collection/reducer'
 import form from 'ui/components/form/reducer'
 import infinite from 'ui/components/infinite/reducer'
 
-const ADD_COMPONENT: string = 'multicomponent/ADD_COMPONENT'
-const REMOVE_COMPONENT: string = 'multicomponent/REMOVE_COMPONENT'
+const ADD_COMPONENT: string = 'component/ADD_COMPONENT'
+const REMOVE_COMPONENT: string = 'component/REMOVE_COMPONENT'
 
 export const addComponent = (namespace, cid) => {
   let action = {
@@ -34,39 +34,83 @@ export default (applicationReducers) => {
     infinite
   }
 
-  return (state, action) => {
+  const INITIAL_STATE = {
+    components: []
+  }
+
+  return (state = INITIAL_STATE, action) => {
 
     const namespace = action.type.split('/')[0]
+    const identifier = (action.cid) ? `${action.namespace}-${action.cid}` : action.namespace
 
     if(action.type == ADD_COMPONENT) {
 
-      return  {
-        ...state,
-        [action.namespace]: reducers[action.namespace](state[action.namespace], { type: null, cid: action.cid })
+      if(action.cid) {
+
+        return {
+          ...state,
+          [action.namespace]: {
+            ...state[action.namespace],
+            [action.cid]: reducers[action.namespace](undefined, action)
+          },
+          components: [
+            ...state.components,
+            identifier
+          ]
+        }
+
+      } else {
+
+        return {
+          ...state,
+          [action.namespace]: reducers[action.namespace](undefined, action),
+          components: [
+            ...state.components,
+            identifier
+          ]
+        }
+
       }
 
     } else if(action.type == REMOVE_COMPONENT) {
 
-      return  {
-        ...state,
-        [action.namespace]: _.omit(state[action.namespace], action.cid)
+      if(action.cid) {
+
+        return  {
+          ...state,
+          [action.namespace]: _.omit(state[action.namespace], action.cid),
+          components: _.pull(state.components, identifier)
+        }
+
+      } else {
+
+        return  {
+          ..._.omit(state, action.namespace),
+          components: _.pull(state.components, identifier)
+        }
+
       }
 
     } else if(reducers[namespace]) {
 
-      return {
-        ...state,
-        [namespace]: reducers[namespace](state[namespace], action)
-      }
+      if(action.cid) {
 
-    } else if(state === undefined) {
-
-      return Object.keys(reducers).reduce((state, key) => {
         return {
           ...state,
-          [key]: reducers[key](undefined, action)
+          [namespace]: {
+            ...state[namespace],
+            [action.cid]: reducers[namespace](state[namespace][action.cid], action)
+          }
         }
-      }, {})
+
+      } else {
+
+        return {
+          ...state,
+          [namespace]: reducers[namespace](state[namespace], action)
+        }
+
+      }
 
     } else {
 
