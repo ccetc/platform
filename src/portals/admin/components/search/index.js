@@ -17,7 +17,7 @@ export class Search extends React.Component {
     choice: React.PropTypes.number,
     query: React.PropTypes.string,
     results: React.PropTypes.array,
-    onClearSearch: React.PropTypes.func.isRequired,
+    onResetSearch: React.PropTypes.func.isRequired,
     onAbortSearch: React.PropTypes.func.isRequired,
     onCompleteSearch: React.PropTypes.func.isRequired,
     onLookup: React.PropTypes.func.isRequired
@@ -34,7 +34,7 @@ export class Search extends React.Component {
               <div className="ui input">
                 <input type="text" placeholder="Search" ref="query" onChange={this._handleLookup.bind(this)} onBlur={this._handleBlur.bind(this)} value={query} />
               </div>
-              { query.length > 0 && <i className="remove circle icon" onClick={this._handleClearSearch.bind(this)} /> }
+              { query.length > 0 && <i className="remove circle icon" onClick={this._handleResetSearch.bind(this)} /> }
             </div>
           </div>
           <div className="chrome-search-cancel" onClick={this._handleAbortSearch.bind(this)}>
@@ -112,8 +112,8 @@ export class Search extends React.Component {
     }, 250)
   }
 
-  _handleClearSearch() {
-    this.props.onClearSearch()
+  _handleResetSearch() {
+    this.props.onResetSearch()
   }
 
   _handleAbortSearch() {
@@ -135,7 +135,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  onClearSearch: actions.clearSearch,
+  onResetSearch: actions.ResetSearch,
   onAbortSearch: actions.abortSearch,
   onCompleteSearch: actions.completeSearch,
   onLookup: actions.lookup

@@ -11,11 +11,8 @@ export default (state = INITIAL_STATE, action) => {
 
   switch (action.type) {
 
-  case actionTypes.CLEAR_SEARCH:
-    return {
-      ...state,
-      query: ''
-    }
+  case actionTypes.RESET_SEARCH:
+    return INITIAL_STATE
 
   case actionTypes.ABORT_SEARCH:
     return {

@@ -1,9 +1,9 @@
 import * as actionTypes from './action_types'
 import api from 'ui/utils/api'
 
-export function clearSearch() {
+export function resetSearch() {
   return {
-    type: actionTypes.CLEAR_SEARCH
+    type: actionTypes.RESET_SEARCH
   }
 }
 
