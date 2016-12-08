@@ -10,8 +10,14 @@ class Drawer extends React.Component {
     drawer: React.PropTypes.object
   }
 
-  static propTypes = {
+  static contextTypes = {
+    cordova: React.PropTypes.object
+  }
 
+  static propTypes = {
+    drawer: React.PropTypes.object,
+    open: React.PropTypes.func,
+    close: React.PropTypes.func
   }
 
   render() {
@@ -32,16 +38,21 @@ class Drawer extends React.Component {
   }
 
   getChildContext() {
-    const { open, close } = this.props
     return {
       drawer: {
-        open,
-        close
+        open: this._handleOpenDrawer.bind(this),
+        close: this._handleCloseDrawer.bind(this)
       }
     }
   }
 
+  _handleOpenDrawer(component, location) {
+    this.context.cordova.hideStatusBar()
+    this.props.open(component, location)
+  }
+
   _handleCloseDrawer() {
+    this.context.cordova.showStatusBar()
     this.props.close()
   }
 

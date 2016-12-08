@@ -20,6 +20,24 @@ class Cordova extends React.Component {
     return <div>{ children }</div>
   }
 
+  componentDidUpdate(prevProps) {
+    const { status_bar } = this.props
+    try {
+      if(status_bar !== prevProps.status_bar) {
+        this._handleStatusBar.bind(this)
+      }
+    } catch(err) {}
+  }
+
+  _handleStatusBar() {
+    const { status_bar } = this.props
+    if(status_bar) {
+      StatusBar.show()
+    } else  {
+      StatusBar.hide()
+    }
+  }
+
   getChildContext() {
     const { hideStatusBar, showStatusBar } = this.props
     return {
