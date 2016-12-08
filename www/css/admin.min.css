@@ -1458,6 +1458,9 @@ body.cordova .chrome-topbar {
   padding-top: 15px;
   height: 65px;
 }
+body.cordova .chrome-flash {
+  padding-top: 30px;
+}
 body.cordova .chrome-navigation-title {
   height: 65px;
   padding-top: 15px;
@@ -1480,12 +1483,19 @@ body.cordova .chrome-search-bar .chrome-search-form {
 body.cordova .chrome-search-bar .chrome-search-cancel {
   padding-top: 30px;
 }
+body.cordova .chrome-search-landing,
+body.cordova .chrome-search-results {
+  top: 65px;
+}
 body.cordova .form-header {
   flex: 0 0 65px;
 }
 body.cordova .form-header .form-header-title,
 body.cordova .form-header a {
   padding-top: 30px;
+}
+body.cordova .chrome-notifications-header {
+  flex: 0 0 65px;
 }
 body.cordova .chrome-notifications-header .chrome-notifications-header-title,
 body.cordova .chrome-notifications-header a {

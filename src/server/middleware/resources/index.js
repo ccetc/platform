@@ -17,7 +17,7 @@ export default (options = {}) => {
 
       const limit = parseInt(req.query['$limit']) || 50
       const skip = parseInt(req.query['$skip']) || 0
-      const sort = req.query['$sort'] || null
+      const sort = req.query['$sort'] || _.get(options, 'find.query.$sort') || null
 
       const filters = {
         ...req.query,

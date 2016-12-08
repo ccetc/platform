@@ -18,7 +18,12 @@ admin.use(resources({
   path: 'activities',
   model: Activity,
   serializer: ActivitySerializer,
-  include: ['story','user.photo']
+  include: ['story','user.photo'],
+  find: {
+    query: {
+      $sort: '-created_at'
+    }
+  }
 }))
 
 admin.use(resources({

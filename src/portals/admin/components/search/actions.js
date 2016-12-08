@@ -7,6 +7,12 @@ export function resetSearch() {
   }
 }
 
+export function focusSearch() {
+  return {
+    type: actionTypes.FOCUS_SEARCH
+  }
+}
+
 export function abortSearch() {
   return {
     type: actionTypes.ABORT_SEARCH

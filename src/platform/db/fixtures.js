@@ -2058,6 +2058,128 @@ exports.seed = (knex, Promise) => {
         object1_type: 'project',
         object1_text: 'Primitive Pursuits',
         created_at: '2016-04-02'
+      }, {
+        instance_id: 1,
+        user_id: 95,
+        story_id: 2,
+        url: '/admin/reimbursement/expenses',
+        subject_type: 'expense',
+        subject_text: 'food for party',
+        object1_type: 'project',
+        object1_text: 'Primitive Pursuits',
+        created_at: '2016-04-02'
+      }, {
+        instance_id: 1,
+        user_id: 49,
+        story_id: 2,
+        url: '/admin/reimbursement/expenses',
+        subject_type: 'expense',
+        subject_text: 'food for party',
+        object1_type: 'project',
+        object1_text: 'Primitive Pursuits',
+        created_at: '2016-04-02'
+      }, {
+        instance_id: 1,
+        user_id: 54,
+        story_id: 1,
+        url: '/admin/reimbursement/projects/2',
+        subject_type: 'project',
+        subject_text: 'Eat Smart New York',
+        created_at: '2016-04-03'
+      }, {
+        instance_id: 1,
+        user_id: 19,
+        story_id: 1,
+        url: '/admin/reimbursement/projects/3',
+        subject_type: 'project',
+        subject_text: 'Website Platform',
+        created_at: '2016-04-03'
+      }, {
+        instance_id: 1,
+        user_id: 13,
+        story_id: 2,
+        url: '/admin/reimbursement/expenses',
+        subject_type: 'expense',
+        subject_text: 'food for party',
+        object1_type: 'project',
+        object1_text: 'Eat Smart New York',
+        created_at: '2016-04-04'
+      }, {
+        instance_id: 1,
+        user_id: 13,
+        story_id: 2,
+        url: '/admin/reimbursement/expenses',
+        subject_type: 'expense',
+        subject_text: 'website hosting',
+        object1_type: 'project',
+        object1_text: 'Eat Smart New York',
+        created_at: '2016-04-04'
+      }, {
+        instance_id: 1,
+        user_id: 48,
+        story_id: 2,
+        url: '/admin/reimbursement/expenses',
+        subject_type: 'expense',
+        subject_text: 'website hosting',
+        object1_type: 'project',
+        object1_text: 'Eat Smart New York',
+        created_at: '2016-04-05'
+      }, {
+        instance_id: 1,
+        user_id: 13,
+        story_id: 2,
+        url: '/admin/reimbursement/expenses',
+        subject_type: 'expense',
+        subject_text: 'website hosting',
+        object1_type: 'project',
+        object1_text: 'Eat Smart New York',
+        created_at: '2016-04-05'
+      }, {
+        instance_id: 1,
+        user_id: 21,
+        story_id: 1,
+        url: '/admin/reimbursement/projects/3',
+        subject_type: 'project',
+        subject_text: 'Website Platform',
+        created_at: '2016-04-05'
+      }, {
+        instance_id: 1,
+        user_id: 21,
+        story_id: 1,
+        url: '/admin/reimbursement/projects/3',
+        subject_type: 'project',
+        subject_text: 'Website Platform',
+        created_at: '2016-04-05'
+      }, {
+        instance_id: 1,
+        user_id: 49,
+        story_id: 2,
+        url: '/admin/reimbursement/expenses',
+        subject_type: 'expense',
+        subject_text: 'food for party',
+        object1_type: 'project',
+        object1_text: 'Primitive Pursuits',
+        created_at: '2016-04-06'
+      }, {
+        instance_id: 1,
+        user_id: 64,
+        story_id: 2,
+        url: '/admin/reimbursement/expenses',
+        subject_type: 'expense',
+        subject_text: 'food for party',
+        object1_type: 'project',
+        object1_text: 'Primitive Pursuits',
+        created_at: '2016-04-07'
+      }, {
+        instance_id: 1,
+        user_id: 49,
+        story_id: 2,
+        url: '/admin/reimbursement/expenses',
+        subject_type: 'expense',
+        subject_text: 'food for party',
+        object1_type: 'project',
+        object1_text: 'Primitive Pursuits',
+        created_at: '2016-04-08'
       }
     ])
   })

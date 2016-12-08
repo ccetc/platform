@@ -15,6 +15,7 @@ export class Search extends React.Component {
   static propTypes = {
     active: React.PropTypes.bool.isRequired,
     choice: React.PropTypes.number,
+    focused: React.PropTypes.bool,
     query: React.PropTypes.string,
     results: React.PropTypes.array,
     onResetSearch: React.PropTypes.func.isRequired,
@@ -24,15 +25,15 @@ export class Search extends React.Component {
   }
 
   render() {
-    const { results, query } = this.props
+    const { focused, results, query } = this.props
     return (
-      <div className="chrome-search-panel">
+      <div className={ focused ? 'chrome-search-panel focused' : 'chrome-search-panel' }>
         <div className="chrome-search-bar">
           <div className="chrome-search-form">
             <div className="chrome-search-input">
               <i className="search icon" />
               <div className="ui input">
-                <input type="text" placeholder="Search" ref="query" onChange={this._handleLookup.bind(this)} onBlur={this._handleBlur.bind(this)} value={query} />
+                <input type="text" placeholder="Search" ref="query" onChange={this._handleLookup.bind(this)} onFocus={this._handleFocus.bind(this)} onBlur={this._handleBlur.bind(this)} value={query} />
               </div>
               { query.length > 0 && <i className="remove circle icon" onClick={this._handleResetSearch.bind(this)} /> }
             </div>
@@ -94,7 +95,7 @@ export class Search extends React.Component {
     const query = $(this.refs.query)
     window.setTimeout(function() {
       query.focus()
-    }, 500)
+    }, 600)
   }
 
   componentDidUpdate(prevProps) {
@@ -103,6 +104,10 @@ export class Search extends React.Component {
       this.context.router.push({ pathname: choice.route, state: 'static' })
       this.context.modal.close()
     }
+  }
+
+  _handleFocus() {
+    this.props.onFocusSearch()
   }
 
   _handleBlur() {
@@ -135,10 +140,11 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  onResetSearch: actions.ResetSearch,
   onAbortSearch: actions.abortSearch,
   onCompleteSearch: actions.completeSearch,
-  onLookup: actions.lookup
+  onFocusSearch: actions.focusSearch,
+  onLookup: actions.lookup,
+  onResetSearch: actions.resetSearch
 }
 
 export default component(connect(mapStateToProps, mapDispatchToProps)(Search), 'search', true)
