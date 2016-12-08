@@ -22,9 +22,6 @@ export class Navigation extends React.Component {
     return (
       <div className="chrome-navigation-panel">
         <div className="chrome-navigation-title">
-          <div className="chrome-navigation-close">
-            <i className="remove icon" onClick={this._handleCloseDrawer.bind(this)} />
-          </div>
           <h3>Apps</h3>
         </div>
         <div className="chrome-apps">

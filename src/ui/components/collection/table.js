@@ -49,7 +49,6 @@ class Table extends React.Component {
               })}
             </div>
           </div>
-          { status === 'loading' && <div className="loading">Loading...</div> }
         </div>
       )
     } else if(status === 'completed' && records.length === 0) {
@@ -60,6 +59,14 @@ class Table extends React.Component {
             <h3>No {_.startCase(pluralize(entity.replace('_', ' ')))}</h3>
             <p>You have not yet created any {pluralize(entity.replace('_', ' '))}.</p>
             { empty.component && <div className="ui basic button red" onClick={ this._handleAddNew.bind(this)}><i className="plus icon" /> Create New {_.startCase(entity.replace('_', ' '))}</div> }
+          </div>
+        </div>
+      )
+    } else if(status === 'loading') {
+      return (
+        <div className="chrome-loader">
+          <div className="ui active inverted dimmer">
+            <div className="ui large text loader">Loading</div>
           </div>
         </div>
       )

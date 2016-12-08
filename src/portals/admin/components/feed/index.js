@@ -52,7 +52,7 @@ export class Feed extends React.Component {
       return (
         <div className="chrome-feed">
           <div className="chrome-feed-items">
-            {records.map((item, index) => {
+            { records.map((item, index) => {
               let story = item.story.text
               if(item.subject_text) {
                 story = story.replace('{subject}', `the ${item.subject_type} <span class="chrome-feed-item-subject">${item.subject_text}</span>`)
@@ -82,12 +82,19 @@ export class Feed extends React.Component {
                 </Link>
               )
             })}
-            { status === 'loading' && <div className="loading">Loading...</div> }
           </div>
         </div>
       )
     } else if(status === 'completed' && records.length === 0) {
       return <div>nada</div>
+    } else if(status === 'loading') {
+      return (
+        <div className="chrome-loader">
+          <div className="ui active inverted dimmer">
+            <div className="ui large text loader">Loading</div>
+          </div>
+        </div>
+      )
     } else {
       return null
     }

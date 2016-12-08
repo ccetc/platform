@@ -72,8 +72,10 @@ export default (pageProps) => {
               </div>
             </div>
             { resources && status === 'loading' &&
-              <div className="ui active inverted dimmer">
-                <div className="ui large text loader">Loading</div>
+              <div className="chrome-loader">
+                <div className="ui active inverted dimmer">
+                  <div className="ui large text loader">Loading</div>
+                </div>
               </div>
             }
             { resources && status === 'failure' &&

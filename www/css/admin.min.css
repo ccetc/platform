@@ -157,7 +157,7 @@
 }
 .chrome-account-identity {
   background: #EEE;
-  padding: 45px 0;
+  padding: 48px 0;
   position: relative;
 }
 .chrome-account-identity img {
@@ -172,21 +172,6 @@
 .chrome-account-identity p {
   text-align: center;
   margin: 0;
-  color: #888;
-}
-.chrome-account-identity .chrome-account-close {
-  position: absolute;
-  right: 0;
-  top: 0;
-  cursor: pointer;
-  width: 50px;
-  height: 50px;
-  font-size: 18px;
-  padding: 11px;
-  display: flex;
-}
-.chrome-account-identity .chrome-account-close i {
-  margin: auto;
   color: #888;
 }
 .chrome-account-task {
@@ -674,21 +659,6 @@
   color: #FFF;
   text-align: center;
 }
-.chrome-navigation-title .chrome-navigation-close {
-  position: absolute;
-  left: 0;
-  top: 0;
-  cursor: pointer;
-  width: 50px;
-  height: 50px;
-  font-size: 18px;
-  padding: 11px;
-  display: flex;
-}
-.chrome-navigation-title .chrome-navigation-close i {
-  margin: auto;
-  color: #EEE;
-}
 .chrome-apps {
   flex: 1;
   overflow-y: scroll;
@@ -899,6 +869,10 @@
 }
 .chrome-error-message .ui.button {
   background-color: #FFF !important;
+}
+.chrome-loader {
+  flex: 1;
+  position: relative;
 }
 .chrome-search-panel {
   transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
@@ -1465,14 +1439,8 @@ body.cordova .chrome-navigation-title {
   height: 65px;
   padding-top: 15px;
 }
-body.cordova .chrome-navigation-title .chrome-navigation-close {
-  top: 15px;
-}
 body.cordova .chrome-account-identity {
-  padding-top: 60px;
-}
-body.cordova .chrome-account-identity .chrome-account-close {
-  top: 15px;
+  padding-top: 63px;
 }
 body.cordova .chrome-search-bar {
   flex: 0 0 65px;

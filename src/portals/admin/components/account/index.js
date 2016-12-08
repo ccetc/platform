@@ -16,9 +16,6 @@ export class Account extends React.Component {
     return (
       <div className="chrome-account-panel">
         <div className="chrome-account-identity">
-          <div className="chrome-account-close">
-            <i className="remove icon" onClick={this._handleCloseDrawer.bind(this)} />
-          </div>
           <img src={user.photo} className="ui image circular" />
           <h2>{user.name}</h2>
           <p>{user.email}</p>
