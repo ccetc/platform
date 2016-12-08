@@ -12,7 +12,6 @@ import logger from 'server/middleware/logger'
 import render from 'server/middleware/render'
 import server from 'portals/server'
 import admin from 'portals/admin/client'
-
 import job from 'platform/jobs/send_email'
 
 // create app
