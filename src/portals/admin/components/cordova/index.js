@@ -24,7 +24,7 @@ class Cordova extends React.Component {
     const { status_bar } = this.props
     try {
       if(status_bar !== prevProps.status_bar) {
-        this._handleStatusBar.bind(this)
+        this._handleStatusBar()
       }
     } catch(err) {}
   }
@@ -32,9 +32,9 @@ class Cordova extends React.Component {
   _handleStatusBar() {
     const { status_bar } = this.props
     if(status_bar) {
-      StatusBar.show()
+      window.StatusBar.show()
     } else  {
-      StatusBar.hide()
+      window.StatusBar.hide()
     }
   }
 
