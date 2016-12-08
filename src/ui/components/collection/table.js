@@ -49,6 +49,13 @@ class Table extends React.Component {
               })}
             </div>
           </div>
+          { status === 'loading' &&
+            <div className="chrome-infinite-loader">
+              <div className="ui active inverted dimmer">
+                <div className="ui small loader"></div>
+              </div>
+            </div>
+          }
         </div>
       )
     } else if(status === 'completed' && records.length === 0) {

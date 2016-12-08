@@ -1,4 +1,5 @@
 (function() {
+  document.addEventListener("touchstart", function(){}, true);
   if (location.search === '?native') {
     var ma = document.createElement('script');
     ma.type = 'text/javascript';
