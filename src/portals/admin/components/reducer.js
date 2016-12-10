@@ -2,6 +2,7 @@ import reducer from 'ui/reducer'
 
 import container from './container/reducer'
 import cordova from './cordova/reducer'
+import electron from './electron/reducer'
 import drawer from './drawer/reducer'
 import flash from './flash/reducer'
 import forgot from './forgot/reducer'
@@ -19,6 +20,7 @@ import tasks from './tasks/reducer'
 const reducers = {
   container,
   cordova,
+  electron,
   drawer,
   flash,
   forgot,
