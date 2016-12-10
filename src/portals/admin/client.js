@@ -36,16 +36,6 @@ export default (
           <Route component={ Flash }>
             <Route component={ Session }>
               <Route component={ Container }>
-                <Route component={ Transition }>
-                  <Route component={ Layout }>
-                    <Route component={ Signin } path="admin/signin" />
-                    <Route component={ Forgot } path="admin/forgot" />
-                    <Route component={ Activation } path="admin/activation/:id" />
-                    <Route component={ ResetSecurity } path="admin/reset/security" />
-                    <Route component={ ResetPassword } path="admin/reset/password" />
-                    <Route component={ ResetClaim } path="admin/reset/:id" />
-                  </Route>
-                </Route>
                 <Route component={ Notifications }>
                   <Route component={ Socket }>
                     <Route component={ Modal }>
@@ -77,3 +67,28 @@ export default (
     </Route>
   </Route>
 )
+
+// <Route component={ Root }>
+//   <Route component={ Cordova }>
+//     <Route component={ Electron }>
+//       <Route component={ Instance }>
+//         <Route component={ Flash }>
+//           <Route component={ Session }>
+//             <Route component={ Container }>
+//               <Route component={ Transition }>
+//                 <Route component={ Layout }>
+//                   <Route component={ Signin } path="admin/signin" />
+//                   <Route component={ Forgot } path="admin/forgot" />
+//                   <Route component={ Activation } path="admin/activation/:id" />
+//                   <Route component={ ResetSecurity } path="admin/reset/security" />
+//                   <Route component={ ResetPassword } path="admin/reset/password" />
+//                   <Route component={ ResetClaim } path="admin/reset/:id" />
+//                 </Route>
+//               </Route>
+//             </Route>
+//           </Route>
+//         </Route>
+//       </Route>
+//     </Route>
+//   </Route>
+// </Route>

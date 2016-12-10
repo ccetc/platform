@@ -7,7 +7,6 @@ import * as actions from './actions'
 class Session extends React.Component {
 
   static childContextTypes = {
-    socket: React.PropTypes.object,
     session: React.PropTypes.object
   }
 
@@ -27,8 +26,7 @@ class Session extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      redirect: '/admin',
-      socket: null
+      redirect: '/admin'
     }
   }
 
@@ -51,16 +49,18 @@ class Session extends React.Component {
         if(token) {
           this.props.signin(token)
         } else if (!this._isExternalRoute()) {
-          this.context.flash.set('info', 'You must first signin to access this resource.')
-          this.context.router.push('/admin/signin')
+          window.location.href = '/admin/signin'
+          // this.context.flash.set('info', 'You must first signin to access this resource.')
+          // this.context.router.push('/admin/signin')
         }
       } else if(status === 'failure') {
         this.props.signout()
       } else if(status == 'active') {
         this.props.loadSession(token)
       } else if(status === 'signed_out') {
-        this.context.flash.set('info', 'You have been successfully signed out.')
-        this.context.router.push('/admin/signin')
+        window.location.href = '/admin/signin'
+        // this.context.flash.set('info', 'You have been successfully signed out.')
+        // this.context.router.push('/admin/signin')
       }
     }
     if(this.props.user !== user && user) {
