@@ -5,8 +5,8 @@ import website from 'portals/public/server'
 
 const router = Router()
 
-router.use('/api/admin', admin)
-router.use('/api/account', account)
+router.use(admin)
+router.use(account)
 router.use('/api', website)
 
 export default router

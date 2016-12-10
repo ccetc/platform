@@ -4,7 +4,8 @@ exports.seed = (knex, Promise) => {
     return knex('instances').insert([
       {
         title: 'MyCCE',
-        subtitle: 'Cornell Cooperative Extension of Tompkins County'
+        subtitle: 'Cornell Cooperative Extension of Tompkins County',
+        auth_strategy: 'cornell'
       }
     ])
   })

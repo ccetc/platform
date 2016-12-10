@@ -1,9 +1,9 @@
 export default (err, req, res, next) => {
 
-  if(err) {
+  if(err.code) {
     res.status(err.code()).json(err)
   } else {
-    next()
+    res.status(500).json(err)
   }
 
 }

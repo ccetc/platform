@@ -4,6 +4,7 @@ import authentication from 'server/middleware/authentication'
 import activation from 'server/middleware/activation'
 import signin from 'server/middleware/signin'
 import reset from 'server/middleware/reset'
+import extAuthentication from './middleware/authentication'
 import sessionService from './middleware/session'
 import searchService from './middleware/search'
 import instanceService from './middleware/instance'
@@ -13,38 +14,40 @@ import path from 'path'
 
 const admin = Router()
 
+admin.use('/admin', extAuthentication)
+
 // load instance
-admin.use(instance)
-admin.use(instanceService)
+admin.use('/api/admin', instance)
+admin.use('/api/admin', instanceService)
 
 // signin
-admin.use(signin)
+admin.use('/api/admin', signin)
 
 // account activation
-admin.use(activation)
+admin.use('/api/admin', activation)
 
 // password reset
-admin.use(reset)
+admin.use('/api/admin', reset)
 
 // authentication
-admin.use(authentication)
+admin.use('/api/admin', authentication)
 
 // core admin api
-admin.use(notificationsService)
-admin.use(sessionService)
-admin.use(searchService)
+admin.use('/api/admin', notificationsService)
+admin.use('/api/admin', sessionService)
+admin.use('/api/admin', searchService)
 
 // app routes
 fs.readdirSync(path.join(__dirname, '../../platform/apps')).filter(function(app) {
   const server = path.join(__dirname, '../../platform/apps', app, 'admin/server.js')
   if(fs.existsSync(server)) {
-    admin.use(require(server).default)
+    admin.use('/api/admin', require(server).default)
   }
 })
 fs.readdirSync(path.join(__dirname, '../../apps')).filter(function(app) {
   const server = path.join(__dirname, '../../apps', app, 'admin/server.js')
   if(fs.existsSync(server)) {
-    admin.use(`/${app}`, require(server).default)
+    admin.use(`/api/admin/${app}`, require(server).default)
   }
 })
 
