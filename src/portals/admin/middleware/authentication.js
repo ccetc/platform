@@ -2,6 +2,7 @@ import { Router } from 'express'
 import jwt from 'server/services/jwt'
 import passport from 'passport'
 import instance from 'server/middleware/instance'
+import User from 'platform/models/user'
 
 const SAMLStrategy = require('passport-saml').Strategy
 const GoogleStrategy = require('passport-google-oauth20').Strategy
@@ -50,7 +51,7 @@ const authenticate = (req, res, next) => {
     const googleConfig = {
       clientID: '145859176057-sainn11sroqfsf3eg8vl5qqregnf4agm.apps.googleusercontent.com',
       clientSecret: 'VuN69Tbo5uyF08zQZ3zvOE6B',
-      callbackURL: 'http://localhost:3000/signin/callback'
+      callbackURL: 'http://localhost:8080/admin/signin/callback'
     }
 
     passport.use(new GoogleStrategy(googleConfig, (accessToken, refreshToken, profile, done) => {
@@ -66,11 +67,16 @@ const authenticate = (req, res, next) => {
 
 const loadUserByEmail = (email, done) => {
 
-  if(email === 'gmk8@cornell.edu') {
-    return done(null, { id: 1, full_name: 'Greg Kops' })
-  } else {
-    return done('error')
-  }
+  return User.where({ email }).fetch().then(user => {
+
+    if(!user) {
+      return done(null, false, { message: 'cannot find user' })
+    }
+
+    return done(null, user)
+
+  })
+
 
 }
 
