@@ -73,7 +73,6 @@ class Session extends React.Component {
   getChildContext() {
     const { signout, saveToken } = this.props
     return {
-      socket: this.socket,
       session: {
         saveToken,
         signout

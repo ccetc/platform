@@ -14,6 +14,7 @@ import reset from './reset/reducer'
 import session from './session/reducer'
 import search from './search/reducer'
 import signin from './signin/reducer'
+import socket from './socket/reducer'
 import tabs from './tabs/reducer'
 import tasks from './tasks/reducer'
 
@@ -32,6 +33,7 @@ const reducers = {
   session,
   search,
   signin,
+  socket,
   tabs,
   tasks
 }

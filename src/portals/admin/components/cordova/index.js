@@ -20,6 +20,12 @@ class Cordova extends React.Component {
     return <div>{ children }</div>
   }
 
+  componentDidMount() {
+    if(this.props.location.query.cordova) {
+      this.props.onEnable()
+    }
+  }
+
   componentDidUpdate(prevProps) {
     const { status_bar } = this.props
     try {
@@ -55,6 +61,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
+  onEnable: actions.enable,
   hideStatusBar: actions.hideStatusBar,
   showStatusBar: actions.hideStatusBar
 }

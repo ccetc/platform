@@ -11,6 +11,7 @@ import Panel from './components/panel'
 import Activation from './components/activation'
 import Chrome from './components/chrome'
 import Notifications from './components/notifications'
+import Socket from './components/socket'
 import Modal from './components/modal'
 import Drawer from './components/drawer'
 import Tasks from './components/tasks'
@@ -46,19 +47,21 @@ export default (
                   </Route>
                 </Route>
                 <Route component={ Notifications }>
-                  <Route component={ Modal }>
-                    <Route component={ Drawer }>
-                      <Route component={ Tasks }>
-                        <Route component={ Chrome } path="admin">
-                          <Route component={ Transition }>
-                            <Route component={ Panel }>
-                              <IndexRoute component={ Dashboard } />
-                              <Route component={ NotificationsList } path="notifications" />
-                              {InstanceApp}
-                              <Route path="reimbursement">
-                                {ReimbursementApp}
+                  <Route component={ Socket }>
+                    <Route component={ Modal }>
+                      <Route component={ Drawer }>
+                        <Route component={ Tasks }>
+                          <Route component={ Chrome } path="admin">
+                            <Route component={ Transition }>
+                              <Route component={ Panel }>
+                                <IndexRoute component={ Dashboard } />
+                                <Route component={ NotificationsList } path="notifications" />
+                                {InstanceApp}
+                                <Route path="reimbursement">
+                                  {ReimbursementApp}
+                                </Route>
+                                <Route path="*" component={ NotFound }/>
                               </Route>
-                              <Route path="*" component={ NotFound }/>
                             </Route>
                           </Route>
                         </Route>

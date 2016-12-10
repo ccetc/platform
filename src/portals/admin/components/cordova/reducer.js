@@ -9,7 +9,7 @@ export default (state = INITIAL_STATE, action) => {
 
   switch (action.type) {
 
-  case actionTypes.SET_ENABLED:
+  case actionTypes.ENABLE:
     return {
       ...state,
       enabled: true

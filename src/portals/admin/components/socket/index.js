@@ -1,12 +1,13 @@
 import React from 'react'
+import SocketClient from 'socket.io-client'
 import { connect } from 'react-redux'
 import component from 'ui/component'
 import * as actions from './actions'
 
-class Electron extends React.Component {
+class Socket extends React.Component {
 
   static childContextTypes = {
-    electron: React.PropTypes.object
+    socket: React.PropTypes.object
   }
 
   static propTypes = {
@@ -18,15 +19,12 @@ class Electron extends React.Component {
   }
 
   componentDidMount() {
-    if(this.props.location.query.electron) {
-      this.props.onEnable()
-    }
+    this.socket = SocketClient()
   }
 
   getChildContext() {
     return {
-      electron: {
-      }
+      socket: this.socket
     }
   }
 
@@ -36,7 +34,6 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  onEnable: actions.enable
 }
 
-export default component(connect(mapStateToProps, mapDispatchToProps)(Electron), 'electron', true)
+export default component(connect(mapStateToProps, mapDispatchToProps)(Socket), 'socket', true)

@@ -1,7 +1,7 @@
 import * as actionTypes from './action_types'
 
-export function setEnabled() {
+export function enable() {
   return {
-    type: actionTypes.SET_ENABLED
+    type: actionTypes.ENABLE
   }
 }
