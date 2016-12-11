@@ -5,3 +5,16 @@ export function enable() {
     type: actionTypes.ENABLE
   }
 }
+
+export function pushNotification(message) {
+  return {
+    type: actionTypes.PUSH_NOTIFICATION,
+    message
+  }
+}
+
+export function clearNotification() {
+  return {
+    type: actionTypes.CLEAR_NOTIFICATION
+  }
+}

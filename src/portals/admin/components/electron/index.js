@@ -28,9 +28,21 @@ class Electron extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    const { notification, clearNotification } = this.props
+    if(prevProps.notification !== notification && notification !== null) {
+      new Notification('Title', {
+        body: notification
+      })
+      clearNotification()
+    }
+  }
+
   getChildContext() {
+    const { pushNotification } = this.props
     return {
       electron: {
+        pushNotification
       }
     }
   }
@@ -38,11 +50,14 @@ class Electron extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  enabled: state.electron.enabled
+  enabled: state.electron.enabled,
+  notification: state.electron.notification
 })
 
 const mapDispatchToProps = {
-  onEnable: actions.enable
+  onEnable: actions.enable,
+  pushNotification: actions.pushNotification,
+  clearNotification: actions.clearNotification
 }
 
 export default component(connect(mapStateToProps, mapDispatchToProps)(Electron), 'electron', true)

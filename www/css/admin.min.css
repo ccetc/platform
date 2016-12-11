@@ -747,7 +747,7 @@
   font-weight: bold;
 }
 .chrome-notifications-header-proceed {
-  flex: 0 0 50px;
+  flex: 0 0 70px;
   text-align: right;
 }
 .chrome-notifications-body {
@@ -835,6 +835,7 @@
   color: #555;
 }
 .chrome-body {
+  height: 1px;
   flex: 1;
   display: flex;
 }
@@ -932,6 +933,7 @@
   flex: 0 0 60px;
   padding: 15px 5px;
   color: #FFF;
+  cursor: pointer;
 }
 .chrome-search-bar .chrome-search-input {
   background: rgba(0, 0, 0, 0.2);
@@ -1335,7 +1337,7 @@
   cursor: pointer;
 }
 .form-header-cancel {
-  flex: 0 0 50px;
+  flex: 0 0 70px;
 }
 .form-header-title {
   flex: 1;
@@ -1345,7 +1347,7 @@
   font-weight: bold;
 }
 .form-header-proceed {
-  flex: 0 0 50px;
+  flex: 0 0 70px;
   text-align: right;
 }
 .form-body {

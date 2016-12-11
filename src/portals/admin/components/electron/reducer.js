@@ -1,7 +1,8 @@
 import * as actionTypes from './action_types'
 
 export const INITIAL_STATE = {
-  enabled: false
+  enabled: false,
+  notification: null
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -12,6 +13,18 @@ export default (state = INITIAL_STATE, action) => {
     return {
       ...state,
       enabled: true
+    }
+
+  case actionTypes.PUSH_NOTIFICATION:
+    return {
+      ...state,
+      notification: action.message
+    }
+
+  case actionTypes.CLEAR_NOTIFICATION:
+    return {
+      ...state,
+      notification: null
     }
 
   default:
