@@ -86,7 +86,7 @@ const redirect = (req, res) => {
 }
 
 const authentication = express()
-authentication.set('views', path.resolve(__dirname))
+authentication.set('views', path.join('.', 'src', 'portals', 'admin', 'middleware','authentication'))
 authentication.set('view engine', 'ejs')
 
 authentication.use(instance)
