@@ -10,11 +10,16 @@ class Electron extends React.Component {
   }
 
   static propTypes = {
+    enabled: React.PropTypes.bool.isRequired
   }
 
   render() {
-    const { children } = this.props
-    return <div>{ children }</div>
+    const { children, enabled } = this.props
+    return (
+      <div className={ enabled ? 'electron' : null }>
+        { children }
+      </div>
+    )
   }
 
   componentDidMount() {
@@ -33,6 +38,7 @@ class Electron extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  enabled: state.electron.enabled
 })
 
 const mapDispatchToProps = {

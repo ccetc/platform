@@ -10,14 +10,19 @@ class Cordova extends React.Component {
   }
 
   static propTypes = {
+    enabled: React.PropTypes.bool.isRequired,
     status_bar: React.PropTypes.bool.isRequired,
     hideStatusBar: React.PropTypes.func.isRequired,
     showStatusBar: React.PropTypes.func.isRequired
   }
 
   render() {
-    const { children } = this.props
-    return <div>{ children }</div>
+    const { children, enabled } = this.props
+    return (
+      <div className={ enabled ? 'cordova' : null }>
+        { children }
+      </div>
+    )
   }
 
   componentDidMount() {
@@ -57,6 +62,7 @@ class Cordova extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  enabled: state.cordova.enabled,
   status_bar: state.cordova.status_bar
 })
 

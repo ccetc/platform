@@ -1434,47 +1434,47 @@
 .project-members .project-member p strong {
   color: #000;
 }
-body.cordova .chrome-panel {
+.cordova .chrome-panel {
   top: 65px;
 }
-body.cordova .chrome-topbar {
+.cordova .chrome-topbar {
   padding-top: 15px;
   height: 65px;
 }
-body.cordova .chrome-flash {
+.cordova .chrome-flash {
   padding-top: 30px;
 }
-body.cordova .chrome-navigation-title {
+.cordova .chrome-navigation-title {
   height: 65px;
   padding-top: 15px;
 }
-body.cordova .chrome-account-identity {
+.cordova .chrome-account-identity {
   padding-top: 63px;
 }
-body.cordova .chrome-search-bar {
+.cordova .chrome-search-bar {
   flex: 0 0 65px;
 }
-body.cordova .chrome-search-bar .chrome-search-form {
+.cordova .chrome-search-bar .chrome-search-form {
   padding-top: 23px;
 }
-body.cordova .chrome-search-bar .chrome-search-cancel {
+.cordova .chrome-search-bar .chrome-search-cancel {
   padding-top: 30px;
 }
-body.cordova .chrome-search-landing,
-body.cordova .chrome-search-results {
+.cordova .chrome-search-landing,
+.cordova .chrome-search-results {
   top: 65px;
 }
-body.cordova .form-header {
+.cordova .form-header {
   flex: 0 0 65px;
 }
-body.cordova .form-header .form-header-title,
-body.cordova .form-header a {
+.cordova .form-header .form-header-title,
+.cordova .form-header a {
   padding-top: 30px;
 }
-body.cordova .chrome-notifications-header {
+.cordova .chrome-notifications-header {
   flex: 0 0 65px;
 }
-body.cordova .chrome-notifications-header .chrome-notifications-header-title,
-body.cordova .chrome-notifications-header a {
+.cordova .chrome-notifications-header .chrome-notifications-header-title,
+.cordova .chrome-notifications-header a {
   padding-top: 30px;
 }
