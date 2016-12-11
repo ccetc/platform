@@ -1,4 +1,5 @@
-import { Router } from 'express'
+import path from 'path'
+import express from 'express'
 import jwt from 'server/services/jwt'
 import passport from 'passport'
 import instance from 'server/middleware/instance'
@@ -80,21 +81,22 @@ const loadUserByEmail = (email, done) => {
 
 }
 
-const authentication = Router()
+const redirect = (req, res) => {
+  res.redirect('/admin/signin/success')
+}
+
+const authentication = express()
+authentication.set('views', path.resolve(__dirname))
+authentication.set('view engine', 'ejs')
 
 authentication.use(instance)
-
-authentication.get('/signin', authenticate, (req, res) => {
-  res.redirect('/admin/signin/success')
+authentication.get('/signin', (req, res) => {
+  res.render('signin', {})
 })
 
-authentication.get('/signin/callback', authenticate, (req, res) => {
-  res.redirect('/admin/signin/success')
-})
-
-authentication.post('/signin/callback', authenticate, (req, res) => {
-  res.redirect('/admin/signin/success')
-})
+authentication.get('/signin/redirect', authenticate, redirect)
+authentication.get('/signin/callback', authenticate, redirect)
+authentication.post('/signin/callback', authenticate, redirect)
 
 authentication.get('/signin/success', (req, res) => {
   const two_weeks = 60 * 60 * 24 * 7 * 2
