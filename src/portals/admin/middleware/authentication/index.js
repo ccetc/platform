@@ -86,6 +86,7 @@ const redirect = (req, res) => {
 }
 
 const authentication = express()
+
 authentication.set('views', path.join('.', 'src', 'portals', 'admin', 'middleware','authentication'))
 authentication.set('view engine', 'ejs')
 
@@ -101,7 +102,7 @@ authentication.post('/signin/callback', authenticate, redirect)
 authentication.get('/signin/success', (req, res) => {
   const two_weeks = 60 * 60 * 24 * 7 * 2
   const token = jwt.encode({ user_id: 1 }, two_weeks)
-  res.send(`<script src="/js/localforage.min.js"></script><script>localforage.config({ name: 'platform',storeName: 'cache' });localforage.setItem('token', '${token}').then(function () { window.location.href="/admin"; });</script>`)
+  res.render('success', { token })
 })
 
 export default authentication

@@ -1,0 +1,15 @@
+<% include header %>
+
+<script src="/js/localforage.min.js"></script>
+
+<script>
+  localforage.config({
+    name: 'platform',
+    storeName: 'cache'
+  });
+  localforage.setItem('token', '<%= token %>').then(function () {
+    window.location.href="/admin";
+  });
+</script>
+
+<% include footer %>
