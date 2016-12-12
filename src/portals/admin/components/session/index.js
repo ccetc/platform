@@ -49,9 +49,8 @@ class Session extends React.Component {
         if(token) {
           this.props.signin(token)
         } else if (!this._isExternalRoute()) {
-          window.location.href = '/admin/signin'
-          // this.context.flash.set('info', 'You must first signin to access this resource.')
-          // this.context.router.push('/admin/signin')
+          this.context.flash.set('info', 'You must first signin to access this resource.')
+          this.context.router.push('/admin/signin')
         }
       } else if(status === 'failure') {
         this.props.signout()
@@ -59,8 +58,8 @@ class Session extends React.Component {
         this.props.loadSession(token)
       } else if(status === 'signed_out') {
         window.location.href = '/admin/signin'
-        // this.context.flash.set('info', 'You have been successfully signed out.')
-        // this.context.router.push('/admin/signin')
+        this.context.flash.set('info', 'You have been successfully signed out.')
+        this.context.router.push('/admin/signin')
       }
     }
     if(this.props.user !== user && user) {

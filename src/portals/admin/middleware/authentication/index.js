@@ -91,9 +91,6 @@ authentication.set('views', path.join('.', 'src', 'portals', 'admin', 'middlewar
 authentication.set('view engine', 'ejs')
 
 authentication.use(instance)
-authentication.get('/signin', (req, res) => {
-  res.render('signin', {})
-})
 
 authentication.get('/signin/redirect', authenticate, redirect)
 authentication.get('/signin/callback', authenticate, redirect)

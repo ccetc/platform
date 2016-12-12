@@ -213,124 +213,6 @@
   margin: auto;
   text-align: center;
 }
-.chrome-session.chrome-signin {
-  transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -webkit-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -moz-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -ms-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-}
-.chrome-session.chrome-signin.expanded-appear,
-.chrome-session.chrome-signin.expanded-enter,
-.chrome-session.chrome-signin.expanded-leave.expanded-leave-active {
-  -webkit-transform: translateX(-100%);
-  -moz-transform: translateX(-100%);
-  -ms-transform: translateX(-100%);
-  -o-transform: translateX(-100%);
-  transform: translateX(-100%);
-}
-.chrome-session.chrome-signin.expanded-appear.expanded-appear-active,
-.chrome-session.chrome-signin.expanded-enter.expanded-enter-active,
-.chrome-session.chrome-signin.expanded-leave {
-  -webkit-transform: translateX(0);
-  -moz-transform: translateX(0);
-  -ms-transform: translateX(0);
-  -o-transform: translateX(0);
-  transform: translateX(0);
-}
-.chrome-session.chrome-signin .ui.form .email-field {
-  margin-bottom: 0;
-}
-.chrome-session.chrome-signin .ui.form .email-field input {
-  -webkit-border-radius: 0.28571429rem 0.28571429rem 0 0;
-  -moz-border-radius: 0.28571429rem 0.28571429rem 0 0;
-  border-radius: 0.28571429rem 0.28571429rem 0 0;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-  border-width: 0 0 1px 0;
-  border-color: #DDD;
-}
-.chrome-session.chrome-signin .ui.form .password-field input {
-  -webkit-border-radius: 0 0 0.28571429rem 0.28571429rem;
-  -moz-border-radius: 0 0 0.28571429rem 0.28571429rem;
-  border-radius: 0 0 0.28571429rem 0.28571429rem;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-  border: 0px;
-}
-.chrome-session.chrome-forgot {
-  transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -webkit-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -moz-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -ms-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-}
-.chrome-session.chrome-forgot.expanded-appear,
-.chrome-session.chrome-forgot.expanded-enter,
-.chrome-session.chrome-forgot.expanded-leave.expanded-leave-active {
-  -webkit-transform: translateX(100%);
-  -moz-transform: translateX(100%);
-  -ms-transform: translateX(100%);
-  -o-transform: translateX(100%);
-  transform: translateX(100%);
-}
-.chrome-session.chrome-forgot.expanded-appear.expanded-appear-active,
-.chrome-session.chrome-forgot.expanded-enter.expanded-enter-active,
-.chrome-session.chrome-forgot.expanded-leave {
-  -webkit-transform: translateX(0);
-  -moz-transform: translateX(0);
-  -ms-transform: translateX(0);
-  -o-transform: translateX(0);
-  transform: translateX(0);
-}
-.chrome-session.chrome-reset-security {
-  transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -webkit-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -moz-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -ms-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-}
-.chrome-session.chrome-reset-security.expanded-appear,
-.chrome-session.chrome-reset-security.expanded-enter,
-.chrome-session.chrome-reset-security.expanded-leave.expanded-leave-active {
-  -webkit-transform: translateX(-100%);
-  -moz-transform: translateX(-100%);
-  -ms-transform: translateX(-100%);
-  -o-transform: translateX(-100%);
-  transform: translateX(-100%);
-}
-.chrome-session.chrome-reset-security.expanded-appear.expanded-appear-active,
-.chrome-session.chrome-reset-security.expanded-enter.expanded-enter-active,
-.chrome-session.chrome-reset-security.expanded-leave {
-  -webkit-transform: translateX(0);
-  -moz-transform: translateX(0);
-  -ms-transform: translateX(0);
-  -o-transform: translateX(0);
-  transform: translateX(0);
-}
-.chrome-session.chrome-reset-password {
-  transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -webkit-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -moz-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -ms-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-}
-.chrome-session.chrome-reset-password.expanded-appear,
-.chrome-session.chrome-reset-password.expanded-enter,
-.chrome-session.chrome-reset-password.expanded-leave.expanded-leave-active {
-  -webkit-transform: translateX(100%);
-  -moz-transform: translateX(100%);
-  -ms-transform: translateX(100%);
-  -o-transform: translateX(100%);
-  transform: translateX(100%);
-}
-.chrome-session.chrome-reset-password.expanded-appear.expanded-appear-active,
-.chrome-session.chrome-reset-password.expanded-enter.expanded-enter-active,
-.chrome-session.chrome-reset-password.expanded-leave {
-  -webkit-transform: translateX(0);
-  -moz-transform: translateX(0);
-  -ms-transform: translateX(0);
-  -o-transform: translateX(0);
-  transform: translateX(0);
-}
 .chrome-session img {
   width: 150px;
   margin-bottom: 20px;
@@ -338,9 +220,15 @@
 .chrome-session h1,
 .chrome-session h3,
 .chrome-session p {
-  margin: 0 15px 15px;
   text-align: center;
   color: #FFFFFF;
+}
+.chrome-session h1,
+.chrome-session h3 {
+  margin: 0 15px 15px;
+}
+.chrome-session p {
+  margin: 0;
 }
 .chrome-session label {
   color: #FFFFFF !important;
@@ -348,6 +236,7 @@
 .chrome-session .ui.button {
   background-color: #b21e1e;
   color: #FFFFFF;
+  margin-bottom: 5px;
 }
 .chrome-session .ui.button:hover {
   transition: background-color 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
@@ -362,6 +251,34 @@
 }
 .chrome-session a {
   color: #FFFFFF;
+}
+.chrome-signin .ui.form .email-field {
+  margin-bottom: 0;
+}
+.chrome-signin .ui.form .email-field input {
+  -webkit-border-radius: 0.28571429rem 0.28571429rem 0 0;
+  -moz-border-radius: 0.28571429rem 0.28571429rem 0 0;
+  border-radius: 0.28571429rem 0.28571429rem 0 0;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border-width: 0 0 1px 0;
+  border-color: #DDD;
+}
+.chrome-signin .ui.form .password-field input {
+  -webkit-border-radius: 0 0 0.28571429rem 0.28571429rem;
+  -moz-border-radius: 0 0 0.28571429rem 0.28571429rem;
+  border-radius: 0 0 0.28571429rem 0.28571429rem;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 0px;
+}
+.chrome-signin .ui.form .password-field a {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  color: #4183C4 !important;
 }
 .chrome {
   position: fixed;

@@ -8,11 +8,10 @@ export class Layout extends React.Component {
 
   render() {
     const { children } = this.props
-    const { title, subtitle, logo } = this.context.instance
+    const { title, subtitle } = this.context.instance
     return (
       <div className="chrome-session">
         <div className="chrome-session-widget">
-          <img src={ logo } />
           <h1>{ title }</h1>
           <h3>{ subtitle }</h3>
           { children }

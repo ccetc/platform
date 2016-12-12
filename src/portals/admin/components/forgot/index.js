@@ -22,21 +22,23 @@ export class Forgot extends React.Component {
   render() {
     const { status } = this.props
     return (
-      <form className="ui form" onSubmit={this._handleSubmit.bind(this)}>
-        <p>Please enter your email address to reset your password.</p>
-        <div className="field">
-          <div className="ui left icon input">
-            <i className="user icon"></i>
-            <input className="form-control" autoComplete="off" placeholder="Email" type="email" ref="email" />
+      <div className="chrome-forgot">
+        <form className="ui form" onSubmit={this._handleSubmit.bind(this)}>
+          <p>Please enter your email address to reset your password.</p>
+          <div className="field">
+            <div className="ui left icon input">
+              <i className="user icon"></i>
+              <input className="form-control" autoComplete="off" placeholder="Email" type="email" ref="email" />
+            </div>
           </div>
-        </div>
-        <div className="field">
-          <button className={`ui fluid large ${(status == 'submitting') ? 'loading' : ''} button`}>Reset Password</button>
-        </div>
-        <div className="field">
-          <p><Link to={{ pathname: '/admin/signin', state: 'slide-back' }}>Back to Signin</Link></p>
-        </div>
-      </form>
+          <div className="field">
+            <button className={`ui fluid large ${(status == 'submitting') ? 'loading' : ''} button`}>Reset Password</button>
+          </div>
+          <div className="field">
+            <p><Link to={{ pathname: '/admin/signin', state: 'slide-back' }}>Back to Signin</Link></p>
+          </div>
+        </form>
+      </div>
     )
   }
 

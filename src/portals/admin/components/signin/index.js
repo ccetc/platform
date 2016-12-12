@@ -24,31 +24,32 @@ export class Signin extends React.Component {
   render() {
     const { flash, status } = this.props
     return (
-      <form className="ui form" onSubmit={this._handleSubmit.bind(this)}>
-        {flash &&
-          <div className={`chrome-flash ${flash.style}`}>
-            {flash.message}
+      <div className="chrome-signin">
+        <form className="ui form" onSubmit={this._handleSubmit.bind(this)}>
+          {flash &&
+            <div className={`chrome-flash ${flash.style}`}>
+              {flash.message}
+            </div>
+          }
+          <div className="field email-field">
+            <div className="ui left icon input">
+              <i className="user icon"></i>
+              <input className="form-control" autoComplete="off" placeholder="Email" type="email" ref="email" />
+            </div>
           </div>
-        }
-        <div className="field email-field">
-          <div className="ui left icon input">
-            <i className="user icon"></i>
-            <input className="form-control" autoComplete="off" placeholder="Email" type="email" ref="email" />
+          <div className="field password-field">
+            <div className="ui left icon input">
+              <i className="lock icon"></i>
+              <input className="form-control" autoComplete="off" placeholder="Password" type="password" ref="password" />
+              <Link to={{ pathname: '/admin/forgot', state: 'slide-next' }}>Forgot?</Link>
+            </div>
           </div>
-        </div>
-        <div className="field password-field">
-          <div className="ui left icon input">
-            <i className="lock icon"></i>
-            <input className="form-control" autoComplete="off" placeholder="Password" type="password" ref="password" />
+          <div className="field button-field">
+            <button className={`ui fluid large ${(status == 'submitting') ? 'loading' : ''} button`}>Signin</button>
+            <a href="/admin/signin/redirect" className="ui fluid large button">Signin with CUWebAuth</a>
           </div>
-        </div>
-        <div className="field">
-          <button className={`ui fluid large ${(status == 'submitting') ? 'loading' : ''} button`}>Signin</button>
-        </div>
-        <div className="field">
-          <p><Link to={{ pathname: '/admin/forgot', state: 'slide-next' }}>Forget your password?</Link></p>
-        </div>
-      </form>
+        </form>
+      </div>
     )
   }
 

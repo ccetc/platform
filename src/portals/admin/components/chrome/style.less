@@ -18,42 +18,19 @@
     margin: auto;
     text-align: center;
   }
-  &.chrome-signin {
-    .translate-x-transition(-100%, 0, .5s);
-    .ui.form {
-      .email-field {
-        margin-bottom: 0;
-        input {
-          .border-radius(.28571429rem, .28571429rem, 0, 0);
-          border-width: 0 0 1px 0;
-          border-color: #DDD;
-        }
-      }
-      .password-field {
-        input {
-          .border-radius(0, 0, .28571429rem, .28571429rem);
-          border: 0px;
-        }
-      }
-    }
-  }
-  &.chrome-forgot {
-    .translate-x-transition(100%, 0, .5s);
-  }
-  &.chrome-reset-security {
-    .translate-x-transition(-100%, 0, .5s);
-  }
-  &.chrome-reset-password {
-    .translate-x-transition(100%, 0, .5s);
-  }
   img {
     width: 150px;
     margin-bottom: 20px;
   }
   h1, h3, p {
-    margin: 0 15px 15px;
     text-align: center;
     color: @primary_color;
+  }
+  h1, h3 {
+    margin: 0 15px 15px;
+  }
+  p {
+    margin: 0;
   }
   label {
     color: @primary_color !important;
@@ -61,6 +38,7 @@
   .ui.button {
     background-color: lighten(@primary_background_color, -10%);
     color: @primary_color;
+    margin-bottom: 5px;
     &:hover {
       .transition(background-color 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s);
       background-color: lighten(@primary_background_color, -15%);
@@ -72,6 +50,30 @@
   }
   a {
     color: @primary_color;
+  }
+}
+.chrome-signin {
+  .ui.form {
+    .email-field {
+      margin-bottom: 0;
+      input {
+        .border-radius(.28571429rem, .28571429rem, 0, 0);
+        border-width: 0 0 1px 0;
+        border-color: #DDD;
+      }
+    }
+    .password-field {
+      input {
+        .border-radius(0, 0, .28571429rem, .28571429rem);
+        border: 0px;
+      }
+      a {
+        position: absolute;
+        top: 6px;
+        right: 10px;
+        color: #4183C4 !important;
+      }
+    }
   }
 }
 .chrome {
