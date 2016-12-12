@@ -15,8 +15,7 @@ describe('session', () => {
         apps: null,
         token: null,
         status: 'pending',
-        user: null,
-        flash: null
+        user: null
       }
       expect(reducer(state, action)).to.be.eql(expected)
     })
