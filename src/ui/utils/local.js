@@ -11,7 +11,7 @@ type optionsType = {
 class Local {
 
   constructor(): void {
-    this.client = localforage.createTeam({
+    this.client = localforage.createInstance({
       name: 'platform',
       storeName: 'cache'
     })
