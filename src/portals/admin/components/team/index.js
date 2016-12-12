@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import component from 'ui/component'
 import * as actions from './actions'
 
-class Instance extends React.Component {
+class Team extends React.Component {
 
   static childContextTypes = {
-    instance: React.PropTypes.object
+    team: React.PropTypes.object
   }
 
   static propTypes = {
@@ -18,7 +18,7 @@ class Instance extends React.Component {
   render() {
     const { children, status } = this.props
     return (
-      <div className="chrome-instance">
+      <div className="chrome-team">
         { status === 'success' ? children : null }
       </div>
     )
@@ -31,7 +31,7 @@ class Instance extends React.Component {
   getChildContext() {
     const { title, subtitle, logo } = this.props
     return {
-      instance: {
+      team: {
         title,
         subtitle,
         logo
@@ -42,14 +42,14 @@ class Instance extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  status: state.instance.status,
-  title: state.instance.title,
-  subtitle: state.instance.subtitle,
-  logo: state.instance.logo
+  status: state.team.status,
+  title: state.team.title,
+  subtitle: state.team.subtitle,
+  logo: state.team.logo
 })
 
 const mapDispatchToProps = {
   load: actions.load
 }
 
-export default component(connect(mapStateToProps, mapDispatchToProps)(Instance), 'instance', true)
+export default component(connect(mapStateToProps, mapDispatchToProps)(Team), 'team', true)

@@ -1,13 +1,13 @@
-import Instance from 'platform/models/instance'
+import Team from 'platform/models/team'
 
 export default (req, res, next) => {
-  return Instance.query(qb => {
+  return Team.query(qb => {
 
     qb.where({ id: 1 })
 
-  }).fetch().then(instance => {
+  }).fetch().then(team => {
 
-    req.instance = instance
+    req.team = team
     return next()
 
   }).catch(err => {

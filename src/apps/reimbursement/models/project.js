@@ -5,7 +5,7 @@ import member from './member'
 
 export default bookshelf.Model.extend({
 
-  tableName: 'projects',
+  tableName: 'reimbursement_projects',
 
   hasTimestamps: ['created_at', 'updated_at'],
 

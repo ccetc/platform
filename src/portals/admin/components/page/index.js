@@ -13,7 +13,7 @@ export default (pageProps) => {
 
       static contextTypes = {
         container: React.PropTypes.object,
-        instance: React.PropTypes.object,
+        team: React.PropTypes.object,
         flash: React.PropTypes.object,
         modal: React.PropTypes.object,
         router: React.PropTypes.object,
@@ -42,7 +42,7 @@ export default (pageProps) => {
         const loaded = !resources || _.isEqual(Object.keys(data).sort(), Object.keys(resources).sort())
         return (
           <div className="chrome-page">
-            <Helmet title={`${this.context.instance.title} | ${title}`} />
+            <Helmet title={`${this.context.team.title} | ${title}`} />
             <div className="chrome-header">
               <div className="chrome-back">
                 { back &&

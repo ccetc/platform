@@ -3,12 +3,12 @@ import React from 'react'
 export class Layout extends React.Component {
 
   static contextTypes = {
-    instance: React.PropTypes.object
+    team: React.PropTypes.object
   }
 
   render() {
     const { children } = this.props
-    const { title, subtitle } = this.context.instance
+    const { title, subtitle } = this.context.team
     return (
       <div className="chrome-session">
         <div className="chrome-session-widget">

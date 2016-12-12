@@ -2,7 +2,7 @@ import path from 'path'
 import express from 'express'
 import jwt from 'server/services/jwt'
 import passport from 'passport'
-import instance from 'server/middleware/instance'
+import team from 'server/middleware/team'
 import User from 'platform/models/user'
 
 const SAMLStrategy = require('passport-saml').Strategy
@@ -11,7 +11,7 @@ const LDAPStrategy = require('passport-ldapauth')
 
 const authenticate = (req, res, next) => {
 
-  switch (req.instance.get('auth_strategy')) {
+  switch (req.team.get('auth_strategy')) {
 
   case 'cornell':
 
@@ -90,7 +90,7 @@ const authentication = express()
 authentication.set('views', path.join('.', 'src', 'portals', 'admin', 'middleware','authentication'))
 authentication.set('view engine', 'ejs')
 
-authentication.use(instance)
+authentication.use(team)
 
 authentication.get('/signin/redirect', authenticate, redirect)
 authentication.get('/signin/callback', authenticate, redirect)

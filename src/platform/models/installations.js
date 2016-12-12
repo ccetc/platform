@@ -1,5 +1,5 @@
 import checkit from  'checkit'
-import instance from 'platform/models/instance'
+import team from 'platform/models/team'
 import app from 'platform/models/app'
 import bookshelf from 'server/services/bookshelf'
 
@@ -14,8 +14,8 @@ export default bookshelf.Model.extend({
     intance_id: 'required'
   },
 
-  instance: function() {
-    return this.belongsTo(instance, 'instance_id')
+  team: function() {
+    return this.belongsTo(team, 'team_id')
   },
 
   app: function() {

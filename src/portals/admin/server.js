@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import instance from 'server/middleware/instance'
+import team from 'server/middleware/team'
 import authentication from 'server/middleware/authentication'
 import activation from 'server/middleware/activation'
 import signin from 'server/middleware/signin'
@@ -7,7 +7,7 @@ import reset from 'server/middleware/reset'
 import extAuthentication from './middleware/authentication'
 import sessionService from './middleware/session'
 import searchService from './middleware/search'
-import instanceService from './middleware/instance'
+import teamService from './middleware/team'
 import notificationsService from './middleware/notifications'
 import fs from 'fs'
 import path from 'path'
@@ -16,9 +16,9 @@ const admin = Router()
 
 admin.use('/admin', extAuthentication)
 
-// load instance
-admin.use('/api/admin', instance)
-admin.use('/api/admin', instanceService)
+// load team
+admin.use('/api/admin', team)
+admin.use('/api/admin', teamService)
 
 // signin
 admin.use('/api/admin', signin)

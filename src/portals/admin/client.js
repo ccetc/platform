@@ -3,7 +3,7 @@ import { Route, IndexRoute } from 'react-router'
 import Root from './components/root'
 import Cordova from './components/cordova'
 import Electron from './components/electron'
-import Instance from './components/instance'
+import Team from './components/team'
 import Flash from './components/flash'
 import Session from './components/session'
 import Container from './components/container'
@@ -24,7 +24,7 @@ import ResetClaim from './components/reset/claim'
 import ResetSecurity from './components/reset/security'
 import ResetPassword from './components/reset/password'
 import Signin from './components/signin'
-import InstanceApp from 'platform/apps/instance/admin/client'
+import TeamApp from 'platform/apps/team/admin/client'
 import ReimbursementApp from 'apps/reimbursement/admin/client'
 import NotFound from './components/page/not_found'
 
@@ -32,7 +32,7 @@ export default (
   <Route component={ Root }>
     <Route component={ Cordova }>
       <Route component={ Electron }>
-        <Route component={ Instance }>
+        <Route component={ Team }>
           <Route component={ Flash }>
             <Route component={ Session }>
               <Route component={ Container }>
@@ -56,7 +56,7 @@ export default (
                               <Route component={ Panel }>
                                 <IndexRoute component={ Dashboard } />
                                 <Route component={ NotificationsList } path="notifications" />
-                                {InstanceApp}
+                                {TeamApp}
                                 <Route path="reimbursement">
                                   {ReimbursementApp}
                                 </Route>

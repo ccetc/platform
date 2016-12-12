@@ -4,7 +4,7 @@ import api from 'ui/utils/api'
 export function load(domain) {
   return api.get({
     domain,
-    endpoint: '/admin/instance',
+    endpoint: '/admin/team',
     request: actionTypes.LOAD_INSTANCE_REQUEST,
     success: actionTypes.LOAD_INSTANCE_SUCCESS,
     failure: actionTypes.LOAD_INSTANCE_FAILURE

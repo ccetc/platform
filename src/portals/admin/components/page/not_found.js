@@ -5,14 +5,14 @@ import Search from '../search'
 export class Forbidden extends React.Component {
 
   static contextTypes = {
-    instance: React.PropTypes.object,
+    team: React.PropTypes.object,
     modal: React.PropTypes.object
   }
 
   render() {
     return (
       <div className="chrome-page">
-        <Helmet title={`${this.context.instance.title} | 404 Not Found`} />
+        <Helmet title={`${this.context.team.title} | 404 Not Found`} />
         <div className="chrome-header">
           <div className="chrome-back"></div>
           <div className="chrome-title">Not Found</div>

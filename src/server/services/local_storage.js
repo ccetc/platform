@@ -1,6 +1,6 @@
 import localforage from 'localforage'
 
-export default localforage.createInstance({
+export default localforage.createTeam({
   name: 'platform',
   storeName: 'cache'
 })

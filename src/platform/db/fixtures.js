@@ -1,7 +1,7 @@
 exports.seed = (knex, Promise) => {
-  return knex('instances').del()
+  return knex('teams').del()
   .then(() => {
-    return knex('instances').insert([
+    return knex('teams').insert([
       {
         title: 'MyCCE',
         subtitle: 'Cornell Cooperative Extension of Tompkins County',
@@ -33,497 +33,497 @@ exports.seed = (knex, Promise) => {
   .then(() => {
     return knex('assets').insert([
       {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'ken.jpg',
         file_name: 'ken.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'sharon.jpg',
         file_name: 'sharon.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'sandy.jpg',
         file_name: 'sandy.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'greg.jpg',
         file_name: 'greg.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'sharon-anderson150x150.jpg',
         file_name: 'sharon-anderson150x150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'beth-bannister150.jpg',
         file_name: 'beth-bannister150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'karim-beers150.jpg',
         file_name: 'karim-beers150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'jim-blizzard150.jpg',
         file_name: 'jim-blizzard150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'maria-christian150.jpg',
         file_name: 'maria-christian150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'tim-crowley150.jpg',
         file_name: 'tim-crowley150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'pat-curran150.jpg',
         file_name: 'pat-curran150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'theresa-emerick150.jpg',
         file_name: 'theresa-emerick150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'jennifer-grey150.jpg',
         file_name: 'jennifer-grey150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'vendamae-harris150.jpg',
         file_name: 'vendamae-harris150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'kathy-jett150.jpg',
         file_name: 'kathy-jett150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'lara-kaltman150sq.jpg',
         file_name: 'lara-kaltman150sq.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'matt-leroux-professional.jpg',
         file_name: 'matt-leroux-professional.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'kathy-maxson150.jpg',
         file_name: 'kathy-maxson150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'guillermo-metz.jpg',
         file_name: 'guillermo-metz.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'adam-michaelides150.jpg',
         file_name: 'adam-michaelides150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'avi-miner150.jpg',
         file_name: 'avi-miner150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'sandy.jpg',
         file_name: 'sandy.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'Monika_Roth06.jpg',
         file_name: 'Monika_Roth06.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'ken-schlather150.jpg',
         file_name: 'ken-schlather150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'tina-snyder_2-150.jpg',
         file_name: 'tina-snyder_2-150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'megan-tifft150.jpg',
         file_name: 'megan-tifft150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'heather-ward2-150.jpg',
         file_name: 'heather-ward2-150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'staff-debbie-teeter150jp.jpg',
         file_name: 'staff-debbie-teeter150jp.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'chrys-gardener2-150x150.jpg',
         file_name: 'chrys-gardener2-150x150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'liz-karabinakis2-150.jpg',
         file_name: 'liz-karabinakis2-150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'brenda-carpenter150.jpg',
         file_name: 'brenda-carpenter150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'leigh-macdonald-rizzo_2_150.jpg',
         file_name: 'leigh-macdonald-rizzo_2_150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'erin-marteal150.jpg',
         file_name: 'erin-marteal150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'fabina-colon2-150.jpg',
         file_name: 'fabina-colon2-150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'nikki-neese150.jpg',
         file_name: 'nikki-neese150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'lauren-salzman150.jpg',
         file_name: 'lauren-salzman150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'ramona-cornell-150.jpg',
         file_name: 'ramona-cornell-150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'amanda-david150.jpg',
         file_name: 'amanda-david150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'josh-dolan150.jpg',
         file_name: 'josh-dolan150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'chrisophia-somerfeldt150.jpg',
         file_name: 'chrisophia-somerfeldt150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'anna-steinkraus150.jpg',
         file_name: 'anna-steinkraus150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'monica-dykeman-150.jpg',
         file_name: 'monica-dykeman-150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'justin-sutera.jpg',
         file_name: 'justin-sutera.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'corinne-eisenman150.jpg',
         file_name: 'corinne-eisenman150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'jeanne-freese-popowitch150.jpg',
         file_name: 'jeanne-freese-popowitch150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'elizabeth-wolff150.jpg',
         file_name: 'elizabeth-wolff150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'martha-gioumousis150.jpg',
         file_name: 'martha-gioumousis150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'staff-krystal-dunn150.jpg',
         file_name: 'staff-krystal-dunn150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'pat-haggerty150.jpg',
         file_name: 'pat-haggerty150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'joann-huddle150.jpg',
         file_name: 'joann-huddle150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'Holly_Gump2-_5x7t.jpg',
         file_name: 'Holly_Gump2-_5x7t.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'meagn-pugh150.jpg',
         file_name: 'meagn-pugh150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'Norma_Gutierrez2-150.jpg',
         file_name: 'Norma_Gutierrez2-150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'barb-sinn150.jpg',
         file_name: 'barb-sinn150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'dave-hall150.jpg',
         file_name: 'dave-hall150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'Margo300px.jpg',
         file_name: 'Margo300px.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'jed_jordan_150px.jpg',
         file_name: 'jed_jordan_150px.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'janis-degni.jpg',
         file_name: 'janis-degni.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'a-fay-benson2.jpg',
         file_name: 'a-fay-benson2.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'Heather_1_.png',
         file_name: 'Heather_1_.png',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'brett-chedzoy.jpg',
         file_name: 'brett-chedzoy.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'shelley-lester2-150.jpg',
         file_name: 'shelley-lester2-150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'marjorie-olds150.jpg',
         file_name: 'marjorie-olds150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'Min_Liu_150.jpg',
         file_name: 'Min_Liu_150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'Athena_Steinkraus_150.jpg',
         file_name: 'Athena_Steinkraus_150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'sarah-brown150.jpg',
         file_name: 'sarah-brown150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'john-chilkotowsky150.jpg',
         file_name: 'john-chilkotowsky150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'betsy-hicks.jpg',
         file_name: 'betsy-hicks.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'lisa-ellin-2-150.jpg',
         file_name: 'lisa-ellin-2-150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'sean-cornell150.jpg',
         file_name: 'sean-cornell150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'Travis_Judd_150x150.jpg',
         file_name: 'Travis_Judd_150x150.jpg',
         content_type: 'image/jpeg',
@@ -535,231 +535,231 @@ exports.seed = (knex, Promise) => {
   .then(() => {
     return knex('assets').insert([
       {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'Ethan-Cramton.jpg',
         file_name: 'Ethan-Cramton.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'Aloja-Airwele.jpg',
         file_name: 'Aloja-Airwele.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'kenneth-mclaurin-150.jpg',
         file_name: 'kenneth-mclaurin-150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'hector-chang-150px.jpg',
         file_name: 'hector-chang-150px.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'Zack_Kozlowski_150.jpg',
         file_name: 'Zack_Kozlowski_150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'mark-andrew-barker150.jpg',
         file_name: 'mark-andrew-barker150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'Britton-Dougherty.jpg',
         file_name: 'Britton-Dougherty.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'chris-kai-jones3-150.jpg',
         file_name: 'chris-kai-jones3-150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'gibrian-hagood150.jpg',
         file_name: 'gibrian-hagood150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'hannah-kinsella150.jpg',
         file_name: 'hannah-kinsella150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'judy-burrill150x150.jpg',
         file_name: 'judy-burrill150x150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'Khulani-Mkhonza150px.jpg',
         file_name: 'Khulani-Mkhonza150px.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'PhoebeBrown300px.jpg',
         file_name: 'PhoebeBrown300px.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'deborah-campos150x150.jpg',
         file_name: 'deborah-campos150x150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'Nancy_Malina_150px.jpg',
         file_name: 'Nancy_Malina_150px.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'zoe-van-nostrand2.jpg',
         file_name: 'zoe-van-nostrand2.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'Terry_Carroll_150px.jpg',
         file_name: 'Terry_Carroll_150px.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'adam-flint.jpg',
         file_name: 'adam-flint.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'meagan-pulver150.jpg',
         file_name: 'meagan-pulver150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'Megan-Szpak_150.jpg',
         file_name: 'Megan-Szpak_150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'jack-davidson150x150.jpg',
         file_name: 'jack-davidson150x150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'eric-carter150x150.jpg',
         file_name: 'eric-carter150x150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'laura-komor150.jpg',
         file_name: 'laura-komor150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'michele-jones-1-150.jpg',
         file_name: 'michele-jones-1-150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'rebecca-9.jpg',
         file_name: 'rebecca-9.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'Kina_Viola_150.jpg',
         file_name: 'Kina_Viola_150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'Thena_LeVan_150x150.jpg',
         file_name: 'Thena_LeVan_150x150.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'blue-avatar.jpg',
         file_name: 'blue-avatar.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'pink-avatar.jpg',
         file_name: 'pink-avatar.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'pink-avatar.jpg',
         file_name: 'pink-avatar.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'blue-avatar.jpg',
         file_name: 'blue-avatar.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'annalise-kukor150sq.jpg',
         file_name: 'annalise-kukor150sq.jpg',
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }, {
-        instance_id: 1,
+        team_id: 1,
         original_file_name: 'cornell.png',
         file_name: 'cornell.jpg',
         content_type: 'image/jpeg',
@@ -769,7 +769,7 @@ exports.seed = (knex, Promise) => {
     ])
   })
   .then(() => {
-    return knex('instances').where({
+    return knex('teams').where({
       id: 1
     }).update({
       logo_id: 104
@@ -781,7 +781,7 @@ exports.seed = (knex, Promise) => {
   .then(() => {
     return knex('users').insert([
       {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Greg',
         last_name: 'Kops',
         email: 'gmk8@cornell.edu',
@@ -793,7 +793,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Sharon',
         last_name: 'Anderson',
         email: 'ska2@cornell.edu',
@@ -805,7 +805,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Beth',
         last_name: 'Bannister',
         email: 'bab47@cornell.edu',
@@ -817,7 +817,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Karim',
         last_name: 'Beers',
         email: 'kwb6@cornell.edu',
@@ -829,7 +829,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Jim',
         last_name: 'Blizzard',
         email: 'jpb27@cornell.edu',
@@ -841,7 +841,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Maria',
         last_name: 'Christian',
         email: 'mjc72@cornell.edu',
@@ -853,7 +853,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Tim',
         last_name: 'Crowley',
         email: 'tfc43@cornell.edu',
@@ -865,7 +865,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Patricia',
         last_name: 'Curran',
         email: 'pc21@cornell.edu',
@@ -877,7 +877,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Theresa',
         last_name: 'Emerick',
         email: 'tee1@cornell.edu',
@@ -889,7 +889,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Jennifer',
         last_name: 'Gray',
         email: 'jcg33@cornell.edu',
@@ -901,7 +901,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Venda Mae',
         last_name: 'Harris',
         email: 'vmt5@cornell.edu',
@@ -913,7 +913,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Kathy',
         last_name: 'Jett',
         email: 'klj27@cornell.edu',
@@ -925,7 +925,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Lara Parrilla',
         last_name: 'Kaltman',
         email: 'ljp9@cornell.edu',
@@ -937,7 +937,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Matthew',
         last_name: 'LeRoux',
         email: 'mnl28@cornell.edu',
@@ -949,7 +949,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Kathy',
         last_name: 'Maxson',
         email: 'kmm242@cornell.edu',
@@ -961,7 +961,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Guillermo',
         last_name: 'Metz',
         email: 'gm52@cornell.edu',
@@ -973,7 +973,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Adam',
         last_name: 'Michaelides',
         email: 'acm1@cornell.edu',
@@ -985,7 +985,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Avi',
         last_name: 'Miner',
         email: 'agm32@cornell.edu',
@@ -997,7 +997,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Sandy',
         last_name: 'Repp',
         email: 'sjr37@cornell.edu',
@@ -1009,7 +1009,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Monika',
         last_name: 'Roth',
         email: 'mr55@cornell.edu',
@@ -1021,7 +1021,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Kenneth J.',
         last_name: 'Schlather',
         email: 'ks47@cornell.edu',
@@ -1033,7 +1033,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Tina M.',
         last_name: 'Snyder',
         email: 'tmf8@cornell.edu ',
@@ -1045,7 +1045,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Megan',
         last_name: 'Tifft',
         email: 'met38@cornell.edu',
@@ -1057,7 +1057,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Heather',
         last_name: 'Ward',
         email: 'hab27@cornell.edu ',
@@ -1069,7 +1069,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Debbie',
         last_name: 'Teeter',
         email: 'dlt22@cornell.edu',
@@ -1081,7 +1081,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Chrys',
         last_name: 'Gardener',
         email: 'cab69@cornell.edu',
@@ -1093,7 +1093,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Liz',
         last_name: 'Karabinakis',
         email: 'evk4@cornell.edu',
@@ -1105,7 +1105,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Brenda T.',
         last_name: 'Carpenter',
         email: 'btc6@cornell.edu',
@@ -1117,7 +1117,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Leigh',
         last_name: 'MacDonald-Rizzo',
         email: 'lam26@cornell.edu',
@@ -1129,7 +1129,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Erin',
         last_name: 'Marteal',
         email: 'enm6@cornell.edu',
@@ -1141,7 +1141,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Fabina',
         last_name: 'Colon',
         email: 'fabina@multiculturalresourcecenter.org',
@@ -1153,7 +1153,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Nikki',
         last_name: 'Nease',
         email: 'njn35@cornell.edu',
@@ -1165,7 +1165,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Lauren',
         last_name: 'Salzman',
         email: 'las466@cornell.edu',
@@ -1177,7 +1177,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Ramona',
         last_name: 'Cornell',
         email: 'rlc263@cornell.edu',
@@ -1189,7 +1189,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Amanda',
         last_name: 'David',
         email: 'healthyfoodforall.ithaca@gmail.com',
@@ -1201,7 +1201,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Josh',
         last_name: 'Dolan',
         email: 'jd285@cornell.edu',
@@ -1213,7 +1213,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Chrisophia',
         last_name: 'Somerfeldt',
         email: 'css17@cornell.edu',
@@ -1225,7 +1225,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Anna',
         last_name: 'Steinkraus',
         email: 'ams69@cornell.edu',
@@ -1237,7 +1237,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Monica',
         last_name: 'Dykeman',
         email: 'mmd1027@aol.com',
@@ -1249,7 +1249,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Justin',
         last_name: 'Sutera',
         email: '',
@@ -1261,7 +1261,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Corinne',
         last_name: 'Eisenman',
         email: 'cee29@cornell.edu',
@@ -1273,7 +1273,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Jean L.',
         last_name: 'Freese-Popowitch',
         email: 'jlf30@cornell.edu',
@@ -1285,7 +1285,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Elizabeth',
         last_name: 'Wolff',
         email: 'ebw52@cornell.edu',
@@ -1297,7 +1297,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Martha',
         last_name: 'Gioumousis',
         email: 'mg10@cornell.edu',
@@ -1309,7 +1309,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Krystal',
         last_name: 'Watson',
         email: 'krk7@cornell.edu',
@@ -1321,7 +1321,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Pat',
         last_name: 'Haggerty',
         email: 'pmh75@cornell.edu',
@@ -1333,7 +1333,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'JoAnn',
         last_name: 'Huddle',
         email: 'jmh37@cornell.edu',
@@ -1345,7 +1345,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Holly',
         last_name: 'Gump',
         email: 'hmg2@cornell.edu',
@@ -1357,7 +1357,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Megan',
         last_name: 'Pugh',
         email: 'meganmpugh@gmail.com',
@@ -1369,7 +1369,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Norma',
         last_name: 'Gutierrez',
         email: 'ng32@cornell.edu',
@@ -1381,7 +1381,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Barbara',
         last_name: 'Sinn',
         email: 'bas25@cornell.edu',
@@ -1393,7 +1393,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'David',
         last_name: 'Hall',
         email: 'dh67@cornell.edu',
@@ -1405,7 +1405,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Margo',
         last_name: 'Hittleman',
         email: 'mjh17@cornell.edu',
@@ -1417,7 +1417,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Jed',
         last_name: 'Jordan',
         email: 'jedjordan@hotmail.com',
@@ -1429,7 +1429,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Janice',
         last_name: 'Degni',
         email: 'jgd3@cornell.edu',
@@ -1441,7 +1441,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'A. Fay',
         last_name: 'Benson',
         email: 'afb3@cornell.edu',
@@ -1453,7 +1453,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Heather',
         last_name: 'Birdsall',
         email: 'hhb6@cornell.edu',
@@ -1465,7 +1465,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Brett',
         last_name: 'Chedzoy',
         email: 'bjc226@cornell.edu',
@@ -1477,7 +1477,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Shelley ',
         last_name: 'Lester',
         email: 'sjl44@cornell.edu',
@@ -1489,7 +1489,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Marjorie',
         last_name: 'Olds',
         email: 'mzo2@cornell.edu',
@@ -1501,7 +1501,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Min',
         last_name: 'Liu',
         email: 'ml989@cornell.edu',
@@ -1513,7 +1513,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Athena',
         last_name: 'Steinkraus',
         email: 'ahs38@cornell.edu',
@@ -1525,7 +1525,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Sarah',
         last_name: 'Brown',
         email: 'sb2275@cornell.edu',
@@ -1537,7 +1537,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'John',
         last_name: 'Chilkotowsky',
         email: 'jc2889@cornell.edu',
@@ -1549,7 +1549,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Betsy',
         last_name: 'Hicks',
         email: 'bjh246@cornell.edu',
@@ -1561,7 +1561,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Lisa',
         last_name: 'Ellin',
         email: 'LE93@cornell.edu',
@@ -1573,7 +1573,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Sean',
         last_name: 'Cornell',
         email: 'sec283@cornell.edu',
@@ -1585,7 +1585,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Travis',
         last_name: 'Judd',
         email: 'ttj22@cornell.edu',
@@ -1602,7 +1602,7 @@ exports.seed = (knex, Promise) => {
   .then(() => {
     return knex('users').insert([
       {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Ethan',
         last_name: 'Cramton',
         email: 'egc24@cornell.edu',
@@ -1614,7 +1614,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Aloja',
         last_name: 'Airewele',
         email: 'aaa247@cornell.edu',
@@ -1626,7 +1626,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Kenneth',
         last_name: 'McLaurin Jr.',
         email: 'kem228@cornell.edu',
@@ -1638,7 +1638,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Hector',
         last_name: 'Chang',
         email: 'hdc38@cornell.edu',
@@ -1650,7 +1650,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Zachary',
         last_name: 'Kozlowski',
         email: 'zak6@cornell.edu',
@@ -1662,7 +1662,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Marc',
         last_name: 'Barker',
         email: 'mab565@cornell.edu',
@@ -1674,7 +1674,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Britton',
         last_name: 'Dougherty',
         email: 'bmd88@cornell.edu',
@@ -1686,7 +1686,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Christopher',
         last_name: 'Kai-Jones',
         email: 'chj7@cornell.edu',
@@ -1698,7 +1698,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Gibrian',
         last_name: 'Hagood',
         email: 'gah225@cornell.edu',
@@ -1710,7 +1710,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Hannah',
         last_name: 'Kinsella',
         email: 'hdk29@cornell.edu',
@@ -1722,7 +1722,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Judy',
         last_name: 'Burrill',
         email: 'judyburrill@gmail.com',
@@ -1734,7 +1734,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Khulani',
         last_name: 'Mkhonza',
         email: 'km646@cornell.edu',
@@ -1746,7 +1746,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Phoebe',
         last_name: 'Brown',
         email: 'peb28@cornell.edu',
@@ -1758,7 +1758,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Deborah',
         last_name: 'Campos',
         email: 'dc865@cornell.edu',
@@ -1770,7 +1770,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Nancy Corwin',
         last_name: 'Malina',
         email: 'ncm55@cornell.edu',
@@ -1782,7 +1782,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Zoë',
         last_name: 'Van Nostrand',
         email: 'ziv2@cornell.edu',
@@ -1794,7 +1794,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Terry',
         last_name: 'Carroll',
         email: 'tc629@cornell.edu',
@@ -1806,7 +1806,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Adam',
         last_name: 'Flint',
         email: 'asf87@cornell.edu',
@@ -1818,7 +1818,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Megan',
         last_name: 'Pulver',
         email: 'msp94@cornell.edu',
@@ -1830,7 +1830,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Megan',
         last_name: 'Szpak',
         email: 'mjs487@cornell.edu',
@@ -1842,7 +1842,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Jack',
         last_name: 'Davison',
         email: 'JSD253@cornell.edu',
@@ -1854,7 +1854,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Eric',
         last_name: 'Carter',
         email: 'EMC333@cornell.edu',
@@ -1866,7 +1866,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Laura',
         last_name: 'Komor',
         email: 'LRK57@cornell.edu',
@@ -1878,7 +1878,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Michele L.',
         last_name: 'Jones',
         email: 'mlj77@cornell.edu',
@@ -1890,7 +1890,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Rebecca',
         last_name: 'Mendèz',
         email: 'rjm442@cornell.edu',
@@ -1902,7 +1902,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Kina',
         last_name: 'Viola',
         email: 'kv89@cornell.edu',
@@ -1914,7 +1914,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Thena ',
         last_name: 'LeVan',
         email: 'tlc98@cornell.edu',
@@ -1926,7 +1926,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Reed',
         last_name: 'Steberger',
         email: 'reed@multiculturalresourcecenter.org',
@@ -1938,7 +1938,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Davi',
         last_name: 'Mozie',
         email: 'dm568@cornell.edu',
@@ -1950,7 +1950,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Rachel',
         last_name: 'Evarts',
         email: 'RDE45@cornell.edu',
@@ -1962,7 +1962,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Khalil',
         last_name: 'Bey',
         email: 'akb29@cornell.edu',
@@ -1974,7 +1974,7 @@ exports.seed = (knex, Promise) => {
         security_question_2_id: 2,
         security_question_2_answer: 'zaleski'
       }, {
-        instance_id: 1,
+        team_id: 1,
         first_name: 'Annalise',
         last_name: 'Kukor',
         email: 'abk95@cornell.edu',
@@ -2004,7 +2004,7 @@ exports.seed = (knex, Promise) => {
   .then(() => {
     return knex('installations').insert([
       {
-        instance_id: 1,
+        team_id: 1,
         app_id: 1
       }
     ])
@@ -2015,7 +2015,7 @@ exports.seed = (knex, Promise) => {
   .then(() => {
     return knex('searches').insert([
       {
-        instance_id: 1,
+        team_id: 1,
         user_id: 1,
         text: 'Ken Schlather',
         subtext: 'ks47@cornell.edu',
@@ -2042,7 +2042,7 @@ exports.seed = (knex, Promise) => {
   .then(() => {
     return knex('activities').insert([
       {
-        instance_id: 1,
+        team_id: 1,
         user_id: 1,
         story_id: 1,
         url: '/admin/reimbursement/projects/1',
@@ -2050,7 +2050,7 @@ exports.seed = (knex, Promise) => {
         subject_text: 'Primitive Pursuits',
         created_at: '2016-04-01'
       }, {
-        instance_id: 1,
+        team_id: 1,
         user_id: 1,
         story_id: 2,
         url: '/admin/reimbursement/expenses',
@@ -2060,7 +2060,7 @@ exports.seed = (knex, Promise) => {
         object1_text: 'Primitive Pursuits',
         created_at: '2016-04-02'
       }, {
-        instance_id: 1,
+        team_id: 1,
         user_id: 95,
         story_id: 2,
         url: '/admin/reimbursement/expenses',
@@ -2070,7 +2070,7 @@ exports.seed = (knex, Promise) => {
         object1_text: 'Primitive Pursuits',
         created_at: '2016-04-02'
       }, {
-        instance_id: 1,
+        team_id: 1,
         user_id: 49,
         story_id: 2,
         url: '/admin/reimbursement/expenses',
@@ -2080,7 +2080,7 @@ exports.seed = (knex, Promise) => {
         object1_text: 'Primitive Pursuits',
         created_at: '2016-04-02'
       }, {
-        instance_id: 1,
+        team_id: 1,
         user_id: 54,
         story_id: 1,
         url: '/admin/reimbursement/projects/2',
@@ -2088,7 +2088,7 @@ exports.seed = (knex, Promise) => {
         subject_text: 'Eat Smart New York',
         created_at: '2016-04-03'
       }, {
-        instance_id: 1,
+        team_id: 1,
         user_id: 19,
         story_id: 1,
         url: '/admin/reimbursement/projects/3',
@@ -2096,7 +2096,7 @@ exports.seed = (knex, Promise) => {
         subject_text: 'Website Platform',
         created_at: '2016-04-03'
       }, {
-        instance_id: 1,
+        team_id: 1,
         user_id: 13,
         story_id: 2,
         url: '/admin/reimbursement/expenses',
@@ -2106,7 +2106,7 @@ exports.seed = (knex, Promise) => {
         object1_text: 'Eat Smart New York',
         created_at: '2016-04-04'
       }, {
-        instance_id: 1,
+        team_id: 1,
         user_id: 13,
         story_id: 2,
         url: '/admin/reimbursement/expenses',
@@ -2116,7 +2116,7 @@ exports.seed = (knex, Promise) => {
         object1_text: 'Eat Smart New York',
         created_at: '2016-04-04'
       }, {
-        instance_id: 1,
+        team_id: 1,
         user_id: 48,
         story_id: 2,
         url: '/admin/reimbursement/expenses',
@@ -2126,7 +2126,7 @@ exports.seed = (knex, Promise) => {
         object1_text: 'Eat Smart New York',
         created_at: '2016-04-05'
       }, {
-        instance_id: 1,
+        team_id: 1,
         user_id: 13,
         story_id: 2,
         url: '/admin/reimbursement/expenses',
@@ -2136,7 +2136,7 @@ exports.seed = (knex, Promise) => {
         object1_text: 'Eat Smart New York',
         created_at: '2016-04-05'
       }, {
-        instance_id: 1,
+        team_id: 1,
         user_id: 21,
         story_id: 1,
         url: '/admin/reimbursement/projects/3',
@@ -2144,7 +2144,7 @@ exports.seed = (knex, Promise) => {
         subject_text: 'Website Platform',
         created_at: '2016-04-05'
       }, {
-        instance_id: 1,
+        team_id: 1,
         user_id: 21,
         story_id: 1,
         url: '/admin/reimbursement/projects/3',
@@ -2152,7 +2152,7 @@ exports.seed = (knex, Promise) => {
         subject_text: 'Website Platform',
         created_at: '2016-04-05'
       }, {
-        instance_id: 1,
+        team_id: 1,
         user_id: 49,
         story_id: 2,
         url: '/admin/reimbursement/expenses',
@@ -2162,7 +2162,7 @@ exports.seed = (knex, Promise) => {
         object1_text: 'Primitive Pursuits',
         created_at: '2016-04-06'
       }, {
-        instance_id: 1,
+        team_id: 1,
         user_id: 64,
         story_id: 2,
         url: '/admin/reimbursement/expenses',
@@ -2172,7 +2172,7 @@ exports.seed = (knex, Promise) => {
         object1_text: 'Primitive Pursuits',
         created_at: '2016-04-07'
       }, {
-        instance_id: 1,
+        team_id: 1,
         user_id: 49,
         story_id: 2,
         url: '/admin/reimbursement/expenses',

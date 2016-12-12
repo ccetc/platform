@@ -26,7 +26,7 @@ export default (options = {}) => {
 
       const count = options.model.query(qb => {
 
-        qb.where({ instance_id: req.instance.get('id') })
+        qb.where({ team_id: req.team.get('id') })
 
         if(options.query) {
           qb = options.query(qb, filters)
@@ -42,7 +42,7 @@ export default (options = {}) => {
 
       const paged = options.model.query(qb => {
 
-        qb.where({ instance_id: req.instance.get('id') })
+        qb.where({ team_id: req.team.get('id') })
 
         if(options.query) {
           qb = options.query(qb, filters)
@@ -108,7 +108,7 @@ export default (options = {}) => {
     const create = (req, res, next) => {
 
       const params = {
-        instance_id: req.instance.get('id'),
+        team_id: req.team.get('id'),
         ...req.body
       }
 

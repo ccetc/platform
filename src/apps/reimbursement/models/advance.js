@@ -6,7 +6,7 @@ import User from  'platform/models/user'
 
 export default bookshelf.Model.extend({
 
-  tableName: 'advances',
+  tableName: 'reimbursement_advances',
 
   hasTimestamps: ['created_at', 'updated_at'],
 

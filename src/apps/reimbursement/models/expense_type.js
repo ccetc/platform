@@ -4,7 +4,7 @@ import unique from 'server/utils/unique_validation'
 
 export default bookshelf.Model.extend({
 
-  tableName: 'expense_types',
+  tableName: 'reimbursement_expense_types',
 
   hasTimestamps: ['created_at', 'updated_at'],
 

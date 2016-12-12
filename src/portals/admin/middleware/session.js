@@ -16,7 +16,7 @@ session.get('/session', (req, res, next) => {
           { name: 'Vendors', route: '/admin/reimbursement/vendors' },
           { name: 'Reports', route: '/admin/reimbursement/reports' }
         ] },
-        { name: 'Instance', icon: 'setting', items: [
+        { name: 'Team', icon: 'setting', items: [
           { name: 'Activities', route: '/admin/activities' },
           { name: 'Apps', route: '/admin/apps' },
           { name: 'Emails', route: '/admin/emails' },
@@ -31,7 +31,7 @@ session.get('/session', (req, res, next) => {
         permissions: [
           'can access contacts',
           'can access expenses',
-          'can access instance'
+          'can access team'
         ]
       }
     })

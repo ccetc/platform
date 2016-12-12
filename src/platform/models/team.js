@@ -4,7 +4,7 @@ import asset from 'platform/models/asset'
 
 export default bookshelf.Model.extend({
 
-  tableName: 'instances',
+  tableName: 'teams',
 
   hasTimestamps: ['created_at', 'updated_at'],
 

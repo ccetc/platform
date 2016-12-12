@@ -6,7 +6,7 @@ import electron from './electron/reducer'
 import drawer from './drawer/reducer'
 import flash from './flash/reducer'
 import forgot from './forgot/reducer'
-import instance from './instance/reducer'
+import team from './team/reducer'
 import modal from './modal/reducer'
 import navigation from './navigation/reducer'
 import notifications from './notifications/reducer'
@@ -25,7 +25,7 @@ const reducers = {
   drawer,
   flash,
   forgot,
-  instance,
+  team,
   modal,
   navigation,
   notifications,
