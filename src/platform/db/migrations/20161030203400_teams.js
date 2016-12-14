@@ -3,9 +3,7 @@ exports.up = function(knex, Promise) {
     knex.schema.createTable('teams', function (table) {
       table.increments('id').primary()
       table.string('title')
-      table.string('subtitle')
-      table.string('auth_strategy')
-      table.jsonb('auth_config')
+      table.string('subdomain')
       table.timestamps()
     })
   ])

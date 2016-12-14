@@ -10,24 +10,34 @@ class Security extends React.Component {
     router: React.PropTypes.object
   }
 
+  static propTypes = {
+    error: React.PropTypes.string,
+    question: React.PropTypes.string,
+    token: React.PropTypes.string,
+    status: React.PropTypes.string,
+    user: React.PropTypes.object
+  }
+
   render() {
-    const { question, flash, status } = this.props
+    const { question, status, user } = this.props
     return (
-      <form className="ui form" onSubmit={this._handleSubmit.bind(this)}>
-        <p>Before we reset your password, please answer the following security question.</p>
-        {flash &&
-          <div className={`chrome-flash ${flash.style}`}>
-            {flash.message}
-          </div>
-        }
-        <div className="field answer-field">
-          <label>{question.text}</label>
-          <input className="form-control" autoComplete="off" placeholder="Answer" type="text" ref="answer" />
+      <div className="chrome-session">
+        <div className="chrome-session-widget">
+          <img src={ user.photo } className="photo" />
+          <h1>{ user.full_name }</h1>
+          <h4>{ user.email }</h4>
+          <p>Before we reset your password, please answer the following security question.</p>
+          <form className="ui form" onSubmit={this._handleSubmit.bind(this)}>
+            <div className="field answer-field">
+              <label>{question.text}</label>
+              <input className="form-control" autoComplete="off" placeholder="Answer" type="text" ref="answer" />
+            </div>
+            <div className="field">
+              <button className={`ui fluid large ${(status == 'submitting') ? 'loading' : ''} button`}>Continue <i className="right chevron icon" /></button>
+            </div>
+          </form>
         </div>
-        <div className="field">
-          <button className={`ui fluid large ${(status == 'submitting') ? 'loading' : ''} button`}>Next &raquo;</button>
-        </div>
-      </form>
+      </div>
     )
   }
 
@@ -57,7 +67,13 @@ class Security extends React.Component {
 
 }
 
-const mapStateToProps = state => state.reset
+const mapStateToProps = state => ({
+  error: state.reset.error,
+  question: state.reset.question,
+  token: state.reset.token,
+  status: state.reset.status,
+  user: state.reset.user
+})
 
 const mapDispatchToProps = {
   onVerify: actions.verify

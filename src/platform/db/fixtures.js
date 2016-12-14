@@ -3,9 +3,25 @@ exports.seed = (knex, Promise) => {
   .then(() => {
     return knex('teams').insert([
       {
-        title: 'MyCCE',
-        subtitle: 'Cornell Cooperative Extension of Tompkins County',
-        auth_strategy: 'cornell'
+        title: 'Cornell Cooperative Extension of Tompkins County',
+        subdomain: 'ccetc'
+      }, {
+        title: 'Think Topography',
+        subdomain: 'thinktopography'
+      }
+    ])
+  })
+  .then(() => {
+    return knex('strategies').del()
+  })
+  .then(() => {
+    return knex('strategies').insert([
+      {
+        team_id: 1,
+        name: 'cornell'
+      }, {
+        team_id: 2,
+        name: 'google'
       }
     ])
   })
@@ -765,6 +781,20 @@ exports.seed = (knex, Promise) => {
         content_type: 'image/jpeg',
         file_size: 12345,
         fingerprint: 'aefasdf7dsaf6sd87sda6f'
+      }, {
+        team_id: 2,
+        original_file_name: 'think.jpg',
+        file_name: 'think.jpg',
+        content_type: 'image/jpeg',
+        file_size: 12345,
+        fingerprint: 'aefasdf7dsaf6sd87sda6f'
+      }, {
+        team_id: 2,
+        original_file_name: 'greg.jpg',
+        file_name: 'greg.jpg',
+        content_type: 'image/jpeg',
+        file_size: 12345,
+        fingerprint: 'aefasdf7dsaf6sd87sda6f'
       }
     ])
   })
@@ -773,6 +803,13 @@ exports.seed = (knex, Promise) => {
       id: 1
     }).update({
       logo_id: 104
+    })
+  })
+  .then(() => {
+    return knex('teams').where({
+      id: 2
+    }).update({
+      logo_id: 105
     })
   })
   .then(() => {
@@ -1981,6 +2018,18 @@ exports.seed = (knex, Promise) => {
         password_salt: '$2a$10$wlhVrmkAu7H7Wttks/9vte',
         password_hash: '$2a$10$wlhVrmkAu7H7Wttks/9vte8KTY6afM7XHdKTXadrXlpvpVgfHyx6m',
         photo_id: 103,
+        security_question_1_id: 1,
+        security_question_1_answer: 'moly',
+        security_question_2_id: 2,
+        security_question_2_answer: 'zaleski'
+      }, {
+        team_id: 2,
+        first_name: 'Greg',
+        last_name: 'Kops',
+        email: 'greg@thinktopography.com',
+        password_salt: '$2a$10$wlhVrmkAu7H7Wttks/9vte',
+        password_hash: '$2a$10$wlhVrmkAu7H7Wttks/9vte8KTY6afM7XHdKTXadrXlpvpVgfHyx6m',
+        photo_id: 106,
         security_question_1_id: 1,
         security_question_1_answer: 'moly',
         security_question_2_id: 2,

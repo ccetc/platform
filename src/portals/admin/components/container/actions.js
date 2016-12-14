@@ -1,7 +1,7 @@
 // @flow
 
 import * as actionTypes from './action_types'
-import api from 'ui/utils/api'
+import api from 'portals/admin/utils/api'
 
 export const fetchResource = (prop, endpoint) => {
   return api.get({

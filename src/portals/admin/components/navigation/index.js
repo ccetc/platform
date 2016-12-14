@@ -1,7 +1,6 @@
 import React from 'react'
 import CSSTransitionGroup from 'react-addons-css-transition-group'
-import { connect } from 'react-redux'
-import component from 'ui/component'
+import component from 'portals/admin/components/component'
 import * as actions from './actions'
 
 export class Navigation extends React.Component {
@@ -75,4 +74,4 @@ const mapDispatchToProps = {
   onChooseApp: actions.chooseApp
 }
 
-export default component(connect(mapStateToProps, mapDispatchToProps)(Navigation), 'navigation', true)
+export default component(mapStateToProps, mapDispatchToProps, Navigation, 'navigation', true)

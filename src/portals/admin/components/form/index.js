@@ -1,7 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
-import component from 'ui/component'
-import { connect } from 'react-redux'
+import component from 'portals/admin/components/component'
 import { getDefaults, collectData } from './utils'
 import * as actions from './actions'
 import Section from './section'
@@ -169,4 +168,4 @@ const mapDispatchToProps = {
   onUpdateData: actions.updateData
 }
 
-export default component(connect(mapStateToProps, mapDispatchToProps)(Form), 'form', false)
+export default component(mapStateToProps, mapDispatchToProps, Form, 'form', false)

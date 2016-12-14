@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import component from 'ui/component'
 import * as actions from './actions'
 
 class Team extends React.Component {
@@ -11,7 +10,6 @@ class Team extends React.Component {
 
   static propTypes = {
     status: React.PropTypes.string,
-    subtitle: React.PropTypes.string,
     title: React.PropTypes.string
   }
 
@@ -29,11 +27,10 @@ class Team extends React.Component {
   }
 
   getChildContext() {
-    const { title, subtitle, logo } = this.props
+    const { title, logo } = this.props
     return {
       team: {
         title,
-        subtitle,
         logo
       }
     }
@@ -44,7 +41,6 @@ class Team extends React.Component {
 const mapStateToProps = state => ({
   status: state.team.status,
   title: state.team.title,
-  subtitle: state.team.subtitle,
   logo: state.team.logo
 })
 
@@ -52,4 +48,4 @@ const mapDispatchToProps = {
   load: actions.load
 }
 
-export default component(connect(mapStateToProps, mapDispatchToProps)(Team), 'team', true)
+export default connect(mapStateToProps, mapDispatchToProps)(Team)

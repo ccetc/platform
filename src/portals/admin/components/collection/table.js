@@ -4,7 +4,7 @@ import _ from 'lodash'
 import pluralize from 'pluralize'
 import { connect } from 'react-redux'
 import * as actions from './actions'
-import Format from 'ui/utils/format'
+import Format from 'portals/admin/utils/format'
 
 class Table extends React.Component {
 

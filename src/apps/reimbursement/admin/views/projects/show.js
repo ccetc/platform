@@ -1,5 +1,5 @@
 import React from 'react'
-import Card from 'ui/components/card'
+import Card from 'portals/admin/components/card'
 import Page from 'portals/admin/components/page'
 import Edit from './edit'
 import Member from './member'

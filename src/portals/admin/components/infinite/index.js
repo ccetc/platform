@@ -1,8 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import _ from 'lodash'
-import { connect } from 'react-redux'
-import component from 'ui/component'
+import component from 'portals/admin/components/component'
 import * as actions from './actions'
 
 class Infinite extends React.Component {
@@ -104,4 +103,4 @@ const mapDispatchToProps = {
   onReset: actions.reset
 }
 
-export default component(connect(mapStateToProps, mapDispatchToProps)(Infinite), 'infinite', false)
+export default component(mapStateToProps, mapDispatchToProps, Infinite, 'infinite', false)

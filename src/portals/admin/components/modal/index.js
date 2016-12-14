@@ -1,7 +1,6 @@
 import React from 'react'
 import CSSTransitionGroup from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
-import component from 'ui/component'
 import * as actions from './actions'
 
 class Modal extends React.Component {
@@ -38,7 +37,7 @@ class Modal extends React.Component {
 
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, props) => ({
   modal: state.modal
 })
 
@@ -47,4 +46,4 @@ const mapDispatchToProps = {
   close: actions.close
 }
 
-export default component(connect(mapStateToProps, mapDispatchToProps)(Modal), 'modal', true)
+export default connect(mapStateToProps, mapDispatchToProps)(Modal)

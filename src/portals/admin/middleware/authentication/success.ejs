@@ -5,7 +5,19 @@
     name: 'platform',
     storeName: 'cache'
   });
-  localforage.setItem('token', '<%= token %>').then(function () {
-    window.location.href="/admin";
+  localforage.getItem('teams').then(function (teams) {
+    if(!teams) {
+      teams = []
+    }
+    teams.push({
+      id: <%= team.id %>,
+      title: '<%= team.title %>',
+      subdomain: '<%= team.subdomain %>',
+      logo: '<%= team.logo %>',
+      token: '<%= team.token %>'
+    })
+    localforage.setItem('teams', teams).then(function () {
+      window.location.href="/admin";
+    });
   });
 </script>

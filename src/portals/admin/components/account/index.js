@@ -8,11 +8,20 @@ export class Account extends React.Component {
   static contextTypes = {
     drawer: React.PropTypes.object,
     modal: React.PropTypes.object,
+    router: React.PropTypes.object,
+    teams: React.PropTypes.object,
     session: React.PropTypes.object
   }
 
+  static propTypes = {
+    active: React.PropTypes.number,
+    team: React.PropTypes.array,
+    user: React.PropTypes.object
+  }
+
   render() {
-    const { user } = this.props
+    const { active, teams, user } = this.props
+    const team = teams[active]
     return (
       <div className="chrome-account-panel">
         <div className="chrome-account-identity">
@@ -27,8 +36,11 @@ export class Account extends React.Component {
           <div className="chrome-account-task" onClick={this._handleModal.bind(this, Password)}>
             <i className="lock icon" /> Change Password
           </div>
-          <div className="chrome-account-task" onClick={this._handleSignout.bind(this)}>
-            <i className="power icon" /> Sign Out
+          <div className="chrome-account-task" onClick={this._handleSignin.bind(this)}>
+            <i className="key icon" /> Sign in to another team
+          </div>
+          <div className="chrome-account-task" onClick={this._handleSignout.bind(this, active)}>
+            <i className="power icon" /> Sign Out of <strong>{team.subdomain}.mycce.com</strong>
           </div>
         </div>
       </div>
@@ -40,9 +52,14 @@ export class Account extends React.Component {
     this.context.modal.open(component)
   }
 
-  _handleSignout() {
+  _handleSignin() {
     this.context.drawer.close()
-    this.context.session.signout()
+    this.context.router.push({ pathname: '/admin/signin' })
+  }
+
+  _handleSignout(index) {
+    this.context.drawer.close()
+    this.context.teams.remove(index)
   }
 
   _handleCloseDrawer() {
@@ -52,7 +69,9 @@ export class Account extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.session.user
+  active: state.teams.active,
+  user: state.session.user,
+  teams: state.teams.teams
 })
 
 export default connect(mapStateToProps)(Account)

@@ -1,6 +1,6 @@
 import React from 'react'
 import Fields from './fields'
-import Control from 'ui/controls/control'
+import Control from 'portals/admin/components/controls/control'
 
 class Field extends React.Component {
 

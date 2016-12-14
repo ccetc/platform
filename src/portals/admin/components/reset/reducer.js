@@ -1,10 +1,10 @@
 import * as actionTypes from './action_types'
 
 const INITIAL_STATE = {
-  token: null,
+  error: null,
   question: null,
   status: 'pending',
-  error: null
+  token: null
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -30,6 +30,8 @@ export default (state = INITIAL_STATE, action) => {
     return {
       ...state,
       question: action.data.question,
+      token: action.data.token,
+      user: action.data.user,
       status: 'claimed'
     }
 

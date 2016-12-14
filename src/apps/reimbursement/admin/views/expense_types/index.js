@@ -1,6 +1,6 @@
 import React from 'react'
 import Page from 'portals/admin/components/page'
-import Collection from 'ui/components/collection'
+import Collection from 'portals/admin/components/collection'
 import New from './new'
 
 class Index extends React.Component {

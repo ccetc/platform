@@ -1,6 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import component from 'ui/component'
+import component from 'portals/admin/components/component'
 import Infinite from '../infinite'
 import Table from './table'
 
@@ -40,4 +39,4 @@ const mapStateToProps = (state, props) => ({
   ...state.collection[props.cid]
 })
 
-export default component(connect(mapStateToProps)(Container), 'collection', false)
+export default component(mapStateToProps, {}, Collection, 'collection', false)

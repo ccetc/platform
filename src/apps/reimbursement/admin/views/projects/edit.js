@@ -1,5 +1,5 @@
 import React from 'react'
-import Form from 'ui/components/form'
+import Form from 'portals/admin/components/form'
 
 class Edit extends React.Component {
 

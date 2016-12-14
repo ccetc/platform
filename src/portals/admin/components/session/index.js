@@ -1,14 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import component from 'ui/component'
 import _ from 'lodash'
 import * as actions from './actions'
 
 class Session extends React.Component {
-
-  static childContextTypes = {
-    session: React.PropTypes.object
-  }
 
   static contextTypes = {
     router: React.PropTypes.object,
@@ -16,66 +11,35 @@ class Session extends React.Component {
   }
 
   static propTypes = {
-    token: React.PropTypes.string,
+    active: React.PropTypes.number,
+    status: React.PropTypes.string,
+    teams: React.PropTypes.array,
     user: React.PropTypes.object,
-    loadToken: React.PropTypes.func.isRequired,
-    saveToken: React.PropTypes.func.isRequired,
-    signin: React.PropTypes.func.isRequired
-  }
-
-  constructor(props) {
-    super(props)
-    this.state = {
-      redirect: '/admin'
-    }
+    onLoad: React.PropTypes.func.isRequired
   }
 
   render() {
-    const { children, status } = this.props
-    return status !== 'pending' ? children : null
+    const { children, status, teams } = this.props
+    return (teams.length > 0 && status !== 'pending') ? children : null
   }
 
   componentDidMount() {
-    if(!this._isExternalRoute()) {
-      this.setState({ redirect: this.props.location.pathname })
+    const { active, teams, onLoad } = this.props
+    if(teams.length === 0) {
+      this.context.router.push({ pathname: '/admin/signin' })
+    } else if(active !== null) {
+      onLoad(teams[active].token)
     }
-    this.props.loadToken()
   }
 
   componentWillReceiveProps(nextProps) {
-    const { token, status, user } = nextProps
+    const { status, teams } = nextProps
     if(this.props.status !== status) {
-      if(status === 'initialized') {
-        if(token) {
-          this.props.signin(token)
-        } else if (!this._isExternalRoute()) {
-          this.context.flash.set('info', 'You must first signin to access this resource.')
-          this.context.router.push('/admin/signin')
-        }
-      } else if(status === 'failure') {
+      if(status === 'failure') {
         this.props.signout()
-      } else if(status == 'active') {
-        this.props.loadSession(token)
-      } else if(status === 'signed_out') {
-        window.location.href = '/admin/signin'
-        this.context.flash.set('info', 'You have been successfully signed out.')
-        this.context.router.push('/admin/signin')
       }
-    }
-    if(this.props.user !== user && user) {
-      const redirect = this.state.redirect
-      this.setState({ redirect: '/admin' })
-      this.context.router.push(redirect)
-    }
-  }
-
-  getChildContext() {
-    const { signout, saveToken } = this.props
-    return {
-      session: {
-        saveToken,
-        signout
-      }
+    } else if(teams.length === 0)  {
+      this.context.router.push({ pathname: '/admin/signin' })
     }
   }
 
@@ -88,18 +52,15 @@ class Session extends React.Component {
 
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, props) => ({
+  active: state.teams.active,
   status: state.session.status,
-  token: state.session.token,
+  teams: state.teams.teams,
   user: state.session.user
 })
 
 const mapDispatchToProps = {
-  loadToken: actions.loadToken,
-  saveToken: actions.saveToken,
-  signin: actions.signin,
-  signout: actions.signout,
-  loadSession: actions.loadSession
+  onLoad: actions.load
 }
 
-export default component(connect(mapStateToProps, mapDispatchToProps)(Session), 'session', true)
+export default connect(mapStateToProps, mapDispatchToProps)(Session)

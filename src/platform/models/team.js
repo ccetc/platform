@@ -1,6 +1,7 @@
 import checkit from  'checkit'
 import bookshelf from 'server/services/bookshelf'
-import asset from 'platform/models/asset'
+import Asset from 'platform/models/asset'
+import Strategy from 'platform/models/strategy'
 
 export default bookshelf.Model.extend({
 
@@ -13,7 +14,11 @@ export default bookshelf.Model.extend({
   },
 
   logo: function() {
-    return this.belongsTo(asset, 'logo_id')
+    return this.belongsTo(Asset, 'logo_id')
+  },
+
+  strategies: function() {
+    return this.hasMany(Strategy, 'team_id')
   },
 
   initialize: function(attrs, opts) {

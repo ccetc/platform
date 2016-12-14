@@ -22,7 +22,7 @@ export default (key) => {
       return done(null, false, { message: 'invalid jwt' })
     }
 
-    return User.where({ id: payload.data[key] }).fetch().then(user => {
+    return User.where({ id: payload.data[key] }).fetch({ withRelated: ['photo'] }).then(user => {
 
       if(!user) {
         return done(null, false, { message: 'cannot find user' })

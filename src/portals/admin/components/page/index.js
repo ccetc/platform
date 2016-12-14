@@ -13,7 +13,6 @@ export default (pageProps) => {
 
       static contextTypes = {
         container: React.PropTypes.object,
-        team: React.PropTypes.object,
         flash: React.PropTypes.object,
         modal: React.PropTypes.object,
         router: React.PropTypes.object,
@@ -24,6 +23,7 @@ export default (pageProps) => {
       static propTypes = {
         data: React.PropTypes.object,
         status: React.PropTypes.string,
+        team: React.PropTypes.object,
         user: React.PropTypes.object
       }
 
@@ -35,14 +35,14 @@ export default (pageProps) => {
 
       render() {
         const { back, permissions, resources, task, tasks, title } = this.page()
-        const { data, status, user } = this.props
+        const { data, status, team, user } = this.props
         if(permissions && !this._userHasPermission(user, permissions)) {
           return <Forbidden />
         }
         const loaded = !resources || _.isEqual(Object.keys(data).sort(), Object.keys(resources).sort())
         return (
           <div className="chrome-page">
-            <Helmet title={`${this.context.team.title} | ${title}`} />
+            <Helmet title={`${team.title} | ${title}`} />
             <div className="chrome-header">
               <div className="chrome-back">
                 { back &&
@@ -139,6 +139,7 @@ export default (pageProps) => {
 
     const mapStateToProps = state => ({
       user: state.session.user,
+      team: state.teams.teams[state.teams.active],
       ...state.container
     })
 

@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import component from 'ui/component'
 import * as actions from './actions'
 
 class Claim extends React.Component {
@@ -13,13 +12,17 @@ class Claim extends React.Component {
   render() {
     const { status } = this.props
     return (
-      <div className="ui form">
-        {status === 'initialized' &&
-          <div>
-            <div className="ui active centered inline loader"></div>
-            <p>Fetching your account...</p>
+      <div className="chrome-session">
+        <div className="chrome-session-widget">
+          <div className="ui form">
+            {status === 'initialized' &&
+              <div>
+                <div className="ui active centered inline loader"></div>
+                <p>Fetching your account...</p>
+              </div>
+            }
           </div>
-        }
+        </div>
       </div>
     )
   }
@@ -53,4 +56,4 @@ const mapDispatchToProps = {
   onClaim: actions.claim
 }
 
-export default component(connect(mapStateToProps, mapDispatchToProps)(Claim), 'claim', true)
+export default connect(mapStateToProps, mapDispatchToProps)(Claim)

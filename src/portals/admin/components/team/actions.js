@@ -1,5 +1,5 @@
 import * as actionTypes from './action_types'
-import api from 'ui/utils/api'
+import api from 'portals/admin/utils/api'
 
 export function load(domain) {
   return api.get({

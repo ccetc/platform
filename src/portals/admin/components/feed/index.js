@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import Infinite from 'ui/components/infinite'
+import Infinite from 'portals/admin/components/infinite'
 import moment from 'moment'
 
 export class Container extends React.Component {

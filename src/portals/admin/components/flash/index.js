@@ -2,7 +2,6 @@
 import React from 'react'
 import CSSTransitionGroup from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
-import component from 'ui/component'
 import * as actions from './actions'
 
 export class Flash extends React.Component {
@@ -76,4 +75,4 @@ const mapDispatchToProps = {
   onClear: actions.clear
 }
 
-export default component(connect(mapStateToProps, mapDispatchToProps)(Flash), 'flash', true)
+export default connect(mapStateToProps, mapDispatchToProps)(Flash)

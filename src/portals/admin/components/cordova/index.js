@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import component from 'ui/component'
 import * as actions from './actions'
 
 class Cordova extends React.Component {
@@ -72,4 +71,4 @@ const mapDispatchToProps = {
   showStatusBar: actions.hideStatusBar
 }
 
-export default component(connect(mapStateToProps, mapDispatchToProps)(Cordova), 'cordova', true)
+export default connect(mapStateToProps, mapDispatchToProps)(Cordova)

@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import component from 'ui/component'
 import * as actions from './actions'
 
 export class Notifications extends React.Component {
@@ -59,7 +58,7 @@ export class Notifications extends React.Component {
 
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, props) => ({
   queue: state.notifications.queue
 })
 
@@ -68,4 +67,4 @@ const mapDispatchToProps = {
   onPushNotification: actions.pushNotification
 }
 
-export default component(connect(mapStateToProps, mapDispatchToProps)(Notifications), 'notifications', true)
+export default connect(mapStateToProps, mapDispatchToProps)(Notifications)

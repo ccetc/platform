@@ -1,7 +1,6 @@
 import React from 'react'
 import CSSTransitionGroup from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
-import component from 'ui/component'
 import * as actions from './actions'
 
 class Drawer extends React.Component {
@@ -58,7 +57,7 @@ class Drawer extends React.Component {
 
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, props) => ({
   drawer: state.drawer
 })
 
@@ -67,4 +66,4 @@ const mapDispatchToProps = {
   close: actions.close
 }
 
-export default component(connect(mapStateToProps, mapDispatchToProps)(Drawer), 'drawer', true)
+export default connect(mapStateToProps, mapDispatchToProps)(Drawer)

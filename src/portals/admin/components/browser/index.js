@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import component from 'ui/component'
 import * as actions from './actions'
 
 class Browser extends React.Component {
@@ -61,4 +60,4 @@ const mapDispatchToProps = {
   clearNotification: actions.clearNotification
 }
 
-export default component(connect(mapStateToProps, mapDispatchToProps)(Browser), 'browser', true)
+export default connect(mapStateToProps, mapDispatchToProps)(Browser)

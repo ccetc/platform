@@ -1,7 +1,6 @@
 import React from 'react'
 import CSSTransitionGroup from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
-import component from 'ui/component'
 import * as actions from './actions'
 
 class Tasks extends React.Component {
@@ -74,7 +73,7 @@ class Tasks extends React.Component {
 }
 
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, props) => ({
   tasks: state.tasks
 })
 
@@ -83,4 +82,4 @@ const mapDispatchToProps = {
   close: actions.close
 }
 
-export default component(connect(mapStateToProps, mapDispatchToProps)(Tasks), 'tasks', true)
+export default connect(mapStateToProps, mapDispatchToProps)(Tasks)

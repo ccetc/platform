@@ -68,6 +68,8 @@ class Api {
 
         if(token) {
           config.headers['Authorization'] = `Bearer ${token}`
+        } else if(options.token) {
+          config.headers['Authorization'] = `Bearer ${options.token}`
         } else if(options.params && options.params.token) {
           config.headers['Authorization'] = `Bearer ${options.params.token}`
         }

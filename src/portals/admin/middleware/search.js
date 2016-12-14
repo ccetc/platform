@@ -4,11 +4,15 @@ import ProjectSearch from 'apps/reimbursement/searches/project_search'
 import UserSearch from 'platform/searches/user_search'
 
 export const search = (req, res, next) => {
+
   let searches = {}
   searches['projects'] = ProjectSearch(req.query)
   searches['users'] = UserSearch(req.query)
+
   const promises = Object.keys(searches).map(key => searches[key])
+
   Promise.all(promises).then(results => {
+
     let json = {}
     results.map((result, index) => {
       const key = Object.keys(searches)[index]
@@ -17,13 +21,11 @@ export const search = (req, res, next) => {
       }
     })
     return res.status(200).json(json)
+
   }).catch(err => {
     const error = new Error({ code: 500, message: err.message })
     return next(error)
   })
-}
-
-export const create = (req, res, next) => {
 
 }
 

@@ -1,35 +1,30 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Topbar from './topbar'
-import Notifications from '../notifications'
+// import Notifications from '../notifications'
 
 export class Chrome extends React.Component {
 
-  static contextTypes = {
-    router: React.PropTypes.object
-  }
-
   static propTypes = {
-    token: React.PropTypes.string,
     user: React.PropTypes.object
   }
 
   render() {
     const { children, user } = this.props
-    if(!user) {
-      return null
-    }
+    if(!user) return null
     return (
       <div className="chrome">
         <Topbar />
-        { children }
+        <div className="chrome-workspace">
+          { children }
+        </div>
       </div>
     )
   }
 
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, props) => ({
   user: state.session.user
 })
 

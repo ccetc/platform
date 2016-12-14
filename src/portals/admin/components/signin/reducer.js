@@ -1,37 +1,73 @@
 import * as actionTypes from './action_types'
 
 export const INITIAL_STATE = {
-  status: 'ready',
-  token: null,
-  error: null
+  error: null,
+  show: false,
+  status: 'pending',
+  team: null,
+  user: null,
+  token: null
 }
 
 export default (state = INITIAL_STATE, action) => {
 
   switch (action.type) {
 
-  case actionTypes.SETUP:
-    return INITIAL_STATE
-
-  case actionTypes.SIGNIN_REQUEST:
+  case actionTypes.TEAM_REQUEST:
+  case actionTypes.EMAIL_REQUEST:
+  case actionTypes.PASSWORD_REQUEST:
+  case actionTypes.FORGOT_REQUEST:
     return {
       ...state,
+      error: null,
       status: 'submitting'
     }
 
-  case actionTypes.SIGNIN_SUCCESS:
+  case actionTypes.TEAM_FAILURE:
+  case actionTypes.EMAIL_FAILURE:
+  case actionTypes.PASSWORD_FAILURE:
+  case actionTypes.FORGOT_FAILURE:
+    return {
+      ...state,
+      status: 'failure',
+      error: action.error.message
+    }
+
+  case actionTypes.TEAM_SUCCESS:
+    return {
+      ...state,
+      team: action.data,
+      status: 'success'
+    }
+
+  case actionTypes.EMAIL_SUCCESS:
+    return {
+      ...state,
+      user: action.data,
+      status: 'success'
+    }
+
+  case actionTypes.PASSWORD_SUCCESS:
     return {
       ...state,
       token: action.data.token,
       status: 'success'
     }
 
-  case actionTypes.SIGNIN_FAILURE:
+  case actionTypes.FORGOT_SUCCESS:
     return {
       ...state,
-      status: 'failure',
-      error: action.error.message
+      status: 'success'
     }
+
+  case actionTypes.TOGGLE_PASSWORD:
+    return {
+      ...state,
+      show: !state.show
+    }
+
+  case actionTypes.RESET:
+    return INITIAL_STATE
 
   default:
     return state
