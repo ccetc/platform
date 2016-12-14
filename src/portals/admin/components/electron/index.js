@@ -22,18 +22,16 @@ class Electron extends React.Component {
   }
 
   componentDidMount() {
-    if(this.props.location.query.electron) {
+    const { query } = this.props.location
+    if(query.electron) {
       this.props.onEnable()
     }
   }
 
   componentDidUpdate(prevProps) {
-    const { notification, clearNotification } = this.props
+    const { notification } = this.props
     if(prevProps.notification !== notification && notification !== null) {
-      new Notification('Title', {
-        body: notification
-      })
-      clearNotification()
+      this._handleNotification(notification.title, notification.body, notification.icon)
     }
   }
 
@@ -44,6 +42,16 @@ class Electron extends React.Component {
         pushNotification
       }
     }
+  }
+
+  _handleNotification(title, body, icon) {
+    const { clearNotification } = this.props
+    new Notification(title, {
+      title,
+      body,
+      icon
+    })
+    clearNotification()
   }
 
 }

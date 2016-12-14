@@ -6,10 +6,12 @@ export function enable() {
   }
 }
 
-export function pushNotification(message) {
+export function pushNotification(title, body, icon) {
   return {
     type: actionTypes.PUSH_NOTIFICATION,
-    message
+    title,
+    body,
+    icon
   }
 }
 

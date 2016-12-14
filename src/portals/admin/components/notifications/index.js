@@ -1,12 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { getActiveTeam } from '../admin/selectors'
 import * as actions from './actions'
 
 export class Notifications extends React.Component {
 
+  static childContextTypes = {
+    notifications: React.PropTypes.object
+  }
+
   static contextTypes = {
-    session: React.PropTypes.object,
-    socket: React.PropTypes.object
+    browser: React.PropTypes.object,
+    electron: React.PropTypes.object
   }
 
   static propTypes = {
@@ -39,27 +44,35 @@ export class Notifications extends React.Component {
   }
 
   componentDidMount() {
-    // this.context.socket.on('notification', (message) => {
-    //   this.props.onPushNotification(message)
-    // })
   }
 
   componentWillUnmount() {
-    // this.context.socket.unsubscribe(`/users/${this.context.session.user.id}/notifications`, this.pushNotification.bind(this))
   }
 
-  // readNotification(id) {
-  //   this.props.onReadNotification(id)
-  // }
-  //
-  // pushNotification(payload) {
-  //   this.props.onPushNotification(payload.message)
-  // }
+  getChildContext() {
+    return {
+      notifications: {
+        push: this._handlePushNotification.bind(this)
+      }
+    }
+  }
+
+  _handlePushNotification(message) {
+    const { browser, electron, team } = this.props
+    if(electron) {
+      this.context.electron.pushNotification(team.title, message, team.logo)
+    } else if(browser) {
+      this.context.browser.pushNotification(team.title, message, team.logo)
+    }
+  }
 
 }
 
 const mapStateToProps = (state, props) => ({
-  queue: state.notifications.queue
+  browser: state.browser.enabled,
+  electron: state.electron.enabled,
+  queue: state.notifications.queue,
+  team: getActiveTeam(state)
 })
 
 const mapDispatchToProps = {

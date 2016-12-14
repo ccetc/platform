@@ -8,8 +8,13 @@ class Browser extends React.Component {
     browser: React.PropTypes.object
   }
 
+  static contextTypes = {
+    router: React.PropTypes.object
+  }
+
   static propTypes = {
-    enabled: React.PropTypes.bool.isRequired
+    enabled: React.PropTypes.bool,
+    permission: React.PropTypes.bool
   }
 
   render() {
@@ -29,12 +34,9 @@ class Browser extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { notification, clearNotification } = this.props
+    const { notification } = this.props
     if(prevProps.notification !== notification && notification !== null) {
-      new Notification('Title', {
-        body: notification
-      })
-      clearNotification()
+      this._handleNotification(notification.title, notification.body, notification.icon)
     }
   }
 
@@ -47,11 +49,32 @@ class Browser extends React.Component {
     }
   }
 
+  _handleNotification(title, body, icon) {
+    const { clearNotification } = this.props
+    const { router } = this.context
+    if(window.Notification && Notification.permission !== 'denied') {
+      Notification.requestPermission(function(status) {
+        const notification = new Notification(title, {
+          title,
+          body,
+          icon
+        })
+        notification.onclick = (event) => {
+          router.push({ pathname: '/admin' })
+          event.target.close()
+          event.preventDefault()
+        }
+      })
+    }
+    clearNotification()
+  }
+
 }
 
 const mapStateToProps = state => ({
   enabled: state.browser.enabled,
-  notification: state.browser.notification
+  notification: state.browser.notification,
+  permission: state.browser.permission
 })
 
 const mapDispatchToProps = {

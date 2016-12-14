@@ -12,7 +12,6 @@ import navigation from 'portals/admin/components/navigation/reducer'
 import notifications from 'portals/admin/components/notifications/reducer'
 import reset from './reset/reducer'
 import search from './search/reducer'
-import session from './session/reducer'
 import signin from './signin/reducer'
 import tasks from './tasks/reducer'
 
@@ -28,7 +27,6 @@ const platformReducers = {
   notifications,
   reset,
   search,
-  session,
   signin,
   tasks
 }
@@ -52,7 +50,6 @@ export default (state, action) => {
       notifications: notifications(undefined, action),
       reset: reset(undefined, action),
       search: search(undefined, action),
-      session: session(undefined, action),
       signin: signin(undefined, action),
       tasks: tasks(undefined, action),
       ...component(undefined, action)

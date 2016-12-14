@@ -8,7 +8,6 @@ import Flash from 'portals/admin/components/flash'
 import Admin from './components/admin'
 import Transition from './components/transition'
 
-import Session from './components/session'
 import Container from './components/container'
 import Panel from './components/panel'
 import Activation from './components/activation'
@@ -50,24 +49,22 @@ export default (
                 <Route component={ ResetClaim } path="admin/reset/:id" />
               </Route>
               <Route component={ Teams }>
-                <Route component={ Session }>
-                  <Route component={ Container }>
-                    <Route component={ Notifications }>
-                      <Route component={ Socket }>
-                        <Route component={ Modal }>
-                          <Route component={ Drawer }>
-                            <Route component={ Tasks }>
-                              <Route component={ Chrome } path="admin">
-                                <Route component={ Transition }>
-                                  <Route component={ Panel }>
-                                    <IndexRoute component={ Dashboard } />
-                                    <Route component={ NotificationsList } path="notifications" />
-                                    {TeamApp}
-                                    <Route path="reimbursement">
-                                      {ReimbursementApp}
-                                    </Route>
-                                    <Route path="*" component={ NotFound }/>
+                <Route component={ Container }>
+                  <Route component={ Notifications }>
+                    <Route component={ Socket }>
+                      <Route component={ Modal }>
+                        <Route component={ Drawer }>
+                          <Route component={ Tasks }>
+                            <Route component={ Chrome } path="admin">
+                              <Route component={ Transition }>
+                                <Route component={ Panel }>
+                                  <IndexRoute component={ Dashboard } />
+                                  <Route component={ NotificationsList } path="notifications" />
+                                  {TeamApp}
+                                  <Route path="reimbursement">
+                                    {ReimbursementApp}
                                   </Route>
+                                  <Route path="*" component={ NotFound }/>
                                 </Route>
                               </Route>
                             </Route>

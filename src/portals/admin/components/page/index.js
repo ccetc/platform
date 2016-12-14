@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
+import { getActiveTeam, getActiveUser } from '../admin/selectors'
 import Helmet from 'react-helmet'
 import Forbidden from './forbidden'
 import _ from 'lodash'
@@ -138,8 +139,8 @@ export default (pageProps) => {
     }
 
     const mapStateToProps = state => ({
-      user: state.session.user,
-      team: state.admin.teams[state.admin.active],
+      team: getActiveTeam(state),
+      user: getActiveUser(state),
       ...state.container
     })
 

@@ -7,7 +7,6 @@ import modal from 'portals/admin/components/modal/reducer'
 import navigation from 'portals/admin/components/navigation/reducer'
 import notifications from 'portals/admin/components/notifications/reducer'
 import reset from 'portals/admin/components/reset/reducer'
-import session from 'portals/admin/components/session/reducer'
 import search from 'portals/admin/components/search/reducer'
 import socket from 'portals/admin/components/socket/reducer'
 import team from 'portals/admin/components/team/reducer'
@@ -28,7 +27,6 @@ const reducers = {
   navigation,
   notifications,
   reset,
-  session,
   search,
   socket,
   tabs,

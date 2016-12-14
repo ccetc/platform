@@ -2,7 +2,8 @@ import * as actionTypes from './action_types'
 
 export const INITIAL_STATE = {
   enabled: false,
-  notification: null
+  notification: null,
+  permission: false
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -18,7 +19,11 @@ export default (state = INITIAL_STATE, action) => {
   case actionTypes.PUSH_NOTIFICATION:
     return {
       ...state,
-      notification: action.message
+      notification: {
+        title: action.title,
+        body: action.body,
+        icon: action.icon
+      }
     }
 
   case actionTypes.CLEAR_NOTIFICATION:

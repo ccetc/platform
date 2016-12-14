@@ -1,5 +1,4 @@
 import * as actionTypes from './action_types'
-import api from 'portals/admin/utils/api'
 
 export function pushNotification(notification) {
   return {

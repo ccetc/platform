@@ -7,12 +7,13 @@ import Topbar from './topbar'
 export class Chrome extends React.Component {
 
   static propTypes = {
+    teams: React.PropTypes.array,
     user: React.PropTypes.object
   }
 
   render() {
-    const { children, user } = this.props
-    if(!user) return null
+    const { children, teams, user } = this.props
+    if(!user || teams.length === 0) return null
     return (
       <div className="chrome">
         <Topbar />
@@ -23,9 +24,24 @@ export class Chrome extends React.Component {
     )
   }
 
+  componentDidMount() {
+    this._handleRedirect(this.props.teams)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this._handleRedirect(nextProps.teams)
+  }
+
+  _handleRedirect(teams) {
+    if(teams.length === 0) {
+      this.context.router.push({ pathname: '/admin/signin' })
+    }
+  }
+
 }
 
 const mapStateToProps = (state, props) => ({
+  teams: state.admin.teams,
   user: getActiveUser(state)
 })
 
