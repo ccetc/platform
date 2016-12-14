@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { getActiveUser } from '../admin/selectors'
 import Search from '../search'
 import Account from '../account'
 import Notifications from '../notifications/list'
@@ -64,7 +65,7 @@ export class Topbar extends React.Component {
 
 const mapStateToProps = state => ({
   unread: state.notifications.unread,
-  user: state.session.user
+  user: getActiveUser(state)
 })
 
 export default connect(mapStateToProps)(Topbar)

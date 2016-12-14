@@ -1,5 +1,6 @@
 import _ from 'lodash'
 
+import admin from './admin/reducer'
 import cordova from 'portals/admin/components/cordova/reducer'
 import component from 'portals/admin/components/component/reducer'
 import drawer from 'portals/admin/components/drawer/reducer'
@@ -14,9 +15,9 @@ import search from './search/reducer'
 import session from './session/reducer'
 import signin from './signin/reducer'
 import tasks from './tasks/reducer'
-import teams from './teams/reducer'
 
 const platformReducers = {
+  admin,
   browser,
   cordova,
   drawer,
@@ -29,8 +30,7 @@ const platformReducers = {
   search,
   session,
   signin,
-  tasks,
-  teams
+  tasks
 }
 
 export default (state, action) => {
@@ -41,6 +41,7 @@ export default (state, action) => {
   if(state === undefined) {
 
     return {
+      admin: admin(undefined, action),
       browser: browser(undefined, action),
       cordova: cordova(undefined, action),
       drawer: drawer(undefined, action),
@@ -54,7 +55,6 @@ export default (state, action) => {
       session: session(undefined, action),
       signin: signin(undefined, action),
       tasks: tasks(undefined, action),
-      teams: teams(undefined, action),
       ...component(undefined, action)
     }
 

@@ -8,12 +8,12 @@ export class Password extends React.Component {
   static contextTypes = {
     flash: React.PropTypes.object,
     router: React.PropTypes.object,
-    teams: React.PropTypes.object
+    admin: React.PropTypes.object
   }
 
   static propTypes = {
     error: React.PropTypes.string,
-    show: React.PropTypes.string,
+    show: React.PropTypes.bool,
     status: React.PropTypes.string,
     team: React.PropTypes.object,
     user: React.PropTypes.object,
@@ -65,7 +65,7 @@ export class Password extends React.Component {
       if(status === 'failure') {
         this.context.flash.set('info', error)
       } else if(status === 'success') {
-        this.context.teams.add(team, token)
+        this.context.admin.addTeam(team, token)
         this.context.router.push('/admin')
       }
     }

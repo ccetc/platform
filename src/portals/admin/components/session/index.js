@@ -13,22 +13,20 @@ class Session extends React.Component {
   static propTypes = {
     active: React.PropTypes.number,
     status: React.PropTypes.string,
-    teams: React.PropTypes.array,
+    admin: React.PropTypes.array,
     user: React.PropTypes.object,
     onLoad: React.PropTypes.func.isRequired
   }
 
   render() {
-    const { children, status, teams } = this.props
-    return (teams.length > 0 && status !== 'pending') ? children : null
+    const { children, teams } = this.props
+    return (teams.length > 0) ? children : null
   }
 
   componentDidMount() {
-    const { active, teams, onLoad } = this.props
+    const { teams } = this.props
     if(teams.length === 0) {
       this.context.router.push({ pathname: '/admin/signin' })
-    } else if(active !== null) {
-      onLoad(teams[active].token)
     }
   }
 
@@ -53,9 +51,9 @@ class Session extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  active: state.teams.active,
+  active: state.admin.active,
   status: state.session.status,
-  teams: state.teams.teams,
+  teams: state.admin.teams,
   user: state.session.user
 })
 

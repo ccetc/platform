@@ -9,13 +9,13 @@ export class Team extends React.Component {
   static contextTypes = {
     flash: React.PropTypes.object,
     router: React.PropTypes.object,
-    teams: React.PropTypes.object
+    admin: React.PropTypes.object
   }
 
   static propTypes = {
     error: React.PropTypes.string,
     status: React.PropTypes.string,
-    teams: React.PropTypes.array,
+    admin: React.PropTypes.array,
     onTeam: React.PropTypes.func
   }
 
@@ -64,7 +64,7 @@ export class Team extends React.Component {
     const subdomain = $(this.refs.subdomain).val()
     const index = _.findIndex(teams, { subdomain })
     if(index >= 0) {
-      this.context.teams.choose(index)
+      this.context.admin.chooseTeam(index)
       this.context.router.push({ pathname: '/admin' })
     } else {
       onTeam(subdomain)
@@ -78,7 +78,7 @@ export class Team extends React.Component {
 const mapStateToProps = state => ({
   error: state.signin.error,
   status: state.signin.status,
-  teams: state.teams.teams
+  teams: state.admin.teams
 })
 
 const mapDispatchToProps = {

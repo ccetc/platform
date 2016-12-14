@@ -153,12 +153,14 @@ class Form extends React.Component {
 
 }
 
-const mapStateToProps = (state, props) => ({
-  data: state.form[props.cid].data,
-  entity: state.form[props.cid].entity,
-  errors: state.form[props.cid].errors,
-  status: state.form[props.cid].status
-})
+const mapStateToProps = (state, props) => {
+  return {
+    data: state.form[props.identifier].data,
+    entity: state.form[props.identifier].entity,
+    errors: state.form[props.identifier].errors,
+    status: state.form[props.identifier].status
+  }
+}
 
 const mapDispatchToProps = {
   onSetSections: actions.setSections,

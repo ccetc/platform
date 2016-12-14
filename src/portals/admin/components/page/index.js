@@ -139,7 +139,7 @@ export default (pageProps) => {
 
     const mapStateToProps = state => ({
       user: state.session.user,
-      team: state.teams.teams[state.teams.active],
+      team: state.admin.teams[state.admin.active],
       ...state.container
     })
 

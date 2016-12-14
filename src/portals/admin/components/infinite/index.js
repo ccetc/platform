@@ -13,7 +13,9 @@ class Infinite extends React.Component {
     records: React.PropTypes.array,
     status: React.PropTypes.string,
     sort: React.PropTypes.string,
-    total: React.PropTypes.number
+    total: React.PropTypes.number,
+    onFetch: React.PropTypes.func,
+    onReset: React.PropTypes.func
   }
 
   render() {
@@ -79,23 +81,23 @@ class Infinite extends React.Component {
   }
 
   _scrollListener() {
-    const { endpoint, sort, loaded, status, total } = this.props
+    const { cid, endpoint, sort, loaded, status, total, onFetch } = this.props
     const el = this._container()
     if(!el || status == 'loading') return
     const bottomScrollPos = el.scrollTop + el.offsetHeight
     const bottomPosition = (el.scrollHeight - bottomScrollPos)
     if (status === 'pending' || (bottomPosition < 250 && loaded < total)) {
-      this.props.onFetch(this.props.cid, endpoint, { '$skip': loaded, $sort: sort })
+      onFetch(cid, endpoint, { '$skip': loaded, $sort: sort })
     }
   }
 
 }
 
 const mapStateToProps = (state, props) => ({
-  loaded: state.infinite[props.cid].loaded,
-  records: state.infinite[props.cid].records,
-  status: state.infinite[props.cid].status,
-  total: state.infinite[props.cid].total
+  loaded: state.infinite[props.identifier].loaded,
+  records: state.infinite[props.identifier].records,
+  status: state.infinite[props.identifier].status,
+  total: state.infinite[props.identifier].total
 })
 
 const mapDispatchToProps = {

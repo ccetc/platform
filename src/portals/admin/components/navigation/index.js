@@ -1,4 +1,5 @@
 import React from 'react'
+import { getApps } from '../admin/selectors'
 import CSSTransitionGroup from 'react-addons-css-transition-group'
 import component from 'portals/admin/components/component'
 import * as actions from './actions'
@@ -66,7 +67,7 @@ export class Navigation extends React.Component {
 
 const mapStateToProps = state => ({
   app: state.navigation.app,
-  apps: state.session.apps,
+  apps: getApps(state),
   route: state.navigation.route
 })
 

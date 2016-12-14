@@ -5,7 +5,7 @@ import Cordova from 'portals/admin/components/cordova'
 import Electron from 'portals/admin/components/electron'
 import Browser from 'portals/admin/components/browser'
 import Flash from 'portals/admin/components/flash'
-import TeamContainer from './components/teams'
+import Admin from './components/admin'
 import Transition from './components/transition'
 
 import Session from './components/session'
@@ -39,7 +39,7 @@ export default (
       <Route component={ Electron }>
         <Route component={ Browser }>
           <Route component={ Flash }>
-            <Route component={ TeamContainer }>
+            <Route component={ Admin }>
               <Route component={ Transition }>
                 <Route component={ Team } path="admin/signin" />
                 <Route component={ Email } path="admin/signin/email" />
@@ -49,11 +49,11 @@ export default (
                 <Route component={ ResetPassword } path="admin/reset/password" />
                 <Route component={ ResetClaim } path="admin/reset/:id" />
               </Route>
-              <Route component={ Session }>
-                <Route component={ Container }>
-                  <Route component={ Notifications }>
-                    <Route component={ Socket }>
-                      <Route component={ Teams }>
+              <Route component={ Teams }>
+                <Route component={ Session }>
+                  <Route component={ Container }>
+                    <Route component={ Notifications }>
+                      <Route component={ Socket }>
                         <Route component={ Modal }>
                           <Route component={ Drawer }>
                             <Route component={ Tasks }>
