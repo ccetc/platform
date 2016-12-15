@@ -46,18 +46,23 @@ class Drawer extends React.Component {
   }
 
   _handleOpenDrawer(component, location) {
-    this.context.cordova.hideStatusBar()
+    if(this.props.host === 'cordova') {
+      this.context.cordova.hideStatusBar()
+    }
     this.props.open(component, location)
   }
 
   _handleCloseDrawer() {
-    this.context.cordova.showStatusBar()
+    if(this.props.host === 'cordova') {
+      this.context.cordova.showStatusBar()
+    }
     this.props.close()
   }
 
 }
 
 const mapStateToProps = (state, props) => ({
+  host: state.host.style,
   drawer: state.drawer
 })
 

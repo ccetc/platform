@@ -15,6 +15,7 @@ export class Notifications extends React.Component {
   }
 
   static propTypes = {
+    host: React.PropTypes.string,
     queue: React.PropTypes.array.isRequired,
     onPushNotification: React.PropTypes.func.isRequired,
     onReadNotification: React.PropTypes.func.isRequired
@@ -43,12 +44,6 @@ export class Notifications extends React.Component {
     )
   }
 
-  componentDidMount() {
-  }
-
-  componentWillUnmount() {
-  }
-
   getChildContext() {
     return {
       notifications: {
@@ -58,10 +53,10 @@ export class Notifications extends React.Component {
   }
 
   _handlePushNotification(message) {
-    const { browser, electron, team } = this.props
-    if(electron) {
+    const { host, team } = this.props
+    if(host === 'electron') {
       this.context.electron.pushNotification(team.title, message, team.logo)
-    } else if(browser) {
+    } else if(host === 'browser') {
       this.context.browser.pushNotification(team.title, message, team.logo)
     }
   }
@@ -69,8 +64,7 @@ export class Notifications extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  browser: state.browser.enabled,
-  electron: state.electron.enabled,
+  host: state.host.style,
   queue: state.notifications.queue,
   team: getActiveTeam(state)
 })

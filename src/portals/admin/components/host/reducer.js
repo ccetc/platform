@@ -1,21 +1,16 @@
 import * as actionTypes from './action_types'
 
 export const INITIAL_STATE = {
-  app: null,
-  route: null
+  style: null
 }
 
 export default (state = INITIAL_STATE, action) => {
 
   switch (action.type) {
 
-  case actionTypes.RESET:
-    return INITIAL_STATE
-
-  case actionTypes.CHOOSE_APP:
+  case actionTypes.SET:
     return {
-      ...state,
-      app: (state.app === action.index) ? null : action.index
+      style: action.style
     }
 
   default:

@@ -1,11 +1,5 @@
 import * as actionTypes from './action_types'
 
-export function enable() {
-  return {
-    type: actionTypes.ENABLE
-  }
-}
-
 export function pushNotification(title, body, icon) {
   return {
     type: actionTypes.PUSH_NOTIFICATION,

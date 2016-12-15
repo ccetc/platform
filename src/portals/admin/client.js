@@ -1,9 +1,7 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 import Root from './components/root'
-import Cordova from 'portals/admin/components/cordova'
-import Electron from 'portals/admin/components/electron'
-import Browser from 'portals/admin/components/browser'
+import Host from 'portals/admin/components/host'
 import Flash from 'portals/admin/components/flash'
 import Admin from './components/admin'
 import Transition from './components/transition'
@@ -34,39 +32,35 @@ import NotFound from './components/page/not_found'
 
 export default (
   <Route component={ Root }>
-    <Route component={ Cordova }>
-      <Route component={ Electron }>
-        <Route component={ Browser }>
-          <Route component={ Flash }>
-            <Route component={ Admin }>
-              <Route component={ Transition }>
-                <Route component={ Team } path="admin/signin" />
-                <Route component={ Email } path="admin/signin/email" />
-                <Route component={ Password } path="admin/signin/password" />
-                <Route component={ Activation } path="admin/activation/:id" />
-                <Route component={ ResetSecurity } path="admin/reset/security" />
-                <Route component={ ResetPassword } path="admin/reset/password" />
-                <Route component={ ResetClaim } path="admin/reset/:id" />
-              </Route>
-              <Route component={ Teams }>
-                <Route component={ Container }>
-                  <Route component={ Notifications }>
-                    <Route component={ Socket }>
-                      <Route component={ Modal }>
-                        <Route component={ Drawer }>
-                          <Route component={ Tasks }>
-                            <Route component={ Chrome } path="admin">
-                              <Route component={ Transition }>
-                                <Route component={ Panel }>
-                                  <IndexRoute component={ Dashboard } />
-                                  <Route component={ NotificationsList } path="notifications" />
-                                  {TeamApp}
-                                  <Route path="reimbursement">
-                                    {ReimbursementApp}
-                                  </Route>
-                                  <Route path="*" component={ NotFound }/>
-                                </Route>
+    <Route component={ Flash }>
+      <Route component={ Admin }>
+        <Route component={ Transition }>
+          <Route component={ Team } path="admin/signin" />
+          <Route component={ Email } path="admin/signin/email" />
+          <Route component={ Password } path="admin/signin/password" />
+          <Route component={ Activation } path="admin/activation/:id" />
+          <Route component={ ResetSecurity } path="admin/reset/security" />
+          <Route component={ ResetPassword } path="admin/reset/password" />
+          <Route component={ ResetClaim } path="admin/reset/:id" />
+        </Route>
+        <Route component={ Host }>
+          <Route component={ Teams }>
+            <Route component={ Container }>
+              <Route component={ Notifications }>
+                <Route component={ Socket }>
+                  <Route component={ Modal }>
+                    <Route component={ Drawer }>
+                      <Route component={ Tasks }>
+                        <Route component={ Chrome } path="admin">
+                          <Route component={ Transition }>
+                            <Route component={ Panel }>
+                              <IndexRoute component={ Dashboard } />
+                              <Route component={ NotificationsList } path="notifications" />
+                              {TeamApp}
+                              <Route path="reimbursement">
+                                {ReimbursementApp}
                               </Route>
+                              <Route path="*" component={ NotFound }/>
                             </Route>
                           </Route>
                         </Route>

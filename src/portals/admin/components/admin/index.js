@@ -23,11 +23,7 @@ export class Admin extends React.Component {
 
   render() {
     const { children, status } = this.props
-    return (
-      <div>
-        { (status === 'success') ? children : null }
-      </div>
-    )
+    return (status === 'success') ? children : null
   }
 
   componentDidMount() {

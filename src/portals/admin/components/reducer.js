@@ -7,6 +7,7 @@ import drawer from 'portals/admin/components/drawer/reducer'
 import electron from 'portals/admin/components/electron/reducer'
 import browser from 'portals/admin/components/browser/reducer'
 import flash from 'portals/admin/components/flash/reducer'
+import host from 'portals/admin/components/host/reducer'
 import modal from 'portals/admin/components/modal/reducer'
 import navigation from 'portals/admin/components/navigation/reducer'
 import notifications from 'portals/admin/components/notifications/reducer'
@@ -22,6 +23,7 @@ const platformReducers = {
   drawer,
   electron,
   flash,
+  host,
   modal,
   navigation,
   notifications,
@@ -45,6 +47,7 @@ export default (state, action) => {
       drawer: drawer(undefined, action),
       electron: electron(undefined, action),
       flash: flash(undefined, action),
+      host: host(undefined, action),
       modal: modal(undefined, action),
       navigation: navigation(undefined, action),
       notifications: notifications(undefined, action),

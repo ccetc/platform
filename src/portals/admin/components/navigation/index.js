@@ -49,6 +49,10 @@ export class Navigation extends React.Component {
     )
   }
 
+  componentWillUnmount() {
+    this.props.onReset()
+  }
+
   _handleChooseApp(index) {
     this.props.onChooseApp(index)
   }
@@ -72,7 +76,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  onChooseApp: actions.chooseApp
+  onChooseApp: actions.chooseApp,
+  onReset: actions.reset
 }
 
 export default component(mapStateToProps, mapDispatchToProps, Navigation, 'navigation', true)

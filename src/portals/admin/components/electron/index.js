@@ -9,23 +9,15 @@ class Electron extends React.Component {
   }
 
   static propTypes = {
-    enabled: React.PropTypes.bool.isRequired
   }
 
   render() {
-    const { children, enabled } = this.props
+    const { children } = this.props
     return (
-      <div className={ enabled ? 'electron' : null }>
+      <div className="electron">
         { children }
       </div>
     )
-  }
-
-  componentDidMount() {
-    const { query } = this.props.location
-    if(query.electron) {
-      this.props.onEnable()
-    }
   }
 
   componentDidUpdate(prevProps) {
@@ -56,12 +48,10 @@ class Electron extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  enabled: state.electron.enabled,
   notification: state.electron.notification
 })
 
 const mapDispatchToProps = {
-  onEnable: actions.enable,
   pushNotification: actions.pushNotification,
   clearNotification: actions.clearNotification
 }

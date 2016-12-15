@@ -6,3 +6,9 @@ export function chooseApp(index) {
     index
   }
 }
+
+export function reset() {
+  return {
+    type: actionTypes.RESET
+  }
+}

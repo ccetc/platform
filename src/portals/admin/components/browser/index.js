@@ -1,5 +1,7 @@
 import React from 'react'
+import CSSTransitionGroup from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
+import { getActiveTeam} from '../admin/selectors'
 import * as actions from './actions'
 
 class Browser extends React.Component {
@@ -13,24 +15,41 @@ class Browser extends React.Component {
   }
 
   static propTypes = {
-    enabled: React.PropTypes.bool,
     permission: React.PropTypes.bool
   }
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      permission: (window.Notification) ? Notification.permission : 'denied'
+    }
+  }
+
   render() {
-    const { children, enabled } = this.props
+    const { children } = this.props
     return (
-      <div className={ enabled ? 'browser' : null }>
-        { children }
+      <div className="browser">
+        <CSSTransitionGroup component={ this.firstChild } transitionName="expanded" transitionEnterTimeout={ 500 } transitionLeaveTimeout={ 500 }>
+          { this.state.permission === 'default' &&
+            <div className="browser-notice">
+              <p>We need your permission to <a onClick={this._handleEnableNotifications.bind(this)}>enable desktop notifications</a></p>
+              <div className="browser-notice-dismiss">
+                <i className="remove icon"></i>
+              </div>
+            </div>
+          }
+        </CSSTransitionGroup>
+        <div className="browser-main">
+          { children }
+        </div>
       </div>
     )
   }
 
-  componentDidMount() {
-    const { query } = this.props.location
-    if(!query.cordova && !query.electron) {
-      this.props.onEnable()
-    }
+
+  firstChild(props) {
+    const childrenArray = React.Children.toArray(props.children)
+    return childrenArray[0] || null
   }
 
   componentDidUpdate(prevProps) {
@@ -49,36 +68,51 @@ class Browser extends React.Component {
     }
   }
 
-  _handleNotification(title, body, icon) {
-    const { clearNotification } = this.props
-    const { router } = this.context
-    if(window.Notification && Notification.permission !== 'denied') {
-      Notification.requestPermission(function(status) {
-        const notification = new Notification(title, {
-          title,
-          body,
-          icon
+  _handleEnableNotifications() {
+    const { team } = this.props
+    Notification.requestPermission(status => {
+      this.setState({
+        permission: status
+      })
+      if(status == 'granted') {
+        const notification = new Notification(team.title, {
+          tite: team.title,
+          body: 'Thank you for enabling notifications!',
+          icon: team.logo
         })
         notification.onclick = (event) => {
-          router.push({ pathname: '/admin' })
           event.target.close()
           event.preventDefault()
         }
+      }
+    })
+  }
+
+  _handleNotification(title, body, icon) {
+    const { router } = this.context
+    if(this.state.permission) {
+      const notification = new Notification(title, {
+        title,
+        body,
+        icon
       })
+      notification.onclick = (event) => {
+        router.push({ pathname: '/admin' })
+        event.target.close()
+        event.preventDefault()
+      }
     }
-    clearNotification()
   }
 
 }
 
 const mapStateToProps = state => ({
-  enabled: state.browser.enabled,
   notification: state.browser.notification,
-  permission: state.browser.permission
+  permission: state.browser.permission,
+  team: getActiveTeam(state)
 })
 
 const mapDispatchToProps = {
-  onEnable: actions.enable,
   pushNotification: actions.pushNotification,
   clearNotification: actions.clearNotification
 }

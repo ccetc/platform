@@ -60,6 +60,12 @@ export default (state = INITIAL_STATE, action) => {
       status: 'success'
     }
 
+  case actionTypes.CHANGE_USER:
+    return {
+      ...state,
+      user: null
+    }
+
   case actionTypes.TOGGLE_PASSWORD:
     return {
       ...state,
