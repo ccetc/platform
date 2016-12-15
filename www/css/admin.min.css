@@ -144,6 +144,28 @@
   -o-transform: translateX(0);
   transform: translateX(0);
 }
+.fade-appear,
+.fade-enter,
+.fade-leave {
+  transition: opacity 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -webkit-transition: opacity 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -moz-transition: opacity 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -ms-transition: opacity 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+}
+.fade-leave.fade-leave-active,
+.fade-appear,
+.fade-enter {
+  -webkit-opacity: 0;
+  -moz-opacity: 0;
+  opacity: 0;
+}
+.fade-appear.fade-appear-active,
+.fade-enter.fade-enter-active,
+.fade-leave {
+  -webkit-opacity: 1;
+  -moz-opacity: 1;
+  opacity: 1;
+}
 *[onClick] {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-tap-highlight-color: transparent;
@@ -380,63 +402,6 @@
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-}
-.chrome-flash {
-  transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -webkit-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -moz-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -ms-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 20;
-  min-height: 100px;
-  display: flex;
-  padding: 15px;
-  color: #FFF;
-  z-index: 10;
-}
-.chrome-flash.expanded-appear,
-.chrome-flash.expanded-enter,
-.chrome-flash.expanded-leave.expanded-leave-active {
-  -webkit-transform: translateY(-100%);
-  -moz-transform: translateY(-100%);
-  -ms-transform: translateY(-100%);
-  -o-transform: translateY(-100%);
-  transform: translateY(-100%);
-}
-.chrome-flash.expanded-appear.expanded-appear-active,
-.chrome-flash.expanded-enter.expanded-enter-active,
-.chrome-flash.expanded-leave {
-  -webkit-transform: translateY(0);
-  -moz-transform: translateY(0);
-  -ms-transform: translateY(0);
-  -o-transform: translateY(0);
-  transform: translateY(0);
-}
-.chrome-flash p {
-  margin: 0;
-  text-align: center;
-  margin: auto;
-  font-size: 1.3em;
-}
-.chrome-flash i {
-  display: block;
-  margin: 0 auto;
-  font-size: 1.8em;
-}
-.chrome-flash.info {
-  background-color: #A333C8;
-}
-.chrome-flash.warning {
-  background-color: #F2711C;
-}
-.chrome-flash.success {
-  background-color: #21BA45;
-}
-.chrome-flash.error {
-  background-color: #DB2828;
 }
 .collection {
   width: 100%;
@@ -681,6 +646,71 @@
 .chrome-feed-item-timestamp {
   color: #888;
 }
+.chrome-flash {
+  flex: 1;
+  display: flex;
+}
+.chrome-flash > div {
+  flex: 1;
+  display: flex;
+}
+.chrome-flash-popup {
+  transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -webkit-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -moz-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  -ms-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  min-height: 100px;
+  display: flex;
+  padding: 15px;
+  color: #FFF;
+  z-index: 10;
+}
+.chrome-flash-popup.expanded-appear,
+.chrome-flash-popup.expanded-enter,
+.chrome-flash-popup.expanded-leave.expanded-leave-active {
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+.chrome-flash-popup.expanded-appear.expanded-appear-active,
+.chrome-flash-popup.expanded-enter.expanded-enter-active,
+.chrome-flash-popup.expanded-leave {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+}
+.chrome-flash-popup p {
+  margin: 0;
+  text-align: center;
+  margin: auto;
+  font-size: 1.3em;
+}
+.chrome-flash-popup i {
+  display: block;
+  margin: 0 auto;
+  font-size: 1.8em;
+}
+.chrome-flash-popup.info {
+  background-color: #A333C8;
+}
+.chrome-flash-popup.warning {
+  background-color: #F2711C;
+}
+.chrome-flash-popup.success {
+  background-color: #21BA45;
+}
+.chrome-flash-popup.error {
+  background-color: #DB2828;
+}
 .form {
   flex: 1;
   display: flex;
@@ -764,18 +794,14 @@
   font-size: 1em;
   line-height: 1em;
 }
-.host {
+.browser,
+.electron,
+.cordova {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  display: flex;
-}
-.browser,
-.electron,
-.cordova {
-  flex: 1;
   display: flex;
   flex-direction: column;
 }
@@ -1280,6 +1306,7 @@
   right: 0px;
   display: flex;
   flex: 1;
+  z-index: 100;
 }
 .chrome-session .chrome-session-widget {
   max-width: 320px;

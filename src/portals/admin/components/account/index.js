@@ -54,7 +54,7 @@ export class Account extends React.Component {
 
   _handleSignin() {
     this.context.drawer.close()
-    this.context.router.push({ pathname: '/admin/signin' })
+    this.context.router.push({ pathname: '/admin/signin', state: 'fade' })
   }
 
   _handleSignout(index) {

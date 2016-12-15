@@ -15,11 +15,7 @@ class Container extends React.Component {
 
   render() {
     const { children } = this.props
-    return (
-      <div className="chrome-container">
-        { children }
-      </div>
-    )
+    return children
   }
 
   getChildContext() {

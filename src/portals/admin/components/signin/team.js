@@ -65,7 +65,7 @@ export class Team extends React.Component {
     const index = _.findIndex(teams, { subdomain })
     if(index >= 0) {
       this.context.admin.chooseTeam(index)
-      this.context.router.push({ pathname: '/admin' })
+      this.context.router.push({ pathname: '/admin', state: 'fade' })
     } else {
       onTeam(subdomain)
     }

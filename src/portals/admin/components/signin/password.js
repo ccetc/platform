@@ -68,7 +68,7 @@ export class Password extends React.Component {
         this.context.flash.set('info', error)
       } else if(status === 'success') {
         this.context.admin.addTeam(team, token)
-        this.context.router.push('/admin')
+        this.context.router.push({ pathname: '/admin', state: 'fade' })
       }
     }
   }

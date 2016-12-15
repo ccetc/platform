@@ -9,6 +9,10 @@ export class Admin extends React.Component {
     admin: React.PropTypes.object
   }
 
+  static contextTypes = {
+    router: React.PropTypes.object
+  }
+
   static propTypes = {
     sessions: React.PropTypes.object.isRequired,
     status: React.PropTypes.string.isRequired,
@@ -37,6 +41,8 @@ export class Admin extends React.Component {
         teams.map(team => {
           onLoadSession(team.id, team.token)
         })
+      } else if(teams.length === 0) {
+        this.context.router.push({ pathname: '/admin/signin', state: 'fade' })
       } else {
         const newTeam = teams[teams.length - 1]
         onLoadSession(newTeam.id, newTeam.token)

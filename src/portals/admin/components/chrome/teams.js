@@ -28,7 +28,7 @@ export class Teams extends React.Component {
               </div>
             )
           }) }
-          <Link className="chrome-teams-add" to="/admin/signin" title="Sign in to another team...">
+          <Link className="chrome-teams-add" to={{ pathname: '/admin/signin', state: 'fade' }} title="Sign in to another team...">
             <div className="chrome-teams-add-button">
               <i className="plus icon" />
             </div>

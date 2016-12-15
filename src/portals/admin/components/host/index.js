@@ -9,13 +9,15 @@ export class Host extends React.Component {
 
   render() {
     const { children, style } = this.props
-    return (
-      <div className="host">
-        { style === 'cordova' && <Cordova>{ children }</Cordova> }
-        { style === 'electron' && <Electron>{ children }</Electron> }
-        { style === 'browser' && <Browser>{ children }</Browser> }
-      </div>
-    )
+    if(style === 'cordova') {
+      return <Cordova>{ children }</Cordova>
+    } else if(style === 'electron') {
+      return <Electron>{ children }</Electron>
+    } else if(style === 'browser') {
+      return <Browser>{ children }</Browser>
+    } else {
+      return null
+    }
   }
 
   componentDidMount() {

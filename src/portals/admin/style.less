@@ -151,6 +151,16 @@
 	.translateX (0);
 }
 
+&.fade-appear, &.fade-enter, &.fade-leave {
+	.transition (opacity .5s cubic-bezier(0.7, 0, 0.175, 1) 0s);
+}
+&.fade-leave.fade-leave-active, &.fade-appear, &.fade-enter {
+	.opacity (0);
+}
+&.fade-appear.fade-appear-active, &.fade-enter.fade-enter-active, &.fade-leave {
+	.opacity (1);
+}
+
 *[onClick] {
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
   -webkit-tap-highlight-color: transparent;
@@ -163,6 +173,7 @@
 @import './components/controls/datefield/style';
 @import './components/drawer/style';
 @import './components/feed/style';
+@import './components/flash/style';
 @import './components/form/style';
 @import './components/host/style';
 @import './components/modal/style';

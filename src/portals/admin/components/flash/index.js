@@ -19,10 +19,10 @@ export class Flash extends React.Component {
   render() {
     const { children, flash } = this.props
     return (
-      <div>
+      <div className="chrome-flash">
         <CSSTransitionGroup transitionName="expanded" transitionEnterTimeout={250} transitionLeaveTimeout={250} transitionAppear={true} transitionAppearTimeout={250}>
           {flash &&
-            <div className={`chrome-flash ${flash.style}`}>
+            <div className={`chrome-flash-popup ${flash.style}`}>
               <p>
                 { this._getIcon(flash.style) }
                 { flash.message }
