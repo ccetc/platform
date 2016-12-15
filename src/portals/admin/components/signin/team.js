@@ -54,7 +54,7 @@ export class Team extends React.Component {
       if(status === 'failure') {
         this.context.flash.set('info', error)
       } else if(status === 'success') {
-        this.context.router.push({ pathname: '/admin/signin/email', state: 'next' })
+        this.context.router.push({ pathname: '/admin/signin/email', state: 'slide-next' })
       }
     }
   }

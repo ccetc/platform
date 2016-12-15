@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 import $ from 'jquery'
@@ -35,6 +36,7 @@ export class Password extends React.Component {
               </div>
               <div className="field button-field">
                 <button className={`ui fluid large ${(status == 'submitting') ? 'loading' : ''} button`}>Continue <i className="right chevron icon" /></button>
+                  <p><Link to={{ pathname: '/admin/signin', state: 'slide-back' }}>Wrong team?</Link></p>
                   { _.includes(team.strategies, 'cornell') && <p><a href="/admin/signin/cornell">Signin with CUWebAuth</a></p> }
                   { _.includes(team.strategies, 'google') && <p><a href="/admin/signin/google">Signin with Google</a></p> }
               </div>
@@ -62,7 +64,7 @@ export class Password extends React.Component {
       if(status === 'failure') {
         this.context.flash.set('info', error)
       } else if(status === 'success') {
-        this.context.router.push({ pathname: '/admin/signin/password', state: 'next' })
+        this.context.router.push({ pathname: '/admin/signin/password', state: 'slide-next' })
       }
     }
   }

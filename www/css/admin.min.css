@@ -762,10 +762,10 @@
   -ms-transition: flex-basis 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   display: flex;
   position: relative;
-  flex: 0 0 40px;
   background-color: green;
   color: #FFF;
   line-height: 20px;
+  padding: 10px;
 }
 .browser-notice.expanded-leave.expanded-leave-active {
   flex-basis: 0 !important;

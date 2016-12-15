@@ -1,4 +1,5 @@
 import * as actionTypes from './action_types'
+import _ from 'lodash'
 
 const INITIAL_STATE = {
   active: null,
@@ -39,6 +40,8 @@ export default (state = INITIAL_STATE, action) => {
     }
 
   case actionTypes.REMOVE_TEAM:
+    const team = state.teams[action.index]
+    const sessions = _.omit(state.sessions, [team.id])
     const teams = [
       ...state.teams.slice(0, action.index),
       ...state.teams.slice(action.index + 1)

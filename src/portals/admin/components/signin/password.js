@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import $ from 'jquery'
 import * as actions from './actions'
@@ -38,9 +39,10 @@ export class Password extends React.Component {
                 </div>
               </div>
               <div className="field button-field">
-                <button className={`ui fluid large ${(status == 'submitting') ? 'loading' : ''} button`}>Signin <i className="right chevron icon" /></button>
+                <button className={`ui fluid large ${(status == 'submitting') ? 'loading' : ''} button`}>Signin</button>
               </div>
             </form>
+            <p><Link to={{ pathname: '/admin/signin/email', state: 'slide-back' }}>Not you?</Link></p>
             <p><a onClick={ this._handleForgot.bind(this) }>Forgot your password?</a></p>
           </div>
         </div>

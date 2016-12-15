@@ -42,7 +42,7 @@ class Browser extends React.Component {
               }
               { notifications === 'dismiss' &&
                 <p>
-                  We strongly recommend enabling desktop notifications on this computer &nbsp;&bull;&nbsp;
+                  We strongly recommend enabling desktop notifications on this computer!<br />
                   <a onClick={this._handleEnableNotifications.bind(this)}>Enable desktop notifications</a> &nbsp;&bull;&nbsp;
                   <a onClick={this._handleDenyNotifications.bind(this, 'now')}>Ask me next time</a> &nbsp;&bull;&nbsp;
                   <a onClick={this._handleDenyNotifications.bind(this, 'never')}>Never ask again on this computer</a>
@@ -135,6 +135,8 @@ class Browser extends React.Component {
         event.target.close()
         event.preventDefault()
       }
+    } else {
+      
     }
   }
 
