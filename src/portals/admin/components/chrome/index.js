@@ -6,6 +6,10 @@ import Topbar from './topbar'
 
 export class Chrome extends React.Component {
 
+  static contextTypes = {
+    router: React.PropTypes.object
+  }
+
   static propTypes = {
     teams: React.PropTypes.array,
     user: React.PropTypes.object

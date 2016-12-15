@@ -1,4 +1,5 @@
 import React from 'react'
+import _ from 'lodash'
 import { connect } from 'react-redux'
 import { getActiveTeam, getActiveUser } from '../admin/selectors'
 import Edit from './edit'
@@ -58,7 +59,9 @@ export class Account extends React.Component {
 
   _handleSignout(index) {
     this.context.drawer.close()
-    this.context.admin.removeTeam(index)
+    window.setTimeout(() => {
+      this.context.admin.removeTeam(index)
+    }, 500)
   }
 
   _handleCloseDrawer() {

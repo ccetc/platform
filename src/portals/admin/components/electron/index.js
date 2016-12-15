@@ -31,7 +31,7 @@ class Electron extends React.Component {
   componentDidUpdate(prevProps) {
     const { notification } = this.props
     if(prevProps.notification !== notification && notification !== null) {
-      this._handleNotification(notification.title, notification.body, notification.icon)
+      this._handleNotification(notification.title, notification.body)
     }
   }
 
@@ -44,12 +44,11 @@ class Electron extends React.Component {
     }
   }
 
-  _handleNotification(title, body, icon) {
+  _handleNotification(title, body) {
     const { clearNotification } = this.props
     new Notification(title, {
       title,
-      body,
-      icon
+      body
     })
     clearNotification()
   }

@@ -2,17 +2,23 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from './actions'
 
-class Teams extends React.Component {
+export class Admin extends React.Component {
 
   static childContextTypes = {
     admin: React.PropTypes.object
   }
 
   static propTypes = {
-    status: React.PropTypes.string,
-    onChooseTeam: React.PropTypes.func,
-    onLoadTeam: React.PropTypes.func,
-    onSaveTeam: React.PropTypes.func
+    active: React.PropTypes.number,
+    sessions: React.PropTypes.object.isRequired,
+    status: React.PropTypes.string.isRequired,
+    teams: React.PropTypes.array.isRequired,
+    addTeam: React.PropTypes.func.isRequired,
+    chooseTeam: React.PropTypes.func.isRequired,
+    removeTeam: React.PropTypes.func.isRequired,
+    onLoadSession: React.PropTypes.func.isRequired,
+    onLoadTeams: React.PropTypes.func.isRequired,
+    onSaveTeams: React.PropTypes.func.isRequired
   }
 
   render() {
@@ -29,44 +35,36 @@ class Teams extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { active, teams } = this.props
+    const { active, sessions, teams } = this.props
     if(prevProps.teams !== teams && prevProps.status !== 'pending') {
       this.props.onSaveTeams(teams)
     }
     if(prevProps.active !== active) {
       const team = teams[active]
-      this.props.onLoadSession(team.id, team.token)
-    }
-  }
-
-  getChildContext() {
-    return {
-      admin: {
-        addTeam: this._handleAddTeam.bind(this),
-        chooseTeam: this._handleChooseTeam.bind(this),
-        removeTeam: this._handleRemoveTeam.bind(this)
+      if(!sessions[team.id]) {
+        this.props.onLoadSession(team.id, team.token)
       }
     }
   }
 
-  _handleAddTeam(team, token) {
-    this.props.addTeam(team, token)
-  }
-
-  _handleChooseTeam(index) {
-    this.props.chooseTeam(index)
-  }
-
-  _handleRemoveTeam(index) {
-    this.props.removeTeam(index)
+  getChildContext() {
+    const { addTeam, chooseTeam, removeTeam } = this.props
+    return {
+      admin: {
+        addTeam,
+        chooseTeam,
+        removeTeam
+      }
+    }
   }
 
 }
 
 const mapStateToProps = state => ({
   active: state.admin.active,
-  teams: state.admin.teams,
-  status: state.admin.status
+  sessions: state.admin.sessions,
+  status: state.admin.status,
+  teams: state.admin.teams
 })
 
 const mapDispatchToProps = {
@@ -78,4 +76,4 @@ const mapDispatchToProps = {
   onSaveTeams: actions.saveTeams
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Teams)
+export default connect(mapStateToProps, mapDispatchToProps)(Admin)
