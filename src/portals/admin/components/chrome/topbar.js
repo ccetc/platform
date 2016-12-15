@@ -32,8 +32,8 @@ export class Topbar extends React.Component {
           </div>
           <div className="chrome-topbar-icon" onClick={this._handleOpenNotifications.bind(this)}>
             <i className="alarm icon" />
-            {unread > 0 &&
-              <div className="chrome-alerts-label">{unread}</div>
+            { user.unread > 0 &&
+              <div className="chrome-alerts-label">{ user.unread }</div>
             }
           </div>
           <div className="chrome-topbar-icon" onClick={this._handleOpenAccount.bind(this)}>

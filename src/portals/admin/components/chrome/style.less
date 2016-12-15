@@ -13,7 +13,8 @@
   z-index: 11;
 }
 .chrome-teams-add,
-.chrome-teams-team {
+.chrome-team {
+  position: relative;
   display: block;
   width: 60px;
   height: 60px;
@@ -33,6 +34,23 @@
     img {
       .opacity(1);
     }
+  }
+  .chrome-team-label {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    font-size: 8px;
+    font-weight: bold;
+    line-height: 16px;
+    padding: 0;
+    background-color: @primary_background_color;
+    color: @primary_color;
+    display: block;
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    vertical-align: middle;
+    .border-radius(50%);
   }
   .chrome-teams-add-button {
     .border-radius(10px);

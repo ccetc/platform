@@ -234,7 +234,8 @@
   z-index: 11;
 }
 .chrome-teams-add,
-.chrome-teams-team {
+.chrome-team {
+  position: relative;
   display: block;
   width: 60px;
   height: 60px;
@@ -242,23 +243,46 @@
   cursor: pointer;
 }
 .chrome-teams-add:hover img,
-.chrome-teams-team:hover img {
+.chrome-team:hover img {
   border-color: #444;
 }
 .chrome-teams-add:hover .chrome-teams-add-button,
-.chrome-teams-team:hover .chrome-teams-add-button {
+.chrome-team:hover .chrome-teams-add-button {
   -webkit-opacity: 1;
   -moz-opacity: 1;
   opacity: 1;
 }
 .chrome-teams-add.active img,
-.chrome-teams-team.active img {
+.chrome-team.active img {
   -webkit-opacity: 1;
   -moz-opacity: 1;
   opacity: 1;
 }
+.chrome-teams-add .chrome-team-label,
+.chrome-team .chrome-team-label {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 8px;
+  font-weight: bold;
+  line-height: 16px;
+  padding: 0;
+  background-color: #DB2828;
+  color: #FFFFFF;
+  display: block;
+  width: 16px;
+  height: 16px;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
 .chrome-teams-add .chrome-teams-add-button,
-.chrome-teams-team .chrome-teams-add-button {
+.chrome-team .chrome-teams-add-button {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
@@ -274,11 +298,11 @@
   text-align: center;
 }
 .chrome-teams-add .chrome-teams-add-button i,
-.chrome-teams-team .chrome-teams-add-button i {
+.chrome-team .chrome-teams-add-button i {
   color: #000;
 }
 .chrome-teams-add img,
-.chrome-teams-team img {
+.chrome-team img {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;

@@ -10,7 +10,6 @@ export class Admin extends React.Component {
   }
 
   static propTypes = {
-    active: React.PropTypes.number,
     sessions: React.PropTypes.object.isRequired,
     status: React.PropTypes.string.isRequired,
     teams: React.PropTypes.array.isRequired,
@@ -32,14 +31,19 @@ export class Admin extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { active, sessions, team, teams } = this.props
-    if(prevProps.teams !== teams && prevProps.status !== 'pending') {
-      this.props.onSaveTeams(teams)
-    }
-    if(prevProps.active !== active && team) {
-      if(!sessions[team.id]) {
-        this.props.onLoadSession(team.id, team.token)
+    const { team, teams, onSaveTeams, onLoadSession } = this.props
+    if(prevProps.teams !== teams) {
+      if(prevProps.status === 'pending') {
+        teams.map(team => {
+          onLoadSession(team.id, team.token)
+        })
+      } else {
+        const newTeam = teams[teams.length - 1]
+        onLoadSession(newTeam.id, newTeam.token)
+        onSaveTeams(teams)
       }
+    } else if(prevProps.team !== team) {
+      onLoadSession(team.id, team.token)
     }
   }
 
@@ -57,7 +61,6 @@ export class Admin extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  active: state.admin.active,
   sessions: state.admin.sessions,
   status: state.admin.status,
   team: getActiveTeam(state),

@@ -14,14 +14,17 @@ export class Teams extends React.Component {
   }
 
   render() {
-    const { active, children, teams } = this.props
+    const { active, children, sessions, teams } = this.props
     return (
       <div className="chrome-teams">
         <div className="chrome-teams-panel">
           { teams.map((team, index) => {
             return (
-              <div key={`team_${index}`} className={`chrome-teams-team ${(index === active) ? 'active' : ''}`} title={ team.title } onClick={this._handleChoose.bind(this, index)}>
+              <div key={`team_${index}`} className={`chrome-team ${(index === active) ? 'active' : ''}`} title={ team.title } onClick={this._handleChoose.bind(this, index)}>
                 <img src={ team.logo } />
+                { sessions[team.id] && sessions[team.id].user.unread > 0 &&
+                  <div className="chrome-team-label">{ sessions[team.id].user.unread }</div>
+                }
               </div>
             )
           }) }
@@ -46,6 +49,7 @@ export class Teams extends React.Component {
 
 const mapStateToProps = state => ({
   active: state.admin.active,
+  sessions: state.admin.sessions,
   teams: state.admin.teams
 })
 

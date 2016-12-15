@@ -28,6 +28,7 @@ session.get('/session', (req, res, next) => {
         name: user.get('full_name'),
         email: user.get('email'),
         photo: user.related('photo').get('url'),
+        unread: Math.floor((Math.random() * 20) + 1),
         permissions: [
           'can access contacts',
           'can access expenses',
