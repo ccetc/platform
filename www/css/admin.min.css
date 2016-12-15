@@ -765,14 +765,18 @@
   flex: 0 0 40px;
   background-color: green;
   color: #FFF;
-  text-align: center;
   line-height: 20px;
 }
 .browser-notice.expanded-leave.expanded-leave-active {
   flex-basis: 0 !important;
 }
+.browser-notice > div {
+  display: flex;
+  flex: 1;
+}
 .browser-notice p {
   margin: auto;
+  text-align: center;
 }
 .browser-notice a {
   color: #FFF;
@@ -1497,9 +1501,6 @@
 }
 .project-members .project-member p strong {
   color: #000;
-}
-.cordova .chrome-panel {
-  top: 65px;
 }
 .cordova .chrome-topbar {
   padding-top: 15px;

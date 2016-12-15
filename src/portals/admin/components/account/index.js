@@ -61,7 +61,7 @@ export class Account extends React.Component {
     this.context.drawer.close()
     window.setTimeout(() => {
       this.context.admin.removeTeam(index)
-    }, 500)
+    }, 1000)
   }
 
   _handleCloseDrawer() {

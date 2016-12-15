@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { getActiveTeam } from '../admin/selectors'
 import * as actions from './actions'
 
 export class Admin extends React.Component {
@@ -31,12 +32,11 @@ export class Admin extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { active, sessions, teams } = this.props
+    const { active, sessions, team, teams } = this.props
     if(prevProps.teams !== teams && prevProps.status !== 'pending') {
       this.props.onSaveTeams(teams)
     }
-    if(prevProps.active !== active) {
-      const team = teams[active]
+    if(prevProps.active !== active && team) {
       if(!sessions[team.id]) {
         this.props.onLoadSession(team.id, team.token)
       }
@@ -60,6 +60,7 @@ const mapStateToProps = state => ({
   active: state.admin.active,
   sessions: state.admin.sessions,
   status: state.admin.status,
+  team: getActiveTeam(state),
   teams: state.admin.teams
 })
 
