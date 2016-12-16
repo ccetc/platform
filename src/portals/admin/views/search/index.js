@@ -1,5 +1,5 @@
 import React from 'react'
-import component from 'portals/admin/components/component'
+import { connect } from 'react-redux'
 import $ from 'jquery'
 import _ from 'lodash'
 import * as actions from './actions'
@@ -146,4 +146,4 @@ const mapDispatchToProps = {
   onResetSearch: actions.resetSearch
 }
 
-export default component(mapStateToProps, mapDispatchToProps, Search, 'search', true)
+export default connect(mapStateToProps, mapDispatchToProps)(Search)

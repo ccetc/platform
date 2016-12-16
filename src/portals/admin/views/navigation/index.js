@@ -1,7 +1,7 @@
 import React from 'react'
-import { getApps } from '../admin/selectors'
+import { connect } from 'react-redux'
+import { getApps } from '../../containers/admin/selectors'
 import CSSTransitionGroup from 'react-addons-css-transition-group'
-import component from 'portals/admin/components/component'
 import * as actions from './actions'
 
 export class Navigation extends React.Component {
@@ -80,4 +80,4 @@ const mapDispatchToProps = {
   onReset: actions.reset
 }
 
-export default component(mapStateToProps, mapDispatchToProps, Navigation, 'navigation', true)
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation)

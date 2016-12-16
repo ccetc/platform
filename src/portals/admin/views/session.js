@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route } from 'react-router'
 
+import Transition from './transition'
 import SigninTeam from './signin/team'
 import SigninPassword from './signin/password'
 import SigninEmail from './signin/email'
@@ -10,7 +11,7 @@ import ResetSecurity from './reset/security'
 import ResetPassword from './reset/password'
 
 export default (
-  <Route>
+  <Route component={ Transition }>
     <Route component={ SigninTeam } path="admin/signin" />
     <Route component={ SigninEmail } path="admin/signin/email" />
     <Route component={ SigninPassword } path="admin/signin/password" />

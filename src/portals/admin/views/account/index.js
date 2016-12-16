@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 import { connect } from 'react-redux'
-import { getActiveTeam, getActiveUser } from '../admin/selectors'
+import { getActiveTeam, getActiveUser } from '../../containers/admin/selectors'
 import Edit from './edit'
 import Password from './password'
 

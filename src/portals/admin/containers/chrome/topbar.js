@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getActiveUser } from '../admin/selectors'
-import Search from '../search'
-import Account from '../account'
-import Notifications from './notifications'
-import Navigation from '../navigation'
+import Search from '../../views/search'
+import Account from '../../views/account'
+import Notifications from '../../views/notifications'
+import Navigation from '../../views/navigation'
 
 export class Topbar extends React.Component {
 

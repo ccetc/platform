@@ -1,26 +1,28 @@
 import _ from 'lodash'
 
 import admin from './containers/admin/reducer'
+import browser from './containers/browser/reducer'
+import container from './containers/container/reducer'
 import cordova from './containers/cordova/reducer'
 import drawer from './containers/drawer/reducer'
 import electron from './containers/electron/reducer'
-import browser from './containers/browser/reducer'
 import flash from './containers/flash/reducer'
 import host from './containers/host/reducer'
 import modal from './containers/modal/reducer'
-import navigation from './containers/navigation/reducer'
 import notifications from './containers/notifications/reducer'
-import search from './containers/search/reducer'
 import tasks from './containers/tasks/reducer'
 
 import component from './components/component/reducer'
 
-import reset from './session/reset/reducer'
-import signin from './session/signin/reducer'
+import navigation from './views/navigation/reducer'
+import reset from './views/reset/reducer'
+import search from './views/search/reducer'
+import signin from './views/signin/reducer'
 
 const platformReducers = {
   admin,
   browser,
+  container,
   cordova,
   drawer,
   electron,
@@ -45,6 +47,7 @@ export default (state, action) => {
     return {
       admin: admin(undefined, action),
       browser: browser(undefined, action),
+      container: container(undefined, action),
       cordova: cordova(undefined, action),
       drawer: drawer(undefined, action),
       electron: electron(undefined, action),

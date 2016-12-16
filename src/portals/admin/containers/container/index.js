@@ -1,6 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
-import component from 'portals/admin/components/component'
+import { connect } from 'react-redux'
 import * as actions from './actions'
 
 class Container extends React.Component {
@@ -54,7 +54,7 @@ class Container extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  routes: state.container[props.tid].routes
+  routes: state.container.routes
 })
 
 const mapDispatchToProps = {
@@ -62,4 +62,4 @@ const mapDispatchToProps = {
   onClearResource: actions.clearResource
 }
 
-export default component(mapStateToProps, mapDispatchToProps, Container, 'container', true)
+export default connect(mapStateToProps, mapDispatchToProps)(Container)

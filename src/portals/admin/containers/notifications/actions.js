@@ -8,7 +8,7 @@ export function push(title, body) {
   }
 }
 
-export function clearNotification(index) {
+export function clear(index) {
   return {
     type: actionTypes.CLEAR,
     index

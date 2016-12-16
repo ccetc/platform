@@ -1,7 +1,6 @@
 import React from 'react'
 import SocketClient from 'socket.io-client'
-import component from 'portals/admin/components/component'
-import * as actions from './actions'
+import { connect } from 'react-redux'
 
 class Socket extends React.Component {
 
@@ -32,4 +31,4 @@ const mapStateToProps = state => ({})
 
 const mapDispatchToProps = {}
 
-export default component(mapStateToProps, mapDispatchToProps, Socket, 'socket', true)
+export default connect(mapStateToProps, mapDispatchToProps)(Socket)
