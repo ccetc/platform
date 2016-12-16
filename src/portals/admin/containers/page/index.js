@@ -35,9 +35,9 @@ export default (pageProps) => {
       }
 
       render() {
-        const { back, permissions, resources, task, tasks, title } = this.page()
+        const { back, rights, resources, task, tasks, title } = this.page()
         const { data, status, team, user } = this.props
-        if(permissions && !this._userHasPermission(user, permissions)) {
+        if(rights && !this._userHasRight(user, rights)) {
           return <Forbidden />
         }
         const loaded = !resources || _.isEqual(Object.keys(data).sort(), Object.keys(resources).sort())
@@ -116,9 +116,9 @@ export default (pageProps) => {
         }
       }
 
-      _userHasPermission(user, permissions) {
-        return permissions.reduce((permit, permission) => {
-          return (!_.includes(user.permissions, permission)) ? false : permit
+      _userHasRight(user, rights) {
+        return rights.reduce((permit, right) => {
+          return (!_.includes(user.rights, right)) ? false : permit
         }, true)
       }
 

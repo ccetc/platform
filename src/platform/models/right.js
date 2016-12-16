@@ -1,28 +1,25 @@
 import checkit from  'checkit'
 import bookshelf from 'server/services/bookshelf'
-import unique from 'server/utils/unique_validation'
-import Right from 'platform/models/right'
+import App from 'platform/models/app'
 import User from 'platform/models/user'
 
 export default bookshelf.Model.extend({
 
-  tableName: 'apps',
+  tableName: 'rights',
 
   hasTimestamps: ['created_at', 'updated_at'],
 
   rules: {
-    title: ['required', unique('apps', 'title')]
+    text: 'required',
+    app_id: 'required'
+  },
+
+  app: function() {
+    return this.belongsTo(App, 'app_id')
   },
 
   users: function() {
-    return this.belongsToMany(User, 'users_apps', 'app_id', 'user_id')
-  },
-
-  rights: function() {
-    return this.hasMany(Right, 'app_id')
-  },
-
-  virtuals: {
+    return this.belongsToMany(User, 'users_rights', 'right_id', 'user_id')
   },
 
   initialize: function(attrs, opts) {

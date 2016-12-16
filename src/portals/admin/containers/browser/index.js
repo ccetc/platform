@@ -95,7 +95,7 @@ class Browser extends React.Component {
 
   _handleEnableNotifications() {
     const { preferences, team, onSavePreferences } = this.props
-    Notification.requestPermission(status => {
+    Notification.requestRight(status => {
       onSavePreferences({
         ...preferences,
         notifications: status

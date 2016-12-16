@@ -43,7 +43,7 @@ const mapPropsToPage = (props, context) => {
   return {
     back: '/admin/users',
     title: 'User',
-    permissions: [],
+    rights: [],
     tasks: [
       { label: 'Edit User', component: Edit },
       { label: 'Reset Password', handler: _handleResetPassword },

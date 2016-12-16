@@ -2,8 +2,9 @@ import checkit from  'checkit'
 import bcrypt from 'bcrypt-nodejs'
 import bookshelf from 'server/services/bookshelf'
 import unique from 'server/utils/unique_validation'
-
+import App from 'platform/models/app'
 import Asset from 'platform/models/asset'
+import Right from 'platform/models/right'
 import SecurityQuestion from 'platform/models/security_question'
 
 export default bookshelf.Model.extend({
@@ -18,6 +19,10 @@ export default bookshelf.Model.extend({
     email: ['required', 'email', unique('users', 'email')]
   },
 
+  apps: function() {
+    return this.belongsToMany(App, 'users_apps', 'user_id', 'app_id')
+  },
+
   photo: function() {
     return this.belongsTo(Asset, 'photo_id')
   },
@@ -28,6 +33,10 @@ export default bookshelf.Model.extend({
 
   security_question_2: function() {
     return this.belongsTo(SecurityQuestion, 'security_question_2_id')
+  },
+
+  rights: function() {
+    return this.belongsToMany(Right, 'users_rights', 'user_id', 'right_id')
   },
 
   virtuals: {

@@ -49,6 +49,7 @@ export default (state = INITIAL_STATE, action) => {
     return {
       ...state,
       active: teams.length === 0 ? null : teams.length - 1,
+      sessions,
       teams
     }
 

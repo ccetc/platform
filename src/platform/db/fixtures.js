@@ -12,6 +12,47 @@ exports.seed = (knex, Promise) => {
     ])
   })
   .then(() => {
+    return knex('apps').del()
+  })
+  .then(() => {
+    return knex('apps').insert([
+      {
+        title: 'Reimbursement'
+      }
+    ])
+  })
+  .then(() => {
+    return knex('rights').del()
+  })
+  .then(() => {
+    return knex('rights').insert([
+      {
+        app_id: 1,
+        text: 'MANAGE EXPENSES',
+        description: 'user can manage their own advances, expenses, and trips'
+      }, {
+        app_id: 1,
+        text: 'ACCESS REPORTS',
+        description: 'user can access advance, expense, and trip reports'
+      }, {
+        app_id: 1,
+        text: 'MANAGE CONFIGURATION',
+        description: 'user can manage projects, vendors, and expense types'
+      }
+    ])
+  })
+  .then(() => {
+    return knex('installations').del()
+  })
+  .then(() => {
+    return knex('installations').insert([
+      {
+        team_id: 1,
+        app_id: 1
+      }
+    ])
+  })
+  .then(() => {
     return knex('strategies').del()
   })
   .then(() => {
@@ -2038,27 +2079,6 @@ exports.seed = (knex, Promise) => {
     ])
   })
   .then(() => {
-    return knex('apps').del()
-  })
-  .then(() => {
-    return knex('apps').insert([
-      {
-        title: 'Expenses'
-      }
-    ])
-  })
-  .then(() => {
-    return knex('installations').del()
-  })
-  .then(() => {
-    return knex('installations').insert([
-      {
-        team_id: 1,
-        app_id: 1
-      }
-    ])
-  })
-  .then(() => {
     return knex('searches').del()
   })
   .then(() => {
@@ -2230,6 +2250,34 @@ exports.seed = (knex, Promise) => {
         object1_type: 'project',
         object1_text: 'Primitive Pursuits',
         created_at: '2016-04-08'
+      }
+    ])
+  })
+  .then(() => {
+    return knex('users_apps').del()
+  })
+  .then(() => {
+    return knex('users_apps').insert([
+      {
+        user_id: 1,
+        app_id: 1
+      }
+    ])
+  })
+  .then(() => {
+    return knex('users_rights').del()
+  })
+  .then(() => {
+    return knex('users_rights').insert([
+      {
+        user_id: 1,
+        right_id: 1
+      }, {
+        user_id: 1,
+        right_id: 2
+      }, {
+        user_id: 1,
+        right_id: 3
       }
     ])
   })

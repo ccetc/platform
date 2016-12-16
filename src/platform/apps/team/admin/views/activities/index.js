@@ -24,7 +24,7 @@ class Index extends React.Component {
 const mapPropsToPage = (props, context) => ({
   back: '/admin',
   title: 'Activities',
-  permissions: []
+  rights: []
 })
 
 export default Page(mapPropsToPage)(Index)

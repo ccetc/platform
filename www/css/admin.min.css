@@ -193,6 +193,11 @@
   background-color: #000;
   z-index: 11;
 }
+@media (max-width: 600px) {
+  .chrome-teams-panel {
+    display: none;
+  }
+}
 .chrome-teams-add,
 .chrome-team {
   position: relative;
@@ -559,7 +564,7 @@
   background-color: green;
   color: #FFF;
   line-height: 20px;
-  padding: 10px;
+  padding: 10px 30px;
 }
 .browser-notice.expanded-leave.expanded-leave-active {
   flex-basis: 0 !important;
@@ -1231,6 +1236,25 @@
   flex: 1;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+}
+.chrome-apps-empty {
+  flex: 1;
+  display: flex;
+}
+.chrome-apps-empty-message {
+  margin: auto;
+  text-align: center;
+  padding: 20px;
+}
+.chrome-apps-empty-message i {
+  font-size: 100px;
+  color: #BBB;
+}
+.chrome-apps-empty-message h3 {
+  font-size: 22px;
+  line-height: 28px;
+  margin: 0;
+  color: #666;
 }
 .chrome-app .chrome-app-title {
   display: block;

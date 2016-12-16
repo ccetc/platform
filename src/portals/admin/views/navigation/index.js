@@ -24,8 +24,9 @@ export class Navigation extends React.Component {
         <div className="chrome-navigation-title">
           <h3>Apps</h3>
         </div>
+        { apps.length > 0 ?
         <div className="chrome-apps">
-          {apps.map((app, appindex) => {
+          { apps.map((app, appindex) => {
             return (
               <div key={`app_${appindex}`} className="chrome-app">
                 <div className={`chrome-app-title ${this.props.app === appindex ? 'active' : ''}`} onClick={this._handleChooseApp.bind(this, appindex)}>
@@ -44,7 +45,13 @@ export class Navigation extends React.Component {
               </div>
             )
           })}
-        </div>
+        </div> :
+        <div className="chrome-apps-empty">
+          <div className="chrome-apps-empty-message">
+            <i className="dont icon" />
+            <h3>You don't have access to any apps</h3>
+          </div>
+        </div> }
       </div>
     )
   }

@@ -49,7 +49,7 @@ class Show extends React.Component {
 const mapPropsToPage = (props, context) => ({
   back: '/admin/reimbursement/projects',
   title: 'Project',
-  permissions: [],
+  rights: [],
   tasks: [
     { label: 'Edit Project', component: Edit },
     { label: 'Add Member', component: Member }
