@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import Page from 'portals/admin/components/page'
+import Page from 'portals/admin/containers/page'
 import Collection from 'portals/admin/components/collection'
 import New from './new'
 

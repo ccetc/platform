@@ -1,6 +1,6 @@
 import React from 'react'
 import Card from 'portals/admin/components/card'
-import Page from 'portals/admin/components/page'
+import Page from 'portals/admin/containers/page'
 import Edit from './edit'
 import Member from './member'
 

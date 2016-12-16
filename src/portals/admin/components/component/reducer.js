@@ -1,21 +1,20 @@
 import _ from 'lodash'
 import * as actionTypes from './action_types'
 
-import container from 'portals/admin/components/container/reducer'
-import drawer from 'portals/admin/components/drawer/reducer'
-import modal from 'portals/admin/components/modal/reducer'
-import navigation from 'portals/admin/components/navigation/reducer'
-import notifications from 'portals/admin/components/notifications/reducer'
-import reset from 'portals/admin/components/reset/reducer'
-import search from 'portals/admin/components/search/reducer'
-import socket from 'portals/admin/components/socket/reducer'
-import team from 'portals/admin/components/team/reducer'
-import tabs from 'portals/admin/components/tabs/reducer'
-import tasks from 'portals/admin/components/tasks/reducer'
+import container from 'portals/admin/containers/container/reducer'
+import drawer from 'portals/admin/containers/drawer/reducer'
+import modal from 'portals/admin/containers/modal/reducer'
+import navigation from 'portals/admin/containers/navigation/reducer'
+import search from 'portals/admin/containers/search/reducer'
+import socket from 'portals/admin/containers/socket/reducer'
+import tasks from 'portals/admin/containers/tasks/reducer'
+
+import reset from 'portals/admin/session/reset/reducer'
 
 import collection from 'portals/admin/components/collection/reducer'
 import form from 'portals/admin/components/form/reducer'
 import infinite from 'portals/admin/components/infinite/reducer'
+import tabs from 'portals/admin/components/tabs/reducer'
 
 const reducers = {
   collection,
@@ -25,13 +24,11 @@ const reducers = {
   infinite,
   modal,
   navigation,
-  notifications,
   reset,
   search,
   socket,
   tabs,
-  tasks,
-  team
+  tasks
 }
 
 export default (state = { components: [] }, action) => {

@@ -91,7 +91,7 @@
   })
 }
 
-&.next-appear, &.next-enter, &.next-leave, &.back-appear, &.back-enter, &.back-leave {
+&.next-appear, &.next-enter, &.next-leave {
 	.transition (transform .5s cubic-bezier(0.7, 0, 0.175, 1) 0s);
 }
 &.next-appear, &.next-enter {
@@ -108,6 +108,10 @@
 &.next-leave.next-leave-active {
 	.translateX (-25%);
 }
+
+&.back-appear, &.back-enter, &.back-leave {
+	.transition (transform .5s cubic-bezier(0.7, 0, 0.175, 1) 0s);
+}
 &.back-leave {
 	.translateX (0);
 	z-index: 2 !important;
@@ -123,7 +127,7 @@
 	.translateX (0);
 }
 
-&.slide-next-appear, &.slide-next-enter, &.slide-next-leave, &.slide-back-appear, &.slide-back-enter, &.slide-back-leave {
+&.slide-next-appear, &.slide-next-enter, &.slide-next-leave {
 	.transition (transform .5s cubic-bezier(0.7, 0, 0.175, 1) 0s);
 }
 &.slide-next-appear, &.slide-next-enter {
@@ -137,6 +141,10 @@
 }
 &.slide-next-leave.slide-next-leave-active {
 	.translateX (-100%);
+}
+
+&.slide-back-appear, &.slide-back-enter, &.slide-back-leave {
+	.transition (transform .5s cubic-bezier(0.7, 0, 0.175, 1) 0s);
 }
 &.slide-back-leave {
 	.translateX (0);
@@ -166,67 +174,9 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-@import './components/account/style';
-@import './components/card/style';
-@import './components/chrome/style';
-@import './components/collection/style';
-@import './components/controls/datefield/style';
-@import './components/drawer/style';
-@import './components/feed/style';
-@import './components/flash/style';
-@import './components/form/style';
-@import './components/host/style';
-@import './components/modal/style';
-@import './components/navigation/style';
-@import './components/notifications/style';
-@import './components/page/style';
-@import './components/search/style';
-@import './components/signin/style';
-@import './components/tabs/style';
-@import './components/tasks/style';
+@import './containers/style';
+@import './controls/style';
+@import './components/style';
+@import './session/style';
 
 @import '../../apps/reimbursement/admin/style';
-
-.cordova {
-	.chrome-topbar {
-	  padding-top: 15px;
-	  height: 65px;
-	}
-	.chrome-flash {
-		padding-top: 30px;
-	}
-	.chrome-navigation-title {
-	  height: 65px;
-	  padding-top: 15px;
-	}
-	.chrome-account-identity {
-		padding-top: 63px;
-	}
-	.chrome-search-bar {
-	  flex: 0 0 65px;
-		.chrome-search-form {
-			padding-top: 23px;
-		}
-		.chrome-search-cancel {
-			padding-top: 30px;
-		}
-	}
-	.chrome-search-landing,
-	.chrome-search-results {
-	  top: 65px;
-	}
-	.form-header {
-	  flex: 0 0 65px;
-		.form-header-title,
-		a {
-			padding-top: 30px;
-		}
-	}
-	.chrome-notifications-header {
-		flex: 0 0 65px;
-		.chrome-notifications-header-title,
-		a {
-			padding-top: 30px;
-		}
-	}
-}

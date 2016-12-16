@@ -1,5 +1,5 @@
 import React from 'react'
-import Page from 'portals/admin/components/page'
+import Page from 'portals/admin/containers/page'
 import Feed from 'portals/admin/components/feed'
 
 class Index extends React.Component {
