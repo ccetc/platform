@@ -94,10 +94,10 @@ class Infinite extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  loaded: state.infinite[props.identifier].loaded,
-  records: state.infinite[props.identifier].records,
-  status: state.infinite[props.identifier].status,
-  total: state.infinite[props.identifier].total
+  loaded: state.infinite[props.cid].loaded,
+  records: state.infinite[props.cid].records,
+  status: state.infinite[props.cid].status,
+  total: state.infinite[props.cid].total
 })
 
 const mapDispatchToProps = {

@@ -85,8 +85,8 @@ class Form extends React.Component {
   }
 
   componentDidMount() {
-    const { cid, sections, onSetSections } = this.props
-    onSetSections(cid, sections)
+    const { sections, onSetSections } = this.props
+    onSetSections(sections)
   }
 
   componentDidUpdate(prevProps) {
@@ -105,25 +105,25 @@ class Form extends React.Component {
   }
 
   _handleLoadData() {
-    const { cid, endpoint, sections, onFetchData, onSetData } = this.props
+    const { endpoint, sections, onFetchData, onSetData } = this.props
     if(endpoint) {
-      onFetchData(cid, endpoint)
+      onFetchData(endpoint)
     } else {
       const data = getDefaults(sections)
-      onSetData(cid, data)
+      onSetData(data)
     }
   }
 
   _handleUpdateData(key, value) {
-    const { cid, onUpdateData } = this.props
-    onUpdateData(cid, key, value)
+    const { onUpdateData } = this.props
+    onUpdateData(key, value)
   }
 
   _handleSubmit() {
-    const { cid, action, data, method, sections, onSubmit, onSubmitForm } = this.props
+    const { action, data, method, sections, onSubmit, onSubmitForm } = this.props
     let filtered = collectData(sections, data)
     if(action) {
-      onSubmitForm(cid, method, action, filtered)
+      onSubmitForm(method, action, filtered)
     } else if(onSubmit) {
       if(onSubmit(filtered)) {
         this._handleSuccess()
@@ -155,10 +155,10 @@ class Form extends React.Component {
 
 const mapStateToProps = (state, props) => {
   return {
-    data: state.form[props.identifier].data,
-    entity: state.form[props.identifier].entity,
-    errors: state.form[props.identifier].errors,
-    status: state.form[props.identifier].status
+    data: state.form[props.cid].data,
+    entity: state.form[props.cid].entity,
+    errors: state.form[props.cid].errors,
+    status: state.form[props.cid].status
   }
 }
 

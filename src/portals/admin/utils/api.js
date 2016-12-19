@@ -64,10 +64,10 @@ class Api {
 
     return dispatch => {
 
-      return localStorage.getItem('token', function(err, token) {
+      return localStorage.getItem('teams', function(err, teams) {
 
-        if(token) {
-          config.headers['Authorization'] = `Bearer ${token}`
+        if(teams) {
+          config.headers['Authorization'] = `Bearer ${teams[0].token}`
         } else if(options.token) {
           config.headers['Authorization'] = `Bearer ${options.token}`
         } else if(options.params && options.params.token) {

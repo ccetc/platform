@@ -22,12 +22,12 @@ class Drawer extends React.Component {
   render() {
     const { children, drawer } = this.props
     return (
-      <div>
+      <div className="chrome-drawer">
         { children }
         <CSSTransitionGroup transitionName="expanded" transitionEnterTimeout={500} transitionLeaveTimeout={500} transitionAppear={true} transitionAppearTimeout={500}>
           { drawer && <div className="chrome-drawer-overlay" onClick={this._handleCloseDrawer.bind(this)} /> }
           { drawer &&
-            <div className={`chrome-drawer chrome-drawer-${drawer.location}`}>
+            <div className={`chrome-drawer-panel chrome-drawer-panel-${drawer.location}`}>
               { React.createElement(drawer.component) }
             </div>
           }

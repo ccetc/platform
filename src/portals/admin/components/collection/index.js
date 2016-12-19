@@ -39,4 +39,4 @@ const mapStateToProps = (state, props) => ({
   ...state.collection[props.cid]
 })
 
-export default component(mapStateToProps, {}, Collection, 'collection', false)
+export default component(mapStateToProps, {}, Container, 'collection', false)

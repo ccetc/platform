@@ -3,12 +3,14 @@ import * as actionTypes from './action_types'
 
 import collection from 'portals/admin/components/collection/reducer'
 import form from 'portals/admin/components/form/reducer'
+import filefield from 'portals/admin/controls/filefield/reducer'
 import infinite from 'portals/admin/components/infinite/reducer'
 import tabs from 'portals/admin/components/tabs/reducer'
 
 const reducers = {
   collection,
   form,
+  filefield,
   infinite,
   tabs
 }
@@ -24,7 +26,7 @@ export default (state = { components: [] }, action) => {
       ...state,
       [action.namespace]: {
         ...state[action.namespace],
-        [index]: reducers[action.namespace](undefined, action)
+        [action.cid]: reducers[action.namespace](undefined, action)
       },
       components: [
         ...state.components,
@@ -36,7 +38,7 @@ export default (state = { components: [] }, action) => {
 
     return  {
       ...state,
-      [action.namespace]: _.omit(state[action.namespace], index),
+      [action.namespace]: _.omit(state[action.namespace], action.cid),
       components: _.pull(state.components, identifier)
     }
 
@@ -46,7 +48,7 @@ export default (state = { components: [] }, action) => {
       ...state,
       [namespace]: {
         ...state[namespace],
-        [index]: reducers[namespace](state[namespace][index], action)
+        [action.cid]: reducers[namespace](state[namespace][index], action)
       }
     }
 

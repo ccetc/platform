@@ -1,3 +1,7 @@
+.chrome-tasks {
+  flex: 1;
+  display: flex;
+}
 .chrome-tasks-overlay {
   .opacity-transition(0, 0.5, .25s);
   .opacity(0.5);
@@ -33,6 +37,10 @@
     padding: 15px;
     text-align: center;
     color: #1e70bf;
+    cursor: pointer;
+    &:hover {
+      background-color: #F9F9F9;
+    }
   }
   .chrome-tasks-cancel {
     margin-top: 10px;

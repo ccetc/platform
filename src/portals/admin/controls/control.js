@@ -5,7 +5,7 @@ import _ from 'lodash'
 // import Checkbox from './checkbox'
 // import Checkboxes from './checkboxes'
 // import ColorField from './colorfield'
-// import Filefield from './filefield'
+import FileField from './filefield'
 // import MultiSelect from './multiselect'
 // import Radios from './radios'
 import Select from './select'
@@ -19,7 +19,7 @@ const standardControls = {
   // 'checkbox': Checkbox,
   // 'checkboxes': Checkboxes,
   // 'colorfield': ColorField,
-  // 'filefield': Filefield,
+  'filefield': FileField,
   // 'multiselect': MultiSelect,
   // 'radios': Radios,
   'select': Select,

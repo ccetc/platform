@@ -285,6 +285,12 @@
   flex: 1;
   position: relative;
   overflow: hidden;
+  display: flex;
+}
+.chrome {
+  flex: 1;
+  flex-direction: column;
+  display: flex;
 }
 .chrome-application {
   flex: 1;
@@ -381,6 +387,10 @@
   display: flex;
 }
 .chrome-drawer {
+  flex: 1;
+  display: flex;
+}
+.chrome-drawer-panel {
   position: absolute;
   display: flex;
   top: 0;
@@ -388,50 +398,50 @@
   flex-direction: column;
   z-index: 11;
 }
-.chrome-drawer.chrome-drawer-left {
+.chrome-drawer-panel.chrome-drawer-panel-left {
   transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -webkit-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -moz-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -ms-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   left: 0;
 }
-.chrome-drawer.chrome-drawer-left.expanded-appear,
-.chrome-drawer.chrome-drawer-left.expanded-enter,
-.chrome-drawer.chrome-drawer-left.expanded-leave.expanded-leave-active {
+.chrome-drawer-panel.chrome-drawer-panel-left.expanded-appear,
+.chrome-drawer-panel.chrome-drawer-panel-left.expanded-enter,
+.chrome-drawer-panel.chrome-drawer-panel-left.expanded-leave.expanded-leave-active {
   -webkit-transform: translateX(-100%);
   -moz-transform: translateX(-100%);
   -ms-transform: translateX(-100%);
   -o-transform: translateX(-100%);
   transform: translateX(-100%);
 }
-.chrome-drawer.chrome-drawer-left.expanded-appear.expanded-appear-active,
-.chrome-drawer.chrome-drawer-left.expanded-enter.expanded-enter-active,
-.chrome-drawer.chrome-drawer-left.expanded-leave {
+.chrome-drawer-panel.chrome-drawer-panel-left.expanded-appear.expanded-appear-active,
+.chrome-drawer-panel.chrome-drawer-panel-left.expanded-enter.expanded-enter-active,
+.chrome-drawer-panel.chrome-drawer-panel-left.expanded-leave {
   -webkit-transform: translateX(0);
   -moz-transform: translateX(0);
   -ms-transform: translateX(0);
   -o-transform: translateX(0);
   transform: translateX(0);
 }
-.chrome-drawer.chrome-drawer-right {
+.chrome-drawer-panel.chrome-drawer-panel-right {
   transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -webkit-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -moz-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -ms-transition: transform 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   right: 0;
 }
-.chrome-drawer.chrome-drawer-right.expanded-appear,
-.chrome-drawer.chrome-drawer-right.expanded-enter,
-.chrome-drawer.chrome-drawer-right.expanded-leave.expanded-leave-active {
+.chrome-drawer-panel.chrome-drawer-panel-right.expanded-appear,
+.chrome-drawer-panel.chrome-drawer-panel-right.expanded-enter,
+.chrome-drawer-panel.chrome-drawer-panel-right.expanded-leave.expanded-leave-active {
   -webkit-transform: translateX(100%);
   -moz-transform: translateX(100%);
   -ms-transform: translateX(100%);
   -o-transform: translateX(100%);
   transform: translateX(100%);
 }
-.chrome-drawer.chrome-drawer-right.expanded-appear.expanded-appear-active,
-.chrome-drawer.chrome-drawer-right.expanded-enter.expanded-enter-active,
-.chrome-drawer.chrome-drawer-right.expanded-leave {
+.chrome-drawer-panel.chrome-drawer-panel-right.expanded-appear.expanded-appear-active,
+.chrome-drawer-panel.chrome-drawer-panel-right.expanded-enter.expanded-enter-active,
+.chrome-drawer-panel.chrome-drawer-panel-right.expanded-leave {
   -webkit-transform: translateX(0);
   -moz-transform: translateX(0);
   -ms-transform: translateX(0);
@@ -439,12 +449,12 @@
   transform: translateX(0);
 }
 @media only screen and (max-width: 380px) {
-  .chrome-drawer {
+  .chrome-drawer-panel {
     width: calc(100% - 60px);
   }
 }
 @media only screen and (min-width: 381px) {
-  .chrome-drawer {
+  .chrome-drawer-panel {
     width: 320px;
   }
 }
@@ -664,6 +674,10 @@
 .cordova .chrome-notifications-header a {
   padding-top: 30px;
 }
+.chrome-modal {
+  flex: 1;
+  display: flex;
+}
 .chrome-modal-window {
   transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
   -webkit-transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;
@@ -696,6 +710,10 @@
   -ms-transform: translateY(0);
   -o-transform: translateY(0);
   transform: translateY(0);
+}
+.chrome-tasks {
+  flex: 1;
+  display: flex;
 }
 .chrome-tasks-overlay {
   transition: opacity 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
@@ -794,6 +812,11 @@
   padding: 15px;
   text-align: center;
   color: #1e70bf;
+  cursor: pointer;
+}
+.chrome-tasks-list .chrome-tasks-item:hover,
+.chrome-tasks-list .chrome-tasks-cancel:hover {
+  background-color: #F9F9F9;
 }
 .chrome-tasks-list .chrome-tasks-cancel {
   margin-top: 10px;
@@ -908,6 +931,41 @@
 }
 .datefield .calendar.icon {
   margin: 0;
+}
+.filefield .ui.segment {
+  display: flex;
+  padding: 10px 5px !important;
+  max-width: 500px;
+  width: 100%;
+}
+.filefield .ui.segment p {
+  flex: 1;
+  margin: 0;
+  font-size: 14px;
+  line-height: 14px;
+  vertical-align: middle;
+}
+.filefield .ui.segment a,
+.filefield .ui.segment strong {
+  font-weight: bold;
+  margin-right: 5px;
+}
+.filefield .ui.segment strong {
+  color: #000;
+}
+.filefield .ui.segment .progress {
+  flex: 0 0 150px;
+  margin: 0;
+}
+.filefield .ui.segment .remove {
+  flex: 0 0 25px;
+  height: 14px;
+  display: flex;
+}
+.filefield .ui.segment .remove i {
+  margin: auto;
+  line-height: 14px;
+  cursor: pointer;
 }
 .card {
   border: none !important;
@@ -1403,31 +1461,9 @@
 .chrome-search-bar .chrome-search-input .ui.input input:-ms-input-placeholder {
   color: #cccccc;
 }
-.chrome-search-model {
-  font-size: 0.8em;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #333;
-  padding: 6px 14px;
-  background-color: #DDDDDD;
-}
 .chrome-search-landing {
-  z-index: 11;
-  position: fixed;
-  top: 50px;
-  left: 0;
-  right: 0;
+  flex: 1;
   display: flex;
-}
-@media only screen and (max-width: 767px) {
-  .chrome-search-landing {
-    bottom: 250px;
-  }
-}
-@media only screen and (min-width: 768px) {
-  .chrome-search-landing {
-    bottom: 0;
-  }
 }
 .chrome-search-landing .chrome-search-landing-message {
   margin: auto;
@@ -1448,14 +1484,15 @@
   color: #DDD;
 }
 .chrome-search-results {
-  z-index: 11;
-  position: fixed;
-  top: 50px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
+  flex: 1;
+}
+.chrome-search-model {
+  font-size: 0.8em;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #333;
+  padding: 6px 14px;
+  background-color: #DDDDDD;
 }
 .chrome-search-result {
   padding: 10px;

@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import $ from 'jquery'
 import _ from 'lodash'
 import * as actions from './actions'
 
@@ -91,7 +90,7 @@ export class Search extends React.Component {
   }
 
   componentDidMount() {
-    const query = $(this.refs.query)
+    const query = this.refs.query
     window.setTimeout(function() {
       query.focus()
     }, 600)

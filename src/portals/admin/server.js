@@ -5,6 +5,7 @@ import activation from 'server/middleware/activation'
 import signin from 'server/middleware/signin'
 import reset from 'server/middleware/reset'
 import extAuthentication from './middleware/authentication'
+import resumable from './middleware/resumable'
 import sessionService from './middleware/session'
 import searchService from './middleware/search'
 import teamService from './middleware/team'
@@ -31,6 +32,9 @@ admin.use('/api/admin', reset)
 
 // authentication
 admin.use('/api/admin', authentication)
+
+// resumable
+admin.use('/api/admin', resumable)
 
 // core admin api
 admin.use('/api/admin', notificationsService)

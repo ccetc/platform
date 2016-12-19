@@ -1,9 +1,13 @@
 .chrome-drawer {
-  &.chrome-drawer-left {
+  flex: 1;
+  display: flex;
+}
+.chrome-drawer-panel {
+  &.chrome-drawer-panel-left {
     .translate-x-transition(-100%, 0, .25s);
     left: 0;
   }
-  &.chrome-drawer-right {
+  &.chrome-drawer-panel-right {
     .translate-x-transition(100%, 0, .25s);
     right: 0;
   }

@@ -1,15 +1,13 @@
 import * as actionTypes from './action_types'
 import api from 'portals/admin/utils/api'
 
-export const setSections = (cid, sections) => ({
+export const setSections = (sections) => ({
   type: actionTypes.SET_SECTIONS,
-  cid,
   sections
 })
 
-export function fetchData(cid, endpoint) {
+export function fetchData(endpoint) {
   return api.get({
-    meta: { cid },
     endpoint,
     request: actionTypes.FETCH_DATA_REQUEST,
     success: actionTypes.FETCH_DATA_SUCCESS,
@@ -17,29 +15,25 @@ export function fetchData(cid, endpoint) {
   })
 }
 
-export const setData = (cid, data) => ({
+export const setData = (data) => ({
   type: actionTypes.SET_DATA,
-  cid,
   data
 })
 
-export const setReady = (cid) => ({
-  type: actionTypes.SET_READY,
-  cid
+export const setReady = () => ({
+  type: actionTypes.SET_READY
 })
 
-export const updateData = (cid, key, value) => ({
+export const updateData = (key, value) => ({
   type: actionTypes.UPDATE_DATA,
-  cid,
   key,
   value
 })
 
-export const submitForm = (cid, method, endpoint, params) => {
+export const submitForm = (method, endpoint, params) => {
   return api.request({
     method,
     params,
-    meta: { cid },
     endpoint,
     request: actionTypes.SUBMIT_REQUEST,
     success: actionTypes.SUBMIT_SUCCESS,

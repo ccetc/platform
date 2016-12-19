@@ -10,13 +10,17 @@ export default (mapComponentStateToProps, mapComponentDispatchToProps, PlainComp
       return {
         ...actions,
         [key]: function() {
-          var oldArguments = Array.prototype.slice.call(arguments)
-          var action = {
-            ...mapComponentDispatchToProps[key](...oldArguments),
-            tid: props.tid,
-            cid: props.cid
+          const oldArguments = Array.prototype.slice.call(arguments)
+          const result = mapComponentDispatchToProps[key](...oldArguments)
+          if(_.isFunction(result)) {
+            dispatch(result)
+          } else {
+            dispatch({
+              ...mapComponentDispatchToProps[key](...oldArguments),
+              tid: props.tid,
+              cid: props.cid
+            })
           }
-          dispatch(action)
         }
       }
     }, {})
@@ -47,9 +51,9 @@ export default (mapComponentStateToProps, mapComponentDispatchToProps, PlainComp
       if(components && _.includes(components, this.identifier)) {
         const childProps = _.omit(this.props, ['components'])
         if(singleton) {
-          return <WrappedComponent {...childProps} tid={this.tid} identifier={this.index}>{ children }</WrappedComponent>
+          return <WrappedComponent {...childProps} tid={this.tid} cid={this.cid} identifier={this.index}>{ children }</WrappedComponent>
         } else {
-          return <WrappedComponent {...childProps} tid={this.tid} identifier={this.index}>{ children }</WrappedComponent>
+          return <WrappedComponent {...childProps} tid={this.tid} cid={this.cid} identifier={this.index}>{ children }</WrappedComponent>
         }
       }
       return null

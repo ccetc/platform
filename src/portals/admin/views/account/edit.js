@@ -25,7 +25,7 @@ class Edit extends React.Component {
             { label: 'First Name', name: 'first_name', type: 'textfield', placeholder: 'First Name' },
             { label: 'Last Name', name: 'last_name', type: 'textfield', placeholder: 'Last Name' },
             { label: 'Email', name: 'email', type: 'textfield', placeholder: 'Email' },
-            { label: 'Phone', name: 'phone', type: 'textfield', placeholder: 'Phone' }
+            { label: 'Photo', name: 'photo', type: 'filefield', multiple: false, endpoint: '/api/admin/uploads' }
           ]
         }
       ]
