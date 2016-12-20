@@ -128,8 +128,8 @@ class FileField extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  files: state.filefield[props.identifier].files,
-  status: state.filefield[props.identifier].status,
+  files: state.filefield[props.cid].files,
+  status: state.filefield[props.cid].status,
   team: getActiveTeam(state)
 })
 

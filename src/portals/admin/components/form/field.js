@@ -35,9 +35,9 @@ class Field extends React.Component {
 
   render() {
     const { columns, data, endpoint, errors, fields, include, instructions } = this.props
-    const { label, name, options, required, type, show, onUpdateData } = this.props
+    const { key, label, name, options, required, type, show, value, onUpdateData } = this.props
     const error = (errors && errors[name]) ? errors[name][0] : null
-    const value = data[name]
+    const defaultValue = data[name]
     let classes = ['field']
     if(error) {
       classes.push('error')
@@ -59,9 +59,11 @@ class Field extends React.Component {
           <Control type={type}
                    label={label}
                    endpoint={endpoint}
+                   key={key}
+                   value={value}
                    columns={columns}
                    options={options}
-                   defaultValue={value}
+                   defaultValue={defaultValue}
                    onChange={this._handleUpdateData.bind(this)} />
         }
         { error &&

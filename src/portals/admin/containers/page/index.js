@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
 import { getActiveTeam, getActiveUser } from '../admin/selectors'
 import Helmet from 'react-helmet'
 import Forbidden from './forbidden'
@@ -29,7 +29,7 @@ export default (pageProps) => {
       }
 
       page() {
-        if(this.pageProps)  return this.pageProps
+        if(this.pageProps) return this.pageProps
         this.pageProps = pageProps(this.props, this.context)
         return this.pageProps
       }

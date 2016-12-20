@@ -1,8 +1,8 @@
 import React from 'react'
 import _ from 'lodash'
 
-// import Dynamic from './dynamic'
-// import Checkbox from './checkbox'
+import Dynamic from './dynamic'
+import Checkbox from './checkbox'
 // import Checkboxes from './checkboxes'
 // import ColorField from './colorfield'
 import FileField from './filefield'
@@ -16,7 +16,7 @@ import Password from './password'
 import DateField from './datefield'
 
 const standardControls = {
-  // 'checkbox': Checkbox,
+  'checkbox': Checkbox,
   // 'checkboxes': Checkboxes,
   // 'colorfield': ColorField,
   'filefield': FileField,
@@ -37,14 +37,7 @@ class Control extends React.Component {
       React.PropTypes.string,
       React.PropTypes.element
     ]),
-    datasource: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.shape({
-        source: React.PropTypes.string,
-        key: React.PropTypes.string,
-        value: React.PropTypes.string
-      })
-    ]),
+    endpoint: React.PropTypes.string,
     defaultValue: React.PropTypes.any,
     options: React.PropTypes.array
   }
@@ -60,23 +53,27 @@ class Control extends React.Component {
   }
 
   render() {
-    const { type, datasource } = this.props
+    const { type, endpoint } = this.props
     const Element = (_.isString(this.props.type)) ? _.get(standardControls, type) : type
-    const controlProps = _.omit(this.props, ['type','datasource'])
-    if(datasource) {
-      return (
-        <div className="control">
-          <Dynamic datasource={datasource}>
+    const controlProps = _.omit(this.props, ['type','endpoint','key','value'])
+    return (
+      <div className="control">
+        { endpoint ?
+          <Dynamic {...this._getDynamic()}>
             <Element {...controlProps} />
-          </Dynamic>
-        </div>
-      )
-    } else {
-      return (
-        <div className="control">
+          </Dynamic> :
           <Element {...controlProps} />
-        </div>
-      )
+        }
+      </div>
+    )
+  }
+
+  _getDynamic() {
+    const { endpoint, key, value } = this.props
+    return {
+      endpoint,
+      key,
+      value
     }
   }
 

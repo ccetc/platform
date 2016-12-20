@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 
-class TextField extends React.Component {
+class DateField extends React.Component {
 
   static propTypes = {
     autoComplete: React.PropTypes.string,
@@ -98,4 +98,4 @@ class TextField extends React.Component {
 
 }
 
-export default TextField
+export default DateField

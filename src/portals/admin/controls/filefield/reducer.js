@@ -54,21 +54,21 @@ export default (state = INITIAL_VALUE, action) => {
     }
 
   case actionTypes.UPLOAD_PROCESS_SUCCESS:
-  return {
-    ...state,
-    status: 'success'
-  }
+    return {
+      ...state,
+      status: 'success'
+    }
 
   case actionTypes.UPLOAD_SUCCESS:
-  return {
-    ...state,
-    files: state.files.map(file => {
-      return {
-        ...file,
-        status: (file.uniqueIdentifier === action.uniqueIdentifier) ? 'success' : file.status
-      }
-    })
-  }
+    return {
+      ...state,
+      files: state.files.map(file => {
+        return {
+          ...file,
+          status: (file.uniqueIdentifier === action.uniqueIdentifier) ? 'success' : file.status
+        }
+      })
+    }
 
   case actionTypes.UPLOAD_PROCESS_FAILURE:
   case actionTypes.UPLOAD_FAILED:

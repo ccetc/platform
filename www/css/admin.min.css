@@ -954,7 +954,7 @@
   color: #000;
 }
 .filefield .ui.segment .progress {
-  flex: 0 0 150px;
+  flex: 0 0 100px;
   margin: 0;
 }
 .filefield .ui.segment .remove {

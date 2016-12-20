@@ -58,17 +58,9 @@ class TextField extends React.Component {
       return (
         <div className="textfield">
           <div className="ui left right labeled input">
-            {(() => {
-              if(this.props.prefix) {
-                return <div className="ui label">{this.props.prefix}</div>
-              }
-            })()}
+            { this.props.prefix && <div className="ui label">{this.props.prefix}</div> }
             {input}
-            {(() => {
-              if(this.props.suffix) {
-                return <div className="ui label">{this.props.suffix}</div>
-              }
-            })()}
+            { this.props.suffix && <div className="ui label">{this.props.suffix}</div> }
           </div>
         </div>
       )

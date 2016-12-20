@@ -2,15 +2,17 @@ import _ from 'lodash'
 import * as actionTypes from './action_types'
 
 import collection from 'portals/admin/components/collection/reducer'
-import form from 'portals/admin/components/form/reducer'
+import dynamic from 'portals/admin/controls/dynamic/reducer'
 import filefield from 'portals/admin/controls/filefield/reducer'
-import infinite from 'portals/admin/components/infinite/reducer'
+import form from 'portals/admin/components/form/reducer'
+import infinite from 'portals/admin/containers/infinite/reducer'
 import tabs from 'portals/admin/components/tabs/reducer'
 
 const reducers = {
   collection,
-  form,
+  dynamic,
   filefield,
+  form,
   infinite,
   tabs
 }
@@ -48,7 +50,7 @@ export default (state = { components: [] }, action) => {
       ...state,
       [namespace]: {
         ...state[namespace],
-        [action.cid]: reducers[namespace](state[namespace][index], action)
+        [action.cid]: reducers[namespace](state[namespace][action.cid], action)
       }
     }
 

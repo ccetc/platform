@@ -1,6 +1,6 @@
 import React from 'react'
 import component from 'portals/admin/components/component'
-import Infinite from '../infinite'
+import Infinite from 'portals/admin/containers/infinite'
 import Table from './table'
 
 class Collection extends React.Component {

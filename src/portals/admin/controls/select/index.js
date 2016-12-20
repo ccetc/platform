@@ -1,6 +1,5 @@
 import React from 'react'
 import _ from 'lodash'
-import $ from 'jquery'
 
 class Select extends React.Component {
 
@@ -43,32 +42,28 @@ class Select extends React.Component {
       classes.push('error')
     }
     return (
-      <div className="select" ref="control">
-        <div className={classes.join(' ')}>
-          {(defaultValue) ? <div className="text">{defaultValue}</div> : <div className="default text">{prompt}</div>}
-          <i className="dropdown icon"></i>
-          {(() => {
-            return (
-              <div className="menu">
-                {options.map((option, index) => {
-                  return <div key={`option_${index}`} className={(option.key == this.state.value) ? 'item active selected' : 'item'} data-value={option.key}>{option.value}</div>
-                })}
-              </div>
-            )
-          })()}
+      <div className="select">
+        <div className={classes.join(' ')} ref="control">
+          { defaultValue ? <div className="text">{defaultValue}</div> : <div className="default text">{prompt}</div> }
+          <i className="dropdown icon" />
+          <div className="menu">
+            { options.map((option, index) => {
+              return <div key={`option_${index}`} className={(option.key == this.state.value) ? 'item active selected' : 'item'} data-value={option.key}>{option.value}</div>
+            })}
+          </div>
         </div>
       </div>
     )
   }
 
   componentDidMount() {
-    // $(this.refs.control).find('.dropdown').dropdown({
-    //   onChange: this.handleChange.bind(this)
-    // })
+    $(this.refs.control).dropdown({
+      onChange: this.handleChange.bind(this)
+    })
   }
 
   componentDidUpdate(prevProps) {
-    // $(this.refs.control).find('.dropdown').dropdown('refresh')
+    $(this.refs.control).dropdown('refresh')
     if(prevProps.defaultValue != this.props.defaultValue) {
       this.setValue(this.props.defaultValue)
     }

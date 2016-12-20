@@ -21,9 +21,10 @@ class New extends React.Component {
       sections: [
         {
           fields: [
-            { label: 'Project', name: 'project_id', type: 'select', placeholder: 'Project', endpoint: '/admin/projects', key: 'id', value: 'title' },
-            { label: 'Expense Type', name: 'expense_type_id', type: 'select', placeholder: 'Expense Type', endpoint: '/admin/expense_types', key: 'id', value: 'title' },
-            { label: 'Vendor', name: 'vendor_id', type: 'select', placeholder: 'Vendor', endpoint: '/admin/vendors', key: 'id', value: 'name' },
+            { label: 'Receipt', name: 'upload_id', type: 'filefield', endpoint: '/admin/uploads' },
+            { label: 'Project', name: 'project_id', type: 'select', placeholder: 'Project', endpoint: '/admin/reimbursement/projects', key: 'id', value: 'title' },
+            { label: 'Expense Type', name: 'expense_type_id', type: 'select', placeholder: 'Expense Type', endpoint: '/admin/reimbursement/expense_types', key: 'id', value: 'title' },
+            { label: 'Vendor', name: 'vendor_id', type: 'select', placeholder: 'Vendor', endpoint: '/admin/reimbursement/vendors', key: 'id', value: 'name' },
             { label: 'Date', name: 'date_needed', type: 'datefield', placeholder: 'Date Needed' },
             { label: 'Description', name: 'description', type: 'textarea', placeholder: 'Description' },
             { label: 'Amount', name: 'amount', type: 'textfield', placeholder: 'Amount' },
