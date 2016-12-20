@@ -4,8 +4,8 @@ import _ from 'lodash'
 const INITIAL_STATE = {
   active: null,
   status: 'pending',
-  teams: [],
-  sessions: {}
+  teams: null,
+  sessions: null
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -17,7 +17,8 @@ export default (state = INITIAL_STATE, action) => {
       ...state,
       active: action.value && action.value.length > 0 ? 0 : null,
       status: 'success',
-      teams: action.value || []
+      teams: action.value || [],
+      sessions: {}
     }
 
   case actionTypes.LOAD_TEAMS_FAILURE:

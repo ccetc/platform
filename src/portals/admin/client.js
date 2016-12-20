@@ -20,8 +20,8 @@ export default (
     <Route component={ Socket }>
       <Route component={ Notifications }>
         <Route component={ Host }>
-          <Route component={ Admin }>
-            <Route component={ Flash }>
+          <Route component={ Flash }>
+            <Route component={ Admin }>
               { Session }
               <Route component={ Teams } path="admin">
                 <Route component={ Container }>

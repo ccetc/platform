@@ -10,13 +10,14 @@ export class Admin extends React.Component {
   }
 
   static contextTypes = {
+    flash: React.PropTypes.object,
     router: React.PropTypes.object
   }
 
   static propTypes = {
-    sessions: React.PropTypes.object.isRequired,
+    sessions: React.PropTypes.object,
     status: React.PropTypes.string.isRequired,
-    teams: React.PropTypes.array.isRequired,
+    teams: React.PropTypes.array,
     addTeam: React.PropTypes.func.isRequired,
     chooseTeam: React.PropTypes.func.isRequired,
     removeTeam: React.PropTypes.func.isRequired,
@@ -37,12 +38,13 @@ export class Admin extends React.Component {
   componentDidUpdate(prevProps) {
     const { team, teams, onSaveTeams, onLoadSession } = this.props
     if(prevProps.teams !== teams) {
-      if(prevProps.status === 'pending') {
+      if(teams.length === 0) {
+        this.context.flash.set('warning', 'Please sign in to your team')
+        this.context.router.push({ pathname: '/admin/signin', state: 'fade' })
+      } else if(prevProps.status === 'pending') {
         teams.map(team => {
           onLoadSession(team.id, team.token)
         })
-      } else if(teams.length === 0) {
-        this.context.router.push({ pathname: '/admin/signin', state: 'fade' })
       } else {
         const newTeam = teams[teams.length - 1]
         onLoadSession(newTeam.id, newTeam.token)
