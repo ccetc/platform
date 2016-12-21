@@ -450,7 +450,7 @@
 }
 @media only screen and (max-width: 380px) {
   .chrome-drawer-panel {
-    width: calc(100% - 60px);
+    width: calc(100% - 50px);
   }
 }
 @media only screen and (min-width: 381px) {
@@ -1273,96 +1273,155 @@
   font-size: 18px;
   margin-right: 10px;
 }
+.chrome-navigation {
+  flex: 1;
+  display: flex;
+  background-color: #FFF;
+}
 .chrome-navigation-panel {
   flex: 1;
-  background-color: #FFF;
   display: flex;
   flex-direction: column;
 }
-.chrome-navigation-title {
-  position: relative;
-  background: #444;
+.chrome-navigation-header {
+  display: flex;
+  flex: 0 0 50px;
+  background: #000000;
+}
+.chrome-navigation-header-back,
+.chrome-navigation-header-title,
+.chrome-navigation-header-next {
+  color: #FFFFFF;
+  line-height: 14px;
+}
+.chrome-navigation-header-back {
   flex: 0 0 50px;
   display: flex;
+  text-align: left;
+  cursor: pointer;
 }
-.chrome-navigation-title h3 {
+.chrome-navigation-header-back img {
+  width: 50px;
+  height: 50px;
+}
+.chrome-navigation-header i {
   margin: auto;
-  color: #FFF;
-  text-align: center;
 }
-.chrome-apps {
+.chrome-navigation-header-title {
+  flex: 1;
+  padding: 10px;
+  font-size: 13px;
+  line-height: 15px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+.chrome-navigation-header-next {
+  flex: 0 0 50px;
+  display: flex;
+  text-align: right;
+  cursor: pointer;
+}
+.chrome-navigation-body {
   flex: 1;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
 }
-.chrome-apps-empty {
+.chrome-navigation-apps {
+  border-bottom: 1px solid #EEE;
+}
+.chrome-navigation-item {
+  padding: 15px;
+  position: relative;
+  cursor: pointer;
+}
+.chrome-navigation-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.chrome-navigation-item i:first-child {
+  margin-right: 10px;
+  color: #888;
+}
+.chrome-navigation-item .chevron {
+  position: absolute;
+  right: 10px;
+  color: #BBB;
+}
+.chrome-navigation-empty {
   flex: 1;
   display: flex;
 }
-.chrome-apps-empty-message {
+.chrome-navigation-empty-message {
   margin: auto;
   text-align: center;
   padding: 20px;
 }
-.chrome-apps-empty-message i {
+.chrome-navigation-empty-message i {
   font-size: 100px;
   color: #BBB;
 }
-.chrome-apps-empty-message h3 {
+.chrome-navigation-empty-message h3 {
   font-size: 22px;
   line-height: 28px;
   margin: 0;
   color: #666;
 }
-.chrome-app .chrome-app-title {
-  display: block;
-  cursor: pointer;
-  color: #000;
+.chrome-navigation-team-add,
+.chrome-navigation-team {
+  flex: 1;
+  display: flex;
   padding: 10px;
+  font-size: 13px;
+  line-height: 15px;
+  overflow: hidden;
+  cursor: pointer;
 }
-.chrome-app .chrome-app-title i {
-  color: #666;
-  display: inline-block;
+.chrome-navigation-team-add:hover,
+.chrome-navigation-team:hover {
+  background-color: #F0F0F0;
+}
+.chrome-navigation-team-logo {
+  flex: 0 0 40px;
+}
+.chrome-navigation-team-logo img {
+  height: 30px;
+  width: 30px;
+  border-radius: 5px;
+}
+.chrome-navigation-team-title {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.chrome-navigation-team-active {
+  flex: 0 0 40px;
+  text-align: right;
+}
+.chrome-navigation-team-active i {
+  color: #BBB;
+  margin: 8px 0;
+}
+.chrome-navigation-team-add-button {
+  flex: 0 0 40px;
+}
+.chrome-navigation-team-add-button-image {
   width: 30px;
   height: 30px;
-  line-height: 30px;
-  font-size: 16px;
-  vertical-align: middle;
-  text-align: center;
-  margin-right: 10px;
-}
-.chrome-app .chrome-app-title.active {
-  background-color: #2185D0;
-  color: #FFF;
-}
-.chrome-app .chrome-app-title.active i {
-  color: #FFF;
-}
-.chrome-app .chrome-app-menu {
-  transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -webkit-transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -moz-transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  -ms-transition: max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s;
-  background-color: #EEE;
-  max-height: 500px;
-  overflow: hidden;
-}
-.chrome-app .chrome-app-menu.expanded-enter,
-.chrome-app .chrome-app-menu.expanded-leave.expanded-leave-active {
-  max-height: 0;
-}
-.chrome-app .chrome-app-menu.expanded-enter.expanded-enter-active,
-.chrome-app .chrome-app-menu.expanded-leave {
-  max-height: 500px;
-}
-.chrome-app .chrome-app-menu .chrome-app-item {
-  padding: 10px 20px;
-  color: #666;
-  cursor: pointer;
-  line-height: 25px;
-}
-.chrome-app .chrome-app-menu .chrome-app-item:hover {
+  padding: 8px;
   background-color: #DDD;
+  color: #888;
+  border-radius: 5px;
+  display: flex;
+}
+.chrome-navigation-team-add-button-image i {
+  margin: auto;
+  font-size: 14px;
+  line-height: 14px;
+}
+.chrome-navigation-team-add-text {
+  flex: 1;
+  display: flex;
+  align-items: center;
 }
 .chrome-search-panel {
   transition: transform 0.5s cubic-bezier(0.7, 0, 0.175, 1) 0s;

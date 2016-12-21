@@ -23,14 +23,12 @@ export default (
           <Route component={ Flash }>
             <Route component={ Admin }>
               { Session }
-              <Route component={ Teams } path="admin">
-                <Route component={ Container }>
-                  <Route component={ Modal }>
-                    <Route component={ Drawer }>
-                      <Route component={ Tasks }>
-                        <Route component={ Chrome }>
-                          { Apps }
-                        </Route>
+              <Route component={ Container } path="admin">
+                <Route component={ Modal }>
+                  <Route component={ Drawer }>
+                    <Route component={ Tasks }>
+                      <Route component={ Chrome }>
+                        { Apps }
                       </Route>
                     </Route>
                   </Route>
