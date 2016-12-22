@@ -17,6 +17,8 @@ exports.seed = (knex, Promise) => {
   .then(() => {
     return knex('apps').insert([
       {
+        title: 'Team'
+      }, {
         title: 'Reimbursement'
       }
     ])
@@ -28,15 +30,19 @@ exports.seed = (knex, Promise) => {
     return knex('rights').insert([
       {
         app_id: 1,
-        text: 'MANAGE EXPENSES',
+        text: 'ADMIN TEAM',
+        description: 'user can manage team settings'
+      }, {
+        app_id: 2,
+        text: 'MANAGE REIMBURSEMENTS',
         description: 'user can manage their own advances, expenses, and trips'
       }, {
-        app_id: 1,
-        text: 'ACCESS REPORTS',
-        description: 'user can access advance, expense, and trip reports'
+        app_id: 2,
+        text: 'SUPERVISE REIMBURSEMENTS',
+        description: 'user can access all advances, expense, and trip reports'
       }, {
-        app_id: 1,
-        text: 'MANAGE CONFIGURATION',
+        app_id: 2,
+        text: 'ADMIN REIMBURSEMENTS',
         description: 'user can manage projects, vendors, and expense types'
       }
     ])
@@ -2261,6 +2267,12 @@ exports.seed = (knex, Promise) => {
       {
         user_id: 1,
         app_id: 1
+      }, {
+        user_id: 1,
+        app_id: 2
+      }, {
+        user_id: 2,
+        app_id: 2
       }
     ])
   })
@@ -2278,6 +2290,12 @@ exports.seed = (knex, Promise) => {
       }, {
         user_id: 1,
         right_id: 3
+      }, {
+        user_id: 1,
+        right_id: 4
+      }, {
+        user_id: 2,
+        right_id: 2
       }
     ])
   })

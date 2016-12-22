@@ -1,3 +1,6 @@
+* {
+  -webkit-tap-highlight-color: none;
+}
 .next-appear,
 .next-enter,
 .next-leave {
