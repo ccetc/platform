@@ -11,3 +11,6 @@ public/css/account.min.css
 public/css/admin.min.css
 tmp
 uploads
+
+src/workbench/*
+!src/workbench/.gitkeep
