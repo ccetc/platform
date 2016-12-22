@@ -1,8 +1,9 @@
 const passport = require('passport')
-import { Strategy as LocalStrategy } from 'passport-local'
-import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt'
+const LocalStrategy = require('passport-local').Strategy
+const JwtStrategy = require('passport-jwt').Strategy
+const ExtractJwt = require('passport-jwt').ExtractJwt
 const config = require('server/services/config')
-const User = require('platform/models/user')
+const User = require('platform/models/user').default
 
 module.exports = (key) => {
 
