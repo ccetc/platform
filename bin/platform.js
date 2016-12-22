@@ -51,4 +51,4 @@ function runTask(taskIdentifier, env = environment, argv = argv) {
   }
 }
 
-runTask(task).then(console.log.bind(console)).then(() => process.exit(0))
+runTask(task, environment, argv).then(console.log.bind(console)).then(() => process.exit(0))
