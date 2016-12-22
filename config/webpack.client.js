@@ -1,4 +1,6 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var compileNavigation = require('../scripts/compile-navigation')
+var webpack = require('webpack')
 
 module.exports = {
   entry: {
@@ -31,6 +33,9 @@ module.exports = {
     modulesDirectories: ['node_modules', 'src']
   },
   plugins: [
-    new ExtractTextPlugin('css/[name].min.css')
+    new ExtractTextPlugin('css/[name].min.css'),
+    new webpack.DefinePlugin({
+      'process.env.APP_NAVIGATION': JSON.stringify(compileNavigation('admin/navigation.js'))
+    })
   ]
 }
