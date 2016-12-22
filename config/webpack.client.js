@@ -1,5 +1,5 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var compileNavigation = require('../scripts/compile-navigation')
+var compileNavigation = require('../scripts/coalesce-modules')
 var webpack = require('webpack')
 
 module.exports = {
