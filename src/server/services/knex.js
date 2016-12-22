@@ -15,7 +15,4 @@ var defaults = {
   }
 }
 
-module.exports = knex({
-  ...defaults,
-  ...config.database
-})
+module.exports = knex(Object.assign({}, defaults, config.database))
