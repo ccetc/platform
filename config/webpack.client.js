@@ -8,7 +8,7 @@ module.exports = {
     admin: './src/admin.js'
   },
   output: {
-    path: './www',
+    path: './public',
     filename: 'js/[name].min.js'
   },
   module: {
