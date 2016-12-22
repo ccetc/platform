@@ -12,8 +12,8 @@
     }
   ],
   "engines": {
-    "node": ">= 5.9.0",
-    "npm": ">= 3.7npm list graceful-fs"
+    "node": ">= 6.5.0",
+    "npm": ">= 3.10npm list graceful-fs"
   },
   "bin": {
     "platform": "bin/platform.js"
