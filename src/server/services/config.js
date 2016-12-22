@@ -1,3 +1,3 @@
-import config from '../../../config/platform'
+const config = require('../../../config/platform')
 
-export default config[process.env.NODE_ENV]
+module.exports = config[process.env.NODE_ENV]

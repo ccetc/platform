@@ -1,5 +1,5 @@
-import kue from 'kue'
-import config from 'server/services/config'
+const kue = require('kue')
+const config = require('server/services/config')
 
 const queue = kue.createQueue({
   prefix: 'q',

@@ -1,5 +1,5 @@
-import knex from 'knex'
-import config from 'server/services/config'
+const knex = require('knex')
+const config = require('server/services/config')
 
 var defaults = {
   pool: {
@@ -15,7 +15,7 @@ var defaults = {
   }
 }
 
-export default knex({
+module.exports = knex({
   ...defaults,
   ...config.database
 })

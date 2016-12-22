@@ -1,9 +1,9 @@
-import _ from 'lodash'
-import fs from 'fs'
-import path from 'path'
-import knex from 'server/services/knex'
-import Migrator from 'knex/lib/migrate'
-import Seeder from 'knex/lib/seed'
+const _        = require('lodash')
+const fs       = require('fs')
+const path     = require('path')
+const knex     = require('server/services/knex')
+const Migrator = require('knex/lib/migrate')
+const Seeder   = require('knex/lib/seed')
 
 class Platform {
 

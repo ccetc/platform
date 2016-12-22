@@ -1,5 +1,5 @@
-import jwt from 'jsonwebtoken'
-import config from 'server/services/config'
+const jwt = require('jsonwebtoken')
+const config = require('server/services/config')
 
 const encode = (data, duration) => {
 
@@ -13,7 +13,7 @@ const decode = (token) => {
   return jwt.verify(token, config.secret)
 }
 
-export default {
+module.exports = {
   encode,
   decode
 }

@@ -1,6 +1,6 @@
-import localforage from 'localforage'
+const localforage = require('localforage')
 
-export default localforage.createInstance({
+module.exports = localforage.createInstance({
   name: 'platform',
   storeName: 'cache'
 })

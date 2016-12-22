@@ -1,10 +1,10 @@
-import passport from 'passport'
+const passport = require('passport')
 import { Strategy as LocalStrategy } from 'passport-local'
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt'
-import config from 'server/services/config'
-import User from 'platform/models/user'
+const config = require('server/services/config')
+const User = require('platform/models/user')
 
-export default (key) => {
+module.exports = (key) => {
 
   const fromUrl = (req) => {
     const matches = req.path.match(/[\w\-]*\.[\w\-]*\.[\w\-]*/)

@@ -1,9 +1,9 @@
-import Bookshelf from 'bookshelf'
-import knex from 'server/services/knex'
+const Bookshelf = require('bookshelf')
+const knex = require('server/services/knex')
 
 const bookshelf = Bookshelf(knex)
 
 bookshelf.plugin('virtuals')
 bookshelf.plugin('pagination')
 
-export default bookshelf
+module.exports = bookshelf

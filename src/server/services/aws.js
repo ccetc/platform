@@ -1,6 +1,6 @@
-import aws from 'aws-sdk'
-import config from './config'
+const aws = require('aws-sdk')
+const config = require('./config')
 
 aws.config.constructor(config.aws)
 
-export default aws
+module.exports = aws
