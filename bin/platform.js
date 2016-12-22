@@ -1,18 +1,54 @@
-#!/usr/bin/env babel-node --presets=es2015,react,stage-0
-import Platform from '../src/server/utils/platform'
 
-var platform = new Platform()
-var command = process.argv[2]
+const minimist = require('minimist')
+const Promise = require('bluebird')
+const fs = Promise.promisifyAll(require('fs'))
+const _ = require('lodash')
+const path = require('path')
 
-if(command == 'migrate:latest') {
-  platform.migrateLatest().then(() => process.exit(1))
-} else if(command == 'migrate:rollback') {
-  platform.migrateRollback().then(() => process.exit(1))
-} else if(command == 'seeds:load') {
-  platform.seedsLoad().then(() => process.exit(1))
-} else if(command == 'fixtures:load') {
-  platform.fixturesLoad().then(() => process.exit(1))
-} else {
-  console.log('invalid commnad')
-  process.exit(1)
+const snakeCase = _.snakeCase
+const camelCase = _.camelCase
+const pascalCase = _.flow(_.camelCase, _.capitalize)
+
+const argv = minimist(process.argv.slice(2))
+Object.freeze(argv)
+
+const task = argv._[0]
+const environment = {
+  verbose: argv.v || argv.verbose || false
 }
+
+console.log(argv)
+
+environment.logv = function(...logs) {
+  if(environment.verbose) {
+    console.log(...logs)
+  }
+}
+
+function runTask(taskIdentifier, env = environment, argv = argv) {
+  console.log(`Running ${taskIdentifier}...`)
+
+  let segments = taskIdentifier.split(':')
+  let [namespace, task, subtask, modifier] = segments
+
+  switch(namespace) {
+    case 'platform':
+      const taskFile = path.resolve(`src/${namespace}/tasks/${task}.js`)
+      return fs.statAsync(taskFile)
+        .then(() => {
+          const taskModule = require(taskFile)
+          // Try invoking
+          try {
+            let localEnv = _.assign({}, environment)
+            localEnv.run = (task) => runTask(task, env, argv)
+            const result = taskModule[camelCase(subtask)](argv, localEnv, modifier)
+            return Promise.resolve(result)
+          } catch (e) {
+            console.error(e)
+            throw "Task could not be located or executed"
+          }
+        })
+  }
+}
+
+runTask(task).then(console.log.bind(console)).then(() => process.exit(0))
