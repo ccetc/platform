@@ -5,14 +5,14 @@ const knex     = require('server/services/knex')
 const Migrator = require('knex/lib/migrate')
 const Seeder   = require('knex/lib/seed')
 
-class Platform {
+class Db {
 
   constructor() {
     this.migrator = new Migrator(knex)
     this.seeder = new Seeder(knex)
   }
 
-  migrateLatest() {
+  migrateLatest(args, environment) {
     return this.migrator._migrationData().spread((all, completed) => {
       let migrations = this._getMigrations(completed, 'up')
       return this.migrator._runBatch(migrations, 'up')
@@ -20,21 +20,21 @@ class Platform {
 
   }
 
-  migrateRollback() {
+  migrateRollback(args, environment) {
     return this.migrator._migrationData().spread((all, completed) => {
       let migrations = this._getMigrations(completed, 'down')
       return this.migrator._runBatch(migrations.reverse(), 'down')
     })
   }
 
-  seedsLoad() {
+  seedsLoad(args, environment) {
     return this.seeder._seedData().spread((all) => {
       let seeds = this._getSeeds('seeds')
       return this.seeder._runSeeds(seeds)
     })
   }
 
-  fixturesLoad() {
+  fixturesLoad(args, environment) {
     return this.seeder._seedData().spread((all) => {
       let fixtures = this._getSeeds('fixtures')
       return this.seeder._runSeeds(fixtures)
@@ -92,4 +92,4 @@ class Platform {
 
 }
 
-export default Platform
+export default Db

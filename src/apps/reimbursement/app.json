@@ -1,0 +1,8 @@
+{
+  "name": "Reimbursement",
+  "description": "Manage reimbursement for expenses, advances, and vehicle trips",
+  "version": "1.0.0",
+  "authors": [
+    "gmk8@cornell.edu"
+  ]
+}
