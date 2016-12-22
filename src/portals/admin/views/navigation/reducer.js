@@ -1,9 +1,12 @@
 import * as actionTypes from './action_types'
 
 export const INITIAL_STATE = {
-  mode: 'apps',
+  active: null,
   app: null,
-  route: null
+  mode: 'apps',
+  path: [],
+  route: null,
+  state: 'slide-next'
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -19,10 +22,23 @@ export default (state = INITIAL_STATE, action) => {
       mode: (state.mode === 'apps') ? 'teams' : 'apps'
     }
 
-  case actionTypes.CHOOSE_APP:
+  case actionTypes.FORWARD:
     return {
       ...state,
-      app: (state.app === action.index) ? null : action.index
+      state: 'slide-next',
+      path: [
+        ...state.path,
+        action.index
+      ]
+    }
+
+  case actionTypes.BACK:
+    return {
+      ...state,
+      state: 'slide-back',
+      path: [
+        ...state.path.slice(0, state.path.length - 1)
+      ]
     }
 
   default:

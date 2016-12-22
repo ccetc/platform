@@ -1274,11 +1274,18 @@
   margin-right: 10px;
 }
 .chrome-navigation {
+  position: relative;
   flex: 1;
   display: flex;
-  background-color: #FFF;
+  overflow: hidden;
 }
 .chrome-navigation-panel {
+  position: absolute;
+  background-color: #FFFFFF;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -1288,8 +1295,10 @@
   flex: 0 0 50px;
   background: #000000;
 }
+.chrome-navigation-header i {
+  margin: auto;
+}
 .chrome-navigation-header-back,
-.chrome-navigation-header-title,
 .chrome-navigation-header-next {
   color: #FFFFFF;
   line-height: 14px;
@@ -1304,17 +1313,21 @@
   width: 50px;
   height: 50px;
 }
-.chrome-navigation-header i {
-  margin: auto;
-}
-.chrome-navigation-header-title {
+.chrome-navigation-header-title,
+.chrome-navigation-header-team {
+  color: #FFFFFF;
   flex: 1;
-  padding: 10px;
+  font-weight: bold;
   font-size: 13px;
   line-height: 15px;
-  font-weight: bold;
   display: flex;
   align-items: center;
+}
+.chrome-navigation-header-title {
+  padding: 10px 0;
+}
+.chrome-navigation-header-team {
+  padding: 10px;
 }
 .chrome-navigation-header-next {
   flex: 0 0 50px;
@@ -1334,6 +1347,13 @@
   padding: 15px;
   position: relative;
   cursor: pointer;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #EEEEEE;
+  color: #444;
+}
+.chrome-navigation-item.active {
+  font-weight: bold;
+  color: #000;
 }
 .chrome-navigation-item:hover {
   background-color: rgba(0, 0, 0, 0.05);
@@ -1351,36 +1371,37 @@
   flex: 1;
   display: flex;
 }
-.chrome-navigation-empty-message {
+.chrome-navigation-empty .chrome-navigation-empty-message {
   margin: auto;
   text-align: center;
   padding: 20px;
 }
-.chrome-navigation-empty-message i {
+.chrome-navigation-empty .chrome-navigation-empty-message i {
   font-size: 100px;
   color: #BBB;
 }
-.chrome-navigation-empty-message h3 {
+.chrome-navigation-empty .chrome-navigation-empty-message h3 {
   font-size: 22px;
   line-height: 28px;
   margin: 0;
   color: #666;
 }
-.chrome-navigation-team-add,
 .chrome-navigation-team {
   flex: 1;
   display: flex;
-  padding: 10px;
   font-size: 13px;
   line-height: 15px;
   overflow: hidden;
   cursor: pointer;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #EEEEEE;
 }
-.chrome-navigation-team-add:hover,
 .chrome-navigation-team:hover {
   background-color: #F0F0F0;
 }
 .chrome-navigation-team-logo {
+  position: relative;
+  padding: 10px;
   flex: 0 0 40px;
 }
 .chrome-navigation-team-logo img {
@@ -1388,18 +1409,56 @@
   width: 30px;
   border-radius: 5px;
 }
+.chrome-navigation-team-logo .chrome-navigation-team-label {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 8px;
+  font-weight: bold;
+  line-height: 16px;
+  padding: 0;
+  background-color: #DB2828;
+  color: #FFFFFF;
+  display: block;
+  width: 16px;
+  height: 16px;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
 .chrome-navigation-team-title {
   flex: 1;
   display: flex;
   align-items: center;
+  padding: 10px 0;
 }
 .chrome-navigation-team-active {
+  padding: 10px 10px 10px 0;
   flex: 0 0 40px;
   text-align: right;
 }
 .chrome-navigation-team-active i {
   color: #BBB;
-  margin: 8px 0;
+  margin: 8px 4px;
+}
+.chrome-navigation-team-add {
+  flex: 1;
+  display: flex;
+  font-size: 13px;
+  line-height: 15px;
+  padding: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #EEEEEE;
+}
+.chrome-navigation-team-add:hover {
+  background-color: #F0F0F0;
 }
 .chrome-navigation-team-add-button {
   flex: 0 0 40px;

@@ -6,10 +6,16 @@ export const toggleMode = () => {
   }
 }
 
-export function chooseApp(index) {
+export function forward(index) {
   return {
-    type: actionTypes.CHOOSE_APP,
+    type: actionTypes.FORWARD,
     index
+  }
+}
+
+export function back() {
+  return {
+    type: actionTypes.BACK
   }
 }
 

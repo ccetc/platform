@@ -1,8 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router'
 import _ from 'lodash'
 import $ from 'jquery'
 import { connect } from 'react-redux'
 import * as actions from './actions'
+import { getActiveTeam } from '../../containers/admin/selectors'
+
 
 export class Team extends React.Component {
 
@@ -13,13 +16,15 @@ export class Team extends React.Component {
   }
 
   static propTypes = {
+    admin: React.PropTypes.array,
     error: React.PropTypes.string,
     status: React.PropTypes.string,
-    admin: React.PropTypes.array,
+    team: React.PropTypes.object,
     onTeam: React.PropTypes.func
   }
 
   render() {
+    const { team } = this.props
     return (
       <div className="chrome-session">
         <div className="chrome-session-widget">
@@ -35,6 +40,7 @@ export class Team extends React.Component {
               </div>
               <div className="field button-field">
                 <button className={`ui fluid large ${(status == 'submitting') ? 'loading' : ''} button`}>Continue <i className="right chevron icon" /></button>
+                { team && <p><Link to={{ pathname: '/admin', state: 'slide-back' }}>Back to { team.title }</Link></p> }
               </div>
             </form>
           </div>
@@ -78,7 +84,8 @@ export class Team extends React.Component {
 const mapStateToProps = state => ({
   error: state.signin.error,
   status: state.signin.status,
-  teams: state.admin.teams
+  teams: state.admin.teams,
+  team: getActiveTeam(state)
 })
 
 const mapDispatchToProps = {
