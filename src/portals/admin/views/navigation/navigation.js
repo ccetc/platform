@@ -11,11 +11,9 @@ module.exports = [
     ] }
   ] },
   { label: 'Team', icon: 'setting', items: [
-    { label: 'Item 2a' },
-    { label: 'Item 2b' },
-    { label: 'Item 2c', items: [
-      { label: 'Item 2ci' },
-      { label: 'Item 2cii' }
-    ] }
+    { label: 'Activities', route: '/admin/activities' },
+    { label: 'Apps', route: '/admin/apps' },
+    { label: 'Settings', route: '/admin/settings' },
+    { label: 'Users', route: '/admin/users' }
   ] }
 ]
