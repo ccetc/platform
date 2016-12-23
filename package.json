@@ -39,11 +39,13 @@
     "http": "^0.0.0",
     "jimp": "^0.2.27",
     "jquery": "^3.1.1",
+    "json-loader": "^0.5.4",
     "jsonwebtoken": "^7.1.9",
     "knex": "^0.12.6",
     "kue": "^0.11.5",
     "localforage": "^1.4.3",
     "lodash": "^4.16.6",
+    "minimist": "latest",
     "moment": "^2.17.0",
     "numeral": "^1.5.5",
     "passport": "^0.3.2",
@@ -73,8 +75,7 @@
     "socket.io-client": "^1.5.1",
     "socket.io-emitter": "^1.0.0",
     "socket.io-redis": "^1.1.1",
-    "winston": "^2.3.0",
-    "minimist": "latest"
+    "winston": "^2.3.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.0.0",

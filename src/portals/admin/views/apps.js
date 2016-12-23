@@ -4,18 +4,18 @@ import { Route, IndexRoute } from 'react-router'
 import Transition from './transition'
 import Panel from './panel'
 import Dashboard from './dashboard'
-import Team from 'platform/apps/team/admin/client'
-import Reimbursement from 'apps/reimbursement/admin/client'
 import NotFound from './not_found'
+import AppComponents from './applications.gen.js'
 
 export default (
   <Route component={ Transition }>
     <Route component={ Panel }>
       <IndexRoute component={ Dashboard } />
-      {Team}
-      <Route path="reimbursement">
-        {Reimbursement}
-      </Route>
+      {AppComponents.map(app => (
+        <Route path={app.path}>
+          {app.component}
+        </Route>
+      ))}
       <Route path="*" component={ NotFound }/>
     </Route>
   </Route>
