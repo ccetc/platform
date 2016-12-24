@@ -1,23 +1,23 @@
 import { Router } from 'express'
 import User from 'platform/models/user'
-import fs from 'fs'
+import glob from 'glob'
 import path from 'path'
 
-const roots = ['../../../../platform','../../../../']
-const navigation = {}
-roots.map(function(root) {
-  fs.readdirSync(path.join(__dirname, root, 'apps')).filter(function(app) {
-    const appPath = path.join(__dirname, root, 'apps', app, 'admin/navigation.js')
-    if(fs.existsSync(appPath)) {
-      navigation[app] = require(appPath)
-    }
-  })
+const files = glob.sync(path.resolve(__dirname, '../../../../**/navigation.js'))
+let navigation = {}
+files.map(file => {
+  const matches = file.match(/\/([a-z_]*)\/admin\/navigation\.js/)
+  if(matches) navigation[matches[1]] = require(file)
 })
 
 export const session = (req, res, next) => {
   User.where({ id: req.user.id }).fetch({ withRelated: ['photo', 'rights', 'apps'] }).then(user => {
     res.json({
-      apps: user.related('apps').map(app => navigation[app.get('title').toLowerCase()]),
+      apps: user.related('apps').reduce((menu, app) => {
+        const nav = navigation[app.get('title').toLowerCase()]
+        if(nav) menu.push(nav)
+        return menu
+      }, []),
       user: {
         name: user.get('full_name'),
         email: user.get('email'),

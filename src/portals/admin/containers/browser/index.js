@@ -10,7 +10,7 @@ class Browser extends React.Component {
 
   static contextTypes = {
     notifications: React.PropTypes.object,
-    router: React.PropTypes.object
+    history: React.PropTypes.object
   }
 
   static propTypes = {
@@ -108,7 +108,7 @@ class Browser extends React.Component {
 
   _handleNotification(title, body, icon) {
     const { preferences } = this.props
-    const { router } = this.context
+    const { history } = this.context
     if(preferences.notifications === 'granted') {
       const notification = new Notification(title, {
         title,
@@ -116,7 +116,7 @@ class Browser extends React.Component {
         icon: '/images/cornell.jpg'
       })
       notification.onclick = (event) => {
-        router.push({ pathname: '/admin' })
+        history.transitionTo({ pathname: '/admin' })
         event.target.close()
         event.preventDefault()
       }

@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getActiveUser } from '../admin/selectors'
 import Topbar from './topbar'
-// import Notifications from '../notifications'
 
 export class Chrome extends React.Component {
 

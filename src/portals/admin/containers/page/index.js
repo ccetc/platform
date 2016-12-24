@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { getActiveTeam, getActiveUser } from '../admin/selectors'
 import Helmet from 'react-helmet'
-import Forbidden from './forbidden'
 import _ from 'lodash'
 
 export default (pageProps) => {
@@ -16,7 +15,7 @@ export default (pageProps) => {
         container: React.PropTypes.object,
         flash: React.PropTypes.object,
         modal: React.PropTypes.object,
-        router: React.PropTypes.object,
+        history: React.PropTypes.object,
         session: React.PropTypes.object,
         tasks: React.PropTypes.object
       }
@@ -35,35 +34,31 @@ export default (pageProps) => {
       }
 
       render() {
-        const { back, rights, resources, task, tasks, title } = this.page()
+        const { rights, resources, task, tasks, title } = this.page()
         const { data, status, team, user } = this.props
-        if(rights && !this._userHasRight(user, rights)) {
-          return <Forbidden />
-        }
         const loaded = !resources || _.isEqual(Object.keys(data).sort(), Object.keys(resources).sort())
+        const access = !rights || this._userHasRight(user, rights)
         return (
           <div className="chrome-page">
             <Helmet title={`${team.title} | ${title}`} />
             <div className="chrome-header">
-              <div className="chrome-back">
-                { back &&
-                  <Link to={{ pathname: back, state: 'back' }}>
-                    <i className="left chevron icon" />
-                  </Link>
-                }
-              </div>
+              { this.context.history.get().length > 1 ?
+                <div className="chrome-back" onClick={this._handleBack.bind(this)}>
+                  <i className="left chevron icon" />
+                </div> : <div className="chrome-back" />
+              }
               <div className="chrome-title">
-                {title}
+                { access ? title : 'Access Denied' }
               </div>
               <div className="chrome-more">
-                { tasks &&
+                { access && tasks &&
                   <div className="chrome-tasks">
                     <a onClick={ this._handleOpenTasks.bind(this) }>
                       <i className="ellipsis vertical icon" />
                     </a>
                   </div>
                 }
-                { task &&
+                { access && task &&
                   <div className="chrome-task">
                     <a onClick={this._handleOpenTask.bind(this)}>
                       <i className={`${task.icon} icon`} />
@@ -88,7 +83,15 @@ export default (pageProps) => {
                 </div>
               </div>
             }
-            { loaded && <BodyComponent {...this.props} {...data} /> }
+            { !access &&
+              <div className="chrome-error">
+                <div className="chrome-error-message">
+                  <i className="warning sign icon" />
+                  <h2>You do not have permission to access this content</h2>
+                </div>
+              </div>
+            }
+            { access && loaded && <BodyComponent {...this.props} {...data} /> }
           </div>
         )
       }
@@ -100,14 +103,6 @@ export default (pageProps) => {
         }
       }
 
-      _refreshResources() {
-        const { resources } = this.page()
-        if(resources) {
-          const props = Object.keys(resources)
-          this.context.container.refresh(props)
-        }
-      }
-
       componentWillUnmount() {
         const { resources } = this.page()
         if(resources) {
@@ -116,10 +111,22 @@ export default (pageProps) => {
         }
       }
 
+      _refreshResources() {
+        const { resources } = this.page()
+        if(resources) {
+          const props = Object.keys(resources)
+          this.context.container.refresh(props)
+        }
+      }
+
       _userHasRight(user, rights) {
         return rights.reduce((permit, right) => {
           return (!_.includes(user.rights, right)) ? false : permit
         }, true)
+      }
+
+      _handleBack() {
+        this.context.history.goBack()
       }
 
       _handleOpenTasks() {
@@ -130,7 +137,7 @@ export default (pageProps) => {
       _handleOpenTask() {
         const { task } = this.page()
         if(task.route) {
-          this.context.router.push(task.route)
+          this.context.history.transitionTo(task.route)
         } else if(task.component) {
           this.context.modal.open(task.component)
         }

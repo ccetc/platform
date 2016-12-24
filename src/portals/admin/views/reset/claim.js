@@ -6,7 +6,7 @@ class Claim extends React.Component {
 
   static contextTypes = {
     flash: React.PropTypes.object,
-    router: React.PropTypes.object
+    history: React.PropTypes.object
   }
 
   render() {
@@ -40,9 +40,9 @@ class Claim extends React.Component {
         }, 1500)
       } else if(status == 'failure') {
         this.context.flash.set('info', error)
-        this.context.router.push('/admin/forgot')
+        this.context.history.transitionTo('/admin/forgot')
       } else if(status == 'claimed') {
-        this.context.router.push('/admin/reset/security')
+        this.context.history.transitionTo('/admin/reset/security')
       }
     }
   }

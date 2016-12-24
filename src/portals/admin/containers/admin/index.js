@@ -11,7 +11,7 @@ export class Admin extends React.Component {
 
   static contextTypes = {
     flash: React.PropTypes.object,
-    router: React.PropTypes.object
+    history: React.PropTypes.object
   }
 
   static propTypes = {
@@ -40,7 +40,7 @@ export class Admin extends React.Component {
     if(prevProps.teams !== teams) {
       if(teams.length === 0) {
         this.context.flash.set('warning', 'Please sign in to your team')
-        this.context.router.push({ pathname: '/admin/signin', state: 'fade' })
+        this.context.history.transitionTo({ pathname: '/admin/signin', state: 'fade' })
       } else if(prevProps.status === 'pending') {
         teams.map(team => {
           onLoadSession(team.id, team.token)

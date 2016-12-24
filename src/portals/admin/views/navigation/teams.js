@@ -8,7 +8,7 @@ class Teams extends React.Component {
   static contextTypes = {
     admin: React.PropTypes.object,
     drawer: React.PropTypes.object,
-    router: React.PropTypes.object
+    history: React.PropTypes.object
   }
 
   static propTypes = {
@@ -79,7 +79,7 @@ class Teams extends React.Component {
   _handleAddTeam() {
     this.context.drawer.close()
     this.props.onReset()
-    this.context.router.push({ pathname: '/admin/signin' })
+    this.context.history.transitionTo({ pathname: '/admin/signin' })
   }
 
   _handleSignout(index) {

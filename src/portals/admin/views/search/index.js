@@ -7,7 +7,7 @@ export class Search extends React.Component {
 
   static contextTypes = {
     modal: React.PropTypes.object,
-    router: React.PropTypes.object
+    history: React.PropTypes.object
   }
 
   static propTypes = {
@@ -99,7 +99,7 @@ export class Search extends React.Component {
   componentDidUpdate(prevProps) {
     const { choice } = this.props
     if(prevProps.choice !== choice) {
-      this.context.router.push({ pathname: choice.route, state: 'static' })
+      this.context.history.transitionTo({ pathname: choice.route, state: 'static' })
       this.context.modal.close()
     }
   }

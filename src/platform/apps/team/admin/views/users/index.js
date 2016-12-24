@@ -42,7 +42,6 @@ var NameCell = (props) => {
 }
 
 const mapPropsToPage = (props, context) => ({
-  back: '/admin',
   title: 'Users',
   task: {
     label: 'New User',

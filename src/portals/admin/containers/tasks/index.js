@@ -11,7 +11,7 @@ class Tasks extends React.Component {
 
   static contextTypes = {
     modal: React.PropTypes.object,
-    router: React.PropTypes.object
+    history: React.PropTypes.object
   }
 
   static propsTypes = {
@@ -58,7 +58,7 @@ class Tasks extends React.Component {
     const { tasks } = this.props
     this._handleCloseTasks()
     if(tasks[index].route) {
-      this.context.router.push(tasks[index].route)
+      this.context.history.transitionTo(tasks[index].route)
     } else if(tasks[index].component){
       this.context.modal.open(tasks[index].component)
     } else if(tasks[index].handler){

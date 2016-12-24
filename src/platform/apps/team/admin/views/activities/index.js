@@ -22,7 +22,6 @@ class Index extends React.Component {
 }
 
 const mapPropsToPage = (props, context) => ({
-  back: '/admin',
   title: 'Activities',
   rights: []
 })

@@ -2,6 +2,7 @@ import React from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { getApps } from '../../containers/admin/selectors'
 import { connect } from 'react-redux'
+import * as actions from './actions'
 import Panel from './panel'
 
 export class Navigation extends React.Component {
@@ -22,6 +23,10 @@ export class Navigation extends React.Component {
     )
   }
 
+  componentWillUnmount() {
+    this.props.onReset()
+  }
+
 }
 
 const mapStateToProps = state => ({
@@ -30,4 +35,8 @@ const mapStateToProps = state => ({
   state: state.navigation.state
 })
 
-export default connect(mapStateToProps)(Navigation)
+const mapDispatchToProps = {
+  onReset: actions.reset
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation)

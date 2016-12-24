@@ -10,15 +10,14 @@ class Apps extends React.Component {
     admin: React.PropTypes.object,
     drawer: React.PropTypes.object,
     modal: React.PropTypes.object,
-    location: React.PropTypes.object,
-    router: React.PropTypes.object
+    history: React.PropTypes.object
   }
 
   static propTypes = {
     items: React.PropTypes.array,
     path: React.PropTypes.array,
     team: React.PropTypes.object,
-    title: React.PropTypes.object,
+    title: React.PropTypes.string,
     user: React.PropTypes.object,
     onBack: React.PropTypes.func,
     onForward: React.PropTypes.func,
@@ -37,7 +36,6 @@ class Apps extends React.Component {
   render() {
     const { team, user } = this.props
     const { items, path, title } = this.state
-    const { location } = this.context
     return (
       <div className="chrome-navigation-panel">
         { path.length === 0 ?
@@ -67,7 +65,7 @@ class Apps extends React.Component {
           { items.map((item, index) => {
             if(!item.rights || userHasRights(user, item.rights)) {
               return (
-                <div key={`item_${index}`} className={`chrome-navigation-item${item.route && item.route === location.pathname ? ' active': ''}`} onClick={ this._handleForward.bind(this, item, index)}>
+                <div key={`item_${index}`} className="chrome-navigation-item" onClick={ this._handleForward.bind(this, item, index)}>
                   { item.icon && <i className={`${item.icon} icon`} /> }
                   { item.label }
                   { item.items && <i className="chevron right icon" /> }
@@ -83,7 +81,7 @@ class Apps extends React.Component {
   _handleForward(item, index) {
     if(item.route) {
       this.context.drawer.close()
-      this.context.router.push({ pathname: item.route, state: 'static' })
+      this.context.history.transitionTo({ pathname: item.route, state: 'static' })
     } else {
       this.props.onForward(index)
     }

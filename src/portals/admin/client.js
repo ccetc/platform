@@ -7,7 +7,8 @@ import Admin from './containers/admin'
 import Notifications from './containers/notifications'
 import Flash from './containers/flash'
 import Session from './views/session'
-import Container from './containers/container'
+import History from './containers/container'
+import Container from './containers/history'
 import Modal from './containers/modal'
 import Drawer from './containers/drawer'
 import Tasks from './containers/tasks'
@@ -22,12 +23,14 @@ export default (
           <Route component={ Flash }>
             <Route component={ Admin }>
               { Session }
-              <Route component={ Container } path="admin">
-                <Route component={ Modal }>
-                  <Route component={ Drawer }>
-                    <Route component={ Tasks }>
-                      <Route component={ Chrome }>
-                        { Apps }
+              <Route component={ History }>
+                <Route component={ Container } path="admin">
+                  <Route component={ Modal }>
+                    <Route component={ Drawer }>
+                      <Route component={ Tasks }>
+                        <Route component={ Chrome }>
+                          { Apps }
+                        </Route>
                       </Route>
                     </Route>
                   </Route>

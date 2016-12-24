@@ -7,7 +7,7 @@ class Security extends React.Component {
 
   static contextTypes = {
     flash: React.PropTypes.object,
-    router: React.PropTypes.object
+    history: React.PropTypes.object
   }
 
   static propTypes = {
@@ -50,7 +50,7 @@ class Security extends React.Component {
     const { error, status } = this.props
     if(prevProps.status != status) {
       if(status === 'verified') {
-        this.context.router.push('/admin/reset/password')
+        this.context.history.transitionTo('/admin/reset/password')
       } else if(status == 'failure') {
         this.context.flash.set('info', error)
       }

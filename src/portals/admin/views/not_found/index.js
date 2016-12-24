@@ -1,7 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import Helmet from 'react-helmet'
-import { getActiveTeam } from '../../containers/admin/selectors'
+import Page from 'portals/admin/containers/page'
 import Search from '../search'
 
 export class NotFound extends React.Component {
@@ -10,26 +8,13 @@ export class NotFound extends React.Component {
     modal: React.PropTypes.object
   }
 
-  static propTypes = {
-    team: React.PropTypes.object
-  }
-
   render() {
-    const { team } = this.props
     return (
-      <div className="chrome-page">
-        <Helmet title={`${team.title} | 404 Not Found`} />
-        <div className="chrome-header">
-          <div className="chrome-back"></div>
-          <div className="chrome-title">Not Found</div>
-          <div className="chrome-more"></div>
-        </div>
-        <div className="chrome-error">
-          <div className="chrome-error-message">
-            <i className="warning sign icon" />
-            <h2>Unable to locate the requested resource</h2>
-            <div className="ui basic red button" onClick={this._handleSearch.bind(this)}>Search for resource</div>
-          </div>
+      <div className="chrome-error">
+        <div className="chrome-error-message">
+          <i className="warning sign icon" />
+          <h2>Unable to locate the requested resource</h2>
+          <div className="ui basic red button" onClick={this._handleSearch.bind(this)}>Search for resource</div>
         </div>
       </div>
     )
@@ -41,8 +26,9 @@ export class NotFound extends React.Component {
 
 }
 
-const mapStateToProps = state => ({
-  team: getActiveTeam(state)
+
+const mapPropsToPage = (props, context) => ({
+  title: '404 Not Found'
 })
 
-export default connect(mapStateToProps)(NotFound)
+export default Page(mapPropsToPage)(NotFound)

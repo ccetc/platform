@@ -41,7 +41,6 @@ const mapPropsToPage = (props, context) => {
   }
 
   return {
-    back: '/admin/team/users',
     title: 'User',
     rights: [],
     tasks: [
