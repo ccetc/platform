@@ -21,14 +21,16 @@ router.use('/api/account', reset)
 router.use('/api/account', authentication)
 
 // app routes
-const directories = ['../../platform/apps','../../apps']
-directories.map(function(directory) {
-  fs.readdirSync(path.join(__dirname, directory)).filter(function(app) {
-    const server = path.join(__dirname, directory, app, 'account/server.js')
-    if(fs.existsSync(server)) {
-      router.use(`/api/account/${app}`, require(server).default)
-    }
-  })
+const roots = ['../../platform/apps', '../../apps', '../../workbench']
+roots.map(root => {
+  if(fs.existsSync(path.join(__dirname, root))) {
+    fs.readdirSync(path.join(__dirname, root)).filter(app => {
+      const server = path.join(__dirname, root, app, 'account/server.js')
+      if(fs.existsSync(server)) {
+        router.use(`/api/account/${app}`, require(server).default)
+      }
+    })
+  }
 })
 
 export default router

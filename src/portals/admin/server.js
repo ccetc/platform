@@ -52,12 +52,14 @@ fs.readdirSync(path.join(__dirname, '../../platform/apps')).filter(function(app)
 })
 const roots = ['../../apps','../../workbench']
 roots.map(root => {
-  fs.readdirSync(path.join(__dirname, root)).filter(function(app) {
-    const server = path.join(__dirname, root, app, 'admin/server.js')
-    if(fs.existsSync(server)) {
-      router.use(`/api/admin/${app}`, require(server).default)
-    }
-  })
+  if(fs.existsSync(path.join(__dirname, root))) {
+    fs.readdirSync(path.join(__dirname, root)).filter(function(app) {
+      const server = path.join(__dirname, root, app, 'admin/server.js')
+      if(fs.existsSync(server)) {
+        router.use(`/api/admin/${app}`, require(server).default)
+      }
+    })
+  }
 })
 
 

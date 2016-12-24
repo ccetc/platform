@@ -72,9 +72,14 @@ function _getMigrations (completed, direction) {
 function _getSeeds (filename) {
   let seeds = []
   seeds.push(path.resolve(__dirname, '../../platform/db', filename + '.js'))
-  fs.readdirSync(path.join(__dirname, '../../apps')).filter((app) => {
-    if(fs.existsSync(path.join(__dirname, '../../apps', app, 'db', filename + '.js'))) {
-      seeds.push(path.resolve(__dirname, '../../apps', app, 'db', filename + '.js'))
+  const roots = ['../../apps','../../workbench']
+  roots.map(root => {
+    if(fs.existsSync(path.join(__dirname, root))) {
+      fs.readdirSync(path.join(__dirname, root)).filter((app) => {
+        if(fs.existsSync(path.join(__dirname, root, app, 'db', filename + '.js'))) {
+          seeds.push(path.resolve(__dirname, root, app, 'db', filename + '.js'))
+        }
+      })
     }
   })
   return seeds
