@@ -35,14 +35,14 @@ class Teams extends React.Component {
           <div className="chrome-navigation-teams">
             { teams.map((team, index) => {
               return (
-                <div key={`team_${index}`}className="chrome-navigation-team" onClick={ this._handleChangeTeam.bind(this, index) }>
-                  <div className="chrome-navigation-team-logo">
+                <div key={`team_${index}`}className="chrome-navigation-team">
+                  <div className="chrome-navigation-team-logo" onClick={ this._handleChangeTeam.bind(this, index) }>
                     <img src={ team.logo } />
                     { sessions[team.id] && sessions[team.id].user.unread > 0 &&
                       <div className="chrome-navigation-team-label">{ sessions[team.id].user.unread }</div>
                     }
                   </div>
-                  <div className="chrome-navigation-team-title">
+                  <div className="chrome-navigation-team-title" onClick={ this._handleChangeTeam.bind(this, index) }>
                     { team.title }
                   </div>
                   <div className="chrome-navigation-team-active" onClick={this._handleSignout.bind(this, index)}>
@@ -83,7 +83,7 @@ class Teams extends React.Component {
   }
 
   _handleSignout(index) {
-    if(this.props.team.length === 1) {
+    if(this.props.teams.length === 1) {
       this.context.drawer.close()
       window.setTimeout(() => {
         this.context.admin.removeTeam(index)
