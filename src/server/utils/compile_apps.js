@@ -13,7 +13,7 @@ module.exports = function compileApps() {
     })
   })
 
-  const template = _.template(fs.readFileSync('src/portals/admin/views/apps.template.js'))
+  const template = _.template(fs.readFileSync('src/portals/admin/views/apps.js.template'))
 
   fs.writeFileSync('src/portals/admin/views/apps.js', template({ apps }))
 }
