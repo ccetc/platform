@@ -87,7 +87,7 @@ class Teams extends React.Component {
       this.context.drawer.close()
       window.setTimeout(() => {
         this.context.admin.removeTeam(index)
-      }, 1000)
+      }, 100)
     } else {
       this.context.admin.removeTeam(index)
     }

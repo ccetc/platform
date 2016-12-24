@@ -11,7 +11,7 @@ export class Team extends React.Component {
 
   static contextTypes = {
     flash: React.PropTypes.object,
-    history: React.PropTypes.object,
+    router: React.PropTypes.object,
     admin: React.PropTypes.object
   }
 
@@ -60,7 +60,7 @@ export class Team extends React.Component {
       if(status === 'failure') {
         this.context.flash.set('info', error)
       } else if(status === 'success') {
-        this.context.history.transitionTo({ pathname: '/admin/signin/email', state: 'slide-next' })
+        this.context.router.push({ pathname: '/admin/signin/email', state: 'slide-next' })
       }
     }
   }
@@ -71,7 +71,7 @@ export class Team extends React.Component {
     const index = _.findIndex(teams, { subdomain })
     if(index >= 0) {
       this.context.admin.chooseTeam(index)
-      this.context.history.transitionTo({ pathname: '/admin', state: 'fade' })
+      this.context.router.push({ pathname: '/admin', state: 'fade' })
     } else {
       onTeam(subdomain)
     }

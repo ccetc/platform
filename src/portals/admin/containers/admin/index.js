@@ -41,6 +41,7 @@ export class Admin extends React.Component {
       if(teams.length === 0) {
         this.context.flash.set('warning', 'Please sign in to your team')
         this.context.router.push({ pathname: '/admin/signin', state: 'fade' })
+        onSaveTeams(teams)
       } else if(prevProps.status === 'pending') {
         teams.map(team => {
           onLoadSession(team.id, team.token)

@@ -7,9 +7,9 @@ import * as actions from './actions'
 export class Password extends React.Component {
 
   static contextTypes = {
+    admin: React.PropTypes.object,
     flash: React.PropTypes.object,
-    history: React.PropTypes.object,
-    admin: React.PropTypes.object
+    router: React.PropTypes.object
   }
 
   static propTypes = {
@@ -52,7 +52,7 @@ export class Password extends React.Component {
 
   componentWillMount() {
     if(!this.props.user) {
-      this.context.history.transitionTo({ pathname: '/admin/signin', state: 'static' })
+      this.context.router.push({ pathname: '/admin/signin', state: 'static' })
     }
   }
 
@@ -68,7 +68,7 @@ export class Password extends React.Component {
         this.context.flash.set('info', error)
       } else if(status === 'success') {
         this.context.admin.addTeam(team, token)
-        this.context.history.transitionTo({ pathname: '/admin', state: 'fade' })
+        this.context.router.push({ pathname: '/admin', state: 'fade' })
       }
     }
   }

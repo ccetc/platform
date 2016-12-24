@@ -66,7 +66,7 @@ class Api {
 
       return localStorage.getItem('teams', function(err, teams) {
 
-        if(teams) {
+        if(teams && teams.length > 0) {
           config.headers['Authorization'] = `Bearer ${teams[0].token}`
         } else if(options.token) {
           config.headers['Authorization'] = `Bearer ${options.token}`

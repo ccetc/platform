@@ -9,7 +9,7 @@ export class Password extends React.Component {
 
   static contextTypes = {
     flash: React.PropTypes.object,
-    history: React.PropTypes.object
+    router: React.PropTypes.object
   }
 
   static propTypes = {
@@ -49,7 +49,7 @@ export class Password extends React.Component {
 
   componentWillMount() {
     if(!this.props.team) {
-      this.context.history.transitionTo({ pathname: '/admin/signin', state: 'static' })
+      this.context.router.push({ pathname: '/admin/signin', state: 'static' })
     }
   }
 
@@ -64,7 +64,7 @@ export class Password extends React.Component {
       if(status === 'failure') {
         this.context.flash.set('info', error)
       } else if(status === 'success') {
-        this.context.history.transitionTo({ pathname: '/admin/signin/password', state: 'slide-next' })
+        this.context.router.push({ pathname: '/admin/signin/password', state: 'slide-next' })
       }
     }
   }
