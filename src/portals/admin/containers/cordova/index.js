@@ -22,6 +22,9 @@ class Cordova extends React.Component {
       </div>
     )
   }
+  componentDidMount() {
+    _handleStatusBar()
+  }
 
   componentDidUpdate(prevProps) {
     const { status_bar } = this.props
