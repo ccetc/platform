@@ -1,9 +1,7 @@
 import { Router } from 'express'
 import Team from 'platform/models/team'
 
-const team = Router()
-
-team.get('/teams', (req, res, next) => {
+export const teams = (req, res, next) => {
   return Team.where({ subdomain: req.query.subdomain }).fetch({ withRelated: ['logo'] }).then(team => {
 
     if(!team) {
@@ -23,6 +21,9 @@ team.get('/teams', (req, res, next) => {
     return next(error)
   })
 
-})
+}
 
-export default team
+const router = Router()
+router.get('/teams', teams)
+
+export default router

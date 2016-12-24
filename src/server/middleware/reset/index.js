@@ -105,10 +105,10 @@ export const password = (req, res, next) => {
 
 }
 
-const reset = Router()
-reset.use('/reset*', middleware)
-reset.get('/reset/claim', claim)
-reset.post('/reset/security', security)
-reset.post('/reset/password', password)
+const router = Router()
+router.use('/reset*', middleware)
+router.get('/reset/claim', claim)
+router.post('/reset/security', security)
+router.post('/reset/password', password)
 
-export default reset
+export default router

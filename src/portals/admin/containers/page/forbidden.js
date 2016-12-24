@@ -5,10 +5,6 @@ import { getActiveTeam } from '../admin/selectors'
 
 export class Forbidden extends React.Component {
 
-  static propsTypes = {
-    team: React.PropTypes.object
-  }
-
   render() {
     const { team } = this.props
     return (

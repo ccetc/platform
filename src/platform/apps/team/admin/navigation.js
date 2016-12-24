@@ -1,9 +1,8 @@
 module.exports = {
-  name: 'Team', icon: 'setting', items: [
-    { name: 'Activities', route: '/admin/activities' },
-    { name: 'Apps', route: '/admin/apps' },
-    { name: 'Emails', route: '/admin/emails' },
-    { name: 'Settings', route: '/admin/settings' },
-    { name: 'Users', route: '/admin/users' }
+  label: 'Team', rights: ['ADMIN TEAM'], icon: 'setting', items: [
+    { label: 'Activities', rights: ['ADMIN TEAM'], route: '/admin/team/activities' },
+    { label: 'Apps', rights: ['ADMIN TEAM'], route: '/admin/team/apps' },
+    { label: 'Settings', rights: ['ADMIN TEAM'], route: '/admin/team/settings' },
+    { label: 'Users', rights: ['ADMIN TEAM'], route: '/admin/team/users' }
   ]
 }

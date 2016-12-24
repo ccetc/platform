@@ -11,9 +11,9 @@ import AssetSerializer from 'platform/serializers/asset_serializer'
 import SearchSerializer from 'platform/serializers/search_serializer'
 import UserSerializer from 'platform/serializers/user_serializer'
 
-const admin = Router()
+const router = Router()
 
-admin.use(resources({
+router.use(resources({
   name: 'activity',
   path: 'activities',
   model: Activity,
@@ -26,21 +26,21 @@ admin.use(resources({
   }
 }))
 
-admin.use(resources({
+router.use(resources({
   name: 'app',
   path: 'apps',
   model: App,
   serializer: AppSerializer
 }))
 
-admin.use(resources({
+router.use(resources({
   name: 'asset',
   path: 'assets',
   model: Asset,
   serializer: AssetSerializer
 }))
 
-admin.use(resources({
+router.use(resources({
   name: 'search',
   path: 'searches',
   model: Search,
@@ -48,7 +48,7 @@ admin.use(resources({
   only: ['find','create','remove']
 }))
 
-admin.use(resources({
+router.use(resources({
   name: 'user',
   path: 'users',
   model: User,
@@ -56,4 +56,4 @@ admin.use(resources({
   include: ['photo']
 }))
 
-export default admin
+export default router

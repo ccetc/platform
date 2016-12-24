@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import team from 'server/middleware/team'
+import teams from 'server/middleware/teams'
 import authentication from 'server/middleware/authentication'
 import activation from 'server/middleware/activation'
 import signin from 'server/middleware/signin'
@@ -9,53 +9,53 @@ import resumable from './middleware/resumable'
 import appsService from './middleware/apps'
 import sessionService from './middleware/session'
 import searchService from './middleware/search'
-import teamService from './middleware/team'
+import teamService from './middleware/teams'
 import notificationsService from './middleware/notifications'
 import fs from 'fs'
 import path from 'path'
 
-const admin = Router()
+const router = Router()
 
-admin.use('/admin', extAuthentication)
+router.use('/admin', extAuthentication)
 
 // load team
-admin.use('/api/admin', team)
-admin.use('/api/admin', teamService)
+router.use('/api/admin', teams)
+router.use('/api/admin', teamService)
 
 // signin
-admin.use('/api/admin', signin)
+router.use('/api/admin', signin)
 
 // account activation
-admin.use('/api/admin', activation)
+router.use('/api/admin', activation)
 
 // password reset
-admin.use('/api/admin', reset)
+router.use('/api/admin', reset)
 
 // authentication
-admin.use('/api/admin', authentication)
+router.use('/api/admin', authentication)
 
 // resumable
-admin.use('/api/admin', resumable)
+router.use('/api/admin', resumable)
 
 // core admin api
-admin.use('/api/admin', appsService)
-admin.use('/api/admin', notificationsService)
-admin.use('/api/admin', sessionService)
-admin.use('/api/admin', searchService)
+router.use('/api/admin', appsService)
+router.use('/api/admin', notificationsService)
+router.use('/api/admin', sessionService)
+router.use('/api/admin', searchService)
 
 // app routes
 fs.readdirSync(path.join(__dirname, '../../platform/apps')).filter(function(app) {
   const server = path.join(__dirname, '../../platform/apps', app, 'admin/server.js')
   if(fs.existsSync(server)) {
-    admin.use('/api/admin', require(server).default)
+    router.use('/api/admin', require(server).default)
   }
 })
 fs.readdirSync(path.join(__dirname, '../../apps')).filter(function(app) {
   const server = path.join(__dirname, '../../apps', app, 'admin/server.js')
   if(fs.existsSync(server)) {
-    admin.use(`/api/admin/${app}`, require(server).default)
+    router.use(`/api/admin/${app}`, require(server).default)
   }
 })
 
 
-export default admin
+export default router

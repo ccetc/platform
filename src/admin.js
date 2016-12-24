@@ -4,6 +4,4 @@ import { Router, browserHistory } from 'react-router'
 import admin from './portals/admin/client'
 import './portals/admin/style.less'
 
-console.log('NAVIGATION', process.env.APP_NAVIGATION)
-
 ReactDOM.render(<Router routes={admin} history={browserHistory} />, document.getElementById('platform'))

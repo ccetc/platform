@@ -1,15 +1,9 @@
-import Platform from 'server/utils/platform'
+import { setup, teardown } from 'platform/tasks/db'
 import knex from 'server/services/knex'
 
-const platform = new Platform()
-
 before(function(done) {
-  platform.migrateRollback().then(() => {
-    platform.migrateLatest().then(() => {
-      platform.fixturesLoad().then(() => {
-        done()
-      })
-    })
+  setup.then(() => {
+    done()
   })
 })
 
@@ -26,7 +20,7 @@ afterEach(function (done) {
 })
 
 after(function(done) {
-  platform.migrateRollback().then(() => {
+  teardown.then(() => {
     done()
   })
 })

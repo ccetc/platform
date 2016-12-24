@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import { getApps } from '../../containers/admin/selectors'
 import { connect } from 'react-redux'
-import navigation from './navigation'
 import Panel from './panel'
 
 export class Navigation extends React.Component {
@@ -12,11 +12,11 @@ export class Navigation extends React.Component {
   }
 
   render() {
-    const { path, state } = this.props
+    const { apps, path, state } = this.props
     return (
       <div className="chrome-navigation">
         <ReactCSSTransitionGroup transitionName={ state } component='div' transitionEnterTimeout={ 500 } transitionLeaveTimeout={ 500 }>
-          <Panel key={`navigation-${path.join('-')}`} items={ navigation } />
+          <Panel key={`navigation-${path.join('-')}`} items={ apps } />
         </ReactCSSTransitionGroup>
       </div>
     )
@@ -25,6 +25,7 @@ export class Navigation extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  apps: getApps(state),
   path: state.navigation.path,
   state: state.navigation.state
 })

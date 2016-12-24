@@ -1,19 +1,9 @@
-const kue = require('kue')
-const config = require('server/services/config')
+import config from 'server/services/config'
+import Bull from 'bull'
 
-const queue = kue.createQueue({
-  prefix: 'q',
-  redis: config.redis
-})
+export default (name, data) => {
 
-queue.watchStuckJobs(1000 * 10)
+  const queue = Bull(name, config.redis.port, config.redis.host)
+  queue.add(data)
 
-queue.on('ready', () => {
-})
-
-queue.on('error', (err) => {
-})
-
-export { queue }
-
-export default kue
+}

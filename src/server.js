@@ -5,14 +5,12 @@ import redis from 'socket.io-redis'
 import http from 'http'
 import socketio from 'socket.io'
 import bodyParser from 'body-parser'
-import queue from 'server/services/queue'
 import exception from 'server/middleware/exception'
 // import ioauth from 'server/middleware/ioauth'
 import logger from 'server/middleware/logger'
 import render from 'server/middleware/render'
 import server from 'portals/server'
 import admin from 'portals/admin/client'
-import job from 'platform/jobs/send_email'
 
 // create app
 const app = express()
@@ -39,15 +37,12 @@ app.use(logger)
 app.use(server)
 app.use(exception)
 
-// job queue
-app.use('/jobs', queue.app)
-
 // public assets
 app.use(express.static('public'))
 
 // admin routes
 app.get('/admin*', render(admin))
 
-transport.listen(8089, () => {
-  console.log('Listening')
+transport.listen(config.app.port, () => {
+  console.log('App listening on port ', config.app.port)
 })

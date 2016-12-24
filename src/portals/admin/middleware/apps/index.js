@@ -19,7 +19,7 @@ export const index = (req, res, next) => {
 
 }
 
-const apps = Router()
-apps.get('/apps', index)
+const router = Router()
+router.get('/apps', index)
 
-export default apps
+export default router

@@ -25,7 +25,7 @@ class Index extends React.Component {
       entity: 'user',
       empty: 'There are no users',
       recordActions: [
-        { label: 'edit', icon: 'edit', redirect: '/admin/users/#{id}/edit'}
+        { label: 'edit', icon: 'edit', redirect: '/admin/team/users/#{id}/edit'}
       ]
     }
   }
@@ -34,7 +34,7 @@ class Index extends React.Component {
 
 var NameCell = (props) => {
   return (
-    <Link to={`/admin/users/${props.id}` }>
+    <Link to={`/admin/team/users/${props.id}` }>
       <img src={props.photo} className="ui circular image" />
       {props.first_name} {props.last_name}
     </Link>

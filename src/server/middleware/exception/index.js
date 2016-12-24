@@ -1,5 +1,7 @@
 export default (err, req, res, next) => {
-  console.log(err)
+
+  console.log(JSON.stringify(err))
+
   if(err.code) {
     res.status(err.code()).json(err)
   } else {

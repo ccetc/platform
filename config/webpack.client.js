@@ -1,9 +1,5 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var JsonLoader = require('json-loader')
-var compileNavigation = require('../scripts/coalesce-modules')
-var compileApps = require('../src/server/utils/compile-apps')
-var webpack = require('webpack')
-var glob    = require('glob')
+var compileApps = require('../src/server/utils/compile_apps')
 
 compileApps()
 
@@ -31,10 +27,6 @@ module.exports = {
       {
         test: /\.less$/,
         loader: ExtractTextPlugin.extract('css!less')
-      },
-      {
-        test: /\.json$/,
-        loader: 'json'
       }
     ]
   },
@@ -42,10 +34,6 @@ module.exports = {
     modulesDirectories: ['node_modules', 'src']
   },
   plugins: [
-    new ExtractTextPlugin('css/[name].min.css'),
-    new webpack.DefinePlugin({
-      'process.env.APP_NAVIGATION': JSON.stringify(compileNavigation('admin/navigation.js'))
-    })
+    new ExtractTextPlugin('css/[name].min.css')
   ]
 }
-

@@ -11,7 +11,7 @@ export default filters => {
         text: result.get('full_name'),
         subtext: result.get('email'),
         photo: result.related('photo').get('url'),
-        route: `/admin/users/${result.get('id')}`
+        route: `/admin/team/users/${result.get('id')}`
       }))
       resolve(json)
     }).catch(err => {

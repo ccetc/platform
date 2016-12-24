@@ -54,10 +54,10 @@ export const password = (req, res, next) => {
   res.json({ success: req.user })
 }
 
-const activation = Router()
-activation.get('/activation/:token', claim)
-activation.use('/activation*', middleware)
-activation.get('/activation/security', security)
-activation.get('/activation/password', password)
+const router = Router()
+router.get('/activation/:token', claim)
+router.use('/activation*', middleware)
+router.get('/activation/security', security)
+router.get('/activation/password', password)
 
-export default activation
+export default router

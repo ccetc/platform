@@ -3,9 +3,9 @@ import resources from 'server/middleware/resources'
 import Notification from 'platform/models/notification'
 import NotificationSerializer from 'platform/serializers/notification_serializer'
 
-const notifications = Router()
+const router = Router()
 
-notifications.use(resources({
+router.use(resources({
   name: 'notification',
   path: 'notifications',
   model: Notification,
@@ -13,4 +13,4 @@ notifications.use(resources({
   include: ['story','user.photo']
 }))
 
-export default notifications
+export default router

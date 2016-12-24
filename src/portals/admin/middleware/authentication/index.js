@@ -5,7 +5,7 @@ import passport from 'passport'
 import Team from 'platform/models/team'
 import User from 'platform/models/user'
 
-const cornell = (req, res, next) => {
+export const cornell = (req, res, next) => {
 
   const SAMLStrategy = require('passport-saml').Strategy
 
@@ -25,7 +25,7 @@ const cornell = (req, res, next) => {
 
 }
 
-const google = (req, res, next) => {
+export const google = (req, res, next) => {
 
   const GoogleStrategy = require('passport-google-oauth20').Strategy
 
@@ -43,7 +43,7 @@ const google = (req, res, next) => {
 
 }
 
-const ldap = (req, res, next) => {
+export const ldap = (req, res, next) => {
 
   const LDAPStrategy = require('passport-ldapauth')
 
@@ -63,7 +63,7 @@ const ldap = (req, res, next) => {
 
 }
 
-const loadUserByEmail = (email, done) => {
+export const loadUserByEmail = (email, done) => {
 
   return User.where({ email }).fetch().then(user => {
 
@@ -78,7 +78,7 @@ const loadUserByEmail = (email, done) => {
 
 }
 
-const success = (req, res, next) => {
+export const success = (req, res, next) => {
 
   const two_weeks = 60 * 60 * 24 * 7 * 2
   const token = jwt.encode({ user_id: req.user.get('id') }, two_weeks)
@@ -106,16 +106,12 @@ const success = (req, res, next) => {
   })
 }
 
-const authentication = express()
+const router = express()
+router.set('views', path.join('.', 'src', 'portals', 'admin', 'middleware','authentication'))
+router.set('view engine', 'ejs')
+router.get('/signin/cornell', cornell, success)
+router.post('/signin/cornell', cornell, success)
+router.get('/signin/google', google, success)
+router.get('/signin/ldap', ldap, success)
 
-authentication.set('views', path.join('.', 'src', 'portals', 'admin', 'middleware','authentication'))
-authentication.set('view engine', 'ejs')
-
-authentication.get('/signin/cornell', cornell, success)
-authentication.post('/signin/cornell', cornell, success)
-
-authentication.get('/signin/google', google, success)
-
-authentication.get('/signin/ldap', ldap, success)
-
-export default authentication
+export default router

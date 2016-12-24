@@ -1,73 +1,67 @@
-const _        = require('lodash')
-const fs       = require('fs')
-const path     = require('path')
-const knex     = require('server/services/knex')
+const _ = require('lodash')
+const glob = require('glob')
+const fs = require('fs')
+const path = require('path')
+const knex = require('server/services/knex')
 const Migrator = require('knex/lib/migrate')
 const Seeder = require('knex/lib/seed')
 const migrator = new Migrator(knex)
-const seeder   = new Seeder(knex)
+const seeder = new Seeder(knex)
 
 module.exports = {
-  migrateLatest(args, environment) {
+  migrate(args, environment) {
     return migrator._migrationData().spread((all, completed) => {
       let migrations = _getMigrations(completed, 'up')
       return migrator._runBatch(migrations, 'up')
     })
   },
 
-  migrateRollback(args, environment) {
+  rollback(args, environment) {
     return migrator._migrationData().spread((all, completed) => {
       let migrations = _getMigrations(completed, 'down')
       return migrator._runBatch(migrations.reverse(), 'down')
     })
   },
 
-  seedsLoad(args, environment) {
+  seed(args, environment) {
     return seeder._seedData().spread((all) => {
       let seeds = _getSeeds('seeds')
       return seeder._runSeeds(seeds)
     })
   },
 
-  fixturesLoad(args, environment) {
+  fixtures(args, environment) {
     return seeder._seedData().spread((all) => {
       let fixtures = _getSeeds('fixtures')
       return seeder._runSeeds(fixtures)
     })
   },
 
-  setupTest() {
-    return this.migrateRollback().then(() => {
-      return this.migrateLatest().then(() => {
-        return this.fixturesLoad()
+  setup(args, environment) {
+    return this.rollback().then(() => {
+      return this.migrate().then(() => {
+        return this.seed().then(() => {
+          return this.fixtures()
+        })
       })
     })
+  },
+
+  teardown(args, environment) {
+    return this.rollback()
   }
 }
 
 function _getMigrations (completed, direction) {
-  let timestamps = [];
-  let migrations = {};
-  fs.readdirSync(path.join(__dirname, '../../platform/db/migrations')).filter((migration) => {
-    var fullpath = path.resolve(__dirname, '../../platform/db/migrations', migration)
-    var is_completed = _.includes(completed, fullpath)
+  const files = glob.sync(path.resolve(__dirname, '../../**/db/migrations/*.js'))
+  let timestamps = []
+  let migrations = {}
+  files.map(file => {
+    var is_completed = _.includes(completed, file)
     if((direction == 'up' && !is_completed) || (direction == 'down' && is_completed)) {
-      var timestamp = migration.split('_')[0]
+      const timestamp = file.match(/[0-9]{14}/)[0]
       timestamps.push(timestamp)
-      migrations[timestamp] = fullpath
-    }
-  })
-  fs.readdirSync(path.join(__dirname, '../../apps')).filter((app) => {
-    if(fs.existsSync(path.join(__dirname, '../../apps', app, 'db/migrations'))) {
-      fs.readdirSync(path.join(__dirname, '../../apps', app, 'db/migrations')).filter((migration) => {
-        var fullpath = path.resolve(__dirname, '../../apps', app, 'db/migrations', migration)
-        var is_completed = _.includes(completed, fullpath)
-        if((direction == 'up' && !is_completed) || (direction == 'down' && is_completed)) {
-          var timestamp = migration.split('_')[0]
-          timestamps.push(timestamp)
-          migrations[timestamp] = fullpath
-        }
-      })
+      migrations[timestamp] = file
     }
   })
   return timestamps.sort().map((timestamp) => {
@@ -76,7 +70,7 @@ function _getMigrations (completed, direction) {
 }
 
 function _getSeeds (filename) {
-  let seeds = [];
+  let seeds = []
   seeds.push(path.resolve(__dirname, '../../platform/db', filename + '.js'))
   fs.readdirSync(path.join(__dirname, '../../apps')).filter((app) => {
     if(fs.existsSync(path.join(__dirname, '../../apps', app, 'db', filename + '.js'))) {

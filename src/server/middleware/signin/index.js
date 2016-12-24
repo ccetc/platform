@@ -152,12 +152,10 @@ export const auth = (req, res, next) => {
 
 }
 
-const signin = Router()
-
-signin.get('/auth/teams', teams)
-signin.get('/auth/email', email)
-signin.post('/auth/password', password)
-signin.post('/auth/forgot', forgot)
-signin.post('/auth', auth)
-
-export default signin
+const router = Router()
+router.get('/auth/teams', teams)
+router.get('/auth/email', email)
+router.post('/auth/password', password)
+router.post('/auth/forgot', forgot)
+router.post('/auth', auth)
+export default router
