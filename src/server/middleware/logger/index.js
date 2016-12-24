@@ -4,7 +4,6 @@ import _ from 'lodash'
 const loggerMiddleware = (req, res, next) => {
 
   logger.info(`\nREQUEST: ${req.method} ${req.path}`)
-  logger.info(req.headers['user-agent'])
 
   if(!_.isEmpty(req.query)) {
     logger.info(`QUERY: ${JSON.stringify(req.query)}`)
