@@ -22,9 +22,9 @@ export class Host extends React.Component {
 
   componentDidMount() {
     const { onSet } = this.props
-    if(navigator.userAgent.search('Cordova') > 0) {
+    if(navigator.userAgent.search('Cordova') >= 0) {
       onSet('cordova')
-    } else if(navigator.userAgent.search('Electron') > 0) {
+    } else if(navigator.userAgent.search('Electron') >= 0) {
       onSet('electron')
     } else {
       onSet('browser')
