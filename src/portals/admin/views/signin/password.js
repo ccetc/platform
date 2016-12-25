@@ -58,7 +58,7 @@ export class Password extends React.Component {
 
   componentDidMount() {
     const password = $(this.refs.password)
-    setTimeout(function() { password.click().focus() }, 500)
+    window.setTimeout(function() { password.click().focus() }, 500)
   }
 
   componentDidUpdate(prevProps) {

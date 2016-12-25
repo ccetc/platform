@@ -51,7 +51,7 @@ export class Team extends React.Component {
 
   componentDidMount() {
     const subdomain = $(this.refs.subdomain)
-    setTimeout(function() { subdomain.click().focus() }, 500)
+    window.setTimeout(function() { subdomain.click().focus() }, 500)
   }
 
   componentDidUpdate(prevProps) {

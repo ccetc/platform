@@ -55,7 +55,7 @@ export class Password extends React.Component {
 
   componentDidMount() {
     const email = $(this.refs.email)
-    setTimeout(function() { email.click().focus() }, 500)
+    window.setTimeout(function() { email.click().focus() }, 500)
   }
 
   componentDidUpdate(prevProps) {
