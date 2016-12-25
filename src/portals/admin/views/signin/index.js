@@ -7,20 +7,28 @@ import * as actions from './actions'
 
 class Signin extends React.Component {
 
+  static contextTypes = {
+    admin: React.PropTypes.object,
+    flash: React.PropTypes.object,
+    router: React.PropTypes.object
+  }
+
   render() {
     const { mode, show, status, team, user } = this.props
     return (
       <div className={`chrome-signin chrome-signin-${mode}`}>
         <div className="chrome-signin-canvas">
           <div className="chrome-signin-header">
-            <h1>Sign in To Your Team</h1>
+            <div className="chrome-signin-content">
+              <h1>Sign in To Your Team</h1>
+            </div>
           </div>
           <div className="chrome-signin-form">
             <form className="ui form" onSubmit={this._handleTeam.bind(this)}>
               <div className="field team-field">
                 <div className="ui left icon input">
                   <i className="users icon"></i>
-                  <input className="form-control" autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck="false" placeholder="team" type="text" ref="team" />
+                  <input className="form-control" autoFocus autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck="false" placeholder="team" type="text" ref="team" />
                   <div className="suffix">.mycce.com</div>
                 </div>
               </div>
@@ -30,20 +38,24 @@ class Signin extends React.Component {
             </form>
           </div>
           <div className="chrome-signin-footer">
-            { team && <p><Link to={{ pathname: '/admin', state: 'slide-back' }}>Back to { team.title }</Link></p> }
+            <div className="chrome-signin-content">
+              { team && <p><Link to={{ pathname: '/admin', state: 'slide-back' }}>Back to { team.title }</Link></p> }
+            </div>
           </div>
         </div>
         <div className="chrome-signin-canvas">
           <div className="chrome-signin-header">
-            { team && <img src={ team.logo } className="logo" /> }
-            { team && <h1>{ team.title }</h1> }
+            <div className="chrome-signin-content">
+              { team && <img src={ team.logo } className="logo" /> }
+              { team && <h1>{ team.title }</h1> }
+            </div>
           </div>
           <div className="chrome-signin-form">
             <form className="ui form" onSubmit={this._handleEmail.bind(this)}>
               <div className="field email-field">
                 <div className="ui left icon input">
                   <i className="user icon"></i>
-                  <input className="form-control" autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck="false" placeholder="Email" type="email" ref="email" />
+                  <input className="form-control" autoFocus autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck="false" placeholder="Email" type="email" ref="email" />
                 </div>
               </div>
               <div className="field button-field">
@@ -52,23 +64,27 @@ class Signin extends React.Component {
             </form>
           </div>
           <div className="chrome-signin-footer">
-            <p><Link to={{ pathname: '/admin/signin', state: 'slide-back' }}>Wrong team?</Link></p>
-            { team && _.includes(team.strategies, 'cornell') && <p><a href="/admin/signin/cornell">Signin with CUWebAuth</a></p> }
-            { team && _.includes(team.strategies, 'google') && <p><a href="/admin/signin/google">Signin with Google</a></p> }
+            <div className="chrome-signin-content">
+              <p><Link to={{ pathname: '/admin/signin', state: 'slide-back' }}>Wrong team?</Link></p>
+              { team && _.includes(team.strategies, 'cornell') && <p><a href="/admin/signin/cornell">Signin with CUWebAuth</a></p> }
+              { team && _.includes(team.strategies, 'google') && <p><a href="/admin/signin/google">Signin with Google</a></p> }
+            </div>
           </div>
         </div>
         <div className="chrome-signin-canvas">
           <div className="chrome-signin-header">
-            { user && <img src={ user.photo } className="photo" /> }
-            { user && <h1>{ user.full_name }</h1> }
-            { user && <h4>{ user.email }</h4> }
+            <div className="chrome-signin-content">
+              { user && <img src={ user.photo } className="photo" /> }
+              { user && <h1>{ user.full_name }</h1> }
+              { user && <h4>{ user.email }</h4> }
+            </div>
           </div>
           <div className="chrome-signin-form">
             <form className="ui form" onSubmit={this._handlePassword.bind(this)}>
               <div className="field password-field">
                 <div className="ui left icon input">
                   <i className="lock icon"></i>
-                  <input className="form-control" autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck="false" placeholder="Password" type={ show ? 'text' : 'password' } ref="password" />
+                  <input className="form-control" autoFocus autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck="false" placeholder="Password" type={ show ? 'text' : 'password' } ref="password" />
                   <a onClick={ this._handleTogglePassword.bind(this) }>{ show ? 'HIDE' : 'SHOW' }</a>
                 </div>
               </div>
@@ -78,12 +94,28 @@ class Signin extends React.Component {
             </form>
           </div>
           <div className="chrome-signin-footer">
-            <p><Link to={{ pathname: '/admin/signin/email', state: 'slide-back' }}>Not you?</Link></p>
-            <p><a onClick={ this._handleForgot.bind(this) }>Forgot your password?</a></p>
+            <div className="chrome-signin-content">
+              <p><Link to={{ pathname: '/admin/signin/email', state: 'slide-back' }}>Not you?</Link></p>
+              <p><a onClick={ this._handleForgot.bind(this) }>Forgot your password?</a></p>
+            </div>
           </div>
         </div>
       </div>
     )
+  }
+
+  componentDidUpdate(prevProps) {
+    const { error, status, team, token, onReset } = this.props
+    const { admin, flash, router } = this.context
+    if(token) {
+      admin.addTeam(team, token)
+      onReset()
+      router.push({ pathname: '/admin', state: 'fade' })
+    } else if(prevProps.status !== status) {
+      if(status === 'failure') {
+        flash.set('info', error)
+      }
+    }
   }
 
   _handleTeam(e) {
@@ -146,7 +178,8 @@ const mapDispatchToProps = {
   onEmail: actions.email,
   onPassword: actions.password,
   onTogglePassword: actions.togglePassword,
-  onForgot: actions.forgot
+  onForgot: actions.forgot,
+  onReset: actions.reset
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signin)

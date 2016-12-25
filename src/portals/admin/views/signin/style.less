@@ -46,26 +46,29 @@
 .chrome-signin-footer {
    width: 100%;
    max-width: 320px;
-   padding: 15px;
    margin: auto;
    overflow: hidden;
    text-align: center;
 }
 .chrome-signin-header {
+  display: flex;
   flex: 1;
-  align-items: flex-end;
+  .chrome-signin-content {
+    margin: auto auto 0;
+  }
 }
 .chrome-signin-form {
   flex: 0 0 150px;
+  padding: 15px;
 }
 .chrome-signin-footer {
+  display: flex;
   flex: 1;
-  align-items: flex-start;
+  .chrome-signin-content {
+    margin: 0 auto auto;
+  }
 }
 .chrome-signin-canvas{
-  form {
-    margin-top: 20px;
-  }
   @media (max-width: 767px) {
     img {
       display: none;
@@ -92,15 +95,15 @@
   }
   h4 {
     text-align: center;
-    color: lighten(@primary_color, -10);
+    color: lighten(@primary_color, -5);
     margin: 0;
-    font-size: 18px;
-    line-height: 30px;
+    font-size: 16px;
+    line-height: 24px;
   }
   p {
     text-align: center;
     color: @primary_color;
-    margin-top: 20px;
+    margin: 0 0 15px;
   }
   label {
     color: @primary_color !important;
