@@ -2,6 +2,7 @@ import * as actionTypes from './action_types'
 
 export const INITIAL_STATE = {
   error: null,
+  mode: 'team',
   show: false,
   status: 'pending',
   team: null,
@@ -37,14 +38,16 @@ export default (state = INITIAL_STATE, action) => {
     return {
       ...state,
       team: action.data,
-      status: 'success'
+      status: 'success',
+      mode: 'email'
     }
 
   case actionTypes.EMAIL_SUCCESS:
     return {
       ...state,
       user: action.data,
-      status: 'success'
+      status: 'success',
+      mode: 'password'
     }
 
   case actionTypes.PASSWORD_SUCCESS:
