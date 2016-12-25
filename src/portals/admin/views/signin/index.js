@@ -87,7 +87,7 @@ class Signin extends React.Component {
   }
 
   _handleTeam(e) {
-    $(this.refs.subdomain).click().focus()
+    $(this.refs.email).click().focus()
     const { teams, onTeam } = this.props
     const subdomain = $(this.refs.team).val()
     const index = _.findIndex(teams, { subdomain })
@@ -96,33 +96,32 @@ class Signin extends React.Component {
       this.context.router.push({ pathname: '/admin', state: 'fade' })
     } else {
       onTeam(subdomain)
-      $(this.refs.email).click().focus()
     }
     e.preventDefault()
     return false
   }
 
   _handleEmail(e) {
+    $(this.refs.password).click().focus()
     const { team, onEmail } = this.props
     const email = $(this.refs.email).val()
     onEmail(team.id, email)
-    $(this.refs.password).click().focus()
     e.preventDefault()
     return false
   }
 
   _handlePassword(e) {
+    $(this.refs.password).click().focus()
     const { team, user, onPassword } = this.props
     const password = $(this.refs.password).val()
     onPassword(team.id, user.email, password)
-    $(this.refs.password).click().focus()
     e.preventDefault()
     return false
   }
 
   _handleTogglePassword() {
-    this.props.onTogglePassword()
     $(this.refs.password).click().focus()
+    this.props.onTogglePassword()
   }
 
   _handleForgot() {
