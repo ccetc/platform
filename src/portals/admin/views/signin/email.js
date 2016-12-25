@@ -55,7 +55,7 @@ export class Password extends React.Component {
 
   componentDidMount() {
     const email = $(this.refs.email)
-    setTimeout(function() { email.focus() }, 500)
+    setTimeout(function() { email.click().focus() }, 500)
   }
 
   componentDidUpdate(prevProps) {
@@ -70,6 +70,7 @@ export class Password extends React.Component {
   }
 
   _handleSubmit(event) {
+    $(this.refs.email).click().focus()
     const { team, onEmail } = this.props
     const email = $(this.refs.email).val()
     onEmail(team.id, email)

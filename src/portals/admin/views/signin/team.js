@@ -66,8 +66,8 @@ export class Team extends React.Component {
   }
 
   _handleSubmit(event) {
-    const { teams, onTeam } = this.props
     $(this.refs.subdomain).click().focus()
+    const { teams, onTeam } = this.props
     const subdomain = $(this.refs.subdomain).val()
     const index = _.findIndex(teams, { subdomain })
     if(index >= 0) {
