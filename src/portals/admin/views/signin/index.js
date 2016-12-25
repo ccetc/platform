@@ -111,6 +111,7 @@ class Signin extends React.Component {
 
   _handleTogglePassword() {
     this.props.onTogglePassword()
+    $(this.refs.password).click().focus()
   }
 
   _handleForgot() {
