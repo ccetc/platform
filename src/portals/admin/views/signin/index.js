@@ -20,7 +20,7 @@ class Signin extends React.Component {
               <div className="field team-field">
                 <div className="ui left icon input">
                   <i className="users icon"></i>
-                  <input className="form-control" autoComplete="off" placeholder="team" type="text" ref="team" />
+                  <input className="form-control" autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck="false" placeholder="team" type="text" ref="team" />
                   <div className="suffix">.mycce.com</div>
                 </div>
               </div>
@@ -43,7 +43,7 @@ class Signin extends React.Component {
               <div className="field email-field">
                 <div className="ui left icon input">
                   <i className="user icon"></i>
-                  <input className="form-control" autoComplete="off" placeholder="Email" type="email" ref="email" />
+                  <input className="form-control" autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck="false" placeholder="Email" type="email" ref="email" />
                 </div>
               </div>
               <div className="field button-field">
@@ -68,7 +68,7 @@ class Signin extends React.Component {
               <div className="field password-field">
                 <div className="ui left icon input">
                   <i className="lock icon"></i>
-                  <input className="form-control" autoComplete="off" placeholder="Password" type={ show ? 'text' : 'password' } ref="password" />
+                  <input className="form-control" autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck="false" placeholder="Password" type={ show ? 'text' : 'password' } ref="password" />
                   <a onClick={ this._handleTogglePassword.bind(this) }>{ show ? 'HIDE' : 'SHOW' }</a>
                 </div>
               </div>
