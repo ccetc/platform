@@ -4,18 +4,18 @@ import { connect } from 'react-redux'
 import $ from 'jquery'
 import _ from 'lodash'
 import * as actions from './actions'
-import { getActiveTeam } from '../../containers/admin/selectors'
 
 class Signin extends React.Component {
 
   render() {
     const { mode, show, team, user } = this.props
-    console.log(team)
     return (
       <div className={`chrome-signin chrome-signin-${mode}`}>
         <div className="chrome-signin-canvas">
-          <div className="chrome-signin-form">
+          <div className="chrome-signin-header">
             <h1>Sign in To Your Team</h1>
+          </div>
+          <div className="chrome-signin-form">
             <form className="ui form" onSubmit={this._handleTeam.bind(this)}>
               <div className="field team-field">
                 <div className="ui left icon input">
@@ -26,15 +26,19 @@ class Signin extends React.Component {
               </div>
               <div className="field button-field">
                 <button className={`ui fluid large ${(status == 'submitting') ? 'loading' : ''} button`}>Continue <i className="right chevron icon" /></button>
-                { team && <p><Link to={{ pathname: '/admin', state: 'slide-back' }}>Back to { team.title }</Link></p> }
               </div>
             </form>
           </div>
+          <div className="chrome-signin-footer">
+            { team && <p><Link to={{ pathname: '/admin', state: 'slide-back' }}>Back to { team.title }</Link></p> }
+          </div>
         </div>
         <div className="chrome-signin-canvas">
-          <div className="chrome-signin-form">
+          <div className="chrome-signin-header">
             { team && <img src={ team.logo } className="logo" /> }
             { team && <h1>{ team.title }</h1> }
+          </div>
+          <div className="chrome-signin-form">
             <form className="ui form" onSubmit={this._handleEmail.bind(this)}>
               <div className="field email-field">
                 <div className="ui left icon input">
@@ -44,18 +48,22 @@ class Signin extends React.Component {
               </div>
               <div className="field button-field">
                 <button className={`ui fluid large ${(status == 'submitting') ? 'loading' : ''} button`}>Continue <i className="right chevron icon" /></button>
-                  <p><Link to={{ pathname: '/admin/signin', state: 'slide-back' }}>Wrong team?</Link></p>
-                  { team && _.includes(team.strategies, 'cornell') && <p><a href="/admin/signin/cornell">Signin with CUWebAuth</a></p> }
-                  { team && _.includes(team.strategies, 'google') && <p><a href="/admin/signin/google">Signin with Google</a></p> }
               </div>
             </form>
           </div>
+          <div className="chrome-signin-footer">
+            <p><Link to={{ pathname: '/admin/signin', state: 'slide-back' }}>Wrong team?</Link></p>
+            { team && _.includes(team.strategies, 'cornell') && <p><a href="/admin/signin/cornell">Signin with CUWebAuth</a></p> }
+            { team && _.includes(team.strategies, 'google') && <p><a href="/admin/signin/google">Signin with Google</a></p> }
+          </div>
         </div>
         <div className="chrome-signin-canvas">
-          <div className="chrome-signin-form">
+          <div className="chrome-signin-header">
             { user && <img src={ user.photo } className="photo" /> }
             { user && <h1>{ user.full_name }</h1> }
             { user && <h4>{ user.email }</h4> }
+          </div>
+          <div className="chrome-signin-form">
             <form className="ui form" onSubmit={this._handlePassword.bind(this)}>
               <div className="field password-field">
                 <div className="ui left icon input">
@@ -68,6 +76,8 @@ class Signin extends React.Component {
                 <button className={`ui fluid large ${(status == 'submitting') ? 'loading' : ''} button`}>Signin</button>
               </div>
             </form>
+          </div>
+          <div className="chrome-signin-footer">
             <p><Link to={{ pathname: '/admin/signin/email', state: 'slide-back' }}>Not you?</Link></p>
             <p><a onClick={ this._handleForgot.bind(this) }>Forgot your password?</a></p>
           </div>
