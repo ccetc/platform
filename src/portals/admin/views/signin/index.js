@@ -8,7 +8,7 @@ import * as actions from './actions'
 class Signin extends React.Component {
 
   render() {
-    const { mode, show, team, user } = this.props
+    const { mode, show, status, team, user } = this.props
     return (
       <div className={`chrome-signin chrome-signin-${mode}`}>
         <div className="chrome-signin-canvas">
@@ -25,7 +25,7 @@ class Signin extends React.Component {
                 </div>
               </div>
               <div className="field button-field">
-                <button className={`ui fluid large ${(status == 'submitting') ? 'loading' : ''} button`}>Continue <i className="right chevron icon" /></button>
+                <button className={`ui fluid large ${(status === 'submitting') ? 'loading' : ''} button`}>Continue <i className="right chevron icon" /></button>
               </div>
             </form>
           </div>
@@ -47,7 +47,7 @@ class Signin extends React.Component {
                 </div>
               </div>
               <div className="field button-field">
-                <button className={`ui fluid large ${(status == 'submitting') ? 'loading' : ''} button`}>Continue <i className="right chevron icon" /></button>
+                <button className={`ui fluid large ${(status === 'submitting') ? 'loading' : ''} button`}>Continue <i className="right chevron icon" /></button>
               </div>
             </form>
           </div>
@@ -73,7 +73,7 @@ class Signin extends React.Component {
                 </div>
               </div>
               <div className="field button-field">
-                <button className={`ui fluid large ${(status == 'submitting') ? 'loading' : ''} button`}>Signin</button>
+                <button className={`ui fluid large ${(status === 'submitting') ? 'loading' : ''} button`}>Signin</button>
               </div>
             </form>
           </div>
@@ -115,6 +115,7 @@ class Signin extends React.Component {
     const { team, user, onPassword } = this.props
     const password = $(this.refs.password).val()
     onPassword(team.id, user.email, password)
+    $(this.refs.password).click().focus()
     e.preventDefault()
     return false
   }
