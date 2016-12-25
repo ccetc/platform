@@ -51,7 +51,7 @@ export class Team extends React.Component {
 
   componentDidMount() {
     const subdomain = $(this.refs.subdomain)
-    setTimeout(function() { subdomain.focus() }, 500)
+    setTimeout(function() { subdomain.click().focus() }, 500)
   }
 
   componentDidUpdate(prevProps) {
@@ -67,6 +67,7 @@ export class Team extends React.Component {
 
   _handleSubmit(event) {
     const { teams, onTeam } = this.props
+    $(this.refs.subdomain).click().focus()
     const subdomain = $(this.refs.subdomain).val()
     const index = _.findIndex(teams, { subdomain })
     if(index >= 0) {
@@ -75,6 +76,7 @@ export class Team extends React.Component {
     } else {
       onTeam(subdomain)
     }
+
     event.preventDefault()
     return false
   }
