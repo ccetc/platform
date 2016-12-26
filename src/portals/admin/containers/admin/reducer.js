@@ -2,10 +2,9 @@ import * as actionTypes from './action_types'
 import _ from 'lodash'
 
 const INITIAL_STATE = {
-  active: null,
   status: 'pending',
-  teams: null,
-  sessions: null
+  teams: [],
+  sessions: {}
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -15,7 +14,6 @@ export default (state = INITIAL_STATE, action) => {
   case actionTypes.LOAD_TEAMS_SUCCESS:
     return {
       ...state,
-      active: action.value && action.value.length > 0 ? 0 : null,
       status: 'success',
       teams: action.value || [],
       sessions: {}
@@ -30,14 +28,30 @@ export default (state = INITIAL_STATE, action) => {
   case actionTypes.ADD_TEAM:
     return {
       ...state,
-      active: state.teams.length,
       teams: [
-        ...state.teams,
+        ...state.teams.map(team => {
+          return {
+            ...team,
+            active: false
+          }
+        }),
         {
           ...action.team,
-          token: action.token
+          token: action.token,
+          active: true
         }
       ]
+    }
+
+  case actionTypes.CHOOSE_TEAM:
+    return {
+      ...state,
+      teams: state.teams.map((team, index) => {
+        return {
+          ...team,
+          active: (index === action.index)
+        }
+      })
     }
 
   case actionTypes.REMOVE_TEAM:
@@ -49,15 +63,13 @@ export default (state = INITIAL_STATE, action) => {
     ]
     return {
       ...state,
-      active: teams.length === 0 ? null : teams.length - 1,
       sessions,
-      teams
-    }
-
-  case actionTypes.CHOOSE_TEAM:
-    return {
-      ...state,
-      active: action.index
+      teams: teams.map((team, index) => {
+        return {
+          ...team,
+          active: (index === teams.length - 1)
+        }
+      })
     }
 
   case actionTypes.LOAD_SESSION_SUCCESS:

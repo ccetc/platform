@@ -23,7 +23,7 @@ module.exports = (key) => {
       return done(null, false, { message: 'invalid jwt' })
     }
 
-    return User.where({ id: payload.data[key] }).fetch({ withRelated: ['photo'] }).then(user => {
+    return User.where({ id: payload.data[key] }).fetch({ withRelated: ['photo','team'] }).then(user => {
 
       if(!user) {
         return done(null, false, { message: 'cannot find user' })

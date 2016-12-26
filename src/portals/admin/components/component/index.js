@@ -1,6 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 import { connect } from 'react-redux'
+import { getActiveTeam } from '../../containers/admin/selectors'
 import * as actions from './actions'
 
 export default (mapComponentStateToProps, mapComponentDispatchToProps, PlainComponent, namespace, singleton) => {
@@ -33,14 +34,16 @@ export default (mapComponentStateToProps, mapComponentDispatchToProps, PlainComp
 
     static propTypes = {
       components: React.PropTypes.array,
+      teams: React.PropTypes.array,
+      team: React.PropTypes.object,
       onAdd: React.PropTypes.func,
-      onemove: React.PropTypes.func
+      onRemove: React.PropTypes.func
     }
 
 
     constructor(props) {
       super(props)
-      this.tid = (props.active !== null) ? props.teams[props.active].id : null
+      this.tid = (props.team) ? props.team.id : null
       this.cid = (!singleton) ? _.random(100000, 999999).toString(36) : null
       this.index = (singleton) ? this.tid : `${this.tid}-${this.cid}`
       this.identifier = `${namespace}-${this.index}`
@@ -70,9 +73,9 @@ export default (mapComponentStateToProps, mapComponentDispatchToProps, PlainComp
   }
 
   const mapStateToProps = state => ({
-    active: state.admin.active ,
     components: state.components,
-    teams: state.admin.teams
+    teams: state.admin.teams,
+    team: getActiveTeam(state)
   })
 
   const mapDispatchToProps = {

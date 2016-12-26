@@ -64,14 +64,18 @@ class Api {
 
     return dispatch => {
 
-      return localStorage.getItem('teams', function(err, teams) {
+      return localStorage.getItem('teams', (err, teams) => {
 
-        if(teams && teams.length > 0) {
-          config.headers['Authorization'] = `Bearer ${teams[0].token}`
-        } else if(options.token) {
+        const activeTeam = teams.reduce((active, team) => {
+          return (team.active) ? team : active
+        }, null)
+
+        if(options.token) {
           config.headers['Authorization'] = `Bearer ${options.token}`
         } else if(options.params && options.params.token) {
           config.headers['Authorization'] = `Bearer ${options.params.token}`
+        } else if(activeTeam) {
+          config.headers['Authorization'] = `Bearer ${activeTeam.token}`
         }
 
         dispatch({

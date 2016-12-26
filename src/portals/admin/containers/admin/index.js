@@ -43,12 +43,11 @@ export class Admin extends React.Component {
         this.context.router.push({ pathname: '/admin/signin', state: 'fade' })
         onSaveTeams(teams)
       } else if(prevProps.status === 'pending') {
-        teams.map(team => {
-          onLoadSession(team.id, team.token)
+        teams.map(t => {
+          onLoadSession(t.id, t.token)
         })
       } else {
-        const newTeam = teams[teams.length - 1]
-        onLoadSession(newTeam.id, newTeam.token)
+        onLoadSession(team.id, team.token)
         onSaveTeams(teams)
       }
     } else if(prevProps.team !== team) {

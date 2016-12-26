@@ -16,9 +16,13 @@ const authentication = (req, res, next) => {
       return next(error)
     }
 
+    const team = user.related('team')
+
     logger.info(`USER: ${JSON.stringify({ id: user.get('id'), email: user.get('email')})}`)
+    logger.info(`TEAM: ${JSON.stringify({ id: team.get('id'), email: team.get('title')})}`)
 
     req.user = user
+    req.team = team
     req.jwt = info
 
     next()

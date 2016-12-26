@@ -3,7 +3,9 @@ import { createSelector } from 'reselect'
 export const getActiveTeam = createSelector(
   state => state,
   state => {
-    return state.admin.active !== null ? state.admin.teams[state.admin.active] : null
+    return state.admin.teams.reduce((active, team) => {
+      return (team.active) ? team : active
+    }, null)
   }
 )
 

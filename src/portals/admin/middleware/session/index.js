@@ -11,7 +11,7 @@ files.map(file => {
 })
 
 export const session = (req, res, next) => {
-  User.where({ id: req.user.id }).fetch({ withRelated: ['photo', 'rights', 'apps'] }).then(user => {
+  User.where({ id: req.user.get('id') }).fetch({ withRelated: ['photo', 'rights', 'apps'] }).then(user => {
     res.json({
       apps: user.related('apps').reduce((menu, app) => {
         const nav = navigation[app.get('title').toLowerCase()]

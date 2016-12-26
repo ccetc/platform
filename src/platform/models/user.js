@@ -6,6 +6,7 @@ import App from 'platform/models/app'
 import Asset from 'platform/models/asset'
 import Right from 'platform/models/right'
 import SecurityQuestion from 'platform/models/security_question'
+import Team from 'platform/models/team'
 
 export default bookshelf.Model.extend({
 
@@ -37,6 +38,10 @@ export default bookshelf.Model.extend({
 
   rights: function() {
     return this.belongsToMany(Right, 'users_rights', 'user_id', 'right_id')
+  },
+
+  team: function() {
+    return this.belongsTo(Team, 'team_id')
   },
 
   virtuals: {

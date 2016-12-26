@@ -1,5 +1,4 @@
 import { Router } from 'express'
-import teams from 'server/middleware/teams'
 import authentication from 'server/middleware/authentication'
 import activation from 'server/middleware/activation'
 import signin from 'server/middleware/signin'
@@ -19,7 +18,6 @@ const router = Router()
 router.use('/admin', extAuthentication)
 
 // load team
-router.use('/api/admin', teams)
 router.use('/api/admin', teamService)
 
 // signin
@@ -33,6 +31,7 @@ router.use('/api/admin', reset)
 
 // authentication
 router.use('/api/admin', authentication)
+
 
 // resumable
 router.use('/api/admin', resumable)

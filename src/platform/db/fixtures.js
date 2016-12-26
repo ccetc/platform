@@ -55,6 +55,12 @@ exports.seed = (knex, Promise) => {
       {
         team_id: 1,
         app_id: 1
+      }, {
+        team_id: 1,
+        app_id: 2
+      }, {
+        team_id: 1,
+        app_id: 2
       }
     ])
   })
@@ -2255,6 +2261,9 @@ exports.seed = (knex, Promise) => {
       }, {
         user_id: 2,
         app_id: 2
+      }, {
+        user_id: 101,
+        app_id: 1
       }
     ])
   })
@@ -2278,6 +2287,9 @@ exports.seed = (knex, Promise) => {
       }, {
         user_id: 2,
         right_id: 2
+      }, {
+        user_id: 101,
+        right_id: 1
       }
     ])
   })
