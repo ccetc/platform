@@ -12,3 +12,10 @@ export function goBack() {
     type: actionTypes.GO_BACK
   }
 }
+
+export function reset(pathname) {
+  return {
+    type: actionTypes.RESET,
+    pathname
+  }
+}

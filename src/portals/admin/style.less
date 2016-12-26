@@ -32,6 +32,13 @@ body {
   -o-transform: translateY(@x);
   transform: translateY(@x);
 }
+.rotateY (@deg) {
+	-webkit-transform: rotateY(@deg);
+	-moz-transform: rotateY(@deg);
+	-ms-transform: rotateY(@deg);
+  -o-transform: rotateY(@deg);
+  transform: rotateY(@deg);
+}
 .scale (@x) {
 	-webkit-transform: scale(@x);
 	-moz-transform: scale(@x);
@@ -96,6 +103,24 @@ body {
   }, {
     .translateY(@end);
   })
+}
+
+&.flip-appear, &.flip-enter, &.flip-leave {
+	.transition (transform .5s cubic-bezier(0.7, 0, 0.175, 1) 0s);
+}
+&.flip-appear, &.flip-enter {
+	.rotateY(180deg);
+	z-index: 2 !important;
+}
+&.flip-appear.flip-appear-active, &.flip-enter.flip-enter-active {
+	.rotateY (0);
+}
+&.flip-leave {
+	.rotateY (0);
+	z-index: 1 !important;
+}
+&.flip-leave.flip-leave-active {
+	.rotateY (-180deg);
 }
 
 &.next-appear, &.next-enter, &.next-leave {

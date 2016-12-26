@@ -15,6 +15,10 @@ export default (state = INITIAL_STATE, action) => {
   case actionTypes.GO_BACK:
     return state.slice(0, state.length - 1)
 
+
+  case actionTypes.RESET:
+    return INITIAL_STATE
+
   default:
     return state
   }

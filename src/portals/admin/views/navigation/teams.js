@@ -73,12 +73,12 @@ class Teams extends React.Component {
 
   _handleChangeTeam(index) {
     this.context.admin.chooseTeam(index)
-    this.props.onReset()
+    this.context.drawer.close()
+    this.context.history.reset({ pathname: '/admin' })
   }
 
   _handleAddTeam() {
     this.context.drawer.close()
-    this.props.onReset()
     this.context.history.push({ pathname: '/admin/signin' })
   }
 
