@@ -28,32 +28,25 @@ export class History extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { location, history, onPush } = this.props
-    if(location.pathname != history[history.length - 1] && location.state !== 'back') {
-      onPush(location.pathname)
+    const route = history[history.length - 1]
+    const pathname = route.pathname || route
+    if(history.length < prevProps.history.length) {
+      this.context.router.push({ pathname, state: 'back' })
+    } else if(history.length > prevProps.history.length) {
+      const state = route.state || 'next'
+      this.context.router.push({ pathname, state })
+    } else if(location.pathname !== prevProps.location.pathname && location.pathname !== pathname && location.state !== 'back') {
+      onPush({ pathname: location.pathname, state: location.state })
     }
   }
 
   getChildContext() {
     return {
       history: {
-        goBack: this._goBack.bind(this),
-        push: this._push.bind(this)
+        goBack: this.props.onGoBack,
+        push: this.props.onPush
       }
     }
-  }
-
-  _goBack() {
-    const { history, onGoBack } = this.props
-    const pathname = history[history.length - 2]
-    onGoBack()
-    this.context.router.push({ pathname, state: 'back' })
-  }
-
-  _push(descriptor) {
-    const { onPush } = this.props
-    const pathname = descriptor.pathname || descriptor
-    onPush(pathname)
-    this.context.router.push(descriptor)
   }
 
 }
