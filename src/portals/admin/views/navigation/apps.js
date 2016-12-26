@@ -81,7 +81,7 @@ class Apps extends React.Component {
   _handleForward(item, index) {
     if(item.route) {
       this.context.drawer.close()
-      this.context.history.transitionTo({ pathname: item.route, state: 'static' })
+      this.context.history.push({ pathname: item.route, state: 'static' })
     } else {
       this.props.onForward(index)
     }

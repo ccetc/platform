@@ -7,6 +7,7 @@ import cordova from './containers/cordova/reducer'
 import drawer from './containers/drawer/reducer'
 import electron from './containers/electron/reducer'
 import flash from './containers/flash/reducer'
+import history from './containers/history/reducer'
 import host from './containers/host/reducer'
 import modal from './containers/modal/reducer'
 import notifications from './containers/notifications/reducer'
@@ -27,6 +28,7 @@ const platformReducers = {
   drawer,
   electron,
   flash,
+  history,
   host,
   modal,
   navigation,
@@ -52,6 +54,7 @@ export default (state, action) => {
       drawer: drawer(undefined, action),
       electron: electron(undefined, action),
       flash: flash(undefined, action),
+      history: history(undefined, action),
       host: host(undefined, action),
       modal: modal(undefined, action),
       navigation: navigation(undefined, action),

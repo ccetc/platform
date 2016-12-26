@@ -40,9 +40,9 @@ class Claim extends React.Component {
         }, 1500)
       } else if(status == 'failure') {
         this.context.flash.set('info', error)
-        this.context.history.transitionTo('/admin/forgot')
+        this.context.history.push('/admin/forgot')
       } else if(status == 'claimed') {
-        this.context.history.transitionTo('/admin/reset/security')
+        this.context.history.push('/admin/reset/security')
       }
     }
   }

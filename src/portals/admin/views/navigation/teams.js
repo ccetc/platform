@@ -79,7 +79,7 @@ class Teams extends React.Component {
   _handleAddTeam() {
     this.context.drawer.close()
     this.props.onReset()
-    this.context.history.transitionTo({ pathname: '/admin/signin' })
+    this.context.history.push({ pathname: '/admin/signin' })
   }
 
   _handleSignout(index) {

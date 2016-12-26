@@ -99,7 +99,7 @@ export class Search extends React.Component {
   componentDidUpdate(prevProps) {
     const { choice } = this.props
     if(prevProps.choice !== choice) {
-      this.context.history.transitionTo({ pathname: choice.route, state: 'static' })
+      this.context.history.push({ pathname: choice.route, state: 'static' })
       this.context.modal.close()
     }
   }

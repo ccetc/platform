@@ -116,7 +116,7 @@ class Browser extends React.Component {
         icon: '/images/cornell.jpg'
       })
       notification.onclick = (event) => {
-        history.transitionTo({ pathname: '/admin' })
+        history.push({ pathname: '/admin' })
         event.target.close()
         event.preventDefault()
       }

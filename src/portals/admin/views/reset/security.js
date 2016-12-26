@@ -50,7 +50,7 @@ class Security extends React.Component {
     const { error, status } = this.props
     if(prevProps.status != status) {
       if(status === 'verified') {
-        this.context.history.transitionTo('/admin/reset/password')
+        this.context.history.push('/admin/reset/password')
       } else if(status == 'failure') {
         this.context.flash.set('info', error)
       }

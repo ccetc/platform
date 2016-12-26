@@ -22,6 +22,7 @@ export default (pageProps) => {
 
       static propTypes = {
         data: React.PropTypes.object,
+        history: React.PropTypes.array,
         status: React.PropTypes.string,
         team: React.PropTypes.object,
         user: React.PropTypes.object
@@ -35,14 +36,14 @@ export default (pageProps) => {
 
       render() {
         const { rights, resources, task, tasks, title } = this.page()
-        const { data, status, team, user } = this.props
+        const { data, history, status, team, user } = this.props
         const loaded = !resources || _.isEqual(Object.keys(data).sort(), Object.keys(resources).sort())
         const access = !rights || this._userHasRight(user, rights)
         return (
           <div className="chrome-page">
             <Helmet title={`${team.title} | ${title}`} />
             <div className="chrome-header">
-              { this.context.history.get().length > 1 ?
+              { history.length > 1 ?
                 <div className="chrome-back" onClick={this._handleBack.bind(this)}>
                   <i className="left chevron icon" />
                 </div> : <div className="chrome-back" />
@@ -137,7 +138,7 @@ export default (pageProps) => {
       _handleOpenTask() {
         const { task } = this.page()
         if(task.route) {
-          this.context.history.transitionTo(task.route)
+          this.context.history.push(task.route)
         } else if(task.component) {
           this.context.modal.open(task.component)
         }
@@ -146,6 +147,7 @@ export default (pageProps) => {
     }
 
     const mapStateToProps = state => ({
+      history: state.history,
       team: getActiveTeam(state),
       user: getActiveUser(state),
       ...state.container

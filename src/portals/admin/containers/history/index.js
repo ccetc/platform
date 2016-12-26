@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import * as actions from './actions'
 
 export class History extends React.Component {
 
@@ -10,9 +12,10 @@ export class History extends React.Component {
     router: React.PropTypes.object
   }
 
-  constructor(props) {
-    super(props)
-    this.history = []
+  static propTypes = {
+    history: React.PropTypes.array,
+    goBack: React.PropTypes.func,
+    push: React.PropTypes.func
   }
 
   render() {
@@ -20,12 +23,13 @@ export class History extends React.Component {
   }
 
   componentDidMount() {
-    this.history.push(this.props.location.pathname)
+    this.props.onPush(this.props.location.pathname)
   }
 
   componentDidUpdate(prevProps) {
-    if(this.props.location.pathname != this.history[this.history.length - 1] && this.props.location.state !== 'back') {
-      this.history.push(this.props.location.pathname)
+    const { location, history, onPush } = this.props
+    if(location.pathname != history[history.length - 1] && location.state !== 'back') {
+      onPush(location.pathname)
     }
   }
 
@@ -33,28 +37,34 @@ export class History extends React.Component {
     return {
       history: {
         goBack: this._goBack.bind(this),
-        get: this._get.bind(this),
-        transitionTo: this._transitionTo.bind(this)
+        push: this._push.bind(this)
       }
     }
   }
 
-  _get() {
-    return this.history
-  }
-
   _goBack() {
-    this.history.pop()
-    const pathname = this.history[this.history.length - 1]
+    const { history, onGoBack } = this.props
+    const pathname = history[history.length - 2]
+    onGoBack()
     this.context.router.push({ pathname, state: 'back' })
   }
 
-  _transitionTo(descriptor) {
+  _push(descriptor) {
+    const { onPush } = this.props
     const pathname = descriptor.pathname || descriptor
-    this.history.push(pathname)
+    onPush(pathname)
     this.context.router.push(descriptor)
   }
 
 }
 
-export default History
+const mapStateToProps = state => ({
+  history: state.history
+})
+
+const mapDispatchToProps = {
+  onPush: actions.push,
+  onGoBack: actions.goBack
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(History)
