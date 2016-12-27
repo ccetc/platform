@@ -3,19 +3,21 @@
   display: flex;
   flex-direction: column;
 }
+.ui.form {
+  position: static !important;
+}
 .form-header {
   flex: 0 0 50px;
   display: flex;
   background-color: @primary_background_color;
 }
-.form-header a {
+.form-header-cancel,
+.form-header-proceed {
+  flex: 0 0 70px;
   display: block;
   color: #FFF;
   padding: 15px;
   cursor: pointer;
-}
-.form-header-cancel {
-  flex: 0 0 70px;
 }
 .form-header-title {
   flex: 1;
@@ -25,7 +27,6 @@
   font-weight: bold;
 }
 .form-header-proceed {
-  flex: 0 0 70px;
   text-align: right;
 }
 .form-body {

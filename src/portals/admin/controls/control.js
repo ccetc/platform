@@ -6,6 +6,7 @@ import Checkbox from './checkbox'
 // import Checkboxes from './checkboxes'
 // import ColorField from './colorfield'
 import FileField from './filefield'
+import Lookup from './lookup'
 // import MultiSelect from './multiselect'
 // import Radios from './radios'
 import Select from './select'
@@ -20,6 +21,7 @@ const standardControls = {
   // 'checkboxes': Checkboxes,
   // 'colorfield': ColorField,
   'filefield': FileField,
+  'lookup': Lookup,
   // 'multiselect': MultiSelect,
   // 'radios': Radios,
   'select': Select,
@@ -55,14 +57,13 @@ class Control extends React.Component {
   render() {
     const { type, endpoint } = this.props
     const Element = (_.isString(this.props.type)) ? _.get(standardControls, type) : type
-    const controlProps = _.omit(this.props, ['type','endpoint','key','value'])
     return (
       <div className="control">
-        { endpoint ?
+        { endpoint && _.includes(['select'], type) ?
           <Dynamic {...this._getDynamic()}>
-            <Element {...controlProps} />
+            <Element {...this.props} />
           </Dynamic> :
-          <Element {...controlProps} />
+          <Element {...this.props} />
         }
       </div>
     )

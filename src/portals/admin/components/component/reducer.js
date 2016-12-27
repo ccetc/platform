@@ -6,6 +6,7 @@ import dynamic from 'portals/admin/controls/dynamic/reducer'
 import filefield from 'portals/admin/controls/filefield/reducer'
 import form from 'portals/admin/components/form/reducer'
 import infinite from 'portals/admin/containers/infinite/reducer'
+import lookup from 'portals/admin/controls/lookup/reducer'
 import tabs from 'portals/admin/components/tabs/reducer'
 
 const reducers = {
@@ -14,13 +15,13 @@ const reducers = {
   filefield,
   form,
   infinite,
+  lookup,
   tabs
 }
 
 export default (state = { components: [] }, action) => {
 
   const namespace = action.type.split('/')[0]
-  const index = (action.cid) ? `${action.tid}-${action.cid}` : action.tid
   const identifier = (action.cid) ? `${action.namespace}-${action.tid}-${action.cid}` : `${action.namespace}-${action.tid}`
   if(action.type === actionTypes.ADD) {
 

@@ -49,18 +49,14 @@ class Form extends React.Component {
     return (
       <div className="form">
         <div className="form-header">
-          <div className="form-header-cancel">
-            <a onClick={ this._handleCancel.bind(this) }>
-              Cancel
-            </a>
+          <div className="form-header-cancel" onClick={ this._handleCancel.bind(this) }>
+            Cancel
           </div>
           <div className="form-header-title">
             { title }
           </div>
-          <div className="form-header-proceed">
-            <a onClick={ this._handleSubmit.bind(this) }>
-              Save
-            </a>
+          <div className="form-header-proceed" onClick={ this._handleSubmit.bind(this) }>
+            Save
           </div>
         </div>
         <div className="form-body">
