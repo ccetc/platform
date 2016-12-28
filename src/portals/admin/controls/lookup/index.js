@@ -33,8 +33,10 @@ class Lookup extends React.Component {
     }
   }
 
-  _handleBegin() {
+  _handleBegin(e) {
     this.props.onBegin()
+    e.preventDefault()
+    return false
   }
 
 }
