@@ -10,6 +10,7 @@ class Tasks extends React.Component {
   }
 
   static contextTypes = {
+    drawer: React.PropTypes.object,
     modal: React.PropTypes.object,
     history: React.PropTypes.object
   }
@@ -61,6 +62,9 @@ class Tasks extends React.Component {
       this.context.history.push(tasks[index].route)
     } else if(tasks[index].modal){
       this.context.modal.open(tasks[index].modal)
+    } else if(tasks[index].drawer){
+      const location = tasks[index].location || 'right'
+      this.context.drawer.open(tasks[index].drawer, location)
     } else if(tasks[index].handler){
       tasks[index].handler()
     }

@@ -13,9 +13,10 @@ export default (pageProps) => {
 
       static contextTypes = {
         container: React.PropTypes.object,
+        drawer: React.PropTypes.object,
         flash: React.PropTypes.object,
-        modal: React.PropTypes.object,
         history: React.PropTypes.object,
+        modal: React.PropTypes.object,
         session: React.PropTypes.object,
         tasks: React.PropTypes.object
       }
@@ -141,6 +142,11 @@ export default (pageProps) => {
           this.context.history.push(task.route)
         } else if(task.modal) {
           this.context.modal.open(task.modal)
+        } else if(task.drawer){
+          const location = task.location || 'right'
+          this.context.drawer.open(task.drawer, location)
+        } else if(task.handler){
+          task.handler()
         }
       }
 
