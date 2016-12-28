@@ -24,7 +24,7 @@ class Modal extends React.Component {
         <CSSTransitionGroup transitionName="expanded" transitionEnterTimeout={ 500 } transitionLeaveTimeout={ 500 }>
           { components.length > 0 &&
             <div className="chrome-modal-window">
-              <CSSTransitionGroup transitionName="stack" component="div" transitionEnterTimeout={ 500 } transitionLeaveTimeout={ 500 } transitionAppear={ true } transitionAppearTimeout={ 500 }>
+              <CSSTransitionGroup transitionName="stack" component="div" transitionEnterTimeout={ 500 } transitionLeaveTimeout={ 500 }>
                 { components.map((component, index) => {
                   return (
                       <div className="chrome-modal-panel" key={`modal_panel_${index}`}>

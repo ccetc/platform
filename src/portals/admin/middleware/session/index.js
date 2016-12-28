@@ -3,14 +3,15 @@ import User from 'platform/models/user'
 import glob from 'glob'
 import path from 'path'
 
-const files = glob.sync(path.resolve(__dirname, '../../../../**/navigation.js'))
-let navigation = {}
-files.map(file => {
-  const matches = file.match(/\/([a-z_]*)\/admin\/navigation\.js/)
-  if(matches) navigation[matches[1]] = require(file)
-})
-
 export const session = (req, res, next) => {
+
+  const files = glob.sync(path.resolve(__dirname, '../../../../**/navigation.js'))
+  let navigation = {}
+  files.map(file => {
+    const matches = file.match(/\/([a-z_]*)\/admin\/navigation\.js/)
+    if(matches) navigation[matches[1]] = require(file)
+  })
+
   User.where({ id: req.user.get('id') }).fetch({ withRelated: ['photo', 'rights', 'apps'] }).then(user => {
     res.json({
       apps: user.related('apps').reduce((menu, app) => {
@@ -27,6 +28,7 @@ export const session = (req, res, next) => {
       }
     })
   })
+
 }
 
 const router = Router()
