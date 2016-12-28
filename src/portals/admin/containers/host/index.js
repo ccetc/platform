@@ -27,7 +27,7 @@ export class Host extends React.Component {
     } else if(navigator.userAgent.search('Electron') >= 0) {
       onSet('electron')
     } else {
-      onSet('browser')
+      onSet('cordova')
     }
   }
 

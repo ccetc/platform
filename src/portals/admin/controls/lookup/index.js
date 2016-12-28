@@ -35,6 +35,7 @@ class Lookup extends React.Component {
 
   _handleBegin(e) {
     this.props.onBegin()
+    e.target.blur()
     e.preventDefault()
     return false
   }
