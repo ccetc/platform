@@ -47,34 +47,36 @@ class Form extends React.Component {
       formClasses.push('loading')
     }
     return (
-      <div className="form">
-        <div className="form-header">
-          <div className="form-header-cancel" onClick={ this._handleCancel.bind(this) }>
+      <div className="chrome-modal-panel">
+        <div className="chrome-modal-panel-header">
+          <div className="chrome-modal-panel-header-cancel" onClick={ this._handleCancel.bind(this) }>
             Cancel
           </div>
-          <div className="form-header-title">
+          <div className="chrome-modal-panel-header-title">
             { title }
           </div>
-          <div className="form-header-proceed" onClick={ this._handleSubmit.bind(this) }>
+          <div className="chrome-modal-panel-header-proceed" onClick={ this._handleSubmit.bind(this) }>
             Save
           </div>
         </div>
-        <div className="form-body">
-          { status !== 'loading' ?
-            <div className={formClasses.join(' ')} ref="form">
-              { instructions &&
-                <div className="instructions">{instructions}</div>
-              }
-              { sections.map((section, index) => {
-                return <Section {...section}
-                                data={data}
-                                errors={errors}
-                                key={`section_${index}`}
-                                onUpdateData={this._handleUpdateData.bind(this)} />
-              })}
-            </div> :
-            <div className="ui active centered inline loader" />
-          }
+        <div className="chrome-modal-panel-body">
+          <div className="form">
+            { status !== 'loading' ?
+              <div className={formClasses.join(' ')} ref="form">
+                { instructions &&
+                  <div className="instructions">{instructions}</div>
+                }
+                { sections.map((section, index) => {
+                  return <Section {...section}
+                                  data={data}
+                                  errors={errors}
+                                  key={`section_${index}`}
+                                  onUpdateData={this._handleUpdateData.bind(this)} />
+                })}
+              </div> :
+              <div className="ui active centered inline loader" />
+            }            
+          </div>
         </div>
       </div>
     )

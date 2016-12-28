@@ -20,4 +20,32 @@
   display: flex;
   flex-direction: column;
   background: #FFFFFF;
+  flex: 1;
+  flex-direction: column;
+}
+.chrome-modal-panel-header {
+  flex: 0 0 50px;
+  display: flex;
+  background-color: @primary_background_color;
+}
+.chrome-modal-panel-header-cancel,
+.chrome-modal-panel-header-proceed {
+  flex: 0 0 100px;
+  display: block;
+  color: #FFF;
+  padding: 15px;
+  cursor: pointer;
+}
+.chrome-modal-panel-header-title {
+  flex: 1;
+  color: #FFF;
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+}
+.chrome-modal-panel-header-proceed {
+  text-align: right;
+}
+.chrome-modal-panel-body {
+  flex: 1;
 }

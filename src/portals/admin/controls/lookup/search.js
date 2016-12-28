@@ -13,33 +13,35 @@ class Search extends React.Component {
   render() {
     const { label, results, value } = this.props
     return (
-     <div className="lookup-panel">
-       <div className="lookup-panel-header">
-         <div className="lookup-panel-header-cancel" onClick={ this._handleCancel.bind(this) }>
+      <div className="chrome-modal-panel">
+       <div className="chrome-modal-panel-header">
+         <div className="chrome-modal-panel-header-cancel" onClick={ this._handleCancel.bind(this) }>
            <i className="chevron left icon" />
            Cancel
          </div>
-         <div className="lookup-panel-header-title">
+         <div className="chrome-modal-panel-header-title">
            Choose {label}
          </div>
-         <div className="lookup-panel-header-proceed" />
+         <div className="chrome-modal-panel-header-proceed" />
        </div>
-       <div className="lookup-panel-search">
-         <div className="ui form">
-          <input type="text" placeholder={`Find a ${label}...`} onChange={this._handleLookup.bind(this)} ref="query" />
+       <div className="chrome-modal-panel-body">
+         <div className="lookup-panel-search">
+           <div className="ui form">
+            <input type="text" placeholder={`Find a ${label}...`} onChange={this._handleLookup.bind(this)} ref="query" />
+           </div>
          </div>
+         { results && !_.isEmpty(results) &&
+           <div className="lookup-panel-results">
+             { results.map((result, index) => {
+               return (
+                 <div key={`result_${index}`} className="lookup-panel-result" onClick={ this._handleChoose.bind(this, index) }>
+                   { _.get(result, value) }
+                 </div>
+               )
+             })}
+           </div>
+         }
        </div>
-       { results && !_.isEmpty(results) &&
-         <div className="lookup-panel-results">
-           { results.map((result, index) => {
-             return (
-               <div key={`result_${index}`} className="lookup-panel-result" onClick={ this._handleChoose.bind(this, index) }>
-                 { _.get(result, value) }
-               </div>
-             )
-           })}
-         </div>
-       }
      </div>
     )
   }
