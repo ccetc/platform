@@ -38,7 +38,7 @@ class Index extends React.Component {
   }
 
   _handleClose() {
-    this.context.modal.close()
+    this.context.modal.pop()
   }
 
 }

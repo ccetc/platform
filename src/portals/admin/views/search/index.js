@@ -100,7 +100,7 @@ export class Search extends React.Component {
     const { choice } = this.props
     if(prevProps.choice !== choice) {
       this.context.history.push({ pathname: choice.route, state: 'static' })
-      this.context.modal.close()
+      this.context.modal.pop()
     }
   }
 
@@ -120,7 +120,7 @@ export class Search extends React.Component {
   }
 
   _handleAbortSearch() {
-    this.context.modal.close()
+    this.context.modal.pop()
   }
 
   _handleCompleteSearch(model, index) {

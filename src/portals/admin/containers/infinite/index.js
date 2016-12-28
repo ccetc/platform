@@ -105,4 +105,4 @@ const mapDispatchToProps = {
   onReset: actions.reset
 }
 
-export default component(mapStateToProps, mapDispatchToProps, Infinite, 'infinite', false)
+export default component(mapStateToProps, mapDispatchToProps, Infinite, 'infinite', true)

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { getActiveTeam } from '../../containers/admin/selectors'
 import * as actions from './actions'
 
-export default (mapComponentStateToProps, mapComponentDispatchToProps, PlainComponent, namespace, singleton) => {
+export default (mapComponentStateToProps, mapComponentDispatchToProps, PlainComponent, namespace, isNew) => {
 
   const wrappedMapComponentDispatchToProps = (dispatch, props) => {
     const actions = Object.keys(mapComponentDispatchToProps).reduce((actions, key) => {
@@ -30,6 +30,10 @@ export default (mapComponentStateToProps, mapComponentDispatchToProps, PlainComp
 
   const WrappedComponent = connect(mapComponentStateToProps, wrappedMapComponentDispatchToProps)(PlainComponent)
 
+  if(!isNew) {
+    return WrappedComponent
+  }
+
   class Component extends React.Component {
 
     static propTypes = {
@@ -40,12 +44,11 @@ export default (mapComponentStateToProps, mapComponentDispatchToProps, PlainComp
       onRemove: React.PropTypes.func
     }
 
-
     constructor(props) {
       super(props)
       this.tid = (props.team) ? props.team.id : null
-      this.cid = (!singleton) ? _.random(100000, 999999).toString(36) : null
-      this.index = (singleton) ? this.tid : `${this.tid}-${this.cid}`
+      this.cid = _.random(100000, 999999).toString(36)
+      this.index = `${this.tid}-${this.cid}`
       this.identifier = `${namespace}-${this.index}`
     }
 
@@ -53,11 +56,7 @@ export default (mapComponentStateToProps, mapComponentDispatchToProps, PlainComp
       const { children, components } = this.props
       if(components && _.includes(components, this.identifier)) {
         const childProps = _.omit(this.props, ['components'])
-        if(singleton) {
-          return <WrappedComponent {...childProps} tid={this.tid} cid={this.cid} identifier={this.index}>{ children }</WrappedComponent>
-        } else {
-          return <WrappedComponent {...childProps} tid={this.tid} cid={this.cid} identifier={this.index}>{ children }</WrappedComponent>
-        }
+        return <WrappedComponent {...childProps} tid={this.tid} cid={this.cid} identifier={this.index}>{ children }</WrappedComponent>
       }
       return null
     }

@@ -40,4 +40,4 @@ const mapDispatchToProps = {
   onFetch: actions.fetch
 }
 
-export default component(mapStateToProps, mapDispatchToProps, Dynamic, 'dynamic', false)
+export default component(mapStateToProps, mapDispatchToProps, Dynamic, 'dynamic', true)

@@ -1,7 +1,7 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import _ from 'lodash'
 import Tab from './tab'
-import component from 'portals/admin/components/component'
 import * as actions from './actions'
 
 export class Tabs extends React.Component {
@@ -53,4 +53,4 @@ const mapDispatchToProps = {
   onChangeTab: actions.changeTab
 }
 
-export default component(mapStateToProps, mapDispatchToProps, Tabs, 'tabs', true)
+export default connect(mapStateToProps, mapDispatchToProps)

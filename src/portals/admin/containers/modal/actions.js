@@ -1,14 +1,14 @@
 import * as actionTypes from './action_types'
 
-export function open(component) {
+export function push(component) {
   return {
-    type: actionTypes.OPEN,
+    type: actionTypes.PUSH,
     component
   }
 }
 
-export function close() {
+export function pop() {
   return {
-    type: actionTypes.CLOSE
+    type: actionTypes.POP
   }
 }

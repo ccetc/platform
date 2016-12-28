@@ -17,8 +17,8 @@ class Edit extends React.Component {
       method: 'patch',
       endpoint: '/admin/account',
       action: '/admin/account',
-      onCancel: this.context.modal.close,
-      onSuccess: this.context.modal.close,
+      onCancel: this.context.modal.pop,
+      onSuccess: this.context.modal.pop,
       sections: [
         {
           fields: [

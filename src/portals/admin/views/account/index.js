@@ -43,7 +43,7 @@ export class Account extends React.Component {
 
   _handleModal(component) {
     this.context.drawer.close()
-    this.context.modal.open(component)
+    this.context.modal.push(component)
   }
 
   _handleSignout(index) {

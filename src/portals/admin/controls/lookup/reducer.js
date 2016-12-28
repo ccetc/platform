@@ -4,7 +4,7 @@ const INITIAL_VALUE = {
   active: false,
   index: null,
   query: '',
-  results: null,
+  results: [],
   status: 'ready'
 }
 
@@ -40,7 +40,14 @@ export default (state = INITIAL_VALUE, action) => {
   case actionTypes.LOOKUP_SUCCESS:
     return {
       ...state,
-      results: (state.query.length) ? action.data.data : null
+      status: 'success',
+      results: action.data.data
+    }
+
+  case actionTypes.LOOKUP_FAILURE:
+    return {
+      ...state,
+      status: 'failure'
     }
 
   default:

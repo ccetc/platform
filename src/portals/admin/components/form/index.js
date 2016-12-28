@@ -166,4 +166,4 @@ const mapDispatchToProps = {
   onUpdateData: actions.updateData
 }
 
-export default component(mapStateToProps, mapDispatchToProps, Form, 'form', false)
+export default component(mapStateToProps, mapDispatchToProps, Form, 'form', true)

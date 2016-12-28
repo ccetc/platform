@@ -144,4 +144,4 @@ const mapDispatchToProps = {
   onUploadComplete: actions.uploadComplete
 }
 
-export default component(mapStateToProps, mapDispatchToProps, FileField, 'filefield', false)
+export default component(mapStateToProps, mapDispatchToProps, FileField, 'filefield', true)

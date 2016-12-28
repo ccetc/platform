@@ -103,7 +103,7 @@ class Table extends React.Component {
   }
 
   _handleAddNew() {
-    this.context.modal.open(this.props.empty.modal)
+    this.context.modal.push(this.props.empty.modal)
   }
 
 }

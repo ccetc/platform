@@ -61,7 +61,7 @@ class Tasks extends React.Component {
     if(tasks[index].route) {
       this.context.history.push(tasks[index].route)
     } else if(tasks[index].modal){
-      this.context.modal.open(tasks[index].modal)
+      this.context.modal.push(tasks[index].modal)
     } else if(tasks[index].drawer){
       const location = tasks[index].location || 'right'
       this.context.drawer.open(tasks[index].drawer, location)

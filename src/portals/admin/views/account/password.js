@@ -17,8 +17,8 @@ class Password extends React.Component {
       method: 'patch',
       endpoint: '/admin/account/password',
       action: '/admin/account/password',
-      onCancel: this.context.modal.close,
-      onSuccess: this.context.modal.close,
+      onCancel: this.context.modal.pop,
+      onSuccess: this.context.modal.pop,
       sections: [
         {
           fields: [

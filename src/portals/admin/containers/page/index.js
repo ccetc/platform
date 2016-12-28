@@ -141,7 +141,7 @@ export default (pageProps) => {
         if(task.route) {
           this.context.history.push(task.route)
         } else if(task.modal) {
-          this.context.modal.open(task.modal)
+          this.context.modal.push(task.modal)
         } else if(task.drawer){
           const location = task.location || 'right'
           this.context.drawer.open(task.drawer, location)

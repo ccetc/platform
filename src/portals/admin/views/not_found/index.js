@@ -21,7 +21,7 @@ export class NotFound extends React.Component {
   }
 
   _handleSearch() {
-    this.context.modal.open(Search)
+    this.context.modal.push(Search)
   }
 
 }

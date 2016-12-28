@@ -50,11 +50,11 @@ export class Topbar extends React.Component {
   }
 
   _handleOpenSearch() {
-    this.context.modal.open(Search)
+    this.context.modal.push(Search)
   }
 
   _handleOpenNotifications() {
-    this.context.modal.open(Notifications)
+    this.context.modal.push(Notifications)
   }
 
   _handleOpenAccount() {
