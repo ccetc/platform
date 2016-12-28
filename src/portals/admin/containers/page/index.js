@@ -139,8 +139,8 @@ export default (pageProps) => {
         const { task } = this.page()
         if(task.route) {
           this.context.history.push(task.route)
-        } else if(task.component) {
-          this.context.modal.open(task.component)
+        } else if(task.modal) {
+          this.context.modal.open(task.modal)
         }
       }
 

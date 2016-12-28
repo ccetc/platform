@@ -46,7 +46,7 @@ const mapPropsToPage = (props, context) => ({
   task: {
     label: 'New User',
     icon: 'plus',
-    component: New
+    modal: New
   }
 })
 

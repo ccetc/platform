@@ -26,18 +26,18 @@ describe('tasks', () => {
       let action = {
         type: actionTypes.OPEN,
         tasks: [
-          { label: 'Edit', component: Edit }
+          { label: 'Edit', modal: Edit }
         ]
       }
       let expected = [
-        { label: 'Edit', component: Edit }
+        { label: 'Edit', modal: Edit }
       ]
       expect(reducer(state, action)).to.be.eql(expected)
     })
 
     it('it closes the tasks', () => {
       let state = [
-        { label: 'Edit', component: Edit }
+        { label: 'Edit', modal: Edit }
       ]
       let action = {
         type: actionTypes.CLOSE

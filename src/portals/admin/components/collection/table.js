@@ -65,7 +65,7 @@ class Table extends React.Component {
             <h2><i className={`circular ${empty.icon} icon`} /></h2>
             <h3>No {_.startCase(pluralize(entity.replace('_', ' ')))}</h3>
             <p>You have not yet created any {pluralize(entity.replace('_', ' '))}.</p>
-            { empty.component && <div className="ui basic button red" onClick={ this._handleAddNew.bind(this)}><i className="plus icon" /> Create New {_.startCase(entity.replace('_', ' '))}</div> }
+            { empty.modal && <div className="ui basic button red" onClick={ this._handleAddNew.bind(this)}><i className="plus icon" /> Create New {_.startCase(entity.replace('_', ' '))}</div> }
           </div>
         </div>
       )
@@ -103,7 +103,7 @@ class Table extends React.Component {
   }
 
   _handleAddNew() {
-    this.context.modal.open(this.props.empty.component)
+    this.context.modal.open(this.props.empty.modal)
   }
 
 }

@@ -59,8 +59,8 @@ class Tasks extends React.Component {
     this._handleCloseTasks()
     if(tasks[index].route) {
       this.context.history.push(tasks[index].route)
-    } else if(tasks[index].component){
-      this.context.modal.open(tasks[index].component)
+    } else if(tasks[index].modal){
+      this.context.modal.open(tasks[index].modal)
     } else if(tasks[index].handler){
       tasks[index].handler()
     }
