@@ -31,14 +31,14 @@ class Card extends React.Component {
   }
 
   render() {
-    const { header, image, items, body, buttons } = this.props
+    const { top, image, items, body, buttons } = this.props
     return (
       <div className="card">
        {(() => {
-         if(header) {
+         if(top) {
            return (
-             <div className="content">
-               {header}
+             <div className="top">
+               { top }
              </div>
            )
          }
@@ -47,7 +47,7 @@ class Card extends React.Component {
          if(image) {
            return (
             <div className="image">
-              <img src={image} className="ui circular image" />
+              <img src={ image } className="ui circular image" />
             </div>
            )
          }
@@ -56,7 +56,7 @@ class Card extends React.Component {
           if(body) {
             return (
               <div className="ui content">
-                {body}
+                { body }
               </div>
             )
           }

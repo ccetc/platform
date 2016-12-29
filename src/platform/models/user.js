@@ -48,6 +48,11 @@ export default bookshelf.Model.extend({
     full_name: function() {
       return this.get('first_name') + ' ' + this.get('last_name')
     },
+    initials: function() {
+      const first_name = this.get('first_name') || ''
+      const last_name = this.get('last_name') || ''
+      return first_name[0] + last_name[0]
+    },
     password: {
       get: function() {},
       set: function(value) {

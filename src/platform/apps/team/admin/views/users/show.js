@@ -1,4 +1,5 @@
 import React from 'react'
+import Avatar from 'portals/admin/components/avatar'
 import Card from 'portals/admin/components/card'
 import Page from 'portals/admin/containers/page'
 import Edit from './edit'
@@ -19,7 +20,7 @@ class Show extends React.Component {
   _getCard() {
     const { user } = this.props
     return {
-      image: user.photo,
+      top: <Avatar user={ user } />,
       items: [
         { label: 'Name ', content: user.full_name },
         { label: 'Email ', content: user.email, format: 'email' },

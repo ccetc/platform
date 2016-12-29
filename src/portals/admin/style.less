@@ -1,6 +1,9 @@
 @primary_background_color: #DB2828;
 @primary_color: #FFFFFF;
 
+@avatar_background_color: #444444;
+@avatar_color: #FFFFFF;
+
 @info_color: #A333C8;
 @warning_color: #F2711C;
 @success_color: #21BA45;
@@ -114,12 +117,14 @@ body {
 }
 &.next-appear, &.next-enter {
 	.translateX(100%);
+	z-index: 1;
 }
 &.next-appear.next-appear-active, &.next-enter.next-enter-active {
 	.translateX(0);
 }
 &.next-leave {
 	.translateX(0);
+	z-index: 0;
 }
 &.next-leave.next-leave-active {
 	.translateX(-25%);
@@ -130,12 +135,14 @@ body {
 }
 &.back-leave {
 	.translateX(0);
+	z-index: 1;
 }
 &.back-leave.back-leave-active {
 	.translateX(100%);
 }
 &.back-appear, &.back-enter {
 	.translateX(-25%);
+	z-index: 0;
 }
 &.back-appear.back-appear-active, &.back-enter.back-enter-active {
 	.translateX(0);

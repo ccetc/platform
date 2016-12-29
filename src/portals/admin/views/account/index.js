@@ -1,7 +1,7 @@
 import React from 'react'
-import _ from 'lodash'
 import { connect } from 'react-redux'
 import { getActiveTeam, getActiveUser } from '../../containers/admin/selectors'
+import Avatar from 'portals/admin/components/avatar'
 import Edit from './edit'
 import Password from './password'
 
@@ -21,11 +21,11 @@ export class Account extends React.Component {
   }
 
   render() {
-    const { active, team, user } = this.props
+    const { user } = this.props
     return (
       <div className="chrome-account-panel">
         <div className="chrome-account-identity">
-          <img src={user.photo} className="ui image circular" title={ user.name }/>
+          <Avatar user={ user } />
           <h2>{user.name}</h2>
           <p>{user.email}</p>
         </div>

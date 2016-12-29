@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import Page from 'portals/admin/containers/page'
 import Collection from 'portals/admin/components/collection'
+import Avatar from 'portals/admin/components/avatar'
 import New from './new'
 
 class Index extends React.Component {
@@ -35,8 +36,8 @@ class Index extends React.Component {
 var NameCell = (props) => {
   return (
     <Link to={`/admin/team/users/${props.id}` }>
-      <img src={props.photo} className="ui circular image" />
-      {props.first_name} {props.last_name}
+      <Avatar user={ props } />
+      { props.first_name } { props.last_name }
     </Link>
   )
 }

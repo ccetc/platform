@@ -10,6 +10,11 @@
   bottom: 0;
   left: 0;
   background: #FFFFFF;
+  display: flex;
+  & > div {
+    display: flex;
+    flex: 1;
+  }
 }
 .chrome-modal-panel {
   position: absolute;
@@ -47,5 +52,9 @@
   text-align: right;
 }
 .chrome-modal-panel-body {
+  display: flex;
   flex: 1;
+  flex-direction: column;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }

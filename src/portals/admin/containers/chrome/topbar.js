@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getActiveUser } from '../admin/selectors'
+import Avatar from '../../components/avatar'
 import Search from '../../views/search'
 import Account from '../../views/account'
 import Notifications from '../../views/notifications'
@@ -37,7 +38,7 @@ export class Topbar extends React.Component {
             }
           </div>
           <div className="chrome-topbar-icon" onClick={this._handleOpenAccount.bind(this)}>
-            <img src={user.photo} className="ui image circular" />
+            <Avatar user={ user } />
           </div>
         </div>
         { children }

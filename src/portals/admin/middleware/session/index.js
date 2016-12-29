@@ -21,6 +21,7 @@ export const session = (req, res, next) => {
       }, []),
       user: {
         name: user.get('full_name'),
+        initials: user.get('initials'),
         email: user.get('email'),
         photo: user.related('photo').get('url'),
         unread: Math.floor((Math.random() * 20) + 1),
