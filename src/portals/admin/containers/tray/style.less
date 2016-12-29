@@ -2,15 +2,6 @@
   flex: 1;
   display: flex;
 }
-.chrome-tray-panel {
-  .translate-y-transition(100%, 0, .25s);
-  background-color: #FFFFFF;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  max-height: 80vh;
-}
 .chrome-tray-overlay {
   .opacity-transition(0, 0.5, .25s);
   .opacity(0.5);
@@ -20,4 +11,25 @@
   right: 0;
   bottom: 0;
   left: 0;
+}
+.chrome-tray-panel {
+  .translate-y-transition(100%, 0, .25s);
+  background-color: #FFFFFF;
+  position: absolute;
+}
+@media only screen and (min-width: 768px) {
+  .chrome-tray-panel {
+    width: 320px;
+    top: 30%;
+    left: 50%;
+    margin-left: -160px;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .chrome-tray-panel {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-height: 80vh;
+  }
 }
