@@ -11,6 +11,7 @@ import History from './containers/container'
 import Container from './containers/history'
 import Modal from './containers/modal'
 import Drawer from './containers/drawer'
+import Tray from './containers/tray'
 import Tasks from './containers/tasks'
 import Chrome from './containers/chrome'
 import Apps from './views/apps'
@@ -27,9 +28,11 @@ export default (
                 <Route component={ Container } path="admin">
                   <Route component={ Modal }>
                     <Route component={ Drawer }>
-                      <Route component={ Tasks }>
-                        <Route component={ Chrome }>
-                          { Apps }
+                      <Route component={ Tray }>
+                        <Route component={ Tasks }>
+                          <Route component={ Chrome }>
+                            { Apps }
+                          </Route>
                         </Route>
                       </Route>
                     </Route>

@@ -11,6 +11,7 @@ class FileField extends React.Component {
   static propTypes = {
     files: React.PropTypes.array,
     multiple: React.PropTypes.bool,
+    prompt: React.PropTypes.string,
     status: React.PropTypes.string,
     onAddFile: React.PropTypes.func,
     onUploadBegin: React.PropTypes.func,
@@ -22,8 +23,13 @@ class FileField extends React.Component {
     onChangeFile: React.PropTypes.func
   }
 
+  static defaultProps = {
+    prompt: 'Choose File(s)',
+    multiple: false
+  }
+
   render() {
-    const { files, multiple, status } = this.props
+    const { files, multiple, prompt, status } = this.props
     let classes = ['filefield', status]
     return (
       <div className={classes.join(' ')}>
@@ -50,7 +56,7 @@ class FileField extends React.Component {
         }) }
         { (files.length === 0 || multiple === true) &&
           <div ref="browse" className="ui browse button">
-            Choose File(s)
+            { prompt }
           </div>
         }
       </div>

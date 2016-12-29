@@ -34,7 +34,7 @@ class Field extends React.Component {
   }
 
   render() {
-    const { columns, data, endpoint, errors, fields, include, instructions } = this.props
+    const { columns, data, endpoint, errors, fields, include, instructions, prompt } = this.props
     const { key, label, name, options, required, type, show, value, onUpdateData } = this.props
     const error = (errors && errors[name]) ? errors[name][0] : null
     const defaultValue = data[name]
@@ -58,6 +58,7 @@ class Field extends React.Component {
                   onUpdateData={onUpdateData} /> :
           <Control type={type}
                    label={label}
+                   prompt={prompt}
                    endpoint={endpoint}
                    key={key}
                    value={value}

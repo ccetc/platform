@@ -11,7 +11,7 @@ class Modal extends React.Component {
   }
 
   static propTypes = {
-    components: React.PropTypes.object,
+    components: React.PropTypes.array,
     onPop: React.PropTypes.func,
     onPush: React.PropTypes.func
   }

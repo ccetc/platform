@@ -12,6 +12,7 @@ import host from './containers/host/reducer'
 import modal from './containers/modal/reducer'
 import notifications from './containers/notifications/reducer'
 import tasks from './containers/tasks/reducer'
+import tray from './containers/tray/reducer'
 
 import component from './components/component/reducer'
 
@@ -36,7 +37,8 @@ const platformReducers = {
   reset,
   search,
   signin,
-  tasks
+  tasks,
+  tray
 }
 
 export default (state, action) => {
@@ -63,6 +65,7 @@ export default (state, action) => {
       search: search(undefined, action),
       signin: signin(undefined, action),
       tasks: tasks(undefined, action),
+      tray: tray(undefined, action),
       ...component(undefined, action)
     }
 

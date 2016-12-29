@@ -8,7 +8,7 @@ export class Avatar extends React.Component {
 
   render() {
     const { user } = this.props
-    if(user.id % 2 === 0) {
+    if(user.photo) {
       return <img src={user.photo} className="avatar" />
     } else {
       return (

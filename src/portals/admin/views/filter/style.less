@@ -1,0 +1,48 @@
+.filter {
+  display: flex;
+  flex-direction: column;
+  height: 400px
+}
+.filter-header {
+  flex: 0 0 50px;
+  display: flex;
+  background-color: #F9F9F9;
+}
+.filter-header-back {
+  flex: 0 0 120px;
+  padding: 15px;
+}
+.filter-header-title {
+  flex: 1;
+  padding: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+.filter-header-next {
+  flex: 0 0 120px;
+  text-align: right;
+  padding: 15px;
+}
+.filter-body {
+  flex: 1;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  background-color: #DDDDDD;
+}
+.filter-item {
+  padding: 15px;
+  background-color: #FFFFFF;
+  position: relative;
+  border-bottom: 1px solid #EEEEEE;
+  .chevron {
+    position: absolute;
+    right: 15px;
+    color: #BBB;
+  }
+}
+.filter-footer {
+  flex: 0 0 50px;
+  padding: 15px;
+  text-align: center;
+  background-color: #F9F9F9;
+}
