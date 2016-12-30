@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from './actions'
+import _ from 'lodash'
 
 class Select extends React.Component {
 
@@ -9,13 +10,13 @@ class Select extends React.Component {
   }
 
   render() {
-    const { options, label } = this.props
+    const { name, label, options, query } = this.props
     return (
       <div className="filter-panel">
         <div className="filter-header">
           <div className="filter-header-back" onClick={ this._handleBack.bind(this) }>
             <i className="chevron left icon" />
-            All Filters
+            Back
           </div>
           <div className="filter-header-title">
             { label }
@@ -29,6 +30,7 @@ class Select extends React.Component {
             return (
               <div key={`filter_${index}`} className="filter-item">
                 {option.value}
+                { _.includes(query[name]['$in'], option.key) ? <i className="green check icon" /> : null }
               </div>
             )
           }) }
@@ -55,6 +57,7 @@ class Select extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  query: state.filter.query
 })
 
 const mapDispatchToProps = {

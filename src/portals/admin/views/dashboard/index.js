@@ -10,15 +10,9 @@ class Dashboard extends React.Component {
 
   render() {
     const filters = [
-      { label: 'Item 1', options: [ { key: 1, value: 'One' }, { key: 2, value: 'Two' }, { key: 3, value: 'Three' }, { key: 4, value: 'Four' } ] },
-      { label: 'Item 2', options: [ { key: 1, value: 'One' }, { key: 2, value: 'Two' }, { key: 3, value: 'Three' }, { key: 4, value: 'Four' } ] },
-      { label: 'Item 3', options: [ { key: 1, value: 'One' }, { key: 2, value: 'Two' }, { key: 3, value: 'Three' }, { key: 4, value: 'Four' } ] },
-      { label: 'Item 4', options: [ { key: 1, value: 'One' }, { key: 2, value: 'Two' }, { key: 3, value: 'Three' }, { key: 4, value: 'Four' } ] },
-      { label: 'Item 5', options: [ { key: 1, value: 'One' }, { key: 2, value: 'Two' }, { key: 3, value: 'Three' }, { key: 4, value: 'Four' } ] },
-      { label: 'Item 6', options: [ { key: 1, value: 'One' }, { key: 2, value: 'Two' }, { key: 3, value: 'Three' }, { key: 4, value: 'Four' } ] },
-      { label: 'Item 7', options: [ { key: 1, value: 'One' }, { key: 2, value: 'Two' }, { key: 3, value: 'Three' }, { key: 4, value: 'Four' } ] },
-      { label: 'Item 8', options: [ { key: 1, value: 'One' }, { key: 2, value: 'Two' }, { key: 3, value: 'Three' }, { key: 4, value: 'Four' } ] },
-      { label: 'Item 9', options: [ { key: 1, value: 'One' }, { key: 2, value: 'Two' }, { key: 3, value: 'Three' }, { key: 4, value: 'Four' } ] }
+      { label: 'Users', name: 'user_id', options: [ { key: 1, value: 'One' }, { key: 2, value: 'Two' }, { key: 3, value: 'Three' }, { key: 4, value: 'Four' } ] },
+      { label: 'Projects', name: 'project_id', options: [ { key: 5, value: 'Five' }, { key: 6, value: 'Six' }, { key: 7, value: 'Seven' }, { key: 8, value: 'Eight' } ] },
+      { label: 'Expense Types', name: 'expense_type_id', options: [ { key: 1, value: 'One' }, { key: 2, value: 'Two' }, { key: 3, value: 'Three' }, { key: 4, value: 'Four' } ] }
     ]
 
     return (

@@ -2,7 +2,14 @@ import * as actionTypes from './action_types'
 
 export const INITIAL_STATE = {
   active: null,
-  filters: {}
+  query: {
+    user_id: {
+      $in: [1,2]
+    },
+    project_id: {
+      $in: [5,8]
+    }
+  }
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -10,7 +17,10 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
 
   case actionTypes.RESET:
-    return INITIAL_STATE
+    return {
+      ...state,
+      query: {}
+    }
 
   case actionTypes.CHOOSE:
     return {

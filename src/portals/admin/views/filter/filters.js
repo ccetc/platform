@@ -9,7 +9,7 @@ class Panel extends React.Component {
   }
 
   render() {
-    const { filters } = this.props
+    const { filters, query } = this.props
     return (
       <div className="filter-panel">
         <div className="filter-header">
@@ -26,6 +26,7 @@ class Panel extends React.Component {
             return (
               <div key={`filter_${index}`} className="filter-item" onClick={ this._handleChoose.bind(this, index) }>
                 {filter.label}
+                { false && query[filter.name] && query[filter.name].$in && <div className="label">{query[filter.name].$in.length}</div> }
                 <i className="chevron right icon" />
               </div>
             )
@@ -53,6 +54,7 @@ class Panel extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  query: state.filter.query
 })
 
 const mapDispatchToProps = {

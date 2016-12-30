@@ -19,18 +19,18 @@
 }
 .filter-header-back {
   flex: 0 0 110px;
-  padding: 15px;
+  padding: 15px 0 15px 15px;
 }
 .filter-header-title {
   flex: 1;
-  padding: 15px;
+  padding: 15px 0;
   font-weight: bold;
   text-align: center;
 }
 .filter-header-next {
-  flex: 0 0 110px;
+  flex: 0 0 90px;
   text-align: right;
-  padding: 15px;
+  padding: 15px 15px 15px 0;
 }
 .filter-body {
   flex: 1;
@@ -43,9 +43,19 @@
   background-color: #FFFFFF;
   position: relative;
   border-bottom: 1px solid #EEEEEE;
-  .chevron {
+  .label {
+    .border-radius(5px);
+    position: absolute;
+    right: 25px;
+    background-color: #888;
+    color: #FFF;
+    padding: 10px;
+  }
+  .icon {
     position: absolute;
     right: 15px;
+  }
+  .chevron {
     color: #BBB;
   }
 }
