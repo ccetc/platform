@@ -1,6 +1,7 @@
 .filter {
   height: 400px;
   position: relative;
+  overflow: hidden;
 }
 .filter-panel {
   position: absolute;
@@ -41,22 +42,33 @@
 .filter-item {
   padding: 15px;
   background-color: #FFFFFF;
-  position: relative;
   border-bottom: 1px solid #EEEEEE;
-  .label {
-    .border-radius(5px);
-    position: absolute;
-    right: 25px;
-    background-color: #888;
-    color: #FFF;
-    padding: 10px;
+  display: flex;
+  .filter-item-label {
+    flex: 1 1 0%;
+    display: flex;
+    align-items: center;
+    color: #444444;
   }
-  .icon {
-    position: absolute;
-    right: 15px;
+  .filter-item-values {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    .values {
+      margin: auto 15px auto auto;
+      color: green;
+      line-height: 16px;
+      font-size: 12px;
+      text-align: right;
+    }
   }
-  .chevron {
-    color: #BBB;
+  .filter-item-icon {
+    flex: 0 0 20px;
+    display: flex;
+    align-items: center;
+    .icon {
+      color: #BBB;
+    }
   }
 }
 .filter-footer {
@@ -65,4 +77,5 @@
   text-align: center;
   background-color: #F9F9F9;
   border-top: 1px solid #EEEEEE;
+  color: #444444;
 }

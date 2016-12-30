@@ -62,6 +62,12 @@ class Apps extends React.Component {
           </div>
         }
         <div className="chrome-navigation-body">
+          { path.length === 0 &&
+            <div className="chrome-navigation-item" onClick={ this._handleDashboard.bind(this) }>
+              <i className="home icon" />
+              Dashboard
+            </div>
+          }
           { items.map((item, index) => {
             if(!item.rights || userHasRights(user, item.rights)) {
               return (
@@ -76,6 +82,11 @@ class Apps extends React.Component {
         </div>
       </div>
     )
+  }
+
+  _handleDashboard() {
+    this.context.drawer.close()
+    this.context.history.push({ pathname: '/admin', state: 'static' })
   }
 
   _handleForward(item, index) {

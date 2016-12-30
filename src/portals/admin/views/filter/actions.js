@@ -18,3 +18,11 @@ export function reset() {
     type: actionTypes.RESET
   }
 }
+
+export function update(key, value) {
+  return {
+    type: actionTypes.UPDATE,
+    key,
+    value
+  }
+}

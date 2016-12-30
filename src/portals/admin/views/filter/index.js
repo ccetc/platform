@@ -25,10 +25,6 @@ class Index extends React.Component {
     )
   }
 
-  componentWillUnmount() {
-    this.props.onReset()
-  }
-
   _firstChild(props) {
     const childrenArray = React.Children.toArray(props.children)
     return childrenArray[0] || null

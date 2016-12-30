@@ -2,14 +2,7 @@ import * as actionTypes from './action_types'
 
 export const INITIAL_STATE = {
   active: null,
-  query: {
-    user_id: {
-      $in: [1,2]
-    },
-    project_id: {
-      $in: [5,8]
-    }
-  }
+  query: {}
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -32,6 +25,15 @@ export default (state = INITIAL_STATE, action) => {
     return {
       ...state,
       active: null
+    }
+
+  case actionTypes.UPDATE:
+    return {
+      ...state,
+      query: {
+        ...state.query,
+        [action.key]: action.value
+      }
     }
 
   default:
