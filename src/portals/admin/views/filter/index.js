@@ -1,66 +1,46 @@
 import React from 'react'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import { connect } from 'react-redux'
+import * as actions from './actions'
+import Filters from './filters'
+import Select from './select'
 
-class Filter extends React.Component {
+class Index extends React.Component {
 
-  static contextTypes = {
-    tray: React.PropTypes.object
+  static propTypes = {
+    filters: React.PropTypes.array,
+    path: React.PropTypes.array,
+    state: React.PropTypes.string
   }
 
   render() {
-    const fields = [
-      { label: 'Item 1' },
-      { label: 'Item 2' },
-      { label: 'Item 3' },
-      { label: 'Item 4' },
-      { label: 'Item 5' },
-      { label: 'Item 6' },
-      { label: 'Item 7' },
-      { label: 'Item 8' },
-      { label: 'Item 9' }
-    ]
+    const { active, filters } = this.props
     return (
       <div className="filter">
-        <div className="filter-header">
-          <div className="filter-header-back">
-            <i className="chevron left icon" />
-            All Filters
-          </div>
-          <div className="filter-header-title">
-            All Filters
-          </div>
-          <div className="filter-header-next" onClick={ this._handleDone.bind(this) }>
-            Done
-          </div>
-        </div>
-        <div className="filter-body">
-          { fields.map((field, index) => {
-            return (
-              <div key={`field_${index}`} className="filter-item" onClick={ this._handleChoose.bind(this, index) }>
-                {field.label}
-                <i className="chevron right icon" />
-              </div>
-            )
-          }) }
-        </div>
-        <div className="filter-footer" onClick={ this._handleReset.bind(this) }>
-          Reset Filter
-        </div>
+        <Filters filters={ filters } />
+        <ReactCSSTransitionGroup transitionName='stack' component={ this._firstChild } transitionEnterTimeout={ 500 } transitionLeaveTimeout={ 500 }>
+          { active !== null && <Select { ...filters[active]} /> }
+        </ReactCSSTransitionGroup>
       </div>
     )
   }
 
-  _handleDone() {
-    this.context.tray.close()
+  componentWillUnmount() {
+    this.props.onReset()
   }
 
-  _handleReset() {
-    console.log('reset')
+  _firstChild(props) {
+    const childrenArray = React.Children.toArray(props.children)
+    return childrenArray[0] || null
   }
-
-  _handleChoose(index) {
-    console.log('choose', index)
-  }
-
 }
 
-export default Filter
+const mapStateToProps = state => ({
+  active: state.filter.active
+})
+
+const mapDispatchToProps = {
+  onReset: actions.reset
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Index)

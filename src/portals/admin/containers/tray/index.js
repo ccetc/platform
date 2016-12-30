@@ -1,6 +1,7 @@
 import React from 'react'
 import CSSTransitionGroup from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
+import _ from 'lodash'
 import * as actions from './actions'
 
 class Tray extends React.Component {
@@ -24,7 +25,7 @@ class Tray extends React.Component {
           { tray && <div className="chrome-tray-overlay" onClick={this._handleCloseTray.bind(this)} /> }
           { tray &&
             <div className="chrome-tray-panel">
-              { React.createElement(tray.component) }
+              { _.isFunction(tray.component) ? React.createElement(tray.component) : tray.component }
             </div>
           }
         </CSSTransitionGroup>

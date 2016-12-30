@@ -16,6 +16,7 @@ import tray from './containers/tray/reducer'
 
 import component from './components/component/reducer'
 
+import filter from './views/filter/reducer'
 import navigation from './views/navigation/reducer'
 import reset from './views/reset/reducer'
 import search from './views/search/reducer'
@@ -32,6 +33,7 @@ const platformReducers = {
   history,
   host,
   modal,
+  filter,
   navigation,
   notifications,
   reset,
@@ -59,6 +61,7 @@ export default (state, action) => {
       history: history(undefined, action),
       host: host(undefined, action),
       modal: modal(undefined, action),
+      filter: filter(undefined, action),
       navigation: navigation(undefined, action),
       notifications: notifications(undefined, action),
       reset: reset(undefined, action),
