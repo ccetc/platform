@@ -15,8 +15,8 @@ class Lookup extends React.Component {
   }
 
   render() {
-    const { index, results, value } = this.props
-    const chosen = (index !== null) ? results[index] : null
+    const { selected, results, value } = this.props
+    const chosen = (selected !== null) ? results[selected] : null
     return (
       <div className="lookup-field">
         <input type="text"
@@ -44,7 +44,7 @@ class Lookup extends React.Component {
 
 const mapStateToProps = (state, props) => ({
   active: state.lookup[props.cid].active,
-  index: state.lookup[props.cid].index,
+  selected: state.lookup[props.cid].selected,
   results: state.lookup[props.cid].results
 })
 
