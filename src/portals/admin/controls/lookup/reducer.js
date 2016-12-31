@@ -2,7 +2,7 @@ import * as actionTypes from './action_types'
 
 const INITIAL_VALUE = {
   active: false,
-  index: null,
+  selected: null,
   query: '',
   results: [],
   status: 'ready'
@@ -28,7 +28,7 @@ export default (state = INITIAL_VALUE, action) => {
     return {
       ...state,
       active: false,
-      index: action.index
+      selected: action.index
     }
 
   case actionTypes.LOOKUP_REQUEST:

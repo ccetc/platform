@@ -11,7 +11,7 @@ class Search extends React.Component {
   }
 
   render() {
-    const { label, results, value } = this.props
+    const { label, results, selected, value } = this.props
     return (
       <div className="chrome-modal-panel">
        <div className="chrome-modal-panel-header">
@@ -35,7 +35,12 @@ class Search extends React.Component {
              { results.map((result, index) => {
                return (
                  <div key={`result_${index}`} className="lookup-panel-result" onClick={ this._handleChoose.bind(this, index) }>
-                   { _.get(result, value) }
+                   <div className="lookup-panel-result-label">
+                     { _.get(result, value) }
+                   </div>
+                   <div className="lookup-panel-result-icon">
+                     { index === selected ? <i className="green check icon" /> : null }
+                   </div>
                  </div>
                )
              })}
@@ -75,7 +80,7 @@ class Search extends React.Component {
 
 const mapStateToProps = (state, props) => ({
   active: state.lookup[props.cid].active,
-  index: state.lookup[props.cid].index,
+  selected: state.lookup[props.cid].selected,
   results: state.lookup[props.cid].results
 })
 
