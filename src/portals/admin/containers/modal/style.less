@@ -3,16 +3,12 @@
   display: flex;
 }
 .chrome-modal-overlay {
-  .opacity-transition(0, 0.5, .25s);
-  .opacity(0.5);
-  background-color: #000;
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
 }
-
 .chrome-modal-window {
   position: absolute;
   background: #FFFFFF;
@@ -24,6 +20,11 @@
   }
 }
 @media only screen and (min-width: 768px) {
+  .chrome-modal-overlay {
+    .opacity-transition(0, 0.5, .5s);
+    .opacity(0.5);
+    background-color: #000;
+  }
   .chrome-modal-window  {
     .opacity-transition(0, 1, .5s);
     width: 768px;

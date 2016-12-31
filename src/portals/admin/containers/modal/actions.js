@@ -12,3 +12,9 @@ export function pop() {
     type: actionTypes.POP
   }
 }
+
+export function close() {
+  return {
+    type: actionTypes.CLOSE
+  }
+}

@@ -38,13 +38,14 @@ class Modal extends React.Component {
   }
 
   _handleClose() {
-
+    this.props.onClose()
   }
 
   getChildContext() {
-    const { onPop, onPush } = this.props
+    const { onClose, onPop, onPush } = this.props
     return {
       modal: {
+        close: onClose,
         pop: onPop,
         push: onPush
       }
@@ -58,6 +59,7 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps = {
+  onClose: actions.close,
   onPop: actions.pop,
   onPush: actions.push
 }
