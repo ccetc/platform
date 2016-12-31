@@ -13,12 +13,12 @@
   left: 0;
 }
 .chrome-tray-panel {
-  .translate-y-transition(100%, 0, .25s);
   background-color: #FFFFFF;
   position: absolute;
 }
 @media only screen and (min-width: 768px) {
   .chrome-tray-panel {
+    .opacity-transition(0, 1, .5s);
     width: 320px;
     top: 30%;
     left: 50%;
@@ -27,6 +27,7 @@
 }
 @media only screen and (max-width: 767px) {
   .chrome-tray-panel {
+    .translate-y-transition(100%, 0, .25s);
     left: 0;
     right: 0;
     bottom: 0;

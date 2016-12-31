@@ -22,6 +22,7 @@ class Modal extends React.Component {
       <div className="chrome-modal">
         { children }
         <CSSTransitionGroup transitionName="expanded" transitionEnterTimeout={ 500 } transitionLeaveTimeout={ 500 }>
+          { components.length > 0 && <div className="chrome-modal-overlay" onClick={this._handleClose.bind(this)} /> }
           { components.length > 0 &&
             <div className="chrome-modal-window">
               <CSSTransitionGroup transitionName="stack" component="div" transitionEnterTimeout={ 500 } transitionLeaveTimeout={ 500 }>
@@ -34,6 +35,10 @@ class Modal extends React.Component {
         </CSSTransitionGroup>
       </div>
     )
+  }
+
+  _handleClose() {
+
   }
 
   getChildContext() {

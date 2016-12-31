@@ -9,8 +9,6 @@ class Panel extends React.Component {
     tray: React.PropTypes.object
   }
 
-//             const count = this._count(filter, query)
-//                { count && <div className="label">{ count }</div> }
 
   render() {
     const { filters, query } = this.props
@@ -28,13 +26,15 @@ class Panel extends React.Component {
         <div className="filter-body">
           { filters.map((filter, index) => {
             // const values = this._values(filter, query)
+            // { false && values && <div className="values">{ values }</div> }
+            const count = this._count(filter, query)
             return (
               <div key={`filter_${index}`} className="filter-item" onClick={ this._handleChoose.bind(this, index) }>
                 <div className="filter-item-label">
                   {filter.label}
                 </div>
                 <div className="filter-item-values">
-                  { false && values && <div className="values">{ values }</div> }
+                  { count && <div className="label">{ count }</div> }
                 </div>
                 <div className="filter-item-icon">
                   <i className="chevron right icon" />
