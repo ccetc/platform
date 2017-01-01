@@ -21,6 +21,13 @@ body {
 	-moz-opacity: @opacity;
 	opacity: @opacity;
 }
+.scale(@n,@n) {
+	-webkit-transform: scale(@n,@n);
+	-moz-transform: scale(@n,@n);
+	-ms-transform: scale(@n,@n);
+	-o-transform: scale(@n,@n);
+	transform: scale(@n,@n);
+}
 .translateX(@x) {
 	-webkit-transform: translateX(@x);
 	-moz-transform: translateX(@x);
@@ -93,6 +100,19 @@ body {
     .opacity(@start);
   }, {
     .opacity(@end);
+  })
+}
+.scale-opacity-transition(@start, @end, @duration) {
+	-webkit-transition: transform @duration cubic-bezier(0.7, 0, 0.175, 1) 0s, opacity @duration cubic-bezier(0.7, 0, 0.175, 1) 0s;
+	-moz-transition: transform @duration cubic-bezier(0.7, 0, 0.175, 1) 0s, opacity @duration cubic-bezier(0.7, 0, 0.175, 1) 0s;
+	-ms-transition: transform @duration cubic-bezier(0.7, 0, 0.175, 1) 0s, opacity @duration cubic-bezier(0.7, 0, 0.175, 1) 0s;
+	transition: transform @duration cubic-bezier(0.7, 0, 0.175, 1) 0s, opacity @duration cubic-bezier(0.7, 0, 0.175, 1) 0s;
+  .expanded({
+    .scale(@start);
+		.opacity(@start);
+  }, {
+    .scale(@end);
+		.opacity(@end);
   })
 }
 .translate-x-transition(@start, @end, @duration) {

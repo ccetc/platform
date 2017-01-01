@@ -28,7 +28,7 @@ class Select extends React.Component {
         </div>
         <Container {...this.props} />
         <div className="filter-footer" onClick={ this._handleReset.bind(this) }>
-          Reset Filter
+          Reset { label }
         </div>
       </div>
     )
@@ -43,7 +43,7 @@ class Select extends React.Component {
   }
 
   _handleReset() {
-    this.props.onReset()
+    this.props.onReset(this.props.name)
   }
 
 }

@@ -1,4 +1,5 @@
 import * as actionTypes from './action_types'
+import _ from 'lodash'
 
 export const INITIAL_STATE = {
   active: null,
@@ -9,10 +10,16 @@ export default (state = INITIAL_STATE, action) => {
 
   switch (action.type) {
 
-  case actionTypes.RESET:
+  case actionTypes.RESET_ALL:
     return {
       ...state,
       query: {}
+    }
+
+  case actionTypes.RESET:
+    return {
+      ...state,
+      query: _.omit(state.query, action.key)
     }
 
   case actionTypes.CHOOSE:

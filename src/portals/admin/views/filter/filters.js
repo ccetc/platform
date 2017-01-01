@@ -45,7 +45,7 @@ class Panel extends React.Component {
             )
           }) }
         </div>
-        <div className="filter-footer" onClick={ this._handleReset.bind(this) }>
+        <div className="filter-footer" onClick={ this._handleResetAll.bind(this) }>
           Reset Filter
         </div>
       </div>
@@ -84,8 +84,8 @@ class Panel extends React.Component {
     this.context.tray.close()
   }
 
-  _handleReset() {
-    this.props.onReset()
+  _handleResetAll() {
+    this.props.onResetAll()
   }
 
 }
@@ -96,7 +96,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   onChoose: actions.choose,
-  onReset: actions.reset
+  onResetAll: actions.resetAll
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Panel)

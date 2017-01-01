@@ -20,7 +20,8 @@ export class Flash extends React.Component {
     const { children, flash } = this.props
     return (
       <div className="chrome-flash">
-        <CSSTransitionGroup transitionName="expanded" transitionEnterTimeout={250} transitionLeaveTimeout={250} transitionAppear={true} transitionAppearTimeout={250}>
+        { children }
+        <CSSTransitionGroup transitionName="expanded" transitionEnterTimeout={250} transitionLeaveTimeout={250}>
           {flash &&
             <div className={`chrome-flash-popup ${flash.style}`}>
               <p>
@@ -30,7 +31,6 @@ export class Flash extends React.Component {
             </div>
           }
         </CSSTransitionGroup>
-        { children }
       </div>
     )
   }

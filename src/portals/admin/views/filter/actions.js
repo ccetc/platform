@@ -13,9 +13,16 @@ export function back() {
   }
 }
 
-export function reset() {
+export function resetAll() {
   return {
-    type: actionTypes.RESET
+    type: actionTypes.RESET_all
+  }
+}
+
+export function reset(key) {
+  return {
+    type: actionTypes.RESET,
+    key
   }
 }
 
