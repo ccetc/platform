@@ -14,17 +14,23 @@ class Table extends React.Component {
     tray: React.PropTypes.object
   }
 
+  static propTypes = {
+  }
+
   render() {
-    const { columns, empty, entity, filters, records, sort, status } = this.props
+    const { columns, empty, entity, filters, params, records, status } = this.props
     if(records.length > 0) {
       return (
         <div className="collection-layout">
           <div className="collection-header">
             <div className="collection-filters">
-              <span className="ui small basic button"><i className="remove icon" /> Sharon Anderson</span>
-              <span className="ui small basic button"><i className="remove icon" /> Greg Kops</span>
+              { Object.keys(params.filter).map(key => {
+                return params.filter[key].map(item => {
+                  return <span className="ui small basic button">{item.text} <i className="remove icon" /></span>
+                })
+              }) }
               { filters &&
-                <a onClick={ this.context.tray.open.bind(this, <Filter filters={filters} />) } className="ui small basic button"><i className="plus icon" /> Add Filter</a>
+                <a onClick={ this.context.tray.open.bind(this, <Filter filters={filters} />) } className="ui small basic add button"><i className="plus icon" /> Add Filter</a>
               }
             </div>
           </div>
@@ -36,7 +42,7 @@ class Table extends React.Component {
                   return (
                     <div key={ `fixed_header_${index}` } className={ classes } onClick={ this._handleSort.bind(this, column.key) }>
                       { column.label }
-                      { (sort.key == column.key) && ((sort.order == 'asc') ? <i className="chevron up icon" /> : <i className="chevron down icon" />) }
+                      { (params.sort.key == column.key) && ((params.sort.order == 'asc') ? <i className="chevron up icon" /> : <i className="chevron down icon" />) }
                     </div>
                   )
                 })}
@@ -120,7 +126,7 @@ class Table extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  sort: state.collection[props.cid].params.sort
+  params: state.collection[props.cid].params
 })
 
 const mapDispatchToProps = {

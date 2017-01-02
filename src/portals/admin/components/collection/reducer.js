@@ -2,7 +2,17 @@ import * as actionTypes from './action_types'
 
 export const INITIAL_STATE = {
   params: {
-    filter: {},
+    filter: {
+      user_id: [
+        { id: 1, text: 'Greg Kops' },
+        { id: 2, text: 'Sharon Anderson' },
+        { id: 3, text: 'Ken Schlather' }
+      ],
+      project_id: [
+        { id: 1, text: 'Primitive Pursuits' },
+        { id: 2, text: 'Eat Smart New York' }
+      ]
+    },
     sort: {
       key: 'created_at',
       order: 'desc'

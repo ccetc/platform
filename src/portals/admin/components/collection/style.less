@@ -22,22 +22,34 @@
   width: 100%;
 }
 .collection-header {
-  width: 100%;
+  width: 100vw;
   white-space: nowrap;
 	overflow-y: hidden;
 	overflow-x: scroll;
 	-webkit-overflow-scrolling: touch;
+  background-color: #333333;
   .collection-filters {
     padding: 10px;
     height: 50px;
-    background-color: #333333;
     color: #FFF;
   }
   .ui.basic.button {
     display: inline-block;
     background: rgba(255, 255, 255, .6) !important;
-    color: #000 !important;
+    color: #333333 !important;
     padding: 8px;
+    margin: 0 8px 0 0 !important;
+    &.add {
+      background: transparent !important;
+      border: 1px solid #BBBBBB;
+      color: #BBBBBB !important;
+    }
+    .add {
+      margin: 0 !important;
+    }
+    .remove {
+      margin: 0 !important;
+    }
   }
 }
 .table-head {
