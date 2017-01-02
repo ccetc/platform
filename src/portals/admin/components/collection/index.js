@@ -1,6 +1,7 @@
 import React from 'react'
 import component from 'portals/admin/components/component'
 import Infinite from 'portals/admin/containers/infinite'
+import Header from './header'
 import Table from './table'
 
 class Collection extends React.Component {
@@ -8,6 +9,7 @@ class Collection extends React.Component {
   render() {
     return (
       <div className="collection">
+        <Header {...this.props} />
         <Table {...this.props} />
       </div>
     )

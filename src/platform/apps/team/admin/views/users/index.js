@@ -22,7 +22,7 @@ class Index extends React.Component {
         { label: 'Name', key: 'first_name', primary: true, format: NameCell },
         { label: 'Email', key: 'email' }
       ],
-      sort: { key: 'created_at', order: 'desc' },
+      sort: { key: 'last_name', order: 'asc' },
       entity: 'user',
       empty: 'There are no users',
       filters: [
@@ -42,8 +42,7 @@ var NameCell = (props) => {
   return (
     <Link to={`/admin/team/users/${props.id}` }>
       <Avatar user={ props } />
-      <strong>{ props.first_name } { props.last_name }</strong><br />
-      { props.email }
+      { props.first_name } { props.last_name }
     </Link>
   )
 }

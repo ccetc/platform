@@ -22,6 +22,12 @@ export default (state = INITIAL_STATE, action) => {
       query: _.omit(state.query, action.key)
     }
 
+  case actionTypes.RESTART:
+    return {
+      ...state,
+      active: null
+    }
+
   case actionTypes.CHOOSE:
     return {
       ...state,

@@ -13,6 +13,12 @@ export function back() {
   }
 }
 
+export function restart() {
+  return {
+    type: actionTypes.RESTART
+  }
+}
+
 export function resetAll() {
   return {
     type: actionTypes.RESET_ALL

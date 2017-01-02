@@ -25,10 +25,15 @@ class Index extends React.Component {
     )
   }
 
+  componentWillUnmount() {
+    this.props.onRestart()
+  }
+
   _firstChild(props) {
     const childrenArray = React.Children.toArray(props.children)
     return childrenArray[0] || null
   }
+
 }
 
 const mapStateToProps = state => ({
@@ -36,7 +41,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  onReset: actions.reset
+  onReset: actions.reset,
+  onRestart: actions.restart
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index)
