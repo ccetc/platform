@@ -15,17 +15,18 @@ class Table extends React.Component {
   }
 
   render() {
-    const { columns, empty, entity, filters, records, sort, status, total } = this.props
+    const { columns, empty, entity, filters, records, sort, status } = this.props
     if(records.length > 0) {
       return (
         <div className="collection-layout">
           <div className="collection-header">
-            <span className="collection-count">
-              { pluralize(entity, total, true) }
-            </span>
-            { filters &&
-              <a onClick={ this.context.tray.open.bind(this, <Filter filters={filters} />) } className="ui basic button"><i className="filter icon" />Filter</a>
-            }
+            <div className="collection-filters">
+              <span className="ui small basic button"><i className="remove icon" /> Sharon Anderson</span>
+              <span className="ui small basic button"><i className="remove icon" /> Greg Kops</span>
+              { filters &&
+                <a onClick={ this.context.tray.open.bind(this, <Filter filters={filters} />) } className="ui small basic button"><i className="plus icon" /> Add Filter</a>
+              }
+            </div>
           </div>
           <div className="table">
             <div className="table-head">

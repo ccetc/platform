@@ -22,20 +22,22 @@
   width: 100%;
 }
 .collection-header {
-  padding: 12px 18px;
-  background-color: @table_header_background_color;
-  border-bottom: 1px solid #CCC;
-  position: relative;
-  .collection-count {
-    font-weight: bold;
-    margin-right: 10px;
-    line-height: 34px;
+  width: 100%;
+  white-space: nowrap;
+	overflow-y: hidden;
+	overflow-x: scroll;
+	-webkit-overflow-scrolling: touch;
+  .collection-filters {
+    padding: 10px;
+    height: 50px;
+    background-color: #333333;
+    color: #FFF;
   }
   .ui.basic.button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #FFFFFF !important;
+    display: inline-block;
+    background: rgba(255, 255, 255, .6) !important;
+    color: #000 !important;
+    padding: 8px;
   }
 }
 .table-head {
