@@ -25,6 +25,11 @@ class Index extends React.Component {
       sort: { key: 'created_at', order: 'desc' },
       entity: 'user',
       empty: 'There are no users',
+      filters: [
+        { label: 'Users', name: 'user_id', type: 'select', multiple: true, endpoint: '/admin/users', value: 'id', text: 'full_name' },
+        { label: 'Projects', name: 'project_id', type: 'select', multiple: true, endpoint: '/admin/reimbursement/projects', value: 'id', text: 'title' },
+        { label: 'Expense Type', name: 'expense_type_id', type: 'select', endpoint: '/admin/reimbursement/expense_types', value: 'id', text: 'title' }
+      ],
       recordActions: [
         { label: 'edit', icon: 'edit', redirect: '/admin/team/users/#{id}/edit'}
       ]

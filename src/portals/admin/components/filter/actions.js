@@ -15,7 +15,7 @@ export function back() {
 
 export function resetAll() {
   return {
-    type: actionTypes.RESET_all
+    type: actionTypes.RESET_ALL
   }
 }
 

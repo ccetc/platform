@@ -15,8 +15,8 @@ import tasks from './containers/tasks/reducer'
 import tray from './containers/tray/reducer'
 
 import component from './components/component/reducer'
+import filter from './components/filter/reducer'
 
-import filter from './views/filter/reducer'
 import navigation from './views/navigation/reducer'
 import reset from './views/reset/reducer'
 import search from './views/search/reducer'
