@@ -1,23 +1,17 @@
 import React from 'react'
 import $ from 'jquery'
 import _ from 'lodash'
-import pluralize from 'pluralize'
-import { connect } from 'react-redux'
-import * as actions from './actions'
 import Format from 'portals/admin/utils/format'
 
 class Table extends React.Component {
 
-  static contextTypes = {
-    modal: React.PropTypes.object,
-    tray: React.PropTypes.object
-  }
-
   static propTypes = {
+    columns: React.PropTypes.array,
+    onSort: React.PropTypes.func
   }
 
   render() {
-    const { columns, empty, entity, params, records, status } = this.props
+    const { columns, sort, records, status } = this.props
     if(records.length > 0) {
       return (
         <div className="collection-layout">
@@ -29,7 +23,7 @@ class Table extends React.Component {
                   return (
                     <div key={ `fixed_header_${index}` } className={ classes } onClick={ this._handleSort.bind(this, column.key) }>
                       { column.label }
-                      { (params.sort.key == column.key) && ((params.sort.order == 'asc') ? <i className="chevron up icon" /> : <i className="chevron down icon" />) }
+                      { (sort.key == column.key) && ((sort.order == 'asc') ? <i className="chevron up icon" /> : <i className="chevron down icon" />) }
                     </div>
                   )
                 })}
@@ -62,25 +56,6 @@ class Table extends React.Component {
           }
         </div>
       )
-    } else if(status === 'completed' && records.length === 0) {
-      return (
-        <div className="table-empty">
-          <div className="table-empty-message">
-            <h2><i className={`circular ${empty.icon} icon`} /></h2>
-            <h3>No {_.startCase(pluralize(entity.replace('_', ' ')))}</h3>
-            <p>You have not yet created any {pluralize(entity.replace('_', ' '))}.</p>
-            { empty.modal && <div className="ui basic button red" onClick={ this._handleAddNew.bind(this)}><i className="plus icon" /> Create New {_.startCase(entity.replace('_', ' '))}</div> }
-          </div>
-        </div>
-      )
-    } else if(status === 'loading') {
-      return (
-        <div className="chrome-loader">
-          <div className="ui active inverted dimmer">
-            <div className="ui large text loader">Loading</div>
-          </div>
-        </div>
-      )
     } else {
       return null
     }
@@ -106,18 +81,6 @@ class Table extends React.Component {
     onSort(cid, key)
   }
 
-  _handleAddNew() {
-    this.context.modal.push(this.props.empty.modal)
-  }
-
 }
 
-const mapStateToProps = (state, props) => ({
-  params: state.collection[props.cid].params
-})
-
-const mapDispatchToProps = {
-  onSort: actions.sort
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Table)
+export default Table

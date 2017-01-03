@@ -1,17 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from './actions'
-import _ from 'lodash'
 
-class Panel extends React.Component {
+class Fields extends React.Component {
 
   static contextTypes = {
     tray: React.PropTypes.object
   }
 
+  static propTypes = {
+    fields: React.PropTypes.array,
+    query: React.PropTypes.object
+  }
 
   render() {
-    const { filters, query } = this.props
+    const { fields, query } = this.props
     return (
       <div className="filter-panel">
         <div className="filter-header">
@@ -24,19 +27,15 @@ class Panel extends React.Component {
           </div>
         </div>
         <div className="filter-body">
-          { filters.map((filter, index) => {
-            // const values = this._values(filter, query)
-            // <div className="filter-item-values">
-            //   { false && values && <div className="values">{ values }</div> }
-            // </div>
-            const count = this._count(filter, query)
+          { fields.map((field, index) => {
+            const values = this._values(field, query)
             return (
               <div key={`filter_${index}`} className="filter-item" onClick={ this._handleChoose.bind(this, index) }>
-                <div className="filter-item-label">
-                  {filter.label}
+                <div className="filter-item-field">
+                  {field.label}
                 </div>
-                <div className="filter-item-count">
-                  { count && <div className="label">{ count }</div> }
+                <div className="filter-item-values">
+                  { values && <div className="values">{ values }</div> }
                 </div>
                 <div className="filter-item-icon">
                   <i className="chevron right icon" />
@@ -56,21 +55,16 @@ class Panel extends React.Component {
     return query[filter.name] ? query[filter.name].length : null
   }
 
-  _values(filter, query) {
-    if(filter.multiple && query[filter.name]) {
+  _values(field, query) {
+    if(field.multiple && query[field.name]) {
       let values = []
-      filter.options.map(option => {
-        if(_.includes(query[filter.name], option.key)) {
-          values.push(option.value)
-        }
+      query[field.name].map(record => {
+        values.push(record.value)
       })
       return values.join(', ')
     } else {
-      if(query[filter.name]) {
-        const option = _.find(filter.options, { key: query[filter.name] })
-        if(option) {
-          return option.value
-        }
+      if(query[field.name]) {
+        return query[field.name].value
       }
     }
     return ''
@@ -99,4 +93,4 @@ const mapDispatchToProps = {
   onResetAll: actions.resetAll
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Panel)
+export default connect(mapStateToProps, mapDispatchToProps)(Fields)

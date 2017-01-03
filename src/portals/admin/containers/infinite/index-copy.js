@@ -29,20 +29,15 @@ class Infinite extends React.Component {
     return React.cloneElement(children, { loaded, records, status, total })
   }
 
-  componentDidMount() {
-    const { endpoint, filter, sort } = this.props
-    this.props.onFetch(this.props.cid, endpoint, { ...filter, $skip: 0, $sort: sort })
-  }
-
   componentDidUpdate(prevProps) {
-    const { endpoint, filter, sort, loaded, records, status } = this.props
+    const { filter, sort, loaded, records, status } = this.props
     if(prevProps.sort !== sort || prevProps.filter !== filter) {
       this.props.onReset(this.props.cid)
     } else if(prevProps.status !== status) {
       if(status === 'loaded' && records.length > 0) {
         this._attachScrollListener()
       } else if(status === 'pending') {
-        this.props.onFetch(this.props.cid, endpoint, { ...filter, $skip: loaded, $sort: sort })
+        this._handleFetch(loaded)
       } else if(status === 'completed') {
         this._detachScrollListener()
       }
@@ -53,6 +48,16 @@ class Infinite extends React.Component {
     if(this._container()) {
       this._detachScrollListener()
     }
+  }
+
+  _handleFetch($skip) {
+    const { cid, endpoint, filter, sort, onFetch } = this.props
+    const params = {
+      ...filter,
+      $skip,
+      $sort: sort
+    }
+    onFetch(cid, endpoint, params)
   }
 
   _container() {
@@ -86,13 +91,13 @@ class Infinite extends React.Component {
   }
 
   _scrollListener() {
-    const { cid, endpoint, filter, sort, loaded, status, total, onFetch } = this.props
+    const { loaded, status, total } = this.props
     const el = this._container()
     if(!el || status == 'loading') return
     const bottomScrollPos = el.scrollTop + el.offsetHeight
     const bottomPosition = (el.scrollHeight - bottomScrollPos)
-    if(bottomPosition < 250 && loaded < total) {
-      onFetch(cid, endpoint, { ...filter, $skip: loaded, $sort: sort })
+    if (status !== 'pending' && (bottomPosition < 250 && loaded < total)) {
+      this._handleFetch(loaded)
     }
   }
 

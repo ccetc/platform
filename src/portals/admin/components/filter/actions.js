@@ -1,4 +1,24 @@
 import * as actionTypes from './action_types'
+import api from 'portals/admin/utils/api'
+
+export function load(key, endpoint, value, text, ids) {
+  return api.get({
+    endpoint,
+    meta: { key, value, text },
+    params: { $ids: ids },
+    request: actionTypes.LOAD_REQUEST,
+    success: actionTypes.LOAD_SUCCESS,
+    failure: actionTypes.LOAD_FAILURE
+  })
+}
+
+export function set(key, value) {
+  return {
+    type: actionTypes.SET,
+    key,
+    value
+  }
+}
 
 export function choose(index) {
   return {
@@ -37,5 +57,13 @@ export function update(key, value) {
     type: actionTypes.UPDATE,
     key,
     value
+  }
+}
+
+export function remove(key, index) {
+  return {
+    type: actionTypes.REMOVE,
+    key,
+    index
   }
 }

@@ -1,3 +1,35 @@
+.filters {
+  width: 100vw;
+  white-space: nowrap;
+	overflow-y: hidden;
+	overflow-x: scroll;
+	-webkit-overflow-scrolling: touch;
+  background-color: #333333;
+}
+.filter-tokens {
+  padding: 10px;
+  height: 50px;
+  color: #FFF;
+  .ui.basic.button {
+    display: inline-block;
+    background: rgba(255, 255, 255, .6) !important;
+    color: #333333 !important;
+    padding: 8px;
+    margin: 0 8px 0 0 !important;
+    &.add {
+      background: transparent !important;
+      border: 1px solid #BBBBBB;
+      color: #BBBBBB !important;
+    }
+    .add {
+      margin: 0 !important;
+    }
+    .remove {
+      margin: 0 !important;
+    }
+  }
+}
+
 .filter {
   height: 400px;
   position: relative;
@@ -66,11 +98,17 @@
   &:hover {
     background-color: #F9F9F9;
   }
+  .filter-item-field,
   .filter-item-label {
-    flex: 1;
     display: flex;
     align-items: center;
     color: #444444;
+  }
+  .filter-item-field {
+    flex: 0 1 100px;
+  }
+  .filter-item-label {
+    flex: 1;
   }
   .filter-item-values {
     flex: 1;
@@ -80,7 +118,7 @@
       margin: auto 15px auto auto;
       color: green;
       line-height: 16px;
-      font-size: 12px;
+      font-size: 13px;
       text-align: right;
     }
   }
@@ -100,6 +138,7 @@
   .filter-item-icon {
     flex: 0 0 20px;
     display: flex;
+    align-items: center;
     .icon {
       color: #BBB;
     }

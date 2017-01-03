@@ -22,17 +22,11 @@ class Index extends React.Component {
         { label: 'Name', key: 'first_name', primary: true, format: NameCell },
         { label: 'Email', key: 'email' }
       ],
-      sort: { key: 'last_name', order: 'asc' },
       entity: 'user',
-      empty: 'There are no users',
-      filters: [
-        { label: 'Users', name: 'user_id', type: 'select', multiple: true, endpoint: '/admin/users', value: 'id', text: 'full_name' },
-        { label: 'Projects', name: 'project_id', type: 'select', multiple: true, endpoint: '/admin/reimbursement/projects', value: 'id', text: 'title' },
-        { label: 'Expense Type', name: 'expense_type_id', type: 'select', endpoint: '/admin/reimbursement/expense_types', value: 'id', text: 'title' }
-      ],
       recordActions: [
         { label: 'edit', icon: 'edit', redirect: '/admin/team/users/#{id}/edit'}
-      ]
+      ],
+      sort: { key: 'last_name', order: 'asc' }
     }
   }
 

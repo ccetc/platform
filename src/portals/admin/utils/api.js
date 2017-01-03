@@ -1,4 +1,5 @@
 import rest from 'rest'
+import qs from 'qs'
 import mime from 'rest/interceptor/mime'
 import defaultRequest from 'rest/interceptor/defaultRequest'
 import errorCode from 'rest/interceptor/errorCode'
@@ -54,7 +55,7 @@ class Api {
 
     if(options.params) {
       if(config.method == 'GET') {
-        config.params = options.params
+        config.path += '?'+qs.stringify(options.params)
       } else  {
         config.entity = options.params
       }

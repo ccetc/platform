@@ -3,13 +3,29 @@ import { connect } from 'react-redux'
 import * as actions from './actions'
 import Options from './options'
 
-class Select extends React.Component {
+class DateRange extends React.Component {
 
   static contextTypes = {
     tray: React.PropTypes.object
   }
 
   render() {
+    const options = []
+    options.push()
+    options.push({ key: 'this_week', value: 'This Week' })
+    options.push({ key: 'last_week', value: 'Last Week' })
+    options.push({ key: 'next_week', value: 'Next Week' })
+    options.push({ key: 'this_month', value: 'This Month' })
+    options.push({ key: 'last_month', value: 'Last Month' })
+    options.push({ key: 'next_month', value: 'Next Month' })
+    options.push({ key: 'this_quarter', value: 'This Quarter' })
+    options.push({ key: 'last_quarter', value: 'Last Quarter' })
+    options.push({ key: 'next_quarter', value: 'Next Quarter' })
+    options.push({ key: 'this_year', value: 'This Year' })
+    options.push({ key: 'last_year', value: 'Last Year' })
+    options.push({ key: 'next_year', value: 'Next Year' })
+    options.push({ key: 'next_year', value: 'Next Year' })
+    options.push({ key: 'custom', value: 'Custom' })
     const { label } = this.props
     return (
       <div className="filter-panel">
@@ -25,7 +41,7 @@ class Select extends React.Component {
             Done
           </div>
         </div>
-        <Options {...this.props} />
+        <Options options={ options } />
         <div className="filter-footer" onClick={ this._handleReset.bind(this) }>
           Reset { label }
         </div>
@@ -57,4 +73,4 @@ const mapDispatchToProps = {
   onReset: actions.reset
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Select)
+export default connect(mapStateToProps, mapDispatchToProps)(DateRange)

@@ -36,6 +36,10 @@ export default (options = {}) => {
           qb.whereNotIn('id', req.query['$exclude_ids'])
         }
 
+        if(req.query['$ids']) {
+          qb.whereIn('id', req.query['$ids'])
+        }
+
         qb.count('*')
 
       }).fetchAll()
@@ -50,6 +54,10 @@ export default (options = {}) => {
 
         if(req.query['$exclude_ids']) {
           qb.whereNotIn('id', req.query['$exclude_ids'])
+        }
+
+        if(req.query['$ids']) {
+          qb.whereIn('id', req.query['$ids'])
         }
 
         if(limit > 0) {

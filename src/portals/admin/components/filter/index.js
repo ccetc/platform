@@ -1,48 +1,119 @@
 import React from 'react'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import Panel from './panel'
 import { connect } from 'react-redux'
 import * as actions from './actions'
-import Filters from './filters'
-import Select from './select'
 
-class Index extends React.Component {
+class Filter extends React.Component {
+
+  static contextTypes = {
+    tray: React.PropTypes.object
+  }
 
   static propTypes = {
-    filters: React.PropTypes.array,
-    path: React.PropTypes.array,
-    state: React.PropTypes.string
+    fields: React.PropTypes.array,
+    filters: React.PropTypes.object,
+    params: React.PropTypes.object,
+    onChange: React.PropTypes.func,
+    onLoad: React.PropTypes.func,
+    onRemove: React.PropTypes.func,
+    onSet: React.PropTypes.func
+  }
+
+  static defaultProps = {
+    onChange: () => {}
   }
 
   render() {
-    const { active, filters } = this.props
+    const { fields, query } = this.props
     return (
-      <div className="filter">
-        <Filters filters={ filters } />
-        <ReactCSSTransitionGroup transitionName='stack' component={ this._firstChild } transitionEnterTimeout={ 500 } transitionLeaveTimeout={ 500 }>
-          { active !== null && <Select { ...filters[active]} /> }
-        </ReactCSSTransitionGroup>
+      <div className="filters">
+        <div className="filter-tokens">
+          { fields.map(field => {
+            if(query[field.name]) {
+              return query[field.name].map((filter, index) => {
+                return (
+                  <span key={`filter_${index}`} className="ui small basic button">
+                    <span className="label" onClick={ this._handleOpen.bind(this) }>
+                      { filter.value }
+                    </span>
+                    <i className="remove icon" onClick={ this._handleRemove.bind(this, field.name, index) } />
+                  </span>
+                )
+              })
+            }
+          }) }
+          { fields &&
+            <a onClick={ this._handleOpen.bind(this) } className="ui small basic add button">
+              <i className="plus icon" />
+              Add Filter
+            </a>
+          }
+        </div>
       </div>
     )
   }
 
-  componentWillUnmount() {
-    this.props.onRestart()
+  componentDidMount() {
+    this._loadFilters()
   }
 
-  _firstChild(props) {
-    const childrenArray = React.Children.toArray(props.children)
-    return childrenArray[0] || null
+  componentDidUpdate(prevProps) {
+    const { query } = this.props
+    if(query !== prevProps.query) {
+      this._handleChange()
+    }
+  }
+
+  _loadFilters() {
+    const { fields, filters, onLoad, onSet } = this.props
+    if(fields && filters) {
+      fields.map(field => {
+        if(filters[field.name]) {
+          if(field.endpoint) {
+            onLoad(field.name, field.endpoint, field.value, field.text, filters[field.name])
+          } else {
+            onSet(field.name, filters[field.name])
+          }
+        }
+      })
+    }
+  }
+
+  _handleChange() {
+    const { query } = this.props
+    const filters = Object.keys(query).reduce((filters, key) => {
+      return {
+        ...filters,
+        [key]: query[key].map(item => item.key)
+      }
+    }, {})
+    this.props.onChange(filters)
+  }
+
+  _handleChoose(key) {
+    this._handleOpen()
+    this.props.onChoose(key)
+  }
+
+  _handleOpen() {
+    this.context.tray.open(<Panel fields={ this.props.fields } />)
+  }
+
+  _handleRemove(key, index) {
+    this.props.onRemove(key, index)
   }
 
 }
 
 const mapStateToProps = state => ({
-  active: state.filter.active
+  query: state.filter.query
 })
 
 const mapDispatchToProps = {
-  onReset: actions.reset,
-  onRestart: actions.restart
+  onChoose: actions.choose,
+  onLoad: actions.load,
+  onRemove: actions.remove,
+  onSet: actions.set
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Index)
+export default connect(mapStateToProps, mapDispatchToProps)(Filter)
