@@ -3,7 +3,12 @@ exports.up = function(knex, Promise) {
     knex.schema.createTable('apps', function (table) {
       table.increments('id').primary()
       table.string('title')
-      table.string('description')
+      table.string('author')
+      table.string('version')
+      table.string('short_description')
+      table.string('long_description')
+      table.string('icon')
+      table.string('category')
       table.timestamps()
     })
   ])

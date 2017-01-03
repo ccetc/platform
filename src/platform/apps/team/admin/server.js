@@ -27,13 +27,6 @@ router.use(resources({
 }))
 
 router.use(resources({
-  name: 'app',
-  path: 'apps',
-  model: App,
-  serializer: AppSerializer
-}))
-
-router.use(resources({
   name: 'asset',
   path: 'assets',
   model: Asset,

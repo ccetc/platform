@@ -1,0 +1,68 @@
+.apps {
+  flex: 1;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  padding: 10px;
+}
+.app {
+  margin: 10px;
+  .border-radius(5px);
+  @media only screen and (max-width: 767px) {
+    width: ~"calc(100% - 20px)";
+  }
+  @media only screen and (min-width: 768px) {
+    width: ~"calc(50% - 20px)";
+    float: left;
+  }
+  display: flex;
+  border: 1px solid #CCC;
+  overflow: hidden;
+  &.installed .app-icon {
+    position: relative;
+    background: #21BA45 !important;
+    &:after {
+      position: absolute;
+      content: 'INSTALLED';
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 20px;
+      color: #FFFFFF;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+  }
+}
+.app-icon {
+  flex: 0 0 100px;
+  display: flex;
+  background: #DDDDDD !important;
+  i {
+    margin: auto;
+    font-size: 60px;
+    line-height: 60px;
+    color: rgba(0, 0, 0, 0.5);
+  }
+}
+.app-content {
+  flex: 1;
+  background: #FFF;
+  padding: 10px 20px;
+  h2 {
+    margin: 0;
+    font-size: 18px;
+    line-height: 28px;
+  }
+  h4 {
+    margin: 0 0 10px;
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: normal;
+    color: #444444;
+  }
+  p {
+    margin: 0 0 10px;
+    color: #888888;
+  }
+}

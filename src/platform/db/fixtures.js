@@ -17,9 +17,21 @@ exports.seed = (knex, Promise) => {
   .then(() => {
     return knex('apps').insert([
       {
-        title: 'Team'
+        title: 'Team',
+        short_description: 'Manage team settings, users, apps, access, and activity',
+        long_description: 'Manage team settings, users, apps, access, and activity',
+        version: '1.0.0',
+        icon: 'users',
+        category: 'administrative',
+        author: 'Cornell Cooperative Extension of Tompkins County'
       }, {
-        title: 'Reimbursement'
+        title: 'Reimbursement',
+        short_description: 'Manage reimbursement for expenses, advances, and vehicle trips',
+        long_description: 'Manage reimbursement for expenses, advances, and vehicle trips',
+        version: '1.0.0',
+        icon: 'dollar',
+        category: 'finance',
+        author: 'Cornell Cooperative Extension of Tompkins County'
       }
     ])
   })
@@ -59,7 +71,7 @@ exports.seed = (knex, Promise) => {
         team_id: 1,
         app_id: 2
       }, {
-        team_id: 1,
+        team_id: 2,
         app_id: 2
       }
     ])
