@@ -17,6 +17,7 @@ class Collection extends React.Component {
     entity: React.PropTypes.string,
     filters: React.PropTypes.array,
     filter: React.PropTypes.object,
+    layout: React.PropTypes.func,
     params: React.PropTypes.object,
     recordActions: React.PropTypes.array,
     sort: React.PropTypes.object,

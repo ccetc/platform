@@ -1,16 +1,45 @@
 import React from 'react'
 import { Link } from 'react-router'
 import Page from 'portals/admin/containers/page'
+import Collection from 'portals/admin/components/collection'
 
 class Index extends React.Component {
 
   render() {
-    const { apps } = this.props
+    return (
+      <div className="chrome-body">
+        <Collection { ...this._getCollection() } />
+      </div>
+    )
+  }
+
+  _getCollection() {
+    return {
+      endpoint: '/admin/apps',
+      filters: [
+        { label: 'Category', name: 'app_category_id', type: 'select', multiple: true, endpoint: '/admin/apps/categories', value: 'id', text: 'title' }
+      ],
+      sort: { key: 'created_at', order: 'desc' },
+      layout: Apps,
+      entity: 'app'
+    }
+  }
+
+}
+
+class Apps extends React.Component {
+
+  static propTypes = {
+    records: React.PropTypes.array,
+    status: React.PropTypes.string
+  }
+
+  render() {
+    const { records } = this.props
     return (
       <div className="chrome-body">
         <div className="apps">
-          { Object.keys(apps).map(key => {
-            const app = apps[key]
+          { records.map(app => {
             return (
               <div className={`app ${app.installed && 'installed'}`}>
                 <div className="app-icon">
@@ -33,10 +62,7 @@ class Index extends React.Component {
 }
 
 const mapPropsToPage = (props, context) => ({
-  title: 'Apps',
-  resources: {
-    apps: '/admin/apps'
-  }
+  title: 'Apps'
 })
 
 export default Page(mapPropsToPage)(Index)

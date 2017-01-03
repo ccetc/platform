@@ -14,5 +14,24 @@ exports.seed = (knex, Promise) => {
         text: 'In what city were you born?'
       }
     ])
+  }).then(() => {
+    return knex('app_categories').del()
+  })
+  .then(() => {
+    return knex('app_categories').insert([
+      {
+        title: 'Administration'
+      }, {
+        title: 'Communication'
+      }, {
+        title: 'Education'
+      }, {
+        title: 'Finance'
+      }, {
+        title: 'Management'
+      }, {
+        title: 'Productivity'
+      }
+    ])
   })
 }

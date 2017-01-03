@@ -11,7 +11,7 @@ class Results extends React.Component {
   }
 
   render() {
-    const { all, columns, empty, entity, filters, records, status } = this.props
+    const { all, columns, empty, entity, filters, layout, records, status } = this.props
     if(status === 'completed' && all === 0) {
       return (
         <div className="table-empty">
@@ -44,6 +44,7 @@ class Results extends React.Component {
             </div>
           }
           { status === 'completed' && columns && records.length > 0 && <Table { ...this._getTable() } /> }
+          { status === 'completed' && layout && records.length > 0 && React.createElement(layout, { ...this._getLayout() }) }
           { status === 'completed' && records.length === 0 &&
             <div className="table-empty">
               <div className="table-empty-message">
@@ -75,6 +76,14 @@ class Results extends React.Component {
       sort: params.sort,
       status,
       onSort
+    }
+  }
+
+  _getLayout() {
+    const { records, status} = this.props
+    return {
+      records,
+      status
     }
   }
 

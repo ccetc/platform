@@ -1,7 +1,10 @@
 import { Router } from 'express'
 import resources from 'server/middleware/resources'
 import App from 'platform/models/app'
+import AppCategory from 'platform/models/app_category'
 import AppSerializer from 'platform/serializers/app_serializer'
+import AppQuery from 'platform/queries/app_query'
+import AppCategorySerializer from 'platform/serializers/app_category_serializer'
 
 // import fs from 'fs'
 // import path from 'path'
@@ -22,9 +25,18 @@ import AppSerializer from 'platform/serializers/app_serializer'
 const router = Router()
 
 router.use(resources({
+  name: 'app_category',
+  path: 'apps/categories',
+  model: AppCategory,
+  serializer: AppCategorySerializer,
+  team: false
+}))
+
+router.use(resources({
   name: 'app',
   path: 'apps',
   model: App,
+  query: AppQuery,
   serializer: AppSerializer,
   team: false,
   filter: (qb, req) => qb

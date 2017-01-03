@@ -33,7 +33,7 @@ export default (state = INITIAL_STATE, action) => {
       ],
       loaded,
       total: action.data.total,
-      status: (loaded === action.data.total) ? 'completed' : 'loaded'
+      status: (loaded >= action.data.total) ? 'completed' : 'loaded'
     }
 
   default:

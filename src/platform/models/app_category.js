@@ -1,13 +1,11 @@
 import checkit from  'checkit'
 import bookshelf from 'server/services/bookshelf'
 import unique from 'server/utils/unique_validation'
-import Category from 'platform/models/app_category'
-import Right from 'platform/models/right'
-import User from 'platform/models/user'
+import App from 'platform/models/app'
 
 export default bookshelf.Model.extend({
 
-  tableName: 'apps',
+  tableName: 'app_categories',
 
   hasTimestamps: ['created_at', 'updated_at'],
 
@@ -15,16 +13,8 @@ export default bookshelf.Model.extend({
     title: ['required', unique('apps', 'title')]
   },
 
-  category: function() {
-    return this.belongsTo(Category, 'app_category_id')
-  },
-
-  users: function() {
-    return this.belongsToMany(User, 'users_apps', 'app_id', 'user_id')
-  },
-
-  rights: function() {
-    return this.hasMany(Right, 'app_id')
+  apps: function() {
+    return this.hasMany(App, 'app_category_id')
   },
 
   virtuals: {
