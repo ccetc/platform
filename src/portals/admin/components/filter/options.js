@@ -12,7 +12,6 @@ class Options extends React.Component {
     return (
       <div className="filter-body">
         { options.map((option, index) => {
-          console.log(option)
           return (
             <div key={`filter_${index}`} className="filter-item" onClick={ this._handleChoose.bind(this, option.value, option.text) }>
               <div className="filter-item-label">

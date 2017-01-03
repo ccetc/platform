@@ -28,25 +28,7 @@ class Results extends React.Component {
           </div>
         </div>
       )
-    } else if(status === 'loading' && records.length === 0) {
-      return (
-        <div className="chrome-loader">
-          <div className="ui active inverted dimmer">
-            <div className="ui large text loader">Loading</div>
-          </div>
-        </div>
-      )
-    } else if(status === 'completed' && records.length === 0) {
-      return (
-        <div className="table-empty">
-          <div className="table-empty-message">
-            <h2><i className="circular remove icon" /></h2>
-            <h3>No Results Found</h3>
-            <p>No records matched your query</p>
-          </div>
-        </div>
-      )
-    } else if(columns && records.length > 0) {
+    } else {
       return (
         <div className="collection">
           { filters &&
@@ -54,11 +36,25 @@ class Results extends React.Component {
               <Filter { ...this._getFilter() } />
             </div>
           }
-          <Table { ...this._getTable() } />
+          { status === 'loading' && records.length === 0 &&
+            <div className="chrome-loader">
+              <div className="ui active inverted dimmer">
+                <div className="ui large text loader">Loading</div>
+              </div>
+            </div>
+          }
+          { status === 'completed' && columns && records.length > 0 && <Table { ...this._getTable() } /> }
+          { status === 'completed' && records.length === 0 &&
+            <div className="table-empty">
+              <div className="table-empty-message">
+                <h2><i className="circular remove icon" /></h2>
+                <h3>No Results Found</h3>
+                <p>No records matched your query</p>
+              </div>
+            </div>
+          }
         </div>
       )
-    } else {
-      return null
     }
   }
 
