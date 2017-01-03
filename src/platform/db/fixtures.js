@@ -19,7 +19,7 @@ exports.seed = (knex, Promise) => {
       {
         title: 'Team',
         short_description: 'Manage team settings, users, apps, access, and activity',
-        long_description: 'Manage team settings, users, apps, access, and activity',
+        long_description: 'Vexillologist viral stumptown salvia. Asymmetrical green juice lumbersexual, microdosing hell of yuccie messenger bag butcher pok pok XOXO organic neutra brunch bushwick street art. Meh iceland disrupt, polaroid skateboard lo-fi chambray tofu tumblr green juice vexillologist cliche umami. Wolf put a bird on it gochujang health goth, gluten-free synth cliche pork belly succulents unicorn selfies kinfolk tofu.',
         version: '1.0.0',
         icon: 'users',
         category: 'administrative',
@@ -27,10 +27,26 @@ exports.seed = (knex, Promise) => {
       }, {
         title: 'Reimbursement',
         short_description: 'Manage reimbursement for expenses, advances, and vehicle trips',
-        long_description: 'Manage reimbursement for expenses, advances, and vehicle trips',
+        long_description: 'Vexillologist viral stumptown salvia. Asymmetrical green juice lumbersexual, microdosing hell of yuccie messenger bag butcher pok pok XOXO organic neutra brunch bushwick street art. Meh iceland disrupt, polaroid skateboard lo-fi chambray tofu tumblr green juice vexillologist cliche umami. Wolf put a bird on it gochujang health goth, gluten-free synth cliche pork belly succulents unicorn selfies kinfolk tofu.',
         version: '1.0.0',
         icon: 'dollar',
         category: 'finance',
+        author: 'Cornell Cooperative Extension of Tompkins County'
+      }, {
+        title: 'Competency',
+        short_description: 'Vexillologist viral stumptown salvia. Asymmetrical green juice lumbersexual.',
+        long_description: 'Vexillologist viral stumptown salvia. Asymmetrical green juice lumbersexual, microdosing hell of yuccie messenger bag butcher pok pok XOXO organic neutra brunch bushwick street art. Meh iceland disrupt, polaroid skateboard lo-fi chambray tofu tumblr green juice vexillologist cliche umami. Wolf put a bird on it gochujang health goth, gluten-free synth cliche pork belly succulents unicorn selfies kinfolk tofu.',
+        version: '1.0.0',
+        icon: 'trophy',
+        category: 'education',
+        author: 'Cornell Cooperative Extension of Tompkins County'
+      }, {
+        title: 'Learning',
+        short_description: 'Vexillologist viral stumptown salvia. Asymmetrical green juice lumbersexual.',
+        long_description: 'Vexillologist viral stumptown salvia. Asymmetrical green juice lumbersexual, microdosing hell of yuccie messenger bag butcher pok pok XOXO organic neutra brunch bushwick street art. Meh iceland disrupt, polaroid skateboard lo-fi chambray tofu tumblr green juice vexillologist cliche umami. Wolf put a bird on it gochujang health goth, gluten-free synth cliche pork belly succulents unicorn selfies kinfolk tofu.',
+        version: '1.0.0',
+        icon: 'book',
+        category: 'education',
         author: 'Cornell Cooperative Extension of Tompkins County'
       }
     ])

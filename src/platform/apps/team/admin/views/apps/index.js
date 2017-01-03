@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 import Page from 'portals/admin/containers/page'
 
 class Index extends React.Component {
@@ -19,7 +20,7 @@ class Index extends React.Component {
                   <h2>{ app.title }</h2>
                   <h4>{ app.author }</h4>
                   <p>{ app.short_description }</p>
-                  <a href="" className="ui small fluid button">More <i className="right chevron icon" /></a>
+                  <Link to={{ pathname: `/admin/team/apps/${app.id}`, state: 'next' }} className="ui small fluid button">More <i className="right chevron icon" /></Link>
                 </div>
               </div>
             )

@@ -6,6 +6,11 @@ import _ from 'lodash'
 
 export default (options = {}) => {
 
+  options = {
+    team: true,
+    ...options
+  }
+
   const service = (options) => {
 
     let fetchOptions = {}
@@ -26,7 +31,9 @@ export default (options = {}) => {
 
       const all = options.model.query(qb => {
 
-        qb.where({ team_id: req.team.get('id') })
+        if(options.team) {
+          qb.where({ team_id: req.team.get('id') })
+        }
 
         qb.count('*')
 
@@ -34,7 +41,9 @@ export default (options = {}) => {
 
       const count = options.model.query(qb => {
 
-        qb.where({ team_id: req.team.get('id') })
+        if(options.team) {
+          qb.where({ team_id: req.team.get('id') })
+        }
 
         if(options.query) {
           qb = options.query(qb, filters)
@@ -58,7 +67,9 @@ export default (options = {}) => {
 
       const paged = options.model.query(qb => {
 
-        qb.where({ team_id: req.team.get('id') })
+        if(options.team) {
+          qb.where({ team_id: req.team.get('id') })
+        }
 
         if(options.query) {
           qb = options.query(qb, filters)

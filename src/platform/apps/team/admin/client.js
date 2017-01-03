@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 import ActivitiesIndex from './views/activities/index'
 import AppsIndex from './views/apps/index'
+import AppsShow from './views/apps/show'
 import UsersIndex from './views/users/index'
 import UsersShow from './views/users/show'
 import UsersNew from './views/users/new'
@@ -14,6 +15,7 @@ const routes = (
     </Route>
     <Route path="apps">
       <IndexRoute component={AppsIndex} />
+      <Route path=":id" component={AppsShow} />
     </Route>
     <Route path="users">
       <IndexRoute component={UsersIndex} />

@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
       table.string('author')
       table.string('version')
       table.string('short_description')
-      table.string('long_description')
+      table.text('long_description')
       table.string('icon')
       table.string('category')
       table.timestamps()
