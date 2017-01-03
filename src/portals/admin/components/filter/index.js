@@ -76,6 +76,10 @@ class Filter extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.onResetAll()
+  }
+
   _loadFilters() {
     const { fields, filters, onLoad, onSet } = this.props
     if(fields && filters) {
@@ -125,6 +129,7 @@ const mapDispatchToProps = {
   onChoose: actions.choose,
   onLoad: actions.load,
   onRemove: actions.remove,
+  onResetAll: actions.resetAll,
   onSet: actions.set
 }
 

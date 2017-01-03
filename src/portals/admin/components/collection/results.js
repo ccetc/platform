@@ -17,7 +17,7 @@ class Results extends React.Component {
           <div className="table-empty-message">
             <h2><i className={`circular ${empty.icon} icon`} /></h2>
             <h3>No { _.startCase(pluralize(entity.replace('_', ' '))) }</h3>
-            <p>You have not yet created any { pluralize(entity.replace('_', ' ')) }.</p>
+            <p>You have not yet created any { pluralize(entity.replace('_', ' ')) }</p>
             { empty.modal &&
               <div className="ui basic button red" onClick={ this._handleAddNew.bind(this)}>
                 <i className="plus icon" />
@@ -40,8 +40,8 @@ class Results extends React.Component {
         <div className="table-empty">
           <div className="table-empty-message">
             <h2><i className="circular remove icon" /></h2>
-            <h3>No records matched your query</h3>
-            <p>Please update your filters and try again.</p>
+            <h3>No Results Found</h3>
+            <p>No records matched your query</p>
           </div>
         </div>
       )
