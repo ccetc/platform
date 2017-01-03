@@ -2,7 +2,6 @@ import React from 'react'
 import * as actions from './actions'
 import component from 'portals/admin/components/component'
 import Infinite from 'portals/admin/containers/infinite'
-import Filter from '../filter'
 import Results from './results'
 
 class Collection extends React.Component {
@@ -27,19 +26,12 @@ class Collection extends React.Component {
   }
 
   render() {
-    const { filters, params } = this.props
+    const { params } = this.props
     if(params) {
       return (
-        <div className="collection">
-          { filters &&
-            <div className="collection-header">
-              <Filter { ...this._getFilter() } />
-            </div>
-          }
-          <Infinite { ...this._getInfinite() }>
-            <Results { ...this.props } />
-          </Infinite>
-        </div>
+        <Infinite { ...this._getInfinite() }>
+          <Results { ...this.props } />
+        </Infinite>
       )
     } else {
       return null
@@ -53,15 +45,6 @@ class Collection extends React.Component {
       order: 'desc'
     }
     this.props.onSetParams(filter, sort)
-  }
-
-  _getFilter() {
-    const { filters, params, onFilter } = this.props
-    return {
-      fields: filters,
-      filters: params.filter,
-      onChange: onFilter
-    }
   }
 
   _getInfinite() {

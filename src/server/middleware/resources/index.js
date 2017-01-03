@@ -40,6 +40,10 @@ export default (options = {}) => {
           qb = options.query(qb, filters)
         }
 
+        if(options.filter) {
+          qb = options.filter(qb, req)
+        }
+
         if(req.query['$exclude_ids']) {
           qb.whereNotIn('id', req.query['$exclude_ids'])
         }
@@ -58,6 +62,10 @@ export default (options = {}) => {
 
         if(options.query) {
           qb = options.query(qb, filters)
+        }
+
+        if(options.filter) {
+          qb = options.filter(qb, req)
         }
 
         if(req.query['$exclude_ids']) {

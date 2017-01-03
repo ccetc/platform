@@ -1,6 +1,7 @@
 import React from 'react'
 import pluralize from 'pluralize'
 import _ from 'lodash'
+import Filter from '../filter'
 import Table from '../table'
 
 class Results extends React.Component {
@@ -10,7 +11,7 @@ class Results extends React.Component {
   }
 
   render() {
-    const { all, columns, empty, entity, records, status } = this.props
+    const { all, columns, empty, entity, filters, records, status } = this.props
     if(status === 'completed' && all === 0) {
       return (
         <div className="table-empty">
@@ -45,10 +46,28 @@ class Results extends React.Component {
           </div>
         </div>
       )
-    } else if(columns) {
-      return <Table { ...this._getTable() } />
+    } else if(columns && records.length > 0) {
+      return (
+        <div className="collection">
+          { filters &&
+            <div className="collection-header">
+              <Filter { ...this._getFilter() } />
+            </div>
+          }
+          <Table { ...this._getTable() } />
+        </div>
+      )
     } else {
       return null
+    }
+  }
+
+  _getFilter() {
+    const { filters, params, onFilter } = this.props
+    return {
+      fields: filters,
+      filters: params.filter,
+      onChange: onFilter
     }
   }
 
