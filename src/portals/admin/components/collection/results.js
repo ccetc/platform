@@ -10,8 +10,8 @@ class Results extends React.Component {
   }
 
   render() {
-    const { columns, empty, entity, records, status } = this.props
-    if(status === 'completed' && records.length === 0) {
+    const { all, columns, empty, entity, records, status } = this.props
+    if(status === 'completed' && all === 0) {
       return (
         <div className="table-empty">
           <div className="table-empty-message">
@@ -32,6 +32,16 @@ class Results extends React.Component {
         <div className="chrome-loader">
           <div className="ui active inverted dimmer">
             <div className="ui large text loader">Loading</div>
+          </div>
+        </div>
+      )
+    } else if(status === 'completed' && records.length === 0) {
+      return (
+        <div className="table-empty">
+          <div className="table-empty-message">
+            <h2><i className="circular remove icon" /></h2>
+            <h3>No records matched your query</h3>
+            <p>Please update your filters and try again.</p>
           </div>
         </div>
       )

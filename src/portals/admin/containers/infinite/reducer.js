@@ -1,6 +1,7 @@
 import * as actionTypes from './action_types'
 
 const INITIAL_STATE = {
+  all: 0,
   status: 'pending',
   records: [],
   loaded: 0,
@@ -25,6 +26,7 @@ export default (state = INITIAL_STATE, action) => {
     const loaded = state.records.length + action.data.data.length
     return {
       ...state,
+      all: action.data.all,
       records: [
         ...state.records,
         ...action.data.data

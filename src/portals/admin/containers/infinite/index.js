@@ -7,6 +7,7 @@ import * as actions from './actions'
 class Infinite extends React.Component {
 
   static propTypes = {
+    all: React.PropTypes.number,
     cid: React.PropTypes.string,
     endpoint: React.PropTypes.string,
     filter: React.PropTypes.object,
@@ -25,8 +26,8 @@ class Infinite extends React.Component {
   }
 
   render() {
-    const { children, loaded, records, status, total } = this.props
-    return React.cloneElement(children, { loaded, records, status, total })
+    const { all, children, loaded, records, status, total } = this.props
+    return React.cloneElement(children, { all, loaded, records, status, total })
   }
 
   componentDidMount() {
@@ -99,6 +100,7 @@ class Infinite extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
+  all: state.infinite[props.cid].all,
   loaded: state.infinite[props.cid].loaded,
   records: state.infinite[props.cid].records,
   status: state.infinite[props.cid].status,

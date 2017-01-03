@@ -2,6 +2,7 @@ import React from 'react'
 import Panel from './panel'
 import { connect } from 'react-redux'
 import * as actions from './actions'
+import _ from 'lodash'
 
 class Filter extends React.Component {
 
@@ -30,16 +31,27 @@ class Filter extends React.Component {
         <div className="filter-tokens">
           { fields.map(field => {
             if(query[field.name]) {
-              return query[field.name].map((filter, index) => {
-                return (
-                  <span key={`filter_${index}`} className="ui small basic button">
-                    <span className="label" onClick={ this._handleOpen.bind(this) }>
-                      { filter.value }
+              if(_.isArray(query[field.name])) {
+                return query[field.name].map((filter, index) => {
+                  return (
+                    <span key={`filter_${index}`} className="ui small basic button">
+                      <span className="label" onClick={ this._handleOpen.bind(this) }>
+                        { filter.value }
+                      </span>
+                      <i className="remove icon" onClick={ this._handleRemove.bind(this, field.name, index) } />
                     </span>
-                    <i className="remove icon" onClick={ this._handleRemove.bind(this, field.name, index) } />
+                  )
+                })
+              } else if(_.isObject(query[field.name])) {
+                return (
+                  <span className="ui small basic button">
+                    <span className="label" onClick={ this._handleOpen.bind(this) }>
+                      { query[field.name].value }
+                    </span>
+                    <i className="remove icon" onClick={ this._handleRemove.bind(this, field.name) } />
                   </span>
                 )
-              })
+              }
             }
           }) }
           { fields &&
@@ -84,9 +96,7 @@ class Filter extends React.Component {
     const filters = Object.keys(query).reduce((filters, key) => {
       return {
         ...filters,
-        [key]: {
-          $in: query[key].map(item => item.key)
-        }
+        [key]: (_.isArray(query[key])) ? { $in: query[key].map(item => item.key) } : { $eq: query[key].key }
       }
     }, {})
     this.props.onChange(filters)

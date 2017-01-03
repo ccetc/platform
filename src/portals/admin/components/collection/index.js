@@ -12,6 +12,7 @@ class Collection extends React.Component {
   }
 
   static propTypes = {
+    all: React.PropTypes.number,
     columns: React.PropTypes.array,
     endpoint: React.PropTypes.string,
     entity: React.PropTypes.string,
@@ -20,6 +21,7 @@ class Collection extends React.Component {
     params: React.PropTypes.object,
     recordActions: React.PropTypes.array,
     sort: React.PropTypes.object,
+    total: React.PropTypes.number,
     onFilter: React.PropTypes.func,
     onSort: React.PropTypes.func
   }

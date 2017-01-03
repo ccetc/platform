@@ -36,13 +36,13 @@ export default (state = INITIAL_STATE, action) => {
   case actionTypes.REMOVE:
     return {
       ...state,
-      query: {
+      query: (_.isArray(state.query[action.key])) ? {
         ...state.query,
         [action.key]: [
           ...state.query[action.key].slice(0, action.index),
           ...state.query[action.key].slice(action.index + 1)
         ]
-      }
+      } : _.omit(state.query, action.key)
     }
 
   case actionTypes.RESET_ALL:

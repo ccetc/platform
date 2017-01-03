@@ -24,6 +24,14 @@ export default (options = {}) => {
         ...req.params
       }
 
+      const all = options.model.query(qb => {
+
+        qb.where({ team_id: req.team.get('id') })
+
+        qb.count('*')
+
+      }).fetchAll()
+
       const count = options.model.query(qb => {
 
         qb.where({ team_id: req.team.get('id') })
@@ -70,21 +78,23 @@ export default (options = {}) => {
 
         if(sort) {
           const sortKey = sort.replace('-', '')
-          const sortOrder = (sort[0] == '-') ? 'desc' : 'asc'
+          const sortOrder = (sort[0] === '-') ? 'desc' : 'asc'
           qb.orderBy(sortKey, sortOrder)
         }
 
       }).fetchAll(fetchOptions)
 
-      Promise.all([count,paged]).then(response => {
-        const total = parseInt(response[0].toJSON()[0].count)
+      Promise.all([all,count,paged]).then(response => {
+        const all = parseInt(response[0].toJSON()[0].count)
 
-        const data = response[1].map(record => {
+        const total = parseInt(response[1].toJSON()[0].count)
+
+        const data = response[2].map(record => {
           record = (options.serializer) ? options.serializer(record) : record
           return (req.query['$select']) ? _.pick(record, ['id', ...req.query['$select']]) : record
         })
 
-        res.json({ total, limit, skip, data })
+        res.json({ all, total, limit, skip, data })
 
       }).catch(err => {
         const error = new Error({ code: 500, message: err.message })

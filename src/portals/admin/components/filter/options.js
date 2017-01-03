@@ -8,17 +8,23 @@ import Infinite from 'portals/admin/containers/infinite'
 class Options extends React.Component {
 
   render() {
-    const { name, options, query } = this.props
+    const { name, multiple, options, query } = this.props
     return (
       <div className="filter-body">
         { options.map((option, index) => {
+          console.log(option)
           return (
             <div key={`filter_${index}`} className="filter-item" onClick={ this._handleChoose.bind(this, option.value, option.text) }>
               <div className="filter-item-label">
-                {option.text}
+                { option.text }
               </div>
+              { option.description &&
+                <div className="filter-item-description">
+                  { option.description }
+                </div>
+              }
               <div className="filter-item-icon">
-                { this._checked(name, query, option) ? <i className="green check icon" /> : null }
+                { this._checked(name, multiple, query, option) ? <i className="green check icon" /> : null }
               </div>
             </div>
           )
@@ -27,8 +33,12 @@ class Options extends React.Component {
     )
   }
 
-  _checked(name, query, option) {
-    return query[name] && _.find(query[name], { key: option.value })
+  _checked(name, multiple, query, option) {
+    if(multiple) {
+      return query[name] && _.find(query[name], { key: option.value })
+    } else {
+      return query[name] && query[name].key == option.value
+    }
   }
 
   _handleChoose(key, value) {
@@ -38,8 +48,8 @@ class Options extends React.Component {
       values = query[name] || []
       values = _.find(values, { key }) ? _.filter(values, item => (item.key !== key)) : [ ...values, { key, value } ]
     } else {
-      if(query[name] !== key) {
-        values = [{ key, value }]
+      if(!query[name] || query[name].key !== key) {
+        values = { key, value }
       }
     }
     this.props.onUpdate(name, values)
