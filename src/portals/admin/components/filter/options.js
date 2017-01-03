@@ -8,10 +8,7 @@ import Infinite from 'portals/admin/containers/infinite'
 class Options extends React.Component {
 
   render() {
-    const { name, multiple, query, records, text, value } = this.props
-    const options = records ? records.map(record => {
-      return { value: _.get(record, value), text: _.get(record, text) }
-    }) : this.props.options
+    const { name, options, query } = this.props
     return (
       <div className="filter-body">
         { options.map((option, index) => {
@@ -21,7 +18,7 @@ class Options extends React.Component {
                 {option.text}
               </div>
               <div className="filter-item-icon">
-                { this._checked(name, multiple, query, option) ? <i className="green check icon" /> : null }
+                { this._checked(name, query, option) ? <i className="green check icon" /> : null }
               </div>
             </div>
           )
@@ -30,12 +27,8 @@ class Options extends React.Component {
     )
   }
 
-  _checked(name, multiple, query, option) {
-    if(multiple === true) {
-      return query[name] && _.find(query[name], { key: option.value })
-    } else {
-      return query[name] && query[name].key === option.value
-    }
+  _checked(name, query, option) {
+    return query[name] && _.find(query[name], { key: option.value })
   }
 
   _handleChoose(key, value) {

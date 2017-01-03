@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import * as actions from './actions'
 import Fields from './fields'
 import Select from './select'
+import DateRange from './daterange'
 
 class Index extends React.Component {
 
@@ -19,7 +20,8 @@ class Index extends React.Component {
       <div className="filter">
         <Fields fields={ fields } />
         <ReactCSSTransitionGroup transitionName='stack' component={ this._firstChild } transitionEnterTimeout={ 500 } transitionLeaveTimeout={ 500 }>
-          { active !== null && <Select { ...fields[active]} /> }
+          { active !== null && fields[active].type === 'select' && <Select { ...fields[active]} /> }
+          { active !== null && fields[active].type === 'daterange' && <DateRange { ...fields[active]} /> }
         </ReactCSSTransitionGroup>
       </div>
     )

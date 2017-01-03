@@ -84,7 +84,9 @@ class Filter extends React.Component {
     const filters = Object.keys(query).reduce((filters, key) => {
       return {
         ...filters,
-        [key]: query[key].map(item => item.key)
+        [key]: {
+          $in: query[key].map(item => item.key)
+        }
       }
     }, {})
     this.props.onChange(filters)
