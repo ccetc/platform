@@ -17,37 +17,27 @@
     border: 1px solid #CCC;
     overflow: hidden;
     &.installed .app-icon {
-      position: relative;
       background: #21BA45 !important;
-      &:after {
-        position: absolute;
-        content: 'INSTALLED';
-        font-size: 14px;
-        font-weight: bold;
-        line-height: 20px;
-        color: #FFFFFF;
-        bottom: 10px;
-        left: 0;
-        right: 0;
-        text-align: center;
+      i {
+        color: #FFFFFF !important;
       }
     }
   }
   .app-icon {
-    flex: 0 0 100px;
+    flex: 0 0 60px;
     display: flex;
     background: #DDDDDD !important;
     i {
       margin: auto;
-      font-size: 60px;
-      line-height: 60px;
-      color: rgba(0, 0, 0, 0.5);
+      font-size: 30px;
+      line-height: 30px;
+      color: #666666;
     }
   }
   .app-content {
     flex: 1;
     background: #FFF;
-    padding: 10px 20px;
+    padding: 10px;
     h2 {
       margin: 0;
       font-size: 18px;
@@ -59,12 +49,12 @@
       line-height: 14px;
       font-weight: normal;
       color: #444444;
-      height: 30px;
+      height: 14px;
     }
     p {
       margin: 0 0 10px;
       color: #888888;
-      height: 60px;
+      height: 40px;
     }
   }
 }

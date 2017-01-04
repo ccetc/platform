@@ -1,6 +1,7 @@
 import checkit from  'checkit'
 import bookshelf from 'server/services/bookshelf'
 import unique from 'server/utils/unique_validation'
+import Author from 'platform/models/app_author'
 import Category from 'platform/models/app_category'
 import Right from 'platform/models/right'
 import User from 'platform/models/user'
@@ -13,6 +14,10 @@ export default bookshelf.Model.extend({
 
   rules: {
     title: ['required', unique('apps', 'title')]
+  },
+
+  author: function() {
+    return this.belongsTo(Author, 'app_author_id')
   },
 
   category: function() {

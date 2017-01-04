@@ -15,7 +15,7 @@ class Show extends React.Component {
             <div className="app-content">
               <h2>{ app.title }</h2>
               <h4>{ app.author }</h4>
-              <p>{ app.short_description }</p>
+              <p>{ app.long_description }</p>
               { app.installed && <button className="ui fluid button"><i className="remove icon" /> Uninstall</button> }
               { !app.installed && <button className="ui fluid button"><i className="check icon" /> Install</button> }
             </div>

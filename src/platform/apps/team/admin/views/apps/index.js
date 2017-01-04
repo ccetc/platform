@@ -17,6 +17,7 @@ class Index extends React.Component {
     return {
       endpoint: '/admin/apps',
       filters: [
+        { label: 'Author', name: 'app_author_id', type: 'select', multiple: true, endpoint: '/admin/apps/authors', value: 'id', text: 'name' },
         { label: 'Category', name: 'app_category_id', type: 'select', multiple: true, endpoint: '/admin/apps/categories', value: 'id', text: 'title' }
       ],
       sort: { key: 'created_at', order: 'desc' },
@@ -47,7 +48,7 @@ class Apps extends React.Component {
                 </div>
                 <div className="app-content">
                   <h2>{ app.title }</h2>
-                  <h4>{ app.author }</h4>
+                  <h4>by { app.author }</h4>
                   <p>{ app.short_description }</p>
                   <Link to={{ pathname: `/admin/team/apps/${app.id}`, state: 'next' }} className="ui small fluid button">More <i className="right chevron icon" /></Link>
                 </div>
