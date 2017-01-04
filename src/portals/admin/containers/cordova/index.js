@@ -17,7 +17,7 @@ class Cordova extends React.Component {
   render() {
     const { children } = this.props
     return (
-      <div className="cordova">
+      <div className="chrome-cordova">
         { children }
       </div>
     )

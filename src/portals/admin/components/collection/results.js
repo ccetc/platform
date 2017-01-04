@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 import pluralize from 'pluralize'
 import _ from 'lodash'
 import Filter from '../filter'
@@ -7,6 +8,7 @@ import Table from '../table'
 class Results extends React.Component {
 
   static contextTypes = {
+    infinite: React.PropTypes.object,
     modal: React.PropTypes.object
   }
 
@@ -54,6 +56,15 @@ class Results extends React.Component {
               </div>
             </div>
           }
+          { status === 'failure' &&
+            <div className="chrome-error">
+              <div className="chrome-error-message">
+                <i className="fa fa-exclamation-triangle" />
+                <h2>Unable to load<br /> records</h2>
+                <Link className="ui basic red button" onClick={this._handleRefresh.bind(this)}>Try again</Link>
+              </div>
+            </div>
+          }
         </div>
       )
     }
@@ -85,6 +96,10 @@ class Results extends React.Component {
       records,
       status
     }
+  }
+
+  _handleRefresh() {
+    this.context.infinite.refresh()
   }
 
   _handleAddNew() {

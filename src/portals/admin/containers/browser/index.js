@@ -26,14 +26,14 @@ class Browser extends React.Component {
     const { children, preferences } = this.props
     const notifications = preferences ? preferences.notifications : undefined
     return (
-      <div className="browser">
+      <div className="chrome-browser">
         <CSSTransitionGroup component={ this.firstChild } transitionName="expanded" transitionEnterTimeout={ 500 } transitionLeaveTimeout={ 500 }>
           { preferences && (notifications === undefined || notifications === 'dismiss') &&
-            <div className="browser-notice">
+            <div className="chrome-browser-notice">
               { notifications === undefined &&
                 <div>
                   <p>We need your permission to <a onClick={this._handleEnableNotifications.bind(this)}>enable desktop notifications</a></p>
-                  <div className="browser-notice-dismiss" onClick={this._handleDenyNotifications.bind(this, 'dismiss')}>
+                  <div className="chrome-browser-notice-dismiss" onClick={this._handleDenyNotifications.bind(this, 'dismiss')}>
                     <i className="remove icon"></i>
                   </div>
                 </div>
@@ -49,7 +49,7 @@ class Browser extends React.Component {
             </div>
           }
         </CSSTransitionGroup>
-        <div className="browser-main">
+        <div className="chrome-browser-main">
           { children }
           { notifications === 'denied' && <Notifications /> }
         </div>

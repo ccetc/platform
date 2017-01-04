@@ -40,15 +40,15 @@ class Apps extends React.Component {
     return (
       <div className="chrome-body">
         <div className="apps">
-          { records.map(app => {
+          { records.map((app, index) => {
             return (
-              <div className={`app ${app.installed && 'installed'}`}>
+              <div key={`app_${index}`} className={`app ${app.installed && 'installed'}`}>
                 <div className="app-icon">
-                  <i className={`${app.icon} icon`} />
+                  <i className={`fa fa-${app.icon}`} />
                 </div>
                 <div className="app-content">
                   <h2>{ app.title }</h2>
-                  <h4>by { app.author }</h4>
+                  <h4>by <Link to={{ pathname: `/admin/team/apps/authors/${app.id}`, state: 'next' }}>{ app.author }</Link></h4>
                   <p>{ app.short_description }</p>
                   <Link to={{ pathname: `/admin/team/apps/${app.id}`, state: 'next' }} className="ui small fluid button">More <i className="right chevron icon" /></Link>
                 </div>

@@ -6,6 +6,10 @@ import * as actions from './actions'
 
 class Infinite extends React.Component {
 
+  static childContextTypes = {
+    infinite: React.PropTypes.object
+  }
+
   static propTypes = {
     all: React.PropTypes.number,
     cid: React.PropTypes.string,
@@ -54,6 +58,18 @@ class Infinite extends React.Component {
     if(this._container()) {
       this._detachScrollListener()
     }
+  }
+
+  getChildContext() {
+    return {
+      infinite: {
+        refresh: this._handleReset.bind(this)
+      }
+    }
+  }
+
+  _handleReset() {
+    this.props.onReset(this.props.cid)
   }
 
   _container() {

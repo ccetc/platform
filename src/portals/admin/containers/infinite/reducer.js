@@ -36,6 +36,12 @@ export default (state = INITIAL_STATE, action) => {
       status: (loaded >= action.data.total) ? 'completed' : 'loaded'
     }
 
+  case actionTypes.FETCH_FAILURE:
+    return {
+      ...state,
+      status: 'failure'
+    }
+
   default:
     return state
   }

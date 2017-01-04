@@ -15,7 +15,7 @@ class Electron extends React.Component {
   render() {
     const { children } = this.props
     return (
-      <div className="electron">
+      <div className="chrome-electron">
         { children }
       </div>
     )

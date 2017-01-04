@@ -104,9 +104,10 @@ export default (options = {}) => {
       }).fetchAll(fetchOptions)
 
       Promise.all([all,count,paged]).then(response => {
+        
         const all = parseInt(response[0].toJSON()[0].count)
 
-        const total = parseInt(response[1].toJSON()[0].count)
+        const total = response[1].toJSON()[0] ? parseInt(response[1].toJSON()[0].count) : 0
 
         const data = response[2].map(record => {
           record = (options.serializer) ? options.serializer(record) : record
