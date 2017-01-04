@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 import Page from 'portals/admin/containers/page'
 
 class Show extends React.Component {
@@ -14,7 +15,7 @@ class Show extends React.Component {
             </div>
             <div className="app-content">
               <h2>{ app.title }</h2>
-              <h4>{ app.author }</h4>
+              <h4>by <Link to={{ pathname: `/admin/team/apps/authors/${app.author.id}`, state: 'next' }}>{ app.author.name }</Link></h4>
               <p>{ app.long_description }</p>
               { app.installed && <button className="ui fluid button"><i className="remove icon" /> Uninstall</button> }
               { !app.installed && <button className="ui fluid button"><i className="check icon" /> Install</button> }

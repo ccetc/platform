@@ -48,7 +48,7 @@ class Apps extends React.Component {
                 </div>
                 <div className="app-content">
                   <h2>{ app.title }</h2>
-                  <h4>by <Link to={{ pathname: `/admin/team/apps/authors/${app.id}`, state: 'next' }}>{ app.author }</Link></h4>
+                  <h4>by <Link to={{ pathname: `/admin/team/apps/authors/${app.author.id}`, state: 'next' }}>{ app.author.name }</Link></h4>
                   <p>{ app.short_description }</p>
                   <Link to={{ pathname: `/admin/team/apps/${app.id}`, state: 'next' }} className="ui small fluid button">More <i className="right chevron icon" /></Link>
                 </div>

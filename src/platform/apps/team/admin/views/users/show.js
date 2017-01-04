@@ -1,7 +1,8 @@
 import React from 'react'
 import Avatar from 'portals/admin/components/avatar'
-import Card from 'portals/admin/components/card'
+import Details from 'portals/admin/components/details'
 import Page from 'portals/admin/containers/page'
+import Access from './access'
 import Edit from './edit'
 
 class Show extends React.Component {
@@ -10,14 +11,14 @@ class Show extends React.Component {
     return (
       <div className="chrome-body">
         <div className="chrome-sidebar">
-          <Card {...this._getCard()} />
+          <Details {...this._getDetails()} />
         </div>
         <div className="chrome-content"></div>
       </div>
     )
   }
 
-  _getCard() {
+  _getDetails() {
     const { user } = this.props
     return {
       top: <Avatar user={ user } />,
@@ -46,6 +47,7 @@ const mapPropsToPage = (props, context) => {
     rights: [],
     tasks: [
       { label: 'Edit User', modal: Edit },
+      { label: 'Edit Access', modal: Access },
       { label: 'Reset Password', handler: _handleResetPassword },
       { label: 'Sign Out of All Devices', handler: _handleSignOutAllDevices }
     ],
