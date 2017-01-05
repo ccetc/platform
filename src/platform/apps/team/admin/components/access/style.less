@@ -8,6 +8,18 @@
   display: flex;
   border-bottom: 1px solid #DDD;
 }
+.access-rights {
+  .transition(max-height 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0s);
+  overflow: hidden;
+  &.expanded-enter,
+  &.expanded-leave.expanded-leave-active {
+    max-height: 0;
+  }
+  &.expanded-enter.expanded-enter-active,
+  &.expanded-leave {
+    max-height: 500px;
+  }
+}
 .access-app-label {
   flex: 1;
   padding: 15px;
@@ -26,7 +38,7 @@
 }
 .access-app-input,
 .access-right-input {
-  flex: 0 0 60px;
+  flex: 0 0 80px;
   display: flex;
   .toggle {
     font-size: 2em;

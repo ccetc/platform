@@ -22,6 +22,10 @@ import reset from './views/reset/reducer'
 import search from './views/search/reducer'
 import signin from './views/signin/reducer'
 
+import access from 'platform/apps/team/admin/components/access/reducer'
+import roles from 'platform/apps/team/admin/components/roles/reducer'
+
+
 const platformReducers = {
   admin,
   browser,
@@ -40,13 +44,18 @@ const platformReducers = {
   search,
   signin,
   tasks,
-  tray
+  tray,
+  access,
+  roles
 }
 
 export default (state, action) => {
 
   const namespace = action.type.split('/')[0]
-  const is_platform = _.includes(Object.keys(platformReducers), namespace)
+  const parts = namespace.split('.')
+  const app = parts[0]
+  const reducer = parts[parts.length - 1]
+  const is_platform = _.includes(Object.keys(platformReducers), reducer)
 
   if(state === undefined) {
 
@@ -69,6 +78,8 @@ export default (state, action) => {
       signin: signin(undefined, action),
       tasks: tasks(undefined, action),
       tray: tray(undefined, action),
+      access: access(undefined, action),
+      roles: roles(undefined, action),
       ...component(undefined, action)
     }
 
@@ -76,7 +87,7 @@ export default (state, action) => {
 
     return {
       ...state,
-      [namespace]: platformReducers[namespace](state[namespace], action)
+      [reducer]: platformReducers[reducer](state[reducer], action)
     }
 
   } else {

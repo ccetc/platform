@@ -2,8 +2,8 @@ import React from 'react'
 import Avatar from 'portals/admin/components/avatar'
 import Details from 'portals/admin/components/details'
 import Page from 'portals/admin/containers/page'
-import Access from '../roles/access'
-import Roles from './roles'
+import Access from '../../components/access'
+import Roles from '../../components/roles'
 import Edit from './edit'
 
 class Show extends React.Component {
