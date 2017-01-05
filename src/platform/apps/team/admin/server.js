@@ -2,11 +2,17 @@ import { Router } from 'express'
 import resources from 'server/middleware/resources'
 import Activity from 'platform/models/activity'
 import App from 'platform/models/app'
+import AppAuthor from 'platform/models/app_author'
+import AppCategory from 'platform/models/app_category'
 import Asset from 'platform/models/asset'
 import Search from 'platform/models/search'
 import User from 'platform/models/user'
+import AppQuery from 'platform/queries/app_query'
+import ActivityQuery from 'platform/queries/activity_query'
 import ActivitySerializer from 'platform/serializers/activity_serializer'
 import AppSerializer from 'platform/serializers/app_serializer'
+import AppAuthorSerializer from 'platform/serializers/app_author_serializer'
+import AppCategorySerializer from 'platform/serializers/app_category_serializer'
 import AssetSerializer from 'platform/serializers/asset_serializer'
 import SearchSerializer from 'platform/serializers/search_serializer'
 import UserSerializer from 'platform/serializers/user_serializer'
@@ -14,16 +20,45 @@ import UserSerializer from 'platform/serializers/user_serializer'
 const router = Router()
 
 router.use(resources({
+  name: 'app_category',
+  path: 'apps/categories',
+  model: AppCategory,
+  serializer: AppCategorySerializer,
+  team: false
+}))
+
+router.use(resources({
+  name: 'app_author',
+  path: 'apps/authors',
+  model: AppAuthor,
+  serializer: AppAuthorSerializer,
+  team: false
+}))
+
+router.use(resources({
+  name: 'app',
+  path: 'apps',
+  model: App,
+  query: AppQuery,
+  serializer: AppSerializer,
+  team: false,
+  include: ['author','category'],
+  filter: (qb, req) => qb
+   .column('apps.*', 'installations.team_id')
+   .leftJoin('installations', function() {
+     this.on('installations.app_id', '=', 'apps.id').andOn('installations.team_id', '=', req.team.get('id'))
+   })
+   .groupBy('apps.id','installations.team_id')
+}))
+
+
+router.use(resources({
   name: 'activity',
   path: 'activities',
   model: Activity,
+  query: ActivityQuery,
   serializer: ActivitySerializer,
-  include: ['story','user.photo'],
-  find: {
-    query: {
-      $sort: '-created_at'
-    }
-  }
+  include: ['story','user.photo']
 }))
 
 router.use(resources({

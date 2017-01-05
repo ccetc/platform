@@ -59,7 +59,7 @@ class Results extends React.Component {
           { status === 'failure' &&
             <div className="chrome-error">
               <div className="chrome-error-message">
-                <i className="fa fa-exclamation-triangle" />
+                <i className="warning sign icon" />
                 <h2>Unable to load<br /> records</h2>
                 <Link className="ui basic red button" onClick={this._handleRefresh.bind(this)}>Try again</Link>
               </div>

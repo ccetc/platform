@@ -1,5 +1,6 @@
 import React from 'react'
 import Page from 'portals/admin/containers/page'
+import Collection from 'portals/admin/components/collection'
 import Feed from 'portals/admin/components/feed'
 
 class Index extends React.Component {
@@ -7,23 +8,29 @@ class Index extends React.Component {
   render() {
     return (
       <div className="chrome-body">
-        <Feed {...this._getFeed()} />
+        <Collection { ...this._getCollection() } />
       </div>
     )
   }
 
-  _getFeed() {
+  _getCollection() {
     return {
       endpoint: '/admin/activities',
-      state: 'next'
+      filters: [
+        { label: 'User', name: 'user_id', type: 'select', multiple: true, endpoint: '/admin/users', value: 'id', text: 'full_name' },
+        { label: 'App', name: 'app_id', type: 'select', multiple: true, endpoint: '/admin/apps', value: 'id', text: 'title' },
+        { label: 'Date Range', name: 'daterange', type: 'daterange', include: ['this','last'] }
+      ],
+      sort: { key: 'created_at', order: 'desc' },
+      layout: Feed,
+      entity: 'activity'
     }
   }
 
 }
 
 const mapPropsToPage = (props, context) => ({
-  title: 'Activities',
-  rights: []
+  title: 'Activities'
 })
 
 export default Page(mapPropsToPage)(Index)

@@ -1,25 +1,29 @@
 import checkit from  'checkit'
 import bookshelf from 'server/services/bookshelf'
 import App from 'platform/models/app'
-import Role from 'platform/models/role'
+import Right from 'platform/models/right'
+import User from 'platform/models/user'
 
 export default bookshelf.Model.extend({
 
-  tableName: 'rights',
+  tableName: 'roles',
 
   hasTimestamps: ['created_at', 'updated_at'],
 
   rules: {
-    text: 'required',
-    app_id: 'required'
+    text: 'required'
   },
 
-  app: function() {
-    return this.belongsTo(App, 'app_id')
+  apps: function() {
+    return this.belongsToMany(App, 'roles_apps', 'role_id', 'app_id')
   },
 
-  roles: function() {
-    return this.belongsToMany(Role, 'users_roles', 'user_id', 'role_id')
+  rights: function() {
+    return this.belongsToMany(Right, 'roles_rights', 'role_id', 'right_id')
+  },
+
+  users: function() {
+    return this.belongsToMany(User, 'users_roles', 'user_id', 'role_id')
   },
 
   initialize: function(attrs, opts) {

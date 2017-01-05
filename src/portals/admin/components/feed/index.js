@@ -1,35 +1,6 @@
 import React from 'react'
-import Infinite from 'portals/admin/containers/infinite'
 import { Link } from 'react-router'
 import moment from 'moment'
-
-export class Container extends React.Component {
-
-  static propTypes = {
-    endpoint: React.PropTypes.string.isRequired,
-    onChoose: React.PropTypes.func
-  }
-
-  static defaultProps = {
-    onChoose: () => {}
-  }
-
-  render() {
-    return (
-      <Infinite {...this._getInfinite()}>
-        <Feed {...this.props} />
-      </Infinite>
-    )
-  }
-
-  _getInfinite() {
-    const { endpoint } = this.props
-    return {
-      endpoint
-    }
-  }
-
-}
 
 export class Feed extends React.Component {
 
@@ -109,4 +80,4 @@ export class Feed extends React.Component {
 
 }
 
-export default Container
+export default Feed

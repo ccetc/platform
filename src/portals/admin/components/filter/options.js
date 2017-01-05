@@ -69,7 +69,8 @@ Options = connect(mapStateToProps, mapDispatchToProps)(Options)
 class Dynamic extends React.Component {
 
   render() {
-    return (this.props.records) ? <Options { ...this._getOptions() } /> : null
+    const { records } = this.props
+    return (records) ? <Options { ...this._getOptions() } /> : null
   }
 
   _getOptions() {
@@ -89,11 +90,22 @@ class Dynamic extends React.Component {
 class Container extends React.Component {
 
   render() {
-    if(this.props.endpoint) {
+    const { endpoint, label } = this.props
+    if(endpoint) {
       return (
-        <Infinite {...this._getInfinite()}>
-          <Dynamic {...this.props} />
-        </Infinite>
+        <div className="filter-search">
+          <div className="filter-search-form ui form">
+            <div className="filter-search-input">
+              <i className="search icon" />
+              <input type="text" placeholder={`Find a ${label}...`} onChange={this._handleLookup.bind(this)} ref="query" />
+              <i className="remove circle icon" />
+            </div>
+          </div>
+          <Infinite {...this._getInfinite()}>
+            <Dynamic {...this.props} />
+          </Infinite>
+        </div>
+
       )
     } else {
       return <Options {...this.props} />
@@ -105,6 +117,10 @@ class Container extends React.Component {
     return {
       endpoint
     }
+  }
+
+  _handleLookup(event) {
+    // this.props.onLookup(this.props.cid,event.target.value, this.props.endpoint)
   }
 
 }

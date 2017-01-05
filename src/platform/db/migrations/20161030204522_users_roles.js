@@ -1,11 +1,11 @@
 exports.up = function(knex, Promise) {
   return Promise.all([
-    knex.schema.createTable('users_apps', function (table) {
+    knex.schema.createTable('users_roles', function (table) {
       table.increments('id').primary()
       table.integer('user_id').unsigned()
       table.foreign('user_id').references('users.id')
-      table.integer('app_id').unsigned()
-      table.foreign('app_id').references('apps.id')
+      table.integer('role_id').unsigned()
+      table.foreign('role_id').references('roles.id')
       table.timestamps()
     })
   ])
@@ -13,6 +13,6 @@ exports.up = function(knex, Promise) {
 
 exports.down = function(knex, Promise) {
   return Promise.all([
-    knex.schema.dropTable('users_apps')
+    knex.schema.dropTable('users_roles')
   ])
 }

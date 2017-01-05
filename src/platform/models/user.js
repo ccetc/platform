@@ -2,8 +2,9 @@ import checkit from  'checkit'
 import bcrypt from 'bcrypt-nodejs'
 import bookshelf from 'server/services/bookshelf'
 import unique from 'server/utils/unique_validation'
-import App from 'platform/models/app'
+// import App from 'platform/models/app'
 import Asset from 'platform/models/asset'
+// import Role from 'platform/models/role'
 import Right from 'platform/models/right'
 import SecurityQuestion from 'platform/models/security_question'
 import Team from 'platform/models/team'
@@ -20,9 +21,11 @@ export default bookshelf.Model.extend({
     email: ['required', 'email', unique('users', 'email')]
   },
 
-  apps: function() {
-    return this.belongsToMany(App, 'users_apps', 'user_id', 'app_id')
-  },
+  // apps: function() {
+  //   return this.belongsToMany(App, 'users_roles', 'user_id', 'role_id').query(qb => qb
+  //     .innerJoin('roles_apps', 'roles_apps.app_id', 'apps.id')
+  //   )
+  // },
 
   photo: function() {
     return this.belongsTo(Asset, 'photo_id')
@@ -37,8 +40,14 @@ export default bookshelf.Model.extend({
   },
 
   rights: function() {
-    return this.belongsToMany(Right, 'users_rights', 'user_id', 'right_id')
+    return this.belongsToMany(Right, 'users_roles', 'user_id', 'role_id').query(qb => qb
+      .innerJoin('roles_rights', 'roles_rights.right_id', 'rights.id')
+    )
   },
+
+  // roles: function() {
+  //   return this.belongsToMany(Role, 'users_roles', 'user_id', 'role_id')
+  // },
 
   team: function() {
     return this.belongsTo(Team, 'team_id')

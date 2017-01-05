@@ -2156,6 +2156,7 @@ exports.seed = (knex, Promise) => {
         team_id: 1,
         user_id: 1,
         story_id: 1,
+        app_id: 2,
         url: '/admin/reimbursement/projects/1',
         subject_type: 'project',
         subject_text: 'Primitive Pursuits',
@@ -2164,6 +2165,7 @@ exports.seed = (knex, Promise) => {
         team_id: 1,
         user_id: 1,
         story_id: 2,
+        app_id: 2,
         url: '/admin/reimbursement/expenses',
         subject_type: 'expense',
         subject_text: 'food for party',
@@ -2174,6 +2176,7 @@ exports.seed = (knex, Promise) => {
         team_id: 1,
         user_id: 95,
         story_id: 2,
+        app_id: 2,
         url: '/admin/reimbursement/expenses',
         subject_type: 'expense',
         subject_text: 'food for party',
@@ -2184,6 +2187,7 @@ exports.seed = (knex, Promise) => {
         team_id: 1,
         user_id: 49,
         story_id: 2,
+        app_id: 2,
         url: '/admin/reimbursement/expenses',
         subject_type: 'expense',
         subject_text: 'food for party',
@@ -2194,6 +2198,7 @@ exports.seed = (knex, Promise) => {
         team_id: 1,
         user_id: 54,
         story_id: 1,
+        app_id: 2,
         url: '/admin/reimbursement/projects/2',
         subject_type: 'project',
         subject_text: 'Eat Smart New York',
@@ -2202,6 +2207,7 @@ exports.seed = (knex, Promise) => {
         team_id: 1,
         user_id: 19,
         story_id: 1,
+        app_id: 2,
         url: '/admin/reimbursement/projects/3',
         subject_type: 'project',
         subject_text: 'Website Platform',
@@ -2210,6 +2216,7 @@ exports.seed = (knex, Promise) => {
         team_id: 1,
         user_id: 13,
         story_id: 2,
+        app_id: 2,
         url: '/admin/reimbursement/expenses',
         subject_type: 'expense',
         subject_text: 'food for party',
@@ -2220,6 +2227,7 @@ exports.seed = (knex, Promise) => {
         team_id: 1,
         user_id: 13,
         story_id: 2,
+        app_id: 2,
         url: '/admin/reimbursement/expenses',
         subject_type: 'expense',
         subject_text: 'website hosting',
@@ -2230,6 +2238,7 @@ exports.seed = (knex, Promise) => {
         team_id: 1,
         user_id: 48,
         story_id: 2,
+        app_id: 2,
         url: '/admin/reimbursement/expenses',
         subject_type: 'expense',
         subject_text: 'website hosting',
@@ -2240,6 +2249,7 @@ exports.seed = (knex, Promise) => {
         team_id: 1,
         user_id: 13,
         story_id: 2,
+        app_id: 2,
         url: '/admin/reimbursement/expenses',
         subject_type: 'expense',
         subject_text: 'website hosting',
@@ -2250,6 +2260,7 @@ exports.seed = (knex, Promise) => {
         team_id: 1,
         user_id: 21,
         story_id: 1,
+        app_id: 2,
         url: '/admin/reimbursement/projects/3',
         subject_type: 'project',
         subject_text: 'Website Platform',
@@ -2258,6 +2269,7 @@ exports.seed = (knex, Promise) => {
         team_id: 1,
         user_id: 21,
         story_id: 1,
+        app_id: 2,
         url: '/admin/reimbursement/projects/3',
         subject_type: 'project',
         subject_text: 'Website Platform',
@@ -2266,6 +2278,7 @@ exports.seed = (knex, Promise) => {
         team_id: 1,
         user_id: 49,
         story_id: 2,
+        app_id: 2,
         url: '/admin/reimbursement/expenses',
         subject_type: 'expense',
         subject_text: 'food for party',
@@ -2276,6 +2289,7 @@ exports.seed = (knex, Promise) => {
         team_id: 1,
         user_id: 64,
         story_id: 2,
+        app_id: 2,
         url: '/admin/reimbursement/expenses',
         subject_type: 'expense',
         subject_text: 'food for party',
@@ -2286,6 +2300,7 @@ exports.seed = (knex, Promise) => {
         team_id: 1,
         user_id: 49,
         story_id: 2,
+        app_id: 2,
         url: '/admin/reimbursement/expenses',
         subject_type: 'expense',
         subject_text: 'food for party',
@@ -2296,48 +2311,72 @@ exports.seed = (knex, Promise) => {
     ])
   })
   .then(() => {
-    return knex('users_apps').del()
+    return knex('roles').del()
   })
   .then(() => {
-    return knex('users_apps').insert([
+    return knex('roles').insert([
       {
-        user_id: 1,
+        title: 'Fake Role',
+        description: 'Lorem Ipsum'
+      }
+    ])
+  })  .then(() => {
+    return knex('roles_apps').del()
+  })
+  .then(() => {
+    return knex('roles_apps').insert([
+      {
+        role_id: 1,
         app_id: 1
       }, {
-        user_id: 1,
+        role_id: 1,
         app_id: 2
       }, {
-        user_id: 2,
-        app_id: 2
+        role_id: 1,
+        app_id: 3
       }, {
-        user_id: 101,
-        app_id: 1
+        role_id: 1,
+        app_id: 4
       }
     ])
   })
   .then(() => {
-    return knex('users_rights').del()
+    return knex('roles_rights').del()
   })
   .then(() => {
-    return knex('users_rights').insert([
+    return knex('roles_rights').insert([
       {
-        user_id: 1,
+        role_id: 1,
         right_id: 1
       }, {
-        user_id: 1,
+        role_id: 1,
         right_id: 2
       }, {
-        user_id: 1,
+        role_id: 1,
         right_id: 3
       }, {
-        user_id: 1,
+        role_id: 1,
         right_id: 4
+      }
+    ])
+  })
+  .then(() => {
+    return knex('users_roles').del()
+  })
+  .then(() => {
+    return knex('users_roles').insert([
+      {
+        user_id: 1,
+        role_id: 1
       }, {
         user_id: 2,
-        right_id: 2
+        role_id: 1
       }, {
-        user_id: 101,
-        right_id: 1
+        user_id: 3,
+        role_id: 1
+      }, {
+        user_id: 4,
+        role_id: 1
       }
     ])
   })

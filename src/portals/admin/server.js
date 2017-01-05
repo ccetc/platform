@@ -5,7 +5,6 @@ import signin from 'server/middleware/signin'
 import reset from 'server/middleware/reset'
 import extAuthentication from './middleware/authentication'
 import resumable from './middleware/resumable'
-import appsService from './middleware/apps'
 import sessionService from './middleware/session'
 import searchService from './middleware/search'
 import teamService from './middleware/teams'
@@ -37,7 +36,6 @@ router.use('/api/admin', authentication)
 router.use('/api/admin', resumable)
 
 // core admin api
-router.use('/api/admin', appsService)
 router.use('/api/admin', notificationsService)
 router.use('/api/admin', sessionService)
 router.use('/api/admin', searchService)

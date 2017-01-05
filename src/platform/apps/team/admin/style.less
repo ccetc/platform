@@ -102,53 +102,6 @@
 .author-details {
   padding: 10px;
 }
-.access {
-  flex: 1;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-}
-.access-app {
-  display: table;
-  width: 100%;
-}
-.access-app-title,
-.access-right {
-  display: table-row;
-  & > div {
-    border-bottom: 1px solid #DDD;
-  }
-}
-.access-app-title {
-  background-color: #EEE;
-}
-.access-app-label {
-  display: table-cell;
-  padding: 15px;
-  font-weight: bold;
-}
-.access-right-label {
-  display: table-cell;
-  padding: 15px;
-  color: #888888;
-  strong {
-    color: #000000;
-  }
-}
-.access-app-input,
-.access-right-input {
-  display: table-cell;
-  width: 60px;
-  padding: 15px;
-  text-align: center;
-  vertical-align: middle;
-  .toggle {
-    font-size: 2em;
-    margin: 0;
-    &.off {
-      color: #BBBBBB;
-    }
-    &.on {
-      color: #2185D0;
-    }
-  }
-}
+
+@import './components/access/style';
+@import './components/roles/style';

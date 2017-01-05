@@ -1,9 +1,9 @@
 exports.up = function(knex, Promise) {
   return Promise.all([
-    knex.schema.createTable('users_rights', function (table) {
+    knex.schema.createTable('roles_rights', function (table) {
       table.increments('id').primary()
-      table.integer('user_id').unsigned()
-      table.foreign('user_id').references('users.id')
+      table.integer('role_id').unsigned()
+      table.foreign('role_id').references('roles.id')
       table.integer('right_id').unsigned()
       table.foreign('right_id').references('rights.id')
       table.timestamps()
@@ -13,6 +13,6 @@ exports.up = function(knex, Promise) {
 
 exports.down = function(knex, Promise) {
   return Promise.all([
-    knex.schema.dropTable('users_rights')
+    knex.schema.dropTable('roles_rights')
   ])
 }

@@ -2,7 +2,8 @@ import React from 'react'
 import Avatar from 'portals/admin/components/avatar'
 import Details from 'portals/admin/components/details'
 import Page from 'portals/admin/containers/page'
-import Access from './access'
+import Access from '../roles/access'
+import Roles from './roles'
 import Edit from './edit'
 
 class Show extends React.Component {
@@ -48,6 +49,7 @@ const mapPropsToPage = (props, context) => {
     tasks: [
       { label: 'Edit User', modal: Edit },
       { label: 'Edit Access', modal: Access },
+      { label: 'Edit Roles', modal: Roles },
       { label: 'Reset Password', handler: _handleResetPassword },
       { label: 'Sign Out of All Devices', handler: _handleSignOutAllDevices }
     ],

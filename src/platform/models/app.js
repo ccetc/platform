@@ -3,7 +3,7 @@ import bookshelf from 'server/services/bookshelf'
 import unique from 'server/utils/unique_validation'
 import Author from 'platform/models/app_author'
 import Category from 'platform/models/app_category'
-import Right from 'platform/models/right'
+import Role from 'platform/models/role'
 import User from 'platform/models/user'
 
 export default bookshelf.Model.extend({
@@ -28,8 +28,8 @@ export default bookshelf.Model.extend({
     return this.belongsToMany(User, 'users_apps', 'app_id', 'user_id')
   },
 
-  rights: function() {
-    return this.hasMany(Right, 'app_id')
+  roles: function() {
+    return this.belongsToMany(Role, 'roles_apps', 'role_id', 'app_id')
   },
 
   virtuals: {

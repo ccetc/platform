@@ -1,0 +1,42 @@
+.access {
+  flex: 1;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+.access-app-title,
+.access-right {
+  display: flex;
+  border-bottom: 1px solid #DDD;
+}
+.access-app-label {
+  flex: 1;
+  padding: 15px;
+  font-weight: bold;
+}
+.access-app-title {
+  background-color: #EEE;
+}
+.access-right-label {
+  flex: 1;
+  padding: 15px;
+  color: #888888;
+  strong {
+    color: #000000;
+  }
+}
+.access-app-input,
+.access-right-input {
+  flex: 0 0 60px;
+  display: flex;
+  .toggle {
+    font-size: 2em;
+    height: auto;
+    margin: auto;
+    &.off {
+      color: #BBBBBB;
+    }
+    &.on {
+      color: #21BA45;
+    }
+  }
+}

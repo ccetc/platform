@@ -8,6 +8,7 @@ import UsersIndex from './views/users/index'
 import UsersShow from './views/users/show'
 import UsersNew from './views/users/new'
 import UsersEdit from './views/users/edit'
+import RolesIndex from './views/roles/index'
 
 const routes = (
   <Route>
@@ -24,6 +25,9 @@ const routes = (
       <Route path="new" component={UsersNew} />
       <Route path=":id" component={UsersShow} />
       <Route path=":id/edit" component={UsersEdit} />
+    </Route>
+    <Route path="roles">
+      <IndexRoute component={RolesIndex} />
     </Route>
   </Route>
 )
