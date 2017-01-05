@@ -71,6 +71,10 @@ class Access extends React.Component {
     )
   }
 
+  componentDidMount() {
+    this.props.onLoad()
+  }
+
   _handleCancel() {
     this.context.modal.close()
   }
@@ -94,6 +98,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
+  onLoad: actions.load,
   onToggleApp: actions.toggleApp,
   onToggleRight: actions.toggleRight
 }

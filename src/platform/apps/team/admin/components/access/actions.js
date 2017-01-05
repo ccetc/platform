@@ -16,12 +16,21 @@ export function toggleRight(appIndex, index) {
   }
 }
 
+export function load() {
+  return api.get({
+    endpoint: '/admin/access',
+    request: actionTypes.LOAD_REQUEST,
+    success: actionTypes.LOAD_SUCCESS,
+    failure: actionTypes.LOAD_FAILURE
+  })
+}
+
 export function submit(endpoint, params) {
   return api.get({
     endpoint,
     params,
     request: actionTypes.SUBMIT_REQUEST,
-    success: actionTypes.SUBMIT_SUBMIT,
+    success: actionTypes.SUBMIT_SUCCESS,
     failure: actionTypes.SUBMIT_FAILURE
   })
 }
