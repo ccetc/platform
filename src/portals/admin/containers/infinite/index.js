@@ -26,7 +26,10 @@ class Infinite extends React.Component {
 
   static defaultProps = {
     filter: {},
-    sort: 'created_at'
+    sort: {
+      key: 'created_at',
+      order: 'desc'
+    }
   }
 
   render() {
@@ -35,19 +38,18 @@ class Infinite extends React.Component {
   }
 
   componentDidMount() {
-    const { endpoint, filter, sort } = this.props
-    this.props.onFetch(this.props.cid, endpoint, { ...filter, $skip: 0, $sort: sort })
+    this._handleFetch(0)
   }
 
   componentDidUpdate(prevProps) {
-    const { endpoint, filter, sort, loaded, records, status } = this.props
+    const { filter, sort, loaded, records, status } = this.props
     if(prevProps.sort !== sort || prevProps.filter !== filter) {
       this.props.onReset(this.props.cid)
     } else if(prevProps.status !== status) {
       if(status === 'loaded' && records.length > 0) {
         this._attachScrollListener()
       } else if(status === 'pending') {
-        this.props.onFetch(this.props.cid, endpoint, { ...filter, $skip: loaded, $sort: sort })
+        this._handleFetch(loaded)
       } else if(status === 'completed') {
         this._detachScrollListener()
       }
@@ -103,14 +105,20 @@ class Infinite extends React.Component {
   }
 
   _scrollListener() {
-    const { cid, endpoint, filter, sort, loaded, status, total, onFetch } = this.props
+    const { loaded, status, total } = this.props
     const el = this._container()
     if(!el || status == 'loading') return
     const bottomScrollPos = el.scrollTop + el.offsetHeight
     const bottomPosition = (el.scrollHeight - bottomScrollPos)
     if(bottomPosition < 250 && loaded < total) {
-      onFetch(cid, endpoint, { ...filter, $skip: loaded, $sort: sort })
+      this._handleFetch(loaded)
     }
+  }
+
+  _handleFetch(loaded) {
+    const { cid, endpoint, filter, sort, onFetch } = this.props
+    const $sort = (sort.order === 'desc' ? '-' : '') + sort.key
+    onFetch(cid, endpoint, { ...filter, $skip: loaded, $sort })
   }
 
 }

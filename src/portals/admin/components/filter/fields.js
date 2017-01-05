@@ -10,11 +10,11 @@ class Fields extends React.Component {
 
   static propTypes = {
     fields: React.PropTypes.array,
-    query: React.PropTypes.object
+    results: React.PropTypes.object
   }
 
   render() {
-    const { fields, query } = this.props
+    const { fields, results } = this.props
     return (
       <div className="filter-panel">
         <div className="filter-header">
@@ -28,7 +28,7 @@ class Fields extends React.Component {
         </div>
         <div className="filter-body">
           { fields.map((field, index) => {
-            const values = this._values(field, query)
+            const values = this._values(field, results)
             return (
               <div key={`filter_${index}`} className="filter-item" onClick={ this._handleChoose.bind(this, index) }>
                 <div className="filter-item-field">
@@ -51,20 +51,20 @@ class Fields extends React.Component {
     )
   }
 
-  _count(filter, query) {
-    return query[filter.name] ? query[filter.name].length : null
+  _count(filter, results) {
+    return results[filter.name] ? results[filter.name].length : null
   }
 
-  _values(field, query) {
-    if(field.multiple && query[field.name]) {
+  _values(field, results) {
+    if(field.multiple && results[field.name]) {
       let values = []
-      query[field.name].map(record => {
+      results[field.name].map(record => {
         values.push(record.value)
       })
       return values.join(', ')
     } else {
-      if(query[field.name]) {
-        return query[field.name].value
+      if(results[field.name]) {
+        return results[field.name].value
       }
     }
     return ''
@@ -85,7 +85,7 @@ class Fields extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  query: state.filter.query
+  results: state.filter.results
 })
 
 const mapDispatchToProps = {

@@ -9,6 +9,18 @@ class Select extends React.Component {
     tray: React.PropTypes.object
   }
 
+  static propTypes = {
+    endpoint: React.PropTypes.string,
+    sort: React.PropTypes.object
+  }
+
+  static defaultProps = {
+    sort: {
+      key: 'created_at',
+      order: 'desc'
+    }
+  }
+
   render() {
     const { label } = this.props
     return (
@@ -53,6 +65,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   onBack: actions.back,
+  onAbort: actions.abort,
+  onLookup: actions.lookup,
   onUpdate: actions.update,
   onReset: actions.reset
 }

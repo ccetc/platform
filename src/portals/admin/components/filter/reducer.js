@@ -3,7 +3,8 @@ import _ from 'lodash'
 
 export const INITIAL_STATE = {
   active: null,
-  query: {}
+  query: '',
+  results: {}
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -13,8 +14,8 @@ export default (state = INITIAL_STATE, action) => {
   case actionTypes.SET:
     return {
       ...state,
-      query: {
-        ...state.query,
+      results: {
+        ...state.results,
         [action.key]: action.value
       }
     }
@@ -22,8 +23,8 @@ export default (state = INITIAL_STATE, action) => {
   case actionTypes.LOAD_SUCCESS:
     return {
       ...state,
-      query: {
-        ...state.query,
+      results: {
+        ...state.results,
         [action.key]: action.data.data.map(record => {
           return {
             key: _.get(record, action.value),
@@ -36,25 +37,25 @@ export default (state = INITIAL_STATE, action) => {
   case actionTypes.REMOVE:
     return {
       ...state,
-      query: (_.isArray(state.query[action.key])) ? {
-        ...state.query,
+      results: (_.isArray(state.results[action.key])) ? {
+        ...state.results,
         [action.key]: [
-          ...state.query[action.key].slice(0, action.index),
-          ...state.query[action.key].slice(action.index + 1)
+          ...state.results[action.key].slice(0, action.index),
+          ...state.results[action.key].slice(action.index + 1)
         ]
-      } : _.omit(state.query, action.key)
+      } : _.omit(state.results, action.key)
     }
 
   case actionTypes.RESET_ALL:
     return {
       ...state,
-      query: {}
+      results: {}
     }
 
   case actionTypes.RESET:
     return {
       ...state,
-      query: _.omit(state.query, action.key)
+      results: _.omit(state.results, action.key)
     }
 
   case actionTypes.RESTART:
@@ -66,7 +67,8 @@ export default (state = INITIAL_STATE, action) => {
   case actionTypes.CHOOSE:
     return {
       ...state,
-      active: action.index
+      active: action.index,
+      query: ''
     }
 
   case actionTypes.BACK:
@@ -78,10 +80,22 @@ export default (state = INITIAL_STATE, action) => {
   case actionTypes.UPDATE:
     return {
       ...state,
-      query: {
-        ...state.query,
+      results: {
+        ...state.results,
         [action.key]: action.value
       }
+    }
+
+  case actionTypes.LOOKUP:
+    return {
+      ...state,
+      query: action.query
+    }
+
+  case actionTypes.ABORT:
+    return {
+      ...state,
+      query: ''
     }
 
   default:

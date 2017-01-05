@@ -8,7 +8,7 @@ import Infinite from 'portals/admin/containers/infinite'
 class Options extends React.Component {
 
   render() {
-    const { name, multiple, options, query } = this.props
+    const { name, multiple, options, results } = this.props
     return (
       <div className="filter-body">
         { options.map((option, index) => {
@@ -23,7 +23,7 @@ class Options extends React.Component {
                 </div>
               }
               <div className="filter-item-icon">
-                { this._checked(name, multiple, query, option) ? <i className="green check icon" /> : null }
+                { this._checked(name, multiple, results, option) ? <i className="green check icon" /> : null }
               </div>
             </div>
           )
@@ -32,22 +32,22 @@ class Options extends React.Component {
     )
   }
 
-  _checked(name, multiple, query, option) {
+  _checked(name, multiple, results, option) {
     if(multiple) {
-      return query[name] && _.find(query[name], { key: option.value })
+      return results[name] && _.find(results[name], { key: option.value })
     } else {
-      return query[name] && query[name].key == option.value
+      return results[name] && results[name].key == option.value
     }
   }
 
   _handleChoose(key, value) {
-    const { name, multiple, query } = this.props
+    const { name, multiple, results } = this.props
     let values = null
     if(multiple) {
-      values = query[name] || []
+      values = results[name] || []
       values = _.find(values, { key }) ? _.filter(values, item => (item.key !== key)) : [ ...values, { key, value } ]
     } else {
-      if(!query[name] || query[name].key !== key) {
+      if(!results[name] || results[name].key !== key) {
         values = { key, value }
       }
     }
@@ -57,7 +57,7 @@ class Options extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  query: state.filter.query
+  results: state.filter.results
 })
 
 const mapDispatchToProps = {
@@ -90,15 +90,15 @@ class Dynamic extends React.Component {
 class Container extends React.Component {
 
   render() {
-    const { endpoint, label } = this.props
+    const { endpoint, label, query } = this.props
     if(endpoint) {
       return (
         <div className="filter-search">
           <div className="filter-search-form ui form">
             <div className="filter-search-input">
               <i className="search icon" />
-              <input type="text" placeholder={`Find a ${label}...`} onChange={this._handleLookup.bind(this)} ref="query" />
-              <i className="remove circle icon" />
+              <input type="text" placeholder={`Find a ${label}...`} onChange={ this._handleLookup.bind(this) } ref="results" value={query} />
+              { query.length > 0 && <i className="remove circle icon" onClick={ this._handleAbort.bind(this) } /> }
             </div>
           </div>
           <Infinite {...this._getInfinite()}>
@@ -113,14 +113,22 @@ class Container extends React.Component {
   }
 
   _getInfinite() {
-    const { endpoint } = this.props
+    const { endpoint, sort, query } = this.props
     return {
-      endpoint
+      endpoint,
+      filter: {
+        q: query
+      },
+      sort
     }
   }
 
   _handleLookup(event) {
-    // this.props.onLookup(this.props.cid,event.target.value, this.props.endpoint)
+    this.props.onLookup(event.target.value)
+  }
+
+  _handleAbort() {
+    this.props.onAbort()
   }
 
 }

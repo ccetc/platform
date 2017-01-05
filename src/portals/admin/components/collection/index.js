@@ -52,7 +52,7 @@ class Collection extends React.Component {
     const { endpoint, params } = this.props
     return {
       endpoint,
-      sort: (params.sort.order === 'desc' ? '-' : '') + params.sort.key,
+      sort: params.sort,
       filter: params.filter
     }
   }

@@ -67,3 +67,16 @@ export function remove(key, index) {
     index
   }
 }
+
+export function lookup(query) {
+  return {
+    type: actionTypes.LOOKUP,
+    query
+  }
+}
+
+export function abort() {
+  return {
+    type: actionTypes.ABORT
+  }
+}

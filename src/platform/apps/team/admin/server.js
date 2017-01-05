@@ -9,6 +9,7 @@ import Search from 'platform/models/search'
 import User from 'platform/models/user'
 import AppQuery from 'platform/queries/app_query'
 import ActivityQuery from 'platform/queries/activity_query'
+import UserQuery from 'platform/queries/user_query'
 import ActivitySerializer from 'platform/serializers/activity_serializer'
 import AppSerializer from 'platform/serializers/app_serializer'
 import AppAuthorSerializer from 'platform/serializers/app_author_serializer'
@@ -80,6 +81,7 @@ router.use(resources({
   name: 'user',
   path: 'users',
   model: User,
+  query: UserQuery,
   serializer: UserSerializer,
   include: ['photo']
 }))

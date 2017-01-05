@@ -14,9 +14,12 @@ class Filter extends React.Component {
     fields: React.PropTypes.array,
     filters: React.PropTypes.object,
     params: React.PropTypes.object,
+    query: React.PropTypes.string,
     onChange: React.PropTypes.func,
+    onChoose: React.PropTypes.func,
     onLoad: React.PropTypes.func,
     onRemove: React.PropTypes.func,
+    onResetAll: React.PropTypes.func,
     onSet: React.PropTypes.func
   }
 
@@ -25,14 +28,14 @@ class Filter extends React.Component {
   }
 
   render() {
-    const { fields, query } = this.props
+    const { fields, results } = this.props
     return (
       <div className="filters">
         <div className="filter-tokens">
           { fields.map(field => {
-            if(query[field.name]) {
-              if(_.isArray(query[field.name])) {
-                return query[field.name].map((filter, index) => {
+            if(results[field.name]) {
+              if(_.isArray(results[field.name])) {
+                return results[field.name].map((filter, index) => {
                   return (
                     <span key={`filter_${index}`} className="ui small basic button">
                       <span className="label" onClick={ this._handleOpen.bind(this) }>
@@ -42,11 +45,11 @@ class Filter extends React.Component {
                     </span>
                   )
                 })
-              } else if(_.isObject(query[field.name])) {
+              } else if(_.isObject(results[field.name])) {
                 return (
                   <span className="ui small basic button">
                     <span className="label" onClick={ this._handleOpen.bind(this) }>
-                      { query[field.name].value }
+                      { results[field.name].value }
                     </span>
                     <i className="remove icon" onClick={ this._handleRemove.bind(this, field.name) } />
                   </span>
@@ -70,8 +73,8 @@ class Filter extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { query } = this.props
-    if(query !== prevProps.query) {
+    const { results } = this.props
+    if(results !== prevProps.results) {
       this._handleChange()
     }
   }
@@ -96,11 +99,11 @@ class Filter extends React.Component {
   }
 
   _handleChange() {
-    const { query } = this.props
-    const filters = Object.keys(query).reduce((filters, key) => {
+    const { results } = this.props
+    const filters = Object.keys(results).reduce((filters, key) => {
       return {
         ...filters,
-        [key]: (_.isArray(query[key])) ? { $in: query[key].map(item => item.key) } : { $eq: query[key].key }
+        [key]: (_.isArray(results[key])) ? { $in: results[key].map(item => item.key) } : { $eq: results[key].key }
       }
     }, {})
     this.props.onChange(filters)
@@ -122,7 +125,7 @@ class Filter extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  query: state.filter.query
+  results: state.filter.results
 })
 
 const mapDispatchToProps = {
