@@ -43,7 +43,7 @@ class Access extends React.Component {
                       <i className={`toggle ${app.installed ? 'on' : 'off'} icon`} onClick={ this._handleToggleApp.bind(this, appindex) } />
                     </div>
                   </div>
-                  <CSSTransitionGroup transitionName="expanded" component="div" transitionEnterTimeout={ 250 } transitionLeaveTimeout={ 250 }>
+                  <CSSTransitionGroup transitionName="expanded" component="div" transitionEnterTimeout={ 500 } transitionLeaveTimeout={ 500 }>
                     { app.installed &&
                       <div className="access-rights">
                         { app.rights.map((right, rightindex) => {
