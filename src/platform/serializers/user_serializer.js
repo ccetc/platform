@@ -6,6 +6,10 @@ export default (object) => ({
   initials: object.get('initials'),
   email: object.get('email'),
   photo: object.related('photo').get('url'),
+  roles: object.related('roles').map(role => ({
+    id: role.get('id'),
+    title: role.get('title')
+  })),
   created_at: object.get('created_at'),
   updated_at: object.get('updated_at')
 })

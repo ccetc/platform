@@ -1,6 +1,6 @@
 import checkit from  'checkit'
 import bookshelf from 'server/services/bookshelf'
-
+import App from 'platform/models/app'
 import Story from 'platform/models/story'
 import User from 'platform/models/user'
 
@@ -12,6 +12,10 @@ export default bookshelf.Model.extend({
 
   rules: {
     user_id: ['required']
+  },
+
+  app: function() {
+    return this.belongsTo(App)
   },
 
   story: function() {

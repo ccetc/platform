@@ -11,8 +11,9 @@ class Access extends React.Component {
 
   static propTypes = {
     access: React.PropTypes.array,
-    toggleApp: React.PropTypes.func,
-    toggleRight: React.PropTypes.func
+    onLoad: React.PropTypes.func,
+    onToggleApp: React.PropTypes.func,
+    onToggleRight: React.PropTypes.func
   }
 
   render() {

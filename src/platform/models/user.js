@@ -4,7 +4,7 @@ import bookshelf from 'server/services/bookshelf'
 import unique from 'server/utils/unique_validation'
 // import App from 'platform/models/app'
 import Asset from 'platform/models/asset'
-// import Role from 'platform/models/role'
+import Role from 'platform/models/role'
 import Right from 'platform/models/right'
 import SecurityQuestion from 'platform/models/security_question'
 import Team from 'platform/models/team'
@@ -39,15 +39,15 @@ export default bookshelf.Model.extend({
     return this.belongsTo(SecurityQuestion, 'security_question_2_id')
   },
 
-  rights: function() {
-    return this.belongsToMany(Right, 'users_roles', 'user_id', 'role_id').query(qb => qb
-      .innerJoin('roles_rights', 'roles_rights.right_id', 'rights.id')
-    )
-  },
-
-  // roles: function() {
-  //   return this.belongsToMany(Role, 'users_roles', 'user_id', 'role_id')
+  // rights: function() {
+  //   return this.belongsToMany(Right, 'users_roles', 'user_id', 'role_id').query(qb => qb
+  //     .innerJoin('roles_rights', 'roles_rights.right_id', 'rights.id')
+  //   )
   // },
+
+  roles: function() {
+    return this.belongsToMany(Role, 'users_roles', 'user_id', 'role_id')
+  },
 
   team: function() {
     return this.belongsTo(Team, 'team_id')

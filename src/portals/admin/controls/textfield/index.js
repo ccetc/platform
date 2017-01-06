@@ -45,7 +45,7 @@ class TextField extends React.Component {
   render() {
     const input = <input ref="control"
                          type="text"
-                         value={this.state.value}
+                         defaultValue={this.state.value}
                          autoComplete={this.props.autoComplete}
                          placeholder={this.props.placeholder}
                          onChange={this._handleChange.bind(this)}

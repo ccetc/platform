@@ -2325,6 +2325,10 @@ exports.seed = (knex, Promise) => {
         description: 'Sriracha bitters fixie bicycle rights, shoreditch lomo retro snackwave cold-pressed bespoke banjo synth beard keytar. '
       }, {
         team_id: 1,
+        title: 'Finance',
+        description: 'Sriracha bitters fixie bicycle rights, shoreditch lomo retro snackwave cold-pressed bespoke banjo synth beard keytar. '
+      }, {
+        team_id: 1,
         title: 'Employee',
         description: 'Sriracha bitters fixie bicycle rights, shoreditch lomo retro snackwave cold-pressed bespoke banjo synth beard keytar. '
       }
@@ -2346,6 +2350,9 @@ exports.seed = (knex, Promise) => {
       }, {
         role_id: 1,
         app_id: 4
+      }, {
+        role_id: 1,
+        app_id: 5
       }
     ])
   })
@@ -2378,14 +2385,80 @@ exports.seed = (knex, Promise) => {
         user_id: 1,
         role_id: 1
       }, {
+        user_id: 1,
+        role_id: 4
+      }, {
         user_id: 2,
         role_id: 1
       }, {
+        user_id: 2,
+        role_id: 4
+      }, {
         user_id: 3,
-        role_id: 1
+        role_id: 4
       }, {
         user_id: 4,
+        role_id: 4
+      }, {
+        user_id: 5,
+        role_id: 4
+      }, {
+        user_id: 6,
+        role_id: 4
+      }, {
+        user_id: 7,
+        role_id: 4
+      }, {
+        user_id: 8,
+        role_id: 4
+      }, {
+        user_id: 9,
         role_id: 1
+      }, {
+        user_id: 9,
+        role_id: 4
+      }, {
+        user_id: 11,
+        role_id: 3
+      }, {
+        user_id: 11,
+        role_id: 4
+      }, {
+        user_id: 20,
+        role_id: 2
+      }, {
+        user_id: 20,
+        role_id: 4
+      }, {
+        user_id: 21,
+        role_id: 1
+      }, {
+        user_id: 21,
+        role_id: 4
+      }, {
+        user_id: 23,
+        role_id: 2
+      }, {
+        user_id: 23,
+        role_id: 4
+      }, {
+        user_id: 45,
+        role_id: 1
+      }, {
+        user_id: 45,
+        role_id: 4
+      }, {
+        user_id: 47,
+        role_id: 3
+      }, {
+        user_id: 47,
+        role_id: 4
+      }, {
+        user_id: 80,
+        role_id: 3
+      }, {
+        user_id: 80,
+        role_id: 4
       }
     ])
   })

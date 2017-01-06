@@ -18,7 +18,9 @@
 .chrome-feed-item-avatar {
   flex: 0 0 50px;
   padding-right: 10px;
+  display: flex;
   img {
+    margin: auto;
     width: 100%;
   }
 }
@@ -34,6 +36,13 @@
   font-weight: bold;
   margin-right: 3px;
 }
-.chrome-feed-item-timestamp {
+
+.chrome-feed-item-timestamp,
+.chrome-feed-item-app {
+  font-size: .8em;
   color: #888;
+  i {
+    margin: 0;
+    width: auto;
+  }
 }

@@ -10,7 +10,8 @@ class Roles extends React.Component {
 
   static propTypes = {
     roles: React.PropTypes.array,
-    toggleRole: React.PropTypes.func
+    onLoad: React.PropTypes.func,
+    onToggleRole: React.PropTypes.func
   }
 
   render() {
@@ -49,6 +50,10 @@ class Roles extends React.Component {
     )
   }
 
+  componentDidMount() {
+    this.props.onLoad()
+  }
+
   _handleCancel() {
     this.context.modal.close()
   }
@@ -69,6 +74,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
+  onLoad: actions.load,
   onToggle: actions.toggle
 }
 

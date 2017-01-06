@@ -44,11 +44,12 @@ export class Feed extends React.Component {
                     <img src={ item.user.photo } className="ui circular image" />
                   </div>
                   <div className="chrome-feed-item-details">
+                    <div className="chrome-feed-item-timestamp">{ moment(item.created_at).fromNow() } on { moment(item.created_at).format('dddd, MMMM Do @ h:mm a') }</div>
                     <div className="chrome-feed-item-story">
                       <span className="chrome-feed-item-user">{ item.user.full_name }</span>
                       <span dangerouslySetInnerHTML={{__html: story }} />
                     </div>
-                    <div className="chrome-feed-item-timestamp">{ moment(item.created_at).fromNow() } on { moment(item.created_at).format('dddd, MMMM Do @ h:mm a') }</div>
+                    <div className="chrome-feed-item-app"><i className={`${ item.app.icon } icon`} /> { item.app.title }</div>
                   </div>
                 </Link>
               )

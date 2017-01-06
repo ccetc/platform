@@ -8,6 +8,15 @@ export function toggle(index) {
   }
 }
 
+export function load() {
+  return api.get({
+    endpoint: '/admin/roles',
+    request: actionTypes.LOAD_REQUEST,
+    success: actionTypes.LOAD_SUCCESS,
+    failure: actionTypes.LOAD_FAILURE
+  })
+}
+
 export function submit(endpoint, params) {
   return api.get({
     endpoint,

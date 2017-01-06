@@ -10,6 +10,7 @@ import Search from 'platform/models/search'
 import User from 'platform/models/user'
 import AppQuery from 'platform/queries/app_query'
 import ActivityQuery from 'platform/queries/activity_query'
+import RoleQuery from 'platform/queries/role_query'
 import UserQuery from 'platform/queries/user_query'
 import ActivitySerializer from 'platform/serializers/activity_serializer'
 import AppSerializer from 'platform/serializers/app_serializer'
@@ -62,7 +63,7 @@ router.use(resources({
   model: Activity,
   query: ActivityQuery,
   serializer: ActivitySerializer,
-  include: ['story','user.photo']
+  include: ['story','user.photo','app']
 }))
 
 router.use(resources({
@@ -76,6 +77,7 @@ router.use(resources({
   name: 'role',
   path: 'roles',
   model: Role,
+  query: RoleQuery,
   serializer: RoleSerializer
 }))
 
@@ -94,7 +96,7 @@ router.use(resources({
   model: User,
   query: UserQuery,
   serializer: UserSerializer,
-  include: ['photo']
+  include: ['photo','roles']
 }))
 
 router.get('/access', FindAccess)

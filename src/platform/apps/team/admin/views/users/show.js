@@ -26,6 +26,7 @@ class Show extends React.Component {
       items: [
         { label: 'Name ', content: user.full_name },
         { label: 'Email ', content: user.email, format: 'email' },
+        { label: 'Roles ', content: user.roles.map(role => role.title).join(', ') },
         { label: 'Created ', content: user.created_at, format: 'datetime' }
       ]
     }

@@ -22,6 +22,9 @@ class Index extends React.Component {
         { label: 'Name', key: 'first_name', primary: true, format: NameCell },
         { label: 'Email', key: 'email' }
       ],
+      filters: [
+        { label: 'Role', name: 'role_id', type: 'select', multiple: true, endpoint: '/admin/roles', value: 'id', text: 'title', sort: { key: 'title', order: 'asc' } }
+      ],
       entity: 'user',
       recordActions: [
         { label: 'edit', icon: 'edit', redirect: '/admin/team/users/#{id}/edit'}
