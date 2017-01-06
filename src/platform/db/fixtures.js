@@ -37,10 +37,10 @@ exports.seed = (knex, Promise) => {
         version: '1.0.0',
         icon: 'users'
       }, {
-        title: 'Reimbursement',
+        title: 'Expenses',
         app_category_id: 4,
         app_author_id: 1,
-        short_description: 'Manage reimbursement for expenses, advances, and vehicle trips',
+        short_description: 'Manage expenses for expenses, advances, and vehicle trips',
         long_description: 'Vexillologist viral stumptown salvia. Asymmetrical green juice lumbersexual, microdosing hell of yuccie messenger bag butcher pok pok XOXO organic neutra brunch bushwick street art. Meh iceland disrupt, polaroid skateboard lo-fi chambray tofu tumblr green juice vexillologist cliche umami. Wolf put a bird on it gochujang health goth, gluten-free synth cliche pork belly succulents unicorn selfies kinfolk tofu. Vexillologist viral stumptown salvia. Asymmetrical green juice lumbersexual, microdosing hell of yuccie messenger bag butcher pok pok XOXO organic neutra brunch bushwick street art. Meh iceland disrupt, polaroid skateboard lo-fi chambray tofu tumblr green juice vexillologist cliche umami. Wolf put a bird on it gochujang health goth, gluten-free synth cliche pork belly succulents unicorn selfies kinfolk tofu.',
         version: '1.0.0',
         icon: 'dollar'
@@ -82,15 +82,15 @@ exports.seed = (knex, Promise) => {
         description: 'user can manage team settings'
       }, {
         app_id: 2,
-        text: 'MANAGE REIMBURSEMENTS',
+        text: 'MANAGE EXPENSES',
         description: 'user can manage their own advances, expenses, and trips'
       }, {
         app_id: 2,
-        text: 'SUPERVISE REIMBURSEMENTS',
+        text: 'SUPERVISE EXPENSES',
         description: 'user can access all advances, expense, and trip reports'
       }, {
         app_id: 2,
-        text: 'ADMIN REIMBURSEMENTS',
+        text: 'ADMIN EXPENSES',
         description: 'user can manage projects, vendors, and expense types'
       }
     ])
@@ -2157,7 +2157,7 @@ exports.seed = (knex, Promise) => {
         user_id: 1,
         story_id: 1,
         app_id: 2,
-        url: '/admin/reimbursement/projects/1',
+        url: '/admin/expenses/projects/1',
         subject_type: 'project',
         subject_text: 'Primitive Pursuits',
         created_at: '2016-04-01'
@@ -2166,7 +2166,7 @@ exports.seed = (knex, Promise) => {
         user_id: 1,
         story_id: 2,
         app_id: 2,
-        url: '/admin/reimbursement/expenses',
+        url: '/admin/expenses/expenses',
         subject_type: 'expense',
         subject_text: 'food for party',
         object1_type: 'project',
@@ -2177,7 +2177,7 @@ exports.seed = (knex, Promise) => {
         user_id: 95,
         story_id: 2,
         app_id: 2,
-        url: '/admin/reimbursement/expenses',
+        url: '/admin/expenses/expenses',
         subject_type: 'expense',
         subject_text: 'food for party',
         object1_type: 'project',
@@ -2188,7 +2188,7 @@ exports.seed = (knex, Promise) => {
         user_id: 49,
         story_id: 2,
         app_id: 2,
-        url: '/admin/reimbursement/expenses',
+        url: '/admin/expenses/expenses',
         subject_type: 'expense',
         subject_text: 'food for party',
         object1_type: 'project',
@@ -2199,7 +2199,7 @@ exports.seed = (knex, Promise) => {
         user_id: 54,
         story_id: 1,
         app_id: 2,
-        url: '/admin/reimbursement/projects/2',
+        url: '/admin/expenses/projects/2',
         subject_type: 'project',
         subject_text: 'Eat Smart New York',
         created_at: '2016-04-03'
@@ -2208,7 +2208,7 @@ exports.seed = (knex, Promise) => {
         user_id: 19,
         story_id: 1,
         app_id: 2,
-        url: '/admin/reimbursement/projects/3',
+        url: '/admin/expenses/projects/3',
         subject_type: 'project',
         subject_text: 'Website Platform',
         created_at: '2016-04-03'
@@ -2217,7 +2217,7 @@ exports.seed = (knex, Promise) => {
         user_id: 13,
         story_id: 2,
         app_id: 2,
-        url: '/admin/reimbursement/expenses',
+        url: '/admin/expenses/expenses',
         subject_type: 'expense',
         subject_text: 'food for party',
         object1_type: 'project',
@@ -2228,7 +2228,7 @@ exports.seed = (knex, Promise) => {
         user_id: 13,
         story_id: 2,
         app_id: 2,
-        url: '/admin/reimbursement/expenses',
+        url: '/admin/expenses/expenses',
         subject_type: 'expense',
         subject_text: 'website hosting',
         object1_type: 'project',
@@ -2239,7 +2239,7 @@ exports.seed = (knex, Promise) => {
         user_id: 48,
         story_id: 2,
         app_id: 2,
-        url: '/admin/reimbursement/expenses',
+        url: '/admin/expenses/expenses',
         subject_type: 'expense',
         subject_text: 'website hosting',
         object1_type: 'project',
@@ -2250,7 +2250,7 @@ exports.seed = (knex, Promise) => {
         user_id: 13,
         story_id: 2,
         app_id: 2,
-        url: '/admin/reimbursement/expenses',
+        url: '/admin/expenses/expenses',
         subject_type: 'expense',
         subject_text: 'website hosting',
         object1_type: 'project',
@@ -2261,7 +2261,7 @@ exports.seed = (knex, Promise) => {
         user_id: 21,
         story_id: 1,
         app_id: 2,
-        url: '/admin/reimbursement/projects/3',
+        url: '/admin/expenses/projects/3',
         subject_type: 'project',
         subject_text: 'Website Platform',
         created_at: '2016-04-05'
@@ -2270,7 +2270,7 @@ exports.seed = (knex, Promise) => {
         user_id: 21,
         story_id: 1,
         app_id: 2,
-        url: '/admin/reimbursement/projects/3',
+        url: '/admin/expenses/projects/3',
         subject_type: 'project',
         subject_text: 'Website Platform',
         created_at: '2016-04-05'
@@ -2279,7 +2279,7 @@ exports.seed = (knex, Promise) => {
         user_id: 49,
         story_id: 2,
         app_id: 2,
-        url: '/admin/reimbursement/expenses',
+        url: '/admin/expenses/expenses',
         subject_type: 'expense',
         subject_text: 'food for party',
         object1_type: 'project',
@@ -2290,7 +2290,7 @@ exports.seed = (knex, Promise) => {
         user_id: 64,
         story_id: 2,
         app_id: 2,
-        url: '/admin/reimbursement/expenses',
+        url: '/admin/expenses/expenses',
         subject_type: 'expense',
         subject_text: 'food for party',
         object1_type: 'project',
@@ -2301,7 +2301,7 @@ exports.seed = (knex, Promise) => {
         user_id: 49,
         story_id: 2,
         app_id: 2,
-        url: '/admin/reimbursement/expenses',
+        url: '/admin/expenses/expenses',
         subject_type: 'expense',
         subject_text: 'food for party',
         object1_type: 'project',

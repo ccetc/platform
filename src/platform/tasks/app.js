@@ -1,8 +1,8 @@
 
 module.exports = {
   install(args, environment) {
-    console.log(`I am happy to report that I am running the "app:install" task with the environment given`, environment)
-    environment.logv("Shhh, verbose only!")
+    const app = args._[1]
+    console.log(args._[1])
     return 1
   },
 

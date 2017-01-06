@@ -12,7 +12,7 @@ describe('app model', function() {
   })
 
   it('enforces unique title', function(done) {
-    App.forge({ title: 'Reimbursement' }).save().then(user => {
+    App.forge({ title: 'Expenses' }).save().then(user => {
     }).catch(err => {
       expect(err.errors).to.have.property('title')
       done()
