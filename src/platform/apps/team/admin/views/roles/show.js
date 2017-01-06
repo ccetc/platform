@@ -59,34 +59,31 @@ const Users = (props) => {
 }
 
 const Access = (props) => {
+  const { access } = props
   return (
     <div className="role-access">
-      <div className="role-access-app">
-        TEAM
-      </div>
-      <div className="role-access-rights">
-        <strong>admin team</strong><br />
-        user can manage team settings
-      </div>
-      <div className="role-access-rights">
-        <strong>admin team</strong><br />
-        user can manage team settings
-      </div>
-      <div className="role-access-rights">
-        <strong>admin team</strong><br />
-        user can manage team settings
-      </div>
-      <div className="role-access-app">
-        TEAM
-      </div>
-      <div className="role-access-rights">
-        <strong>admin team</strong><br />
-        user can manage team settings
-      </div>
-      <div className="role-access-rights">
-        <strong>admin team</strong><br />
-        user can manage team settings
-      </div>
+      { access.map((app, appindex) => {
+        return (
+          <div className="role-access-app">
+            <div className="role-access-title">
+              { app.title }
+            </div>
+            { app.rights.length > 0 && app.rights.map((right, rightindex) => {
+              return (
+                <div className="role-access-right">
+                  <div className="role-access-right-icon">
+                    { right.assigned ? <i className="green check icon" /> : <i className="red remove icon" /> }
+                  </div>
+                  <div className="role-access-right-label">
+                    <strong>{ right.text }</strong><br />
+                    { right.description }
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        )
+      })}
     </div>
   )
 }
@@ -100,7 +97,8 @@ const mapPropsToPage = (props, context) => {
       { label: 'Edit Role', modal: Edit }
     ],
     resources: {
-      role: `/admin/roles/${props.params.id}`
+      role: `/admin/roles/${props.params.id}`,
+      access: `/admin/roles/${props.params.id}/access`
     }
   }
 }

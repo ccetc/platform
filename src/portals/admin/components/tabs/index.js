@@ -26,12 +26,14 @@ export class Tabs extends React.Component {
     const content = tabs[active].content
     return (
       <div className="tabs">
-        <div className={`ui ${numbers[tabs.length]} item pointing menu`}>
-          {tabs.map((tab, index) => {
-            let isActive = (index == active)
-            return <Tab key={`tab_${index}`} active={isActive} label={tab.label} onChangeTab={this._handleChangeTab.bind(this, index)} />
-          })}
-       </div>
+        <div className="tabs-menu">
+          <div className={`ui ${numbers[tabs.length]} item pointing menu`}>
+            {tabs.map((tab, index) => {
+              let isActive = (index == active)
+              return <Tab key={`tab_${index}`} active={isActive} label={tab.label} onChangeTab={this._handleChangeTab.bind(this, index)} />
+            })}
+          </div>
+        </div>
        <div className="tab-panes">
          <CSSTransitionGroup transitionName={`slide-${state}`} component="div" transitionEnterTimeout={ 500 } transitionLeaveTimeout={ 500 }>
            <div className="tab-pane" key={`pane-${active}`}>

@@ -22,7 +22,7 @@ export default (state = INITIAL_STATE, action) => {
         if(index === action.index) {
           return {
             ...app,
-            installed: !app.installed
+            assigned: !app.assigned
           }
         } else {
           return app

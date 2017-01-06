@@ -100,6 +100,6 @@ router.use(resources({
   include: ['photo','roles']
 }))
 
-router.get('/access', FindAccess)
+router.get('/roles/:id/access', FindAccess)
 
 export default router

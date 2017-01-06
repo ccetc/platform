@@ -126,19 +126,30 @@
   .border-radius(5px);
   border: 1px solid #DDD;
 }
-.role-access-app {
+.role-access-title {
   padding: 10px 15px;
   border-bottom: 1px solid #DDD;
   background: #EEE;
   text-transform: uppercase;
 }
-.role-access-rights {
+.role-access-right {
   padding: 10px 15px;
   border-bottom: 1px solid #DDD;
   color: #888;
+  display: flex;
   strong {
     text-transform: lowercase;;
     color: #000;
+  }
+  .role-access-right-icon {
+    flex: 0 0 30px;
+    display: flex;
+    i {
+      margin: auto 0;
+    }
+  }
+  .role-access-right-label {
+    flex: 1;
   }
 }
 

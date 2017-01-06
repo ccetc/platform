@@ -14,6 +14,8 @@
 }
 .chrome-tasks-list {
   position: fixed;
+  .border-radius(5px);
+  background-color: #FFFFFF;
   @media only screen and (max-width: 767px) {
     .translate-y-transition(100%, 0, .25s);
     bottom: 0;
@@ -30,7 +32,6 @@
   }
   .chrome-tasks-item,
   .chrome-tasks-cancel {
-    background-color: #FFF;
     display: block;
     padding: 15px;
     text-align: center;
@@ -39,9 +40,6 @@
     &:hover {
       background-color: #F9F9F9;
     }
-  }
-  .chrome-tasks-cancel {
-    margin-top: 10px;
   }
   .chrome-tasks-item {
     border-bottom: 1px solid #CCC;
