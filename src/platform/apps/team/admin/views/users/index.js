@@ -36,7 +36,8 @@ var NameCell = (props) => {
   return (
     <Link to={`/admin/team/users/${props.id}` }>
       <Avatar user={ props } />
-      { props.first_name } { props.last_name }
+      <strong>{ props.first_name } { props.last_name }</strong><br />
+      { props.email }
     </Link>
   )
 }

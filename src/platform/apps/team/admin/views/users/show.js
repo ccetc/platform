@@ -48,7 +48,6 @@ const mapPropsToPage = (props, context) => {
     rights: [],
     tasks: [
       { label: 'Edit User', modal: Edit },
-      { label: 'Edit Access', modal: Access },
       { label: 'Edit Roles', modal: Roles },
       { label: 'Reset Password', handler: _handleResetPassword },
       { label: 'Sign Out of All Devices', handler: _handleSignOutAllDevices }

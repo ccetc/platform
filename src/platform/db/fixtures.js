@@ -2316,8 +2316,17 @@ exports.seed = (knex, Promise) => {
   .then(() => {
     return knex('roles').insert([
       {
-        title: 'Fake Role',
-        description: 'Lorem Ipsum'
+        team_id: 1,
+        title: 'Administrator',
+        description: 'Sriracha bitters fixie bicycle rights, shoreditch lomo retro snackwave cold-pressed bespoke banjo synth beard keytar. '
+      }, {
+        team_id: 1,
+        title: 'Supervisor',
+        description: 'Sriracha bitters fixie bicycle rights, shoreditch lomo retro snackwave cold-pressed bespoke banjo synth beard keytar. '
+      }, {
+        team_id: 1,
+        title: 'Employee',
+        description: 'Sriracha bitters fixie bicycle rights, shoreditch lomo retro snackwave cold-pressed bespoke banjo synth beard keytar. '
       }
     ])
   })  .then(() => {

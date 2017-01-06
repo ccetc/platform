@@ -1,0 +1,34 @@
+import React from 'react'
+import Form from 'portals/admin/components/form'
+
+class New extends React.Component {
+
+  static contextTypes = {
+    modal: React.PropTypes.object
+  }
+
+  render() {
+    return <Form {...this._getForm()} />
+  }
+
+  _getForm() {
+    return {
+      title: 'New Role',
+      method: 'post',
+      action: '/admin/roles',
+      onCancel: this.context.modal.pop,
+      onSuccess: this.context.modal.pop,
+      sections: [
+        {
+          fields: [
+            { label: 'Title', name: 'title', type: 'textfield', placeholder: 'Tile' },
+            { label: 'Description', name: 'description', type: 'textfield', placeholder: 'Description' }
+          ]
+        }
+      ]
+    }
+  }
+
+}
+
+export default New
