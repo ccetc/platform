@@ -1,4 +1,5 @@
 import React from 'react'
+import CSSTransitionGroup from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 import Tab from './tab'
@@ -20,20 +21,25 @@ export class Tabs extends React.Component {
   }
 
   render() {
-    const { tabs, active } = this.props
+    const numbers = ['zero','one','two','three','four','five','six','seven','eight','nine','ten']
+    const { active, tabs, state } = this.props
     const content = tabs[active].content
     return (
       <div className="tabs">
-        <div className="ui secondary pointing menu">
+        <div className={`ui ${numbers[tabs.length]} item pointing menu`}>
           {tabs.map((tab, index) => {
             let isActive = (index == active)
             return <Tab key={`tab_${index}`} active={isActive} label={tab.label} onChangeTab={this._handleChangeTab.bind(this, index)} />
           })}
        </div>
-       <div className="tab-pane">
-         { _.isString(content) && <p>{content}</p> }
-         { _.isElement(content) && <content /> }
-         { _.isFunction(content) && content() }
+       <div className="tab-panes">
+         <CSSTransitionGroup transitionName={`slide-${state}`} component="div" transitionEnterTimeout={ 500 } transitionLeaveTimeout={ 500 }>
+           <div className="tab-pane" key={`pane-${active}`}>
+             { _.isString(content) && <p>{content}</p> }
+             { _.isElement(content) && <content { ...this.props } /> }
+             { _.isFunction(content) && content(this.props) }
+           </div>
+         </CSSTransitionGroup>
        </div>
      </div>
     )
@@ -46,11 +52,12 @@ export class Tabs extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  active: state.tabs.active
+  active: state.tabs.active,
+  state: state.tabs.state
 })
 
 const mapDispatchToProps = {
   onChangeTab: actions.changeTab
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)
+export default connect(mapStateToProps, mapDispatchToProps)(Tabs)

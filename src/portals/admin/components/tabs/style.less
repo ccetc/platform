@@ -1,23 +1,22 @@
 .tabs {
-  .menu {
-    margin: 0 !important;
+  .ui.item.menu {
+    margin: 15px !important;
+    width: auto;
   }
   .item {
     cursor: pointer;
   }
-  .tab-pane {
-    padding: 20px;
-  }
 }
-
-// .tabs {
-//   flex: 1;
-//   display: flex;
-//   flex-direction: column;
-//   .menu {
-//     flex: 0 0 42px;
-//   }
-//   .segment {
-//     flex: 1;
-//   }
-// }
+.tab-panes {
+  position: relative;
+  overflow: hidden;
+  min-height: ~"calc(100vh - 100px)";
+}
+.tab-pane {
+  background: #FFFFFF;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0 15px;
+}
