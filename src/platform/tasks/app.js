@@ -59,15 +59,27 @@ module.exports = {
 
           const config = JSON.parse(fs.readFileSync(`${appdir}/${appname}/app.json`))
 
-          return knex.insert({
+          return knex('apps').returning('id').insert({
             title: config.title,
             short_description: config.short_description,
             long_description: config.long_description,
             version: config.version,
             icon: config.icon
-          }).into('apps').then(id => {
+          }).then(result => {
 
-            console.log(`Successfully installed app '${appname}' (${version})`)
+            return knex('rights').returning('id').insert(config.rights.map(right => ({
+              app_id: result[0],
+              text: right.text,
+              description: right.description
+            }))).then(result => {
+
+              console.log(`Successfully installed app '${appname}' (${version})`)
+
+            }).catch(err => {
+              console.log(err)
+              console.log('Unable to update app database')
+            })
+
 
           }).catch(err => {
             console.log(err)
