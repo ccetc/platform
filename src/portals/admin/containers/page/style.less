@@ -50,21 +50,23 @@
 .chrome-body {
   height: 1px;
   flex: 1;
-  display: flex;
   @media only screen and (min-width: 768px) {
+    display: flex;
     .chrome-sidebar {
       flex: 0 0 300px;
       background: #EEE;
+    }
+    .chrome-content {
+      flex: 1;
+      overflow-y: scroll;
+      -webkit-overflow-scrolling: touch;
+      display: relative;
     }
   }
   @media only screen and (max-width: 767px) {
     flex-direction: column;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
-  }
-  .chrome-content {
-    flex: 1;
-    overflow: hidden;
   }
 }
 .chrome-error {
