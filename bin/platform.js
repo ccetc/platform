@@ -16,7 +16,6 @@ const environment = {
 }
 
 function loadTask(taskIdentifier, env = environment, argv = argv) {
-  console.log(`Running ${taskIdentifier}...`)
 
   let segments = taskIdentifier.split(':')
   if(segments.length === 2) {
