@@ -28,7 +28,7 @@ class Access extends React.Component {
                 </div>
               </div>
               <CSSTransitionGroup transitionName="expanded" component="div" transitionEnterTimeout={ 500 } transitionLeaveTimeout={ 500 }>
-                { app.assgined &&
+                { app.assigned &&
                   <div className="access-rights">
                     { app.rights.length > 0 && app.rights.map((right, rightindex) => {
                       return (

@@ -20,6 +20,7 @@ import AssetSerializer from 'platform/serializers/asset_serializer'
 import RoleSerializer from 'platform/serializers/role_serializer'
 import SearchSerializer from 'platform/serializers/search_serializer'
 import UserSerializer from 'platform/serializers/user_serializer'
+import FindRoleAccess from './middleware/find_role_access'
 import FindAccess from './middleware/find_access'
 
 const router = Router()
@@ -100,6 +101,7 @@ router.use(resources({
   include: ['photo','roles']
 }))
 
-router.get('/roles/:id/access', FindAccess)
+router.get('/roles/:id/access', FindRoleAccess)
+router.get('/access', FindAccess)
 
 export default router

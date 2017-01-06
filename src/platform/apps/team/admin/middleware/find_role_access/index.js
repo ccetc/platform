@@ -5,22 +5,14 @@ import knex from 'server/services/knex'
 export default (req, res, next) => {
 
   const apps = App.query(qb => qb
-    .select(knex.raw('distinct on (apps.id) apps.*, users_roles.id is not null as installed'))
-    .leftJoin('roles_apps', 'roles_apps.app_id', 'apps.id')
-    .leftJoin('users_roles', function() {
-      this.on('users_roles.role_id', '=', 'roles_apps.role_id')
-        .andOn('users_roles.user_id','=',req.user.get('id'))
-    })
+    .select(knex.raw('distinct on (apps.id) apps.*, roles_apps.id is not null as installed'))
+    .joinRaw('left join roles_apps on (roles_apps.app_id = apps.id and roles_apps.role_id = ?)', req.params.id)
     .orderBy('apps.id')
   ).fetchAll()
 
   const rights = Right.query(qb => qb
-    .select(knex.raw('distinct on (rights.id) rights.*, users_roles.id is not null as assigned'))
-    .leftJoin('roles_rights', 'roles_rights.right_id', 'rights.id')
-    .leftJoin('users_roles', function() {
-      this.on('users_roles.role_id', '=', 'roles_rights.role_id')
-        .andOn('users_roles.user_id','=',req.user.get('id'))
-    })
+    .select(knex.raw('distinct on (rights.id) rights.*, roles_rights.id is not null as assigned'))
+    .joinRaw('left join roles_rights on (roles_rights.right_id = rights.id and roles_rights.role_id = ?)', req.params.id)
     .orderBy('rights.id')
   ).fetchAll()
 
@@ -43,7 +35,7 @@ export default (req, res, next) => {
       return {
         id: app.get('id'),
         title: app.get('title'),
-        installed: app.get('installed'),
+        assigned: app.get('assigned'),
         rights: rights[app.get('id')] || []
       }
     })
