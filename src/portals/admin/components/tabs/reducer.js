@@ -12,7 +12,7 @@ export default (state = INITIAL_STATE, action) => {
   case actionTypes.CHANGE_TAB:
     return {
       active: action.index,
-      state: action.index < state.active ? 'next' : 'back'
+      state: action.index > state.active ? 'next' : 'back'
     }
 
   default:
