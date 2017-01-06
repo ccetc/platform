@@ -3,16 +3,11 @@ const fs = require('fs')
 const fse = require('fs-extra')
 const decompress = require('decompress')
 const _ = require('lodash')
+const knex = require('server/services/knex')
 
+const manifest = 'https://raw.githubusercontent.com/ccetc/platform/master/apps.json'
 const tmpdir = './tmp'
 const appdir = './src/apps'
-const apps = {
-  expenses: {
-    versions: [
-      { version: '1.0.0', url: 'https://github.com/ccetc/platform-expenses/archive/master.zip' }
-    ]
-  }
-}
 
 module.exports = {
 
@@ -26,49 +21,71 @@ module.exports = {
       return 2
     }
 
-    if(!apps[appname]) {
-      console.log(`Could not find app '${appname}' (>= 0)`)
-      return 2
-    }
-    const app = apps[appname]
+    return download(manifest).then(data => {
 
-    // Find version
-    const version = args._[2] || app.versions[app.versions.length - 1].version
-    const index = _.findIndex(app.versions, { version })
-    if(index === undefined) {
-      console.log(`Could not find app '${appname}' (${version})`)
-      return 2
-    }
-    const url = app.versions[index].url
+      const apps = JSON.parse(data.toString())
+      if(!apps[appname]) {
+        console.log(`Could not find app '${appname}' (>= 0)`)
+        return 2
+      }
+      const app = apps[appname]
 
-    // Download and extract app
-    const filename = url.substring(url.lastIndexOf('/')+1)
-    return download(url, tmpdir).then(() => {
+      // Find version
+      const version = args._[2] || app.versions[app.versions.length - 1].version
+      const index = _.findIndex(app.versions, { version })
+      if(index === undefined) {
+        console.log(`Could not find app '${appname}' (${version})`)
+        return 2
+      }
+      const url = app.versions[index].url
 
-      return decompress(`./tmp/${filename}`, appdir).then(files => {
+      // Download and extract app
+      const filename = url.substring(url.lastIndexOf('/')+1)
+      return download(url, tmpdir).then(() => {
 
-        // remove preexisting app
-        const directory = files[0].path.replace('/','')
-        if(fs.existsSync(`${appdir}/${appname}`)) {
-          fse.removeSync(`${appdir}/${appname}`)
-        }
+        return decompress(`./tmp/${filename}`, appdir).then(files => {
 
-        // move new app into place
-        fs.renameSync(`${appdir}/${directory}`, `${appdir}/${appname}`)
+          // remove preexisting app
+          const directory = files[0].path.replace('/','')
+          if(fs.existsSync(`${appdir}/${appname}`)) {
+            fse.removeSync(`${appdir}/${appname}`)
+          }
 
-        // remove zip file
-        fs.unlinkSync(`${tmpdir}/${filename}`)
+          // move new app into place
+          fs.renameSync(`${appdir}/${directory}`, `${appdir}/${appname}`)
 
-        console.log(`Successfully installed app '${appname}' (${version})`)
+          // remove zip file
+          fs.unlinkSync(`${tmpdir}/${filename}`)
+
+          const config = JSON.parse(fs.readFileSync(`${appdir}/${appname}/app.json`))
+
+          return knex.insert({
+            title: config.title,
+            short_description: config.short_description,
+            long_description: config.long_description,
+            version: config.version,
+            icon: config.icon
+          }).into('apps').then(id => {
+
+            console.log(`Successfully installed app '${appname}' (${version})`)
+
+          }).catch(err => {
+            console.log(err)
+            console.log('Unable to update app database')
+          })
+
+        }).catch(err => {
+          console.log(err.message)
+          fs.unlinkSync(`${tmpdir}/${filename}`)
+          console.log("Unable to extract app")
+        })
 
       }).catch(err => {
-        console.log(err.message)
-        fs.unlinkSync(`${tmpdir}/${filename}`)
-        console.log("Unable to extract app")
+        console.log("Unable to download app")
       })
 
     }).catch(err => {
-      console.log("Unable to download app")
+      console.log("Unable to download app manifest")
     })
 
   },
