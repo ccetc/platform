@@ -1,9 +1,14 @@
 .access {
-  flex: 1;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
+  .border-radius(5px);
+  border: 1px solid #DDD;
+  .access-right {
+    &.last-child {
+      border: none;
+    }
+  }
 }
 .access-app-title,
+.access-right-empty,
 .access-right {
   display: flex;
   border-bottom: 1px solid #DDD;
@@ -23,18 +28,22 @@
 }
 .access-app-label {
   flex: 1;
-  padding: 15px;
+  padding: 10px 15px;
   font-weight: bold;
+  line-height: 20px;
 }
 .access-app-title {
   background-color: #EEE;
+  color: #666666;
 }
-.access-right-label {
+.access-right-label,
+.access-right-empty {
   flex: 1;
-  padding: 15px;
-  color: #888888;
+  padding: 10px 15px;
+  color: #666666;
+  line-height: 20px;
   strong {
-    color: #000000;
+    color: #444444;
   }
 }
 .access-app-input,

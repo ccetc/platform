@@ -1,5 +1,6 @@
 import React from 'react'
 import Form from 'portals/admin/components/form'
+import Roles from '../../components/roles'
 
 class New extends React.Component {
 
@@ -23,7 +24,8 @@ class New extends React.Component {
           fields: [
             { label: 'First Name', name: 'first_name', type: 'textfield', placeholder: 'First Name' },
             { label: 'Last Name', name: 'last_name', type: 'textfield', placeholder: 'Last Name' },
-            { label: 'Email', name: 'email', type: 'textfield', placeholder: 'Email' }
+            { label: 'Email', name: 'email', type: 'textfield', placeholder: 'Email' },
+            { label: 'Roles', name: 'roles', type: Roles }
           ]
         }
       ]

@@ -78,7 +78,8 @@ router.use(resources({
   path: 'roles',
   model: Role,
   query: RoleQuery,
-  serializer: RoleSerializer
+  serializer: RoleSerializer,
+  include: ['users.photo']
 }))
 
 

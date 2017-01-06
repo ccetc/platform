@@ -1,5 +1,6 @@
 import React from 'react'
 import Form from 'portals/admin/components/form'
+import Access from '../../components/access'
 
 class Edit extends React.Component {
 
@@ -24,7 +25,8 @@ class Edit extends React.Component {
         {
           fields: [
             { label: 'Title', name: 'title', type: 'textfield', placeholder: 'Tile' },
-            { label: 'Description', name: 'description', type: 'textfield', placeholder: 'Description' }
+            { label: 'Description', name: 'description', type: 'textarea', placeholder: 'Description' },
+            { label: 'Access', name: 'description', type: Access }
           ]
         }
       ]

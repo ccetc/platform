@@ -16,7 +16,10 @@ class Field extends React.Component {
     name: React.PropTypes.string.isRequired,
     options: React.PropTypes.array,
     required: React.PropTypes.bool,
-    type: React.PropTypes.string.isRequired,
+    type: React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.func
+    ]).isRequired,
     show: React.PropTypes.bool,
     onUpdateData: React.PropTypes.func
   }

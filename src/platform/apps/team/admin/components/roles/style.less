@@ -1,15 +1,17 @@
 .roles {
-  flex: 1;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-}
-.role {
-  display: flex;
-  border-bottom: 1px solid #EEE;
+  .border-radius(5px);
+  border: 1px solid #DDD;
+  .role {
+    display: flex;
+    border-bottom: 1px solid #DDD;
+    &:last-child {
+      border: none;
+    }
+  }
 }
 .role-label {
   flex: 1;
-  padding: 15px;
+  padding: 10px 15px;
   color: #888888;
   strong {
     color: #000000;

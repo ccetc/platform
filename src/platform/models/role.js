@@ -23,7 +23,7 @@ export default bookshelf.Model.extend({
   },
 
   users: function() {
-    return this.belongsToMany(User, 'users_roles', 'user_id', 'role_id')
+    return this.belongsToMany(User, 'users_roles', 'role_id', 'user_id')
   },
 
   initialize: function(attrs, opts) {

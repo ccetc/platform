@@ -1,5 +1,6 @@
 import React from 'react'
 import Form from 'portals/admin/components/form'
+import Access from '../../components/access'
 
 class New extends React.Component {
 
@@ -22,7 +23,8 @@ class New extends React.Component {
         {
           fields: [
             { label: 'Title', name: 'title', type: 'textfield', placeholder: 'Tile' },
-            { label: 'Description', name: 'description', type: 'textfield', placeholder: 'Description' }
+            { label: 'Description', name: 'description', type: 'textfield', placeholder: 'Description' },
+            { label: 'Access', name: 'description', type: Access }
           ]
         }
       ]

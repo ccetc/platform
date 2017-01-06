@@ -56,16 +56,17 @@
       flex: 0 0 300px;
       background: #EEE;
     }
-    .chrome-content {
-      flex: 1;
-      display: flex;
-    }
   }
   @media only screen and (max-width: 767px) {
     flex-direction: column;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+  .chrome-content {
+    flex: 1;
+    padding: 15px;
   }
 }
-
 .chrome-error {
   flex: 1;
   display: flex;

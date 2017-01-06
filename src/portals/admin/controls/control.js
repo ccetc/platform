@@ -37,8 +37,8 @@ class Control extends React.Component {
   static propTypes = {
     type: React.PropTypes.oneOfType([
       React.PropTypes.string,
-      React.PropTypes.element
-    ]),
+      React.PropTypes.func
+    ]).isRequired,
     endpoint: React.PropTypes.string,
     defaultValue: React.PropTypes.any,
     options: React.PropTypes.array
