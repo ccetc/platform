@@ -107,6 +107,7 @@
     "less-loader": "^2.2.3",
     "mocha": "^3.1.2",
     "react-addons-test-utils": "^15.3.2",
+    "shipit": "^1.0.2",
     "sinon": "^1.17.6",
     "sqlite3": "^3.1.8",
     "webpack": "^1.13.3",
