@@ -1,5 +1,8 @@
 #!/usr/local/bin/node
 
+process.env.NODE_PATH='./src'
+require('module').Module._initPaths()
+
 const minimist = require('minimist')
 const Promise = require('bluebird')
 const fs = Promise.promisifyAll(require('fs'))
