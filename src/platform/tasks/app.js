@@ -13,7 +13,7 @@ module.exports = {
 
   install(args, environment) {
 
-    installApp(args._[1], args._[2])
+    return installApp(args._[1], args._[2])
 
   },
 
