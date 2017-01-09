@@ -1,3 +1,4 @@
+#!/usr/local/bin/node
 
 const minimist = require('minimist')
 const Promise = require('bluebird')
