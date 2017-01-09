@@ -4,8 +4,8 @@ import Transition from './transition'
 import Panel from './panel'
 import Dashboard from './dashboard'
 import NotFound from './not_found'
-import Expenses from 'apps/expenses/admin/client.js'
-import Team from 'platform/apps/team/admin/client.js'
+import Expenses from 'apps/expenses/admin/client'
+import Team from 'platform/apps/team/admin/client'
 
 export default (
   <Route component={ Transition }>

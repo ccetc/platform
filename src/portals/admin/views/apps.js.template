@@ -4,7 +4,7 @@ import Transition from './transition'
 import Panel from './panel'
 import Dashboard from './dashboard'
 import NotFound from './not_found'
-<% for (var app of apps) { %>import <%= app.title %> from '<%= app.filepath %>/admin/client.js'
+<% for (var app of apps) { %>import <%= app.title %> from '<%= app.filepath %>/admin/client'
 <% } %>
 export default (
   <Route component={ Transition }>

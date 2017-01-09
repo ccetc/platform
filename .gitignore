@@ -9,6 +9,8 @@ public/js/account.min.js
 public/js/admin.min.js
 public/css/account.min.css
 public/css/admin.min.css
+src/portals/admin/reducer.js
+src/portals/admin/style.less
 src/portals/admin/views/apps.js
 tmp
 uploads
