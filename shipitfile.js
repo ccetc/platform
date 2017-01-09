@@ -2,7 +2,7 @@ module.exports = function (shipit) {
 
   const config = require('./config/platform.js')[shipit.options.environment]
   let shipitConfig = {}
-  shipitConfig[shipit.options.environment] = config.deployment
+  shipitConfig[shipit.options.environment] = config.deployment || {}
 
   shipit.initConfig(shipitConfig)
 

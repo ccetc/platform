@@ -26,10 +26,9 @@ module.exports = {
 
   }
 
-
 }
 
-const installApp = (appname, version) {
+const installApp = (appname, version) => {
 
   if(fs.existsSync(`${appdir}/${appname}`)) {
     console.log(`App '${appname}' is already installed`)
@@ -120,7 +119,7 @@ const installApp = (appname, version) {
 }
 
 const removeApp = (appname) => {
-  
+
   if(!fs.existsSync(`${appdir}/${appname}`)) {
     console.log(`Could not find installed app '${appname}'`)
     return 2
