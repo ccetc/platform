@@ -1,11 +1,11 @@
-const download = require('download')
+const request = require('request-promise')
 const fs = require('fs')
 const fse = require('fs-extra')
 const decompress = require('decompress')
 const _ = require('lodash')
 const knex = require('server/services/knex')
 
-const manifest = 'https://raw.githubusercontent.com/ccetc/platform/master/apps.json'
+const registry = 'http://registry.thinktopography.com'
 const tmpdir = './tmp'
 const appdir = './src/apps'
 
@@ -14,6 +14,12 @@ module.exports = {
   install(args, environment) {
 
     return installApp(args._[1], args._[2])
+
+  },
+
+  create(args, environment) {
+
+    return createApp(args._[1])
 
   },
 
@@ -28,6 +34,23 @@ module.exports = {
 
 }
 
+const createApp = (appname) => {
+  return request({
+    method: 'POST',
+    uri: `${registry}/apps/${appname}`,
+    json: true
+  }).then(body => {
+    console.log(body.message)
+  }).catch(err => {
+    if(err.statusCode) {
+      console.log(err.error.message)
+    } else {
+      console.log("Unable to create app")
+    }
+  })
+
+}
+
 const installApp = (appname, version) => {
 
   if(fs.existsSync(`${appdir}/${appname}`)) {
@@ -35,7 +58,7 @@ const installApp = (appname, version) => {
     return 2
   }
 
-  return download(manifest).then(data => {
+  return download(`${registry}/apps`).then(data => {
 
     const apps = JSON.parse(data.toString())
     if(!apps[appname]) {
@@ -46,18 +69,18 @@ const installApp = (appname, version) => {
 
     // Find version
     if(!version) {
-      version = app.versions[app.versions.length - 1].version
+      version = app.latest
     }
-    const index = _.findIndex(app.versions, { version })
-    if(index === undefined) {
+    if(!_.includes(app.versions, version)) {
       console.log(`Could not find app '${appname}' (${version})`)
       return 2
     }
-    const url = app.versions[index].url
+
+    const url = `${registry}/apps/${appname}/${version}`
 
     // Download and extract app
     const filename = url.substring(url.lastIndexOf('/')+1)
-    return download(url, tmpdir).then(() => {
+    return request(url, tmpdir).then(() => {
 
       return decompress(`./tmp/${filename}`, appdir).then(files => {
 

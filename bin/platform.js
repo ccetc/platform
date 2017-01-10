@@ -1,13 +1,13 @@
 #!/usr/local/bin/node
 
-process.env.NODE_PATH='./src'
-require('module').Module._initPaths()
-
 const minimist = require('minimist')
 const Promise = require('bluebird')
 const fs = Promise.promisifyAll(require('fs'))
-const _ = require('lodash')
 const path = require('path')
+const _ = require('lodash')
+
+process.env.NODE_PATH=path.resolve(__dirname, '../src')
+require('module').Module._initPaths()
 
 const camelCase = _.camelCase
 
@@ -28,10 +28,9 @@ function loadTask(taskIdentifier, env = environment, argv = argv) {
   let [namespace, task, subtask, modifier] = segments
 
   let searchPaths = [
-    path.resolve(`src/${namespace}/tasks/${task}.js`),
-    path.resolve(`src/apps/${namespace}/tasks/${task}.js`),
-    path.resolve(`src/platform/apps/${namespace}/tasks/${task}.js`),
-    path.resolve(`src/workbench/${namespace}/tasks/${task}.js`)
+    path.resolve(__dirname, `../src/${namespace}/tasks/${task}.js`),
+    path.resolve(__dirname, `../src/apps/${namespace}/tasks/${task}.js`),
+    path.resolve(__dirname, `../src/platform/apps/${namespace}/tasks/${task}.js`)
   ]
 
   return Promise.all(searchPaths.map(p => fs.statAsync(p).then(() => p).catch(e => null)))

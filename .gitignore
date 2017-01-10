@@ -16,6 +16,4 @@ tmp
 uploads
 
 src/apps/*
-src/workbench/*
 !src/apps/.gitkeep
-!src/workbench/.gitkeep

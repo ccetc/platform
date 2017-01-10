@@ -72,7 +72,7 @@ function _getMigrations (completed, direction) {
 function _getSeeds (filename) {
   let seeds = []
   seeds.push(path.resolve(__dirname, '../../platform/db', filename + '.js'))
-  const roots = ['../../apps','../../workbench']
+  const roots = ['../../apps']
   roots.map(root => {
     if(fs.existsSync(path.join(__dirname, root))) {
       fs.readdirSync(path.join(__dirname, root)).filter((app) => {

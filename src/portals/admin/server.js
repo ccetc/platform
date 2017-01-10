@@ -47,7 +47,7 @@ fs.readdirSync(path.join(__dirname, '../../platform/apps')).filter(function(app)
     router.use('/api/admin', require(server).default)
   }
 })
-const roots = ['../../apps','../../workbench']
+const roots = ['../../apps']
 roots.map(root => {
   if(fs.existsSync(path.join(__dirname, root))) {
     fs.readdirSync(path.join(__dirname, root)).filter(function(app) {

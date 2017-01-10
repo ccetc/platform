@@ -21,7 +21,7 @@ router.use('/api/account', reset)
 router.use('/api/account', authentication)
 
 // app routes
-const roots = ['../../platform/apps', '../../apps', '../../workbench']
+const roots = ['../../platform/apps', '../../apps']
 roots.map(root => {
   if(fs.existsSync(path.join(__dirname, root))) {
     fs.readdirSync(path.join(__dirname, root)).filter(app => {

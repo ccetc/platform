@@ -4,7 +4,7 @@ import path from 'path'
 
 const router = Router()
 
-const roots = ['../../platform/apps', '../../apps', '../../workbench']
+const roots = ['../../platform/apps', '../../apps']
 roots.map(root => {
   if(fs.existsSync(path.join(__dirname, root))) {
     fs.readdirSync(path.join(__dirname, root)).filter(apppath => {
