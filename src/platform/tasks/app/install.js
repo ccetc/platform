@@ -101,14 +101,13 @@ const downloadBundle = ({ appname, version, remoteConfig }) => {
 const extractBundle = ({ appname, version, remoteConfig, zipData }) => {
 
   return new Promise((resolve, reject) => {
-
     JSZip.loadAsync(zipData).then(data => {
       const promises = []
       Object.keys(data.files).map(key => {
         const file = data.files[key]
         const dest = path.resolve(`${appdir}/${file.name}`)
         if(file.dir) {
-          fs.mkdirSync(dest)
+          promises.push(Promise.promisify(fs.mkdir)(dest))
         } else {
           promises.push(file.async('string').then(data => {
             fs.writeFileSync(dest, data)
