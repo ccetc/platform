@@ -12,6 +12,7 @@ exports.up = function(knex, Promise) {
       table.text('long_description')
       table.string('icon')
       table.timestamps()
+      table.unique('title')
     })
   ])
 }

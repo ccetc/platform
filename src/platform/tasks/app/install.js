@@ -20,8 +20,11 @@ const installApp = (appname, version) => {
   .then(result => downloadBundle(result))
   .then(result => extractBundle(result))
   .then(result => getLocalConfig(result))
+  .then(result => getAuthor(result))
+  .then(result => getCategory(result))
   .then(result => insertApp(result))
-  .then(result => insertRights(result))
+  .then(result => getAdminConfig(result))
+  .then(result => insertAdminRights(result))
   .then(result => {
     console.log(`Successfully installed app '${result.appname}' (${result.version})`)
     return 2
@@ -141,10 +144,63 @@ const getLocalConfig = ({ appname, version, remoteConfig }) => {
 
 }
 
-const insertApp = ({ appname, version, remoteConfig, localConfig  }) => {
+const getAuthor = ({ appname, version, remoteConfig, localConfig  }) => {
+
+  return new Promise((resolve, reject) => {
+    knex.select('*')
+    .from('app_authors')
+    .where({ name: localConfig.author })
+    .then(function(rows) {
+      if(rows.length > 0) {
+        const author = rows[0]
+        resolve({ appname, version, remoteConfig, localConfig, author })
+      } else {
+        createAuthor(localConfig.author).then(author => {
+          resolve({ appname, version, remoteConfig, localConfig, author })
+        }).catch(err => {
+          reject(err.message)
+        })
+      }
+    }).catch(err => {
+      reject(new Error(`Unable to load author for app '${appname}'`))
+    })
+  })
+
+}
+
+const createAuthor = (name) => {
+
+  return new Promise((resolve, reject) => {
+  })
+
+}
+
+const getCategory = ({ appname, version, remoteConfig, localConfig, author }) => {
+
+  return new Promise((resolve, reject) => {
+    knex.select('*')
+    .from('app_categories')
+    .where({ name: localConfig.author })
+    .then(rows => {
+      if(rows.length > 0) {
+        const category = rows[0]
+        resolve({ appname, version, remoteConfig, localConfig, author, category })
+      } else {
+        reject(new Error(`Unable to load category for app '${appname}'`))
+      }
+    }).catch(err => {
+      reject(new Error(`Unable to load category for app '${appname}'`))
+    })
+  })
+
+}
+
+const insertApp = ({ appname, version, remoteConfig, localConfig, author, category }) => {
 
   return new Promise((resolve, reject) => {
     return knex('apps').returning('id').insert({
+      app_author_id: author.id,
+      app_category: category.id,
       title: localConfig.title,
       short_description: localConfig.short_description,
       long_description: localConfig.long_description,
@@ -159,18 +215,32 @@ const insertApp = ({ appname, version, remoteConfig, localConfig  }) => {
 
 }
 
-const insertRights = ({ appname, version, remoteConfig, localConfig, app }) => {
+const getAdminConfig = ({ appname, version, remoteConfig, localConfig, app  }) => {
 
   return new Promise((resolve, reject) => {
-    return knex('rights').returning('id').insert(localConfig.rights.map(right => ({
-      app_id: app[0],
-      text: right.text,
-      description: right.description
-    }))).then(result => {
-      resolve({ appname, version, remoteConfig, localConfig, app  })
-    }).catch(err => {
-      reject(new Error(err))
-    })
+    const configPath = path.resolve(`${appdir}/${appname}/admin/config.js`)
+    const adminConfig = (fs.existsSync(configPath)) ? require(configPath) : null
+    resolve({ appname, version, remoteConfig, localConfig, app, adminConfig })
+  })
+
+}
+
+const insertAdminRights = ({ appname, version, remoteConfig, localConfig, app, adminConfig }) => {
+
+  return new Promise((resolve, reject) => {
+    if(adminConfig) {
+      return knex('rights').returning('id').insert(adminConfig.rights.map(right => ({
+        app_id: app[0],
+        text: right.text,
+        description: right.description
+      }))).then(result => {
+        resolve({ appname, version, remoteConfig, localConfig, app, adminConfig })
+      }).catch(err => {
+        reject(new Error(err))
+      })
+    } else {
+      resolve({ appname, version, remoteConfig, localConfig, app, adminConfig })
+    }
   })
 
 }

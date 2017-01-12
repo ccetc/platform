@@ -7,6 +7,7 @@ exports.up = function(knex, Promise) {
       table.string('text')
       table.string('description')
       table.timestamps()
+      table.unique(['app_id', 'text'])
     })
   ])
 }

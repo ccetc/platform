@@ -1,5 +1,5 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var compileApps = require('../src/server/utils/compile_apps')
+var compileApps = require('./src/server/utils/compile_apps')
 
 compileApps()
 

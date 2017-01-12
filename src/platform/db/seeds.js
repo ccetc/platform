@@ -20,17 +20,17 @@ exports.seed = (knex, Promise) => {
   .then(() => {
     return knex('app_categories').insert([
       {
-        title: 'Administration'
+        title: 'administration'
       }, {
-        title: 'Communication'
+        title: 'communication'
       }, {
-        title: 'Education'
+        title: 'education'
       }, {
-        title: 'Finance'
+        title: 'finance'
       }, {
-        title: 'Management'
+        title: 'management'
       }, {
-        title: 'Productivity'
+        title: 'productivity'
       }
     ])
   })

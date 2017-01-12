@@ -1,4 +1,5 @@
 config/platform.js
+config.js
 coverage
 cached_uglify
 data
