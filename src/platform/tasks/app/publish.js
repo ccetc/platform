@@ -21,8 +21,9 @@ const publishApp = (appname) => {
   .then(result => createBundle(result))
   .then(result => saveBundle(result))
   .then(result => uploadBundle(result))
+  .then(result => removeBundle(result))
   .then(result => {
-    console.log(result)
+    console.log(`Bundle successfully created for the app '${result.appname}' with version '${result.localConfig.version}`)
     return 2
   })
   .catch(e => {
@@ -117,7 +118,7 @@ const createBundle = ({ appname, remoteConfig, localConfig }) => {
 
   return new Promise((resolve, reject) => {
     const zip = new JSZip()
-    glob(`${appdir}/${appname}/*/*`, {}, (er, files) => {
+    glob(`${appdir}/${appname}/**`, {}, (er, files) => {
       files.map(file => {
         const filepath = file.replace(`${appdir}/`,'')
         if(fs.lstatSync(file).isDirectory()) {
@@ -162,12 +163,26 @@ const uploadBundle = ({ appname, remoteConfig, localConfig }) => {
         bundle: fs.createReadStream(`./tmp/${appname}-${localConfig.version}.zip`)
       }
     }).then(response => {
-      resolve(response.message)
+      resolve({ appname, remoteConfig, localConfig })
     }).catch(err => {
       if(err.statusCode === 404) {
         reject(new Error(err.error.message))
       } else {
         reject(new Error(`Unable to upload bundle for ${appname}`))
+      }
+    })
+  })
+
+}
+
+const removeBundle = ({ appname, remoteConfig, localConfig }) => {
+
+  return new Promise((resolve, reject) => {
+    fs.unlink(`./tmp/${appname}-${localConfig.version}.zip`, err => {
+      if(err) {
+        reject(new Error(err))
+      } else {
+        resolve({ appname, remoteConfig, localConfig })
       }
     })
   })
