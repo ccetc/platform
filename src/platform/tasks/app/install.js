@@ -147,12 +147,8 @@ const getLocalConfig = ({ appname, version, remoteConfig }) => {
 const getAuthor = ({ appname, version, remoteConfig, localConfig  }) => {
 
   return new Promise((resolve, reject) => {
-    knex.select('*')
-    .from('app_authors')
-    .where({ name: localConfig.author })
-    .then(function(rows) {
-      if(rows.length > 0) {
-        const author = rows[0]
+    return Author.where({ name: localConfig.author }).fetch().then(author => {
+      if(author) {
         resolve({ appname, version, remoteConfig, localConfig, author })
       } else {
         createAuthor(localConfig.author).then(author => {

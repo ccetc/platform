@@ -33,6 +33,7 @@
     "connect-multiparty": "^2.0.0",
     "cors": "^2.8.1",
     "css-loader": "^0.25.0",
+    "dotenv": "^4.0.0",
     "ejs": "^2.5.5",
     "express": "~4.14.0",
     "foreman": "^2.0.0",
@@ -106,6 +107,7 @@
     "mocha": "^3.1.2",
     "react-addons-test-utils": "^15.3.2",
     "shipit": "^1.0.2",
+    "shipit-deploy": "^2.4.0",
     "sinon": "^1.17.6",
     "sqlite3": "^3.1.8",
     "webpack": "^1.13.3",
@@ -113,7 +115,7 @@
     "webpack-uglify-js-plugin": "^1.1.9"
   },
   "scripts": {
-    "build": "webpack --config webpack.client.js",
+    "build": "webpack",
     "compile": "rm -rf ./dist && babel ./src --out-dir dist",
     "app": "DEBUG=knex:query NODE_PATH=./src babel-node src/server",
     "worker": "DEBUG=knex:query NODE_PATH=./src babel-node src/worker",

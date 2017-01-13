@@ -1,9 +1,12 @@
-import config from 'server/services/config'
-import Bull from 'bull'
+
+const dotenv = require('dotenv')
+const Bull = require('bull')
+
+dotenv.config({ path: '.env.' + process.env.NODE_ENV })
 
 export default (name, data) => {
 
-  const queue = Bull(name, config.redis.port, config.redis.host)
+  const queue = Bull(name, process.env.REDIS_PORT, process.env.REDIS_HOST)
   queue.add(data)
 
 }

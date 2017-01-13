@@ -1,18 +1,35 @@
+const dotenv = require('dotenv')
 const knex = require('knex')
-const config = require('server/services/config')
 
-var defaults = {
+dotenv.config({ path: '.env.' + process.env.NODE_ENV })
+
+let database = {
   pool: {
-    min: 2,
-    max: 10
+    min: 1,
+    max: 1
   },
   migrations: {
     tableName: 'schema_migrations',
-    directory: '/'
+    directory: 'db/migrations'
   },
   seeds: {
-    directory: '/'
+    directory: 'db'
+  },
+  useNullAsDefault: true,
+  client: process.env.DB_CLIENT || 'sqlite3'
+}
+
+
+if(database.client  === 'sqlite3') {
+  database.connection = {
+    user: process.env.DB_FILENAME
+  }
+} else {
+  database.connection = {
+    user: process.env.DB_USER || '',
+    password: process.env.DB_PASSWORD || '',
+    database: process.env.DB_NAME || ''
   }
 }
 
-module.exports = knex(Object.assign({}, defaults, config.database))
+module.exports = knex(database)

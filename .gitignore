@@ -1,11 +1,12 @@
-config/platform.js
-config.js
+.env.development
+.env.test
 coverage
 cached_uglify
 data
 dist
 node_modules
 npm-debug.log
+deploy.js
 public/js/account.min.js
 public/js/admin.min.js
 public/css/account.min.css

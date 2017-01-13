@@ -1,9 +1,11 @@
+const dotenv = require('dotenv')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const JwtStrategy = require('passport-jwt').Strategy
 const ExtractJwt = require('passport-jwt').ExtractJwt
-const config = require('server/services/config')
 const User = require('platform/models/user').default
+
+dotenv.config({ path: '.env.' + process.env.NODE_ENV })
 
 module.exports = (key) => {
 
@@ -14,7 +16,7 @@ module.exports = (key) => {
 
   const jwtOptions = {
     jwtFromRequest: ExtractJwt.fromExtractors([ExtractJwt.fromAuthHeaderWithScheme('Bearer'), fromUrl]),
-    secretOrKey: config.secret
+    secretOrKey: process.env.SECRET || ''
   }
 
   passport.use(new JwtStrategy(jwtOptions, function(payload, done) {

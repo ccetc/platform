@@ -10,7 +10,7 @@ general:
       - gh-pages
 checkout:
   post:
-    - cp ./config.circle.js ./config.js
+    - cp ./.env.circle ./.env
 test:
   override:
     - npm run test
