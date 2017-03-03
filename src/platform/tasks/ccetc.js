@@ -37,7 +37,7 @@ module.exports = {
 
       const filename = `${record[2]}.jpg`
 
-      const filepath = path.join(__dirname, '..', '..', '..', 'tmp', 'photos', filename)
+      const filepath = path.join(__dirname, '..', '..', '..', 'data', 'photos', filename)
 
       const photoExists = fs.existsSync(filepath)
 
@@ -195,27 +195,27 @@ module.exports = {
 
       resolve()
 
-    // }).then(() => {
-    //
-    //   return Promise.map(userData.assets, asset => {
-    //
-    //     const filepath = path.join(__dirname, '..', '..', '..', 'tmp', 'photos', asset.file_name)
-    //
-    //     const Body = fs.readFileSync(filepath)
-    //
-    //     const ContentType = getContentTypeByFile(filepath)
-    //
-    //     return s3.upload({
-    //       Bucket: 'dev.platform',
-    //       Key: `assets/${asset.id}/${asset.file_name}`,
-    //       ACL: 'public-read',
-    //       Body,
-    //       ContentType
-    //     }).promise()
-    //
-    //   })
-    //
-    //
+    }).then(() => {
+
+      return Promise.map(userData.assets, asset => {
+
+        const filepath = path.join(__dirname, '..', '..', '..', 'data', 'photos', asset.file_name)
+
+        const Body = fs.readFileSync(filepath)
+
+        const ContentType = getContentTypeByFile(filepath)
+
+        return s3.upload({
+          Bucket: 'platform',
+          Key: `assets/${asset.id}/${asset.file_name}`,
+          ACL: 'public-read',
+          Body,
+          ContentType
+        }).promise()
+
+      })
+
+
     })
 
   }
@@ -227,7 +227,7 @@ const toJSON = (object) => {
 }
 
 const toMatrix = (filename, delimiter) => {
-  return parse(fs.readFileSync(path.join(__dirname, '..', '..', '..', 'tmp', filename), 'utf8'), { delimiter, quote: '^' })
+  return parse(fs.readFileSync(path.join(__dirname, '..', '..', '..', 'data', filename), 'utf8'), { delimiter, quote: '^' })
 }
 
 function getContentTypeByFile(fileName) {

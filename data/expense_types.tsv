@@ -1,0 +1,99 @@
+10000|Petty Cash|Balance of cash and receipts in association petty cash account.
+10100|Cash, Bank Checking|Cash balance in association checking account. A separate account number is needed for each bank account.
+10200|Cash, Bank Savings|Cash balance in association interest-bearing savings accounts. A separate account number is needed for each bank account.
+10300|Cash Equivalents|Balance of short term, highly liquid investments that is both readily convertible to a known amount of cash and so near their maturity that they present no significant change in value.
+11000|Accounts Receivable|Value of outstanding billings. Account balance must be supported by an aged subsidiary listing. (F.O.R.M. Code 812).
+11100|Accounts Receivable, Inter-Association|Amounts due from other association(s).
+11200|Pledges Receivable|A legal enforceable commitment from a donor to make a gift to the association in the future (F.O.R.M. Code 817).
+11300|Other Receivable|Any non-program related receivable.
+11500|Allowance for Accounts Receivable|Allowance for uncollectible billings.
+11700|Allowance for Pledges Receivable|Allowance for uncollectible pledges.
+11800|Allowance for Other Receivables|Allowance for all other uncollectible debt such as salary or travel advances or start-up funds for a particular activity.
+12000|Inventory, Livestock|Cost/value of livestock for resale owned by the association.
+12100|Inventory, Supplies|Cost of expendable (office) supplies on hand. (F.O.R.M. Code 816).
+12200|Inventory, Merchandise for Resale|Cost of items purchased for resale (bulletins, soil boxes, farm account books, etc.). (F.O.R.M. Code 816).
+13100|Marketable Securities|Securities or other negotiable instruments that currently available for sale. Securities are held to produce income. To be recorded at total cost (including fees) when purchased or, if donated, at fair market value. Investments should be adjusted to the lower of cost or fair market value a00ually. Also includes Bonds and Notes (treasury notes, municipal bonds, interest-bearing certificates of Corporations etc, stocks, which earn dividends, appreciate or depreciate in value and real estate, mortgages, pension fund, life insurance etc. that can be bought or sold above or below stated value.
+13200|Certificates of Deposit, 12 Months or Less|Value of certificate(s) of deposit held for terms of more than three (3) months and twelve (12) months or less.
+13300|Prepaid Expenses|Expenses not recognized in current fiscal year operations but carried forward to next year to match against revenues. (F.O.R.M. Code 802.3)
+13500|Deferred Charges|Costs related to grants and contracts that relate to future accounting periods rather than the current accounting period.
+13700|Deposits and Advances|Deposit made to a vendor as part of a purchase order payment agreement. Also includes advances made to employees for a brief period of time such as salary or travel advances. Also includes start-up \ funds for a particular activity such as food booth, trip, etc.
+15000|Land|Original cost or, if donated, market/appraised value of land owned by the association at the date title passes to the association.
+15100|Land Improvements|Original cost or, if donated, market/appraised value of land improvements i.e. driveways, parking lots, roads, landscaping, grading etc.
+15200|Buildings|Original cost or, if donated, market/appraised value of buildings owned by the association at the date title passes to the association. Also to be used to record the cost of capital expenditures for improvements and renovations to owned building.
+15300|Leasehold|Improvements Original cost or, if donated, market/appraised value of capital expenditures for improvements and renovations to leased building.
+15400|Furniture and Fixtures|Original cost or, if donated, market/appraised value of furniture and fixtures owned by the association.
+15500|Vehicles|Original cost or, if donated, market/appraised value of vehicles owned by the association.
+15600|Computers and Equipment|Original cost or, if donated, market/appraised value of computers and printers, including all installation costs. Exclude items costing less than $1,000.00 and computer software.
+15800|Construction in Progress|Accumulated costs for construction of capitalized buildings. When construction is complete and building ready for occupancy value would be moved to 15200 Buildings.
+16100|Accumulated Depreciation, Land Improvements|Contra-asset account which reflects total amount of land improvement depreciated.
+16200|Accumulated Depreciation, Buildings|Contra-asset account which reflects total amount of building depreciation.
+16300|Accumulated Depreciation, Leasehold Improvements|Contra-asset account which reflects amount of lease-hold improvement depreciation.
+16400|Accumulated Depreciation, Furniture and Fixtures|Contra-asset account which reflects amount of furniture & fixtures depreciation.
+16500|Accumulated Depreciation, Vehicles|Contra-asset account which reflects total amount of vehicle depreciation.
+16600|Accumulated Depreciation, Computers and Equipment|Contra-asset account which reflects amount of computer and equipment depreciation.
+17100|Investments, Cash & Equivalents|Amount of cash and equivalents held for longterm investment purposes.
+17200|Investments, Government Obligations|Amount of notes or bonds issued by governmental agencies held for long-term investment purposes.
+17300|Investments, Stock|Amount of stock held for long-term investment purposes.
+17400|Investments, Mutual Funds|Amount of mutual funds held for long-term investment purposes.
+17500|Investments, Certificate of Deposit|Amount of certificate(s) of deposit held for terms of over twelve (12) months.
+17600|Investments, Other|Amount of other investments (i.e. real estate, life insurance policy, etc.) held for long-term investment purposes.
+19000|Pledges Receivable, Non-Current|Amount of the long-term portion of a legal enforceable commitment from a donor to make a gift to the association in the future.
+19200|Deposits|Includes payment on deposit to Cornell. Recommend establishing an offsetting designated net asset account for initial payment. (F.O.R.M. Code 802)
+19400|Other Long-Term Assets|Any other asset held for long-term investment purposes (trademarks, copy rights, royalties, intangible types of assets).
+20000|Accounts Payable|Current, unpaid obligations at the end of a reporting period. Includes amounts due vendors. (F.O.R.M. Code 811)
+20100|Accounts Payable, Inter-Association|Amounts due to other association (s).
+20200|Accounts Payable, Cornell|Unpaid salary and wages and operating expenses due Cornell on the 2xx9200 account (F.O.R.M. Code 811).
+21000|Accrued Salaries and Wages|Salary and wage expense owed but not yet paid to employees. This account is used in December for the fiscal year-end and is cleared in January of the new fiscal year. (F.O.R.M. Code 802). The account can also be used at federal or other grant year-ends, to accrue payroll expense.
+21200|Accrued Expenses, Other|Value of other accruals by the association. Method usually used for budgeting purposes to record expenses evenly throughout the year such as auditing fees.
+21400|Accrued Vacation|Value of unused vacation accrued by association employees.
+21600|Sales Tax Payable|Current sales tax obligation at the end of a reporting period.
+21700|Unclaimed Funds|Checks payable to vendors or individuals that have been outstanding six months or more. (F.O.R.M. Code 811.2)
+22000|Deferred Revenues|Income received in one fiscal period but not earned until a subsequent fiscal period. Example: 2009 enrollment fees received in 2008 would be recorded in the Deferred Revenue account in 2008 and transferred to revenues in 2009. (F.O.R.M. Code 802.4)
+22500|Agency Funds|Funds of organizations or projects that are not sponsored by or affiliated with the association. Not an income or expense to the association.
+25500|Line of Credit|Unsecured amount due a bank or lending institution for short-term borrowing purposes.
+25600|Loans Payable|Secured amount due a bank or lending institution for short-term borrowing purposes. Customarily accompanied by a payment plan.
+25700|Current Portion of Long-Term Debt|Amount that is due the lender over the next fiscal year (12 months) for any loans, notes payable, mortgage payable and capital leases.
+27100|Loans and Notes Payable|Unpaid principal balance owed, less the current portion of the loan or note payable long-term debt. Must be supported by an amortization schedule (breakdown of interest and principal per payment).
+27300|Mortgage Payable|Unpaid principal balance owed, less the current portion of the mortgage payable long-term debt. Must be supported by an amortization schedule (breakdown of interest and principal per payment). (F.O.R.M. Code 811.1)
+27500|Capital Leases Payable|Unpaid principal balance owed, less the current portion of the capital leases payable long-term debt. Must be supported by an amortization schedule (breakdown of interest and principal per payment).
+30000|Unrestricted Net Assets, General Fund Balance|Net assets available for general purpose. The Board can designate the use of unrestricted net assets.
+30600|Unrestricted Net Assets, Retained Earnings/Clearing|Clearing account for revenue and expenses. ACCPAC system, during year-end closing routine will move balances in revenue and expense accounts to retained earnings/clearing account. NO ENTRY is required by Finance Administrator; ACCPAC will process the entries automatically. Upon completion of year-end closing routine, balance in 306NN must be zero as balances will be transferred to 300NN, 310NN or 312NN-314NN,via journal entry, after Board approval.
+31000|Designated Net Assets, Net Plant|The portion of unrestricted net assets that reflect the undepreciated cost of assets owned by the association such as equipment, vehicles, land and buildings. Total fixed assets, less accumulated depreciation, is equal to plant funds plus any fixed asset note or mortgage liability.
+31200|Designated Net Assets Net|assets being held for a specific purpose designated by the Board such as automobile and equipment purchase, future capital improvements, capital construction and initial payment. The Board can redesignate the use of these funds.
+31400|Designated Net Assets Net|assets being held for a specific purpose designated by the Board such as automobile and equipment purchase, future capital improvements, capital construction and initial payment. The Board can redesignate the use of these funds.
+37000|Temporarily Restricted Net Assets|Net assets with donor-imposed restrictions. The purpose or use of temporarily restricted net assets cannot be changed.
+39000|Permanently Restricted Net assets|Represents endowments or other assets that must be maintained permanently although the association may be permitted to expend all or part of the interest.
+40100|Smith-Lever Federal|Federal funds that are allocated on the federal fiscal year October 1 through September 30 through salaries of professional staff that conduct extension programs in the association or through reimbursement for Smith-Lever Federal approved expenditures. Also includes Smith-Lever (3d) Expanded Food and Nutrition Education Program (EFNEP) federal funds allocated on a federal fiscal year October 1 through September 30 with at least 60% to support nutrition program assistants, including salaries, and no more than 20% to support exempt extension educators, including salaries. If funds are available, EFNEP operating costs will be paid to association upon receipt of invoice for allowable costs incurred in the federal fiscal year.
+40200|NYS 224 Funds|New York State County Law 224 funds allocated on the state fiscal year April 1 through March 31 through salaries of professional staff that conduct extension programs in the association and should be used to support at least 50% of the Executive Directors salary to confirm the program and management partnership between the Association and Cornell University.
+40300|NYS Payroll Taxes and Fringe Benefits|Value of employers share of FICA taxes (social security and Medicare and employee fringe benefits paid by the state through Cornell (F.O.R.M. Code 706).
+40500|County Appropriation|Appropriation received from County government.
+41000|Federal Contracts|Federally funded grant, contract or other federal Funds.
+42500|NYS Contracts|State funded grant, contract or other state funds.
+44000|County Contracts|Account used to record funds received directly for a specific project sponsored by county government. This account would be used for other funds that flow through the county and or private to the association. Account title would identify the specific project.
+44500|Other Government Contracts|Account used to record funds received directly for a specific project sponsored by other governmental agencies (towns, municipalities, other states etc.).
+44600|Other Grants/Contracts|Funds, other than federal or state, received through Cornell University for a specific project or program, such as Cornell Tradition.
+44700|Private Contracts|Account used to record funds received directly for a specific project sponsored by nongovernmental agencies, private corporations etc.
+45000|Enrollment Fees|Annual enrollment fees to participate in Cooperative Extension programs.
+45200|Program Registration Fees|Fee to participate in classes, workshops, and other program activities. Includes fees collected for 4-H trips, tours, and camp enrollments. Separate accounts can be established and coded for each program. Includes registration fees collected for inter-association workshops held for Cooperative Extension staff and volunteers.
+45400|Regional Programming Support|Funds received from other associations for support of inter-association regional programs.
+45600|Specialist Contract Support|Reimbursement received from Cornell University for the support of program specialists contract (e.g.reimbursement for office arrangements). Account title would identify the specific contract (e.g. dairy, Poultry, Fruit, Vegetables). (F.O.R.M. Code 808.2).
+46000|Contributions Unrestricted|Cash contributions to the association with no restrictions as to use. (F.O.R.M. Codes 817 and 1206). Use account 464NN to record value of noncash contributions.
+46200|Donated Services|Fair market value provided of services provided to association. Not volunteer services. Services that would be purchased that required expertise (e.g. legal services provided for free, appraisal services provided for free).
+46300|Donated Use of Facilities|Fair market value of use of facilities provided to an association, often times by county government, where there is no rental fee charged (donated).
+46400|Gifts-in-Kind|Value of non-cash contributions to the association in the form of supplies or equipment. (F.O.R.M. Code 1206).
+46600|Contributions, Temporarily Restricted|Account used to record cash and non-cash contributions to association that have donorimposed. (F.O.R.M. Codes 817 and 1206).
+46800|Contributions, Permanently Restricted|Contribution with donor restrictions where the donated asset (cash or non-cash) cannot be expended or sold. For example, an endowment.
+47000|Advertising|Revenues received from the sale of advertising space in Extension publications and newsletters.
+47200|Subscriptions|Revenues received from the sale of subscriptions for Extension publications and newsletters.
+47400|Sales: Printing and Duplicating|Revenues received for printing and copying services performed for outside organizations.
+47600|Sales, Merchandise|Revenues received for the sale of merchandise (e.g. 4-H and Camp Store items)
+47700|Enterprise Sales*|Money received from the sale of paid publications, soil testing, farm account books, etc. NOTE: If proceeds from the sale of items are not intended to raise additional funds but only to recover the cost of purchasing the items for resale, then revenue account 477NN Enterprise Sales and expense account 647NN Enterprise-Cost of Sales should be used.
+47800|Reimbursement for Services|Reimbursement for consulting, clerical or secretarial services provided to other associations or agencies.
+47900|Discounts|Discounts are the differences between established rates for goods or services offered by the association and the amounts accepted by the association for them. Discounts normally show debit balances and for financial reporting purposes are netted against the related revenues. An example would be discounts from established rates for 4-H camp enrollments.
+48000|Sales, Fundraising|Money received from the sale of cookies, candy, kits, 4-H fund raising projects, farm and home days, fairs, food/craft booths at fair, walk-a-thons, bowl-a-thons, etc.
+48200|Special Events|Funds received from a special association fund raising activity including special social and educational events such as dinners, dances, golf outings, theater parties, anniversary celebrations for association.
+48500|Miscellaneous Income|To be used as the clearing account for the Accounts Receivable entries on the Cornell bill. The period end balance for these entries should be zero. ALSO to be used only when no other income account properly identifies the transaction. Supporting documentation is required for each entry.
+48600|Rental Income, Term basis|Rental of association office space and facilities to Long- other agencies on an annual
+48700|Rental Income, Short-Term|Rental of association facilities or campgrounds  (meeting rooms, kitchen, equipment, etc.).
+48800|Interest Income|Interest derived from checking accounts, savings accounts, certificates of deposit, money markets, bonds, etc.
+48900|Dividend Income|Earnings on stocks, investments, mutual funds etc.
