@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "build": "webpack",
+    "compile": "rm -rf ./dist && babel ./src --out-dir dist",
     "start": "npm run server && npm run worker",
     "server": "NODE_PATH=./src babel-node ./src/server.js",
     "worker": "NODE_PATH=./src babel-node ./src/worker.js",

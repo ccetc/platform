@@ -9,5 +9,6 @@ public/css/admin.min.css
 src/admin/reducer.js
 src/admin/style.less
 src/admin/client.js
+dist
 tmp
 uploads
