@@ -1,5 +1,5 @@
 import React from 'react'
-import Page from 'portals/admin/containers/page'
+import Page from 'admin/components/page'
 
 class Dashboard extends React.Component {
 

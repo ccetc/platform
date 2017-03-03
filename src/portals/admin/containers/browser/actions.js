@@ -1,5 +1,5 @@
 import * as actionTypes from './action_types'
-import local from 'portals/admin/utils/local'
+import local from 'admin/utils/local'
 
 export function loadPreferences() {
   return local.get({

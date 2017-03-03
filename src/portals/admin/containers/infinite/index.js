@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import _ from 'lodash'
-import component from 'portals/admin/components/component'
+import component from 'admin/components/component'
 import * as actions from './actions'
 
 class Infinite extends React.Component {

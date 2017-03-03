@@ -1,8 +1,8 @@
 import React from 'react'
-import Details from 'portals/admin/components/details'
-import Page from 'portals/admin/containers/page'
-import Tabs from 'portals/admin/components/tabs'
-import Avatar from 'portals/admin/components/avatar'
+import Details from 'admin/components/details'
+import Page from 'admin/components/page'
+import Tabs from 'admin/components/tabs'
+import Avatar from 'admin/components/avatar'
 import Edit from './edit'
 
 class Show extends React.Component {

@@ -1,7 +1,7 @@
 import { Router } from 'express'
-import admin from 'portals/admin/server'
-import account from 'portals/account/server'
-import website from 'portals/public/server'
+import admin from 'admin/server'
+import account from 'account/server'
+import website from 'public/server'
 
 const router = Router()
 

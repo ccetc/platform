@@ -1,7 +1,7 @@
 import React from 'react'
 import * as actions from './actions'
-import component from 'portals/admin/components/component'
-import Infinite from 'portals/admin/containers/infinite'
+import component from 'admin/components/component'
+import Infinite from 'admin/components/infinite'
 import Results from './results'
 
 class Collection extends React.Component {

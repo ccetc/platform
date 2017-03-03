@@ -1,7 +1,7 @@
 import React from 'react'
-import Page from 'portals/admin/containers/page'
-import Collection from 'portals/admin/components/collection'
-import Feed from 'portals/admin/components/feed'
+import Page from 'admin/components/page'
+import Collection from 'admin/components/collection'
+import Feed from 'admin/components/feed'
 
 class Index extends React.Component {
 

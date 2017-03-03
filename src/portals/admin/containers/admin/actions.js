@@ -1,6 +1,6 @@
 import * as actionTypes from './action_types'
-import api from 'portals/admin/utils/api'
-import local from 'portals/admin/utils/local'
+import api from 'admin/utils/api'
+import local from 'admin/utils/local'
 
 export function loadTeams() {
   return local.get({

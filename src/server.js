@@ -9,8 +9,8 @@ import exception from 'server/middleware/exception'
 // import ioauth from 'server/middleware/ioauth'
 import logger from 'server/middleware/logger'
 import render from 'server/middleware/render'
-import server from 'portals/server'
-import admin from 'portals/admin/client'
+import server from 'server'
+import admin from 'admin/client'
 
 dotenv.config({ path: '.env.' + process.env.NODE_ENV })
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import Form from 'portals/admin/components/form'
+import Form from 'admin/components/form'
 import Access from '../../components/access'
 
 class Edit extends React.Component {

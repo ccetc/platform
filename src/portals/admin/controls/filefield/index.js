@@ -3,7 +3,7 @@ import _ from 'lodash'
 import { getActiveTeam } from '../../containers/admin/selectors'
 import Resumable from 'resumablejs'
 import bytes from 'bytes'
-import component from 'portals/admin/components/component'
+import component from 'admin/components/component'
 import * as actions from './actions'
 
 class FileField extends React.Component {

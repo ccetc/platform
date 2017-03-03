@@ -1,7 +1,7 @@
 import React from 'react'
 import $ from 'jquery'
 import _ from 'lodash'
-import Format from 'portals/admin/utils/format'
+import Format from 'admin/utils/format'
 
 class Table extends React.Component {
 

@@ -1,13 +1,13 @@
 import _ from 'lodash'
 import * as actionTypes from './action_types'
 
-import collection from 'portals/admin/components/collection/reducer'
-import dynamic from 'portals/admin/controls/dynamic/reducer'
-import filefield from 'portals/admin/controls/filefield/reducer'
-import form from 'portals/admin/components/form/reducer'
-import infinite from 'portals/admin/containers/infinite/reducer'
-import lookup from 'portals/admin/controls/lookup/reducer'
-import tabs from 'portals/admin/components/tabs/reducer'
+import collection from 'admin/components/collection/reducer'
+import dynamic from 'admin/controls/dynamic/reducer'
+import filefield from 'admin/controls/filefield/reducer'
+import form from 'admin/components/form/reducer'
+import infinite from 'admin/components/infinite/reducer'
+import lookup from 'admin/controls/lookup/reducer'
+import tabs from 'admin/components/tabs/reducer'
 
 const reducers = {
   collection,

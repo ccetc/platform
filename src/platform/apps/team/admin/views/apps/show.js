@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import Page from 'portals/admin/containers/page'
+import Page from 'admin/components/page'
 
 class Show extends React.Component {
 

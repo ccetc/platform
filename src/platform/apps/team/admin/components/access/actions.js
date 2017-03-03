@@ -1,5 +1,5 @@
 import * as actionTypes from './action_types'
-import api from 'portals/admin/utils/api'
+import api from 'admin/utils/api'
 
 export function toggleApp(index) {
   return {

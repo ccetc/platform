@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getActiveTeam, getActiveUser } from '../../containers/admin/selectors'
-import Avatar from 'portals/admin/components/avatar'
+import Avatar from 'admin/components/avatar'
 import Edit from './edit'
 import Password from './password'
 

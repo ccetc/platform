@@ -1,7 +1,7 @@
 import React from 'react'
-import Avatar from 'portals/admin/components/avatar'
-import Details from 'portals/admin/components/details'
-import Page from 'portals/admin/containers/page'
+import Avatar from 'admin/components/avatar'
+import Details from 'admin/components/details'
+import Page from 'admin/components/page'
 import Edit from './edit'
 
 class Show extends React.Component {

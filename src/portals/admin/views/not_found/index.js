@@ -1,5 +1,5 @@
 import React from 'react'
-import Page from 'portals/admin/containers/page'
+import Page from 'admin/components/page'
 import Search from '../search'
 
 export class NotFound extends React.Component {

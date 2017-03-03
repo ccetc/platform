@@ -1,6 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
-import component from 'portals/admin/components/component'
+import component from 'admin/components/component'
 import { getDefaults, collectData } from './utils'
 import * as actions from './actions'
 import Section from './section'

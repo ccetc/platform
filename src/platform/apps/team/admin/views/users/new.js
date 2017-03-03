@@ -1,5 +1,5 @@
 import React from 'react'
-import Form from 'portals/admin/components/form'
+import Form from 'admin/components/form'
 import Roles from '../../components/roles'
 
 class New extends React.Component {

@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 import * as actions from './actions'
-import component from 'portals/admin/components/component'
+import component from 'admin/components/component'
 
 class Dynamic extends React.Component {
 

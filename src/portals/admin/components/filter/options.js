@@ -3,7 +3,7 @@ import React from 'react'
 import _ from 'lodash'
 import { connect } from 'react-redux'
 import * as actions from './actions'
-import Infinite from 'portals/admin/containers/infinite'
+import Infinite from 'admin/components/infinite'
 
 class Options extends React.Component {
 
