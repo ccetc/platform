@@ -1,56 +1,32 @@
-import dotenv from 'dotenv'
+require('platform/services/environment')
+
 import express from 'express'
-import cors from 'cors'
 import Redis from 'socket.io-redis'
 import http from 'http'
 import socketio from 'socket.io'
 import bodyParser from 'body-parser'
-import exception from 'server/middleware/exception'
-// import ioauth from 'server/middleware/ioauth'
-import logger from 'server/middleware/logger'
-import render from 'server/middleware/render'
-import server from 'portals/server'
-import admin from 'portals/admin/client'
+import exceptions from 'platform/middleware/exceptions'
+import notFound from 'platform/middleware/not_found'
+import admin from './admin/server'
 
-dotenv.config({ path: '.env.' + process.env.NODE_ENV })
-
-// create app
 const app = express()
-
-// create server
 const transport = http.createServer(app)
-
-const redis = Redis({
-  host: process.env.REDIS_HOST || '',
-  port: process.env.REDIS_PORT || '',
-  db: process.env.REDIS_DB || ''
-})
-
-// create websocket
+const redis = Redis(process.env.REDIS_URL)
 const io = socketio(transport)
+
 io.adapter(redis)
-// io.use(ioauth)
 
-// enable cors
-app.use(cors())
-
-// body parsing
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-// logger
-app.use(logger)
+app.use(admin)
 
-// api
-app.use(server)
-app.use(exception)
-
-// public assets
 app.use(express.static('public'))
 
-// admin routes
-app.get('/admin*', render(admin))
+app.use(notFound)
 
-transport.listen(process.env.APP_PORT, () => {
-  console.log('App listening on port ', process.env.APP_PORT)
+app.use(exceptions)
+
+transport.listen(process.env.SERVER_PORT, () => {
+    console.log('Server listening on port', process.env.SERVER_PORT)
 })

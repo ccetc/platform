@@ -1,2 +1,2 @@
-app: npm run app
+server: npm run server
 worker: npm run worker

@@ -1,6 +1,7 @@
 exports.seed = (knex, Promise) => {
-  return knex('security_questions').del()
-  .then(() => {
+
+  return knex('security_questions').del().then(() => {
+
     return knex('security_questions').insert([
       {
         text: 'What is the name of your first pet?'
@@ -14,10 +15,13 @@ exports.seed = (knex, Promise) => {
         text: 'In what city were you born?'
       }
     ])
+
   }).then(() => {
+
     return knex('app_categories').del()
-  })
-  .then(() => {
+
+  }).then(() => {
+
     return knex('app_categories').insert([
       {
         title: 'administration'
@@ -33,5 +37,7 @@ exports.seed = (knex, Promise) => {
         title: 'productivity'
       }
     ])
+
   })
+
 }

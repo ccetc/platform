@@ -1,3 +1,7 @@
-export default (object) => ({
-  id: object.get('id')
-})
+export default (object) => {
+
+  return Promise.resolve({
+    id: object.get('id')
+  })
+
+}

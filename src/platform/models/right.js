@@ -1,17 +1,20 @@
-import checkit from  'checkit'
-import bookshelf from 'server/services/bookshelf'
+import model from 'platform/models/model'
 import App from 'platform/models/app'
 import Role from 'platform/models/role'
 
-export default bookshelf.Model.extend({
+export default model.extend({
 
   tableName: 'rights',
-
-  hasTimestamps: ['created_at', 'updated_at'],
 
   rules: {
     text: 'required',
     app_id: 'required'
+  },
+
+  virtuals: {
+    code: function() {
+      return this.related('app').get('title').toLowerCase() + '.' + this.get('text').toLowerCase().replace(/\s/, '_')
+    }
   },
 
   app: function() {
@@ -20,14 +23,6 @@ export default bookshelf.Model.extend({
 
   roles: function() {
     return this.belongsToMany(Role, 'users_roles', 'user_id', 'role_id')
-  },
-
-  initialize: function(attrs, opts) {
-    this.on('saving', this.validateSave)
-  },
-
-  validateSave: function() {
-    return new checkit(this.rules).run(this.attributes)
   }
 
 })

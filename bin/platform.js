@@ -1,5 +1,7 @@
 #!/usr/local/bin/node
 
+require('../src/platform/services/environment')
+
 const minimist = require('minimist')
 const Promise = require('bluebird')
 const fs = Promise.promisifyAll(require('fs'))
@@ -29,8 +31,7 @@ function loadTask(taskIdentifier, env = environment, argv = argv) {
 
   let searchPaths = [
     path.resolve(__dirname, `../src/${namespace}/tasks/${task}.js`),
-    path.resolve(__dirname, `../src/apps/${namespace}/tasks/${task}.js`),
-    path.resolve(__dirname, `../src/platform/apps/${namespace}/tasks/${task}.js`)
+    path.resolve(__dirname, `../src/apps/${namespace}/tasks/${task}.js`)
   ]
 
   return Promise.all(searchPaths.map(p => fs.statAsync(p).then(() => p).catch(e => null)))

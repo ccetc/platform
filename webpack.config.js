@@ -1,12 +1,11 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var compileApps = require('./src/server/utils/compile_apps')
+var compile = require('./src/platform/utils/compile')
 
-compileApps()
+compile()
 
 module.exports = {
   entry: {
-    account: './src/account.js',
-    admin: './src/admin.js'
+    admin: './src/admin/index.js'
   },
   output: {
     path: './public',

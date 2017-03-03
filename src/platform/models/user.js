@@ -1,31 +1,20 @@
-import checkit from  'checkit'
+import model from 'platform/models/model'
 import bcrypt from 'bcrypt-nodejs'
-import bookshelf from 'server/services/bookshelf'
-import unique from 'server/utils/unique_validation'
-// import App from 'platform/models/app'
+import unique from 'platform/validations/unique'
 import Asset from 'platform/models/asset'
 import Role from 'platform/models/role'
-import Right from 'platform/models/right'
 import SecurityQuestion from 'platform/models/security_question'
 import Team from 'platform/models/team'
 
-export default bookshelf.Model.extend({
+export default model.extend({
 
   tableName: 'users',
-
-  hasTimestamps: ['created_at', 'updated_at'],
 
   rules: {
     first_name: 'required',
     last_name: 'required',
     email: ['required', 'email', unique('users', 'email')]
   },
-
-  // apps: function() {
-  //   return this.belongsToMany(App, 'users_roles', 'user_id', 'role_id').query(qb => qb
-  //     .innerJoin('roles_apps', 'roles_apps.app_id', 'apps.id')
-  //   )
-  // },
 
   photo: function() {
     return this.belongsTo(Asset, 'photo_id')
@@ -39,12 +28,6 @@ export default bookshelf.Model.extend({
     return this.belongsTo(SecurityQuestion, 'security_question_2_id')
   },
 
-  // rights: function() {
-  //   return this.belongsToMany(Right, 'users_roles', 'user_id', 'role_id').query(qb => qb
-  //     .innerJoin('roles_rights', 'roles_rights.right_id', 'rights.id')
-  //   )
-  // },
-
   roles: function() {
     return this.belongsToMany(Role, 'users_roles', 'user_id', 'role_id')
   },
@@ -54,14 +37,17 @@ export default bookshelf.Model.extend({
   },
 
   virtuals: {
+
     full_name: function() {
       return this.get('first_name') + ' ' + this.get('last_name')
     },
+
     initials: function() {
       const first_name = this.get('first_name') || ''
       const last_name = this.get('last_name') || ''
       return first_name[0] + last_name[0]
     },
+
     password: {
       get: function() {},
       set: function(value) {
@@ -70,18 +56,11 @@ export default bookshelf.Model.extend({
         this.set('password_hash', bcrypt.hashSync(value, password_salt))
       }
     }
+
   },
 
   authenticate: function(password) {
     return this.get('password_hash') === bcrypt.hashSync(password, this.get('password_salt'))
-  },
-
-  initialize: function(attrs, opts) {
-    this.on('saving', this.validateSave)
-  },
-
-  validateSave: function() {
-    return new checkit(this.rules).run(this.attributes)
   }
 
 })
