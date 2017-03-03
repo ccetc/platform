@@ -206,7 +206,7 @@ module.exports = {
         const ContentType = getContentTypeByFile(filepath)
 
         return s3.upload({
-          Bucket: 'platform',
+          Bucket: 'prod.platform',
           Key: `assets/${asset.id}/${asset.file_name}`,
           ACL: 'public-read',
           Body,
