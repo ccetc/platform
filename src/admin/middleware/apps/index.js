@@ -8,7 +8,7 @@ const appPath = path.join(__dirname, '..', '..', '..', 'apps')
 
 fs.readdirSync(appPath).filter(app => {
 
-  const configPath = path.join(appPath, app, 'app.json')
+  const configPath = path.join(appPath, app, 'app.js')
   const adminPath = path.join(appPath, app, 'admin')
 
   if(fs.existsSync(adminPath)) {
