@@ -27,9 +27,10 @@ class Edit extends React.Component {
       sections: [
         {
           fields: [
-            { label: 'First Name', name: 'first_name', type: 'textfield', placeholder: 'First Name' },
-            { label: 'Last Name', name: 'last_name', type: 'textfield', placeholder: 'Last Name' },
-            { label: 'Email', name: 'email', type: 'textfield', placeholder: 'Email' },
+            { label: 'First Name', name: 'first_name', type: 'textfield', placeholder: 'First Name', required: true },
+            { label: 'Last Name', name: 'last_name', type: 'textfield', placeholder: 'Last Name', required: true },
+            { label: 'Email', name: 'email', type: 'textfield', placeholder: 'Email', required: true },
+            { label: 'Is Active', name: 'is_active', type: 'checkbox', defaultValue: true },
             { label: 'Roles', name: 'role_ids', type: Roles }
           ]
         }

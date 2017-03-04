@@ -18,14 +18,17 @@ export default resources({
     create: createRoles,
     update: updateRoles
   },
-  allowedParams: ['first_name','last_name','email'],
-  filterParams: ['role_id'],
+  allowedParams: ['first_name','last_name','email','is_active'],
+  filterParams: ['role_id','is_active'],
+  defaultParams: (req) => Promise.resolve({
+    is_active: true
+  }),
   defaultSort: 'last_name',
   model: User,
   name: 'user',
   query: (qb, req, filters) => {
     qb.select(knex.raw('distinct on ("users"."id","users"."last_name") "users".*'))
-    qb.innerJoin('users_roles', 'users_roles.user_id', 'users.id')
+    qb.leftJoin('users_roles', 'users_roles.user_id', 'users.id')
   },
   serializer: UserSerializer,
   searchParams: ['first_name','last_name','email'],

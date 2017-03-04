@@ -38,6 +38,13 @@ export default model.extend({
 
   virtuals: {
 
+    activity: function() {
+      return {
+        type: 'user',
+        text: this.get('full_name')
+      }
+    },
+
     full_name: function() {
       return this.get('first_name') + ' ' + this.get('last_name')
     },

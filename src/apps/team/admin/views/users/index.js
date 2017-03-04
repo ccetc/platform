@@ -19,10 +19,11 @@ class Index extends React.Component {
       endpoint: '/admin/team/users',
       columns: [
         { label: 'Name', key: 'first_name', primary: true, format: NameCell },
-        { label: 'Email', key: 'email' }
+        { label: 'Active', key: 'is_active', primary: false, format: 'check_times' }
       ],
       filters: [
-        { label: 'Role', name: 'role_id', type: 'select', multiple: true, endpoint: '/admin/team/roles', value: 'id', text: 'title', sort: { key: 'title', order: 'asc' } }
+        { label: 'Role', name: 'role_id', type: 'select', multiple: true, endpoint: '/admin/team/roles', value: 'id', text: 'title', sort: { key: 'title', order: 'asc' } },
+        { label: 'Active', name: 'is_active', type: 'select', options: [{ value: '1', text: 'Active' }, { value: '0', text: 'Inactive' }] }
       ],
       link: '/admin/team/users/#{id}',
       entity: 'user',
