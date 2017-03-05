@@ -11,4 +11,7 @@ src/admin/style.less
 src/admin/client.js
 dist
 tmp
-assets
+assets/*
+!assets/.gitkeep
+tmp/*
+!tmp/.gitkeep
