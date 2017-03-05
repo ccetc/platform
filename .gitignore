@@ -10,7 +10,6 @@ src/admin/reducer.js
 src/admin/style.less
 src/admin/client.js
 dist
-tmp
 assets/*
 !assets/.gitkeep
 tmp/*
