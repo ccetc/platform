@@ -4,7 +4,7 @@ import multipart from 'connect-multiparty'
 
 const router = Router()
 
-router.use(multipart())
+router.use(multipart({ uploadDir: './tmp' }))
 
 router.get('/', (req, res) => {
   test(req, (status) => {
