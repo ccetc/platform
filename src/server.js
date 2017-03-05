@@ -16,6 +16,8 @@ const io = socketio(transport)
 
 io.adapter(redis)
 
+app.set('uploadDir', './tmp')
+
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 

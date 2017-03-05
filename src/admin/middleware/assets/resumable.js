@@ -83,7 +83,7 @@ export const upload = function(req, callback){
   const original_filename = req.body.resumableIdentifier
 
   if(!req.files[fileParameterName] || !req.files[fileParameterName].size) {
-    callback('invalid_resumable_request', null, null, null)
+    callback('invalid_resumable_request')
     return
   }
 
@@ -104,7 +104,7 @@ export const upload = function(req, callback){
   }, true)
 
   if(!completed) {
-    return callback('partly_done', filename, original_filename, identifier)
+    return callback('partly_done')
   }
 
   const data = chunkArray.map((i, index) => {
@@ -117,6 +117,6 @@ export const upload = function(req, callback){
     return fs.unlinkSync(getChunkFilename(identifier, index + 1))
   })
 
-  callback('done', filename, original_filename, identifier)
+  callback('done')
 
 }
