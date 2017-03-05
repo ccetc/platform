@@ -19,9 +19,10 @@ io.adapter(redis)
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-app.use(admin)
-
 app.use(express.static('public'))
+app.use('/assets', express.static('assets'))
+
+app.use(admin)
 
 app.use(notFound)
 

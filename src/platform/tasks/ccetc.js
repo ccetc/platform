@@ -195,27 +195,27 @@ module.exports = {
 
       resolve()
 
-    }).then(() => {
-
-      return Promise.map(userData.assets, asset => {
-
-        const filepath = path.join(__dirname, '..', '..', '..', 'data', 'photos', asset.file_name)
-
-        const Body = fs.readFileSync(filepath)
-
-        const ContentType = getContentTypeByFile(filepath)
-
-        return s3.upload({
-          Bucket: 'prod.platform',
-          Key: `assets/${asset.id}/${asset.file_name}`,
-          ACL: 'public-read',
-          Body,
-          ContentType
-        }).promise()
-
-      })
-
-
+    // }).then(() => {
+    //
+    //   return Promise.map(userData.assets, asset => {
+    //
+    //     const filepath = path.join(__dirname, '..', '..', '..', 'data', 'photos', asset.file_name)
+    //
+    //     const Body = fs.readFileSync(filepath)
+    //
+    //     const ContentType = getContentTypeByFile(filepath)
+    //
+    //     return s3.upload({
+    //       Bucket: 'prod.platform',
+    //       Key: `assets/${asset.id}/${asset.file_name}`,
+    //       ACL: 'public-read',
+    //       Body,
+    //       ContentType
+    //     }).promise()
+    //
+    //   })
+    //
+    //
     })
 
   }

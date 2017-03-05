@@ -36,10 +36,11 @@ class FileField extends React.Component {
         { files.map((file, index) => {
           return (
             <div key={`filefield_${index}`} className="ui secondary segment">
-              <p>
-                { file.status === 'success' ? <a href="">{file.fileName}</a> : <strong>{file.fileName}</strong> }
+              <div className="details">
+                { file.status === 'success' && <div className="preview"><img src={`/assets/${file.fileName}`} /></div>}
+                <strong>{file.fileName}</strong>
                 ({ bytes(file.fileSize, { decimalPlaces: 2, unitSeparator: ' ' }).toUpperCase() })
-              </p>
+              </div>
               { file.status === 'uploading' &&
                 <div className="ui small green progress" ref={`filefield_${file.uniqueIdentifier}_progress`}>
                   <div className="bar" />
@@ -55,7 +56,7 @@ class FileField extends React.Component {
           )
         }) }
         { (files.length === 0 || multiple === true) &&
-          <div ref="browse" className="ui browse button">
+          <div ref="browseButton" className="ui browse button">
             { prompt }
           </div>
         }
@@ -78,7 +79,7 @@ class FileField extends React.Component {
     this.resumable.on('fileSuccess', this._handleUploadSuccess.bind(this))
     this.resumable.on('error', this._handleUploadFailure.bind(this))
     this.resumable.on('complete', this._handleUploadComplete.bind(this))
-    this.resumable.assignBrowse(this.refs.browse)
+    this.resumable.assignBrowse(this.refs.browseButton)
   }
 
   componentDidUpdate(prevProps) {
@@ -97,37 +98,41 @@ class FileField extends React.Component {
     })
   }
 
-  _handleSetup() {
-  }
-
   _handleFileAdded(file) {
+    console.log('add')
     this.props.onAddFile(file.uniqueIdentifier, file.file.name, file.file.size, file.file.type, file.chunks.length)
   }
 
   _handleUploadBegin() {
+    console.log('begin')
     this.resumable.upload()
     this.props.onUploadBegin()
   }
 
   _handleUploadProgress(file) {
+    console.log('progress')
     this.props.onUploadProgress(file.file.uniqueIdentifier, file.progress())
   }
 
   _handleUploadFailure(file, message) {
+    console.log('failure')
     this.props.onUploadFailure(message)
   }
 
   _handleUploadSuccess(file) {
+    console.log('success')
     this.props.onUploadSuccess(file.file.uniqueIdentifier)
   }
 
   _handleRemoveFile(uniqueIdentifier) {
+    console.log('remove')
     const file = this.resumable.getFromUniqueIdentifier(uniqueIdentifier)
     this.resumable.removeFile(file)
     this.props.onRemoveFile(uniqueIdentifier)
   }
 
   _handleUploadComplete() {
+    console.log('complete')
     this.props.onUploadComplete()
   }
 

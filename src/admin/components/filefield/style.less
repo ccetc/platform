@@ -1,14 +1,25 @@
 .filefield .ui.segment {
   display: flex;
-  padding: 10px 5px !important;
-  max-width: 500px;
+  padding: 10px !important;
   width: 100%;
-  p {
+  max-width: 350px;
+  .details {
     flex: 1;
     margin: 0;
     font-size: 14px;
     line-height: 14px;
     vertical-align: middle;
+  }
+  .preview {
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    margin-bottom: 10px;
+    display: block;
+    overflow: hidden;
+    img {
+      width: 100%;
+    }
   }
   a, strong {
     font-weight: bold;
