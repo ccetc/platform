@@ -1,4 +1,5 @@
 import model from 'platform/models/model'
+import App from 'platform/models/app'
 import Story from 'platform/models/story'
 import User from 'platform/models/user'
 
@@ -10,8 +11,16 @@ export default model.extend({
     user_id: ['required']
   },
 
+  app: function() {
+    return this.belongsTo(App)
+  },
+
   story: function() {
     return this.belongsTo(Story)
+  },
+
+  subject: function() {
+    return this.belongsTo(User, 'subject_id')
   },
 
   user: function() {

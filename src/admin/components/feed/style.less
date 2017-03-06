@@ -11,8 +11,14 @@
   padding: 10px;
   border-bottom: 1px solid #EEE;
   display: flex;
+  &:hover {
+    background-color: darken(#FFF, 2);
+  }
   &.unread {
-    background-color: #FFE;
+    background-color: #FFC;
+    &:hover {
+      background-color: darken(#FFC, 2);
+    }
   }
 }
 .chrome-feed-item-avatar {
@@ -26,6 +32,7 @@
   flex: 1;
 }
 .chrome-feed-item-story {
+  line-height: 20px;
   color: #000
 }
 .chrome-feed-item-user,
@@ -34,13 +41,27 @@
   font-weight: bold;
   margin-right: 3px;
 }
-
-.chrome-feed-item-timestamp,
 .chrome-feed-item-app {
   font-size: .8em;
-  color: #888;
-  i {
-    margin: 0;
-    width: auto;
+  color: #888888;
+}
+.chrome-feed-item-timestamp {
+  font-size: .8em;
+  line-height: 20px;
+  color: #888888;
+  .chrome-feed-item-app-icon {
+    .border-radius(3px);
+    display: inline-block;
+    background-color: #CCC !important;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    text-align: center;
+    line-height: 16px;
+    font-size: 9px;
+    i {
+      margin: auto;
+      color: #FFF;
+    }
   }
 }

@@ -1,5 +1,6 @@
 import React from 'react'
-import Feed from 'admin/components/feed'
+import Collection from 'admin/components/collection'
+import Feed from 'admin/components/feed/notifications'
 
 class Index extends React.Component {
 
@@ -23,17 +24,18 @@ class Index extends React.Component {
           </div>
         </div>
         <div className="chrome-notifications-body">
-          <Feed {...this._getFeed()} />
+          <Collection { ...this._getCollection() } />
         </div>
       </div>
     )
   }
 
-  _getFeed() {
+  _getCollection() {
     return {
       endpoint: '/admin/notifications',
-      state: 'static',
-      onChoose: this._handleClose.bind(this)
+      sort: { key: 'created_at', order: 'desc' },
+      layout: Feed,
+      entity: 'notifications'
     }
   }
 

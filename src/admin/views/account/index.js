@@ -21,7 +21,7 @@ export class Account extends React.Component {
   }
 
   render() {
-    const { user } = this.props
+    const { team, user } = this.props
     return (
       <div className="chrome-account-panel">
         <div className="chrome-account-identity">
@@ -36,6 +36,9 @@ export class Account extends React.Component {
           <div className="chrome-account-task" onClick={this._handleModal.bind(this, Password)}>
             <i className="lock icon" /> Change password
           </div>
+          <div className="chrome-account-task" onClick={this._handleSignout.bind(this, Password)}>
+            <i className="power icon" /> Sign out of <strong>{ team.subdomain }</strong>
+          </div>
         </div>
       </div>
     )
@@ -46,15 +49,12 @@ export class Account extends React.Component {
     this.context.modal.push(component)
   }
 
-  _handleSignout(index) {
-    this.context.drawer.close()
-    window.setTimeout(() => {
-      this.context.admin.removeTeam(index)
-    }, 1000)
-  }
-
   _handleCloseDrawer() {
     this.context.drawer.close()
+  }
+
+  _handleSignout(index) {
+    this.context.admin.removeTeam(index)
   }
 
 }

@@ -45,9 +45,6 @@ class Teams extends React.Component {
                   <div className="chrome-navigation-team-title" onClick={ this._handleChangeTeam.bind(this, index) }>
                     { team.title }
                   </div>
-                  <div className="chrome-navigation-team-active" onClick={this._handleSignout.bind(this, index)}>
-                    <i className="power icon" />
-                  </div>
                 </div>
               )
             })}

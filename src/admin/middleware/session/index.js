@@ -1,5 +1,6 @@
 import glob from 'glob'
 import path from 'path'
+import Notifications from 'platform/models/notification'
 import { succeed } from 'platform/utils/responses'
 
 export default (req, res, next) => {
@@ -17,18 +18,23 @@ export default (req, res, next) => {
     return menu
   }, [])
 
-  const data = {
-    apps,
-    user: {
-      name: req.user.get('full_name'),
-      initials: req.user.get('initials'),
-      email: req.user.get('email'),
-      photo: req.user.related('photo').get('url'),
-      unread: Math.floor((Math.random() * 20) + 1),
-      rights: req.rights
-    }
-  }
+  Notifications.where({ user_id : req.user.get('id'), is_read: false }).fetchAll().then(notifications => {
 
-  succeed(res, 200, '', { data })
+    const data = {
+      apps,
+      user: {
+        name: req.user.get('full_name'),
+        initials: req.user.get('initials'),
+        email: req.user.get('email'),
+        photo: req.user.related('photo').get('url'),
+        unread: notifications.length,
+        rights: req.rights
+      }
+    }
+
+    succeed(res, 200, '', { data })
+
+  })
+
 
 }

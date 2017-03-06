@@ -46,7 +46,7 @@ export class Feed extends React.Component {
                       <span className="chrome-feed-item-user">{ item.user.full_name }</span>
                       <span dangerouslySetInnerHTML={{__html: story }} />
                     </div>
-                    <div className="chrome-feed-item-app"><i className={`${ item.app.icon } icon`} /> { item.app.title }</div>
+                    { item.app && <div className="chrome-feed-item-app"><i className={`${ item.app.icon } icon`} /> { item.app.title }</div> }
                   </div>
                 </Link>
               )
