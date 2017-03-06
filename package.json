@@ -1,8 +1,20 @@
 {
-  "name": "backframejs",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "name": "platform",
+  "version": "0.0.1",
+  "main": "dist/server.js",
+  "description": "Extensible App Platform",
+  "license": "MIT",
+  "author": "Greg Kops <greg@thinktopography.com>",
+  "maintainers": [
+    {
+      "name": "Greg Kops",
+      "email": "greg@thinktopography.com"
+    }
+  ],
+  "engines": {
+    "node": ">= 6.5.0",
+    "npm": ">= 3.10npm list graceful-fs"
+  },
   "scripts": {
     "build": "webpack",
     "compile": "rm -rf ./dist && babel ./src --out-dir dist",
@@ -13,8 +25,6 @@
     "reset": "node ./bin/platform db:setup",
     "routes": "NODE_PATH=./src babel-node src/routes.js"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.22.0",
     "bcrypt-nodejs": "^0.0.3",
@@ -92,6 +102,7 @@
     "less-loader": "^2.2.3",
     "mocha": "^3.2.0",
     "react-addons-test-utils": "^15.4.2",
+    "shipit-cli": "^3.0.0",
     "sinon": "^1.17.7",
     "sqlite": "^2.2.4",
     "webpack": "^1.14.0",
