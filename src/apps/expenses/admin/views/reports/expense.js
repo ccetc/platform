@@ -2,6 +2,7 @@ import React from 'react'
 import Details from 'admin/components/details'
 import Page from 'admin/components/page'
 import ApprovalStatus from '../../components/approval_status'
+import Receipt from '../../components/receipt'
 
 class Show extends React.Component {
 
@@ -24,7 +25,7 @@ class Show extends React.Component {
     const approved_at_label = expense.is_approved ? 'Approved At' : 'Rejected At'
     return {
       items: [
-        { label: 'Receipt ', content: expense.asset_id, format: Receipt },
+        { label: 'Receipt ', content: expense.receipt, format: Receipt },
         { label: 'Date ', content: expense.date, format: 'date' },
         { label: 'User ', content: expense.user.full_name },
         { label: 'Project ', content: expense.project.title },
@@ -41,13 +42,6 @@ class Show extends React.Component {
   }
 
 }
-
-const Receipt = (props) => {
-  return (
-    <a href="">View Receipt</a>
-  )
-}
-
 
 const mapPropsToPage = (props, context) => ({
   title: 'Expense',

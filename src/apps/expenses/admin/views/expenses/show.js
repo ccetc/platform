@@ -2,6 +2,7 @@ import React from 'react'
 import Details from 'admin/components/details'
 import Page from 'admin/components/page'
 import Edit from './edit'
+import Receipt from '../../components/receipt'
 
 class Show extends React.Component {
 
@@ -41,58 +42,6 @@ class Show extends React.Component {
         { label: 'Reason Rejected ', content: expense.reason_rejected }
       ]
     }
-  }
-
-}
-
-const Receipt = (props) => {
-  return <ReceiptView {...props.value} />
-}
-
-class ReceiptView extends React.Component {
-
-  static contextTypes = {
-    modal: React.PropTypes.object
-  }
-
-  render() {
-    return <a onClick={ this._handleClick.bind(this) }>View Receipt</a>
-  }
-
-  _handleClick() {
-    this.context.modal.push(<ReceiptModal { ...this.props } />)
-  }
-
-}
-
-class ReceiptModal extends React.Component {
-
-  static contextTypes = {
-    modal: React.PropTypes.object
-  }
-
-  render() {
-    return (
-      <div className="chrome-modal-panel">
-        <div className="chrome-modal-panel-header">
-          <div className="chrome-modal-panel-header-cancel">
-          </div>
-          <div className="chrome-modal-panel-header-title">
-            Receipt
-          </div>
-          <div className="chrome-modal-panel-header-proceed" onClick={ this._handleClose.bind(this) }>
-            Done
-          </div>
-        </div>
-        <div className="chrome-modal-panel-body receipt">
-          <img src={ this.props.resized_url } />
-        </div>
-      </div>
-    )
-  }
-
-  _handleClose() {
-    this.context.modal.pop()
   }
 
 }

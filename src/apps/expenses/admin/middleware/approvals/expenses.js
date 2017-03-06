@@ -41,5 +41,5 @@ export default resources({
   rights: ['expenses.approve_expenses'],
   serializer: ExpenseSerializer,
   sortParams: ['date'],
-  withRelated: ['user.photo','project','expense_type','vendor']
+  withRelated: ['receipt','user.photo','project','expense_type','vendor']
 })

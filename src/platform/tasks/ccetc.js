@@ -8,6 +8,7 @@ const moment = require('moment')
 const _ = require('lodash')
 const aws = require('platform/services/aws')
 const mime = require('mime-types')
+const Jimp = require('jimp')
 
 module.exports = {
 
@@ -187,27 +188,90 @@ module.exports = {
 
       resolve()
 
-    // }).then(() => {
-    //
-    //   return Promise.map(userData.assets, asset => {
-    //
-    //     const filepath = path.join(__dirname, '..', '..', '..', 'data', 'photos', asset.file_name)
-    //
-    //     const Body = fs.readFileSync(filepath)
-    //
-    //     const ContentType = getContentTypeByFile(filepath)
-    //
-    //     return new aws.S3().upload({
-    //       Bucket: 'prod.platform',
-    //       Key: `assets/${asset.id}/${asset.file_name}`,
-    //       ACL: 'public-read',
-    //       Body,
-    //       ContentType
-    //     }).promise()
-    //
-    //   })
-    //
-    //
+    }).then(() => {
+
+      return Promise.map(userData.assets, asset => {
+
+        const filename = asset.file_name
+
+        const contentType = asset.content_type
+
+        const filepath = path.join(__dirname, '..', '..', '..', 'data', 'photos', asset.file_name)
+
+        return Jimp.read(filepath).then(image => {
+
+          const s3 = new aws.S3()
+
+          const original = new Promise((resolve, reject) => {
+
+            return image.getBuffer(Jimp.MIME_JPEG, (err, data) => {
+              if(err) reject({ message: err })
+              resolve(data)
+            })
+
+          }).then(data => {
+
+            return s3.upload({
+              Bucket: process.env.AWS_BUCKET,
+              Key: `assets/${asset.id}/original/${filename}`,
+              ACL: 'public-read',
+              Body: data,
+              ContentType: contentType
+            }).promise()
+
+          }).catch(err => {
+            console.log('Unable to upload original')
+          })
+
+          const thumbnail = new Promise((resolve, reject) => {
+
+            return image.cover(640, 640).quality(70).getBuffer(Jimp.MIME_JPEG, (err, data) => {
+              if(err) reject({ message: 'Unable to create thumbnail' })
+              resolve(data)
+            })
+
+          }).then(data => {
+
+            return s3.upload({
+              Bucket: process.env.AWS_BUCKET,
+              Key: `assets/${asset.id}/thumbnail/${filename}`,
+              ACL: 'public-read',
+              Body: data,
+              ContentType: contentType
+            }).promise()
+
+          }).catch(err => {
+            console.log('Unable to upload thumbnail')
+          })
+
+          const resized = new Promise((resolve, reject) => {
+
+            return image.resize(640, Jimp.AUTO).quality(70).getBuffer(Jimp.MIME_JPEG, (err, data) => {
+              if(err) reject({ message: 'Unable to create resized' })
+              resolve(data)
+            })
+
+          }).then(data => {
+
+            return s3.upload({
+              Bucket: process.env.AWS_BUCKET,
+              Key: `assets/${asset.id}/resized/${filename}`,
+              ACL: 'public-read',
+              Body: data,
+              ContentType: contentType
+            }).promise()
+
+          }).catch(err => {
+            console.log('Unable to upload resized')
+          })
+
+          return Promise.all([original, thumbnail, resized])
+
+        })
+
+      })
+
+
     })
 
   }

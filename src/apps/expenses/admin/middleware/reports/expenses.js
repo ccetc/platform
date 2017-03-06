@@ -12,5 +12,5 @@ export default resources({
   pathPrefix: '/reports',
   serializer: ExpenseSerializer,
   sortParams: ['date'],
-  withRelated: ['user','project','expense_type','approved_by','vendor']
+  withRelated: ['receipt','user','project','expense_type','approved_by','vendor']
 })
