@@ -8,6 +8,8 @@ export default (object) => {
     receipt: object.related('receipt').get('id') ? {
       id: object.related('receipt').get('id'),
       file_name: object.related('receipt').get('file_name'),
+      thumbnail_url: object.related('receipt').get('thumbnail_url'),
+      resized_url: object.related('receipt').get('resized_url'),
       url: object.related('receipt').get('url')
     } : null,
     expense_type: {

@@ -33,6 +33,7 @@
     "exceljs": "^0.2.39",
     "express": "^4.14.0",
     "extract-text-webpack-plugin": "^1.0.1",
+    "jimp": "^0.2.27",
     "jquery": "^3.1.1",
     "knex": "^0.12.6",
     "localforage": "^1.4.3",

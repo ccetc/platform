@@ -37,7 +37,7 @@ class FileField extends React.Component {
           return (
             <div key={`filefield_${index}`} className="ui secondary segment">
               <div className="details">
-                { file.status === 'success' && <div className="preview"><img src={`/assets/${file.fileName}`} /></div>}
+                { file.status === 'success' && <div className="preview"><img src={file.asset.thumbnail_url} /></div>}
                 <strong>{file.fileName}</strong>
                 ({ bytes(file.fileSize, { decimalPlaces: 2, unitSeparator: ' ' }).toUpperCase() })
               </div>
@@ -83,13 +83,11 @@ class FileField extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { assets, files } = this.props
+    const { files } = this.props
     if(files.length > prevProps.files.length) {
       this._handleUploadBegin()
     } else if(files.length <= prevProps.files.length && this.refs.browse) {
       this.resumable.assignBrowse(this.refs.browse)
-    } else if(assets.length > prevProps.assets.length) {
-      this.props.onChange(assets[0].id)
     }
     files.map((file, index) => {
       if(!prevProps.files[index] || prevProps.files[index].progress < file.progress) {
@@ -120,6 +118,7 @@ class FileField extends React.Component {
   _handleUploadSuccess(file, message) {
     const asset = JSON.parse(message)
     this.props.onUploadSuccess(file.file.uniqueIdentifier, asset)
+    this.props.onChange(asset.id)
   }
 
   _handleRemoveFile(uniqueIdentifier) {
@@ -136,7 +135,6 @@ class FileField extends React.Component {
 
 const mapStateToProps = (state, props) => ({
   files: state.filefield[props.cid].files,
-  assets: state.filefield[props.cid].assets,
   status: state.filefield[props.cid].status,
   team: getActiveTeam(state)
 })
