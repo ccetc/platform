@@ -1,21 +1,29 @@
 import { Router } from 'express'
 import { test, upload } from './resumable'
-import multipart from 'connect-multiparty'
+import multiparty from 'connect-multiparty'
 
 const router = Router()
 
-router.use(multipart({ uploadDir: './tmp' }))
+router.use(multiparty({ uploadDir: './tmp' }))
 
 router.get('/', (req, res) => {
-  test(req, (status) => {
-    res.status((status === 'found' ? 200 : 404), ).send(status)
+
+  return test(req).then(result => {
+    res.status(200).send(result)
+  }).catch(error => {
+    res.status(404).send(error.message)
   })
+
 })
 
 router.post('/', (req, res) => {
-  upload(req, (status, filename, original_filename, identifier) => {
-    res.status(200).send(status)
+
+  return upload(req).then(result => {
+    res.status(200).send(result)
+  }).catch(error => {
+    res.status(404).send(error.message)
   })
+
 })
 
 export default router

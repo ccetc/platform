@@ -83,11 +83,13 @@ class FileField extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { files } = this.props
+    const { assets, files } = this.props
     if(files.length > prevProps.files.length) {
       this._handleUploadBegin()
     } else if(files.length <= prevProps.files.length && this.refs.browse) {
       this.resumable.assignBrowse(this.refs.browse)
+    } else if(assets.length > prevProps.assets.length) {
+      this.props.onChange(assets[0].id)
     }
     files.map((file, index) => {
       if(!prevProps.files[index] || prevProps.files[index].progress < file.progress) {
@@ -99,40 +101,34 @@ class FileField extends React.Component {
   }
 
   _handleFileAdded(file) {
-    console.log('add')
     this.props.onAddFile(file.uniqueIdentifier, file.file.name, file.file.size, file.file.type, file.chunks.length)
   }
 
   _handleUploadBegin() {
-    console.log('begin')
     this.resumable.upload()
     this.props.onUploadBegin()
   }
 
   _handleUploadProgress(file) {
-    console.log('progress')
     this.props.onUploadProgress(file.file.uniqueIdentifier, file.progress())
   }
 
   _handleUploadFailure(file, message) {
-    console.log('failure')
     this.props.onUploadFailure(message)
   }
 
-  _handleUploadSuccess(file) {
-    console.log('success')
-    this.props.onUploadSuccess(file.file.uniqueIdentifier)
+  _handleUploadSuccess(file, message) {
+    const asset = JSON.parse(message)
+    this.props.onUploadSuccess(file.file.uniqueIdentifier, asset)
   }
 
   _handleRemoveFile(uniqueIdentifier) {
-    console.log('remove')
     const file = this.resumable.getFromUniqueIdentifier(uniqueIdentifier)
     this.resumable.removeFile(file)
     this.props.onRemoveFile(uniqueIdentifier)
   }
 
   _handleUploadComplete() {
-    console.log('complete')
     this.props.onUploadComplete()
   }
 
@@ -140,6 +136,7 @@ class FileField extends React.Component {
 
 const mapStateToProps = (state, props) => ({
   files: state.filefield[props.cid].files,
+  assets: state.filefield[props.cid].assets,
   status: state.filefield[props.cid].status,
   team: getActiveTeam(state)
 })

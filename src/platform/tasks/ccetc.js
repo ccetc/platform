@@ -8,7 +8,6 @@ const moment = require('moment')
 const _ = require('lodash')
 const aws = require('platform/services/aws')
 const mime = require('mime-types')
-const crypto = require('crypto')
 
 module.exports = {
 
@@ -23,9 +22,7 @@ module.exports = {
       file_name: 'cornell.jpg',
       content_type: 'image/jpeg',
       file_size: 17449,
-      fingerprint: '55c6c52c3426126710f6a40de94806a7',
       chunks_total: 1,
-      status: 'processed',
       created_at: moment(),
       updated_at: moment()
     }]
@@ -45,8 +42,6 @@ module.exports = {
 
       if(photoExists) {
 
-        const filedata = fs.readFileSync(filepath)
-
         data.assets.push({
           id: asset_id,
           team_id: 1,
@@ -54,9 +49,7 @@ module.exports = {
           file_name: filename,
           content_type: mime.lookup(filepath),
           file_size: fs.statSync(filepath).size,
-          fingerprint: crypto.createHash('md5').update(filedata).digest('hex'),
           chunks_total: 1,
-          status: 'processed',
           created_at: moment(),
           updated_at: moment()
         })
@@ -177,7 +170,6 @@ module.exports = {
 
     }, { members: projectData.members })
 
-    const s3 = new aws.S3()
 
     return new Promise(function(resolve, reject) {
 
@@ -205,7 +197,7 @@ module.exports = {
     //
     //     const ContentType = getContentTypeByFile(filepath)
     //
-    //     return s3.upload({
+    //     return new aws.S3().upload({
     //       Bucket: 'prod.platform',
     //       Key: `assets/${asset.id}/${asset.file_name}`,
     //       ACL: 'public-read',
@@ -228,15 +220,4 @@ const toJSON = (object) => {
 
 const toMatrix = (filename, delimiter) => {
   return parse(fs.readFileSync(path.join(__dirname, '..', '..', '..', 'data', filename), 'utf8'), { delimiter, quote: '^' })
-}
-
-function getContentTypeByFile(fileName) {
-  const fn = fileName.toLowerCase()
-  if (fn.indexOf('.html') >= 0) return 'text/html'
-  else if (fn.indexOf('.css') >= 0) return 'text/css'
-  else if (fn.indexOf('.json') >= 0) return 'application/json'
-  else if (fn.indexOf('.js') >= 0) return 'application/x-javascript'
-  else if (fn.indexOf('.png') >= 0) return 'image/png'
-  else if (fn.indexOf('.jpg') >= 0) return 'image/jpg'
-  else return 'application/octet-stream'
 }

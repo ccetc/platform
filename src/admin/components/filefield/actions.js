@@ -25,10 +25,11 @@ export function uploadProgress(uniqueIdentifier, progress) {
   }
 }
 
-export function uploadSuccess(uniqueIdentifier) {
+export function uploadSuccess(uniqueIdentifier, asset) {
   return {
     type: actionTypes.UPLOAD_SUCCESS,
-    uniqueIdentifier
+    uniqueIdentifier,
+    asset
   }
 }
 

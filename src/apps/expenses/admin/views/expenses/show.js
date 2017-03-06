@@ -28,7 +28,7 @@ class Show extends React.Component {
     const approved_at_label = expense.is_approved ? 'Approved At' : 'Rejected At'
     return {
       items: [
-        { label: 'Receipt ', content: expense.asset_id, format: Receipt },
+        { label: 'Receipt ', content: expense.receipt, format: Receipt },
         { label: 'Date ', content: expense.date, format: 'date' },
         { label: 'Project ', content: expense.project.title },
         { label: 'Expense Type ', content: expense.expense_type.description },
@@ -46,11 +46,56 @@ class Show extends React.Component {
 }
 
 const Receipt = (props) => {
-  return (
-    <a href="">View Receipt</a>
-  )
+  return <ReceiptView {...props.value} />
 }
 
+class ReceiptView extends React.Component {
+
+  static contextTypes = {
+    modal: React.PropTypes.object
+  }
+
+  render() {
+    return <a onClick={ this._handleClick.bind(this) }>View Receipt</a>
+  }
+
+  _handleClick() {
+    this.context.modal.push(<ReceiptModal { ...this.props } />)
+  }
+
+}
+
+class ReceiptModal extends React.Component {
+
+  static contextTypes = {
+    modal: React.PropTypes.object
+  }
+
+  render() {
+    return (
+      <div className="chrome-modal-panel">
+        <div className="chrome-modal-panel-header">
+          <div className="chrome-modal-panel-header-cancel">
+          </div>
+          <div className="chrome-modal-panel-header-title">
+            Receipt
+          </div>
+          <div className="chrome-modal-panel-header-proceed" onClick={ this._handleClose.bind(this) }>
+            Done
+          </div>
+        </div>
+        <div className="chrome-modal-panel-body">
+          <img src={ this.props.url } />
+        </div>
+      </div>
+    )
+  }
+
+  _handleClose() {
+    this.context.modal.pop()
+  }
+
+}
 
 const mapPropsToPage = (props, context) => ({
   title: 'Expense',

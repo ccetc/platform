@@ -25,7 +25,7 @@ class Edit extends React.Component {
       sections: [
         {
           fields: [
-            { label: 'Receipt', name: 'asset_id', type: 'filefield', endpoint: '/admin/uploads', prompt: 'Upload Receipt' },
+            { label: 'Receipt', name: 'receipt_id', type: 'filefield', endpoint: '/api/admin/assets', prompt: 'Upload Receipt' },
             { label: 'Date', name: 'date', type: 'datefield', placeholder: 'Date Needed', defaultValue: moment().format('YYYY-MM-DD') },
             { label: 'Vendor', name: 'vendor_id', type: 'lookup', placeholder: 'Vendor', endpoint: '/admin/expenses/vendors', value: 'id', text: 'name' },
             { label: 'Description', name: 'description', type: 'textarea', placeholder: 'Description' },

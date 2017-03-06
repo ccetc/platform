@@ -1,4 +1,5 @@
 import model from 'platform/models/model'
+import Asset from 'platform/models/asset'
 import ExpenseType from  './expense_type'
 import Project from  './project'
 import User from  'platform/models/user'
@@ -36,6 +37,10 @@ export default model.extend({
 
   project: function() {
     return this.belongsTo(Project, 'project_id')
+  },
+
+  receipt: function() {
+    return this.belongsTo(Asset, 'receipt_id')
   },
 
   user: function() {

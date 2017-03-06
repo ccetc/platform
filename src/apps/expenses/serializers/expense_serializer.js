@@ -4,7 +4,12 @@ export default (object) => {
     id: object.get('id'),
     date: object.get('date'),
     description: object.get('description'),
-    asset_id: object.get('asset_id'),
+    receipt_id: object.get('asset_id'),
+    receipt: object.related('receipt').get('id') ? {
+      id: object.related('receipt').get('id'),
+      file_name: object.related('receipt').get('file_name'),
+      url: object.related('receipt').get('url')
+    } : null,
     expense_type: {
       id: object.related('expense_type').get('id'),
       code: object.related('expense_type').get('code'),

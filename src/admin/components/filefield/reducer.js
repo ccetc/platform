@@ -3,6 +3,7 @@ import _ from 'lodash'
 
 const INITIAL_VALUE = {
   files: [],
+  assets: [],
   status: 'ready'
 }
 
@@ -67,7 +68,11 @@ export default (state = INITIAL_VALUE, action) => {
           ...file,
           status: (file.uniqueIdentifier === action.uniqueIdentifier) ? 'success' : file.status
         }
-      })
+      }),
+      assets: [
+        ...state.assets,
+        action.asset
+      ]
     }
 
   case actionTypes.UPLOAD_PROCESS_FAILURE:
