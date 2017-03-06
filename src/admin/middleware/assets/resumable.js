@@ -108,7 +108,7 @@ const uploadChunk = (req) => {
   const totalChunks = req.body.resumableTotalChunks
   const identifier = cleanIdentifier(req.body.resumableIdentifier)
   const filename = req.body.resumableFilename
-  const filepath = path.join('./assets', filename)
+  const filepath = getAssetFilename(filename)
 
   return new Promise((resolve, reject) => {
 
@@ -157,6 +157,10 @@ const uploadChunk = (req) => {
         ContentType: contentType
       }).promise().then(() => {
 
+        return fs.unlinkSync(filepath)
+
+      }).then(() => {
+
         resolve(asset.toJSON())
 
       }).catch(e => {
@@ -178,5 +182,5 @@ const getChunkFilename = (identifier, chunkNumber, ) => {
 }
 
 const getAssetFilename = (filename) => {
-  return path.join('.', 'assets', filename)
+  return path.join('.', 'tmp', filename)
 }

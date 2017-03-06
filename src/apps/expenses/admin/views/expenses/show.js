@@ -84,7 +84,7 @@ class ReceiptModal extends React.Component {
             Done
           </div>
         </div>
-        <div className="chrome-modal-panel-body">
+        <div className="chrome-modal-panel-body receipt">
           <img src={ this.props.url } />
         </div>
       </div>
