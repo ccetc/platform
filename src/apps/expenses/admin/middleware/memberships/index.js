@@ -1,15 +1,22 @@
 import resources from 'platform/middleware/resources'
-import Project from '../../../models/project'
-import ProjectSerializer from '../../../serializers/project_serializer'
+import Member from '../../../models/member'
 
 export default resources({
-  allowedParams: ['title','code'],
-  model: Project,
+  model: Member,
   name: 'membership',
   only: 'list',
   query: (qb, req, filters) => {
-    qb.joinRaw('inner join expenses_members on (expenses_members.project_id = expenses_projects.id and expenses_members.user_id=? AND expenses_members.is_active=?)', [req.user.get('id'), true])
-    qb.where('expenses_projects.is_active', true)
+    qb.innerJoin('expenses_projects', 'expenses_projects.id', 'expenses_members.project_id')
+    qb.where('expenses_members.user_id', req.user.get('id'))
+    qb.where('expenses_members.is_active', true)
   },
-  serializer: ProjectSerializer
+  serializer: (member) => {
+    return Promise.resolve({
+      id: member.related('project').get('id'),
+      title: member.related('project').get('title'),
+      code: member.related('project').get('code'),
+      member_type: member.related('member_type').get('name').toLowerCase()
+    })
+  },
+  withRelated: ['project','member_type']
 })

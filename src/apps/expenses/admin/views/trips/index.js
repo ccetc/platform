@@ -2,7 +2,7 @@ import React from 'react'
 import Page from 'admin/components/page'
 import Collection from 'admin/components/collection'
 import New from './new'
-import ApprovalStatus from '../../components/approval_status'
+import { AprrovalBadge } from '../../components/approval_status'
 
 class Index extends React.Component {
 
@@ -22,7 +22,7 @@ class Index extends React.Component {
         { label: 'Project', key: 'project.title', primary: true },
         { label: 'Miles', key: 'total_miles', primary: false },
         { label: 'Amount', key: 'amount', primary: false, format: 'currency' },
-        { label: 'Status', key: 'is_approved', primary: true, format: ApprovalStatus }
+        { label: 'Status', key: 'is_approved', primary: true, format: AprrovalBadge }
       ],
       filters: [
         { label: 'Projects', name: 'project_id', type: 'select', multiple: true, endpoint: '/admin/expenses/projects', value: 'id', text: 'title' },

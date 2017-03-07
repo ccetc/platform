@@ -2,6 +2,7 @@ import React from 'react'
 import Details from 'admin/components/details'
 import Page from 'admin/components/page'
 import Edit from './edit'
+import { ApprovalAlert } from '../../components/approval_status'
 
 class Show extends React.Component {
 
@@ -10,9 +11,7 @@ class Show extends React.Component {
     return (
       <div className="chrome-body">
         <div className="chrome-sidebar">
-          { advance.is_approved === true && <div className="ui center aligned green inverted segment">This advance has been approved</div> }
-          { advance.is_approved === false && <div className="ui center aligned red inverted segment">This advance has been rejected</div> }
-          { advance.is_approved === null && <div className="ui center aligned blue inverted segment">This advance has not yet been reviewed</div> }
+          <ApprovalAlert {...advance} />
           <Details {...this._getDetails()} />
         </div>
         <div className="chrome-content">

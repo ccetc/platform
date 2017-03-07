@@ -29,6 +29,13 @@ export default (pageProps) => {
         user: React.PropTypes.object
       }
 
+      constructor(props) {
+        super(props)
+        this.state = {
+          access: this._userHasRight(props.user, this.page().rights)
+        }
+      }
+
       page() {
         if(this.pageProps) return this.pageProps
         this.pageProps = pageProps(this.props, this.context)
@@ -36,10 +43,10 @@ export default (pageProps) => {
       }
 
       render() {
-        const { rights, resources, task, tasks, title } = this.page()
-        const { data, history, status, team, user } = this.props
+        const { resources, task, tasks, title } = this.page()
+        const { data, history, status, team } = this.props
+        const { access } = this.state
         const loaded = !resources || _.isEqual(Object.keys(data).sort(), Object.keys(resources).sort())
-        const access = !rights || this._userHasRight(user, rights)
         return (
           <div className="chrome-page">
             <Helmet title={`${team.title} | ${title}`} />
@@ -101,9 +108,19 @@ export default (pageProps) => {
       }
 
       componentDidMount() {
-        const { resources } = this.page()
+        const { user, team } = this.props
+        const { access, resources } = this.page()
         if(resources) {
           this.context.container.fetch(resources)
+        }
+        if(access) {
+          access(user, team.token).then(result => {
+            if(!result) {
+              this.setState({
+                access: false
+              })
+            }
+          })
         }
       }
 
@@ -124,6 +141,7 @@ export default (pageProps) => {
       }
 
       _userHasRight(user, rights) {
+        if(!rights) return true
         return rights.reduce((permit, right) => {
           return (!_.includes(user.rights, right)) ? false : permit
         }, true)

@@ -2,11 +2,12 @@ import React from 'react'
 import Details from 'admin/components/details'
 import Page from 'admin/components/page'
 import Approve from '../../components/approve'
+import checkOwnerApprover from '../../utils/check_owner_approver'
 
 class Show extends React.Component {
 
   static contextTypes = {
-    history: React.PropTypes.object,
+    container: React.PropTypes.object,
     flash: React.PropTypes.object
   }
 
@@ -45,7 +46,7 @@ class Show extends React.Component {
       type: 'trips',
       id: this.props.trip.id,
       onChange: () => {
-        this.context.history.push('/admin/expenses/approvals/trips')
+        this.context.container.refresh('trip')
         this.context.flash.set('success', 'This trip was successfully approved')
       }
     }
@@ -55,7 +56,7 @@ class Show extends React.Component {
 
 const mapPropsToPage = (props, context) => ({
   title: 'Approve Trip',
-  rights: ['expenses.approve_expenses'],
+  access: checkOwnerApprover,
   resources: {
     trip: `/admin/expenses/approvals/trips/${props.params.id}`
   }

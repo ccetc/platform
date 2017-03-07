@@ -1,7 +1,7 @@
 import React from 'react'
 import Page from 'admin/components/page'
 import Collection from 'admin/components/collection'
-import ApprovalStatus from '../../components/approval_status'
+import { ApprovalBadge } from '../../components/approval_status'
 
 class Index extends React.Component {
 
@@ -21,7 +21,7 @@ class Index extends React.Component {
         { label: 'User', key: 'user.full_name', primary: true },
         { label: 'Project', key: 'project.title', primary: true },
         { label: 'Amount', key: 'amount', primary: true, format: 'currency' },
-        { label: 'Status', key: 'is_approved', primary: true, format: ApprovalStatus }
+        { label: 'Status', key: 'is_approved', primary: true, format: ApprovalBadge }
       ],
       filters: [
         { label: 'User', name: 'user_id', type: 'select', multiple: true, endpoint: '/admin/team/users', value: 'id', text: 'full_name' },

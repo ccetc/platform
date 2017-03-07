@@ -3,9 +3,9 @@ import pluralize from 'pluralize'
 import _ from 'lodash'
 import { coerceArray } from './index'
 
-const VALID_OPTIONS = ['actions','after','allowedParams','authorizer','alter','before','cacheFor','defaultParams','defaultSort','dependents','except','filterParams','logger','model','name','only','ownedByTeam','ownedByUser','path','pathPrefix','prefix','processor','query','renderer','resources','responder','rights','searchParams','serializer','softDelete','sortParams','withRelated']
+const VALID_OPTIONS = ['access','actions','after','allowedParams','authorizer','alter','before','cacheFor','defaultParams','defaultSort','dependents','except','filterParams','logger','model','name','only','ownedByTeam','ownedByUser','path','pathPrefix','prefix','processor','query','renderer','resources','responder','rights','searchParams','serializer','softDelete','sortParams','withRelated']
 const REQUIRED_OPTIONS = ['name','model']
-const MAPPED_OPTIONS = ['alter','after','allowedParams','authorizer','before','logger','processor','query','renderer','responder','rights','serializer','withRelated']
+const MAPPED_OPTIONS = ['access','alter','after','allowedParams','authorizer','before','logger','processor','query','renderer','responder','rights','serializer','withRelated']
 const ARRAY_OR_STRING_OPTIONS = ['allowedParams','defaultSort','except','filterParams','only','searchParams','sortParams','withRelated']
 const OBJECT_OR_FUNCTION_OPTIONS = ['actions','after','authorizer','alter','before','logger','processor','renderer','responder','serializer']
 const BOOLEAN_OPTIONS = ['ownedByTeam','ownedByUser','softDelete']
@@ -157,6 +157,7 @@ export const normalizeOptions = (userOptions) => {
   return {
     ...defaultOptions,
     ...userOptions,
+    access: mapOptionToActions(userOptions.access),
     alter: mapOptionToActions(userOptions.alter),
     after: mapOptionToActions(userOptions.after),
     allowedParams: mapOptionToActions(userOptions.allowedParams),

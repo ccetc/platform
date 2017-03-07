@@ -3,11 +3,13 @@ import Details from 'admin/components/details'
 import Page from 'admin/components/page'
 import Approve from '../../components/approve'
 import Receipt from '../../components/receipt'
+import checkOwnerApprover from '../../utils/check_owner_approver'
+import { ApprovalAlert } from '../../components/approval_status'
 
 class Show extends React.Component {
 
   static contextTypes = {
-    history: React.PropTypes.object,
+    container: React.PropTypes.object,
     flash: React.PropTypes.object
   }
 
@@ -16,6 +18,7 @@ class Show extends React.Component {
     return (
       <div className="chrome-body">
         <div className="chrome-sidebar">
+          <ApprovalAlert {...expense} />
           <Details {...this._getDetails()} />
           { expense.is_approved === null && <Approve {...this._getApprove()} /> }
         </div>
@@ -45,7 +48,7 @@ class Show extends React.Component {
       type: 'expenses',
       id: this.props.expense.id,
       onChange: () => {
-        this.context.history.push('/admin/expenses/approvals/expenses')
+        this.context.container.refresh('expense')
         this.context.flash.set('success', 'This expense was successfully approved')
       }
     }
@@ -55,7 +58,7 @@ class Show extends React.Component {
 
 const mapPropsToPage = (props, context) => ({
   title: 'Approve Expense',
-  rights: ['expenses.approve_expenses'],
+  access: checkOwnerApprover,
   resources: {
     expense: `/admin/expenses/approvals/expenses/${props.params.id}`
   }

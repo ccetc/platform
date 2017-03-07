@@ -1,9 +1,5 @@
-import rest from 'rest'
+import rest from './rest'
 import qs from 'qs'
-import mime from 'rest/interceptor/mime'
-import defaultRequest from 'rest/interceptor/defaultRequest'
-import errorCode from 'rest/interceptor/errorCode'
-import params from 'rest/interceptor/params'
 import localStorage from 'platform/services/localforage'
 
 type optionsType = {
@@ -16,7 +12,7 @@ type optionsType = {
 class Api {
 
   constructor(): void {
-    this.client = rest.wrap(params).wrap(mime).wrap(defaultRequest).wrap(errorCode)
+    this.client = rest
   }
 
   get(options: optionsType): any {

@@ -1,15 +1,16 @@
 import React from 'react'
 import Details from 'admin/components/details'
 import Page from 'admin/components/page'
-import ApprovalStatus from '../../components/approval_status'
+import { ApprovalAlert } from '../../components/approval_status'
 
 class Show extends React.Component {
 
   render() {
+    const { trip } = this.props
     return (
       <div className="chrome-body">
         <div className="chrome-sidebar">
-          <ApprovalStatus {...this.props.trip} />
+          <ApprovalAlert {...trip} />
           <Details {...this._getDetails()} />
         </div>
       </div>

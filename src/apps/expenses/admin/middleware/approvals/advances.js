@@ -1,11 +1,13 @@
 import resources from 'platform/middleware/resources'
 import Advance from '../../../models/advance'
 import AdvanceSerializer from '../../../serializers/advance_serializer'
+import canApprove from './utils'
 
 const loggers = require('./loggers').default('advance')
 const processors = require('./processors').default('advance', Advance)
 
 export default resources({
+  access: canApprove,
   actions: {
     approve: {
       on: 'member',
@@ -37,7 +39,6 @@ export default resources({
     qb.whereNot('expenses_advances.user_id', req.user.get('id'))
     qb.joinRaw('inner join expenses_members on expenses_members.project_id = expenses_advances.project_id and expenses_members.user_id=? and expenses_members.member_type_id != ?', [req.user.get('id'), 3])
   },
-  rights: ['expenses.approve_expenses'],
   serializer: AdvanceSerializer,
   sortParams: ['date'],
   withRelated: ['user.photo','project','expense_type','vendor']

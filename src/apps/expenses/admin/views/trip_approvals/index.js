@@ -1,6 +1,7 @@
 import React from 'react'
 import Page from 'admin/components/page'
 import Collection from 'admin/components/collection'
+import checkOwnerApprover from '../../utils/check_owner_approver'
 
 class Index extends React.Component {
 
@@ -36,7 +37,7 @@ class Index extends React.Component {
 
 const mapPropsToPage = (props, context) => ({
   title: 'Approve Trips',
-  rights: ['expenses.approve_expenses']
+  access: checkOwnerApprover
 })
 
 export default Page(mapPropsToPage)(Index)

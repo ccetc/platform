@@ -69,13 +69,18 @@ export const buildHandler = (action, builder, options) => {
 
   const alter = mergeParams(options.alter.all, options.alter[action])
 
+  const access = mergeParams(options.access.all, options.access[action])
+
   const rights = mergeParams(options.rights.all, options.rights[action])
 
-  const defaults = builder(options)
+  const defaults = {
+    ...builder(options),
+    authorizer: resourceAuthorizer(options, rights, access)
+  }
 
   const { authorizer, processor, renderer, responder, logger } = buildHandlerComponents(options, action, defaults.authorizer, defaults.processor, defaults.renderer, defaults.responder, defaults.logger)
 
-  const authenticator = resourceAuthenticator(options, rights)
+  const authenticator = null
 
   return (req, res, next) => {
 
@@ -100,7 +105,7 @@ export const wrapWithHooks = (authenticator, authorizer, before, processor, afte
 
   }).then(() => {
 
-    return authorizer ? authorizer(req).catch(err => { throw(new Error(err)) }) : true
+    return authorizer ? authorizer(req) : true
 
   }).then(() => {
 
@@ -325,7 +330,7 @@ export const serializeRecord = (record, serializer) => {
 }
 
 // default authenticator for resources
-export const resourceAuthenticator = (options, rights) => {
+export const resourceAuthorizer = (options, rights, access) => {
 
   return (req) => {
 
@@ -342,6 +347,10 @@ export const resourceAuthenticator = (options, rights) => {
       if(!allowed) reject({ code: 403, message: 'You do not have the rights to access this resource.' })
 
       resolve()
+
+    }).then(() => {
+
+      return Promise.map(access, fn => fn(req))
 
     })
 
