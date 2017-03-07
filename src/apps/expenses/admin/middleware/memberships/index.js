@@ -8,7 +8,8 @@ export default resources({
   name: 'membership',
   only: 'list',
   query: (qb, req, filters) => {
-    qb.joinRaw('inner join expenses_members on expenses_members.project_id = expenses_projects.id and expenses_members.user_id=?', req.user.get('id'))
+    qb.joinRaw('inner join expenses_members on (expenses_members.project_id = expenses_projects.id and expenses_members.user_id=? AND expenses_members.is_active=?)', [req.user.get('id'), true])
+    qb.where('expenses_projects.is_active', true)
   },
   serializer: ProjectSerializer
 })

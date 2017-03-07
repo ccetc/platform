@@ -1,22 +1,6 @@
 import React from 'react'
 import Form from 'admin/components/form'
 
-class DeleteButton extends React.Component {
-
-  render() {
-    return (
-      <button className="ui fluid red button" onClick={this._handleClick.bind(this)}>
-        {this.props.label}
-      </button>
-    )
-  }
-
-  _handleClick() {
-    confirm(this.props.confirm)
-  }
-
-}
-
 class Member extends React.Component {
 
   static contextTypes = {
@@ -33,7 +17,7 @@ class Member extends React.Component {
     return {
       title: 'Edit Member',
       method: 'patch',
-      endpoint: `/admin/expenses/projects/${this.context.container.params.id}/members/${this.props.member_id}/edit`,
+      endpoint: `/admin/expenses/projects/${this.context.container.params.id}/members/${this.props.member_id}`,
       action: `/admin/expenses/projects/${this.context.container.params.id}/members/${this.props.member_id}`,
       onCancel: this.context.modal.pop,
       onSuccess: this._handleSuccess.bind(this),
@@ -41,18 +25,11 @@ class Member extends React.Component {
         {
           fields: [
             { label: 'User', name: 'user.full_name', type: 'text' },
-            { label: 'Type', name: 'member_type_id', type: 'select', endpoint: '/admin/expenses/member_types', value: 'id', text: 'name' }
+            { label: 'Type', name: 'member_type_id', type: 'select', endpoint: '/admin/expenses/member_types', value: 'id', text: 'name' },
+            { label: 'Is Active', name: 'is_active', type: 'checkbox', defaultValue: true }
           ]
         }
-      ],
-      after: <DeleteButton {...this._getDeleteButton()} />
-    }
-  }
-
-  _getDeleteButton() {
-    return {
-      label: 'Remove Member',
-      confirm: 'Are you sure you want to delete this contact?'
+      ]
     }
   }
 

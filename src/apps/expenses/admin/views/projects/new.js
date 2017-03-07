@@ -23,8 +23,7 @@ class New extends React.Component {
         {
           fields: [
             { label: 'Title', name: 'title', type: 'textfield', placeholder: 'Title' },
-            { label: 'Code', name: 'code', type: 'textfield', placeholder: 'Code' },
-            { label: 'Is Active', name: 'is_active', type: 'checkbox', defaultValue: true }
+            { label: 'Code', name: 'code', type: 'textfield', placeholder: 'Code' }
           ]
         }
       ]

@@ -11,7 +11,10 @@ export default (object) => {
     member_type: {
       id: object.related('member_type').get('id'),
       name: object.related('member_type').get('name')
-    }
+    },
+    is_active: object.get('is_active'),
+    created_at: object.get('created_at'),
+    updated_at: object.get('updated_at')
   })
 
 }

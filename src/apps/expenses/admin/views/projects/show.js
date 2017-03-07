@@ -63,6 +63,7 @@ class Members extends React.Component {
           </div>
         }
         { members.map((member, index) => {
+          const badge = member.is_active ? member.member_type.name : 'inactive'
           return (
             <div key={`member_${index}`} className="item project-member" onClick={this._handleEdit.bind(this, member.id)}>
               <Avatar user={ member.user  } />
@@ -70,7 +71,7 @@ class Members extends React.Component {
                 <strong>{ member.user.full_name }</strong><br />
                 { member.user.email }
               </p>
-              <div className={member.member_type.name.toLowerCase()}><span>{member.member_type.name.toUpperCase()}</span></div>
+              <div className={badge.toLowerCase()}><span>{badge.toUpperCase()}</span></div>
             </div>
           )
         }) }

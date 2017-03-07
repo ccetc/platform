@@ -12,15 +12,12 @@ import ExpenseTypeProjectSerializer from '../../../serializers/expense_type_proj
 import { createProcessor } from './processors'
 import { createMemberLogger, createExpenseTypeLogger } from './loggers'
 
-const defaultParams = (req) => {
-  return Promise.resolve({
-    project_id: req.params.project_id
-  })
-}
-
 export default resources({
   allowedParams: ['title','code','is_active'],
   defaultSort: 'title',
+  defaultParams: (req) => ({
+    is_active: true
+  }),
   name: 'project',
   model: Project,
   resources: [
@@ -52,8 +49,11 @@ export default resources({
       searchParams: ['title','code'],
       sortParams: ['title']
     },{
-      allowedParams: ['user_id','member_type_id'],
-      defaultParams,
+      allowedParams: ['user_id','member_type_id','is_active'],
+      defaultParams: (req) => ({
+        project_id: req.params.project_id,
+        is_active: true
+      }),
       defaultSort: ['member_type_id', 'last_name'],
       logger: {
         create: createMemberLogger
@@ -73,7 +73,9 @@ export default resources({
       withRelated: ['user.photo','member_type']
     },{
       allowedParams: ['expense_type_id'],
-      defaultParams,
+      defaultParams: (req) => ({
+        project_id: req.params.project_id
+      }),
       defaultSort: ['code'],
       logger: {
         create: createExpenseTypeLogger

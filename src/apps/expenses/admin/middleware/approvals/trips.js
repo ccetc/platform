@@ -35,8 +35,7 @@ export default resources({
   },
   query: (qb, req, filters) => {
     qb.whereNot('expenses_trips.user_id', req.user.get('id'))
-    qb.joinRaw('inner join expenses_members on expenses_members.project_id = expenses_trips.project_id and expenses_members.user_id=? and expenses_members.member_type_id=?', [req.user.get('id'), 1])
-    qb.whereNull('is_approved')
+    qb.joinRaw('inner join expenses_members on expenses_members.project_id = expenses_trips.project_id and expenses_members.user_id=? and expenses_members.member_type_id != ?', [req.user.get('id'), 3])
   },
   rights: ['expenses.approve_expenses'],
   serializer: TripSerializer,

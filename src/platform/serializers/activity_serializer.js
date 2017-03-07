@@ -1,28 +1,32 @@
 export default (object) => {
 
-  return Promise.resolve({
+  return {
     id: object.get('id'),
+    url: object.get('url'),
+    is_read: object.get('is_read'),
     app: {
       id: object.related('app').get('id'),
       title: object.related('app').get('title'),
       icon: object.related('app').get('icon')
     },
+    story: {
+      text: object.related('story').get('text')
+    },
     user: {
       id: object.related('user').get('id'),
       full_name: object.related('user').get('full_name'),
-      photo: object.related('user').related('photo').get('url')
+      photo: object.related('user').related('photo').get('thumbnail_url')
     },
-    story: {
-      id: object.related('story').get('id'),
-      text: object.related('story').get('text')
-    },
-    url: object.get('url'),
-    object1_type: object.get('object1_type'),
-    object1_text: object.get('object1_text'),
-    object2_type: object.get('object2_type'),
-    object2_text: object.get('object2_text'),
+    object1: object.get('object1_text') ? {
+      description: object.get('object1_description'),
+      text: object.get('object1_text')
+    } : null,
+    object2: object.get('object2_text') ? {
+      description: object.get('object2_description'),
+      text: object.get('object2_text')
+    } : null,
     created_at: object.get('created_at'),
     updated_at: object.get('updated_at')
-  })
+  }
 
 }

@@ -117,6 +117,7 @@ module.exports = {
             project_id,
             user_id,
             member_type_id: 1,
+            is_active: true,
             created_at: moment(),
             updated_at: moment()
           })
@@ -162,6 +163,7 @@ module.exports = {
           project_id,
           user_id,
           member_type_id: member_types[record[2]],
+          is_active: true,
           created_at: moment(),
           updated_at: moment()
         })

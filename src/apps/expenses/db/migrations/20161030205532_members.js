@@ -10,6 +10,7 @@ exports.up = function(knex, Promise) {
       table.foreign('user_id').references('users.id')
       table.integer('member_type_id').unsigned()
       table.foreign('member_type_id').references('expenses_member_types.id')
+      table.boolean('is_active').defaultTo(false)
       table.timestamps()
     })
   ])

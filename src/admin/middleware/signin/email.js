@@ -15,6 +15,10 @@ export default (req, res, next) => {
         return next({ code: 404, message: 'Unable to find this user'})
       }
 
+      if(!user.get('is_active')) {
+        return next({ code: 403, message: 'Your account has been disabled' })
+      }
+
       const data = {
         id: user.get('id'),
         full_name: user.get('full_name'),
