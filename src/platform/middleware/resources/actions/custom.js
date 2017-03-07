@@ -10,7 +10,7 @@ export default (name, action) => {
 
       const renderer = resourceRenderer(serializer, options)
 
-      return (options.actions[name].on === 'collection') ? applyToRecords(req, result, renderer).then(result => result.records) : result
+      return (result.records) ? applyToRecords(req, result, renderer).then(result => result.records) : result
 
     }
 

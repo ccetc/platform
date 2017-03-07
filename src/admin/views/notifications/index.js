@@ -1,8 +1,8 @@
 import React from 'react'
 import Collection from 'admin/components/collection'
-import Feed from 'admin/components/feed/notifications'
+import Feed from './feed'
 
-class Index extends React.Component {
+class Notifications extends React.Component {
 
   static contextTypes = {
     modal: React.PropTypes.object
@@ -45,4 +45,4 @@ class Index extends React.Component {
 
 }
 
-export default Index
+export default Notifications

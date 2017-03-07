@@ -1,6 +1,5 @@
 export default (object) => {
 
-
   return Promise.resolve().then(() => {
 
     const promises = []
@@ -23,6 +22,7 @@ export default (object) => {
 
     return {
       id: object.get('id'),
+      url: object.get('url'),
       is_read: object.get('is_read'),
       app: {
         id: object.related('app').get('id'),
@@ -35,21 +35,19 @@ export default (object) => {
       subject: {
         id: object.related('subject').get('id'),
         full_name: object.related('subject').get('full_name'),
-        photo: object.related('subject').related('photo').get('url')
+        photo: object.related('subject').related('photo').get('thumbnail_url')
       },
       user: {
         id: object.related('user').get('id'),
         full_name: object.related('user').get('full_name'),
-        photo: object.related('user').related('photo').get('url')
+        photo: object.related('user').related('photo').get('thumbnail_url')
       },
       object1: object.get('object1_text') ? {
         description: object.get('object1_description'),
-        url: object1 ? object1.get('activity').url : null,
         text: object1 ? object1.get('activity').text : object.get('object1_text')
       } : null,
       object2: object.get('object2_text') ? {
         description: object.get('object2_description'),
-        url: object1 ? object2.get('activity').url : null,
         text: object1 ? object2.get('activity').text : object.get('object2_text')
       } : null,
       created_at: object.get('created_at'),
@@ -57,7 +55,5 @@ export default (object) => {
     }
 
   })
-
-
 
 }

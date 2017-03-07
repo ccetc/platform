@@ -4,6 +4,7 @@ import ExpenseSerializer from '../../../serializers/expense_serializer'
 
 const loggers = require('./loggers').default('expense')
 const processors = require('./processors').default('expense', Expense)
+const after = require('./after').default('expense')
 
 export default resources({
   actions: {
@@ -17,6 +18,10 @@ export default resources({
       path: 'reject',
       method: 'patch'
     }
+  },
+  after: {
+    approve: after.approve,
+    reject: after.reject
   },
   defaultSort: '-date',
   filterParams: ['user_id','expense_type_id','project_id','date','is_approved'],

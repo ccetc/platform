@@ -55,12 +55,8 @@ export default (state = INITIAL_STATE, action) => {
     }
 
   case actionTypes.REMOVE_TEAM:
-    const team = state.teams[action.index]
-    const sessions = _.omit(state.sessions, [team.id])
-    const teams = [
-      ...state.teams.slice(0, action.index),
-      ...state.teams.slice(action.index + 1)
-    ]
+    const sessions = _.omit(state.sessions, [action.id])
+    const teams = _.filter(state.teams, team => (team.id !== action.id))
     return {
       ...state,
       sessions,
@@ -81,6 +77,20 @@ export default (state = INITIAL_STATE, action) => {
       }
     }
 
+  case actionTypes.MARK_READ_SUCCESS:
+    return {
+      ...state,
+      sessions: {
+        ...state.sessions,
+        [action.tid]: {
+          ...state.sessions[action.tid],
+          user: {
+            ...state.sessions[action.tid].user,
+            unread: 0
+          }
+        }
+      }
+    }
 
   default:
     return state

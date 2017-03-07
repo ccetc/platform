@@ -52,31 +52,33 @@ export default (pageProps) => {
               <div className="chrome-title">
                 { access ? title : 'Access Denied' }
               </div>
-              <div className="chrome-more">
-                { access && tasks &&
-                  <div className="chrome-tasks">
-                    <a onClick={ this._handleOpenTasks.bind(this) }>
-                      <i className="ellipsis vertical icon" />
-                    </a>
-                  </div>
-                }
-                { access && task &&
-                  <div className="chrome-task">
-                    <a onClick={this._handleOpenTask.bind(this)}>
-                      <i className={`${task.icon} icon`} />
-                    </a>
-                  </div>
-                }
-              </div>
+              { access &&
+                <div className="chrome-more">
+                  { tasks &&
+                    <div className="chrome-tasks">
+                      <a onClick={ this._handleOpenTasks.bind(this) }>
+                        <i className="ellipsis vertical icon" />
+                      </a>
+                    </div>
+                  }
+                  { task &&
+                    <div className="chrome-task">
+                      <a onClick={this._handleOpenTask.bind(this)}>
+                        <i className={`${task.icon} icon`} />
+                      </a>
+                    </div>
+                  }
+                </div>
+              }
             </div>
-            { resources && status === 'loading' &&
+            { access && resources && status === 'loading' &&
               <div className="chrome-loader">
                 <div className="ui active inverted dimmer">
                   <div className="ui large text loader">Loading</div>
                 </div>
               </div>
             }
-            { resources && status === 'failure' &&
+            { access && resources && status === 'failure' &&
               <div className="chrome-error">
                 <div className="chrome-error-message">
                   <i className="warning sign icon" />

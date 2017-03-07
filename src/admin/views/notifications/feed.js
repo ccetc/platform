@@ -1,5 +1,8 @@
 import React from 'react'
 import moment from 'moment'
+import { connect } from 'react-redux'
+import * as actions from 'admin/components/admin/actions'
+import { getActiveTeam } from 'admin/components/admin/selectors'
 
 export class Feed extends React.Component {
 
@@ -17,12 +20,8 @@ export class Feed extends React.Component {
     onChoose: React.PropTypes.func
   }
 
-  static defaultProps = {
-    onChoose: () => {}
-  }
-
   render() {
-    const { records, status, state } = this.props
+    const { records, status } = this.props
     if(records.length > 0) {
       return (
         <div className="chrome-feed">
@@ -40,7 +39,7 @@ export class Feed extends React.Component {
                 classes.push('unread')
               }
               return (
-                <a key={`item_${index}`} className={classes.join(' ')} onClick={this._onClick.bind(this, item.object1.url)}>
+                <a key={`item_${index}`} className={classes.join(' ')} onClick={this._onClick.bind(this, item.url)}>
                   <div className="chrome-feed-item-avatar">
                     <img src={ item.subject.photo } className="ui circular image" />
                   </div>
@@ -83,6 +82,12 @@ export class Feed extends React.Component {
     }
   }
 
+  componentDidMount() {
+    const { team } = this.props
+    const ids = this.props.records.map(record => record.id)
+    this.props.onMarkRead(team.id, ids)
+  }
+
   _onClick(url) {
     this.context.modal.pop()
     this.context.history.push({ pathname: url, state: 'static' })
@@ -90,4 +95,12 @@ export class Feed extends React.Component {
 
 }
 
-export default Feed
+const mapStateToProps = state => ({
+  team: getActiveTeam(state)
+})
+
+const mapDispatchToProps = {
+  onMarkRead: actions.markRead
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Feed)

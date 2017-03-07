@@ -6,8 +6,8 @@ const path = require('path')
 const parse = require('csv-parse/lib/sync')
 const moment = require('moment')
 const _ = require('lodash')
-const aws = require('platform/services/aws')
 const mime = require('mime-types')
+const aws = require('platform/services/aws')
 const Jimp = require('jimp')
 
 module.exports = {
@@ -17,6 +17,9 @@ module.exports = {
     try {
 
       const users = toMatrix('users.tsv', '\t')
+      const projects = toMatrix('projects.tsv', '\t')
+      const expenses = toMatrix('expense_types.tsv', '|')
+      const members = toMatrix('members.tsv', '|')
 
       const assets = [{
         id: 1,
@@ -91,8 +94,6 @@ module.exports = {
 
       }, { assets, users: [], users_roles: [] })
 
-      const projects = toMatrix('projects.tsv', '\t')
-
       const projectData = projects.reduce((data, record) => {
 
         const project_id = (data.projects.length + 1)
@@ -126,8 +127,6 @@ module.exports = {
 
       }, { projects: [], members: [] })
 
-      const expenses = toMatrix('expense_types.tsv', '|')
-
       const expenseData = expenses.reduce((data, record) => {
 
         const expense_type_id = (data.expense_types.length + 1)
@@ -145,8 +144,6 @@ module.exports = {
         return data
 
       }, { expense_types: []})
-
-      const members = toMatrix('members.tsv', '|')
 
       const memberData = members.reduce((data, record) => {
 

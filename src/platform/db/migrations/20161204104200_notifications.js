@@ -20,6 +20,7 @@ exports.up = function(knex, Promise) {
       table.string('object2_id')
       table.string('object2_description')
       table.string('object2_text')
+      table.string('url')
       table.boolean('is_read')
       table.timestamps()
     })

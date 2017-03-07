@@ -22,7 +22,6 @@ export default model.extend({
     activity: function() {
       return {
         type: 'expense',
-        url: `/admin/expenses/expenses/${this.get('id')}`,
         text: this.get('description')
       }
     }

@@ -2,11 +2,13 @@ import { coerceArray, defaultQuery } from '../utils'
 
 export default (action, options) => {
 
-  const withRelated = options.withRelated[action] || options.withRelated.all
+  const withRelated = (options.withRelated) ? (options.withRelated[action] || options.withRelated.all) : []
 
   const fetchOptions = withRelated ? { withRelated: coerceArray(withRelated) } : {}
 
   const tableName = options.model.extend().__super__.tableName
+
+  const primaryKey = options.primaryKey || 'id'
 
   return req => {
 
@@ -14,7 +16,7 @@ export default (action, options) => {
 
       qb = defaultQuery(req, options, action, qb, {})
 
-      qb.where(`${tableName}.id`, req.params[options.primaryKey])
+      qb.where(`${tableName}.id`, req.params[primaryKey])
 
     }).fetch(fetchOptions).then(record => {
 

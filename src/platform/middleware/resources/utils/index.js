@@ -178,7 +178,7 @@ export const applyToRecords = (req, result, operations) => {
 // sequentially executes each hook, passing the result from hook to hook
 export const runHooks = (req, hooks, result = null) => {
 
-  if(!hooks || hooks.length === 0) return new Promise((resolve, reject) => resolve(result))
+  if(!hooks || hooks.length === 0) return Promise.resolve(result)
 
   return Promise.reduce(coerceArray(hooks), (result, hook) => {
 
@@ -289,7 +289,7 @@ export const defaultQuery = (req, options, action, qb, filters) => {
     qb = qb.where(`${tableName}.user_id`, req.user.get('id'))
   }
 
-  const query = options.query.list || options.query.all
+  const query = options.query ? (options.query.list || options.query.all) : null
 
   if(query) {
     query(qb, req, filters)

@@ -36,7 +36,7 @@ export class Account extends React.Component {
           <div className="chrome-account-task" onClick={this._handleModal.bind(this, Password)}>
             <i className="lock icon" /> Change password
           </div>
-          <div className="chrome-account-task" onClick={this._handleSignout.bind(this, Password)}>
+          <div className="chrome-account-task" onClick={this._handleSignout.bind(this)}>
             <i className="power icon" /> Sign out of <strong>{ team.subdomain }</strong>
           </div>
         </div>
@@ -53,8 +53,9 @@ export class Account extends React.Component {
     this.context.drawer.close()
   }
 
-  _handleSignout(index) {
-    this.context.admin.removeTeam(index)
+  _handleSignout() {
+    this.context.drawer.close()
+    this.context.admin.removeTeam(this.props.team.id)
   }
 
 }

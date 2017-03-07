@@ -1,5 +1,3 @@
-import Expense from '../../../models/expense'
-
 export default (type, model) => {
 
   const expenseProcessor = (action, is_approved) => {
@@ -8,7 +6,7 @@ export default (type, model) => {
 
       return model.where({ id: req.params.id }).fetch().then(resource => {
 
-        return resource.save({ is_approved }, { patch: true }).then(() => resource)
+        return resource.save({ approved_by_id: req.user.get('id'), is_approved }, { patch: true })
 
       }).catch(err => {
 

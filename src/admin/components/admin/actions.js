@@ -40,10 +40,10 @@ export const addTeam = (team, token) => {
   }
 }
 
-export const removeTeam = index => {
+export const removeTeam = id => {
   return {
     type: actionTypes.REMOVE_TEAM,
-    index
+    id
   }
 }
 
@@ -52,4 +52,15 @@ export const chooseTeam = index => {
     type: actionTypes.CHOOSE_TEAM,
     index
   }
+}
+
+export const markRead = (tid, ids) => {
+  return api.patch({
+    meta: { tid },
+    params: { ids },
+    endpoint: '/admin/notifications/read',
+    request: actionTypes.MARK_READ_REQUEST,
+    success: actionTypes.MARK_READ_SUCCESS,
+    failure: actionTypes.MARK_READ_FAILURE
+  })
 }

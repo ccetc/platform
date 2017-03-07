@@ -36,7 +36,7 @@ class Results extends React.Component {
           <div className="table-empty">
             <div className="table-empty-message">
               <h3>No Results Found</h3>
-              <p>There are no { _.startCase(pluralize(entity.replace('_', ' '))) }</p>
+              <p>There are no { pluralize(entity.replace('_', ' ')) }</p>
             </div>
           </div>
         )
