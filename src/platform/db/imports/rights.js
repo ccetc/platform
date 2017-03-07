@@ -22,17 +22,12 @@ module.exports = {
       text: 'APPROVE ALL EXPENSES',
       description: 'approve advances, expense, and trip reports for all projects'
     }, {
-      id: 6,
-      app_id: 2,
-      text: 'APPROVE EXPENSES',
-      description: 'approve other users advances, expense, and trip reports for projects of which they are members'
-    }, {
-      id: 7,
+      id: 5,
       app_id: 2,
       text: 'ACCESS REPORTS',
       description: 'access advance, expense, and trip reports'
     }, {
-      id: 8,
+      id: 6,
       app_id: 2,
       text: 'MANAGE EXPENSES',
       description: 'manage their own advances, expenses, and trips'

@@ -11,7 +11,7 @@ export default (req) => {
           { label: 'Projects', route: '/admin/expenses/projects' },
           { label: 'Vendors', route: '/admin/expenses/vendors' }
         ] },
-        ...(canApprove ? [{ label: 'Approvals', rights: ['expenses.manage_expenses'], items: [
+        ...(allowed ? [{ label: 'Approvals', rights: ['expenses.manage_expenses'], items: [
           { label: 'Advances', route: '/admin/expenses/approvals/advances'},
           { label: 'Expenses', route: '/admin/expenses/approvals/expenses'},
           { label: 'Trips', route: '/admin/expenses/approvals/trips' }
