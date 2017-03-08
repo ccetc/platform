@@ -39,7 +39,7 @@ class New extends React.Component {
         {
           fields: [
             { label: 'Project', name: 'project_id', type: 'lookup', placeholder: 'Project', endpoint: '/admin/expenses/memberships', value: 'id', text: 'title' },
-            { label: 'Expense Type', name: 'expense_type_id', type: 'lookup', placeholder: 'Expense Type', endpoint: expense_type_endpoint, value: 'id', text: 'title', disabled: expense_type_disabled, format: ExpenseTypeFormat },
+            { label: 'Expense Type', name: 'expense_type_id', type: 'lookup', placeholder: 'Expense Type', endpoint: expense_type_endpoint, value: 'id', text: 'text', disabled: expense_type_disabled, format: ExpenseTypeFormat },
             { label: 'Vendor', name: 'vendor_id', type: 'lookup', placeholder: 'Vendor', endpoint: '/admin/expenses/vendors', value: 'id', text: 'name', form: this._getVendorForm() },
             { label: 'Delivery Method', name: 'delivery_method', type: 'select', placeholder: 'Delivery Method', required: true, options: [ { key: 'mail', value: 'Mail' }, { key: 'pickup', value: 'Pickup' }] },
             { label: 'Date Needed', name: 'date_needed', type: 'datefield', placeholder: 'Date Needed', required: true },

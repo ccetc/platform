@@ -47,7 +47,7 @@ class Search extends React.Component {
                <div className="lookup-panel-empty-message">
                  <h2><i className="circular remove icon" /></h2>
                  <h3>No Results Found</h3>
-                 <p>No results match your query</p>
+                 <p>No {label} match your query</p>
                </div>
              </div>
            }
