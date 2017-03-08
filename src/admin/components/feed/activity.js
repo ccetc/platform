@@ -25,11 +25,11 @@ export class Feed extends React.Component {
           <div className="chrome-feed-items">
             { records.map((item, index) => {
               let story = item.story.text
-              if(item.object1_text) {
-                story = story.replace('{object1}', `the ${item.object1_type} <span class="chrome-feed-item-object">${item.object1_text}</span>`)
+              if(item.object1) {
+                story = story.replace('{object1}', `the ${item.object1.type} <span class="chrome-feed-item-object">${item.object1.text}</span>`)
               }
-              if(item.object2_text) {
-                story = story.replace('{object2}', `the ${item.object2_type} <span class="chrome-feed-item-object">${item.object2_text}</span>`)
+              if(item.object2) {
+                story = story.replace('{object2}', `the ${item.object2.type} <span class="chrome-feed-item-object">${item.object2.text}</span>`)
               }
               let classes = ['chrome-feed-item']
               if(item.is_read !== undefined && !item.is_read) {

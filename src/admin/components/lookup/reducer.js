@@ -40,6 +40,7 @@ export default (state = INITIAL_VALUE, action) => {
   case actionTypes.LOOKUP_REQUEST:
     return {
       ...state,
+      status: 'loading',
       query: action.params.q
     }
 

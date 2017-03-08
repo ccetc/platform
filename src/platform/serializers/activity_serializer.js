@@ -18,11 +18,11 @@ export default (object) => {
       photo: object.related('user').related('photo').get('thumbnail_url')
     },
     object1: object.get('object1_text') ? {
-      description: object.get('object1_description'),
+      type: object.get('object1_type'),
       text: object.get('object1_text')
     } : null,
     object2: object.get('object2_text') ? {
-      description: object.get('object2_description'),
+      type: object.get('object2_type'),
       text: object.get('object2_text')
     } : null,
     created_at: object.get('created_at'),

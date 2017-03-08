@@ -29,7 +29,9 @@ export default options => {
 
   const responder = resourceResponder(201, `Sucessfully updated ${options.name}`)
 
-  const logger = resourceLogger('updated {object1}')
+  const log = options.log.update || options.log.all
+
+  const logger = (log !== false) ? resourceLogger('created {object1}') : null
 
   return { processor, renderer, responder, logger }
 

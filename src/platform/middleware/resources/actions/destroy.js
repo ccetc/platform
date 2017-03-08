@@ -55,8 +55,9 @@ export default options => {
     succeed(res, 200, `Successfully deleted ${options.name}`)
 
   }
+  const log = options.log.destroy || options.log.all
 
-  const logger = resourceLogger('deleted {object1}')
+  const logger = (log !== false) ? resourceLogger('created {object1}') : null
 
   return { processor, responder, logger }
 

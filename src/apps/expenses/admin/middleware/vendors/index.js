@@ -1,11 +1,13 @@
 import resources from 'platform/middleware/resources'
 import Vendor from '../../../models/vendor'
-import VendorQuery from '../../../queries/vendor_query'
 
 export default resources({
   allowedParams: ['name'],
-  name: 'vendor',
+  log: false,
   model: Vendor,
+  name: 'vendor',
   path: 'vendors',
-  query: VendorQuery
+  query: (qb, req, filters) => {
+    qb.orderByRaw('lower(name) asc')
+  }
 })

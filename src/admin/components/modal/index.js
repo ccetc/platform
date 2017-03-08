@@ -27,7 +27,7 @@ class Modal extends React.Component {
             <div className="chrome-modal-window">
               <CSSTransitionGroup transitionName="stack" component="div" transitionEnterTimeout={ 500 } transitionLeaveTimeout={ 500 }>
                 { components.map((component, index) => {
-                  return _.isFunction(component) ? React.createElement(component, { key: `modal_panel_${index}` }) : component
+                  return _.isFunction(component) ? React.createElement(component, { key: `modal_panel_${index}` }) : React.cloneElement(component, { key: `modal_panel_${index}` })
                 }) }
               </CSSTransitionGroup>
             </div>

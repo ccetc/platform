@@ -37,7 +37,9 @@ export default options => {
 
   const responder = resourceResponder(200, `Sucessfully created ${options.name}`)
 
-  const logger = resourceLogger('created {object1}')
+  const log = options.log.create || options.log.all
+
+  const logger = (log !== false) ? resourceLogger('created {object1}') : null
 
   return { processor, renderer, responder, logger }
 

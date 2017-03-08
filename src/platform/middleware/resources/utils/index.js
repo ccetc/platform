@@ -390,7 +390,7 @@ export const resourceResponder = (status, message) => {
 }
 
 // default logger for resources
-export const resourceLogger = text => {
+export const resourceLogger = (text, options) => {
 
   return (req, result) => {
 

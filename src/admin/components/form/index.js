@@ -152,8 +152,10 @@ class Form extends React.Component {
   }
 
   _handleSuccess(entity) {
-    const message = 'Your form was successfully saved!'
-    this.context.flash.set('success', message)
+    const { successMessage } = this.props
+    if(successMessage) {
+      this.context.flash.set('success', successMessage)
+    }
     this.props.onSuccess(entity)
   }
 

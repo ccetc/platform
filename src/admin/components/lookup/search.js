@@ -1,5 +1,6 @@
 import React from 'react'
 import component from 'admin/components/component'
+import Form from 'admin/components/form'
 import $ from 'jquery'
 import _ from 'lodash'
 import * as actions from './actions'
@@ -11,7 +12,7 @@ class Search extends React.Component {
   }
 
   render() {
-    const { label, results, selected, text } = this.props
+    const { label, results, status, selected, text, form } = this.props
     return (
       <div className="chrome-modal-panel">
        <div className="chrome-modal-panel-header">
@@ -25,27 +26,45 @@ class Search extends React.Component {
          <div className="chrome-modal-panel-header-proceed" />
        </div>
        <div className="chrome-modal-panel-body">
-         <div className="lookup-panel-search">
-           <div className="ui form">
-            <input type="text" placeholder={`Find a ${label}...`} onChange={this._handleLookup.bind(this)} ref="query" />
+         <div className="lookup-panel">
+           <div className="lookup-panel-search">
+             <div className="ui form">
+              <input type="text" placeholder={`Find a ${label}...`} onChange={this._handleLookup.bind(this)} ref="query" />
+             </div>
            </div>
-         </div>
-         { results && !_.isEmpty(results) &&
-           <div className="lookup-panel-results">
-             { results.map((result, index) => {
-               return (
-                 <div key={`result_${index}`} className="lookup-panel-result" onClick={ this._handleChoose.bind(this, index) }>
-                   <div className="lookup-panel-result-label">
-                     { _.get(result, text) }
-                   </div>
-                   <div className="lookup-panel-result-icon">
-                     { index === selected ? <i className="green check icon" /> : null }
-                   </div>
+           { status === 'loading' &&
+             <div className="lookup-panel-loader">
+               <div className="chrome-loader">
+                 <div className="ui active inverted dimmer">
+                   <div className="ui large text loader">Loading</div>
                  </div>
-               )
-             })}
-           </div>
-         }
+               </div>
+             </div>
+           }
+           { status === 'success' &&
+             <div className="lookup-panel-results">
+               { results.map((result, index) => {
+                 return (
+                   <div key={`result_${index}`} className="lookup-panel-result" onClick={ this._handleChoose.bind(this, index) }>
+                     <div className="lookup-panel-result-label">
+                       { _.get(result, text) }
+                     </div>
+                     <div className="lookup-panel-result-icon">
+                       { index === selected ? <i className="green check icon" /> : null }
+                     </div>
+                   </div>
+                 )
+               })}
+             </div>
+           }
+           { form &&
+             <div className="lookup-panel-add">
+               <div className="ui fluid blue button" onClick={ this._handleAdd.bind(this)}>
+                 Add {label}
+               </div>
+             </div>
+           }
+         </div>
        </div>
      </div>
     )
@@ -66,8 +85,9 @@ class Search extends React.Component {
   }
 
   _handleLookup(event) {
-    const params = { $filter: { q: event.target.value }, $sort: this.props.sort }
-    this.props.onLookup(this.props.cid, params, this.props.endpoint)
+    const { cid, sort, endpoint } = this.props
+    const params = { $filter: { q: event.target.value }, $sort: sort }
+    this.props.onLookup(cid, params, endpoint)
   }
 
   _handleChoose(index) {
@@ -78,9 +98,26 @@ class Search extends React.Component {
     this.props.onChange(value)
   }
 
+  _handleAdd() {
+    this.context.modal.push(<Form {...this._getForm()} />)
+  }
+
+  _getForm() {
+    return {
+      ...this.props.form,
+      onCancel: this.context.modal.pop,
+      onSuccess: () => {
+        this. _handleLookup({ target: { value: '' }})
+        this.context.modal.pop()
+      }
+    }
+
+  }
+
 }
 
 const mapStateToProps = (state, props) => ({
+  status: state.lookup[props.cid].status,
   active: state.lookup[props.cid].active,
   selected: state.lookup[props.cid].selected,
   results: state.lookup[props.cid].results
@@ -89,7 +126,8 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = {
   onBegin: actions.begin,
   onCancel: actions.cancel,
-  onChoose: actions.choose
+  onChoose: actions.choose,
+  onRefresh: actions.lookup
 }
 
 export default component(mapStateToProps, mapDispatchToProps, Search, 'lookup', false)
