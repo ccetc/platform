@@ -1,46 +1,65 @@
-.filefield .ui.segment {
+.filefield-token {
+  .border-radius(5px);
+  flex: 1;
+  border: 1px solid #DDD;
+  background-color: #FFF;
+  padding: 5px 0 5px 5px;
+  line-height: 1.4285em;
   display: flex;
-  padding: 10px !important;
   width: 100%;
   max-width: 350px;
-  .details {
-    flex: 1;
-    margin: 0;
-    font-size: 14px;
-    line-height: 14px;
-    vertical-align: middle;
-  }
-  .preview {
+}
+.filefield-details {
+  flex: 1;
+  margin: 0;
+  font-size: 14px;
+  line-height: 14px;
+  vertical-align: middle;
+  position: relative;
+}
+.filefield-preview {
+  .border-radius(5px);
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  display: block;
+  overflow: hidden;
+  background-color: #CCC;
+  img {
     width: 100%;
-    height: 0;
-    padding-bottom: 100%;
-    margin-bottom: 10px;
-    display: block;
-    overflow: hidden;
-    img {
-      width: 100%;
+  }
+}
+.filefield-preview-caption {
+  .border-radius(0 0 5px 5px);
+  color: #FFF !important;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 5px;
+  background: rgba(0,0,0,.6);
+}
+
+.filefield-progress {
+  margin: 0;
+  .progress {
+    margin: 0 !important;
+  }
+  span {
+    color: #888 !important;
+  }
+}
+.filefield-remove {
+  flex: 0 0 35px;
+  display: flex;
+  i {
+    margin: auto;
+    line-height: 18px;
+    font-size: 18px;
+    cursor: pointer;
+    .opacity(.6);
+    &:hover {
+      .opacity(1);
     }
   }
-  a, strong {
-    font-weight: bold;
-    margin-right: 5px;
-  }
-  strong {
-    color: #000;
-  }
-  .progress {
-    flex: 0 0 100px;
-    margin: 0;
-  }
-  .remove {
-    flex: 0 0 25px;
-    height: 14px;
-    display: flex;
-  }
-  .remove i {
-    margin: auto;
-    line-height: 14px;
-    cursor: pointer;
-  }
-
 }

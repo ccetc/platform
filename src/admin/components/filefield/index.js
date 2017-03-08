@@ -35,22 +35,34 @@ class FileField extends React.Component {
       <div className={classes.join(' ')}>
         { files.map((file, index) => {
           return (
-            <div key={`filefield_${index}`} className="ui secondary segment">
-              <div className="details">
-                { file.status === 'success' && <div className="preview"><img src={file.asset.thumbnail_url} /></div>}
-                <strong>{file.fileName}</strong>
-                ({ bytes(file.fileSize, { decimalPlaces: 2, unitSeparator: ' ' }).toUpperCase() })
-              </div>
-              { file.status === 'uploading' &&
-                <div className="ui small green progress" ref={`filefield_${file.uniqueIdentifier}_progress`}>
-                  <div className="bar" />
-                </div>
-              }
-              { _.includes(['added'], file.status) &&
-                <div className="ui small progress" />
+            <div key={`filefield_${index}`} className="filefield-token">
+              <div className="filefield-details">
+                { _.includes(['added'], file.status) &&
+                  <div className="ui small progress" />
                 }
-              <div className="remove">
-                <i className="x icon" onClick={ this._handleRemoveFile.bind(this, file.uniqueIdentifier) }/>
+                { file.status === 'uploading' &&
+                  <div className="filefield-progress">
+                    <div className="ui small green progress" ref={`filefield_${file.uniqueIdentifier}_progress`}>
+                      <div className="bar" />
+                    </div>
+                    <p>
+                      { file.fileName } <span>({ bytes(file.fileSize, { decimalPlaces: 2, unitSeparator: ' ' }).toUpperCase() })</span>
+                    </p>
+                  </div>
+                }
+                { file.status === 'success' &&
+                  <div className="filefield-preview">
+                    <img src={file.asset.thumbnail_url} />
+                    <div className="filefield-preview-caption">
+                      <p>
+                        { file.fileName } ({ bytes(file.fileSize, { decimalPlaces: 2, unitSeparator: ' ' }).toUpperCase() })
+                      </p>
+                    </div>
+                  </div>
+                }
+              </div>
+              <div className="filefield-remove">
+                <i className="remove circle icon" onClick={ this._handleRemoveFile.bind(this, file.uniqueIdentifier) }/>
               </div>
             </div>
           )
