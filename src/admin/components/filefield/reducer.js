@@ -10,6 +10,21 @@ export default (state = INITIAL_VALUE, action) => {
 
   switch (action.type) {
 
+  case actionTypes.LOAD_FILES_SUCCESS:
+    return {
+      ...state,
+      files: action.data.map(file => ({
+        fileName: file.file_name,
+        fileSize: file.file_size,
+        contentType: file.content_type,
+        status: 'success',
+        progress: 0,
+        uploadedChunks: 0,
+        totalChunks: action.chunks_total,
+        asset: file
+      }))
+    }
+
   case actionTypes.ADD_FILE:
     return {
       ...state,

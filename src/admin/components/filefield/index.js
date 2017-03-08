@@ -65,11 +65,13 @@ class FileField extends React.Component {
   }
 
   componentDidMount() {
-    const { endpoint, multiple, team } = this.props
+    const { cid, endpoint, multiple, team, defaultValue, onLoadFiles } = this.props
+    const ids = !_.isArray(defaultValue) ? [defaultValue] : defaultValue
+    onLoadFiles(cid, ids)
     this.resumable = new Resumable({
       target: endpoint,
       chunkSize: 1024 * 8,
-      maxFiles: (multiple) ? undefined : 1,
+      maxFiles: multiple ? undefined : 1,
       headers: {
         'Authorization': `Bearer ${team.token}`
       }
@@ -140,6 +142,7 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps = {
+  onLoadFiles: actions.loadFiles,
   onAddFile: actions.addFile,
   onUploadBegin: actions.uploadBegin,
   onUploadProgress: actions.uploadProgress,

@@ -1,4 +1,16 @@
 import * as actionTypes from './action_types'
+import api from 'admin/utils/api'
+
+export function loadFiles(cid, ids) {
+  return api.get({
+    endpoint: '/admin/assets',
+    params: { $ids: ids },
+    meta: { cid },
+    request: actionTypes.LOAD_FILES_REQUEST,
+    success: actionTypes.LOAD_FILES_SUCCESS,
+    failure: actionTypes.LOAD_FILES_FAILURE
+  })
+}
 
 export function addFile(uniqueIdentifier, fileName, fileSize, contentType, totalChunks) {
   return {

@@ -8,6 +8,7 @@ import signin from 'admin/middleware/signin'
 import authentication from 'admin/middleware/authentication'
 import session from 'admin/middleware/session'
 import assets from 'admin/middleware/assets'
+import account from 'admin/middleware/account'
 import notifications from 'admin/middleware/notifications'
 import search from 'admin/middleware/search'
 import apps from 'admin/middleware/apps'
@@ -33,7 +34,9 @@ router.use('/api/admin', authentication)
 
 router.use('/api/admin', notifications.router)
 
-router.use('/api/admin/assets', assets)
+router.use('/api/admin', assets)
+
+router.use('/api/admin/account', account)
 
 router.use('/api/admin/session', session)
 

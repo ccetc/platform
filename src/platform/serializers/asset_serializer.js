@@ -7,9 +7,9 @@ export default (object) => {
     content_type: object.get('content_type'),
     file_size: object.get('file_size'),
     chunks_total: object.get('chunks_total'),
-    thumbnail_url: object.related('receipt').get('thumbnail_url'),
-    resized_url: object.related('receipt').get('resized_url'),
-    url: object.related('receipt').get('url'),
+    thumbnail_url: object.get('thumbnail_url'),
+    resized_url: object.get('resized_url'),
+    url: object.get('url'),
     created_at: object.get('created_at'),
     updated_at: object.get('updated_at')
   })
