@@ -25,7 +25,7 @@ class Member extends React.Component {
         {
           fields: [
             { label: 'User', name: 'user.full_name', type: 'text' },
-            { label: 'Type', name: 'member_type_id', type: 'select', endpoint: '/admin/expenses/member_types', value: 'id', text: 'name' },
+            { label: 'Type', name: 'member_type_id', type: 'select', options: [ { value: 1, text: 'Owner' }, { value: 2, text: 'Approver' }, { value: 3, text: 'Member' }] },
             { label: 'Is Active', name: 'is_active', type: 'checkbox', defaultValue: true }
           ]
         }

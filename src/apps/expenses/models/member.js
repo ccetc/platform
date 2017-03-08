@@ -9,7 +9,8 @@ export default model.extend({
 
   rules: {
     user_id: ['required'],
-    project_id: ['required']
+    project_id: ['required'],
+    member_type_id: ['required']
   },
 
   virtuals: {
