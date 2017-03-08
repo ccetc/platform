@@ -65,11 +65,32 @@ class FileField extends React.Component {
   }
 
   componentDidMount() {
-    const { cid, endpoint, multiple, team, defaultValue, onLoadFiles } = this.props
+    const { cid, defaultValue, onLoadFiles } = this.props
     const ids = !_.isArray(defaultValue) ? [defaultValue] : defaultValue
     onLoadFiles(cid, ids)
+    this._initializeResumable()
+  }
+
+  componentDidUpdate(prevProps) {
+    const { files } = this.props
+    if(files.length > prevProps.files.length) {
+      this._handleUploadBegin()
+    } else if(files.length <= prevProps.files.length && this.refs.browse) {
+      this._initializeResumable()
+    }
+    files.map((file, index) => {
+      if(!prevProps.files[index] || prevProps.files[index].progress < file.progress) {
+        $(this.refs[`filefield_${file.uniqueIdentifier}_progress`]).progress({
+          percent: file.progress
+        })
+      }
+    })
+  }
+
+  _initializeResumable() {
+    const { multiple, team } = this.props
     this.resumable = new Resumable({
-      target: endpoint,
+      target: '/api/admin/assets/upload',
       chunkSize: 1024 * 8,
       maxFiles: multiple ? undefined : 1,
       headers: {
@@ -82,22 +103,6 @@ class FileField extends React.Component {
     this.resumable.on('error', this._handleUploadFailure.bind(this))
     this.resumable.on('complete', this._handleUploadComplete.bind(this))
     this.resumable.assignBrowse(this.refs.browseButton)
-  }
-
-  componentDidUpdate(prevProps) {
-    const { files } = this.props
-    if(files.length > prevProps.files.length) {
-      this._handleUploadBegin()
-    } else if(files.length <= prevProps.files.length && this.refs.browse) {
-      this.resumable.assignBrowse(this.refs.browse)
-    }
-    files.map((file, index) => {
-      if(!prevProps.files[index] || prevProps.files[index].progress < file.progress) {
-        $(this.refs[`filefield_${file.uniqueIdentifier}_progress`]).progress({
-          percent: file.progress
-        })
-      }
-    })
   }
 
   _handleFileAdded(file) {

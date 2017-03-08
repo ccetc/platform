@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { test, upload } from './resumable'
+import { succeed, fail } from 'platform/utils/responses'
 import multiparty from 'connect-multiparty'
 import resource from 'platform/middleware/resources'
 import Asset from 'platform/models/asset'
@@ -16,22 +17,22 @@ router.use(resource({
 
 router.use(multiparty({ uploadDir: './tmp' }))
 
-router.get('/assets', (req, res) => {
+router.get('/assets/upload', (req, res) => {
 
-  return test(req).then(result => {
-    res.status(200).send(result)
+  return test(req).then(data => {
+    succeed(res, 200, '', { data })
   }).catch(error => {
-    res.status(404).send(error.message)
+    fail(res, 404, error.message)
   })
 
 })
 
-router.post('/assets', (req, res) => {
+router.post('/assets/upload', (req, res) => {
 
-  return upload(req).then(result => {
-    res.status(200).send(result)
+  return upload(req).then(data => {
+    succeed(res, 200, '', { data })
   }).catch(error => {
-    res.status(404).send(error.message)
+    fail(res, 404, error.message)
   })
 
 })

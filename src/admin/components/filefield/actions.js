@@ -3,7 +3,7 @@ import api from 'admin/utils/api'
 
 export function loadFiles(cid, ids) {
   return api.get({
-    endpoint: '/admin/assets',
+    endpoint: '/admin/assets/upload',
     params: { $ids: ids },
     meta: { cid },
     request: actionTypes.LOAD_FILES_REQUEST,
@@ -37,11 +37,11 @@ export function uploadProgress(uniqueIdentifier, progress) {
   }
 }
 
-export function uploadSuccess(uniqueIdentifier, asset) {
+export function uploadSuccess(uniqueIdentifier, response) {
   return {
     type: actionTypes.UPLOAD_SUCCESS,
     uniqueIdentifier,
-    asset
+    asset: response.data
   }
 }
 
