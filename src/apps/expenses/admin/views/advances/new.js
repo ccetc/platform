@@ -1,5 +1,6 @@
 import React from 'react'
 import Form from 'admin/components/form'
+import ExpenseTypeFormat from '../../utils/expense_type_format'
 
 class New extends React.Component {
 
@@ -38,12 +39,27 @@ class New extends React.Component {
         {
           fields: [
             { label: 'Project', name: 'project_id', type: 'lookup', placeholder: 'Project', endpoint: '/admin/expenses/memberships', value: 'id', text: 'title' },
-            { label: 'Expense Type', name: 'expense_type_id', type: 'lookup', placeholder: 'Expense Type', endpoint: expense_type_endpoint, value: 'expense_type.id', text: 'expense_type.text', disabled: expense_type_disabled },
-            { label: 'Vendor', name: 'vendor_id', type: 'lookup', placeholder: 'Vendor', required: true, endpoint: '/admin/expenses/vendors', value: 'id', text: 'name' },
+            { label: 'Expense Type', name: 'expense_type_id', type: 'lookup', placeholder: 'Expense Type', endpoint: expense_type_endpoint, value: 'id', text: 'title', disabled: expense_type_disabled, format: ExpenseTypeFormat },
+            { label: 'Vendor', name: 'vendor_id', type: 'lookup', placeholder: 'Vendor', endpoint: '/admin/expenses/vendors', value: 'id', text: 'name', form: this._getVendorForm() },
             { label: 'Delivery Method', name: 'delivery_method', type: 'select', placeholder: 'Delivery Method', required: true, options: [ { key: 'mail', value: 'Mail' }, { key: 'pickup', value: 'Pickup' }] },
             { label: 'Date Needed', name: 'date_needed', type: 'datefield', placeholder: 'Date Needed', required: true },
             { label: 'Amount', name: 'amount', type: 'textfield', placeholder: 'Amount', required: true, prefix: '$' },
             { label: 'Description', name: 'description', type: 'textarea', placeholder: 'Description', required: true }
+          ]
+        }
+      ]
+    }
+  }
+
+  _getVendorForm() {
+    return {
+      title: 'New Vendor',
+      method: 'post',
+      action: '/admin/expenses/vendors',
+      sections: [
+        {
+          fields: [
+            { label: 'Name', name: 'name', type: 'textfield', placeholder: 'Name' }
           ]
         }
       ]

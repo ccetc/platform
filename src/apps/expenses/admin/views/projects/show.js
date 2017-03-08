@@ -6,7 +6,6 @@ import Tabs from 'admin/components/tabs'
 import Avatar from 'admin/components/avatar'
 import NewMember from './members/new'
 import EditMember from './members/edit'
-import NewExpenseType from './expense_types/new'
 import EditExpenseType from './expense_types/edit'
 
 class Show extends React.Component {
@@ -93,21 +92,17 @@ class ExpenseTypes extends React.Component {
   }
 
   render() {
-    const { project_expense_types } = this.props
+    const { expense_types } = this.props
     return (
       <div className="list project-members">
-        { project_expense_types.length === 0 &&
-          <div className="item">
-            <p>This project does not yet have any expense types yet</p>
-          </div>
-        }
-        { project_expense_types.map((project_expense_type, index) => {
+        { expense_types.map((expense_type, index) => {
           return (
-            <div key={`expense_types_${index}`} className="item project-member" onClick={this._handleEdit.bind(this, project_expense_type.id)}>
+            <div key={`expense_type_${index}`} className="item project-member" onClick={this._handleEdit.bind(this, expense_type.id)}>
               <p>
-                <strong>{project_expense_type.expense_type.code}</strong><br />
-                {project_expense_type.expense_type.title}
+                <strong>{expense_type.code}</strong><br />
+                {expense_type.title}
               </p>
+              <div className="active"><span>ACTIVE</span></div>
             </div>
           )
         }) }
@@ -126,13 +121,12 @@ const mapPropsToPage = (props, context) => ({
   rights: ['expenses.manage_configuration'],
   tasks: [
     { label: 'Edit Project', modal: Edit },
-    { label: 'Add Member', modal: NewMember },
-    { label: 'Add Expense Type', modal: NewExpenseType }
+    { label: 'Add Member', modal: NewMember }
   ],
   resources: {
     project: `/admin/expenses/projects/${props.params.id}`,
     members: `/admin/expenses/projects/${props.params.id}/members`,
-    project_expense_types: `/admin/expenses/projects/${props.params.id}/expense_types`
+    expense_types: `/admin/expenses/projects/${props.params.id}/expense_types`
   }
 })
 

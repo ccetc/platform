@@ -9,5 +9,6 @@ export default resources({
   path: 'vendors',
   query: (qb, req, filters) => {
     qb.orderByRaw('lower(name) asc')
-  }
+  },
+  searchParams: ['name']
 })

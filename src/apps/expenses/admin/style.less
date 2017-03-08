@@ -50,7 +50,7 @@
         color: #000;
       }
     }
-    .owner, .member, .approver, .inactive {
+    .owner, .member, .approver, .active, .inactive {
       flex: 0 0 60px;
       display: flex;
       span {
@@ -73,6 +73,9 @@
     }
     .member span {
       background-color: @yellow;
+    }
+    .active span {
+      background-color: @green;
     }
     .inactive span {
       background-color: @mediumgrey;

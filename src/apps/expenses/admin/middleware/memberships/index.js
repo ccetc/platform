@@ -18,5 +18,6 @@ export default resources({
       member_type: member.related('member_type').get('name').toLowerCase()
     })
   },
+  searchParams: ['title'],
   withRelated: ['project','member_type']
 })

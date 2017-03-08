@@ -1,6 +1,7 @@
 import React from 'react'
 import component from 'admin/components/component'
 import Form from 'admin/components/form'
+import Format from 'admin/utils/format'
 import $ from 'jquery'
 import _ from 'lodash'
 import * as actions from './actions'
@@ -12,7 +13,7 @@ class Search extends React.Component {
   }
 
   render() {
-    const { label, results, status, selected, text, form } = this.props
+    const { label, results, status, selected, text, form, format } = this.props
     return (
       <div className="chrome-modal-panel">
        <div className="chrome-modal-panel-header">
@@ -41,13 +42,23 @@ class Search extends React.Component {
                </div>
              </div>
            }
-           { status === 'success' &&
+           { status === 'success' && results.length === 0 &&
+             <div className="lookup-panel-empty">
+               <div className="lookup-panel-empty-message">
+                 <h2><i className="circular remove icon" /></h2>
+                 <h3>No Results Found</h3>
+                 <p>No results match your query</p>
+               </div>
+             </div>
+           }
+           { status === 'success' && results.length > 0 &&
              <div className="lookup-panel-results">
                { results.map((result, index) => {
+                 const value = _.get(result, text)
                  return (
                    <div key={`result_${index}`} className="lookup-panel-result" onClick={ this._handleChoose.bind(this, index) }>
                      <div className="lookup-panel-result-label">
-                       { _.get(result, text) }
+                       <Format {...result} format={format} value={value} />
                      </div>
                      <div className="lookup-panel-result-icon">
                        { index === selected ? <i className="green check icon" /> : null }

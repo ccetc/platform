@@ -72,26 +72,21 @@ export default resources({
       },
       withRelated: ['user.photo','member_type']
     },{
-      allowedParams: ['expense_type_id'],
-      defaultParams: (req) => ({
-        project_id: req.params.project_id
-      }),
-      defaultSort: ['code'],
-      logger: {
-        create: createExpenseTypeLogger
-      },
-      model: ExpenseTypeProject,
+      defaultSort: 'code',
+      only: 'list',
+      model: ExpenseType,
       name: 'expense_type',
-      ownedByTeam: false,
+      ownedByTeam: true,
       query: (qb, req, filters) => {
-        qb.innerJoin('expenses_expense_types', 'expenses_expense_types.id', 'expenses_expense_types_projects.expense_type_id')
-        qb.where('expenses_expense_types_projects.project_id', req.params.project_id)
+        qb.joinRaw('left join expenses_expense_types_projects on expenses_expense_types_projects.expense_type_id=expenses_expense_types.id and expenses_expense_types_projects.project_id=?', req.params.project_id)
+        qb.whereNull('expenses_expense_types_projects.id')
       },
-      serializer: ExpenseTypeProjectSerializer,
-      withRelated: ['expense_type','project']
+      searchParams: ['code','title','description'],
+      serializer: ExpenseTypeSerializer
     }
   ],
   rights: ['expenses.manage_configuration'],
+  searchParams: ['title'],
   serializer: ProjectSerializer,
   sortParams: ['title','code','is_active']
 })
