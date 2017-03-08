@@ -137,7 +137,7 @@ class FileField extends React.Component {
   _handleUploadSuccess(file, message) {
     const asset = JSON.parse(message)
     this.props.onUploadSuccess(file.file.uniqueIdentifier, asset)
-    this.props.onChange(asset.id)
+    this.props.onChange(asset.data.id)
   }
 
   _handleRemoveFile(uniqueIdentifier) {

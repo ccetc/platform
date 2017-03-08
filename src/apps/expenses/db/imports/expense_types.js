@@ -4,317 +4,254 @@ module.exports = {
     {
       id: 1,
       team_id: 1,
-      code: '44700',
-      title: 'Private Contracts',
-      description: 'Account used to record funds received directly for a specific project sponsored by nongovernmental agencies, private corporations etc.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      code: '55100',
+      title: 'Staff Development-Registrations',
+      description: 'Registration fee expense',
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     },
     {
       id: 2,
       team_id: 1,
-      code: '45000',
-      title: 'Enrollment Fees',
-      description: 'Annual enrollment fees to participate in Cooperative Extension programs.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      code: '55300',
+      title: 'Staff Development-Travel & Mileage',
+      description: 'Travel and Mileage expense, including tolls.',
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     },
     {
       id: 3,
       team_id: 1,
-      code: '45200',
-      title: 'Program Registration Fees',
-      description: 'Fee to participate in classes, workshops, and other program activities. Includes fees collected for 4-H trips, tours, and camp enrollments. Separate accounts can be established and coded for each program. Includes registration fees collected for inter-association workshops held for Cooperative Extension staff and volunteers.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      code: '55500',
+      title: 'Staff Development-Meals & Lodging',
+      description: 'Meals and Lodging expense',
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     },
     {
       id: 4,
       team_id: 1,
-      code: '46000',
-      title: 'Contributions Unrestricted',
-      description: 'Cash contributions to the association with no restrictions as to use. (F.O.R.M. Codes 817 and 1206). Use account 46400 to record value of noncash contributions.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      code: '60300',
+      title: 'Advertising',
+      description: 'Cost of employment, or bid advertisements in newspapers and other publications.',
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     },
     {
       id: 5,
       team_id: 1,
-      code: '47700',
-      title: 'Enterprise Sales',
-      description: 'Money received from the sale of paid publications, soil testing, farm account books, etc. NOTE: If proceeds from the sale of items are not intended to raise additional funds but only to recover the cost of purchasing the items for resale, then revenue account 47700 Enterprise Sales and expense account 64700 Enterprise-Cost of Sales should be used.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      code: '60500',
+      title: 'Publicity',
+      description: 'Expense of promoting the association services and programs. Includes costs of signs promotional material (shirts, caps, etc.), printing and advertising.',
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     },
     {
       id: 6,
       team_id: 1,
-      code: '47800',
-      title: 'Reimbursement for Services',
-      description: 'Reimbursement for consulting, clerical or secretarial services provided to other associations or agencies.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      code: '60900',
+      title: 'Awards and Prizes',
+      description: 'Expenses for awards and prizes (4-H awards, scholarships, etc.) and for non-cash gifts to employees with a fair market value of less than $100.00. Non-cash gifts to employees with a fair market value of $100.00 or more, and all cash gifts regardless of amounts, must be reported through payroll.',
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     },
     {
       id: 7,
       team_id: 1,
-      code: '48000',
-      title: 'Sales, Fundraising',
-      description: 'Money received from the sale of cookies, candy, kits, 4-H fund raising projects, farm and home days, fairs, food/craft booths at fair, walk-a-thons, bowl-a-thons, etc.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      code: '61300',
+      title: 'Computer and IT Services',
+      description: 'Expenses for computer and IT services and ACCPAC annual fee.',
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     },
     {
       id: 8,
       team_id: 1,
-      code: '55100',
-      title: 'Staff Development-Registrations',
-      description: 'Registration fee expense',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      code: '61500',
+      title: 'Contracted Services',
+      description: 'Contract services for consulting, teaching, and other program delivery (such as contract services for horses in a camp program). Also includes use of temporary employment services.',
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     },
     {
       id: 9,
       team_id: 1,
-      code: '55300',
-      title: 'Staff Development-Travel & Mileage',
-      description: 'Travel and Mileage expense, including tolls.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      code: '62700',
+      title: 'Travel, Mileage, Tolls',
+      description: 'Travel related expenses for association staff, Meals & Lodging board and volunteers while on Extension business. Includes mileage when using personal or fleet vehicles. Associations are encouraged to use the 00 portion of this account to segregate out the different individual components or combinations of these expenses, if needed.',
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     },
     {
       id: 10,
       team_id: 1,
-      code: '55500',
-      title: 'Staff Development-Meals & Lodging',
-      description: 'Meals and Lodging expense',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      code: '62900',
+      title: 'Meetings, Food and Beverages',
+      description: 'Expense of food for meetings and conferences, workshops, banquets.',
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     },
     {
       id: 11,
       team_id: 1,
-      code: '60300',
-      title: 'Advertising',
-      description: 'Cost of employment, or bid advertisements in newspapers and other publications.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      code: '63100',
+      title: 'Meetings, Other Expenses',
+      description: 'Expenses for meetings (including annual meeting), conferences, workshops and banquets sponsored by the association. Would include rental of meeting place, AV equipment and other miscellaneous expenses. Cost of food would be recorded in 62900.',
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     },
     {
       id: 12,
       team_id: 1,
-      code: '60500',
-      title: 'Publicity',
-      description: 'Expense of promoting the association services and programs. Includes costs of signs promotional material (shirts, caps, etc.), printing and advertising.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      code: '63300',
+      title: 'Postage & Express Delivery',
+      description: 'Expenses for postage, freight and express.',
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     },
     {
       id: 13,
       team_id: 1,
-      code: '60900',
-      title: 'Awards and Prizes',
-      description: 'Expenses for awards and prizes (4-H awards, scholarships, etc.) and for non-cash gifts to employees with a fair market value of less than $100.00. Non-cash gifts to employees with a fair market value of $100.00 or more, and all cash gifts regardless of amounts, must be reported through payroll.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      code: '63500',
+      title: 'Printing, Copying & Binding',
+      description: 'Expenses for printing brochures, enrollment materials, signs, etc. Items not to be sold. Include cost of outside printing service.',
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     },
     {
       id: 14,
       team_id: 1,
-      code: '61300',
-      title: 'Computer and IT Services',
-      description: 'Expenses for computer and IT services and ACCPAC annual fee.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      code: '63700',
+      title: 'Purchases of Small Equipment',
+      description: 'Purchase of equipment costing under $1,000 Such as calculators, file cabinets, kitchen appliances, small tools.',
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     },
     {
       id: 15,
       team_id: 1,
-      code: '61500',
-      title: 'Contracted Services',
-      description: 'Contract services for consulting, teaching, and other program delivery (such as contract services for horses in a camp program). Also includes use of temporary employment services.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      code: '64100',
+      title: 'Rental, Equipment',
+      description: 'Lease/rental of equipment.',
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     },
     {
       id: 16,
       team_id: 1,
-      code: '62700',
-      title: 'Travel, Mileage, Tolls',
-      description: 'Travel related expenses for association staff, Meals & Lodging board and volunteers while on Extension business. Includes mileage when using personal or fleet vehicles. Associations are encouraged to use the 00 portion of this account to segregate out the different individual components or combinations of these expenses, if needed.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      code: '64300',
+      title: 'Rental, Facilities',
+      description: 'Leases/rental of association facilities (meeting rooms, offices etc.)',
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     },
     {
       id: 17,
       team_id: 1,
-      code: '62900',
-      title: 'Meetings, Food and Beverages',
-      description: 'Expense of food for meetings and conferences, workshops, banquets.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      code: '64500',
+      title: 'Grounds Maintenance',
+      description: 'Cost of upkeep and repairs for buildings and land. Also includes expenses for janitorial, trash removal, snow plowing, cleaning supplies, paper towels, salt for ice removal, etc.',
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     },
     {
       id: 18,
       team_id: 1,
-      code: '63100',
-      title: 'Meetings, Other Expenses',
-      description: 'Expenses for meetings (including annual meeting), conferences, workshops and banquets sponsored by the association. Would include rental of meeting place, AV equipment and other miscellaneous expenses. Cost of food would be recorded in 62900.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      code: '64600',
+      title: 'Repairs & Maintenance',
+      description: 'Cost of maintenance agreements, and repair & maintenance expense on equipment, furniture & machinery.',
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     },
     {
       id: 19,
       team_id: 1,
-      code: '63300',
-      title: 'Postage & Express Delivery',
-      description: 'Expenses for postage, freight and express.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      code: '64800',
+      title: 'Fund Raising Expenses',
+      description: 'Direct expenses for fund raising purposes such as cost of cookie sales, 4-H kits, food sold in food booths, etc. Do not include expenses related to the use of funds raised.',
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     },
     {
       id: 20,
       team_id: 1,
-      code: '63500',
-      title: 'Printing, Copying & Binding',
-      description: 'Expenses for printing brochures, enrollment materials, signs, etc. Items not to be sold. Include cost of outside printing service.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      code: '65000',
+      title: 'Supplies: Nutritional',
+      description: 'Nutrition supplies for EFNEP program, camp, etc.',
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     },
     {
       id: 21,
       team_id: 1,
-      code: '63700',
-      title: 'Purchases of Small Equipment',
-      description: 'Purchase of equipment costing under $1,000 Such as calculators, file cabinets, kitchen appliances, small tools.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      code: '65200',
+      title: 'Supplies: Teaching',
+      description: 'Expenses for teaching materials and supplies to be used for projects and programs.',
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     },
     {
       id: 22,
       team_id: 1,
-      code: '64100',
-      title: 'Rental, Equipment',
-      description: 'Lease/rental of equipment.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      code: '65400',
+      title: 'Supplies: Office',
+      description: 'Expenses for office supplies such as paper, staples, file folders, tape, etc. Includes purchases of computer software programs.',
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     },
     {
       id: 23,
       team_id: 1,
-      code: '64300',
-      title: 'Rental, Facilities',
-      description: 'Leases/rental of association facilities (meeting rooms, offices etc.)',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      code: '65600',
+      title: 'Telecommunications',
+      description: 'Expenses for telephones, fax, two-way radio. Includes expense of wide area network (WAN), and T1 charges.',
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     },
     {
       id: 24,
       team_id: 1,
-      code: '64500',
-      title: 'Grounds Maintenance',
-      description: 'Cost of upkeep and repairs for buildings and land. Also includes expenses for janitorial, trash removal, snow plowing, cleaning supplies, paper towels, salt for ice removal, etc.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      code: '65800',
+      title: 'Trips & Tours',
+      description: 'Expenses for trips and tours sponsored by one or more associations.',
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     },
     {
       id: 25,
       team_id: 1,
-      code: '64600',
-      title: 'Repairs & Maintenance',
-      description: 'Cost of maintenance agreements, and repair & maintenance expense on equipment, furniture & machinery.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      code: '66000',
+      title: 'Utilities',
+      description: 'Expense of heating fuel, electricity, water, sewer, and natural gas.',
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     },
     {
       id: 26,
       team_id: 1,
-      code: '64800',
-      title: 'Fund Raising Expenses',
-      description: 'Direct expenses for fund raising purposes such as cost of cookie sales, 4-H kits, food sold in food booths, etc. Do not include expenses related to the use of funds raised.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      code: '66400',
+      title: 'Vehicles: Repairs & Maintenance',
+      description: 'Maintenance and operation of association-owned vehicles. (Includes oil, repairs, upkeep).',
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     },
     {
       id: 27,
       team_id: 1,
-      code: '65000',
-      title: 'Supplies: Nutritional',
-      description: 'Nutrition supplies for EFNEP program, camp, etc.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      code: '69500',
+      title: 'Subscriptions & Memberships',
+      description: 'Subscriptions to periodicals and memberships in professional organizations.',
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     },
     {
       id: 28,
       team_id: 1,
-      code: '65200',
-      title: 'Supplies: Teaching',
-      description: 'Expenses for teaching materials and supplies to be used for projects and programs.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
-    },
-    {
-      id: 29,
-      team_id: 1,
-      code: '65400',
-      title: 'Supplies: Office',
-      description: 'Expenses for office supplies such as paper, staples, file folders, tape, etc. Includes purchases of computer software programs.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
-    },
-    {
-      id: 30,
-      team_id: 1,
-      code: '65600',
-      title: 'Telecommunications',
-      description: 'Expenses for telephones, fax, two-way radio. Includes expense of wide area network (WAN), and T1 charges.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
-    },
-    {
-      id: 31,
-      team_id: 1,
-      code: '65800',
-      title: 'Trips & Tours',
-      description: 'Expenses for trips and tours sponsored by one or more associations.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
-    },
-    {
-      id: 32,
-      team_id: 1,
-      code: '66000',
-      title: 'Utilities',
-      description: 'Expense of heating fuel, electricity, water, sewer, and natural gas.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
-    },
-    {
-      id: 33,
-      team_id: 1,
-      code: '66400',
-      title: 'Vehicles: Repairs & Maintenance',
-      description: 'Maintenance and operation of association-owned vehicles. (Includes oil, repairs, upkeep).',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
-    },
-    {
-      id: 34,
-      team_id: 1,
-      code: '69500',
-      title: 'Subscriptions & Memberships',
-      description: 'Subscriptions to periodicals and memberships in professional organizations.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
-    },
-    {
-      id: 35,
-      team_id: 1,
       code: '69600',
       title: 'Licenses & Fees',
       description: 'Inspection fees, background check fees and permits.',
-      created_at: '2017-03-08T17:25:36.005Z',
-      updated_at: '2017-03-08T17:25:36.005Z'
+      created_at: '2017-03-08T23:15:13.781Z',
+      updated_at: '2017-03-08T23:15:13.781Z'
     }
   ]
 }
