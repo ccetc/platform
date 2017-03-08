@@ -1,5 +1,6 @@
 import React from 'react'
 import component from 'admin/components/component'
+import Format from 'admin/utils/format'
 import _ from 'lodash'
 import * as actions from './actions'
 import Search from './search'
@@ -15,22 +16,29 @@ class Lookup extends React.Component {
   }
 
   render() {
-    const { disabled, prompt, selected, results, text } = this.props
+    const { disabled, format, prompt, selected, results, text } = this.props
     const chosen = (selected !== null) ? results[selected] : null
     const value = chosen ? _.get(chosen, text) : ''
     return (
       <div className="lookup-field">
-        <input type="text"
-               disabled={disabled}
-               onFocus={ this._handleBegin.bind(this) }
-               value={value}
-               placeholder={ prompt } />
-             { chosen &&
-               <div className="lookup-field-clear">
-                 <i className="icon circle remove" onClick={ this._handleClear.bind(this) } />
-               </div>
-             }
-       </div>
+        { chosen &&
+          <div className="lookup-token">
+            <Format {...chosen} format={format} value={value} />
+          </div>
+        }
+        { chosen &&
+          <div className="lookup-field-clear">
+            <i className="icon circle remove" onClick={ this._handleClear.bind(this) } />
+          </div>
+        }
+        { !chosen &&
+          <input type="text"
+                 disabled={disabled}
+                 onFocus={ this._handleBegin.bind(this) }
+                 value={value}
+                 placeholder={ prompt } />
+       }
+     </div>
     )
   }
 
