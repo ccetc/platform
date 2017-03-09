@@ -27,6 +27,13 @@ export function completeSearch(model, index) {
   }
 }
 
+export function type(q) {
+  return {
+    type: actionTypes.TYPE_SEARCH,
+    q
+  }
+}
+
 export function lookup(q) {
   return api.get({
     params: { q },

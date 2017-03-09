@@ -1,5 +1,4 @@
 import Promise from 'bluebird'
-import ProjectQuery from '../../queries/project_query'
 import Project from '../../models/project'
 
 export default filters => {
@@ -8,22 +7,20 @@ export default filters => {
 
     Project.query(qb => {
 
-      qb = ProjectQuery(qb, filters)
+      const term = `%${filters.q.toLowerCase()}%`
+      qb.whereRaw('LOWER(title) LIKE ?', [term])
 
     }).fetchAll().then(results => {
 
       const json = results.map(result => ({
         text: result.get('title'),
         subtext: null,
-        photo: null,
         route: `/admin/expenses/projects/${result.get('id')}`
       }))
 
       resolve(json)
 
-    }).catch(err => {
-      reject(err)
-    })
+    }).catch(reject)
 
   })
 

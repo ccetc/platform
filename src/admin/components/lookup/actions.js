@@ -26,6 +26,13 @@ export function choose(index) {
   }
 }
 
+export function type(q) {
+  return {
+    type: actionTypes.TYPE,
+    q
+  }
+}
+
 export function lookup(cid, params, endpoint) {
   return api.get({
     params,

@@ -12,6 +12,13 @@ class Search extends React.Component {
     modal: React.PropTypes.object
   }
 
+  constructor(props) {
+    super(props)
+    this._handleLookup = _.throttle((cid, params, endpoint) => {
+      this.props.onLookup(cid, params, endpoint)
+    }, 500)
+  }
+
   render() {
     const { label, results, status, selected, text, form, format } = this.props
     return (
@@ -30,7 +37,7 @@ class Search extends React.Component {
          <div className="lookup-panel">
            <div className="lookup-panel-search">
              <div className="ui form">
-              <input type="text" placeholder={`Find a ${label}...`} onChange={this._handleLookup.bind(this)} ref="query" />
+              <input type="text" placeholder={`Find a ${label}...`} onChange={this._handleType.bind(this)} ref="query" />
              </div>
            </div>
            { status === 'loading' &&
@@ -95,10 +102,20 @@ class Search extends React.Component {
     this.props.onCancel()
   }
 
+
+  _handleType(event) {
+    const { cid, sort, endpoint } = this.props
+    const q = event.target.value
+    const params = { $filter: { q: event.target.value }, $sort: sort }
+    this.props.onType(q)
+    this._handleLookup(cid, params, endpoint)
+  }
+
+
   _handleLookup(event) {
     const { cid, sort, endpoint } = this.props
     const params = { $filter: { q: event.target.value }, $sort: sort }
-    this.props.onLookup(cid, params, endpoint)
+    _.throttle(() => { this.props.onLookup(cid, params, endpoint) }, 500)
   }
 
   _handleChoose(index) {
@@ -138,6 +155,7 @@ const mapDispatchToProps = {
   onBegin: actions.begin,
   onCancel: actions.cancel,
   onChoose: actions.choose,
+  onType: actions.type,
   onRefresh: actions.lookup
 }
 

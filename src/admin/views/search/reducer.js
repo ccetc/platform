@@ -40,6 +40,12 @@ export default (state = INITIAL_STATE, action) => {
       results: null
     }
 
+  case actionTypes.TYPE_SEARCH:
+    return {
+      ...state,
+      query: action.q
+    }
+
   case actionTypes.LOOKUP_REQUEST:
     return {
       ...state,

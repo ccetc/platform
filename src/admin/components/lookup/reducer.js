@@ -37,6 +37,12 @@ export default (state = INITIAL_VALUE, action) => {
       selected: action.index
     }
 
+  case actionTypes.TYPE:
+    return {
+      ...state,
+      query: action.q
+    }
+
   case actionTypes.LOOKUP_REQUEST:
     return {
       ...state,

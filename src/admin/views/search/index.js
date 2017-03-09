@@ -15,11 +15,18 @@ export class Search extends React.Component {
     choice: React.PropTypes.number,
     focused: React.PropTypes.bool,
     query: React.PropTypes.string,
-    results: React.PropTypes.array,
+    results: React.PropTypes.object,
     onResetSearch: React.PropTypes.func.isRequired,
     onAbortSearch: React.PropTypes.func.isRequired,
     onCompleteSearch: React.PropTypes.func.isRequired,
     onLookup: React.PropTypes.func.isRequired
+  }
+
+  constructor(props) {
+    super(props)
+    this._handleLookup = _.throttle(value => {
+      this.props.onLookup(value)
+    }, 500)
   }
 
   render() {
@@ -31,7 +38,7 @@ export class Search extends React.Component {
             <div className="chrome-search-input">
               <i className="search icon" />
               <div className="ui input">
-                <input type="text" placeholder="Search" ref="query" onChange={this._handleLookup.bind(this)} onFocus={this._handleFocus.bind(this)} onBlur={this._handleBlur.bind(this)} value={query} />
+                <input type="text" placeholder="Search" ref="query" onChange={this._handleType.bind(this)} onFocus={this._handleFocus.bind(this)} onBlur={this._handleBlur.bind(this)} value={query} />
               </div>
               { query.length > 0 && <i className="remove circle icon" onClick={this._handleResetSearch.bind(this)} /> }
             </div>
@@ -123,12 +130,14 @@ export class Search extends React.Component {
     this.context.modal.pop()
   }
 
-  _handleCompleteSearch(model, index) {
-    this.props.onCompleteSearch(model, index)
+  _handleType(event) {
+    const q = event.target.value
+    this.props.onType(q)
+    this._handleLookup(q)
   }
 
-  _handleLookup(event) {
-    this.props.onLookup(event.target.value)
+  _handleCompleteSearch(model, index) {
+    this.props.onCompleteSearch(model, index)
   }
 
 }
@@ -141,6 +150,7 @@ const mapDispatchToProps = {
   onAbortSearch: actions.abortSearch,
   onCompleteSearch: actions.completeSearch,
   onFocusSearch: actions.focusSearch,
+  onType: actions.type,
   onLookup: actions.lookup,
   onResetSearch: actions.resetSearch
 }
