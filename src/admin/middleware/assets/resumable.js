@@ -30,7 +30,7 @@ const validateRequest = (params, files, requireFile) => {
 
   return new Promise((resolve, reject) => {
 
-    const maxChunkSize = 1024 * 512
+    const maxChunkSize = 1024 * 128
     const maxFileSize = 1024 * 1024 * 20
     const chunkNumber = params.resumableChunkNumber
     const chunkSize = params.resumableChunkSize

@@ -105,7 +105,7 @@ class FileField extends React.Component {
     const { multiple, team } = this.props
     this.resumable = new Resumable({
       target: '/api/admin/assets/upload',
-      chunkSize: 1024 * 512,
+      chunkSize: 1024 * 128,
       maxFiles: multiple ? undefined : 1,
       headers: {
         'Authorization': `Bearer ${team.token}`
