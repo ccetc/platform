@@ -1,16 +1,17 @@
 import resources from 'platform/middleware/resources'
+import knex from 'platform/services/knex'
 import Project from '../../../models/project'
 import ProjectSerializer from '../../../serializers/project_serializer'
 import Member from '../../../models/member'
 import MemberSerializer from '../../../serializers/member_serializer'
 import ExpenseType from '../../../models/expense_type'
 import ExpenseTypeSerializer from '../../../serializers/expense_type_serializer'
+import ExpenseTypeProjectSerializer from '../../../serializers/expense_type_project_serializer'
 import User from 'platform/models/user'
 import UserSerializer from 'platform/serializers/user_serializer'
-import ExpenseTypeProject from '../../../models/expense_type_project'
-import ExpenseTypeProjectSerializer from '../../../serializers/expense_type_project_serializer'
-import { createProcessor } from './processors'
-import { createMemberLogger, createExpenseTypeLogger } from './loggers'
+import { createProcessor, toggleExpenseTypeProcessor } from './processors'
+import { createMemberLogger, toggleExpenseTypeLogger } from './loggers'
+import { toggleExpenseTypeRenderer } from './renderers'
 
 export default resources({
   allowedParams: ['title','code','is_active'],
@@ -26,6 +27,7 @@ export default resources({
       model: User,
       name: 'user',
       only: 'list',
+      ownedByTeam: true,
       path: 'members/unassigned',
       query: (qb, req, filters) => {
         qb.joinRaw('left join "expenses_members" on "expenses_members"."user_id"="users"."id" and "expenses_members"."project_id"=?', req.params.project_id)
@@ -40,14 +42,13 @@ export default resources({
       model: ExpenseType,
       name: 'expense_type_project',
       only: 'list',
-      path: 'expense_types/unassigned',
+      ownedByTeam: true,
+      path: 'expense_types/all',
       query: (qb, req, filters) => {
-        qb.joinRaw('left join "expenses_expense_types_projects" on "expenses_expense_types_projects"."expense_type_id"="expenses_expense_types"."id" and "expenses_expense_types_projects"."project_id"=?', req.params.project_id)
-        qb.whereNull('expenses_expense_types_projects.id')
+        qb.select('expenses_expense_types.*', knex.raw('case when expenses_expense_types_projects.id is null then true else false end as enabled'))
+        qb.joinRaw('left join expenses_expense_types_projects on expenses_expense_types_projects.expense_type_id=expenses_expense_types.id and expenses_expense_types_projects.project_id=?', req.params.project_id)
       },
-      serializer: ExpenseTypeSerializer,
-      searchParams: ['title','code'],
-      sortParams: ['title']
+      serializer: ExpenseTypeProjectSerializer
     },{
       allowedParams: ['user_id','member_type_id','is_active'],
       defaultParams: (req) => ({
@@ -72,14 +73,30 @@ export default resources({
       },
       withRelated: ['user.photo','member_type']
     },{
+      actions: {
+        toggle: {
+          on: 'member',
+          path: 'toggle',
+          method: 'patch'
+        }
+      },
       defaultSort: 'code',
+      logger: {
+        toggle: toggleExpenseTypeLogger
+      },
       only: 'list',
+      processor: {
+        toggle: toggleExpenseTypeProcessor
+      },
       model: ExpenseType,
       name: 'expense_type',
       ownedByTeam: true,
       query: (qb, req, filters) => {
         qb.joinRaw('left join expenses_expense_types_projects on expenses_expense_types_projects.expense_type_id=expenses_expense_types.id and expenses_expense_types_projects.project_id=?', req.params.project_id)
         qb.whereNull('expenses_expense_types_projects.id')
+      },
+      renderer: {
+        toggle: toggleExpenseTypeRenderer
       },
       searchParams: ['code','title','description'],
       serializer: ExpenseTypeSerializer

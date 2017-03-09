@@ -10,11 +10,11 @@ export const createMemberLogger = (req, result) => {
 
 }
 
-export const createExpenseTypeLogger = (req, result) => {
+export const toggleExpenseTypeLogger = (req, result) => {
 
-  return result.load(['expense_type','project']).then(() => {
+  return result.load(['project']).then(() => {
 
-    return log(req, 'added {object1} to {object2}', 'expense type', result.related('expense_type').get('title'), 'project', result.related('project').get('title')).then(() => result)
+    return log(req, 'toggled {object1} in {object2}', 'expense type', result.get('title'), 'project', result.related('project').get('title')).then(() => result)
 
   })
 
