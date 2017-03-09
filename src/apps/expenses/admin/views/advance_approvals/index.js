@@ -3,6 +3,7 @@ import Page from 'admin/components/page'
 import Collection from 'admin/components/collection'
 import checkOwnerApprover from '../../utils/check_owner_approver'
 import UserFormat from '../../components/user_format'
+import ExpenseTypeFormat from '../../utils/expense_type_format'
 
 class Index extends React.Component {
 
@@ -28,7 +29,7 @@ class Index extends React.Component {
       filters: [
         { label: 'User', name: 'user_id', type: 'select', multiple: true, endpoint: '/admin/team/users', value: 'id', text: 'full_name', format: UserFormat },
         { label: 'Projects', name: 'project_id', type: 'select', multiple: true, endpoint: '/admin/expenses/projects', value: 'id', text: 'title' },
-        { label: 'Expense Type', name: 'expense_type_id', type: 'select', endpoint: '/admin/expenses/expense_types', value: 'id', text: 'title' },
+        { label: 'Expense Type', name: 'expense_type_id', type: 'select', endpoint: '/admin/expenses/expense_types', value: 'id', text: 'title', format: ExpenseTypeFormat },
         { label: 'Date Range', name: 'date', type: 'daterange', include: ['this','last'] }
       ],
       link: '/admin/expenses/approvals/advances/#{id}',
