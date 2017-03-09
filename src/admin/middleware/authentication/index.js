@@ -1,3 +1,4 @@
+import moment from 'moment'
 import knex from 'platform/services/knex'
 import passport from 'platform/services/passport'
 import Installation from 'platform/models/installation'
@@ -17,11 +18,14 @@ export default (req, res, next) => {
         return reject({ code: 401, message: info.message })
       }
 
-      req.jwt = info
-      req.team = user.related('team')
-      req.user = user
+      user.save({ last_online_at: moment() }, { patch: true}).then(user => {
 
-      resolve(user)
+        req.jwt = info
+        req.team = user.related('team')
+        req.user = user
+        resolve(user)
+
+      })
 
     })(req, res, next)
 

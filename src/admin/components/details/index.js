@@ -67,11 +67,11 @@ class Details extends React.Component {
               <div className="chrome-details-content">
                 <div className="ui list">
                   {items.map((item, index) => {
-                    if(item.content !== null) {
+                    if(item.content !== null || item.content === undefined) {
                       return (
                         <div key={`item_${index}`} className="item">
                           <div className="header">{item.label}</div>
-                          <Format format={item.format} value={item.content} />
+                          <Format {...this.props} format={item.format} value={item.content} />
                         </div>
                       )
                     }

@@ -2,6 +2,7 @@ import React from 'react'
 import Page from 'admin/components/page'
 import Collection from 'admin/components/collection'
 import Avatar from 'admin/components/avatar'
+import moment from 'moment'
 import New from './new'
 
 class Index extends React.Component {
@@ -19,7 +20,7 @@ class Index extends React.Component {
       endpoint: '/admin/team/users',
       columns: [
         { label: 'Name', key: 'first_name', primary: true, format: NameCell },
-        { label: 'Active', key: 'is_active', primary: false, format: 'check_times' }
+        { label: 'Active', key: 'last_active_at', primary: true, format: ActiveCell }
       ],
       filters: [
         { label: 'Role', name: 'role_id', type: 'select', multiple: true, endpoint: '/admin/team/roles', value: 'id', text: 'title', sort: { key: 'title', order: 'asc' } },
@@ -44,6 +45,23 @@ var NameCell = (props) => {
       { props.email }
     </div>
   )
+}
+
+var ActiveCell = (props) => {
+  if(!props.last_online_at) {
+    return <i className="circle absent icon" />
+  }
+  const last_online_at = moment(props.last_online_at)
+  const diff = moment().diff(last_online_at, 'minutes')
+  if(diff > 15) {
+    return <i className="circle absent icon" />
+  } else if(diff > 10) {
+    return <i className="circle abandoned icon" />
+  } else if(diff > 5) {
+    return <i className="circle waiting icon" />
+  } else {
+    return <i className="circle present icon" />
+  }
 }
 
 const mapPropsToPage = (props, context) => ({

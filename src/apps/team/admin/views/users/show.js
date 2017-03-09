@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from 'moment'
 import Avatar from 'admin/components/avatar'
 import Details from 'admin/components/details'
 import Tabs from 'admin/components/tabs'
@@ -9,10 +10,11 @@ import Edit from './edit'
 class Show extends React.Component {
 
   render() {
+    const { user } = this.props
     return (
       <div className="chrome-body">
         <div className="chrome-sidebar">
-          <Details {...this._getDetails()} />
+          <Details {...user} {...this._getDetails()} />
         </div>
         <div className="chrome-content">
           <Tabs {...this.props} {...this._getTabs()} />
@@ -29,6 +31,7 @@ class Show extends React.Component {
         { label: 'Name ', content: user.full_name },
         { label: 'Email ', content: user.email, format: 'email' },
         { label: 'Active? ', content: user.is_active, format: 'yes_no' },
+        { label: 'Last Online ', format: LastOnlineFormat },
         { label: 'Created ', content: user.created_at, format: 'datetime' }
       ]
     }
@@ -40,6 +43,25 @@ class Show extends React.Component {
         { label: 'Roles', content: Roles },
         { label: 'Access', content: Access }
       ]
+    }
+  }
+
+}
+
+const LastOnlineFormat = (props) => {
+  if(!props.last_online_at) {
+    return <span><i className="circle absent icon" /> NEVER</span>
+  } else {
+    const last_online_at = moment(props.last_online_at)
+    const diff = moment().diff(last_online_at, 'minutes')
+    if(diff > 15) {
+      return <span><i className="circle absent icon" /> { moment(props.last_online_at).format('MM/DD/YY @ hh:mm A') }</span>
+    } else if(diff > 10) {
+      return <span><i className="circle abandoned icon" /> { moment(props.last_online_at).fromNow() }</span>
+    } else if(diff > 5) {
+      return <span><i className="circle waiting icon" /> { moment(props.last_online_at).fromNow() }</span>
+    } else {
+      return <span><i className="circle present icon" /> ONLINE NOW</span>
     }
   }
 

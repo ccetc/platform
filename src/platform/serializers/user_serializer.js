@@ -15,6 +15,7 @@ export default (object) => {
       description: role.get('description')
     })),
     is_active: object.get('is_active'),
+    last_online_at: object.get('last_online_at'),
     created_at: object.get('created_at'),
     updated_at: object.get('updated_at')
   })
