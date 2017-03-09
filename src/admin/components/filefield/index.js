@@ -78,8 +78,10 @@ class FileField extends React.Component {
 
   componentDidMount() {
     const { cid, defaultValue, onLoadFiles } = this.props
-    const ids = !_.isArray(defaultValue) ? [defaultValue] : defaultValue
-    onLoadFiles(cid, ids)
+    if(defaultValue) {
+      const ids = !_.isArray(defaultValue) ? [defaultValue] : defaultValue
+      onLoadFiles(cid, ids)
+    }
     this._initializeResumable()
   }
 
@@ -87,7 +89,7 @@ class FileField extends React.Component {
     const { files } = this.props
     if(files.length > prevProps.files.length) {
       this._handleUploadBegin()
-    } else if(files.length <= prevProps.files.length && this.refs.browse) {
+    } else if(files.length < prevProps.files.length) {
       this._initializeResumable()
     }
     files.map((file, index) => {

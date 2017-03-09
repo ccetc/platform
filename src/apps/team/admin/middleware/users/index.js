@@ -18,7 +18,7 @@ export default resources({
     create: createRoles,
     update: updateRoles
   },
-  allowedParams: ['first_name','last_name','email','is_active'],
+  allowedParams: ['first_name','last_name','email','is_active','photo_id'],
   filterParams: ['role_id','is_active'],
   defaultParams: (req) => Promise.resolve({
     is_active: true

@@ -35,7 +35,7 @@ export default (req, res, next) => {
           name: req.user.get('full_name'),
           initials: req.user.get('initials'),
           email: req.user.get('email'),
-          photo: req.user.related('photo').get('url'),
+          photo: req.user.related('photo').get('thumbnail_url'),
           unread: notifications.length,
           rights: req.rights
         }

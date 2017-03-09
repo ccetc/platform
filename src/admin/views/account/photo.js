@@ -16,7 +16,7 @@ class Edit extends React.Component {
       title: 'Edit Photo',
       method: 'patch',
       endpoint: '/admin/account',
-      action: '/admin/account',
+      action: '/admin/account/photo',
       successMessage: 'Your photo was successfully updated',
       onCancel: this.context.modal.pop,
       onSuccess: this.context.modal.pop,

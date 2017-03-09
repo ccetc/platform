@@ -35,7 +35,7 @@ export class Account extends React.Component {
             <i className="write icon" /> Edit account
           </div>
           <div className="chrome-account-task" onClick={this._handleModal.bind(this, Photo)}>
-            <i className="image icon" /> Change photo
+            <i className="image icon" /> { user.photo ? 'Change photo' : 'Upload photo' }
           </div>
           <div className="chrome-account-task" onClick={this._handleModal.bind(this, Password)}>
             <i className="lock icon" /> Change password
