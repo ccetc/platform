@@ -11,6 +11,8 @@ import XMLRenderer from '../renderers/xml'
 
 export default options => {
 
+  const tableName = options.model.extend().__super__.tableName
+
   const processor = req => {
 
     const withRelated = options.withRelated.list || options.withRelated.all
@@ -39,11 +41,11 @@ export default options => {
       }
 
       if(req.query.$exclude_ids) {
-        qb.whereNotIn('id', req.query.$exclude_ids)
+        qb.whereNotIn(`${tableName}.id`, req.query.$exclude_ids)
       }
 
       if(req.query.$ids) {
-        qb.whereIn('id', req.query.$ids)
+        qb.whereIn(`${tableName}.id`, req.query.$ids)
       }
 
       return qb
@@ -64,7 +66,6 @@ export default options => {
 
     }).fetchAll()
 
-    const tableName = options.model.extend().__super__.tableName
 
     const queryObject = query(knex(tableName)).toSQL()
 

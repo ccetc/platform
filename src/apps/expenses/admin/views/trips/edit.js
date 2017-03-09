@@ -18,8 +18,8 @@ class Edit extends React.Component {
     return {
       title: 'Edit Project',
       method: 'patch',
-      endpoint: `/admin/expenses/projects/${this.context.container.params.id}`,
-      action: `/admin/expenses/projects/${this.context.container.params.id}`,
+      endpoint: `/admin/expenses/trips/${this.context.container.params.id}/edit`,
+      action: `/admin/expenses/trips/${this.context.container.params.id}`,
       onCancel: this.context.modal.pop,
       onSuccess: this._handleSuccess.bind(this),
       sections: [

@@ -1,23 +1,22 @@
 import resources from 'platform/middleware/resources'
-import Member from '../../../models/member'
+import Project from '../../../models/project'
 
 export default resources({
-  model: Member,
+  model: Project,
   name: 'membership',
   only: 'list',
   query: (qb, req, filters) => {
-    qb.innerJoin('expenses_projects', 'expenses_projects.id', 'expenses_members.project_id')
-    qb.where('expenses_members.user_id', req.user.get('id'))
-    qb.where('expenses_members.is_active', true)
+    qb.select('expenses_projects.*', 'expenses_member_types.name as member_type')
+    qb.joinRaw('inner join expenses_members on expenses_members.project_id=expenses_projects.id and expenses_members.user_id=? and expenses_members.is_active=?', [req.user.get('id'), true])
+    qb.joinRaw('inner join expenses_member_types on expenses_member_types.id=expenses_members.member_type_id')
   },
-  serializer: (member) => {
+  serializer: (project) => {
     return Promise.resolve({
-      id: member.related('project').get('id'),
-      title: member.related('project').get('title'),
-      code: member.related('project').get('code'),
-      member_type: member.related('member_type').get('name').toLowerCase()
+      id: project.get('id'),
+      title: project.get('title'),
+      code: project.get('code'),
+      member_type: project.get('member_type').toLowerCase()
     })
   },
-  searchParams: ['title'],
-  withRelated: ['project','member_type']
+  searchParams: ['title']
 })

@@ -16,8 +16,7 @@ class Lookup extends React.Component {
   }
 
   render() {
-    const { disabled, format, prompt, selected, results, text } = this.props
-    const chosen = (selected !== null) ? results[selected] : null
+    const { chosen, disabled, format, prompt, text } = this.props
     const value = chosen ? _.get(chosen, text) : ''
     return (
       <div className="lookup-field">
@@ -40,6 +39,14 @@ class Lookup extends React.Component {
        }
      </div>
     )
+  }
+
+  componentDidMount() {
+    const { cid, defaultValue, endpoint, onLoad } = this.props
+    if(defaultValue) {
+      const params = { $ids: [ defaultValue ] }
+      onLoad(cid, params, endpoint)
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -68,6 +75,7 @@ class Lookup extends React.Component {
 
 const mapStateToProps = (state, props) => ({
   active: state.lookup[props.cid].active,
+  chosen: state.lookup[props.cid].chosen,
   selected: state.lookup[props.cid].selected,
   results: state.lookup[props.cid].results
 })
@@ -75,6 +83,7 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = {
   onBegin: actions.begin,
   onClear: actions.clear,
+  onLoad: actions.load,
   onLookup: actions.lookup
 }
 

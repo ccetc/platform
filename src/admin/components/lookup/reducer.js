@@ -2,6 +2,7 @@ import * as actionTypes from './action_types'
 
 const INITIAL_VALUE = {
   active: false,
+  chosen: null,
   selected: null,
   query: '',
   results: [],
@@ -21,6 +22,7 @@ export default (state = INITIAL_VALUE, action) => {
   case actionTypes.CLEAR:
     return {
       ...state,
+      chosen: null,
       selected: null
     }
 
@@ -34,6 +36,7 @@ export default (state = INITIAL_VALUE, action) => {
     return {
       ...state,
       active: false,
+      chosen: state.results[action.index],
       selected: action.index
     }
 
@@ -48,6 +51,12 @@ export default (state = INITIAL_VALUE, action) => {
       ...state,
       status: 'loading',
       query: action.params.q
+    }
+
+  case actionTypes.LOAD_SUCCESS:
+    return {
+      ...state,
+      chosen: action.data[0]
     }
 
   case actionTypes.LOOKUP_SUCCESS:

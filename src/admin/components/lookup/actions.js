@@ -33,6 +33,17 @@ export function type(q) {
   }
 }
 
+export function load(cid, params, endpoint) {
+  return api.get({
+    params,
+    endpoint,
+    meta: { cid },
+    request: actionTypes.LOAD_REQUEST,
+    success: actionTypes.LOAD_SUCCESS,
+    failure: actionTypes.LOAD_FAILURE
+  })
+}
+
 export function lookup(cid, params, endpoint) {
   return api.get({
     params,

@@ -6,8 +6,7 @@ import Tabs from 'admin/components/tabs'
 import Avatar from 'admin/components/avatar'
 import NewMember from './members/new'
 import EditMember from './members/edit'
-import EditExpenseType from './expense_types/edit'
-import Checkbox from 'admin/components/checkbox'
+import ExpenseTypes from '../../components/expense_types'
 
 class Show extends React.Component {
 
@@ -86,37 +85,6 @@ class Members extends React.Component {
 
 }
 
-class ExpenseTypes extends React.Component {
-
-  static contextTypes = {
-    modal: React.PropTypes.object
-  }
-
-  render() {
-    const { expense_types } = this.props
-    return (
-      <div className="list project-members">
-        { expense_types.map((expense_type, index) => {
-          return (
-            <div key={`expense_type_${index}`} className="item project-member">
-              <p>
-                <strong>{expense_type.code}</strong><br />
-                {expense_type.title}
-              </p>
-              <Checkbox defaultValue={expense_type.enabled} onClick={this._handleClick.bind(this, expense_type.id)} />
-            </div>
-          )
-        }) }
-      </div>
-    )
-  }
-
-  _handleClick(id) {
-    this.context.modal.push(EditExpenseType)
-  }
-
-}
-
 const mapPropsToPage = (props, context) => ({
   title: 'Project',
   rights: ['expenses.manage_configuration'],
@@ -126,8 +94,7 @@ const mapPropsToPage = (props, context) => ({
   ],
   resources: {
     project: `/admin/expenses/projects/${props.params.id}`,
-    members: `/admin/expenses/projects/${props.params.id}/members`,
-    expense_types: `/admin/expenses/projects/${props.params.id}/expense_types/all`
+    members: `/admin/expenses/projects/${props.params.id}/members`
   }
 })
 

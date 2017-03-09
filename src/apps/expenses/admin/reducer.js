@@ -1,4 +1,5 @@
 import members from './components/members/reducer.js'
+import expense_types from './components/expense_types/reducer.js'
 import approve from './components/approve/reducer.js'
 
 export default (state, component, action) => {
@@ -7,7 +8,8 @@ export default (state, component, action) => {
 
     return {
       members: members(undefined, action),
-      approve: approve(undefined, action)
+      approve: approve(undefined, action),
+      expense_types: approve(undefined, action)
     }
 
   } else if(component === 'members') {
@@ -22,6 +24,13 @@ export default (state, component, action) => {
     return {
       ...state,
       approve: approve(state.approve, action)
+    }
+
+  } else if(component === 'expense_types') {
+
+    return {
+      ...state,
+      expense_types: expense_types(state.expense_types, action)
     }
 
   } else {
