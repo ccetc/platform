@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { getActiveTeam, getActiveUser } from 'admin/components/admin/selectors'
 import Avatar from 'admin/components/avatar'
 import Edit from './edit'
+import Photo from './photo'
 import Password from './password'
 
 export class Account extends React.Component {
@@ -32,6 +33,9 @@ export class Account extends React.Component {
         <div className="chrome-account-tasks">
           <div className="chrome-account-task" onClick={this._handleModal.bind(this, Edit)}>
             <i className="write icon" /> Edit account
+          </div>
+          <div className="chrome-account-task" onClick={this._handleModal.bind(this, Photo)}>
+            <i className="image icon" /> Change photo
           </div>
           <div className="chrome-account-task" onClick={this._handleModal.bind(this, Password)}>
             <i className="lock icon" /> Change password

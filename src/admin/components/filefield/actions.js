@@ -3,7 +3,7 @@ import api from 'admin/utils/api'
 
 export function loadFiles(cid, ids) {
   return api.get({
-    endpoint: '/admin/assets/upload',
+    endpoint: '/admin/assets',
     params: { $ids: ids },
     meta: { cid },
     request: actionTypes.LOAD_FILES_REQUEST,
