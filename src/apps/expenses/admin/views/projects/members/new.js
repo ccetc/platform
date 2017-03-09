@@ -25,7 +25,7 @@ class Member extends React.Component {
         {
           fields: [
             { label: 'User', name: 'user_id', type: 'lookup', prompt: 'Find a User', endpoint: `/admin/expenses/projects/${this.context.container.params.id}/members/unassigned`, value: 'id', text: 'full_name', format: UserFormat },
-            { label: 'Type', name: 'member_type_id', type: 'select', options: [ { value: 1, text: 'Owner' }, { value: 2, text: 'Approver' }, { value: 3, text: 'Member' }] }
+            { label: 'Type', name: 'member_type_id', type: 'select', options: [ { key: 1, value: 'Owner' }, { key: 2, value: 'Approver' }, { key: 3, value: 'Member' }] }
           ]
         }
       ]
