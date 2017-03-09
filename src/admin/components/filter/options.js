@@ -4,18 +4,19 @@ import _ from 'lodash'
 import { connect } from 'react-redux'
 import * as actions from './actions'
 import Infinite from 'admin/components/infinite'
+import Format from 'admin/utils/format'
 
 class Options extends React.Component {
 
   render() {
-    const { name, multiple, options, results } = this.props
+    const { name, format, multiple, options, results } = this.props
     return (
       <div className="filter-body">
         { options.map((option, index) => {
           return (
             <div key={`filter_${index}`} className="filter-item" onClick={ this._handleChoose.bind(this, option.value, option.text) }>
               <div className="filter-item-label">
-                { option.text }
+                <Format {...option.record} format={format} value={option.text} />
               </div>
               { option.description &&
                 <div className="filter-item-description">
@@ -74,12 +75,13 @@ class Dynamic extends React.Component {
   }
 
   _getOptions() {
-    const { name, multiple, records, text, value } = this.props
+    const { format, multiple, name, records, text, value } = this.props
     const options = records.map(record => {
-      return { value: _.get(record, value), text: _.get(record, text) }
+      return { value: _.get(record, value), text: _.get(record, text), record }
     })
     return {
       name,
+      format,
       multiple,
       options
     }

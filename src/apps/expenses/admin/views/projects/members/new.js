@@ -1,6 +1,6 @@
 import React from 'react'
 import Form from 'admin/components/form'
-import Avatar from 'admin/components/avatar'
+import UserFormat from '../../../components/user_format'
 
 class Member extends React.Component {
 
@@ -37,16 +37,6 @@ class Member extends React.Component {
     this.context.modal.pop()
   }
 
-}
-
-const UserFormat = (props) => {
-  return (
-    <div>
-      <Avatar user={ props } />
-      <strong>{ props.first_name } { props.last_name }</strong><br />
-      { props.email }
-    </div>
-  )
 }
 
 export default Member
