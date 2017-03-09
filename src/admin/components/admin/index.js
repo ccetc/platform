@@ -59,9 +59,15 @@ export class Admin extends React.Component {
       admin: {
         addTeam,
         chooseTeam,
-        removeTeam
+        removeTeam,
+        reloadSession: this._reloadSession.bind(this)
       }
     }
+  }
+
+  _reloadSession() {
+    const { team, onLoadSession } = this.props
+    onLoadSession(team.id, team.token)
   }
 
 }

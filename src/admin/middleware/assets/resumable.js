@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import Promise from 'bluebird'
 import Asset from 'platform/models/asset'
+import AssetSerializer from 'platform/serializers/asset_serializer'
 import aws from 'platform/services/aws'
 import Jimp from 'jimp'
 
@@ -29,8 +30,8 @@ const validateRequest = (params, files, requireFile) => {
 
   return new Promise((resolve, reject) => {
 
-    const maxChunkSize = 1024 * 8
-    const maxFileSize = 1024 * 1024 * 10
+    const maxChunkSize = 1024 * 512
+    const maxFileSize = 1024 * 1024 * 20
     const chunkNumber = params.resumableChunkNumber
     const chunkSize = params.resumableChunkSize
     const totalSize = params.resumableTotalSize
@@ -83,11 +84,11 @@ const checkUploadedFile = (req) => {
 
   return Asset.where(data).fetch().then(asset => {
 
-    if(asset) {
-      return 'previously uploaded'
-    }
-
     return new Promise((resolve, reject) => {
+
+      if(asset) {
+        return AssetSerializer(asset).then(data => resolve(data))
+      }
 
       if(!fs.existsSync(getAssetFilename(req.query.resumableFilename)) || fs.existsSync(getChunkFilename(req.query.resumableIdentifier, req.query.resumableChunkNumber))) {
         return reject({ message: 'not_found' })
@@ -110,8 +111,6 @@ const uploadChunk = (req) => {
   const identifier = cleanIdentifier(req.body.resumableIdentifier)
   const filename = req.body.resumableFilename
   const filepath = getAssetFilename(filename)
-  const thumbnailFilepath = getAssetFilename(`thumb/${filename}`)
-  const resizedFilepath = getAssetFilename(`resized/${filename}`)
 
   return new Promise((resolve, reject) => {
 

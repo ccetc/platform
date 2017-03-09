@@ -4,6 +4,7 @@ import Form from 'admin/components/form'
 class Edit extends React.Component {
 
   static contextTypes = {
+    admin: React.PropTypes.object,
     modal: React.PropTypes.object
   }
 
@@ -19,7 +20,7 @@ class Edit extends React.Component {
       action: '/admin/account',
       successMessage: 'Your account was successfully updated',
       onCancel: this.context.modal.pop,
-      onSuccess: this.context.modal.pop,
+      onSuccess: this._handleSuccess.bind(this),
       sections: [
         {
           fields: [
@@ -30,6 +31,11 @@ class Edit extends React.Component {
         }
       ]
     }
+  }
+
+  _handleSuccess() {
+    this.context.admin.reloadSession()
+    this.context.modal.pop()
   }
 
 }

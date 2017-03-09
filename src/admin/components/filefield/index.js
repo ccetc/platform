@@ -42,11 +42,11 @@ class FileField extends React.Component {
                 }
                 { file.status === 'uploading' &&
                   <div className="filefield-progress">
-                    <div className="ui small green progress" ref={`filefield_${file.uniqueIdentifier}_progress`}>
+                    <div className="ui green progress" ref={`filefield_${file.uniqueIdentifier}_progress`}>
                       <div className="bar" />
                     </div>
                     <p>
-                      { file.fileName } <span>({ bytes(file.fileSize, { decimalPlaces: 2, unitSeparator: ' ' }).toUpperCase() })</span>
+                      { file.fileName } ({ bytes(file.fileSize, { decimalPlaces: 2, unitSeparator: ' ' }).toUpperCase() })
                     </p>
                   </div>
                 }
@@ -105,7 +105,7 @@ class FileField extends React.Component {
     const { multiple, team } = this.props
     this.resumable = new Resumable({
       target: '/api/admin/assets/upload',
-      chunkSize: 1024 * 8,
+      chunkSize: 1024 * 512,
       maxFiles: multiple ? undefined : 1,
       headers: {
         'Authorization': `Bearer ${team.token}`

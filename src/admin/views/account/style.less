@@ -9,13 +9,17 @@
   flex: 1;
 }
 .chrome-account-identity  {
-  background: #EEE;
+  background: #333;
   height: 260px;
   padding: 40px 0;
-  border-bottom: 1px solid #DDD;
   .avatar {
-    width: 100px;
+    width: 125px;
     margin: 0 auto 20px;
+    .avatar-initials, img {
+      background-color: #EEE;
+      color: #333;
+      border: 4px solid #FFF;
+    }
     .avatar-text {
       font-size: 60px;
       line-height: 60px;
@@ -24,11 +28,12 @@
   h2 {
     text-align: center;
     margin: 0;
+    color: #FFF;
   }
   p {
     text-align: center;
     margin: 0;
-    color: #888;
+    color: #DDD;
   }
 }
 .chrome-account-task {

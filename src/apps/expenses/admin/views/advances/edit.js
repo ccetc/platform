@@ -26,7 +26,7 @@ class Edit extends React.Component {
         {
           fields: [
             { label: 'Date', name: 'date', type: 'datefield', placeholder: 'Date Needed', defaultValue: moment().format('YYYY-MM-DD') },
-            { label: 'Description', name: 'description', type: 'textarea', placeholder: 'Description' },
+            { label: 'Description', name: 'description', type: 'textfield', placeholder: 'Description' },
             { label: 'Amount', name: 'amount', type: 'textfield', placeholder: 'Amount', prefix: '$' },
             { label: 'Visa?', name: 'is_visa', type: 'checkbox' }
           ]

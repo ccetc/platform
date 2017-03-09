@@ -44,13 +44,17 @@
 
 .filefield-progress {
   margin: 0;
-  .progress {
-    margin-bottom: 5px !important;
+  position: relative;
+  .ui.progress {
+    margin: 0 !important;
+    background: #333;
   }
   p {
-    span {
-      color: #888 !important;
-    }
+    margin: 0;
+    position: absolute;
+    top: 2px;
+    left: 5px;
+    color: #FFF;
   }
 }
 .filefield-remove {

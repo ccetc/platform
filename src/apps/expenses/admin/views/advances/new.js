@@ -44,7 +44,7 @@ class New extends React.Component {
             { label: 'Delivery Method', name: 'delivery_method', type: 'select', placeholder: 'Delivery Method', required: true, options: [ { key: 'mail', value: 'Mail' }, { key: 'pickup', value: 'Pickup' }] },
             { label: 'Date Needed', name: 'date_needed', type: 'datefield', placeholder: 'Date Needed', required: true },
             { label: 'Amount', name: 'amount', type: 'textfield', placeholder: 'Amount', required: true, prefix: '$' },
-            { label: 'Description', name: 'description', type: 'textarea', placeholder: 'Description', required: true }
+            { label: 'Description', name: 'description', type: 'textfield', placeholder: 'Description', required: true }
           ]
         }
       ]
