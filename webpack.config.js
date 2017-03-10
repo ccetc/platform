@@ -1,5 +1,6 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const compile = require('./src/platform/utils/compile')
+const WriteIndex = require('./src/platform/utils/write_index')
 
 compile()
 
@@ -9,7 +10,7 @@ module.exports = {
   },
   output: {
     path: './public',
-    filename: 'js/[name].min.js'
+    filename: 'js/[name]-[hash].min.js'
   },
   module: {
     noParse: /node_modules\/localforage\/dist\/localforage.js/,
@@ -33,6 +34,7 @@ module.exports = {
     modulesDirectories: ['node_modules', 'src']
   },
   plugins: [
-    new ExtractTextPlugin('css/[name].min.css')
+    new ExtractTextPlugin('css/[name]-[hash].min.css'),
+    new WriteIndex()
   ]
 }
