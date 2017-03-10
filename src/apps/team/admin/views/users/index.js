@@ -24,7 +24,8 @@ class Index extends React.Component {
       ],
       filters: [
         { label: 'Role', name: 'role_id', type: 'select', multiple: true, endpoint: '/admin/team/roles', value: 'id', text: 'title', sort: { key: 'title', order: 'asc' } },
-        { label: 'Active', name: 'is_active', type: 'select', options: [{ value: '1', text: 'Active' }, { value: '0', text: 'Inactive' }] }
+        { label: 'Active', name: 'is_active', type: 'select', options: [{ value: '1', text: 'Active' }, { value: '0', text: 'Inactive' }] },
+        { label: 'Online', name: 'last_online_at', type: 'select', options: [{ value: 'now', text: 'Online Now' }, { value: 'today', text: 'Today' }, { value: 'today', text: 'Yesterday' }, { value: 'this_week', text: 'This Week' }, { value: 'null', text: 'Never' }] }
       ],
       link: '/admin/team/users/#{id}',
       entity: 'user',
