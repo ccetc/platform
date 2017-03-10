@@ -2,7 +2,7 @@ import React from 'react'
 import Page from 'admin/components/page'
 import Collection from 'admin/components/collection'
 import { ApprovalBadge } from '../../components/approval_status'
-import UserFormat from '../../components/user_format'
+import UserToken from '../../components/user_token'
 
 class Index extends React.Component {
 
@@ -25,7 +25,7 @@ class Index extends React.Component {
         { label: 'Status', key: 'is_approved', primary: true, format: ApprovalBadge }
       ],
       filters: [
-        { label: 'User', name: 'user_id', type: 'select', multiple: true, endpoint: '/admin/team/users', value: 'id', text: 'full_name', sort: { key: 'last_name', order: 'asc' }, format: UserFormat },
+        { label: 'User', name: 'user_id', type: 'select', multiple: true, endpoint: '/admin/team/users', value: 'id', text: 'full_name', sort: { key: 'last_name', order: 'asc' }, format: UserToken },
         { label: 'Projects', name: 'project_id', type: 'select', multiple: true, endpoint: '/admin/expenses/projects', value: 'id', text: 'title' },
         { label: 'Date Range', name: 'date', type: 'daterange', include: ['this','last'] },
         { label: 'Status', name: 'is_approved', type: 'select', options: [ { value: 'null', text: 'Unreviewed' }, { value: '1', text: 'Approved' }, { value: '0', text: 'Rejected' } ] }

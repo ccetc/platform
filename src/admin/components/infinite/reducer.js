@@ -18,7 +18,6 @@ export default (state = INITIAL_STATE, action) => {
   case actionTypes.FETCH_REQUEST:
     return {
       ...state,
-      records: (action.params.$page.skip > 0) ? state.records : [],
       status: 'loading'
     }
 
@@ -27,10 +26,10 @@ export default (state = INITIAL_STATE, action) => {
     return {
       ...state,
       all: action.pagination.all,
-      records: [
+      records: (action.pagination.skip > 0) ? [
         ...state.records,
         ...action.data
-      ],
+      ] : action.data,
       loaded,
       total: action.pagination.total,
       status: (loaded >= action.pagination.total) ? 'completed' : 'loaded'

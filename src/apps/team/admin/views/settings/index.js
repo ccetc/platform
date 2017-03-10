@@ -2,6 +2,7 @@ import React from 'react'
 import Page from 'admin/components/page'
 import Collection from 'admin/components/collection'
 import Edit from './edit'
+import AppToken from '../../components/app_token'
 
 class Index extends React.Component {
 
@@ -17,7 +18,7 @@ class Index extends React.Component {
     return {
       endpoint: '/admin/team/apps',
       columns: [
-        { label: 'Title', key: 'title', primary: true, format: TitleCell }
+        { label: 'Title', key: 'title', primary: true, format: AppToken }
       ],
       entity: 'app',
       modal: Edit,
@@ -25,17 +26,6 @@ class Index extends React.Component {
     }
   }
 
-}
-
-var TitleCell = (props) => {
-  return (
-    <div className="settings">
-      <div className="app-icon">
-        <i className={`${props.icon} icon`} />
-      </div>
-      { props.title }
-    </div>
-  )
 }
 
 const mapPropsToPage = (props, context) => ({

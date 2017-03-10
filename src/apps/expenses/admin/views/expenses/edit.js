@@ -1,7 +1,7 @@
 import React from 'react'
 import Form from 'admin/components/form'
 import moment from 'moment'
-import ExpenseTypeFormat from '../../utils/expense_type_format'
+import ExpenseTypeToken from '../../components/expense_type_token'
 
 class Edit extends React.Component {
 

@@ -3,6 +3,7 @@ import _ from 'lodash'
 
 export const INITIAL_STATE = {
   active: null,
+  q: '',
   query: '',
   results: {}
 }
@@ -86,17 +87,24 @@ export default (state = INITIAL_STATE, action) => {
       }
     }
 
+  case actionTypes.TYPE:
+    return {
+      ...state,
+      query: action.query
+    }
+
   case actionTypes.LOOKUP:
     return {
       ...state,
-      query: action.query,
+      q: action.q,
       results: {}
     }
 
   case actionTypes.ABORT:
     return {
       ...state,
-      query: ''
+      query: '',
+      q: ''
     }
 
   default:

@@ -60,12 +60,14 @@ class Select extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  query: state.filter.query
+  query: state.filter.query,
+  q: state.filter.q
 })
 
 const mapDispatchToProps = {
   onBack: actions.back,
   onAbort: actions.abort,
+  onType: actions.type,
   onLookup: actions.lookup,
   onUpdate: actions.update,
   onReset: actions.reset

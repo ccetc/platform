@@ -68,10 +68,17 @@ export function remove(key, index) {
   }
 }
 
-export function lookup(query) {
+export function type(query) {
+  return {
+    type: actionTypes.TYPE,
+    query
+  }
+}
+
+export function lookup(q) {
   return {
     type: actionTypes.LOOKUP,
-    query
+    q
   }
 }
 

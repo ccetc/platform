@@ -91,6 +91,13 @@ class Dynamic extends React.Component {
 
 class Container extends React.Component {
 
+  constructor(props) {
+    super(props)
+    this._handleLookup = _.throttle(value => {
+      this.props.onLookup(value)
+    }, 500)
+  }
+
   render() {
     const { endpoint, label, query } = this.props
     if(endpoint) {
@@ -99,7 +106,7 @@ class Container extends React.Component {
           <div className="filter-search-form ui form">
             <div className="filter-search-input">
               <i className="search icon" />
-              <input type="text" placeholder={`Find a ${label}...`} onChange={ this._handleLookup.bind(this) } ref="results" value={query} />
+              <input type="text" placeholder={`Find a ${label}...`} onChange={ this._handleType.bind(this) } ref="results" value={query} />
               { query.length > 0 && <i className="remove circle icon" onClick={ this._handleAbort.bind(this) } /> }
             </div>
           </div>
@@ -115,18 +122,19 @@ class Container extends React.Component {
   }
 
   _getInfinite() {
-    const { endpoint, sort, query } = this.props
+    const { endpoint, sort, q } = this.props
     return {
       endpoint,
       filter: {
-        q: query
+        q
       },
       sort
     }
   }
 
-  _handleLookup(event) {
-    this.props.onLookup(event.target.value)
+  _handleType(event) {
+    this.props.onType(event.target.value)
+    this._handleLookup(event.target.value)
   }
 
   _handleAbort() {

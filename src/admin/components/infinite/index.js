@@ -43,8 +43,8 @@ class Infinite extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { filter, sort, loaded, records, status } = this.props
-    if(prevProps.sort !== sort || prevProps.filter !== filter) {
-      this.props.onReset(this.props.cid)
+    if(!_.isEqual(prevProps.sort, sort) || !_.isEqual(prevProps.filter, filter)) {
+      this._handleFetch(0)
     } else if(prevProps.status !== status) {
       if(status === 'loaded' && records.length > 0) {
         this._attachScrollListener()

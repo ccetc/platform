@@ -33,56 +33,54 @@ class Search extends React.Component {
          </div>
          <div className="chrome-modal-panel-header-proceed" />
        </div>
-       <div className="chrome-modal-panel-body">
-         <div className="lookup-panel">
-           <div className="lookup-panel-search">
-             <div className="ui form">
-              <input type="text" placeholder={`Find a ${label}...`} onChange={this._handleType.bind(this)} ref="query" />
+       <div className="lookup-panel">
+         <div className="lookup-panel-search">
+           <div className="ui form">
+            <input type="text" placeholder={`Find a ${label}...`} onChange={this._handleType.bind(this)} ref="query" />
+           </div>
+         </div>
+         { status === 'loading' &&
+           <div className="lookup-panel-loader">
+             <div className="chrome-loader">
+               <div className="ui active inverted dimmer">
+                 <div className="ui large text loader">Loading</div>
+               </div>
              </div>
            </div>
-           { status === 'loading' &&
-             <div className="lookup-panel-loader">
-               <div className="chrome-loader">
-                 <div className="ui active inverted dimmer">
-                   <div className="ui large text loader">Loading</div>
-                 </div>
-               </div>
+         }
+         { status === 'success' && results.length === 0 &&
+           <div className="lookup-panel-empty">
+             <div className="lookup-panel-empty-message">
+               <h2><i className="circular remove icon" /></h2>
+               <h3>No Results Found</h3>
+               <p>No {label} match your query</p>
              </div>
-           }
-           { status === 'success' && results.length === 0 &&
-             <div className="lookup-panel-empty">
-               <div className="lookup-panel-empty-message">
-                 <h2><i className="circular remove icon" /></h2>
-                 <h3>No Results Found</h3>
-                 <p>No {label} match your query</p>
-               </div>
-             </div>
-           }
-           { status === 'success' && results.length > 0 &&
-             <div className="lookup-panel-results">
-               { results.map((result, index) => {
-                 const value = _.get(result, text)
-                 return (
-                   <div key={`result_${index}`} className="lookup-panel-result" onClick={ this._handleChoose.bind(this, index) }>
-                     <div className="lookup-panel-result-label">
-                       <Format {...result} format={format} value={value} />
-                     </div>
-                     <div className="lookup-panel-result-icon">
-                       { index === selected ? <i className="green check icon" /> : null }
-                     </div>
+           </div>
+         }
+         { status === 'success' && results.length > 0 &&
+           <div className="lookup-panel-results">
+             { results.map((result, index) => {
+               const value = _.get(result, text)
+               return (
+                 <div key={`result_${index}`} className="lookup-panel-result" onClick={ this._handleChoose.bind(this, index) }>
+                   <div className="lookup-panel-result-label">
+                     <Format {...result} format={format} value={value} />
                    </div>
-                 )
-               })}
+                   <div className="lookup-panel-result-icon">
+                     { index === selected ? <i className="green check icon" /> : null }
+                   </div>
+                 </div>
+               )
+             })}
+           </div>
+         }
+         { form &&
+           <div className="lookup-panel-add">
+             <div className="ui fluid blue button" onClick={ this._handleAdd.bind(this)}>
+               Add {label}
              </div>
-           }
-           { form &&
-             <div className="lookup-panel-add">
-               <div className="ui fluid blue button" onClick={ this._handleAdd.bind(this)}>
-                 Add {label}
-               </div>
-             </div>
-           }
-         </div>
+           </div>
+         }
        </div>
      </div>
     )
