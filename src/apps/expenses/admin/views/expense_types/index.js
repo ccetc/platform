@@ -2,6 +2,7 @@ import React from 'react'
 import Page from 'admin/components/page'
 import Collection from 'admin/components/collection'
 import New from './new'
+import ExpenseTypeToken from '../../components/expense_type_token'
 
 class Index extends React.Component {
 
@@ -17,7 +18,7 @@ class Index extends React.Component {
     return {
       endpoint: '/admin/expenses/expense_types',
       columns: [
-        { label: 'Title', key: 'title', primary: true, format: TitleCell },
+        { label: 'Title', key: 'title', primary: true, format: ExpenseTypeToken },
         { label: 'Code', key: 'code', primary: true }
       ],
       sort: { key: 'code', order: 'asc' },
@@ -32,15 +33,6 @@ class Index extends React.Component {
     }
   }
 
-}
-
-var TitleCell = (props) => {
-  return (
-    <div>
-      <strong>{ props.title }</strong><br />
-      { props.description }
-    </div>
-  )
 }
 
 

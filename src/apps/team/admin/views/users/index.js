@@ -20,7 +20,7 @@ class Index extends React.Component {
       endpoint: '/admin/team/users',
       columns: [
         { label: 'Name', key: 'first_name', primary: true, format: NameCell },
-        { label: 'Active', key: 'last_active_at', primary: true, format: ActiveCell }
+        { label: 'Online', key: 'last_online_at', primary: true, format: ActiveCell, collapsing: true, centered: true }
       ],
       filters: [
         { label: 'Role', name: 'role_id', type: 'select', multiple: true, endpoint: '/admin/team/roles', value: 'id', text: 'title', sort: { key: 'title', order: 'asc' } },

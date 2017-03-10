@@ -26,9 +26,11 @@ class Table extends React.Component {
             <div className="table-head">
               <div className="table-row">
                 {columns.map((column, index) => {
-                  const classes = (column.primary) ? 'table-header mobile' : 'table-header'
+                  let classes = ['table-header']
+                  if(column.primary) classes.push('mobile')
+                  if(column.collapsing) classes.push('collapsing')
                   return (
-                    <div key={ `fixed_header_${index}` } className={ classes } onClick={ this._handleSort.bind(this, column.key) }>
+                    <div key={ `fixed_header_${index}` } className={ classes.join(' ') } onClick={ this._handleSort.bind(this, column.key) }>
                       { column.label }
                       { (sort.key == column.key) && ((sort.order == 'asc') ? <i className="chevron up icon" /> : <i className="chevron down icon" />) }
                     </div>
@@ -40,14 +42,16 @@ class Table extends React.Component {
               </div>
             </div>
             <div className="table-body">
-
               {records.map((record, recordIndex) => {
 
                 const row = columns.map((column, columnIndex) => {
                   const value = _.get(record, column.key)
-                  const classes = (column.primary) ? 'table-cell mobile' : 'table-cell'
+                  let classes = ['table-header']
+                  if(column.primary) classes.push('mobile')
+                  if(column.collapsing) classes.push('collapsing')
+                  if(column.centered) classes.push('centered')
                   return (
-                    <div key={ `cell_${recordIndex}_${columnIndex}` } className={ classes }>
+                    <div key={ `cell_${recordIndex}_${columnIndex}` } className={ classes.join(' ') }>
                       <Format {...record} format={column.format} value={value} />
                     </div>
                   )
