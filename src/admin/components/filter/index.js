@@ -47,7 +47,7 @@ class Filter extends React.Component {
                 })
               } else if(_.isObject(results[field.name])) {
                 return (
-                  <span className="ui small basic button">
+                  <span key="filter_remove"  className="ui small basic button">
                     <span className="label" onClick={ this._handleOpen.bind(this) }>
                       { results[field.name].value }
                     </span>

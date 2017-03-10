@@ -15,7 +15,7 @@ class Options extends React.Component {
         <div className="filter-results">
           { options.map((option, index) => {
             return (
-              <div key={`filter_${index}`} className="filter-item" onClick={ this._handleChoose.bind(this, option.value, option.text) }>
+              <div key={`filter_${index}`} className="filter-item" onClick={ this._handleChoose.bind(this, option.value, option.text, option.token) }>
                 <div className="filter-item-label">
                   <Format {...option.record} format={format} value={option.text} />
                 </div>
@@ -50,15 +50,15 @@ class Options extends React.Component {
     }
   }
 
-  _handleChoose(key, value) {
+  _handleChoose(key, value, token) {
     const { name, multiple, results } = this.props
     let values = null
     if(multiple) {
       values = results[name] || []
-      values = _.find(values, { key }) ? _.filter(values, item => (item.key !== key)) : [ ...values, { key, value } ]
+      values = _.find(values, { key }) ? _.filter(values, item => (item.key !== key)) : [ ...values, { key, value: token || value } ]
     } else {
       if(!results[name] || results[name].key !== key) {
-        values = { key, value }
+        values = { key, value: token || value }
       }
     }
     this.props.onUpdate(name, values)

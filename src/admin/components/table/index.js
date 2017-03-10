@@ -46,7 +46,7 @@ class Table extends React.Component {
 
                 const row = columns.map((column, columnIndex) => {
                   const value = _.get(record, column.key)
-                  let classes = ['table-header']
+                  let classes = ['table-cell']
                   if(column.primary) classes.push('mobile')
                   if(column.collapsing) classes.push('collapsing')
                   if(column.centered) classes.push('centered')
