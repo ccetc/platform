@@ -3,8 +3,7 @@ div.avatar {
 		width: 100%;
 		padding-top: 100%;
 		position: relative;
-		div.avatar-initials,
-		img {
+		div.avatar-wrapper {
 			.border-radius(50%);
 			position: absolute;
 			width: 100%;
@@ -17,6 +16,10 @@ div.avatar {
 			color: @avatar_color;
 			font-family: monospace;
 			display: flex;
+			overflow: hidden;
+			img {
+				width: 100%;
+			}
 			div.avatar-text {
 				margin: auto;
 			}

@@ -11,14 +11,10 @@ export class Avatar extends React.Component {
     return (
       <div className="avatar">
         <div className="avatar-badge">
-          { user.photo ?
-            <img src={user.photo} /> :
-            <div className="avatar-initials">
-              <div className="avatar-text">
-                { user.initials }
-              </div>
-            </div>
-          }
+          <div className="avatar-wrapper">
+            { user.photo && <img src={user.photo} /> }
+            { !user.photo && <div className="avatar-text">{ user.initials }</div> }
+          </div>
         </div>
       </div>
     )
