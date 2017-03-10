@@ -111,7 +111,7 @@ class Infinite extends React.Component {
     if(!el || status == 'loading') return
     const bottomScrollPos = el.scrollTop + el.offsetHeight
     const bottomPosition = (el.scrollHeight - bottomScrollPos)
-    if(bottomPosition < 250 && status !== 'laoding' && loaded < total) {
+    if(bottomPosition < 500 && status !== 'laoding' && loaded < total) {
       this._handleFetch(loaded)
     }
   }
