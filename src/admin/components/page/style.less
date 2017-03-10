@@ -65,16 +65,14 @@
       background: @black;
     }
     .chrome-content {
+      .scrollable();
       flex: 1;
-      overflow-y: scroll;
-      -webkit-overflow-scrolling: touch;
       display: relative;
     }
   }
   @media only screen and (max-width: 767px) {
+    .scrollable();
     flex-direction: column;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
   }
 }
 .chrome-error {
@@ -106,5 +104,5 @@
 .chrome-infinite-loader {
   height: 50px;
   position: relative;
-  background: #EEE;
+  background: #DDD;
 }

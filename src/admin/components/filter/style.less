@@ -1,9 +1,7 @@
 .filters {
+  .scrollable();
   width: 100vw;
   white-space: nowrap;
-	overflow-y: hidden;
-	overflow-x: scroll;
-	-webkit-overflow-scrolling: touch;
   background-color: #333333;
 }
 .filter-tokens {
@@ -85,9 +83,13 @@
 }
 .filter-body {
   flex: 1;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
+  display: flex;
   background-color: #FFFFFF;
+  flex-direction: column;
+}
+.filter-results {
+  .scrollable();
+  flex: 1;
 }
 .filter-search {
   flex: 1;

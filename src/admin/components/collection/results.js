@@ -56,8 +56,8 @@ class Results extends React.Component {
               </div>
             </div>
           }
-          { status === 'completed' && columns && records.length > 0 && <Table { ...this._getTable() } /> }
-          { status === 'completed' && layout && records.length > 0 && React.createElement(layout, { ...this._getLayout() }) }
+          { records.length > 0 && columns && <Table { ...this._getTable() } /> }
+          { records.length > 0 && layout && React.createElement(layout, { ...this._getLayout() }) }
           { status === 'completed' && records.length === 0 &&
             <div className="table-empty">
               <div className="table-empty-message">

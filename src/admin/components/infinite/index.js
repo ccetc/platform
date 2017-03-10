@@ -76,14 +76,15 @@ class Infinite extends React.Component {
 
   _container() {
     if(!this.container) {
-      this.container = ReactDOM.findDOMNode(this)
+      const children = ReactDOM.findDOMNode(this).children
+      this.container = children[children.length - 1]
     }
     return this.container
   }
 
   _listener() {
     if(!this.listener) {
-      this.listener = _.throttle(this._scrollListener.bind(this), 100)
+      this.listener = _.throttle(this._scrollListener.bind(this), 50)
     }
     return this.listener
   }
@@ -110,7 +111,7 @@ class Infinite extends React.Component {
     if(!el || status == 'loading') return
     const bottomScrollPos = el.scrollTop + el.offsetHeight
     const bottomPosition = (el.scrollHeight - bottomScrollPos)
-    if(bottomPosition < 250 && loaded < total) {
+    if(bottomPosition < 250 && status !== 'laoding' && loaded < total) {
       this._handleFetch(loaded)
     }
   }

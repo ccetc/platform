@@ -9,26 +9,35 @@ import Format from 'admin/utils/format'
 class Options extends React.Component {
 
   render() {
-    const { name, format, multiple, options, results } = this.props
+    const { name, format, multiple, options, results, status } = this.props
     return (
       <div className="filter-body">
-        { options.map((option, index) => {
-          return (
-            <div key={`filter_${index}`} className="filter-item" onClick={ this._handleChoose.bind(this, option.value, option.text) }>
-              <div className="filter-item-label">
-                <Format {...option.record} format={format} value={option.text} />
-              </div>
-              { option.description &&
-                <div className="filter-item-description">
-                  { option.description }
+        <div className="filter-results">
+          { options.map((option, index) => {
+            return (
+              <div key={`filter_${index}`} className="filter-item" onClick={ this._handleChoose.bind(this, option.value, option.text) }>
+                <div className="filter-item-label">
+                  <Format {...option.record} format={format} value={option.text} />
                 </div>
-              }
-              <div className="filter-item-icon">
-                { this._checked(name, multiple, results, option) ? <i className="green check icon" /> : null }
+                { option.description &&
+                  <div className="filter-item-description">
+                    { option.description }
+                  </div>
+                }
+                <div className="filter-item-icon">
+                  { this._checked(name, multiple, results, option) ? <i className="green check icon" /> : null }
+                </div>
+              </div>
+            )
+          }) }
+          { status === 'loading' &&
+            <div className="chrome-infinite-loader">
+              <div className="ui active inverted dimmer">
+                <div className="ui small loader"></div>
               </div>
             </div>
-          )
-        }) }
+          }
+        </div>
       </div>
     )
   }
@@ -75,7 +84,7 @@ class Dynamic extends React.Component {
   }
 
   _getOptions() {
-    const { format, multiple, name, records, text, value } = this.props
+    const { format, multiple, name, records, text, value, status } = this.props
     const options = records.map(record => {
       return { value: _.get(record, value), text: _.get(record, text), record }
     })
@@ -83,7 +92,8 @@ class Dynamic extends React.Component {
       name,
       format,
       multiple,
-      options
+      options,
+      status
     }
   }
 

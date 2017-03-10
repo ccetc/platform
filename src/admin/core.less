@@ -155,6 +155,10 @@ body {
     .translateY(@end);
   })
 }
+.scrollable {
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+}
 
 &.next-appear, &.next-enter, &.next-leave {
 	.transition(transform .5s cubic-bezier(0.7, 0, 0.175, 1) 0s);
