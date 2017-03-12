@@ -22,26 +22,23 @@ export class Topbar extends React.Component {
   render() {
     const { children, user } = this.props
     return (
-      <div>
-        <div className="chrome-topbar">
-          <div className="chrome-topbar-icon" onClick={this._handleOpenNavigation.bind(this)}>
-            <i className="sidebar icon" />
-          </div>
-          <div className="chrome-filler"></div>
-          <div className="chrome-topbar-icon" onClick={this._handleOpenSearch.bind(this)}>
-            <i className="search icon" />
-          </div>
-          <div className="chrome-topbar-icon" onClick={this._handleOpenNotifications.bind(this)}>
-            <i className="alarm icon" />
-            { user.unread > 0 &&
-              <div className="chrome-alerts-label">{ user.unread }</div>
-            }
-          </div>
-          <div className="chrome-topbar-icon" onClick={this._handleOpenAccount.bind(this)}>
-            <Avatar user={ user } />
-          </div>
+      <div className="chrome-topbar">
+        <div className="chrome-topbar-icon" onClick={this._handleOpenNavigation.bind(this)}>
+          <i className="sidebar icon" />
         </div>
-        { children }
+        <div className="chrome-filler"></div>
+        <div className="chrome-topbar-icon" onClick={this._handleOpenSearch.bind(this)}>
+          <i className="search icon" />
+        </div>
+        <div className="chrome-topbar-icon" onClick={this._handleOpenNotifications.bind(this)}>
+          <i className="alarm icon" />
+          { user.unread > 0 &&
+            <div className="chrome-alerts-label">{ user.unread }</div>
+          }
+        </div>
+        <div className="chrome-topbar-icon" onClick={this._handleOpenAccount.bind(this)}>
+          <Avatar user={ user } />
+        </div>
       </div>
     )
   }
