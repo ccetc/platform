@@ -18,6 +18,7 @@ exports.up = function(knex, Promise) {
       table.text('description')
       table.decimal('amount', 6, 2)
       table.boolean('is_visa')
+      table.boolean('is_submitted')
       table.boolean('is_approved')
       table.integer('approved_by_id').unsigned()
       table.foreign('approved_by_id').references('users.id')

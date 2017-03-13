@@ -18,6 +18,9 @@ export default model.extend({
         type: 'project',
         text: this.get('title')
       }
+    },
+    description: function() {
+      return this.get('code') + ' - ' + this.get('title')
     }
   },
 

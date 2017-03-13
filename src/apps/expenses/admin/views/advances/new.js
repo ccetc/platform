@@ -5,6 +5,8 @@ import ExpenseTypeToken from '../../components/expense_type_token'
 class New extends React.Component {
 
   static contextTypes = {
+    container: React.PropTypes.object,
+    history: React.PropTypes.object,
     modal: React.PropTypes.object
   }
 
@@ -27,7 +29,7 @@ class New extends React.Component {
       method: 'post',
       action: '/admin/expenses/advances',
       onCancel: this.context.modal.pop,
-      onSuccess: this.context.modal.pop,
+      onSuccess: this._handleSuccess.bind(this),
       onChangeField: (key, value) => {
         if(key === 'project_id') {
           this.setState({
@@ -64,6 +66,11 @@ class New extends React.Component {
         }
       ]
     }
+  }
+
+  _handleSuccess(advance) {
+    this.context.modal.pop()
+    this.context.history.push(`/admin/expenses/advances/${advance.id}`)
   }
 
 }

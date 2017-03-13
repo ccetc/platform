@@ -4,6 +4,7 @@ import Collection from 'admin/components/collection'
 import { ApprovalBadge } from '../../components/approval_status'
 import UserToken from '../../components/user_token'
 import ExpenseTypeToken from '../../components/expense_type_token'
+import ProjectToken from '../../components/project_token'
 
 class Index extends React.Component {
 
@@ -29,7 +30,7 @@ class Index extends React.Component {
       ],
       filters: [
         { label: 'User', name: 'user_id', type: 'select', multiple: true, endpoint: '/admin/team/users', value: 'id', text: 'full_name', sort: { key: 'last_name', order: 'asc' }, format: UserToken },
-        { label: 'Projects', name: 'project_id', type: 'select', multiple: true, endpoint: '/admin/expenses/projects', value: 'id', text: 'title' },
+        { label: 'Projects', name: 'project_id', type: 'select', multiple: true, endpoint: '/admin/expenses/projects', value: 'id', text: 'title', format: ProjectToken },
         { label: 'Expense Type', name: 'expense_type_id', type: 'select', endpoint: '/admin/expenses/expense_types', value: 'id', text: 'title', format: ExpenseTypeToken },
         { label: 'Vendor', name: 'vendor_id', type: 'select', endpoint: '/admin/expenses/vendors', value: 'id', text: 'name' },
         { label: 'Date Range', name: 'date_needed', type: 'daterange', include: ['this','last','next'] },

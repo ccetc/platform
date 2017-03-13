@@ -14,7 +14,6 @@ class Show extends React.Component {
           <ApprovalAlert {...expense} />
           <Details {...this._getDetails()} />
         </div>
-        <div className="chrome-content" />
       </div>
     )
   }

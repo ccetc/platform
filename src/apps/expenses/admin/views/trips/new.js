@@ -5,6 +5,8 @@ import moment from 'moment'
 class New extends React.Component {
 
   static contextTypes = {
+    container: React.PropTypes.object,
+    history: React.PropTypes.object,
     modal: React.PropTypes.object
   }
 
@@ -18,7 +20,7 @@ class New extends React.Component {
       method: 'post',
       action: '/admin/expenses/trips',
       onCancel: this.context.modal.pop,
-      onSuccess: this.context.modal.pop,
+      onSuccess: this._handleSuccess.bind(this),
       sections: [
         {
           fields: [
@@ -34,6 +36,11 @@ class New extends React.Component {
         }
       ]
     }
+  }
+
+  _handleSuccess(trip) {
+    this.context.modal.pop()
+    this.context.history.push(`/admin/expenses/trips/${trip.id}`)
   }
 
 }

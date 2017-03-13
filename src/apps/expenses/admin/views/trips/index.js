@@ -3,6 +3,7 @@ import Page from 'admin/components/page'
 import Collection from 'admin/components/collection'
 import New from './new'
 import { AprrovalBadge } from '../../components/approval_status'
+import ProjectToken from '../../components/project_token'
 
 class Index extends React.Component {
 
@@ -25,9 +26,9 @@ class Index extends React.Component {
         { label: 'Status', key: 'is_approved', primary: true, format: AprrovalBadge }
       ],
       filters: [
-        { label: 'Projects', name: 'project_id', type: 'select', multiple: true, endpoint: '/admin/expenses/projects', value: 'id', text: 'title' },
+        { label: 'Projects', name: 'project_id', type: 'select', multiple: true, endpoint: '/admin/expenses/projects', value: 'id', text: 'title', format: ProjectToken },
         { label: 'Date Range', name: 'date', type: 'daterange', include: ['this','last'] },
-        { label: 'Status', name: 'is_approved', type: 'select', options: [ { value: 'null', text: 'Unreviewed' }, { value: '1', text: 'Approved' }, { value: '0', text: 'Rejected' } ] }
+        { label: 'Status', name: 'is_approved', type: 'select', multiple: true, options: [ { value: 'null', text: 'Unreviewed' }, { value: '1', text: 'Approved' }, { value: '0', text: 'Rejected' } ] }
       ],
       link: '/admin/expenses/trips/#{id}',
       sort: { key: 'created_at', order: 'desc' },

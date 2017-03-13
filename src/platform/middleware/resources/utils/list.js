@@ -47,11 +47,25 @@ export const filter = (qb, filters) => {
 
     } else if(filters[key].$in) {
 
-      qb.whereIn(key, filters[key].$in)
+      const inArray = _.without(filters[key].$in, 'null')
+      if(_.includes(filters[key].$in, 'null')) {
+        qb.where(function() {
+          this.whereIn(key, inArray).orWhereNull(key)
+        })
+      } else {
+        qb.whereIn(key, inArray)
+      }
 
     } else if(filters[key].$nin) {
 
-      qb.whereNotIn(key, filters[key].$nin)
+      const inArray = _.without(filters[key].$nin, 'null')
+      if(_.includes(filters[key].$nin, 'null')) {
+        qb.where(function() {
+          this.whereNotIn(key, inArray).orWhereNotNull(key)
+        })
+      } else {
+        qb.whereNotIn(key, inArray)
+      }
 
     } else if(filters[key].$lt) {
 

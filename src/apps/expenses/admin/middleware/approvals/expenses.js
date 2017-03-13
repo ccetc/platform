@@ -26,7 +26,7 @@ export default resources({
     reject: after.reject
   },
   defaultSort: '-date',
-  filterParams: ['user_id','expense_type_id','project_id','date','is_approved'],
+  filterParams: ['user_id','expense_type_id','project_id','date','is_approved','is_visa'],
   logger: {
     approve: loggers.approve,
     reject: loggers.reject

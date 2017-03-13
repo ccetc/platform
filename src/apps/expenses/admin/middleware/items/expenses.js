@@ -13,7 +13,7 @@ export default resources({
   allowedParams: ['receipt_id','date','project_id','expense_type_id','vendor_id','description','amount','is_visa','approved_by_id','approved_at','is_approved','reason_rejected'],
   before,
   defaultSort: '-date',
-  filterParams: ['expense_type_id','project_id','date','is_approved'],
+  filterParams: ['expense_type_id','project_id','date','is_approved','is_visa'],
   logger: {
     create: logger('expense', 'created'),
     update: logger('expense', 'updated')

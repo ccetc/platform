@@ -36,7 +36,7 @@ class Search extends React.Component {
        <div className="lookup-panel">
          <div className="lookup-panel-search">
            <div className="ui form">
-            <input type="text" placeholder={`Find a ${label}...`} onChange={this._handleType.bind(this)} ref="query" />
+             <input type="text" placeholder={`Find a ${label}...`} onChange={this._handleType.bind(this)} ref="query" />
            </div>
          </div>
          { status === 'loading' &&

@@ -15,7 +15,7 @@ import { toggleExpenseTypeRenderer } from './renderers'
 
 export default resources({
   allowedParams: ['title','code','is_active'],
-  defaultSort: 'title',
+  defaultSort: 'code',
   defaultParams: (req) => ({
     is_active: true
   }),
@@ -103,7 +103,7 @@ export default resources({
     }
   ],
   rights: ['expenses.manage_configuration'],
-  searchParams: ['title'],
+  searchParams: ['code','title'],
   serializer: ProjectSerializer,
   sortParams: ['title','code','is_active']
 })

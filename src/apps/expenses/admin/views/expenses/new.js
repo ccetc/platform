@@ -7,6 +7,7 @@ class New extends React.Component {
 
   static contextTypes = {
     container: React.PropTypes.object,
+    history: React.PropTypes.object,
     modal: React.PropTypes.object
   }
 
@@ -29,7 +30,7 @@ class New extends React.Component {
       method: 'post',
       action: '/admin/expenses/expenses',
       onCancel: this.context.modal.pop,
-      onSuccess: this.context.modal.pop,
+      onSuccess: this._handleSuccess.bind(this),
       onChangeField: (key, value) => {
         if(key === 'project_id') {
           this.setState({
@@ -69,11 +70,10 @@ class New extends React.Component {
     }
   }
 
-  _handleSuccess(project) {
-    this.context.container.refresh('expenses')
+  _handleSuccess(expense) {
     this.context.modal.pop()
+    this.context.history.push(`/admin/expenses/expenses/${expense.id}`)
   }
-
 
 }
 

@@ -31,13 +31,14 @@ export default (object) => {
       full_name: object.related('user').get('full_name')
     },
     amount: object.get('amount'),
+    is_submitted: object.get('is_submitted'),
+    is_approved: object.get('is_approved'),
     is_visa: object.get('is_visa'),
     approved_by: object.get('approved_by_id') ? {
       id: object.related('approved_by').get('id'),
       full_name: object.related('approved_by').get('full_name')
     } : null,
     approved_at: object.get('approved_at'),
-    is_approved: object.get('is_approved'),
     reason_rejected: object.get('reason_rejected'),
     created_at: object.get('created_at'),
     updated_at: object.get('updated_at')

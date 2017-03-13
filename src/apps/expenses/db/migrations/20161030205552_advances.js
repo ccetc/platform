@@ -16,6 +16,7 @@ exports.up = function(knex, Promise) {
       table.date('date_needed')
       table.decimal('amount', 6, 2)
       table.text('description')
+      table.boolean('is_submitted')
       table.boolean('is_approved')
       table.integer('approved_by_id').unsigned()
       table.foreign('approved_by_id').references('users.id')

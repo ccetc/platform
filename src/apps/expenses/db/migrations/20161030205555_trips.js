@@ -17,6 +17,7 @@ exports.up = function(knex, Promise) {
       table.integer('total_miles')
       table.decimal('mileage_rate', 6, 2)
       table.decimal('amount', 6, 2)
+      table.boolean('is_submitted')
       table.boolean('is_approved')
       table.integer('approved_by_id').unsigned()
       table.foreign('approved_by_id').references('users.id')

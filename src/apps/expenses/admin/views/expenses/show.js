@@ -10,13 +10,18 @@ class Show extends React.Component {
   render() {
     const { expense } = this.props
     return (
-      <div className="chrome-body">
-        <div className="chrome-sidebar">
-          <ApprovalAlert {...expense} />
-          <Details {...this._getDetails()} />
+      <div className="chrome-main">
+        <div className="chrome-body">
+          <div className="chrome-sidebar">
+            <ApprovalAlert {...expense} />
+            <Details {...this._getDetails()} />
+          </div>
         </div>
-        <div className="chrome-content">
-        </div>
+        { !expense.is_submitted &&
+          <div className="chrome-cta">
+            <button className="ui fluid primary button">Submit Expense</button>
+          </div>
+        }
       </div>
     )
   }
