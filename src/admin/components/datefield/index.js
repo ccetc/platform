@@ -1,5 +1,5 @@
 import React from 'react'
-import _ from 'lodash'
+import moment from 'moment'
 
 class DateField extends React.Component {
 
@@ -34,7 +34,7 @@ class DateField extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      value: _.toString(props.defaultValue)
+      value: moment(props.defaultValue).format('YYYY-MM-DD')
     }
   }
 

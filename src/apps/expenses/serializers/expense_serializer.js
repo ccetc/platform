@@ -32,7 +32,7 @@ export default (object) => {
     },
     amount: object.get('amount'),
     is_visa: object.get('is_visa'),
-    approved_by: object.related('approved_by').get('id') ? {
+    approved_by: object.get('approved_by_id') ? {
       id: object.related('approved_by').get('id'),
       full_name: object.related('approved_by').get('full_name')
     } : null,

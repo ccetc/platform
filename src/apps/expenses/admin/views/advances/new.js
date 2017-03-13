@@ -38,13 +38,13 @@ class New extends React.Component {
       sections: [
         {
           fields: [
-            { label: 'Project', name: 'project_id', type: 'lookup', placeholder: 'Project', endpoint: '/admin/expenses/memberships', value: 'id', text: 'title' },
+            { label: 'Project', name: 'project_id', type: 'lookup', endpoint: '/admin/expenses/memberships', value: 'id', text: 'title' },
             { label: 'Expense Type', name: 'expense_type_id', type: 'lookup', placeholder: 'Expense Type', endpoint: expense_type_endpoint, value: 'id', text: 'text', disabled: expense_type_disabled, format: ExpenseTypeToken },
-            { label: 'Vendor', name: 'vendor_id', type: 'lookup', placeholder: 'Vendor', endpoint: '/admin/expenses/vendors', value: 'id', text: 'name', form: this._getVendorForm() },
+            { label: 'Vendor', name: 'vendor_id', type: 'lookup', endpoint: '/admin/expenses/vendors', value: 'id', text: 'name', form: this._getVendorForm() },
             { label: 'Delivery Method', name: 'delivery_method', type: 'select', placeholder: 'Delivery Method', required: true, options: [ { key: 'mail', value: 'Mail' }, { key: 'pickup', value: 'Pickup' }] },
             { label: 'Date Needed', name: 'date_needed', type: 'datefield', placeholder: 'Date Needed', required: true },
-            { label: 'Amount', name: 'amount', type: 'textfield', placeholder: 'Amount', required: true, prefix: '$' },
-            { label: 'Description', name: 'description', type: 'textfield', placeholder: 'Description', required: true }
+            { label: 'Amount', name: 'amount', type: 'textfield', required: true, prefix: '$' },
+            { label: 'Description', name: 'description', type: 'textfield', required: true }
           ]
         }
       ]
@@ -59,7 +59,7 @@ class New extends React.Component {
       sections: [
         {
           fields: [
-            { label: 'Name', name: 'name', type: 'textfield', placeholder: 'Name' }
+            { label: 'Name', name: 'name', type: 'textfield' }
           ]
         }
       ]

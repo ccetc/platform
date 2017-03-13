@@ -42,11 +42,11 @@ class New extends React.Component {
           fields: [
             { label: 'Receipt', name: 'receipt_id', type: 'filefield', prompt: 'Upload Receipt' },
             { label: 'Date', name: 'date', type: 'datefield', placeholder: 'Date Needed', defaultValue: moment().format('YYYY-MM-DD') },
-            { label: 'Project', name: 'project_id', type: 'lookup', placeholder: 'Project', endpoint: '/admin/expenses/memberships', value: 'id', text: 'title' },
+            { label: 'Project', name: 'project_id', type: 'lookup', endpoint: '/admin/expenses/memberships', value: 'id', text: 'title' },
             { label: 'Expense Type', name: 'expense_type_id', type: 'lookup', placeholder: 'Expense Type', endpoint: expense_type_endpoint, value: 'id', text: 'text', disabled: expense_type_disabled, format: ExpenseTypeToken },
-            { label: 'Vendor', name: 'vendor_id', type: 'lookup', placeholder: 'Vendor', endpoint: '/admin/expenses/vendors', value: 'id', text: 'name', form: this._getVendorForm() },
-            { label: 'Description', name: 'description', type: 'textfield', placeholder: 'Description' },
-            { label: 'Amount', name: 'amount', type: 'textfield', placeholder: 'Amount', prefix: '$' },
+            { label: 'Vendor', name: 'vendor_id', type: 'lookup', endpoint: '/admin/expenses/vendors', value: 'id', text: 'name', form: this._getVendorForm() },
+            { label: 'Description', name: 'description', type: 'textfield' },
+            { label: 'Amount', name: 'amount', type: 'textfield', prefix: '$' },
             { label: 'Visa?', name: 'is_visa', type: 'checkbox' }
           ]
         }
@@ -62,7 +62,7 @@ class New extends React.Component {
       sections: [
         {
           fields: [
-            { label: 'Name', name: 'name', type: 'textfield', placeholder: 'Name' }
+            { label: 'Name', name: 'name', type: 'textfield' }
           ]
         }
       ]

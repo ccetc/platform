@@ -29,8 +29,7 @@ class Show extends React.Component {
       items: [
         { label: 'Title ', content: project.title },
         { label: 'Code ', content: project.code, format: 'code' },
-        { label: 'Active ', content: project.is_active, format: 'yes_no' },
-        { label: 'Created ', content: project.created_at, format: 'datetime' }
+        { label: 'Active ', content: project.is_active, format: 'yes_no' }
       ]
     }
   }

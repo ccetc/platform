@@ -3,6 +3,7 @@ import Trip from '../../../models/trip'
 import TripSerializer from '../../../serializers/trip_serializer'
 import canApprove from './utils'
 
+const after = require('./after').default('trip')
 const loggers = require('./loggers').default('trip')
 const processors = require('./processors').default('trip', Trip)
 
@@ -19,6 +20,10 @@ export default resources({
       path: 'reject',
       method: 'patch'
     }
+  },
+  after: {
+    approve: after.approve,
+    reject: after.reject
   },
   defaultSort: '-date_needed',
   filterParams: ['user_id','expense_type_id','project_id','date_needed','is_approved'],

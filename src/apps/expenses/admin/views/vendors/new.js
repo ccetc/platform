@@ -22,7 +22,7 @@ class New extends React.Component {
       sections: [
         {
           fields: [
-            { label: 'Name', name: 'name', type: 'textfield', placeholder: 'Name' }
+            { label: 'Name', name: 'name', type: 'textfield' }
           ]
         }
       ]

@@ -75,6 +75,8 @@ export default (state = INITIAL_STATE, action) => {
   case actionTypes.BACK:
     return {
       ...state,
+      q: '',
+      query: '',
       active: null
     }
 

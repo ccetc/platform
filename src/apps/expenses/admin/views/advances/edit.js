@@ -1,13 +1,11 @@
 import React from 'react'
 import Form from 'admin/components/form'
-import moment from 'moment'
 
 class Edit extends React.Component {
 
   static contextTypes = {
     container: React.PropTypes.object,
-    modal: React.PropTypes.object,
-    router: React.PropTypes.object
+    modal: React.PropTypes.object
   }
 
   render() {
@@ -16,29 +14,45 @@ class Edit extends React.Component {
 
   _getForm() {
     return {
-      title: 'Edit Project',
+      title: 'Edit Advance',
       method: 'patch',
       endpoint: `/admin/expenses/advances/${this.context.container.params.id}/edit`,
       action: `/admin/expenses/advances/${this.context.container.params.id}`,
       onCancel: this.context.modal.pop,
-      onSuccess: this._handleSuccess.bind(this),
+      onSuccess: this._onSuccess.bind(this),
       sections: [
         {
           fields: [
-            { label: 'Date', name: 'date', type: 'datefield', placeholder: 'Date Needed', defaultValue: moment().format('YYYY-MM-DD') },
-            { label: 'Description', name: 'description', type: 'textfield', placeholder: 'Description' },
-            { label: 'Amount', name: 'amount', type: 'textfield', placeholder: 'Amount', prefix: '$' },
-            { label: 'Visa?', name: 'is_visa', type: 'checkbox' }
+            { label: 'Project', name: 'project_id', type: 'lookup', endpoint: '/admin/expenses/memberships', value: 'id', text: 'title' },
+            { label: 'Vendor', name: 'vendor_id', type: 'lookup', endpoint: '/admin/expenses/vendors', value: 'id', text: 'name', form: this._getVendorForm() },
+            { label: 'Delivery Method', name: 'delivery_method', type: 'select', placeholder: 'Delivery Method', required: true, options: [ { key: 'mail', value: 'Mail' }, { key: 'pickup', value: 'Pickup' }] },
+            { label: 'Date Needed', name: 'date_needed', type: 'datefield', placeholder: 'Date Needed', required: true },
+            { label: 'Amount', name: 'amount', type: 'textfield', required: true, prefix: '$' },
+            { label: 'Description', name: 'description', type: 'textfield', required: true }
           ]
         }
       ]
     }
   }
 
-  _handleSuccess(project) {
-    this.context.container.refresh('project')
+  _getVendorForm() {
+    return {
+      title: 'New Vendor',
+      method: 'post',
+      action: '/admin/expenses/vendors',
+      sections: [
+        {
+          fields: [
+            { label: 'Name', name: 'name', type: 'textfield' }
+          ]
+        }
+      ]
+    }
+  }
+
+  _onSuccess() {
+    this.context.container.refresh('advance')
     this.context.modal.pop()
-    this.context.router.push(`/admin/expenses/projects/${project.id}`)
   }
 
 }

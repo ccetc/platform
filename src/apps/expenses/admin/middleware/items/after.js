@@ -3,11 +3,11 @@ import Story from 'platform/models/story'
 import Notification from 'platform/models/notification'
 import pluralize from 'pluralize'
 
-export default (type) => {
+export default (type, action) => {
 
   return (req, resource) => {
 
-    const text = 'created {object1} in {object2}'
+    const text = `${action} {object1} in {object2}`
 
     return Story.where({ text }).fetch().then(story => {
 
@@ -21,6 +21,7 @@ export default (type) => {
 
           qb.where('project_id', resource.get('project_id'))
           qb.whereIn('member_type_id', [1, 2])
+          qb.whereNot('user_id', req.user.get('id'))
 
         }).fetchAll().then(members => {
 

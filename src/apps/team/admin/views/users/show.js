@@ -31,8 +31,7 @@ class Show extends React.Component {
         { label: 'Name ', content: user.full_name },
         { label: 'Email ', content: user.email, format: 'email' },
         { label: 'Active? ', content: user.is_active, format: 'yes_no' },
-        { label: 'Last Online ', format: LastOnlineFormat },
-        { label: 'Created ', content: user.created_at, format: 'datetime' }
+        { label: 'Last Online ', format: LastOnlineFormat }
       ]
     }
   }

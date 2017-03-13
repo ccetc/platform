@@ -27,8 +27,8 @@ class Edit extends React.Component {
       sections: [
         {
           fields: [
-            { label: 'Title', name: 'title', type: 'textfield', placeholder: 'Tile' },
-            { label: 'Description', name: 'description', type: 'textarea', placeholder: 'Description' },
+            { label: 'Title', name: 'title', type: 'textfield' },
+            { label: 'Description', name: 'description', type: 'textarea' },
             { label: 'Access', name: 'access_ids', type: Access }
           ]
         }

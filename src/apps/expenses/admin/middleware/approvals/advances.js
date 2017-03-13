@@ -3,6 +3,7 @@ import Advance from '../../../models/advance'
 import AdvanceSerializer from '../../../serializers/advance_serializer'
 import canApprove from './utils'
 
+const after = require('./after').default('advance')
 const loggers = require('./loggers').default('advance')
 const processors = require('./processors').default('advance', Advance)
 
@@ -19,6 +20,10 @@ export default resources({
       path: 'reject',
       method: 'patch'
     }
+  },
+  after: {
+    approve: after.approve,
+    reject: after.reject
   },
   defaultSort: '-date_needed',
   filterParams: ['user_id','expense_type_id','project_id','date_needed','is_approved'],

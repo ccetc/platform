@@ -7,26 +7,30 @@ import { ApprovalAlert } from '../../components/approval_status'
 
 class Show extends React.Component {
 
-  static contextTypes = {
-    container: React.PropTypes.object,
-    flash: React.PropTypes.object
-  }
-
   render() {
     const { advance } = this.props
     return (
-      <div className="chrome-body">
-        <div className="chrome-sidebar">
-          <ApprovalAlert {...advance} />
-          <Details {...this._getDetails()} />
-          { advance.is_approved === null && <Approve {...this._getApprove()} /> }
+      <div className="chrome-main">
+        <div className="chrome-body">
+          <div className="chrome-sidebar">
+            <ApprovalAlert {...advance} />
+            <Details {...this._getDetails()} />
+          </div>
         </div>
+        { advance.is_approved === null &&
+          <div className="chrome-cta">
+            <Approve {...this._getApprove()} />
+          </div>
+        }
       </div>
     )
   }
 
   _getDetails() {
     const { advance } = this.props
+    const approved_by_label = advance.is_approved ? 'Approved By' : 'Rejected By'
+    const approved_by_value = advance.approved_by ? advance.approved_by.full_name : null
+    const approved_at_label = advance.is_approved ? 'Approved At' : 'Rejected At'
     return {
       items: [
         { label: 'Date Needed', content: advance.date_needed, format: 'date' },
@@ -36,27 +40,24 @@ class Show extends React.Component {
         { label: 'Vendor', content: advance.vendor.name },
         { label: 'Description', content: advance.description },
         { label: 'Amount', content: advance.amount, format: 'currency' },
-        { label: 'Reason Rejected', content: advance.reason_rejected }
-
+        { label: approved_by_label, content: approved_by_value },
+        { label: approved_at_label, content: advance.approved_at, format: 'datetime' },
+        { label: 'Reason Rejected ', content: advance.reason_rejected }
       ]
     }
   }
 
   _getApprove() {
     return {
-      type: 'advances',
-      id: this.props.advance.id,
-      onChange: () => {
-        this.context.container.refresh('advance')
-        this.context.flash.set('success', 'This expense was successfully approved')
-      }
+      type: 'advance',
+      id: this.props.advance.id
     }
   }
 
 }
 
 const mapPropsToPage = (props, context) => ({
-  title: 'Approve Advance',
+  title: 'Advance',
   access: checkOwnerApprover,
   resources: {
     advance: `/admin/expenses/approvals/advances/${props.params.id}`

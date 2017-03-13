@@ -6,25 +6,29 @@ import checkOwnerApprover from '../../utils/check_owner_approver'
 
 class Show extends React.Component {
 
-  static contextTypes = {
-    container: React.PropTypes.object,
-    flash: React.PropTypes.object
-  }
-
   render() {
     const { trip } = this.props
     return (
-      <div className="chrome-body">
-        <div className="chrome-sidebar">
-          <Details {...this._getDetails()} />
-          { trip.is_approved === null && <Approve {...this._getApprove()} /> }
+      <div className="chrome-main">
+        <div className="chrome-body">
+          <div className="chrome-sidebar">
+            <Details {...this._getDetails()} />
+          </div>
         </div>
+        { trip.is_approved === null &&
+          <div className="chrome-cta">
+            <Approve {...this._getApprove()} />
+          </div>
+        }
       </div>
     )
   }
 
   _getDetails() {
     const { trip } = this.props
+    const approved_by_label = trip.is_approved ? 'Approved By' : 'Rejected By'
+    const approved_by_value = trip.approved_by ? trip.approved_by.full_name : null
+    const approved_at_label = trip.is_approved ? 'Approved At' : 'Rejected At'
     return {
       items: [
         { label: 'Date', content: trip.date, format: 'date' },
@@ -36,26 +40,25 @@ class Show extends React.Component {
         { label: 'Odometer End', content: trip.odometer_end },
         { label: 'Distance', content: trip.total_miles },
         { label: 'Rate', content: trip.mileage_rate, format: 'currency' },
-        { label: 'Amount', content: trip.amount, format: 'currency' }
+        { label: 'Amount', content: trip.amount, format: 'currency' },
+        { label: approved_by_label, content: approved_by_value },
+        { label: approved_at_label, content: trip.approved_at, format: 'datetime' },
+        { label: 'Reason Rejected ', content: trip.reason_rejected }
       ]
     }
   }
 
   _getApprove() {
     return {
-      type: 'trips',
-      id: this.props.trip.id,
-      onChange: () => {
-        this.context.container.refresh('trip')
-        this.context.flash.set('success', 'This trip was successfully approved')
-      }
+      type: 'trip',
+      id: this.props.trip.id
     }
   }
 
 }
 
 const mapPropsToPage = (props, context) => ({
-  title: 'Approve Trip',
+  title: 'Trip',
   access: checkOwnerApprover,
   resources: {
     trip: `/admin/expenses/approvals/trips/${props.params.id}`

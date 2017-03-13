@@ -24,8 +24,8 @@ class Edit extends React.Component {
       sections: [
         {
           fields: [
-            { label: 'Title', name: 'title', type: 'textfield', placeholder: 'Title' },
-            { label: 'Code', name: 'code', type: 'textfield', placeholder: 'Code' },
+            { label: 'Title', name: 'title', type: 'textfield' },
+            { label: 'Code', name: 'code', type: 'textfield' },
             { label: 'Is Active', name: 'is_active', type: 'checkbox', defaultValue: true }
           ]
         }

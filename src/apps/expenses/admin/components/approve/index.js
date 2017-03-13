@@ -1,10 +1,15 @@
 import React from 'react'
+import pluralize from 'pluralize'
 import { connect } from 'react-redux'
 import * as actions from './actions'
+import Reject from './reject'
 
 class Approve extends React.Component {
 
-  static propTypes = {
+  static contextTypes = {
+    container: React.PropTypes.object,
+    flash: React.PropTypes.object,
+    modal: React.PropTypes.object
   }
 
   render() {
@@ -18,18 +23,30 @@ class Approve extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { status } = this.props
+    const { status, type } = this.props
     if(prevProps.status !== status) {
-      this.props.onChange()
+      this.context.container.refresh(type)
+      this.context.flash.set('success', `This ${type} was successfully ${status}`)
     }
   }
 
   _handleApprove() {
-    this.props.onApprove(this.props.type, this.props.id)
+    const { id, onApprove } = this.props
+    const type = pluralize(this.props.type)
+    onApprove(type, id)
   }
 
   _handleReject() {
-    this.props.onReject(this.props.type, this.props.id)
+    const { id, onReject } = this.props
+    const type = pluralize(this.props.type)
+    const props = {
+      type: this.props.type,
+      id: this.props.id,
+      onSuccess: () => {
+        onReject(type, id)
+      }
+    }
+    this.context.modal.push(<Reject {...props} />)
   }
 
 }

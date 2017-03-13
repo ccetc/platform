@@ -1,6 +1,6 @@
 import React from 'react'
+import pluralize from 'pluralize'
 import Form from 'admin/components/form'
-import Access from '../../components/access'
 
 class New extends React.Component {
 
@@ -13,18 +13,20 @@ class New extends React.Component {
   }
 
   _getForm() {
+    const { type, id, onSuccess } = this.props
     return {
-      title: 'New Role',
-      method: 'post',
-      action: '/admin/team/roles',
+      title: `Reject ${type}`,
+      method: 'patch',
+      action: `/admin/expenses/approvals/${pluralize(type)}/${id}/reject`,
       onCancel: this.context.modal.pop,
-      onSuccess: this.context.modal.pop,
+      onSuccess: () => {
+        onSuccess()
+        this.context.modal.pop()
+      },
       sections: [
         {
           fields: [
-            { label: 'Title', name: 'title', type: 'textfield' },
-            { label: 'Description', name: 'description', type: 'textfield' },
-            { label: 'Access', name: 'access_ids', type: Access }
+            { label: 'Why are you rejecting this expense?', name: 'reason_rejected', type: 'textarea' }
           ]
         }
       ]

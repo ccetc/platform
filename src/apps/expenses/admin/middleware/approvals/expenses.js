@@ -3,9 +3,9 @@ import Expense from '../../../models/expense'
 import ExpenseSerializer from '../../../serializers/expense_serializer'
 import canApprove from './utils'
 
+const after = require('./after').default('expense')
 const loggers = require('./loggers').default('expense')
 const processors = require('./processors').default('expense', Expense)
-const after = require('./after').default('expense')
 
 export default resources({
   access: canApprove,
@@ -46,5 +46,5 @@ export default resources({
   },
   serializer: ExpenseSerializer,
   sortParams: ['date'],
-  withRelated: ['receipt','user.photo','project','expense_type','vendor']
+  withRelated: ['receipt','user.photo','project','expense_type','approved_by','vendor']
 })

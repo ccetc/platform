@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 export default (type, model) => {
 
   const expenseProcessor = (action, is_approved) => {
@@ -6,7 +8,14 @@ export default (type, model) => {
 
       return model.where({ id: req.params.id }).fetch().then(resource => {
 
-        return resource.save({ approved_by_id: req.user.get('id'), is_approved }, { patch: true })
+        const data = {
+          approved_by_id: req.user.get('id'),
+          approved_at: moment(),
+          reason_rejected: req.body.reason_rejected,
+          is_approved
+        }
+
+        return resource.save(data, { patch: true })
 
       }).catch(err => {
 

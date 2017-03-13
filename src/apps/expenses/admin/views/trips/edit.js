@@ -6,8 +6,7 @@ class Edit extends React.Component {
 
   static contextTypes = {
     container: React.PropTypes.object,
-    modal: React.PropTypes.object,
-    router: React.PropTypes.object
+    modal: React.PropTypes.object
   }
 
   render() {
@@ -16,26 +15,32 @@ class Edit extends React.Component {
 
   _getForm() {
     return {
-      title: 'Edit Project',
+      title: 'Edit Trip',
       method: 'patch',
       endpoint: `/admin/expenses/trips/${this.context.container.params.id}/edit`,
       action: `/admin/expenses/trips/${this.context.container.params.id}`,
       onCancel: this.context.modal.pop,
-      onSuccess: this._handleSuccess.bind(this),
+      onSuccess: this._onSuccess.bind(this),
       sections: [
         {
           fields: [
-            { label: 'Date', name: 'date', type: 'datefield', placeholder: 'Date Needed', defaultValue: moment().format('YYYY-MM-DD') }
+            { label: 'Project', name: 'project_id', type: 'lookup', endpoint: '/admin/expenses/memberships', value: 'id', text: 'title' },
+            { label: 'Date', name: 'date', type: 'datefield', required: true, defaultValue: moment().format('YYYY-MM-DD') },
+            { label: 'Description', name: 'description', type: 'textfield', required: true },
+            { label: 'Time Leaving', name: 'time_leaving', type: 'textfield', required: true, placeholder: 'Time Leaving' },
+            { label: 'Time Arriving', name: 'time_arriving', type: 'textfield', required: true, placeholder: 'Time Arriving' },
+            { label: 'Odometer Start', name: 'odometer_start', type: 'textfield', required: true, placeholder: 'Odometer Start' },
+            { label: 'Odometer End', name: 'odometer_end', type: 'textfield', required: true, placeholder: 'Odometer End' },
+            { label: 'Distance', name: 'total_miles', type: 'textfield', required: true, placeholder: 'Total Miles' }
           ]
         }
       ]
     }
   }
 
-  _handleSuccess(project) {
-    this.context.container.refresh('project')
+  _onSuccess() {
+    this.context.container.refresh('trip')
     this.context.modal.pop()
-    this.context.router.push(`/admin/expenses/projects/${project.id}`)
   }
 
 }
