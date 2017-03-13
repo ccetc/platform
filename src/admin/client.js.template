@@ -17,6 +17,7 @@ import Container from 'admin/components/history'
 import Modal from 'admin/components/modal'
 import Drawer from 'admin/components/drawer'
 import Prompt from 'admin/components/prompt'
+import Tasks from 'admin/components/tasks'
 import Tray from 'admin/components/tray'
 import Chrome from 'admin/components/chrome'
 import Panel from 'admin/views/panel'
@@ -44,15 +45,17 @@ export default (
                   <Route component={ Modal }>
                     <Route component={ Drawer }>
                       <Route component={ Prompt }>
-                        <Route component={ Tray }>
-                          <Route component={ Chrome }>
-                            <Route component={ Transition }>
-                              <Route component={ Panel }>
-                                <IndexRoute component={ Dashboard } />
-                                <% for (var app of apps) { %><Route path="<%= app.path %>">
-                                  { <%= app.title %> }
+                        <Route component={ Tasks }>
+                          <Route component={ Tray }>
+                            <Route component={ Chrome }>
+                              <Route component={ Transition }>
+                                <Route component={ Panel }>
+                                  <IndexRoute component={ Dashboard } />
+                                  <% for (var app of apps) { %><Route path="<%= app.path %>">
+                                    { <%= app.title %> }
+                                  </Route>
+                                  <% } %><Route path="*" component={ NotFound }/>
                                 </Route>
-                                <% } %><Route path="*" component={ NotFound }/>
                               </Route>
                             </Route>
                           </Route>

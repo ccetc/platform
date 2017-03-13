@@ -7,8 +7,7 @@ class prompt extends React.Component {
 
   static childContextTypes = {
     confirm: React.PropTypes.object,
-    prompt: React.PropTypes.object,
-    tasks: React.PropTypes.object
+    prompt: React.PropTypes.object
   }
 
   static contextTypes = {
@@ -42,11 +41,6 @@ class prompt extends React.Component {
                   </div>
                 )
               }) }
-              { prompt.cancel &&
-                <div className="chrome-prompt-cancel" onClick={ this._handleClosePrompt.bind(this) }>
-                  Cancel
-                </div>
-              }
             </div>
           }
         </CSSTransitionGroup>
@@ -56,23 +50,8 @@ class prompt extends React.Component {
 
   getChildContext() {
     return {
-      tasks: this._getTasksChildContext(),
       prompt: this._getPromptChildContext(),
       confirm: this._getConfirmChildContext()
-    }
-  }
-
-  _getTasksChildContext() {
-    const { open, close } = this.props
-    return {
-      open: (tasks) => {
-        open({
-          message: null,
-          options: tasks,
-          cancel: true
-        })
-      },
-      close
     }
   }
 
@@ -82,8 +61,7 @@ class prompt extends React.Component {
       open: (prompt) => {
         open({
           message: prompt.message,
-          options: prompt.options,
-          cancel: false
+          options: prompt.options
         })
       },
       close
@@ -106,8 +84,7 @@ class prompt extends React.Component {
                 if(confirm.no) confirm.no()
               }
             }
-          ],
-          cancel: false
+          ]
         })
       },
       close
@@ -117,14 +94,7 @@ class prompt extends React.Component {
   _handleChooseOption(index) {
     const { prompt } = this.props
     this._handleClosePrompt()
-    if(prompt.options[index].route) {
-      this.context.history.push(prompt.options[index].route)
-    } else if(prompt.options[index].modal){
-      this.context.modal.push(prompt.options[index].modal)
-    } else if(prompt.options[index].drawer){
-      const location = prompt.options[index].location || 'right'
-      this.context.drawer.open(prompt.options[index].drawer, location)
-    } else if(prompt.options[index].handler){
+    if(prompt.options[index].handler){
       prompt.options[index].handler()
     }
   }
