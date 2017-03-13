@@ -13,6 +13,7 @@ export default (pageProps) => {
 
       static contextTypes = {
         container: React.PropTypes.object,
+        confirm: React.PropTypes.object,
         drawer: React.PropTypes.object,
         flash: React.PropTypes.object,
         history: React.PropTypes.object,
@@ -37,9 +38,7 @@ export default (pageProps) => {
       }
 
       page() {
-        if(this.pageProps) return this.pageProps
-        this.pageProps = pageProps(this.props, this.context)
-        return this.pageProps
+        return pageProps(this.props, this.context)
       }
 
       render() {
