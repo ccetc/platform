@@ -10,7 +10,7 @@ export default resources({
     create: after('trip', 'created'),
     update: after('trip', 'updated')
   },
-  allowedParams: ['project_id', 'date', 'description', 'time_leaving', 'time_arriving', 'odometer_start', 'odometer_end', 'total_miles','approved_by_id','approved_at','is_approved','reason_rejected'],
+  allowedParams: ['project_id', 'date', 'description', 'time_leaving', 'time_arriving', 'odometer_start', 'odometer_end', 'total_miles','approved_by_id','approved_at','is_approved','is_submitted','reason_rejected'],
   before,
   defaultParams: (req) => ({
     mileage_rate: req.apps.expenses.mileage_rate,

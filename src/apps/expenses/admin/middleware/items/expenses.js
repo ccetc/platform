@@ -10,7 +10,7 @@ export default resources({
     create: after('expense', 'created'),
     update: after('expense', 'updated')
   },
-  allowedParams: ['receipt_id','date','project_id','expense_type_id','vendor_id','description','amount','is_visa','approved_by_id','approved_at','is_approved','reason_rejected'],
+  allowedParams: ['receipt_id','date','project_id','expense_type_id','vendor_id','description','amount','is_visa','approved_by_id','approved_at','is_approved','is_submitted','reason_rejected'],
   before,
   defaultSort: '-date',
   filterParams: ['expense_type_id','project_id','date','is_approved','is_visa'],

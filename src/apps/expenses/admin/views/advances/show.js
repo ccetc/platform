@@ -2,6 +2,7 @@ import React from 'react'
 import Details from 'admin/components/details'
 import Page from 'admin/components/page'
 import Edit from './edit'
+import Submit from '../../components/submit'
 import { ApprovalAlert } from '../../components/approval_status'
 
 class Show extends React.Component {
@@ -9,11 +10,18 @@ class Show extends React.Component {
   render() {
     const { advance } = this.props
     return (
-      <div className="chrome-body">
-        <div className="chrome-sidebar">
-          <ApprovalAlert {...advance} />
-          <Details {...this._getDetails()} />
+      <div className="chrome-main">
+        <div className="chrome-body">
+          <div className="chrome-sidebar">
+            <ApprovalAlert {...advance} />
+            <Details {...this._getDetails()} />
+          </div>
         </div>
+        { !advance.is_submitted &&
+          <div className="chrome-cta">
+            <Submit {...this._getSubmit()} />
+          </div>
+        }
       </div>
     )
   }
@@ -36,6 +44,13 @@ class Show extends React.Component {
         { label: approved_at_label, content: advance.approved_at, format: 'datetime' },
         { label: 'Reason Rejected', content: advance.reason_rejected }
       ]
+    }
+  }
+
+  _getSubmit() {
+    return {
+      type: 'advance',
+      id: this.props.advance.id
     }
   }
 

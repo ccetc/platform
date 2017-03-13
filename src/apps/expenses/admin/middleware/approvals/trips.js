@@ -41,8 +41,11 @@ export default resources({
     reject: processors.reject
   },
   query: (qb, req, filters) => {
-    qb.whereNot('expenses_trips.user_id', req.user.get('id'))
     qb.joinRaw('inner join expenses_members on expenses_members.project_id = expenses_trips.project_id and expenses_members.user_id=? and expenses_members.member_type_id != ?', [req.user.get('id'), 3])
+    qb.whereNot('expenses_trips.user_id', req.user.get('id'))
+    qb.where(function() {
+      this.where('expenses_trips.is_submitted', true).orWhere('expenses_trips.is_approved', false)
+    })
   },
   serializer: TripSerializer,
   sortParams: ['date'],

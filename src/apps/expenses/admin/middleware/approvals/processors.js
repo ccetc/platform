@@ -12,7 +12,8 @@ export default (type, model) => {
           approved_by_id: req.user.get('id'),
           approved_at: moment(),
           reason_rejected: req.body.reason_rejected,
-          is_approved
+          is_approved,
+          is_submitted: is_approved
         }
 
         return resource.save(data, { patch: true })

@@ -3,6 +3,7 @@ import Details from 'admin/components/details'
 import Page from 'admin/components/page'
 import Edit from './edit'
 import Receipt from '../../components/receipt'
+import Submit from '../../components/submit'
 import { ApprovalAlert } from '../../components/approval_status'
 
 class Show extends React.Component {
@@ -19,7 +20,7 @@ class Show extends React.Component {
         </div>
         { !expense.is_submitted &&
           <div className="chrome-cta">
-            <button className="ui fluid primary button">Submit Expense</button>
+            <Submit {...this._getSubmit()} />
           </div>
         }
       </div>
@@ -45,6 +46,13 @@ class Show extends React.Component {
         { label: approved_at_label, content: expense.approved_at, format: 'datetime' },
         { label: 'Reason Rejected ', content: expense.reason_rejected }
       ]
+    }
+  }
+
+  _getSubmit() {
+    return {
+      type: 'expense',
+      id: this.props.expense.id
     }
   }
 

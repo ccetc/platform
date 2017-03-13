@@ -7,7 +7,11 @@ export default (type, action) => {
 
   return (req, resource) => {
 
-    const text = `${action} {object1} in {object2}`
+    if(!resource.get('is_submitted')) {
+      return null
+    }
+
+    const text = 'submitted {object1} in {object2} for approval'
 
     return Story.where({ text }).fetch().then(story => {
 

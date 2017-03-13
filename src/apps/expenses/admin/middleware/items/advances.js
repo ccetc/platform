@@ -10,7 +10,7 @@ export default resources({
     create: after('advance', 'created'),
     update: after('advance', 'updated')
   },
-  allowedParams: ['project_id','expense_type_id','vendor_id','delivery_method','date_needed','description','amount','description','approved_by_id','approved_at','is_approved','reason_rejected'],
+  allowedParams: ['project_id','expense_type_id','vendor_id','delivery_method','date_needed','description','amount','description','approved_by_id','approved_at','is_approved','is_submitted','reason_rejected'],
   before,
   filterParams: ['expense_type_id','project_id','date_needed','is_approved'],
   logger: {
