@@ -7,7 +7,7 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
 
   case actionTypes.OPEN:
-    return action.tasks
+    return action.prompt
 
   case actionTypes.CLOSE:
     return null

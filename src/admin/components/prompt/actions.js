@@ -1,9 +1,9 @@
 import * as actionTypes from './action_types'
 
-export function open(tasks) {
+export function open(prompt) {
   return {
     type: actionTypes.OPEN,
-    tasks
+    prompt
   }
 }
 

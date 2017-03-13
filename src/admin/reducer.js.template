@@ -19,7 +19,7 @@ import history from 'admin/components/history/reducer'
 import host from 'admin/components/host/reducer'
 import modal from 'admin/components/modal/reducer'
 import notifications from 'admin/components/notifications/reducer'
-import tasks from 'admin/components/tasks/reducer'
+import prompt from 'admin/components/prompt/reducer'
 import tray from 'admin/components/tray/reducer'
 import component from './components/component/reducer'
 import filter from './components/filter/reducer'
@@ -47,7 +47,7 @@ const adminReducers = {
   reset,
   search,
   signin,
-  tasks,
+  prompt,
   tray
 }
 
@@ -85,7 +85,7 @@ export default (state, action) => {
       reset: reset(undefined, action),
       search: search(undefined, action),
       signin: signin(undefined, action),
-      tasks: tasks(undefined, action),
+      prompt: prompt(undefined, action),
       tray: tray(undefined, action),
       ...component(undefined, action)
     }

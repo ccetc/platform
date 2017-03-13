@@ -16,8 +16,8 @@ import History from 'admin/components/container'
 import Container from 'admin/components/history'
 import Modal from 'admin/components/modal'
 import Drawer from 'admin/components/drawer'
+import Prompt from 'admin/components/prompt'
 import Tray from 'admin/components/tray'
-import Tasks from 'admin/components/tasks'
 import Chrome from 'admin/components/chrome'
 import Panel from 'admin/views/panel'
 import Dashboard from 'admin/views/dashboard'
@@ -43,8 +43,8 @@ export default (
                 <Route component={ Container } path="admin">
                   <Route component={ Modal }>
                     <Route component={ Drawer }>
-                      <Route component={ Tray }>
-                        <Route component={ Tasks }>
+                      <Route component={ Prompt }>
+                        <Route component={ Tray }>
                           <Route component={ Chrome }>
                           <Route component={ Transition }>
                             <Route component={ Panel }>
