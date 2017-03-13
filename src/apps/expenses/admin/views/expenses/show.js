@@ -54,8 +54,10 @@ const mapPropsToPage = (props, context) => {
       { label: 'Delete Expense', handler: () => {
         context.confirm.open({
           message: 'Are You Sure?',
-          yes: () => { alert('Yes') },
-          no: () => { alert('No') }
+          yes: () => {
+            context.history.push({ pathname: '/admin/expenses/expenses', state: 'static' })
+            context.flash.set('success', 'Your expense was successfully deleted')
+          }
         })
       } }
     ],

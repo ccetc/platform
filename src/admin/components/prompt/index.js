@@ -97,8 +97,15 @@ class prompt extends React.Component {
         open({
           message: confirm.message,
           options: [
-            { label: 'Yes', handler: confirm.yes },
-            { label: 'No', handler: confirm.no }
+            {
+              label: 'Yes', handler: () => {
+                if(confirm.yes) confirm.yes()
+              }
+            },{
+              label: 'No', handler: () => {
+                if(confirm.no) confirm.no()
+              }
+            }
           ],
           cancel: false
         })
