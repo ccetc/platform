@@ -37,7 +37,7 @@ class Show extends React.Component {
         { label: 'Receipt ', content: expense.receipt, format: Receipt },
         { label: 'Date ', content: expense.date, format: 'date' },
         { label: 'Project ', content: expense.project.title },
-        { label: 'Expense Type ', content: expense.expense_type.description },
+        { label: 'Expense Type ', content: expense.expense_type.title },
         { label: 'Vendor ', content: expense.vendor.name },
         { label: 'Description ', content: expense.description },
         { label: 'Amount ', content: expense.amount, format: 'currency' },

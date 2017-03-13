@@ -35,7 +35,7 @@ class Show extends React.Component {
       items: [
         { label: 'Date Needed', content: advance.date_needed, format: 'date' },
         { label: 'Project', content: advance.project.title },
-        { label: 'Expense Type', content: advance.expense_type.description },
+        { label: 'Expense Type', content: advance.expense_type.title },
         { label: 'Vendor', content: advance.vendor.name },
         { label: 'Delivery Method', content: advance.delivery_method },
         { label: 'Description', content: advance.description },

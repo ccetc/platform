@@ -36,7 +36,7 @@ class Show extends React.Component {
         { label: 'Date Needed', content: advance.date_needed, format: 'date' },
         { label: 'User', content: advance.user.full_name },
         { label: 'Project', content: advance.project.title },
-        { label: 'Expense Type', content: advance.expense_type.description },
+        { label: 'Expense Type', content: advance.expense_type.title },
         { label: 'Vendor', content: advance.vendor.name },
         { label: 'Description', content: advance.description },
         { label: 'Amount', content: advance.amount, format: 'currency' },
