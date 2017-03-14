@@ -1,24 +1,38 @@
-import { succeed, fail } from 'platform/utils/responses'
+import route from 'platform/middleware/route'
 
-export default (req, res) => {
+const processor = (req) => {
 
-  if(!req.user.authenticate(req.body.old_password)) {
-    return fail(res, 422, 'Unable to update account', { errors: { old_password: ['invalid' ]} })
-  }
+  return new Promise((resolve, reject) => {
 
-  if(req.body.new_password != req.body.confirm_password) {
-    return fail(res, 422, 'Unable to update account', { errors: { confirm_password: ['passwords do not match'] } })
-  }
+    if(!req.user.authenticate(req.body.old_password)) {
+      return reject({ code: 422, message: 'Unable to update account', errors: { old_password: ['invalid' ]} })
+    }
 
-  req.user.save({ password: req.body.new_password }, { patch: true }).then(() => {
+    if(req.body.new_password != req.body.confirm_password) {
+      return reject({ code: 422, message: 'Unable to update account', errors: { confirm_password: ['passwords do not match' ]} })
+    }
 
-    succeed(res, 200)
+    req.user.save({ password: req.body.new_password }, { patch: true }).then(() => {
 
-  }).catch(err => {
+      resolve()
 
-    fail(res, 422, 'Unable to update account', { errors: err.toJSON() })
+    }).catch(err => {
+
+      return reject({ code: 422, message: 'Unable to update account', errors: err.toJSON() })
+
+    })
 
   })
 
-
 }
+
+const logger = (result) => ({
+  text: 'updated their password'
+})
+
+export default route({
+  logger,
+  method: 'patch',
+  path: '/api/admin/account/password',
+  processor
+})

@@ -1,14 +1,12 @@
-import { succeed } from 'platform/utils/responses'
+import route from 'platform/middleware/route'
 
-export default (req, res) => {
-
-  const data = {
+export default route({
+  method: 'get',
+  path: '/api/admin/account',
+  processor: (req) => ({
     first_name: req.user.get('first_name'),
     last_name: req.user.get('last_name'),
     email: req.user.get('email'),
     photo_id: req.user.get('photo_id')
-  }
-
-  succeed(res, 200, '', { data })
-
-}
+  })
+})

@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import { buildRouter } from 'platform/middleware/route'
 import externalAuthentication from './middleware/external'
 import client from './client'
 import render from 'platform/middleware/render'
@@ -36,7 +37,7 @@ router.use('/api/admin', notifications.router)
 
 router.use('/api/admin', assets)
 
-router.use('/api/admin/account', account)
+router.use(buildRouter(account))
 
 router.use('/api/admin/session', session)
 

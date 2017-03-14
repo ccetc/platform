@@ -1,6 +1,6 @@
-import { succeed, fail } from 'platform/utils/responses'
+import route from 'platform/middleware/route'
 
-export default (req, res) => {
+const processor = (req) => {
 
   const data = {
     first_name: req.body.first_name,
@@ -8,15 +8,21 @@ export default (req, res) => {
     email: req.body.email
   }
 
-  req.user.save(data, { patch: true }).then(() => {
+  return req.user.save(data, { patch: true }).then(() => data).catch(err => {
 
-    succeed(res, 200, { data })
-
-  }).catch(err => {
-
-    fail(res, 422, 'Unable to update account', { errors: err.toJSON() })
+    throw { code: 422, message: 'Unable to update account', errors: err.toJSON() }
 
   })
 
-
 }
+
+const logger = (result) => ({
+  text: 'updated their account'
+})
+
+export default route({
+  logger,
+  method: 'patch',
+  path: '/api/admin/account',
+  processor
+})

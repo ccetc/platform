@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import Promise from 'bluebird'
 import { validateOptions, normalizeOptions } from './options'
-import { Router } from 'express'
 import { fail } from 'platform/utils/responses'
 import { wrapWithLogger } from './logger'
 import action from './action'
@@ -23,16 +22,6 @@ export const buildRoute = (userOptions) => {
     path: options.path,
     handler: options.handler || buildHandler(action, options)
   }
-
-}
-
-export const buildRouter = route => {
-
-  const router = Router({ mergeParams: true })
-
-  router[route.method](route.path, route.handler)
-
-  return router
 
 }
 
@@ -95,8 +84,6 @@ export const wrapWithHooks = (authenticator, authorizer, before, processor, afte
 
   }).catch(err => {
 
-    if(process.env.NODE_ENV === 'development') console.log(err)
-
     if(_.isPlainObject(err)) {
 
       const extra = err.errors ? { errors: err.errors } : null
@@ -104,6 +91,8 @@ export const wrapWithHooks = (authenticator, authorizer, before, processor, afte
       return fail(res, err.code, err.message, extra)
 
     }
+
+    if(process.env.NODE_ENV === 'development') console.log(err)
 
     return fail(res, 500, err.message)
 
