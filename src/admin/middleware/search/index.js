@@ -1,47 +1,56 @@
 import Promise from 'bluebird'
-import path from 'path'
+import route from 'platform/middleware/route'
 import glob from 'glob'
-import { succeed } from 'platform/utils/responses'
+import path from 'path'
 
-export default (req, res, next) => {
+const processor = (req) => {
 
-  const files = glob.sync(path.resolve(__dirname, '../../../**/admin/searches/*_search.js'))
+  return new Promise((resolve, reject) => {
 
-  const searches = files.reduce((searches, filepath) => {
+    const files = glob.sync(path.resolve(__dirname, '../../../**/admin/searches/*_search.js'))
 
-    const matches = filepath.match(/([a-z]*)_search\.js/)
+    const searches = files.reduce((searches, filepath) => {
 
-    if(matches) {
-      const search = require(filepath).default
-      return {
-        ...searches,
-        [matches[1]]: search(req.query)
+      const matches = filepath.match(/([a-z]*)_search\.js/)
+
+      if(matches) {
+        const search = require(filepath).default
+        return {
+          ...searches,
+          [matches[1]]: search(req.query)
+        }
       }
-    }
 
-    return searches
+      return searches
 
-  }, {})
-
-  const promises = Object.keys(searches).map(key => searches[key])
-
-  Promise.all(promises).then(results => {
-
-    const data = results.reduce((data, result, index) => {
-      const key = Object.keys(searches)[index]
-      if(result.length > 0) {
-        data[key] = result
-      }
-      return data
     }, {})
 
-    succeed(res, 200, '', { data })
+    const promises = Object.keys(searches).map(key => searches[key])
 
-    next()
+    Promise.all(promises).then(results => {
 
-  }).catch(err => {
-    const error = new Error({ code: 500, message: err.message })
-    return next(error)
+      const data = results.reduce((data, result, index) => {
+        const key = Object.keys(searches)[index]
+        if(result.length > 0) {
+          data[key] = result
+        }
+        return data
+      }, {})
+
+      resolve(data)
+
+    }).catch(err => {
+
+      reject({ code: 500, message: err.message })
+
+    })
+
   })
 
 }
+
+export default route({
+  method: 'get',
+  path: '/api/admin/search',
+  processor
+})

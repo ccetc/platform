@@ -58,6 +58,7 @@ export const wrapWithLogger = (req, res, handler) => {
     })
     console.log('%s %s rendered in %sms', chalk.red('RESPONSE:'), res.statusCode, moment().diff(started, 'milliseconds'))
     console.log('=========================================================')
+    console.log('')
 
   })
 

@@ -1,3 +1,4 @@
+import Promise from 'bluebird'
 import route from 'platform/middleware/route'
 
 const processor = (req) => {

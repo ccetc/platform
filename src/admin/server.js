@@ -37,11 +37,13 @@ router.use('/api/admin', notifications.router)
 
 router.use('/api/admin', assets)
 
-router.use(buildRouter(account))
+const adminRoutes = [
+  ...account,
+  session,
+  search
+]
 
-router.use('/api/admin/session', session)
-
-router.get('/api/admin/search', search)
+router.use(buildRouter(adminRoutes))
 
 router.use('/api/admin', apps)
 
