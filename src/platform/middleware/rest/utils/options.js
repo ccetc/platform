@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 import _ from 'lodash'
-import { coerceArray } from './utils'
+import { coerceArray } from './index'
 
 const VALID_OPTIONS = ['access','after','authenticated','authorizer','alter','before','cacheFor','handler','logger','method','path','processor','renderer','responder','rights','serializer','story']
 const REQUIRED_OPTIONS = ['method','path']

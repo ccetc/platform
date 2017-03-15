@@ -1,9 +1,9 @@
 import _ from 'lodash'
 import { succeed } from 'platform/utils/responses'
-import { applyToRecords, coerceArray } from './utils'
-import cache from './cache'
-import log from './log'
-import authenticator from './authenticator'
+import { applyToRecords, coerceArray } from '../utils'
+import cache from '../helpers/cache'
+import log from '../helpers/log'
+import authenticator from '../helpers/authenticator'
 
 export default (options) => ({
   authenticator: defaultAuthenticator(options),

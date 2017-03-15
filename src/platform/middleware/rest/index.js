@@ -21,7 +21,7 @@ export const buildRouter = segments => {
 
 }
 
-export default userOptions => {
+export const route = userOptions => {
 
   return buildRoute(userOptions)
 

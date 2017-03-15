@@ -3,7 +3,7 @@ import load from '../helpers/load'
 
 export default options => {
 
-  const processor = req => load('show', options)(req)
+  const processor = (req, resolve, reject) => load('show', options)(req).then(resolve)
 
   const renderer = (req, result) => Promise.resolve(result)
 

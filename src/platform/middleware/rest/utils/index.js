@@ -3,7 +3,7 @@ import Promise from 'bluebird'
 import { validateOptions, normalizeOptions } from './options'
 import { fail } from 'platform/utils/responses'
 import { wrapWithLogger } from './logger'
-import action from './action'
+import custom from '../actions/custom'
 
 export const coerceArray = value => {
 
@@ -20,7 +20,7 @@ export const buildRoute = (userOptions) => {
   return {
     method: options.method,
     path: options.path,
-    handler: options.handler || buildHandler(action, options)
+    handler: options.handler || buildHandler(custom, options)
   }
 
 }

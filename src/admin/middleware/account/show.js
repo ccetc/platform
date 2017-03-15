@@ -1,4 +1,4 @@
-import route from 'platform/middleware/route'
+import { route } from 'platform/middleware/rest'
 
 export default route({
   method: 'get',

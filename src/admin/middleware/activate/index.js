@@ -1,4 +1,4 @@
-import route from 'platform/middleware/route'
+import { route } from 'platform/middleware/rest'
 
 export const activate = route({
   authenticated: false,

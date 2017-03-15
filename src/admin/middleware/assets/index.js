@@ -1,7 +1,7 @@
 import { test, upload } from './resumable'
 import path from 'path'
 import resource from 'platform/middleware/resources'
-import route from 'platform/middleware/route'
+import { route } from 'platform/middleware/rest'
 import multiparty from 'connect-multiparty'
 import Asset from 'platform/models/asset'
 import AssetSerializer from 'platform/serializers/asset_serializer'

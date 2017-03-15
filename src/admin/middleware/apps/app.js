@@ -11,6 +11,8 @@ export default (title) => {
 
       next()
 
+      return null
+
     }).catch(err => {
       fail(res, 422, 'Unable to load app' )
     })

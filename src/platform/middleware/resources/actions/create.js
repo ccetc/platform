@@ -2,30 +2,28 @@ import { mergeParams, filterParams, resourceRenderer, resourceResponder, resourc
 
 export default options => {
 
-  const processor = req => {
+  const processor = (req, resolve, reject) => {
 
-    return Promise.resolve().then(() => {
+    const defaults = options.defaultParams ? options.defaultParams(req) : {}
 
-      return options.defaultParams ? options.defaultParams(req) : {}
+    const allowedParams = mergeParams(options.allowedParams.all, options.allowedParams.create)
 
-    }).then(defaults => {
+    const data = {
+      ...defaults,
+      ...options.ownedByTeam ? { team_id: req.team.get('id') } : {},
+      ...options.ownedByUser ? { user_id: req.user.get('id') } : {},
+      ...filterParams(req.body, allowedParams)
+    }
 
-      const allowedParams = mergeParams(options.allowedParams.all, options.allowedParams.create)
+    return options.model.forge(data).save().then(resource => {
 
-      const data = {
-        ...defaults,
-        ...options.ownedByTeam ? { team_id: req.team.get('id') } : {},
-        ...options.ownedByUser ? { user_id: req.user.get('id') } : {},
-        ...filterParams(req.body, allowedParams)
-      }
+      resolve(resource)
 
-      return options.model.forge(data).save().catch(err => {
+    }).catch(err => {
 
-        if(err.errors) throw({ code: 422, message: `Unable to create ${options.name}`, errors: err.toJSON() })
+      if(err.errors) return reject({ code: 422, message: `Unable to create ${options.name}`, errors: err.toJSON() })
 
-        throw(err)
-
-      })
+      reject({ code: 500, message: err.message })
 
     })
 

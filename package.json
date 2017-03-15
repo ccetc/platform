@@ -42,7 +42,6 @@
     "eslint-plugin-react": "^6.9.0",
     "exceljs": "^0.2.39",
     "express": "^4.14.0",
-    "extract-text-webpack-plugin": "^1.0.1",
     "jimp": "^0.2.27",
     "jquery": "^3.1.1",
     "knex": "^0.12.6",
@@ -96,6 +95,7 @@
     "css-loader": "^0.26.1",
     "enzyme": "^2.7.1",
     "eslint": "^3.14.0",
+    "extract-text-webpack-plugin": "^2.1.0",
     "flow-bin": "^0.38.0",
     "foreman": "^2.0.0",
     "less": "^2.7.2",
@@ -105,7 +105,7 @@
     "shipit-cli": "^3.0.0",
     "sinon": "^1.17.7",
     "sqlite": "^2.2.4",
-    "webpack": "^1.14.0",
+    "webpack": "^2.2.1",
     "webpack-node-externals": "^1.5.4"
   }
 }

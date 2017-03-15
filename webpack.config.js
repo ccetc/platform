@@ -18,7 +18,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
           presets: ['es2015','react','stage-0'],
           plugins: ['transform-flow-strip-types']
@@ -26,12 +26,12 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        loader: ExtractTextPlugin.extract('css!less')
+        loader: ExtractTextPlugin.extract('css-loader!less-loader')
       }
     ]
   },
   resolve: {
-    modulesDirectories: ['node_modules', 'src']
+    modules: ['node_modules', 'src']
   },
   plugins: [
     new ExtractTextPlugin('css/[name]-[hash].min.css'),

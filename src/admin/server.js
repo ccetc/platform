@@ -1,4 +1,4 @@
-import { buildRouter } from 'platform/middleware/route'
+import { buildRouter } from 'platform/middleware/rest'
 import externalAuthentication from './middleware/external'
 import client from './client'
 import render from 'platform/middleware/render'

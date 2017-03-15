@@ -13,7 +13,7 @@ export default options => {
 
   const tableName = options.model.extend().__super__.tableName
 
-  const processor = req => {
+  const processor = (req, resolve, reject) => {
 
     const withRelated = options.withRelated.list || options.withRelated.all
 
@@ -69,7 +69,7 @@ export default options => {
 
     const queryObject = query(knex(tableName)).toSQL()
 
-    const count = () => knex.raw(`SELECT COUNT(*) FROM (${queryObject.sql}) AS temp`, queryObject.bindings)
+    const count = () => knex.raw(`select count(*) from (${queryObject.sql}) as temp`, queryObject.bindings)
 
     const paged = () => options.model.query(qb => {
 
@@ -99,7 +99,13 @@ export default options => {
 
       const records = responses[2]
 
-      return { all, total, records, limit, skip }
+      resolve({ all, total, records, limit, skip })
+
+    }).catch(err => {
+
+      if(err.errors) return reject({ code: 422, message: `Unable to create ${options.name}`, errors: err.toJSON() })
+
+      reject({ code: 500, message: err.message })
 
     })
 

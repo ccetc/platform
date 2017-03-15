@@ -5,7 +5,7 @@ export default options => {
 
   const serializer = options.serializer.show || options.serializer.all
 
-  const processor = req => load('show', options)(req)
+  const processor = (req, resolve, reject) => load('show', options)(req).then(resolve)
 
   const renderer = resourceRenderer(serializer, options)
 

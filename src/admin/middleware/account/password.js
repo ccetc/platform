@@ -1,27 +1,22 @@
-import Promise from 'bluebird'
-import route from 'platform/middleware/route'
+import { route } from 'platform/middleware/rest'
 
-const processor = (req) => {
+const processor = (req, resolve, reject) => {
 
-  return new Promise((resolve, reject) => {
+  if(!req.user.authenticate(req.body.old_password)) {
+    return reject({ code: 422, message: 'Unable to update account', errors: { old_password: ['invalid' ]} })
+  }
 
-    if(!req.user.authenticate(req.body.old_password)) {
-      return reject({ code: 422, message: 'Unable to update account', errors: { old_password: ['invalid' ]} })
-    }
+  if(req.body.new_password != req.body.confirm_password) {
+    return reject({ code: 422, message: 'Unable to update account', errors: { confirm_password: ['passwords do not match' ]} })
+  }
 
-    if(req.body.new_password != req.body.confirm_password) {
-      return reject({ code: 422, message: 'Unable to update account', errors: { confirm_password: ['passwords do not match' ]} })
-    }
+  req.user.save({ password: req.body.new_password }, { patch: true }).then(() => {
 
-    req.user.save({ password: req.body.new_password }, { patch: true }).then(() => {
+    resolve()
 
-      resolve()
+  }).catch(err => {
 
-    }).catch(err => {
-
-      return reject({ code: 422, message: 'Unable to update account', errors: err.toJSON() })
-
-    })
+    return reject({ code: 422, message: 'Unable to update account', errors: err.toJSON() })
 
   })
 

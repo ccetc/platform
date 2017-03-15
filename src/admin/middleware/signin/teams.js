@@ -1,4 +1,4 @@
-import route from 'platform/middleware/route'
+import { route } from 'platform/middleware/rest'
 import Checkit from 'checkit'
 import Team from 'platform/models/team'
 

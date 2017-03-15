@@ -1,25 +1,20 @@
-import Promise from 'bluebird'
-import route from 'platform/middleware/route'
+import { route } from 'platform/middleware/rest'
 
-const processor = (req) => {
+const processor = (req, resolve, reject) => {
 
-  return new Promise((resolve, reject) => {
+  const data = {
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    email: req.body.email
+  }
 
-    const data = {
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      email: req.body.email
-    }
+  return req.user.save(data, { patch: true }).then(() => {
 
-    return req.user.save(data, { patch: true }).then(() => {
+    resolve(data)
 
-      resolve(data)
+  }).catch(err => {
 
-    }).catch(err => {
-
-      reject({ code: 422, message: 'Unable to update account', errors: err.toJSON() })
-
-    })
+    reject({ code: 422, message: 'Unable to update account', errors: err.toJSON() })
 
   })
 

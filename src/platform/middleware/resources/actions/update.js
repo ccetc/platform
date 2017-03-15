@@ -3,7 +3,7 @@ import load from '../helpers/load'
 
 export default options => {
 
-  const processor = req => {
+  const processor = (req, resolve, reject) => {
 
     return load('update', options)(req).then(resource => {
 
@@ -11,13 +11,13 @@ export default options => {
 
       const data = filterParams(req.body, allowedParams)
 
-      return resource.save(data, { patch: true })
+      return resource.save(data, { patch: true }).then(resolve)
 
     }).catch(err => {
 
-      if(err.errors) throw({ code: 422, message: `Unable to update ${options.name}`, errors: err.toJSON() })
+      if(err.errors) return reject({ code: 422, message: `Unable to create ${options.name}`, errors: err.toJSON() })
 
-      throw(err)
+      reject({ code: 500, message: err.message })
 
     })
 

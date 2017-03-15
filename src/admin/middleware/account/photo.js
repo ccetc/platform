@@ -1,23 +1,18 @@
-import Promise from 'bluebird'
-import route from 'platform/middleware/route'
+import { route } from 'platform/middleware/rest'
 
-const processor = (req) => {
+const processor = (req, resolve, reject) => {
 
-  return new Promise((resolve, reject) => {
+  const data = {
+    photo_id: req.body.photo_id
+  }
 
-    const data = {
-      photo_id: req.body.photo_id
-    }
+  return req.user.save(data, { patch: true }).then(() => {
 
-    return req.user.save(data, { patch: true }).then(() => {
+    resolve(data)
 
-      resolve(data)
+  }).catch(err => {
 
-    }).catch(err => {
-
-      reject({ code: 422, message: 'Unable to update photo', errors: err.toJSON() })
-
-    })
+    reject({ code: 422, message: 'Unable to update photo', errors: err.toJSON() })
 
   })
 

@@ -31,21 +31,30 @@ export default options => {
 
   }
 
-  const processor = req => {
+  const processor = (req, resolve, reject) => {
 
-    return load('destroy', options)(req).then(resource => {
+    load('destroy', options)(req).then(resource => {
 
-      return destroyRelated(resource).then(() => resource)
+      destroyRelated(resource).then(() => {
+
+        resolve(resource)
+
+      })
 
     }).then(resource => {
 
-      return destroyResource(resource)
+      return destroyResource(resource).then(() => {
+
+        resolve()
+
+      })
 
     }).catch(err => {
 
-      if(err.errors) throw({ code: 422, message: `Unable to delete ${options.name}`, data: err.toJSON() })
+      if(err.errors) return reject({ code: 422, message: `Unable to delete ${options.name}`, data: err.toJSON() })
 
-      throw(err)
+      reject({ code: 500, message: err.message })
+
     })
 
   }
