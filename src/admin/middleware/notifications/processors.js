@@ -1,14 +1,18 @@
 import Notification from 'platform/models/notification'
 
-export const readProcessor = req => {
+export const readProcessor = (req, resolve, reject) => {
 
-  if(!req.body.ids) return {}
+  if(!req.body.ids) return resolve({})
 
-  return Notification.query().whereIn('id', req.body.ids).update({ is_read: true }).then(result => ({})).catch(err => {
+  return Notification.query().whereIn('id', req.body.ids).update({ is_read: true }).then(result => {
 
-    if(err.errors) throw({ code: 422, message: 'Unable to read notifications', errors: err.toJSON() })
+    resolve({})
 
-    throw(err)
+  }).catch(err => {
+
+    if(err.errors) reject({ code: 422, message: 'Unable to read notifications', errors: err.toJSON() })
+
+    reject({ code: 500, message: err.message })
 
   })
 

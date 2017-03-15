@@ -30,13 +30,11 @@ const previewRoute = route({
 const testRoute = route({
   method: 'get',
   path: '/assets/upload',
-  processor: (req) => {
-    return new Promise((resolve, reject) => {
-      test(req).then(data => {
-        resolve(data)
-      }).catch(err=> {
-        reject({ code: 404, message: err.message })
-      })
+  processor: (req, resolve, reject) => {
+    test(req).then(data => {
+      resolve(data)
+    }).catch(err=> {
+      reject({ code: 404, message: err.message })
     })
   }
 })
@@ -44,13 +42,11 @@ const testRoute = route({
 const uploadRoute = route({
   method: 'post',
   path: '/assets/upload',
-  processor: (req) => {
-    return new Promise((resolve, reject) => {
-      upload(req).then(data => {
-        resolve(data)
-      }).catch(err=> {
-        reject({ code: 404, message: err.message })
-      })
+  processor: (req, resolve, reject) => {
+    upload(req).then(data => {
+      resolve(data)
+    }).catch(err=> {
+      reject({ code: 404, message: err.message })
     })
   }
 })

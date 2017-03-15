@@ -58,7 +58,7 @@ export const wrapWithHooks = (authenticator, authorizer, before, processor, afte
 
   }).then(() => {
 
-    return processor ? processor(req) : null
+    return processor ? new Promise((resolve, reject) => processor(req, resolve, reject)) : null
 
   }).then(result => {
 

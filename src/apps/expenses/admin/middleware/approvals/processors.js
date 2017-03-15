@@ -4,7 +4,7 @@ export default (type, model) => {
 
   const expenseProcessor = (action, is_approved) => {
 
-    return req => {
+    return (req, resolve, reject) => {
 
       return model.where({ id: req.params.id }).fetch().then(resource => {
 
@@ -16,13 +16,15 @@ export default (type, model) => {
           is_submitted: is_approved
         }
 
-        return resource.save(data, { patch: true })
+        return resource.save(data, { patch: true }).then(() => {
+          resolve(data)
+        })
 
       }).catch(err => {
 
-        if(err.errors) throw({ code: 422, message: `Unable to ${action} ${type}`, errors: err.toJSON() })
+        if(err.errors) return reject({ code: 422, message: `Unable to ${action} ${type}`, errors: err.toJSON() })
 
-        throw(err)
+        reject({ code: 500, message: err.message })
 
       })
 
