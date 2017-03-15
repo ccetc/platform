@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router'
 import moment from 'moment'
 
 export class Feed extends React.Component {
@@ -36,19 +35,23 @@ export class Feed extends React.Component {
                 classes.push('unread')
               }
               return (
-                <Link key={`item_${index}`} className={classes.join(' ')} to={{ pathname: item.url, state }} onClick={this.props.onChoose}>
+                <div key={`item_${index}`} className={classes.join(' ')} to={{ pathname: item.url, state }} onClick={this.props.onChoose}>
                   <div className="chrome-feed-item-avatar">
                     <img src={ item.user.photo } className="ui circular image" />
                   </div>
                   <div className="chrome-feed-item-details">
-                    <div className="chrome-feed-item-timestamp">{ moment(item.created_at).fromNow() } on { moment(item.created_at).format('dddd, MMMM Do @ h:mm a') }</div>
                     <div className="chrome-feed-item-story">
                       <span className="chrome-feed-item-user">{ item.user.full_name }</span>
                       <span dangerouslySetInnerHTML={{__html: story }} />
                     </div>
-                    { item.app && <div className="chrome-feed-item-app"><i className={`${ item.app.icon } icon`} /> { item.app.title }</div> }
+                    <div className="chrome-feed-item-timestamp">
+                      <div className="chrome-feed-item-app-icon">
+                        <i className={`${ item.app.icon } icon`} />
+                      </div>
+                      { moment(item.created_at).calendar(null, { sameDay: '[Today]', lastDay: '[Yesterday]', lastWeek: '[Last] dddd', sameElse: 'MMMM Do' }) } at { moment(item.created_at).format('h:mm a') }
+                    </div>
                   </div>
-                </Link>
+                </div>
               )
             })}
           </div>

@@ -1,4 +1,4 @@
-import resources from 'platform/middleware/resources'
+import { resources } from 'platform/middleware/rest'
 import Asset from 'platform/models/asset'
 import AssetSerializer from 'platform/serializers/asset_serializer'
 

@@ -10,7 +10,6 @@ exports.up = function(knex, Promise) {
       table.foreign('app_id').references('apps.id')
       table.integer('story_id').unsigned()
       table.foreign('story_id').references('stories.id')
-      table.string('url')
       table.string('object1_type')
       table.string('object1_text')
       table.string('object2_type')

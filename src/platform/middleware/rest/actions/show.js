@@ -3,7 +3,7 @@ import load from '../helpers/load'
 
 export default options => {
 
-  const processor = (req, resolve, reject) => load('show', options)(req).then(resolve)
+  const processor = (req, resolve, reject) => load(options)(req).then(resolve)
 
   return {
     authenticator: defaultAuthenticator(options),

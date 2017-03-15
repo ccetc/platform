@@ -28,10 +28,9 @@ export const buildResources = (userOptions) => {
   const pathPrefix = options.pathPrefix || ''
 
   return [
-    // ...buildCustomRoutes(options, prefix, pathPrefix),
-    ...buildStandardRoutes(options, prefix, pathPrefix)
-    // ,
-    // ...buildNestedRoutes(options, prefix, pathPrefix)
+    ...buildCustomRoutes(options, prefix, pathPrefix),
+    ...buildStandardRoutes(options, prefix, pathPrefix),
+    ...buildNestedRoutes(options, prefix, pathPrefix)
   ]
 
 }
@@ -78,6 +77,26 @@ export const mapOptionToActions = (value) => {
 
 }
 
+export const buildCustomRoutes = (options, prefix, pathPrefix) => {
+
+  return Object.keys(options.actions).reduce((routes, name) => {
+
+    const action = options.actions[name]
+
+    const routeOptions = {
+      ..._.omit(action, ['on']),
+      path: (action.on === 'collection') ? `${pathPrefix}/${options.path}/${action.path}` : `${pathPrefix}/${options.path}/:id/${action.path}`
+    }
+
+    return [
+      ...routes,
+      buildRoute(routeOptions)
+    ]
+
+  }, [])
+
+}
+
 export const buildStandardRoutes = (options, prefix, pathPrefix) => {
 
   const routes = [
@@ -111,11 +130,12 @@ export const buildStandardRoute = (options, route, pathPrefix) => {
   const handlerOptions = {
     access: mergeParams(options.access.all, options.access[route.name]),
     after: mergeParams(options.after.all, options.after[route.name]),
-    allowedParams: options.allowedParams,
+    allowedParams: mergeParams(options.allowedParams.all, options.allowedParams[route.name]),
     alter: mergeParams(options.alter.all, options.alter[route.name]),
     authenticated: options.authenticated,
     before: mergeParams(options.before.all, options.before[route.name]),
     cacheFor: options.cacheFor,
+    defaultParams: options.defaultParams,
     defaultSort: options.defaultSort,
     filterParams: options.filterParams,
     log: options.log[route.name] || options.log.all,
@@ -134,12 +154,24 @@ export const buildStandardRoute = (options, route, pathPrefix) => {
   const handler = buildHandler(builder, handlerOptions)
 
   const routeOptions = {
-    method: 'get',
+    method: route.method,
     path: `${pathPrefix}/${options.path}${route.path}`,
     handler
   }
 
   return buildRoute(routeOptions)
+
+}
+
+export const buildNestedRoutes = (options, prefix, pathPrefix) => {
+
+  return options.resources.reduce((routes, resource) => [
+    ...routes,
+    ...buildResources({
+      ...resource,
+      pathPrefix: `${pathPrefix}/${options.path}/:${options.name}_id`
+    })
+  ], [])
 
 }
 

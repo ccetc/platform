@@ -70,8 +70,6 @@ export const wrapWithHooks = (authenticator, authorizer, verifier, before, proce
 
     if(_.isPlainObject(err)) {
 
-      console.log(err)
-
       const extra = err.errors ? { errors: err.errors } : null
 
       return fail(res, err.code, err.message, extra)
@@ -170,7 +168,7 @@ export const toList = (arr) => {
 
 }
 
-export const defaultQuery = (req, options, action, qb, filters) => {
+export const defaultQuery = (req, options, qb, filters) => {
 
   const tableName = options.model.extend().__super__.tableName
 

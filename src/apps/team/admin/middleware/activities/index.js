@@ -1,4 +1,4 @@
-import resources from 'platform/middleware/resources'
+import { resources } from 'platform/middleware/rest'
 import Activity from 'platform/models/activity'
 import ActivitySerializer from 'platform/serializers/activity_serializer'
 

@@ -1,4 +1,4 @@
-import resources from 'platform/middleware/resources'
+import { resources } from 'platform/middleware/rest'
 import Role from 'platform/models/role'
 import RoleQuery from 'platform/queries/role_query'
 import RoleSerializer from 'platform/serializers/role_serializer'

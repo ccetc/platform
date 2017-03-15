@@ -1,6 +1,6 @@
 import moment from 'moment'
 import knex from 'platform/services/knex'
-import resources from 'platform/middleware/resources'
+import { resources } from 'platform/middleware/rest'
 import User from 'platform/models/user'
 import UserSerializer from 'platform/serializers/user_serializer'
 import { createRoles, updateRoles } from './hooks'

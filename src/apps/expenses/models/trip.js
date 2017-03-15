@@ -18,6 +18,15 @@ export default model.extend({
     total_miles: ['required']
   },
 
+  virtuals: {
+    activity: function() {
+      return {
+        type: 'trip',
+        text: this.get('description')
+      }
+    }
+  },
+
   approved_by: function() {
     return this.belongsTo(User, 'approved_by_id')
   },

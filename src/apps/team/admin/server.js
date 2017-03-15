@@ -10,12 +10,12 @@ import users from './middleware/users'
 
 export default [
   ...access,
-  ...activities.routes,
-  ...appAuthors.routes,
-  ...appCategories.routes,
-  ...apps.routes,
-  ...assets.routes,
-  ...roles.routes,
-  ...searches.routes,
-  ...users.routes
+  ...activities,
+  ...appAuthors,
+  ...appCategories,
+  ...apps,
+  ...assets,
+  ...roles,
+  ...searches,
+  ...users
 ]

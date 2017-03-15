@@ -1,4 +1,4 @@
-import resources from 'platform/middleware/resources'
+import { resources } from 'platform/middleware/rest'
 import knex from 'platform/services/knex'
 import Project from '../../../models/project'
 import ProjectSerializer from '../../../serializers/project_serializer'
@@ -50,9 +50,8 @@ export default resources({
       },
       serializer: ExpenseTypeProjectSerializer
     },{
-      allowedParams: ['user_id','member_type_id','is_active'],
+      allowedParams: ['project_id','user_id','member_type_id','is_active'],
       defaultParams: (req) => ({
-        project_id: req.params.project_id,
         is_active: true
       }),
       defaultSort: ['member_type_id', 'last_name'],

@@ -16,6 +16,7 @@ export default (req, options) => {
       user_id: req.user.get('id'),
       app_id: req.app.get('id'),
       story_id: story.get('id'),
+      url: options.url,
       object1_type: options.object1_type,
       object1_text: options.object1_text,
       object2_type: options.object2_type,

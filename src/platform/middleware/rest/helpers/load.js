@@ -1,6 +1,6 @@
 import { coerceArray, defaultQuery } from '../utils'
 
-export default (action, options) => {
+export default (options) => {
 
   const fetchOptions = options.withRelated ? { withRelated: coerceArray(options.withRelated) } : {}
 
@@ -12,7 +12,7 @@ export default (action, options) => {
 
     return options.model.query(qb => {
 
-      qb = defaultQuery(req, options, action, qb, {})
+      qb = defaultQuery(req, options, qb, {})
 
       qb.where(`${tableName}.id`, req.params[primaryKey])
 

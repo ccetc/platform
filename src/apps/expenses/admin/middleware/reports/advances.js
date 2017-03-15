@@ -1,4 +1,4 @@
-import resources from 'platform/middleware/resources'
+import { resources } from 'platform/middleware/rest'
 import Advance from '../../../models/advance'
 import AdvanceSerializer from '../../../serializers/advance_serializer'
 

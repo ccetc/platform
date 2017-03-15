@@ -51,7 +51,7 @@ export class Feed extends React.Component {
                       <div className="chrome-feed-item-app-icon">
                         <i className={`${ item.app.icon } icon`} />
                       </div>
-                      { moment(item.created_at).calendar(null, { sameDay: '[Today]', lastDay: '[Yesterday]', sameElse: 'MMMM Do' }) } at { moment(item.created_at).format('h:mm a') }
+                      { moment(item.created_at).calendar(null, { sameDay: '[Today]', lastDay: '[Yesterday]', lastWeek: '[Last] dddd', sameElse: 'MMMM Do' }) } at { moment(item.created_at).format('h:mm a') }
                     </div>
                   </div>
                 </a>

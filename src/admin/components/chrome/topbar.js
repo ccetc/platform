@@ -20,7 +20,7 @@ export class Topbar extends React.Component {
   }
 
   render() {
-    const { children, user } = this.props
+    const { user } = this.props
     return (
       <div className="chrome-topbar">
         <div className="chrome-topbar-icon" onClick={this._handleOpenNavigation.bind(this)}>

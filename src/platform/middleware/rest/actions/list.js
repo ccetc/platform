@@ -44,7 +44,7 @@ export default (options) => {
 
       const filters = filterParams(req.query.$filter, options.filterParams)
 
-      qb = defaultQuery(req, options, 'list', qb, filters)
+      qb = defaultQuery(req, options, qb, filters)
 
       if(options.searchParams && req.query.$filter && req.query.$filter.q) {
         const term = `%${req.query.$filter.q.toLowerCase()}%`

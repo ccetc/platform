@@ -6,9 +6,7 @@ export default resources({
   defaultSort: 'code',
   model: ExpenseType,
   name: 'expense_type',
-  only: ['list','show'],
   rights: ['expenses.manage_configuration'],
-  // filterParams: ['code','title','description'],
   searchParams: ['code','title','description'],
   sortParams: ['title','code']
 })

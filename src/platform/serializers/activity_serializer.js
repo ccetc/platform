@@ -2,7 +2,6 @@ export default (object) => {
 
   return {
     id: object.get('id'),
-    url: object.get('url'),
     is_read: object.get('is_read'),
     app: {
       id: object.related('app').get('id'),

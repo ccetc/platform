@@ -1,4 +1,4 @@
-import resources from 'platform/middleware/resources'
+import { resources } from 'platform/middleware/rest'
 import Vendor from '../../../models/vendor'
 
 export default resources({

@@ -1,14 +1,17 @@
-import { resourceResponder } from '../utils'
+import { defaultAuthenticator, defaultAuthorizer, defaultResponder } from '../utils/defaults'
 import load from '../helpers/load'
 
 export default options => {
 
-  const processor = (req, resolve, reject) => load('show', options)(req).then(resolve)
+  const processor = (req, resolve, reject) => load(options)(req).then(resolve)
 
-  const renderer = (req, result) => Promise.resolve(result)
+  const responder = defaultResponder(200, 'success')
 
-  const responder = resourceResponder(200, `Sucessfully found ${options.name}`)
-
-  return { processor, renderer, responder }
+  return {
+    authenticator: defaultAuthenticator(options),
+    authorizer: defaultAuthorizer(options),
+    processor,
+    responder
+  }
 
 }

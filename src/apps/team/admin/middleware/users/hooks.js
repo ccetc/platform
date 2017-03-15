@@ -16,7 +16,7 @@ export const createRoles = (req, resource) => {
     }).catch(err => {
 
       if(err.errors) {
-        return reject({ code: 422, message: 'Unable to create roles', data: err.toJSON() })
+        return reject({ code: 422, message: 'Unable to create roles', errors: err.toJSON() })
       }
 
       reject(err)
@@ -60,7 +60,7 @@ export const updateRoles = (req, resource) => {
 
       if(err.errors) {
 
-        return reject({ code: 422, message: 'Unable to update roles', data: err.toJSON() })
+        return reject({ code: 422, message: 'Unable to update roles', errors: err.toJSON() })
 
       }
 

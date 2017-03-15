@@ -33,7 +33,7 @@ export const apiRoutes = [
   ...signin,
   ...reset,
   ...activate,
-  ...notifications.routes,
+  ...notifications,
   ...account,
   ...assets,
   session,

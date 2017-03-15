@@ -1,18 +1,20 @@
-import { mergeParams, filterParams, resourceRenderer, resourceResponder, resourceLogger } from '../utils'
+import { filterParams } from '../utils'
+import { defaultAuthenticator, defaultAuthorizer, defaultLogger, defaultRenderer, defaultResponder } from '../utils/defaults'
 
 export default (options) => {
 
   const processor = (req, resolve, reject) => {
 
-    const defaults = options.defaultParams ? options.defaultParams(req) : {}
-
-    const allowedParams = mergeParams(options.allowedParams.all, options.allowedParams.create)
+    const params = {
+      ...req.body,
+      ...req.params
+    }
 
     const data = {
-      ...defaults,
+      ...options.defaultParams ? options.defaultParams(req) : {},
       ...options.ownedByTeam ? { team_id: req.team.get('id') } : {},
       ...options.ownedByUser ? { user_id: req.user.get('id') } : {},
-      ...filterParams(req.body, allowedParams)
+      ...filterParams(params, options.allowedParams)
     }
 
     return options.model.forge(data).save().then(resource => {
@@ -29,12 +31,28 @@ export default (options) => {
 
   }
 
-  const renderer = resourceRenderer(options)
+  const logger = (result) => {
 
-  const responder = resourceResponder(200, `Sucessfully created ${options.name}`)
+    const activity = result.get('activity')
 
-  const logger = (options.log !== false) ? resourceLogger('created {object1}') : null
+    if(!activity) return {}
 
-  return { processor, renderer, responder, logger }
+    return {
+      text: 'created {object1}',
+      url: activity.url,
+      object1_type: activity.type,
+      object1_text: activity.text
+    }
+
+  }
+
+  return {
+    authenticator: defaultAuthenticator(options),
+    authorizer: defaultAuthorizer(options),
+    processor,
+    logger: (options.log !== false) ? defaultLogger({ logger }) : null,
+    renderer: defaultRenderer(options),
+    responder: defaultResponder(200, 'Success')
+  }
 
 }

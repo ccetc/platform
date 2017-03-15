@@ -1,4 +1,4 @@
-import resources from 'platform/middleware/resources'
+import { resources } from 'platform/middleware/rest'
 import Search from 'platform/models/search'
 import SearchSerializer from 'platform/serializers/search_serializer'
 

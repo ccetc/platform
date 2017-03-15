@@ -18,6 +18,15 @@ export default model.extend({
     description: ['required']
   },
 
+  virtuals: {
+    activity: function() {
+      return {
+        type: 'advance',
+        text: this.get('description')
+      }
+    }
+  },
+
   approved_by: function() {
     return this.belongsTo(User, 'approved_by_id')
   },

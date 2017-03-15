@@ -1,4 +1,4 @@
-import resources from 'platform/middleware/resources'
+import { resources } from 'platform/middleware/rest'
 import Expense from '../../../models/expense'
 import ExpenseSerializer from '../../../serializers/expense_serializer'
 import canApprove from './utils'

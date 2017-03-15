@@ -1,4 +1,4 @@
-import resources from 'platform/middleware/resources'
+import { resources } from 'platform/middleware/rest'
 import AppCategory from 'platform/models/app_category'
 import AppCategorySerializer from 'platform/serializers/app_category_serializer'
 

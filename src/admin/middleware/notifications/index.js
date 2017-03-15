@@ -1,4 +1,4 @@
-import resources from 'platform/middleware/resources'
+import { resources } from 'platform/middleware/rest'
 import Notification from 'platform/models/notification'
 import NotificationSerializer from 'platform/serializers/notification_serializer'
 import { readProcessor } from './processors'

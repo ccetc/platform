@@ -1,4 +1,4 @@
-import resources from 'platform/middleware/resources'
+import { resources } from 'platform/middleware/rest'
 import MemberType from '../../../models/member_type'
 
 export default resources({

@@ -51,7 +51,7 @@ export default options => {
 
     }).catch(err => {
 
-      if(err.errors) return reject({ code: 422, message: `Unable to delete ${options.name}`, data: err.toJSON() })
+      if(err.errors) return reject({ code: 422, message: `Unable to delete ${options.name}`, errors: err.toJSON() })
 
       reject({ code: 500, message: err.message })
 

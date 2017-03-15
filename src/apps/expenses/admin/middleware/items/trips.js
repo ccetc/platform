@@ -1,4 +1,4 @@
-import resources from 'platform/middleware/resources'
+import { resources } from 'platform/middleware/rest'
 import Trip from '../../../models/trip'
 import TripSerializer from '../../../serializers/trip_serializer'
 import after from './after'
