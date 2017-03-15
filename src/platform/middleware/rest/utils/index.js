@@ -1,39 +1,20 @@
 import _ from 'lodash'
 import Promise from 'bluebird'
-import { validateOptions, normalizeOptions } from './options'
 import { fail } from 'platform/utils/responses'
 import { wrapWithLogger } from './logger'
-import custom from '../actions/custom'
-
-export const coerceArray = value => {
-
-  return value ? (!_.isArray(value) ? [value] : value) : []
-
-}
-
-export const buildRoute = (userOptions) => {
-
-  validateOptions(userOptions)
-
-  const options = normalizeOptions(userOptions)
-
-  return {
-    method: options.method,
-    path: options.path,
-    handler: options.handler || buildHandler(custom, options)
-  }
-
-}
+import { defaultVerifier } from './defaults'
 
 export const buildHandler = (builder, options) => {
 
   const defaults = builder(options)
 
-  const { authenticator, authorizer, processor, renderer, responder, logger } = buildHandlerComponents(options, defaults.authorizer, defaults.authenticator, defaults.processor, defaults.renderer, defaults.responder, defaults.logger)
+  const verifier = defaultVerifier(options)
+
+  const { authenticator, authorizer, processor, renderer, responder, logger } = buildHandlerComponents(options, defaults)
 
   return (req, res, next) => {
 
-    const withHooks = () => wrapWithHooks(authenticator, authorizer, options.before, processor, options.after, logger, renderer, options.alter, responder, req, res, next)
+    const withHooks = () => wrapWithHooks(authenticator, authorizer, verifier, options.before, processor, options.after, logger, renderer, options.alter, responder, req, res, next)
 
     return wrapWithLogger(req, res, withHooks)
 
@@ -41,8 +22,7 @@ export const buildHandler = (builder, options) => {
 
 }
 
-// takes all actor components and assembles them into a promise chain
-export const wrapWithHooks = (authenticator, authorizer, before, processor, after, logger, renderer, alter, responder, req, res, next) => {
+export const wrapWithHooks = (authenticator, authorizer, verifier, before, processor, after, logger, renderer, alter, responder, req, res, next) => {
 
   return new Promise.resolve().then(() => {
 
@@ -51,6 +31,10 @@ export const wrapWithHooks = (authenticator, authorizer, before, processor, afte
   }).then(() => {
 
     return authorizer ? authorizer(req) : true
+
+  }).then(() => {
+
+    return verifier(req)
 
   }).then(() => {
 
@@ -85,6 +69,8 @@ export const wrapWithHooks = (authenticator, authorizer, before, processor, afte
   }).catch(err => {
 
     if(_.isPlainObject(err)) {
+
+      console.log(err)
 
       const extra = err.errors ? { errors: err.errors } : null
 
@@ -143,11 +129,76 @@ export const runHooks = (req, hooks, result = null) => {
 
 }
 
-export const buildHandlerComponents = (options, authenticator, authorizer, processor, renderer, responder, logger) => ({
-  authenticator: options.authenticator || authenticator,
-  authorizer: options.authorizer || authorizer,
-  processor: options.processor || processor,
-  renderer: options.renderer || renderer,
-  responder: options.responder || responder,
-  logger
+export const buildHandlerComponents = (options, defaults) => ({
+  authenticator: options.authenticator || defaults.authenticator,
+  authorizer: options.authorizer || defaults.authorizer,
+  processor: options.processor || defaults.processor,
+  renderer: options.renderer || defaults.renderer,
+  responder: options.responder || defaults.responder,
+  logger: defaults.logger
 })
+
+
+export const coerceArray = value => {
+
+  return value ? (!_.isArray(value) ? [value] : value) : []
+
+}
+
+export const mergeParams = function() {
+
+  return Array.apply(null, { length: arguments.length }).reduce((merged, value, index) => _.uniq([
+    ...merged,
+    ...coerceArray(arguments[index])
+  ]), [])
+
+}
+
+// returns a flat list of all the nested keys in a hash
+export const flattenKeys = (hash, prefix = '') => {
+
+  return Object.keys(hash).reduce((keys, key) => [
+    ...keys,
+    ..._.isObject(hash[key]) ? flattenKeys(hash[key], `${prefix}${key}.`) : [`${prefix}${key}`]
+  ], [])
+
+}
+
+export const toList = (arr) => {
+
+  return arr.join(', ').replace(new RegExp(',$'), ', and')
+
+}
+
+export const defaultQuery = (req, options, action, qb, filters) => {
+
+  const tableName = options.model.extend().__super__.tableName
+
+  if(options.ownedByTeam) {
+    qb = qb.where(`${tableName}.team_id`, req.team.get('id'))
+  }
+
+  if(options.ownedByUser) {
+    qb = qb.where(`${tableName}.user_id`, req.user.get('id'))
+  }
+
+  if(options.query ) {
+    options.query (qb, req, filters)
+  }
+
+  if(options.softDelete) {
+    qb = qb.whereNull('deleted_at')
+  }
+
+  return qb
+
+}
+
+// return body params with only requested keys
+export const filterParams = (params, allowed) => {
+
+  if(!params) return null
+
+  return _.pick(params, allowed)
+
+}

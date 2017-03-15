@@ -2,12 +2,9 @@ import chalk from 'chalk'
 import _ from 'lodash'
 import { coerceArray } from './index'
 
-const VALID_OPTIONS = ['access','after','authenticated','authorizer','alter','before','cacheFor','handler','logger','method','path','processor','renderer','responder','rights','serializer','story']
-const REQUIRED_OPTIONS = ['method','path']
+export const validateOptions = (options, checks) => {
 
-export const validateOptions = (options) => {
-
-  const valid = checkOptions(options)
+  const valid = checkOptions(options, checks)
 
   const name = options.prefix || options.name || ''
 
@@ -18,25 +15,31 @@ export const validateOptions = (options) => {
 
 }
 
-export const checkValidOptions = (options, valid) => {
+export const checkValidOptions = (options, keys) => {
 
-  return Object.keys(options).reduce((errors, option) => ([
+  if(!keys) return []
+
+  return Object.keys(options).reduce((errors, key) => ([
     ...errors,
-    ...(!_.includes(valid, option) ? [`option "${option}" is invalid`] : [])
+    ...(!_.includes(keys, key) ? [`option "${key}" is invalid`] : [])
   ]), [])
 
 }
 
-export const checkRequiredOptions = (options, required) => {
+export const checkRequiredOptions = (options, keys) => {
 
-  return required.reduce((errors, option) => ([
+  if(!keys) return []
+
+  return keys.reduce((errors, key) => ([
     ...errors,
-    ...(!options[option] ? [`attribute "${option}" is required`] : [])
+    ...(!options[key] ? [`attribute "${key}" is required`] : [])
   ]), [])
 
 }
 
-export const checkOptionType = (options, names, types) => {
+export const checkOptionType = (options, keys, types) => {
+
+  if(!keys) return []
 
   const getOperation = (type) => {
     if(type === 'array') return _.isArray
@@ -49,9 +52,9 @@ export const checkOptionType = (options, names, types) => {
 
   const allowed = coerceArray(types)
 
-  return names.reduce((errors, option) => {
+  return keys.reduce((errors, key) => {
 
-    const value = options[option]
+    const value = options[key]
 
     const valid = allowed.reduce((valid, type) => {
 
@@ -62,18 +65,60 @@ export const checkOptionType = (options, names, types) => {
 
     return [
       ...errors,
-      ...(value && !valid ? [`attribute "${option}" must be a ${allowed.join(' or ')}`] : [])
+      ...(value && !valid ? [`attribute "${key}" must be a ${allowed.join(' or ')}`] : [])
     ]
 
   }, [])
 
 }
 
-export const checkOptions = (options) => {
+export const checkMappedOptions = (options, keys) => {
+
+  if(!keys) return []
+
+  const customActions = options.actions ? Object.keys(options.actions) : []
+
+  const allowedActions = [
+    ...['all','create','destroy','list','show','update'],
+    ...customActions
+  ]
+
+  return keys.reduce((errors, key) => {
+
+    if(_.isUndefined(options[key]) || !_.isPlainObject(options[key])) return errors
+
+    const mappedActions = Object.keys(options[key])
+
+    return [
+      ...errors,
+      ...checkMappedOption(key, mappedActions, allowedActions)
+    ]
+
+  }, [])
+
+}
+
+export const checkMappedOption = (key, mappedActions, allowedActions) => {
+
+  return mappedActions.reduce((errors, action) => ([
+    ...errors,
+    ...(!_.includes(allowedActions, action) ? [`"${key}" maps an invalid action "${action}"`] : [])
+  ]), [])
+
+}
+
+export const checkOptions = (options, checks) => {
 
   const errors = [
-    ...checkValidOptions(options, VALID_OPTIONS),
-    ...checkRequiredOptions(options, REQUIRED_OPTIONS)
+    ...checkValidOptions(options, checks.valid),
+    ...checkRequiredOptions(options, checks.required),
+    ...checkMappedOptions(options, checks.mapped),
+    ...checkOptionType(options, checks.array_or_string, ['array','string']),
+    ...checkOptionType(options, checks.object_or_function, ['object','function']),
+    ...checkOptionType(options, checks.boolean, 'boolean'),
+    ...checkOptionType(options, checks.string, 'string'),
+    ...checkOptionType(options, checks.integer, 'integer'),
+    ...checkOptionType(options, checks.function, 'function')
   ]
 
   return (errors.length === 0) ? true : errors
@@ -90,18 +135,5 @@ export const printOptionErrors = (name, issues) => {
     ...issues.map(issue => chalk.grey('> ' + issue)),
     chalk.red('================================================================================')
   ].map(statement => console.log(statement))
-
-}
-
-export const normalizeOptions = (userOptions) => {
-
-  const defaultOptions = {
-    authenticated: true
-  }
-
-  return {
-    ...defaultOptions,
-    ...userOptions
-  }
 
 }

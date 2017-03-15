@@ -20,7 +20,7 @@ const externalAuthenticationRoute = {
 
 const renderRoute = {
   method: 'get',
-  path: '/*',
+  path: '*',
   handler: render(client)
 }
 

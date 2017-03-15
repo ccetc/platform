@@ -1,5 +1,7 @@
 import { Router } from 'express'
-import { buildRoute } from './utils'
+import { buildRoute } from './utils/route'
+import { buildResources } from './utils/resources'
+import { buildResource } from './utils/resource'
 
 export const buildRouter = segments => {
 
@@ -24,5 +26,17 @@ export const buildRouter = segments => {
 export const route = userOptions => {
 
   return buildRoute(userOptions)
+
+}
+
+export const resources = userOptions => {
+
+  return buildResources(userOptions)
+
+}
+
+export const resource = userOptions => {
+
+  return buildResource(userOptions)
 
 }

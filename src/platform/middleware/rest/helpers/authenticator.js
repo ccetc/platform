@@ -28,6 +28,7 @@ export default (options) => {
           req.jwt = info
           req.team = user.related('team')
           req.user = user
+
           resolve(user)
 
         })

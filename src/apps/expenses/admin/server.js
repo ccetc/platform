@@ -13,13 +13,15 @@ import tripApprovals from './middleware/approvals/trips'
 import tripReport from './middleware/reports/trips'
 import vendors from './middleware/vendors'
 
+console.log(expenseTypes)
+
 export default [
   ...advanceApprovals.routes,
   ...advanceReport.routes,
   ...advances.routes,
   ...expenseApprovals.routes,
   ...expenseReport.routes,
-  ...expenseTypes.routes,
+  ...expenseTypes,
   ...expenses.routes,
   ...memberships.routes,
   ...memberTypes.routes,

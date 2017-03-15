@@ -2,7 +2,7 @@ import * as actionTypes from './action_types'
 import api from 'admin/utils/api'
 
 export const team = (subdomain) => {
-  return api.get({
+  return api.post({
     params: { subdomain },
     endpoint: '/admin/signin/teams',
     request: actionTypes.TEAM_REQUEST,
@@ -12,7 +12,7 @@ export const team = (subdomain) => {
 }
 
 export const email = (team_id, email) => {
-  return api.get({
+  return api.post({
     params: { team_id, email },
     endpoint: '/admin/signin/email',
     request: actionTypes.EMAIL_REQUEST,

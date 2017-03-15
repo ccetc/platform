@@ -1,10 +1,8 @@
-import { coerceArray, defaultQuery } from './utils'
+import { coerceArray, defaultQuery } from '../utils'
 
 export default (action, options) => {
 
-  const withRelated = options.withRelated || []
-
-  const fetchOptions = withRelated ? { withRelated: coerceArray(withRelated) } : {}
+  const fetchOptions = options.withRelated ? { withRelated: coerceArray(options.withRelated) } : {}
 
   const tableName = options.model.extend().__super__.tableName
 

@@ -1,12 +1,14 @@
-import resources from 'platform/middleware/resources'
+import { resources } from 'platform/middleware/rest'
 import ExpenseType from '../../../models/expense_type'
 
 export default resources({
   allowedParams: ['title','code','description'],
   defaultSort: 'code',
-  name: 'expense_type',
   model: ExpenseType,
+  name: 'expense_type',
+  only: ['list','show'],
   rights: ['expenses.manage_configuration'],
+  // filterParams: ['code','title','description'],
   searchParams: ['code','title','description'],
   sortParams: ['title','code']
 })
