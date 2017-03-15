@@ -76,26 +76,20 @@ export default resources({
         toggle: {
           on: 'member',
           path: 'toggle',
-          method: 'patch'
+          logger: toggleExpenseTypeLogger,
+          method: 'patch',
+          processor: toggleExpenseTypeProcessor,
+          renderer: toggleExpenseTypeRenderer
         }
       },
       defaultSort: 'code',
-      logger: {
-        toggle: toggleExpenseTypeLogger
-      },
       only: 'list',
-      processor: {
-        toggle: toggleExpenseTypeProcessor
-      },
       model: ExpenseType,
       name: 'expense_type',
       ownedByTeam: true,
       query: (qb, req, filters) => {
         qb.joinRaw('left join expenses_expense_types_projects on expenses_expense_types_projects.expense_type_id=expenses_expense_types.id and expenses_expense_types_projects.project_id=?', req.params.project_id)
         qb.whereNull('expenses_expense_types_projects.id')
-      },
-      renderer: {
-        toggle: toggleExpenseTypeRenderer
       },
       searchParams: ['code','title','description'],
       serializer: ExpenseTypeSerializer

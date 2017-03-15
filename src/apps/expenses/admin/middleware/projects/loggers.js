@@ -12,8 +12,6 @@ export const createMemberLogger = (req, result) => {
 
 export const toggleExpenseTypeLogger = (req, result) => {
 
-  console.log(result)
-
   return log(req, `${result.action} {object1} in {object2}`, 'expense type', result.expense_type.get('title'), 'project', result.project.get('title')).then(() => result)
 
 }

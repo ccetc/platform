@@ -8,7 +8,8 @@ export default resources({
     read: {
       on: 'collection',
       path: 'read',
-      method: 'patch'
+      method: 'patch',
+      processor: readProcessor
     }
   },
   defaultSort: '-created_at',
@@ -16,9 +17,6 @@ export default resources({
   name: 'notification',
   only: 'list',
   ownedByUser: true,
-  processor: {
-    read: readProcessor
-  },
   serializer: NotificationSerializer,
   sortParams: ['created_at'],
   withRelated: ['app','story','subject.photo','user.photo']

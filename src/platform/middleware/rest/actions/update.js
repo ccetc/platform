@@ -1,4 +1,4 @@
-import { mergeParams, filterParams } from '../utils'
+import { filterParams } from '../utils'
 import { defaultAuthenticator, defaultAuthorizer, defaultLogger, defaultRenderer, defaultResponder } from '../utils/defaults'
 import load from '../helpers/load'
 

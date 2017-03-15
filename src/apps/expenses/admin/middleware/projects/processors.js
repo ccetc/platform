@@ -45,21 +45,23 @@ export const toggleExpenseTypeProcessor = (req, resolve, reject) => {
         action: 'enabled'
       }
 
-      return ExpenseTypeProject.where(data).fetch().then(item => {
+      ExpenseTypeProject.where(data).fetch().then(item => {
 
-        return item.destroy().then(() => {
+        return item.destroy()
 
-          resolve(result)
+      }).then(() => {
 
-        })
+        resolve(result)
 
       })
 
-    }
+    } else {
 
-    return ExpenseTypeProject.forge(data).save().then(expense_type_project => {
+      ExpenseTypeProject.forge(data).save().then(expense_type_project => {
 
-      return expense_type_project.load(['expense_type','project']).then(() => {
+        return expense_type_project.load(['expense_type','project'])
+
+      }).then(expense_type_project => {
 
         resolve({
           expense_type: expense_type_project.related('expense_type'),
@@ -69,7 +71,10 @@ export const toggleExpenseTypeProcessor = (req, resolve, reject) => {
 
       })
 
-    })
+
+    }
+
+
 
   })
 

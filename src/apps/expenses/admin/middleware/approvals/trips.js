@@ -13,33 +13,27 @@ export default resources({
     approve: {
       on: 'member',
       path: 'approve',
-      method: 'patch'
+      method: 'patch',
+      after: after.approve,
+      logger: loggers.approve,
+      processor: processors.approve
     },
     reject: {
       on: 'member',
       path: 'reject',
-      method: 'patch'
+      method: 'patch',
+      after: after.reject,
+      logger: loggers.reject,
+      processor: processors.reject
     }
-  },
-  after: {
-    approve: after.approve,
-    reject: after.reject
   },
   defaultSort: '-date_needed',
   filterParams: ['user_id','expense_type_id','project_id','date_needed','is_approved'],
-  logger: {
-    approve: loggers.approve,
-    reject: loggers.reject
-  },
   model: Trip,
   name: 'trip',
   only: ['list','show','update'],
   ownedByUser: false,
   pathPrefix: '/approvals',
-  processor: {
-    approve: processors.approve,
-    reject: processors.reject
-  },
   query: (qb, req, filters) => {
     qb.joinRaw('inner join expenses_members on expenses_members.project_id = expenses_trips.project_id and expenses_members.user_id=? and expenses_members.member_type_id != ?', [req.user.get('id'), 3])
     qb.whereNot('expenses_trips.user_id', req.user.get('id'))
