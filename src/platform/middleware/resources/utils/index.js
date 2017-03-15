@@ -2,6 +2,7 @@ import _ from 'lodash'
 import Promise from 'bluebird'
 import { Router } from 'express'
 import knex from 'platform/services/knex'
+import authenticator from '../helpers/authenticator'
 import cache from '../helpers/cache'
 import { succeed, fail } from 'platform/utils/responses'
 import { validateOptions, normalizeOptions } from './options'
@@ -80,11 +81,9 @@ export const buildHandler = (action, builder, options) => {
 
   const { authorizer, processor, renderer, responder, logger } = buildHandlerComponents(options, action, defaults.authorizer, defaults.processor, defaults.renderer, defaults.responder, defaults.logger)
 
-  const authenticator = null
-
   return (req, res, next) => {
 
-    const withHooks = () => wrapWithHooks(authenticator, authorizer, before, processor, after, logger, renderer, alter, responder, req, res, next)
+    const withHooks = () => wrapWithHooks(authenticator(options), authorizer, before, processor, after, logger, renderer, alter, responder, req, res, next)
 
     // const withTransaction = () => wrapWithTransaction(withHooks)
     //
@@ -533,23 +532,17 @@ export const padString = (text, length) => {
 }
 
 // print a routing table
-export const printRoutingTable = (resources, method) => {
+export const printRoutingTable = (routes, method) => {
 
   console.log(chalk.grey(' ============================================================= '))
   console.log('%s %s %s %s %s', chalk.grey('|'), chalk.white(padString('METHOD', 6)),chalk.grey('|'), chalk.white(padString('PATH', 50)),chalk.grey('|'))
   console.log(chalk.grey('|=============================================================|'))
 
-  resources.map(resource => {
+  routes.map(route => {
 
-    Object.keys(resource.routes).map(key => {
+    if(method !== 'all' && method !== route.method) return
 
-      const route = resource.routes[key]
-
-      if(method !== 'all' && method !== route.method) return
-
-      console.log('%s %s %s %s %s', chalk.grey('|'), chalk.green(padString(route.method.toUpperCase(), 6)),chalk.grey('|'), chalk.white(padString(route.path, 50)),chalk.grey('|'))
-
-    })
+    console.log('%s %s %s %s %s', chalk.grey('|'), chalk.green(padString(route.method.toUpperCase(), 6)),chalk.grey('|'), chalk.white(padString(route.path, 50)),chalk.grey('|'))
 
   })
 

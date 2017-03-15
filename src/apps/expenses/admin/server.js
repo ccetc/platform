@@ -1,4 +1,3 @@
-import { Router } from 'express'
 import advances from './middleware/items/advances'
 import advanceApprovals from './middleware/approvals/advances'
 import advanceReport from './middleware/reports/advances'
@@ -14,29 +13,19 @@ import tripApprovals from './middleware/approvals/trips'
 import tripReport from './middleware/reports/trips'
 import vendors from './middleware/vendors'
 
-export const resources = [
-  advanceApprovals,
-  advanceReport,
-  advances,
-  expenseApprovals,
-  expenseReport,
-  expenseTypes,
-  expenses,
-  memberships,
-  memberTypes,
-  projects,
-  tripApprovals,
-  tripReport,
-  trips,
-  vendors
+export default [
+  ...advanceApprovals.routes,
+  ...advanceReport.routes,
+  ...advances.routes,
+  ...expenseApprovals.routes,
+  ...expenseReport.routes,
+  ...expenseTypes.routes,
+  ...expenses.routes,
+  ...memberships.routes,
+  ...memberTypes.routes,
+  ...projects.routes,
+  ...tripApprovals.routes,
+  ...tripReport.routes,
+  ...trips.routes,
+  ...vendors.routes
 ]
-
-const router = Router()
-
-resources.map(resource => {
-
-  router.use(resource.router)
-
-})
-
-export default router

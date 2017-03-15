@@ -3,7 +3,7 @@ import route from 'platform/middleware/route'
 
 export default route({
   method: 'get',
-  path: '/api/admin/account',
+  path: '/account',
   processor: (req) => {
     return Promise.resolve({
       first_name: req.user.get('first_name'),

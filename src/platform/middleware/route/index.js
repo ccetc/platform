@@ -1,15 +1,21 @@
 import { Router } from 'express'
 import { buildRoute } from './utils'
 
-export const buildRouter = routes => {
+export const buildRouter = segments => {
 
-  return Object.keys(routes).reduce((router, key) => {
+  return segments.reduce((router, options) => {
 
-    const route = routes[key]
+    return Object.keys(options.routes).reduce((router, key) => {
 
-    router[route.method](route.path, route.handler)
+      const route = options.routes[key]
 
-    return router
+      const path = options.prefix ? options.prefix + route.path : route.path
+
+      router[route.method](path, route.handler)
+
+      return router
+
+    }, router)
 
   }, Router({ mergeParams: true }))
 

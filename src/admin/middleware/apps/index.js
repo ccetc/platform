@@ -1,28 +1,43 @@
 import fs from 'fs'
 import path from 'path'
-import { Router } from 'express'
-import App from './app'
+import app from './app'
 
-const router = Router()
 const appPath = path.join(__dirname, '..', '..', '..', 'apps')
 
-fs.readdirSync(appPath).filter(app => {
+const routes = fs.readdirSync(appPath).reduce((routes, appName) => {
 
-  const configPath = path.join(appPath, app, 'app.js')
-  const adminPath = path.join(appPath, app, 'admin')
+  const adminPath = path.join(appPath, appName, 'admin')
+  const configPath = path.join(appPath, appName, 'app.js')
 
-  if(fs.existsSync(adminPath)) {
-
-    const middlewarePath = path.join(adminPath, 'server')
-    const routes = require(middlewarePath).default
-    const config = require(configPath)
-
-    router.use(`/${app}`, App(config.title))
-
-    router.use(`/${app}`, routes)
-
+  if(!fs.existsSync(adminPath)) {
+    return routes
   }
 
-})
+  const middlewarePath = path.join(adminPath, 'server')
 
-export default router
+  const config = require(configPath)
+
+  const appLoader = {
+    method: 'use',
+    path: `/${appName}`,
+    handler: app(config.title)
+  }
+
+  const appRoutes = require(middlewarePath).default.reduce((routes, route) => {
+    return [
+      ...routes,
+      {
+        ...route,
+        path: `/${appName}${route.path}`
+      }
+    ]
+  }, [appLoader])
+
+  return [
+    ...routes,
+    ...appRoutes
+  ]
+
+}, [])
+
+export default routes

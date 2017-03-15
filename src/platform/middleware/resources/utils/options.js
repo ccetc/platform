@@ -145,6 +145,7 @@ export const printOptionErrors = (name, issues) => {
 export const normalizeOptions = (userOptions) => {
 
   const defaultOptions = {
+    authenticated: true,
     actions: [],
     defaultSort: '-created_at',
     ownedByTeam: true,

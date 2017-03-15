@@ -3,7 +3,7 @@ import { succeed } from 'platform/utils/responses'
 import { applyToRecords, coerceArray } from './utils'
 import cache from './cache'
 import log from './log'
-import authenticator from './authentication'
+import authenticator from './authenticator'
 
 export default (options) => ({
   authenticator: defaultAuthenticator(options),

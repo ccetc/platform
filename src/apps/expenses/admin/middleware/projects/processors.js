@@ -1,5 +1,4 @@
 import Member from '../../../models/member'
-import ExpenseType from '../../../models/expense_type'
 import ExpenseTypeProject from '../../../models/expense_type_project'
 
 export const createProcessor = req => {

@@ -1,10 +1,10 @@
 import Promise from 'bluebird'
 import route from 'platform/middleware/route'
 
-export const reset = route({
+export const activate = route({
   authenticated: false,
   method: 'get',
-  path: '/reset',
+  path: '/activate',
   processor: (req) => {
     return new Promise((resolve, reject) => {
       resolve({})
@@ -13,5 +13,5 @@ export const reset = route({
 })
 
 export default [
-  reset
+  activate
 ]

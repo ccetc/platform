@@ -1,4 +1,3 @@
-import { Router } from 'express'
 import access from './middleware/access'
 import activities from './middleware/activities'
 import appAuthors from './middleware/app_authors'
@@ -9,29 +8,14 @@ import roles from './middleware/roles'
 import searches from './middleware/searches'
 import users from './middleware/users'
 
-export const resources = [
-  activities,
-  appAuthors,
-  appCategories,
-  apps,
-  assets,
-  roles,
-  searches,
-  users
+export default [
+  ...access,
+  ...activities.routes,
+  ...appAuthors.routes,
+  ...appCategories.routes,
+  ...apps.routes,
+  ...assets.routes,
+  ...roles.routes,
+  ...searches.routes,
+  ...users.routes
 ]
-
-const router = Router()
-
-router.use(access)
-
-router.use('/test', (req, res) => {
-  res.send('test')
-})
-
-resources.map(resource => {
-
-  router.use(resource.router)
-
-})
-
-export default router

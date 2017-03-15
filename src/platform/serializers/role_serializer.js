@@ -6,7 +6,7 @@ export default (object) => {
     description: object.get('description'),
     users: object.related('users').map(user => ({
       id: user.get('id'),
-      photo: user.related('photo').get('url'),
+      photo: user.related('photo').get('thumbnail_url'),
       full_name: user.get('full_name'),
       initials: user.get('initials'),
       email: user.get('email')

@@ -1,40 +1,64 @@
-import { Router } from 'express'
 import { test, upload } from './resumable'
-import { succeed, fail } from 'platform/utils/responses'
-import multiparty from 'connect-multiparty'
+import path from 'path'
 import resource from 'platform/middleware/resources'
+import route from 'platform/middleware/route'
+import multiparty from 'connect-multiparty'
 import Asset from 'platform/models/asset'
 import AssetSerializer from 'platform/serializers/asset_serializer'
 
-const router = Router()
-
-router.use(resource({
+const assets = resource({
   model: Asset,
   name: 'asset',
   only: 'list',
   serializer: AssetSerializer
-}).router)
-
-router.use(multiparty({ uploadDir: './tmp' }))
-
-router.get('/assets/upload', (req, res) => {
-
-  return test(req).then(data => {
-    succeed(res, 200, '', { data })
-  }).catch(error => {
-    fail(res, 404, error.message)
-  })
-
 })
 
-router.post('/assets/upload', (req, res) => {
+const multipartyRoute = {
+  method: 'use',
+  path: '/assets*',
+  handler: multiparty({ uploadDir: './tmp' })
+}
 
-  return upload(req).then(data => {
-    succeed(res, 200, '', { data })
-  }).catch(error => {
-    fail(res, 404, error.message)
-  })
-
+const previewRoute = route({
+  method: 'get',
+  path: '/assets/:id',
+  handler: (req, res) => {
+    res.sendFile(path.join('.', 'uploads', req.params.id))
+  }
 })
 
-export default router
+const testRoute = route({
+  method: 'get',
+  path: '/assets/upload',
+  processor: (req) => {
+    return new Promise((resolve, reject) => {
+      test(req).then(data => {
+        resolve(data)
+      }).catch(err=> {
+        reject({ code: 404, message: err.message })
+      })
+    })
+  }
+})
+
+const uploadRoute = route({
+  method: 'post',
+  path: '/assets/upload',
+  processor: (req) => {
+    return new Promise((resolve, reject) => {
+      upload(req).then(data => {
+        resolve(data)
+      }).catch(err=> {
+        reject({ code: 404, message: err.message })
+      })
+    })
+  }
+})
+
+export default [
+  ...assets.routes,
+  multipartyRoute,
+  testRoute,
+  uploadRoute,
+  previewRoute
+]

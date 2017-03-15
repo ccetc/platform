@@ -51,6 +51,6 @@ const processor = (req) => {
 
 export default route({
   method: 'get',
-  path: '/api/admin/search',
+  path: '/search',
   processor
 })

@@ -34,6 +34,6 @@ const logger = (result) => ({
 export default route({
   logger,
   method: 'patch',
-  path: '/api/admin/account/password',
+  path: '/account/password',
   processor
 })

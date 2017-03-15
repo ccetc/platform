@@ -1,16 +1,19 @@
+import { fail } from 'platform/utils/responses'
 import App from 'platform/models/app'
 
 export default (title) => {
 
   return (req, res, next) => {
 
-    App.where({ title }).fetch().then(app => {
+    return App.where({ title }).fetch().then(app => {
 
       req.app = app
 
       next()
 
-    }).catch(next)
+    }).catch(err => {
+      fail(res, 422, 'Unable to load app' )
+    })
 
   }
 

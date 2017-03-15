@@ -4,7 +4,7 @@ import _ from 'lodash'
 export default (user, token) => {
 
   return client({
-    path: '/api/admin/expenses/memberships',
+    path: '/expenses/memberships',
     headers: {
       'Authorization': `Bearer ${token}`
     }
