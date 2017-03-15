@@ -1,4 +1,4 @@
-import log from 'platform/middleware/resources/helpers/log'
+import log from 'platform/middleware/rest/helpers/log'
 
 export const createMemberLogger = (req, result) => {
 

@@ -1,12 +1,12 @@
 import { test, upload } from './resumable'
 import path from 'path'
-import resource from 'platform/middleware/resources'
+import { resources } from 'platform/middleware/rest'
 import { route } from 'platform/middleware/rest'
 import multiparty from 'connect-multiparty'
 import Asset from 'platform/models/asset'
 import AssetSerializer from 'platform/serializers/asset_serializer'
 
-const assets = resource({
+const assets = resources({
   model: Asset,
   name: 'asset',
   only: 'list',
@@ -52,7 +52,7 @@ const uploadRoute = route({
 })
 
 export default [
-  ...assets.routes,
+  ...assets,
   multipartyRoute,
   testRoute,
   uploadRoute,
