@@ -2,8 +2,9 @@ import Promise from 'bluebird'
 import _ from 'lodash'
 import { succeed } from 'platform/utils/responses'
 import { applyToRecords, coerceArray } from '../utils'
-import cache from '../helpers/cache'
 import log from '../helpers/log'
+import notify from '../helpers/notify'
+import render from '../helpers/render'
 import authenticator from '../helpers/authenticator'
 import verifier from '../helpers/verifier'
 
@@ -49,26 +50,7 @@ export const defaultVerifier = (options) => {
 
 export const defaultRenderer = (options) => {
 
-  const renderer = (result) => {
-
-    const serialize = () => {
-
-      return options.serializer ? options.serializer(result) : result
-      // return options.serializer ? options.serializer(result) : result.toJSON()
-
-    }
-
-    if(options.cacheFor) {
-
-      const key = `${options.name}-${result.get('id')}-${result.get('updated_at')}`
-
-      return cache(key, options.cacheFor, serialize)
-
-    }
-
-    return serialize()
-
-  }
+  const renderer = render(options)
 
   return (req, result) => {
 
@@ -84,19 +66,48 @@ export const defaultLogger = (options) => {
 
   return (req, result) => {
 
-    if(!options.logger) return result
+    if(!options.activity) return result
 
-    return Promise.resolve().then(() => {
+    return new Promise((resolve, reject) => {
 
-      return options.logger(result)
+      return options.activity(req, result, resolve, reject)
 
-    }).then(logger => {
+    }).then(activity => {
 
-      return log(req, logger).then(() => result)
+      return activity ? log(req, activity).then(() => result) : null
 
-    }).then(() => result)
+    }).then(() => {
+
+      return result
+
+    })
 
   }
+
+}
+
+export const defaultNotifier = (options) => {
+
+  return (req, result) => {
+
+    if(!options.notification) return result
+
+    return new Promise((resolve, reject) => {
+
+      return options.notification(req, result, resolve, reject)
+
+    }).then(notification => {
+
+      return notification ? notify(req, notification).then(() => result) : null
+
+    }).then(() => {
+
+      return result
+
+    })
+
+  }
+
 
 }
 

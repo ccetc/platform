@@ -3,27 +3,27 @@ import Expense from '../../../models/expense'
 import ExpenseSerializer from '../../../serializers/expense_serializer'
 import canApprove from './utils'
 
-const after = require('./after').default('expense')
 const loggers = require('./loggers').default('expense')
+const notification = require('./notification').default('expense')
 const processors = require('./processors').default('expense', Expense)
 
 export default resources({
   access: canApprove,
   actions: {
     approve: {
+      logger: loggers.approve,
+      method: 'patch',
+      notification: notification.approve,
       on: 'member',
       path: 'approve',
-      method: 'patch',
-      after: after.approve,
-      logger: loggers.approve,
       processor: processors.approve
     },
     reject: {
+      logger: loggers.reject,
+      method: 'patch',
+      notification: notification.reject,
       on: 'member',
       path: 'reject',
-      method: 'patch',
-      after: after.reject,
-      logger: loggers.reject,
       processor: processors.reject
     }
   },

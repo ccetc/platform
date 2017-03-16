@@ -1,9 +1,9 @@
 import Activity from 'platform/models/activity'
 import Story from 'platform/models/story'
 
-export default (req, options) => {
+export default (req, activity) => {
 
-  const storyData = { text: options.text }
+  const storyData = { text: activity.text }
 
   return Story.where(storyData).fetch().then(story => {
 
@@ -16,11 +16,10 @@ export default (req, options) => {
       user_id: req.user.get('id'),
       app_id: req.app.get('id'),
       story_id: story.get('id'),
-      url: options.url,
-      object1_type: options.object1_type,
-      object1_text: options.object1_text,
-      object2_type: options.object2_type,
-      object2_text: options.object2_text
+      object1_type: activity.object1_type,
+      object1_text: activity.object1_text,
+      object2_type: activity.object2_type,
+      object2_text: activity.object2_text
     }
 
     return Activity.forge(activityData).save()

@@ -16,7 +16,9 @@ export const wrapper = (redis) => {
 
     return redis.getAsync(key).then(result => {
 
+
       if(result) {
+
         return  {
           cached: true,
           data: parseJSON(result)

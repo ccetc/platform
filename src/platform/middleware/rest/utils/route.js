@@ -1,17 +1,18 @@
 import { buildHandler } from './index'
 import { validateOptions } from './options'
-import custom from '../actions/custom'
 
 export const buildRoute = (userOptions) => {
 
   const checks = {
-    valid: ['access','after','authenticated','authorizer','alter','before','cacheFor','handler','logger','method','path','processor','renderer','responder','rights','rules','serializer','story'],
+    valid: ['access','activity','after','authenticated','authorizer','alter','before','cacheFor','handler','logger','method','notifier','notification','path','processor','renderer','responder','rights','rules','serializer','story','verifier'],
     required: ['method','path']
   }
 
   validateOptions(userOptions, checks)
 
   const options = normalizeOptions(userOptions)
+
+  const custom = (options) => ({})
 
   return {
     method: options.method,

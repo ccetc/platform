@@ -3,26 +3,28 @@ import Advance from '../../../models/advance'
 import AdvanceSerializer from '../../../serializers/advance_serializer'
 import canApprove from './utils'
 
-const after = require('./after').default('advance')
 const loggers = require('./loggers').default('advance')
+const notification = require('./notification').default('advance')
 const processors = require('./processors').default('advance', Advance)
 
 export default resources({
   access: canApprove,
   actions: {
     approve: {
+      logger: loggers.approve,
+      method: 'patch',
+      notification: notification.approve,
       on: 'member',
       path: 'approve',
-      method: 'patch',
-      after: after.approve,
-      logger: loggers.approve
+      processor: processors.approve
     },
     reject: {
+      logger: loggers.reject,
+      method: 'patch',
+      notification: notification.reject,
       on: 'member',
       path: 'reject',
-      method: 'patch',
-      after: after.reject,
-      logger: loggers.reject
+      processor: processors.reject
     }
   },
   defaultSort: '-date_needed',

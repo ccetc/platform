@@ -8,9 +8,9 @@ import { buildRoute } from './route'
 export const buildResources = (userOptions) => {
 
   const checks = {
-    valid: ['access','actions','after','allowedParams','authorizer','alter','before','cacheFor','defaultParams','defaultSort','dependents','except','filterParams','log','logger','model','name','only','ownedByTeam','ownedByUser','path','pathPrefix','prefix','processor','query','renderer','resources','responder','rights','searchParams','serializer','softDelete','sortParams','withRelated'],
+    valid: ['access','actions','activity','after','allowedParams','authorizer','alter','before','cacheFor','defaultParams','defaultSort','dependents','except','filterParams','log','logger','model','name','notification','only','ownedByTeam','ownedByUser','path','pathPrefix','prefix','processor','query','renderer','resources','responder','rights','searchParams','serializer','softDelete','sortParams','withRelated'],
     required: ['name','model'],
-    mapped: ['access','alter','after','allowedParams','authorizer','before','log','logger','processor','query','renderer','responder','rights','serializer','withRelated'],
+    mapped: ['access','activity','alter','after','allowedParams','authorizer','before','log','logger','notification','processor','query','renderer','responder','rights','serializer','withRelated'],
     array_or_string: ['allowedParams','defaultSort','except','filterParams','only','searchParams','sortParams','withRelated'],
     object_or_function: ['actions','after','authorizer','alter','before','logger','processor','renderer','responder','serializer'],
     boolean: ['ownedByTeam','ownedByUser','softDelete'],
@@ -52,6 +52,7 @@ export const normalizeOptions = (userOptions) => {
     ...defaultOptions,
     ...userOptions,
     access: mapOptionToActions(userOptions.access),
+    activity: mapOptionToActions(userOptions.activity),
     alter: mapOptionToActions(userOptions.alter),
     after: mapOptionToActions(userOptions.after),
     allowedParams: mapOptionToActions(userOptions.allowedParams),
@@ -59,6 +60,7 @@ export const normalizeOptions = (userOptions) => {
     before: mapOptionToActions(userOptions.before),
     log: mapOptionToActions(userOptions.log),
     logger: mapOptionToActions(userOptions.logger),
+    notification: mapOptionToActions(userOptions.notification),
     path: userOptions.path || pluralize(userOptions.name),
     processor: mapOptionToActions(userOptions.processor),
     query:  mapOptionToActions(userOptions.query),
@@ -129,6 +131,7 @@ export const buildStandardRoute = (options, route, pathPrefix) => {
 
   const handlerOptions = {
     access: mergeParams(options.access.all, options.access[route.name]),
+    activity: options.activity[route.name] || options.activity.all,
     after: mergeParams(options.after.all, options.after[route.name]),
     allowedParams: mergeParams(options.allowedParams.all, options.allowedParams[route.name]),
     alter: mergeParams(options.alter.all, options.alter[route.name]),
@@ -141,8 +144,13 @@ export const buildStandardRoute = (options, route, pathPrefix) => {
     log: options.log[route.name] || options.log.all,
     model: options.model,
     name: options.name,
+    notification: options.notification[route.name] || options.notification.all,
     ownedByTeam: options.ownedByTeam,
     ownedByUser: options.ownedByUser,
+
+    method: route.method,
+    path: route.path,
+
     query: options.query[route.name] || options.query.all,
     rights: mergeParams(options.rights.all, options.rights[route.name]),
     serializer: options.serializer[route.name] || options.serializer.all,

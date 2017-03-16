@@ -1,5 +1,5 @@
 import { filterParams } from '../utils'
-import { defaultAuthenticator, defaultAuthorizer, defaultLogger, defaultRenderer, defaultResponder } from '../utils/defaults'
+import { defaultLogger } from '../utils/defaults'
 import load from '../helpers/load'
 
 export default options => {
@@ -27,27 +27,27 @@ export default options => {
 
   }
 
-  const logger = (result) => {
+  const logger = options.activity ? defaultLogger({ activity: options.activity }) : defaultLogger({
 
-    const activity = result.get('activity')
+    activity: (req, result, resolve, reject) => {
 
-    if(!activity) return {}
+      const activity = result.get('activity')
 
-    return {
-      text: 'updated {object1}',
-      object1_type: activity.type,
-      object1_text: activity.text
+      if(!activity) resolve({})
+
+      resolve({
+        text: 'updated {object1}',
+        object1_type: activity.type,
+        object1_text: activity.text
+      })
+
     }
 
-  }
+  })
 
   return {
-    authenticator: defaultAuthenticator(options),
-    authorizer: defaultAuthorizer(options),
     processor,
-    logger: (options.log !== false) ? defaultLogger({ logger }) : null,
-    renderer: defaultRenderer(options),
-    responder: defaultResponder(201, 'success')
+    logger
   }
 
 }

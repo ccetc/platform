@@ -2,7 +2,7 @@ import Promise from 'bluebird'
 import _ from 'lodash'
 import knex from 'platform/services/knex'
 import { coerceArray, defaultQuery, filterParams, applyToRecords,toList } from '../utils'
-import { defaultAuthenticator, defaultAuthorizer, defaultRenderer } from '../utils/defaults'
+import { defaultRenderer } from '../utils/defaults'
 import { extractSort, filter, selectFields } from '../utils/list'
 
 import CSVRenderer from '../renderers/csv'
@@ -159,8 +159,6 @@ export default (options) => {
   }
 
   return {
-    authenticator: defaultAuthenticator(options),
-    authorizer: defaultAuthorizer(options),
     processor,
     renderer,
     responder

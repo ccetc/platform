@@ -1,4 +1,4 @@
-import { defaultAuthenticator, defaultAuthorizer, defaultRenderer, defaultResponder } from '../utils/defaults'
+import { defaultRenderer, defaultResponder } from '../utils/defaults'
 import load from '../helpers/load'
 
 export default options => {
@@ -6,8 +6,6 @@ export default options => {
   const processor = (req, resolve, reject) => load(options)(req).then(resolve)
 
   return {
-    authenticator: defaultAuthenticator(options),
-    authorizer: defaultAuthorizer(options),
     processor,
     renderer: defaultRenderer(options),
     responder: defaultResponder(200, 'Success')

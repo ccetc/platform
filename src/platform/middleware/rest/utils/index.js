@@ -2,19 +2,17 @@ import _ from 'lodash'
 import Promise from 'bluebird'
 import { fail } from 'platform/utils/responses'
 import { wrapWithLogger } from './logger'
-import { defaultVerifier } from './defaults'
+import { defaultAuthenticator, defaultAuthorizer, defaultVerifier, defaultLogger, defaultNotifier, defaultRenderer, defaultResponder } from './defaults'
 
 export const buildHandler = (builder, options) => {
 
-  const defaults = builder(options)
+  const built = builder(options)
 
-  const verifier = defaultVerifier(options)
-
-  const { authenticator, authorizer, processor, renderer, responder, logger } = buildHandlerComponents(options, defaults)
+  const components = buildHandlerComponents(options, built)
 
   return (req, res, next) => {
 
-    const withHooks = () => wrapWithHooks(authenticator, authorizer, verifier, options.before, processor, options.after, logger, renderer, options.alter, responder, req, res, next)
+    const withHooks = () => wrapWithHooks(components, req, res, next)
 
     return wrapWithLogger(req, res, withHooks)
 
@@ -22,7 +20,9 @@ export const buildHandler = (builder, options) => {
 
 }
 
-export const wrapWithHooks = (authenticator, authorizer, verifier, before, processor, after, logger, renderer, alter, responder, req, res, next) => {
+export const wrapWithHooks = (components, req, res, next) => {
+
+  const { authenticator, authorizer, verifier, before, processor, after, logger, notifier, renderer, alter, responder } = components
 
   return new Promise.resolve().then(() => {
 
@@ -50,7 +50,11 @@ export const wrapWithHooks = (authenticator, authorizer, verifier, before, proce
 
   }).then(result => {
 
-    return logger ? logger(req, result): result
+    return logger ? logger(req, result) : result
+
+  }).then(result => {
+
+    return notifier ? notifier(req, result) : result
 
   }).then(result => {
 
@@ -127,13 +131,18 @@ export const runHooks = (req, hooks, result = null) => {
 
 }
 
-export const buildHandlerComponents = (options, defaults) => ({
-  authenticator: options.authenticator || defaults.authenticator,
-  authorizer: options.authorizer || defaults.authorizer,
-  processor: options.processor || defaults.processor,
-  renderer: options.renderer || defaults.renderer,
-  responder: options.responder || defaults.responder,
-  logger: defaults.logger
+export const buildHandlerComponents = (options, built) => ({
+  authenticator: options.authenticator || defaultAuthenticator(options),
+  authorizer: options.authorizer || defaultAuthorizer(options),
+  verifier: options.verifier || defaultVerifier(options),
+  before: options.before,
+  processor: options.processor || built.processor,
+  after: options.after,
+  renderer: options.renderer || built.renderer || defaultRenderer(options),
+  alter: options.alter,
+  responder: options.responder || built.responder || defaultResponder(200, 'Success'),
+  logger: options.logger || built.logger || defaultLogger(options),
+  notifier: options.notifier || defaultNotifier(options)
 })
 
 
