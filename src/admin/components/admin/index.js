@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getActiveTeam } from './selectors'
+import { getActiveTeam, getActiveUser } from './selectors'
 import * as actions from './actions'
 
 export class Admin extends React.Component {
@@ -12,7 +12,8 @@ export class Admin extends React.Component {
   static contextTypes = {
     drawer: React.PropTypes.object,
     flash: React.PropTypes.object,
-    router: React.PropTypes.object
+    router: React.PropTypes.object,
+    socket: React.PropTypes.object
   }
 
   static propTypes = {
@@ -37,7 +38,7 @@ export class Admin extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { team, teams, onSaveTeams, onLoadSession } = this.props
+    const { team, teams, user, onSaveTeams, onLoadSession } = this.props
     if(prevProps.teams !== teams) {
       if(teams.length === 0) {
         this.context.router.push({ pathname: '/admin/signin', state: 'fade' })
@@ -51,6 +52,21 @@ export class Admin extends React.Component {
         onSaveTeams(teams)
       }
     }
+    if(prevProps.user != user) {
+      this._handleJoin(team.token, user)
+    }
+  }
+
+  _handleJoin(token, user) {
+    const handlers = {
+      notification: this._handleNotification.bind(this)
+    }
+    this.context.socket.join(`/admin/users/${user.id}/notifications`, handlers, token)
+  }
+
+  _handleNotification(data) {
+    const { team, onUpdateNotifications } = this.props
+    onUpdateNotifications(team.id, data.unread)
   }
 
   getChildContext() {
@@ -76,7 +92,8 @@ const mapStateToProps = state => ({
   sessions: state.admin.sessions,
   status: state.admin.status,
   team: getActiveTeam(state),
-  teams: state.admin.teams
+  teams: state.admin.teams,
+  user: getActiveUser(state)
 })
 
 const mapDispatchToProps = {
@@ -85,7 +102,8 @@ const mapDispatchToProps = {
   removeTeam: actions.removeTeam,
   onLoadTeams: actions.loadTeams,
   onLoadSession: actions.loadSession,
-  onSaveTeams: actions.saveTeams
+  onSaveTeams: actions.saveTeams,
+  onUpdateNotifications: actions.updateNotifications
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Admin)

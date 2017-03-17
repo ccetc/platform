@@ -18,6 +18,7 @@ exports.up = function(knex, Promise) {
       table.integer('security_question_2_id').unsigned()
       table.foreign('security_question_2_id').references('security_questions.id')
       table.string('security_question_2_answer')
+      table.integer('unread').defaultTo(0)
       table.timestamp('activated_at')
       table.timestamp('reset_at')
       table.timestamp('last_online_at')

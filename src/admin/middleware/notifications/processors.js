@@ -1,4 +1,5 @@
 import Notification from 'platform/models/notification'
+import User from 'platform/models/user'
 
 export const readProcessor = (req, resolve, reject) => {
 
@@ -6,7 +7,11 @@ export const readProcessor = (req, resolve, reject) => {
 
   return Notification.query().whereIn('id', req.body.ids).update({ is_read: true }).then(result => {
 
-    resolve({})
+    return req.user.save({ unread: 0 }, { patch: true })
+
+  }).then(() => {
+
+    resolve()
 
   }).catch(err => {
 

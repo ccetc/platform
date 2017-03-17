@@ -27,22 +27,17 @@ const processor = (req, resolve, reject)  => {
     })
   }, []).then(apps => {
 
-    return Notifications.where({ user_id : req.user.get('id'), is_read: false }).fetchAll().then(notifications => {
-
-      const data = {
-        apps,
-        user: {
-          name: req.user.get('full_name'),
-          initials: req.user.get('initials'),
-          email: req.user.get('email'),
-          photo: req.user.related('photo').get('thumbnail_url'),
-          unread: notifications.length,
-          rights: req.rights
-        }
+    resolve({
+      apps,
+      user: {
+        id: req.user.get('id'),
+        name: req.user.get('full_name'),
+        initials: req.user.get('initials'),
+        email: req.user.get('email'),
+        photo: req.user.related('photo').get('thumbnail_url'),
+        unread: req.user.get('unread'),
+        rights: req.rights
       }
-
-      resolve(data)
-
     })
 
   })

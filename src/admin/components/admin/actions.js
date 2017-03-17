@@ -40,6 +40,12 @@ export const addTeam = (team, token) => {
   }
 }
 
+export const removeAllTeams = () => {
+  return {
+    type: actionTypes.REMOVE_ALL_TEAMS
+  }
+}
+
 export const removeTeam = id => {
   return {
     type: actionTypes.REMOVE_TEAM,
@@ -63,4 +69,12 @@ export const markRead = (tid, ids) => {
     success: actionTypes.MARK_READ_SUCCESS,
     failure: actionTypes.MARK_READ_FAILURE
   })
+}
+
+export const updateNotifications = (tid, unread) => {
+  return {
+    type: actionTypes.UPDATE_NOTIFICATIONS,
+    tid,
+    unread
+  }
 }

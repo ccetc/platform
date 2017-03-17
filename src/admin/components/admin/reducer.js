@@ -68,6 +68,13 @@ export default (state = INITIAL_STATE, action) => {
       })
     }
 
+  case actionTypes.REMOVE_ALL_TEAMS:
+    return {
+      ...state,
+      teams: [],
+      sessions: {}
+    }
+
   case actionTypes.LOAD_SESSION_SUCCESS:
     return {
       ...state,
@@ -87,6 +94,21 @@ export default (state = INITIAL_STATE, action) => {
           user: {
             ...state.sessions[action.tid].user,
             unread: 0
+          }
+        }
+      }
+    }
+
+  case actionTypes.UPDATE_NOTIFICATIONS:
+    return {
+      ...state,
+      sessions: {
+        ...state.sessions,
+        [action.tid]: {
+          ...state.sessions[action.tid],
+          user: {
+            ...state.sessions[action.tid].user,
+            unread: action.unread
           }
         }
       }

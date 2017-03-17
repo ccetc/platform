@@ -31,7 +31,7 @@ class New extends React.Component {
       action: '/admin/expenses/expenses',
       onCancel: this.context.modal.pop,
       onSuccess: this._handleSuccess.bind(this),
-      onChangeField: this._changeField,
+      onChangeField: this._changeField.bind(this),
       sections: [
         {
           fields: [

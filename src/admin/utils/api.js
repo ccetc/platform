@@ -1,6 +1,7 @@
 import rest from './rest'
 import qs from 'qs'
 import localStorage from 'platform/services/localforage'
+import * as adminActions from 'admin/components/admin/actions'
 
 type optionsType = {
   method: string,
@@ -92,6 +93,10 @@ class Api {
             })
 
           }, response => {
+
+            if(response.status.code == 401) {
+              return dispatch(adminActions.removeAllTeams())
+            }
 
             dispatch({
               type: options.failure,

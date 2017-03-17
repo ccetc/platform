@@ -1,6 +1,6 @@
 export default (object) => {
-
-  return {
+  
+  return Promise.resolve({
     id: object.get('id'),
     url: object.get('url'),
     is_read: object.get('is_read'),
@@ -32,6 +32,6 @@ export default (object) => {
     } : null,
     created_at: object.get('created_at'),
     updated_at: object.get('updated_at')
-  }
+  })
 
 }

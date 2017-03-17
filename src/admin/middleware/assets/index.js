@@ -2,7 +2,6 @@ import { test, upload } from './resumable'
 import path from 'path'
 import { resources } from 'platform/middleware/rest'
 import { route } from 'platform/middleware/rest'
-import multiparty from 'connect-multiparty'
 import Asset from 'platform/models/asset'
 import AssetSerializer from 'platform/serializers/asset_serializer'
 
@@ -12,12 +11,6 @@ const assets = resources({
   only: 'list',
   serializer: AssetSerializer
 })
-
-const multipartyRoute = {
-  method: 'use',
-  path: '/assets*',
-  handler: multiparty({ uploadDir: './tmp' })
-}
 
 const previewRoute = route({
   method: 'get',
@@ -53,7 +46,6 @@ const uploadRoute = route({
 
 export default [
   ...assets,
-  multipartyRoute,
   testRoute,
   uploadRoute,
   previewRoute
