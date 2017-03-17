@@ -31,13 +31,7 @@ class New extends React.Component {
       action: '/admin/expenses/expenses',
       onCancel: this.context.modal.pop,
       onSuccess: this._handleSuccess.bind(this),
-      onChangeField: (key, value) => {
-        if(key === 'project_id') {
-          this.setState({
-            project_id: value
-          })
-        }
-      },
+      onChangeField: this._changeField,
       sections: [
         {
           fields: [
@@ -67,6 +61,14 @@ class New extends React.Component {
           ]
         }
       ]
+    }
+  }
+
+  _changeField(key, value) {
+    if(key === 'project_id') {
+      this.setState({
+        project_id: value
+      })
     }
   }
 

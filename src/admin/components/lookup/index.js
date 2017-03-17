@@ -69,6 +69,7 @@ class Lookup extends React.Component {
 
   _handleClear() {
     this.props.onClear()
+    this.props.onChange()
   }
 
 }
