@@ -49,6 +49,10 @@ export default (req, notificationData) => {
 
           emitter.in(`/admin/users/${result.user.id}/notifications`).emit('notification', { unread: result.user.get('unread'), notification: result.notification })
 
+        }).catch(err => {
+
+          reject({ code: 422, message: err.message })
+
         })
 
       }).then(() => {
