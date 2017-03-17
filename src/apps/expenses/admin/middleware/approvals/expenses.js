@@ -2,29 +2,28 @@ import { resources } from 'platform/middleware/rest'
 import Expense from '../../../models/expense'
 import ExpenseSerializer from '../../../serializers/expense_serializer'
 import canApprove from './utils'
-
-const loggers = require('./loggers').default('expense')
-const notification = require('./notification').default('expense')
-const processors = require('./processors').default('expense', Expense)
+import activity from './activity'
+import notification from './notification'
+import processors from './processors'
 
 export default resources({
   access: canApprove,
   actions: {
     approve: {
-      logger: loggers.approve,
+      activity: activity('expense', 'approved'),
       method: 'patch',
-      notification: notification.approve,
+      notification: notification('expense', 'approved'),
       on: 'member',
       path: 'approve',
-      processor: processors.approve
+      processor: processors('expense', Expense, 'approve', true)
     },
     reject: {
-      logger: loggers.reject,
+      activity: activity('expense', 'rejected'),
       method: 'patch',
-      notification: notification.reject,
+      notification: notification('expense', 'rejected'),
       on: 'member',
       path: 'reject',
-      processor: processors.reject
+      processor: processors('expense', Expense, 'reject', false)
     }
   },
   defaultSort: '-date',

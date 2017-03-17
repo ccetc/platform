@@ -3,16 +3,16 @@ import Advance from '../../../models/advance'
 import AdvanceSerializer from '../../../serializers/advance_serializer'
 import notification from './notification'
 import before from './before'
-import logger from './logger'
+import activity from './activity'
 
 export default resources({
+  activity: {
+    create: activity('advance', 'created'),
+    update: activity('advance', 'updated')
+  },
   allowedParams: ['project_id','expense_type_id','vendor_id','delivery_method','date_needed','description','amount','description','approved_by_id','approved_at','is_approved','is_submitted','reason_rejected'],
   before,
   filterParams: ['expense_type_id','project_id','date_needed','is_approved'],
-  logger: {
-    create: logger('advance', 'created'),
-    update: logger('advance', 'updated')
-  },
   model: Advance,
   name: 'advance',
   notification: {

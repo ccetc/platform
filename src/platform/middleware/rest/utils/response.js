@@ -33,6 +33,6 @@ const response = (res, code, success, message, extra) => {
     ...extra
   })
 
-  return null
+  return true
 
 }

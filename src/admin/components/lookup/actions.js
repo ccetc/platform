@@ -19,9 +19,10 @@ export function cancel() {
   }
 }
 
-export function choose(index) {
+export function choose(chosen, index) {
   return {
     type: actionTypes.CHOOSE,
+    chosen,
     index
   }
 }

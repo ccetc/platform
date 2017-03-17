@@ -36,7 +36,8 @@ export default (state = INITIAL_VALUE, action) => {
     return {
       ...state,
       active: false,
-      chosen: state.results[action.index],
+      chosen: action.chosen,
+      // chosen: state.results[action.index],
       selected: action.index
     }
 

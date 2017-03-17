@@ -3,9 +3,13 @@ import Trip from '../../../models/trip'
 import TripSerializer from '../../../serializers/trip_serializer'
 import notification from './notification'
 import before from './before'
-import logger from './logger'
+import activity from './activity'
 
 export default resources({
+  activity: {
+    create: activity('trip', 'created'),
+    update: activity('trip', 'updated')
+  },
   allowedParams: ['project_id', 'date', 'description', 'time_leaving', 'time_arriving', 'odometer_start', 'odometer_end', 'total_miles','approved_by_id','approved_at','is_approved','is_submitted','reason_rejected'],
   before,
   defaultParams: (req) => ({
@@ -13,10 +17,6 @@ export default resources({
     amount: req.body.total_miles * req.apps.expenses.mileage_rate
   }),
   filterParams: ['project_id','date','is_approved'],
-  logger: {
-    create: logger('trip', 'created'),
-    update: logger('trip', 'updated')
-  },
   model: Trip,
   name: 'trip',
   notification: {

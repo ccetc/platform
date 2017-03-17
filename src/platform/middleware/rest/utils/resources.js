@@ -141,16 +141,13 @@ export const buildStandardRoute = (options, route, pathPrefix) => {
     defaultParams: options.defaultParams,
     defaultSort: options.defaultSort,
     filterParams: options.filterParams,
+    logger: options.logger[route.name] || options.logger.all,
     log: options.log[route.name] || options.log.all,
     model: options.model,
     name: options.name,
     notification: options.notification[route.name] || options.notification.all,
     ownedByTeam: options.ownedByTeam,
     ownedByUser: options.ownedByUser,
-
-    method: route.method,
-    path: route.path,
-
     query: options.query[route.name] || options.query.all,
     rights: mergeParams(options.rights.all, options.rights[route.name]),
     serializer: options.serializer[route.name] || options.serializer.all,

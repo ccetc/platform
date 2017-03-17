@@ -11,6 +11,7 @@ class Section extends React.Component {
     fields: React.PropTypes.array,
     data: React.PropTypes.object,
     errors: React.PropTypes.object,
+    onSubmit: React.PropTypes.func,
     onUpdateData: React.PropTypes.func
   }
 
@@ -26,7 +27,7 @@ class Section extends React.Component {
   }
 
   render() {
-    const { collapsing, label, instructions, fields, data, errors, onUpdateData } = this.props
+    const { collapsing, label, instructions, fields, data, errors, onSubmit, onUpdateData } = this.props
     const { collapsed } = this.state
     let classes = ['ui', 'basic', 'segment']
     if(collapsing) {
@@ -52,6 +53,7 @@ class Section extends React.Component {
                           data={data}
                           errors={errors}
                           key={`field_${index}`}
+                          onSubmit={onSubmit}
                           onUpdateData={onUpdateData} />
           })}
         </div>

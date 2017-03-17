@@ -2,29 +2,28 @@ import { resources } from 'platform/middleware/rest'
 import Trip from '../../../models/trip'
 import TripSerializer from '../../../serializers/trip_serializer'
 import canApprove from './utils'
-
-const loggers = require('./loggers').default('trip')
-const notification = require('./notification').default('trip')
-const processors = require('./processors').default('trip', Trip)
+import activity from './activity'
+import notification from './notification'
+import processors from './processors'
 
 export default resources({
   access: canApprove,
   actions: {
     approve: {
-      logger: loggers.approve,
+      activity: activity('trip', 'approved'),
       method: 'patch',
-      notification: notification.approve,
+      notification: notification('trip', 'approved'),
       on: 'member',
       path: 'approve',
-      processor: processors.approve
+      processor: processors('trip', Trip, 'approve', true)
     },
     reject: {
-      logger: loggers.reject,
+      activity: activity('trip', 'rejected'),
       method: 'patch',
-      notification: notification.reject,
+      notification: notification('trip', 'rejected'),
       on: 'member',
       path: 'reject',
-      processor: processors.reject
+      processor: processors('trip', Trip, 'reject', false)
     }
   },
   defaultSort: '-date_needed',

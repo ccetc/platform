@@ -10,7 +10,7 @@ import ExpenseTypeProjectSerializer from '../../../serializers/expense_type_proj
 import User from 'platform/models/user'
 import UserSerializer from 'platform/serializers/user_serializer'
 import { createProcessor, toggleExpenseTypeProcessor } from './processors'
-import { createMemberLogger, toggleExpenseTypeLogger } from './loggers'
+import { createMemberActivity, toggleExpenseTypeActivity } from './activities'
 import { toggleExpenseTypeRenderer } from './renderers'
 
 export default resources({
@@ -50,14 +50,14 @@ export default resources({
       },
       serializer: ExpenseTypeProjectSerializer
     },{
+      activity: {
+        create: createMemberActivity
+      },
       allowedParams: ['project_id','user_id','member_type_id','is_active'],
       defaultParams: (req) => ({
         is_active: true
       }),
       defaultSort: ['member_type_id', 'last_name'],
-      logger: {
-        create: createMemberLogger
-      },
       model: Member,
       name: 'member',
       processor: {
@@ -74,9 +74,9 @@ export default resources({
     },{
       actions: {
         toggle: {
+          activity: toggleExpenseTypeActivity,
           on: 'member',
           path: 'toggle',
-          logger: toggleExpenseTypeLogger,
           method: 'patch',
           processor: toggleExpenseTypeProcessor,
           renderer: toggleExpenseTypeRenderer

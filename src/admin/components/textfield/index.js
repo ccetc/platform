@@ -104,6 +104,10 @@ class TextField extends React.Component {
 
   _handleKeyUp(event) {
     this.props.onKeyUp(this.state.value)
+    if(event.which == 13) {
+      event.preventDefault()
+      this.props.onSubmit()
+    }
   }
 
   _handleKeyDown(event) {

@@ -72,7 +72,8 @@ class Form extends React.Component {
                                   data={data}
                                   errors={errors}
                                   key={`section_${index}`}
-                                  onUpdateData={this._handleUpdateData.bind(this)} />
+                                  onUpdateData={this._handleUpdateData.bind(this)}
+                                  onSubmit={this._handleSubmit.bind(this)} />
                 })}
               </div> :
               <div className="ui active centered inline loader" />

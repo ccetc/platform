@@ -21,7 +21,7 @@ class Lookup extends React.Component {
     return (
       <div className="lookup-field">
         { chosen &&
-          <div className="lookup-token">
+          <div className="lookup-token" onClick={ this._handleBegin.bind(this) }>
             <Format {...chosen} format={format} value={value} />
           </div>
         }

@@ -50,11 +50,11 @@ export const wrapWithHooks = (components, req, res, next) => {
 
   }).then(result => {
 
-    return logger ? logger(req, result) : result
+    return logger ? Promise.resolve(logger(req, result)).then(() => result) : result
 
   }).then(result => {
 
-    return notifier ? notifier(req, result) : result
+    return notifier ? Promise.resolve(notifier(req, result)).then(() => result) : result
 
   }).then(result => {
 
@@ -66,9 +66,7 @@ export const wrapWithHooks = (components, req, res, next) => {
 
   }).then(result => {
 
-    if(responder) responder(req, res, next, result)
-
-    return true
+    return responder ? responder(req, res, next, result) : true
 
   }).catch(err => {
 
@@ -132,19 +130,18 @@ export const runHooks = (req, hooks, result = null) => {
 }
 
 export const buildHandlerComponents = (options, built) => ({
+  after: options.after,
+  alter: options.alter,
   authenticator: options.authenticator || defaultAuthenticator(options),
   authorizer: options.authorizer || defaultAuthorizer(options),
-  verifier: options.verifier || defaultVerifier(options),
   before: options.before,
+  logger: defaultLogger(options.activity || built.activity),
+  notifier: defaultNotifier(options.notification || built.notification),
   processor: options.processor || built.processor,
-  after: options.after,
   renderer: options.renderer || built.renderer || defaultRenderer(options),
-  alter: options.alter,
   responder: options.responder || built.responder || defaultResponder(200, 'Success'),
-  logger: options.logger || built.logger || defaultLogger(options),
-  notifier: options.notifier || defaultNotifier(options)
+  verifier: options.verifier || defaultVerifier(options)
 })
-
 
 export const coerceArray = value => {
 
@@ -201,7 +198,6 @@ export const defaultQuery = (req, options, qb, filters) => {
 
 }
 
-// return body params with only requested keys
 export const filterParams = (params, allowed) => {
 
   if(!params) return null

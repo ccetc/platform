@@ -100,7 +100,6 @@ class Search extends React.Component {
     this.props.onCancel()
   }
 
-
   _handleType(event) {
     const { cid, sort, endpoint } = this.props
     const q = event.target.value
@@ -109,19 +108,12 @@ class Search extends React.Component {
     this._handleLookup(cid, params, endpoint)
   }
 
-
-  _handleLookup(event) {
-    const { cid, sort, endpoint } = this.props
-    const params = { $filter: { q: event.target.value }, $sort: sort }
-    _.throttle(() => { this.props.onLookup(cid, params, endpoint) }, 500)
-  }
-
   _handleChoose(index) {
     const chosen = this.props.results[index]
     const value = _.get(chosen, this.props.value)
-    this.context.modal.pop()
-    this.props.onChoose(index)
+    this.props.onChoose(chosen, index)
     this.props.onChange(value)
+    this.context.modal.pop()
   }
 
   _handleAdd() {
@@ -132,8 +124,11 @@ class Search extends React.Component {
     return {
       ...this.props.form,
       onCancel: this.context.modal.pop,
-      onSuccess: () => {
-        this. _handleLookup({ target: { value: '' }})
+      onSuccess: (chosen) => {
+        const value = _.get(chosen, this.props.value)
+        this.props.onChoose(chosen, 0)
+        this.props.onChange(value)
+        this.context.modal.pop()
         this.context.modal.pop()
       }
     }

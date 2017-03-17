@@ -1,5 +1,5 @@
 import Promise from 'bluebird'
-import { defaultLogger } from '../utils/defaults'
+import { defaultActivity } from '../utils/defaults'
 import load from '../helpers/load'
 
 export default options => {
@@ -54,27 +54,11 @@ export default options => {
 
   }
 
-  const logger = options.activity ? defaultLogger({ activity: options.activity }) : defaultLogger({
-
-    activity: (req, result, resolve, reject) => {
-
-      const activity = result.get('activity')
-
-      if(!activity) resolve({})
-
-      resolve({
-        text: 'deleted {object1}',
-        object1_type: activity.type,
-        object1_text: activity.text
-      })
-
-    }
-
-  })
+  const activity = defaultActivity(options, 'deleted')
 
   return {
     processor,
-    logger
+    activity
   }
 
 }

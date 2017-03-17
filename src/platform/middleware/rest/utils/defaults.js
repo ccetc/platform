@@ -62,15 +62,43 @@ export const defaultRenderer = (options) => {
 
 }
 
-export const defaultLogger = (options) => {
+export const defaultActivity = (options, action) => {
+
+  if(options.activity === undefined) {
+
+    return (req, result, resolve, reject) => {
+
+      const object1 = result.get('activity')
+
+      if(!object1) resolve({})
+
+      resolve({
+        text: `${action} {object1}`,
+        object1_type: object1.type,
+        object1_text: object1.text
+      })
+
+    }
+
+  } else if(options.activity !== false) {
+
+    return options.activity
+
+  }
+
+  return null
+
+}
+
+export const defaultLogger = (activityCreator) => {
 
   return (req, result) => {
 
-    if(!options.activity) return result
+    if(!activityCreator) return result
 
     return new Promise((resolve, reject) => {
 
-      return options.activity(req, result, resolve, reject)
+      return activityCreator(req, result, resolve, reject)
 
     }).then(activity => {
 
@@ -86,15 +114,15 @@ export const defaultLogger = (options) => {
 
 }
 
-export const defaultNotifier = (options) => {
+export const defaultNotifier = (notificationCreator) => {
 
   return (req, result) => {
 
-    if(!options.notification) return result
+    if(!notificationCreator) return result
 
     return new Promise((resolve, reject) => {
 
-      return options.notification(req, result, resolve, reject)
+      return notificationCreator(req, result, resolve, reject)
 
     }).then(notification => {
 

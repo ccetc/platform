@@ -2,8 +2,8 @@ import { resources } from 'platform/middleware/rest'
 import Vendor from '../../../models/vendor'
 
 export default resources({
+  activity: false,
   allowedParams: ['name'],
-  log: false,
   model: Vendor,
   name: 'vendor',
   path: 'vendors',

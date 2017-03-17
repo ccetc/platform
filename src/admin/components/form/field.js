@@ -22,6 +22,7 @@ class Field extends React.Component {
       React.PropTypes.func
     ]).isRequired,
     show: React.PropTypes.bool,
+    onSubmit: React.PropTypes.func,
     onUpdateData: React.PropTypes.func
   }
 
@@ -40,7 +41,7 @@ class Field extends React.Component {
   render() {
     const { columns, data, endpoint, errors, fields, include, instructions, prompt } = this.props
     const { label, name, options, required, type, text, show, value, onUpdateData } = this.props
-    const { form, format, prefix, suffix, disabled, sort } = this.props
+    const { form, format, prefix, suffix, disabled, sort, onSubmit } = this.props
     const error = (errors && errors[name]) ? errors[name][0] : null
     const defaultValue = _.get(data, name)
     let classes = ['field']
@@ -60,6 +61,7 @@ class Field extends React.Component {
         { type === 'fields' ?
           <Fields fields={fields}
                   onChange={this._handleUpdateData.bind(this)}
+                  onSubmit={onSubmit}
                   onUpdateData={onUpdateData} /> :
           <Control type={type}
                    label={label}
@@ -76,6 +78,7 @@ class Field extends React.Component {
                    columns={columns}
                    options={options}
                    defaultValue={defaultValue}
+                   onSubmit={onSubmit}
                    onChange={this._handleUpdateData.bind(this)} />
         }
         { error &&
