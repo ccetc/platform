@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import * as actions from './actions'
 import { getActiveTeam, getActiveUser } from 'admin/components/admin/selectors'
 import { userHasRights } from './utils'
+import Logo from 'admin/components/logo'
 
 class Apps extends React.Component {
 
@@ -41,7 +42,7 @@ class Apps extends React.Component {
         { path.length === 0 ?
           <div className="chrome-navigation-header">
             <div className="chrome-navigation-header-back">
-              <img src={ team.logo } />
+              <Logo team={ team } width="50" />
             </div>
             <div className="chrome-navigation-header-team">
               { team.title }

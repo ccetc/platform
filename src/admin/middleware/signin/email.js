@@ -18,7 +18,7 @@ export const processor = (req, resolve, reject) => {
       full_name: user.get('full_name'),
       initials: user.get('initials'),
       email: user.get('email'),
-      photo: user.related('photo').get('url')
+      photo: user.related('photo').get('path')
     }
 
     resolve(data)

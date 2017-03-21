@@ -5,7 +5,7 @@ export default (object) => {
     user: {
       full_name: object.related('user').get('full_name'),
       initials: object.related('user').get('initials'),
-      photo: object.related('user').related('photo').get('url'),
+      photo: object.related('user').related('photo').get('path'),
       email: object.related('user').get('email')
     },
     member_type: {

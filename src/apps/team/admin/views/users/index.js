@@ -41,7 +41,7 @@ class Index extends React.Component {
 var NameCell = (props) => {
   return (
     <div>
-      <Avatar user={ props } />
+      <Avatar user={ props } width="40" />
       <strong>{ props.first_name } { props.last_name }</strong><br />
       { props.email }
     </div>

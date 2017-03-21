@@ -26,7 +26,7 @@ export class Account extends React.Component {
     return (
       <div className="chrome-account-panel">
         <div className="chrome-account-identity">
-          <Avatar user={ user } />
+          <Avatar user={ user } width="150" />
           <h2>{user.name}</h2>
           <p>{user.email}</p>
         </div>

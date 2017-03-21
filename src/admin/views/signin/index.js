@@ -1,4 +1,5 @@
 import React from 'react'
+import Logo from 'admin/components/logo'
 import Avatar from 'admin/components/avatar'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
@@ -47,7 +48,7 @@ class Signin extends React.Component {
         <div className="chrome-signin-canvas">
           <div className="chrome-signin-header">
             <div className="chrome-signin-content">
-              { team && <img src={ team.logo } className="logo" /> }
+              { team && <Logo team={team} width="150" /> }
               { team && <h1>{ team.title }</h1> }
             </div>
           </div>
@@ -75,7 +76,7 @@ class Signin extends React.Component {
         <div className="chrome-signin-canvas">
           <div className="chrome-signin-header">
             <div className="chrome-signin-content">
-              { user && <Avatar user={ user } /> }
+              { user && <Avatar user={ user } width="150" /> }
               { user && <h1>{ user.full_name }</h1> }
               { user && <h4>{ user.email }</h4> }
             </div>

@@ -15,3 +15,5 @@ assets/*
 !assets/.gitkeep
 tmp/*
 !tmp/.gitkeep
+cached/*
+!cached/.gitkeep

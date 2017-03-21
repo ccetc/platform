@@ -26,7 +26,7 @@ class Show extends React.Component {
   _getDetails() {
     const { user } = this.props
     return {
-      top: <Avatar user={ user } />,
+      top: <Avatar user={ user } width="150" />,
       items: [
         { label: 'Name ', content: user.full_name },
         { label: 'Email ', content: user.email, format: 'email' },

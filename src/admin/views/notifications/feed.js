@@ -3,6 +3,7 @@ import moment from 'moment'
 import { connect } from 'react-redux'
 import * as actions from 'admin/components/admin/actions'
 import { getActiveTeam } from 'admin/components/admin/selectors'
+import Avatar from 'admin/components/avatar'
 
 export class Feed extends React.Component {
 
@@ -41,7 +42,7 @@ export class Feed extends React.Component {
               return (
                 <a key={`item_${index}`} className={classes.join(' ')} onClick={this._onClick.bind(this, item.url)}>
                   <div className="chrome-feed-item-avatar">
-                    <img src={ item.subject.photo } className="ui circular image" />
+                    <Avatar user={ item.subject } width="40" />
                   </div>
                   <div className="chrome-feed-item-details">
                     <div className="chrome-feed-item-story">

@@ -1,5 +1,5 @@
 export default (object) => {
-  
+
   return Promise.resolve({
     id: object.get('id'),
     url: object.get('url'),
@@ -15,12 +15,12 @@ export default (object) => {
     subject: {
       id: object.related('subject').get('id'),
       full_name: object.related('subject').get('full_name'),
-      photo: object.related('subject').related('photo').get('thumbnail_url')
+      photo: object.related('subject').related('photo').get('path')
     },
     user: {
       id: object.related('user').get('id'),
       full_name: object.related('user').get('full_name'),
-      photo: object.related('user').related('photo').get('thumbnail_url')
+      photo: object.related('user').related('photo').get('path')
     },
     object1: object.get('object1_text') ? {
       description: object.get('object1_description'),

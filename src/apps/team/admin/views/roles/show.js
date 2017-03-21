@@ -54,7 +54,7 @@ const Users = (props) => {
       { role.users.map((user, index) => {
         return (
           <div key={`user_${index}`} className="item role-user">
-            <Avatar user={ user } />
+            <Avatar user={ user } width="40" />
             <strong>{ user.full_name }</strong><br />
             { user.email }
           </div>

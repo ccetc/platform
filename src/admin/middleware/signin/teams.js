@@ -17,14 +17,13 @@ const processor = (req, resolve, reject) => {
       id: team.get('id'),
       title: team.get('title'),
       subdomain: team.get('subdomain'),
-      logo: team.related('logo').get('url'),
+      logo: team.related('logo').get('path'),
       strategies
     }
 
     resolve(data)
 
   }).catch(err => {
-    console.log(err)
     return reject({ code: 422, message: 'Unable to complete request', errors: err.toJSON() })
   })
 

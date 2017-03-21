@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from './actions'
 import { getActiveTeam } from 'admin/components/admin/selectors'
+import Logo from 'admin/components/logo'
 
 class Teams extends React.Component {
 
@@ -22,7 +23,7 @@ class Teams extends React.Component {
       <div className="chrome-navigation-panel">
         <div className="chrome-navigation-header">
           <div className="chrome-navigation-header-back">
-            <img src={ team.logo } />
+            <Logo team={ team } width="50" />
           </div>
           <div className="chrome-navigation-header-team">
             Manage Teams
@@ -37,7 +38,7 @@ class Teams extends React.Component {
               return (
                 <div key={`team_${index}`}className="chrome-navigation-team">
                   <div className="chrome-navigation-team-logo" onClick={ this._handleChangeTeam.bind(this, index) }>
-                    <img src={ team.logo } />
+                    <Logo team={ team } width="30" />
                     { sessions[team.id] && sessions[team.id].user.unread > 0 &&
                       <div className="chrome-navigation-team-label">{ sessions[team.id].user.unread }</div>
                     }

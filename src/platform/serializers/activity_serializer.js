@@ -14,7 +14,7 @@ export default (object) => {
     user: {
       id: object.related('user').get('id'),
       full_name: object.related('user').get('full_name'),
-      photo: object.related('user').related('photo').get('thumbnail_url')
+      photo: object.related('user').related('photo').get('path')
     },
     object1: object.get('object1_text') ? {
       type: object.get('object1_type'),

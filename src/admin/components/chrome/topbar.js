@@ -37,7 +37,7 @@ export class Topbar extends React.Component {
           }
         </div>
         <div className="chrome-topbar-icon" onClick={this._handleOpenAccount.bind(this)}>
-          <Avatar user={ user } />
+          <Avatar user={ user } width="28" />
         </div>
       </div>
     )

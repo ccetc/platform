@@ -4,7 +4,6 @@ import Promise from 'bluebird'
 import Asset from 'platform/models/asset'
 import AssetSerializer from 'platform/serializers/asset_serializer'
 import aws from 'platform/services/aws'
-import Jimp from 'jimp'
 
 export const test = req => {
 
@@ -151,87 +150,25 @@ const uploadChunk = (req) => {
         return reject({ message: 'Unable to create asset' })
       }
 
-      return Jimp.read(filepath).then(image => {
+      const s3 = new aws.S3()
 
-        const s3 = new aws.S3()
-
-        const original = new Promise((resolve, reject) => {
-
-          return image.getBuffer(Jimp.MIME_JPEG, (err, data) => {
-            if(err) reject({ message: err })
-            resolve(data)
-          })
-
-        }).then(data => {
-
-          return s3.upload({
-            Bucket: process.env.AWS_BUCKET,
-            Key: `assets/${asset.id}/original/${filename}`,
-            ACL: 'public-read',
-            Body: data,
-            ContentType: contentType
-          }).promise()
-
-        }).catch(err => {
-          console.log(err)
-          return reject({ message: 'Unable to upload original' })
-        })
-
-        const thumbnail = new Promise((resolve, reject) => {
-
-          return image.cover(640, 640).quality(70).getBuffer(Jimp.MIME_JPEG, (err, data) => {
-            if(err) reject({ message: 'Unable to create thumbnail' })
-            resolve(data)
-          })
-
-        }).then(data => {
-
-          return s3.upload({
-            Bucket: process.env.AWS_BUCKET,
-            Key: `assets/${asset.id}/thumbnail/${filename}`,
-            ACL: 'public-read',
-            Body: data,
-            ContentType: contentType
-          }).promise()
-
-        }).catch(err => {
-          console.log(err)
-          return reject({ message: 'Unable to upload thumbnail' })
-        })
-
-        const resized = new Promise((resolve, reject) => {
-
-          return image.resize(640, Jimp.AUTO).quality(70).getBuffer(Jimp.MIME_JPEG, (err, data) => {
-            if(err) reject({ message: 'Unable to create resized' })
-            resolve(data)
-          })
-
-        }).then(data => {
-
-          return s3.upload({
-            Bucket: process.env.AWS_BUCKET,
-            Key: `assets/${asset.id}/resized/${filename}`,
-            ACL: 'public-read',
-            Body: data,
-            ContentType: contentType
-          }).promise()
-
-        }).catch(err => {
-          console.log(err)
-          return reject({ message: 'Unable to upload resized' })
-        })
-
-        return Promise.all([original, thumbnail, resized])
-
-      }).then(results => {
-
-        return fs.unlinkSync(filepath)
-
-      }).then(() => {
-
-        resolve(asset.toJSON())
-
+      return s3.upload({
+        Bucket: process.env.AWS_BUCKET,
+        Key: `assets/${asset.id}/${filename}`,
+        ACL: 'public-read',
+        Body: filedata,
+        ContentType: contentType
+      }).promise().catch(err => {
+        console.log('Unable to upload asset')
       })
+
+    }).then(results => {
+
+      return fs.unlinkSync(filepath)
+
+    }).then(() => {
+
+      resolve(asset.toJSON())
 
     })
 

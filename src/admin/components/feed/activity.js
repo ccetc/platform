@@ -1,5 +1,6 @@
 import React from 'react'
 import moment from 'moment'
+import Avatar from '../avatar'
 
 export class Feed extends React.Component {
 
@@ -37,7 +38,7 @@ export class Feed extends React.Component {
               return (
                 <div key={`item_${index}`} className={classes.join(' ')} to={{ pathname: item.url, state }} onClick={this.props.onChoose}>
                   <div className="chrome-feed-item-avatar">
-                    <img src={ item.user.photo } className="ui circular image" />
+                    <Avatar user={ item.user } width="40" />
                   </div>
                   <div className="chrome-feed-item-details">
                     <div className="chrome-feed-item-story">

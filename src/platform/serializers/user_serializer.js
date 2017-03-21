@@ -7,7 +7,7 @@ export default (object) => {
     last_name: object.get('last_name'),
     initials: object.get('initials'),
     email: object.get('email'),
-    photo: object.related('photo').get('thumbnail_url'),
+    photo: object.related('photo').get('path'),
     role_ids: object.related('roles').map(role => role.get('id')),
     roles: object.related('roles').map(role => ({
       id: role.get('id'),

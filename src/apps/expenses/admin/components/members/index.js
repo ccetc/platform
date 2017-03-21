@@ -16,7 +16,7 @@ class Members extends React.Component {
         { members.map((user, index) => {
           return (
             <div key={`user${index}`} className="project-member">
-              <Avatar user={ user  } />
+              <Avatar user={ user  } width="40" />
               <p>
                 <strong>{ user.full_name }</strong><br />
                 { user.email }

@@ -64,7 +64,7 @@ class Members extends React.Component {
           const badge = member.is_active ? member.member_type.name : 'inactive'
           return (
             <div key={`member_${index}`} className="item project-member" onClick={this._handleEdit.bind(this, member.id)}>
-              <Avatar user={ member.user  } />
+              <Avatar user={ member.user } width="40" />
               <p>
                 <strong>{ member.user.full_name }</strong><br />
                 { member.user.email }
