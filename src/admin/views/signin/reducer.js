@@ -63,10 +63,10 @@ export default (state = INITIAL_STATE, action) => {
       status: 'success'
     }
 
-  case actionTypes.CHANGE_USER:
+  case actionTypes.CHANGE_MODE:
     return {
       ...state,
-      user: null
+      mode: action.mode
     }
 
   case actionTypes.TOGGLE_PASSWORD:

@@ -8,6 +8,9 @@ module.exports = {
       role_id: 1,
       app_id: 2
     }, {
+      role_id: 1,
+      app_id: 3
+    }, {
       role_id: 2,
       app_id: 2
     }, {

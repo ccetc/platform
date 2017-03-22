@@ -15,6 +15,11 @@ module.exports = {
       }
     }, {
       id: 3,
+      team_id: 1,
+      app_id: 3,
+      settings: {}
+    }, {
+      id: 4,
       team_id: 2,
       app_id: 2,
       settings: {

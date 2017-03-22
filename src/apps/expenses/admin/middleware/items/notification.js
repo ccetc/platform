@@ -5,10 +5,6 @@ export default (type, action) => {
 
   return (req, result, resolve, reject) => {
 
-    if(!result.get('is_submitted')) {
-      return resolve(null)
-    }
-
     result.load(['project']).then(() => {
 
       Member.query(qb => {

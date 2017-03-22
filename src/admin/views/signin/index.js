@@ -1,6 +1,7 @@
 import React from 'react'
 import Logo from 'admin/components/logo'
 import Avatar from 'admin/components/avatar'
+import { getActiveTeam } from 'admin/components/admin/selectors'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import $ from 'jquery'
@@ -16,7 +17,7 @@ class Signin extends React.Component {
   }
 
   render() {
-    const { mode, show, status, team, user } = this.props
+    const { active, mode, show, status, teams, team, user } = this.props
     return (
       <div className={`chrome-signin chrome-signin-${mode}`}>
         <div className="chrome-signin-canvas">
@@ -31,7 +32,7 @@ class Signin extends React.Component {
                 <div className="ui left icon input">
                   <i className="users icon"></i>
                   <input className="form-control" autoFocus autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck="false" placeholder="team" type="text" ref="team" />
-                  <div className="suffix">.mycce.com</div>
+                  <div className="suffix">.{ PLATFORM_DOMAIN }</div>
                 </div>
               </div>
               <div className="field button-field">
@@ -41,7 +42,7 @@ class Signin extends React.Component {
           </div>
           <div className="chrome-signin-footer">
             <div className="chrome-signin-content">
-              { team && <p><Link to={{ pathname: '/admin', state: 'slide-back' }}>Back to { team.title }</Link></p> }
+              { active && <p><Link to={{ pathname: '/admin' }}>Back to { active.subdomain }</Link></p> }
             </div>
           </div>
         </div>
@@ -67,7 +68,7 @@ class Signin extends React.Component {
           </div>
           <div className="chrome-signin-footer">
             <div className="chrome-signin-content">
-              <p><Link to={{ pathname: '/admin/signin', state: 'slide-back' }}>Wrong team?</Link></p>
+              <p><a onClick={ this._handleChangeMode.bind(this, 'team') }>Wrong team?</a></p>
               { team && _.includes(team.strategies, 'cornell') && <p><a href="/admin/signin/cornell">Signin with CUWebAuth</a></p> }
               { team && _.includes(team.strategies, 'google') && <p><a href="/admin/signin/google">Signin with Google</a></p> }
             </div>
@@ -97,7 +98,7 @@ class Signin extends React.Component {
           </div>
           <div className="chrome-signin-footer">
             <div className="chrome-signin-content">
-              <p><Link to={{ pathname: '/admin/signin/email', state: 'slide-back' }}>Not you?</Link></p>
+              <p><a onClick={ this._handleChangeMode.bind(this, 'email') }>Not you?</a></p>
               <p><a onClick={ this._handleForgot.bind(this) }>Forgot your password?</a></p>
             </div>
           </div>
@@ -118,6 +119,10 @@ class Signin extends React.Component {
         flash.set('info', error)
       }
     }
+  }
+
+  _handleChangeMode(mode) {
+    this.props.onChangeMode(mode)
   }
 
   _handleTeam(e) {
@@ -165,6 +170,7 @@ class Signin extends React.Component {
 
 }
 const mapStateToProps = state => ({
+  active: getActiveTeam(state),
   error: state.signin.error,
   mode: state.signin.mode,
   show: state.signin.show,
@@ -176,6 +182,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
+  onChangeMode: actions.changeMode,
   onTeam: actions.team,
   onEmail: actions.email,
   onPassword: actions.password,

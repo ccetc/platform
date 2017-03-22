@@ -21,6 +21,13 @@ export const email = (team_id, email) => {
   })
 }
 
+export const changeMode = (mode) => {
+  return {
+    type: actionTypes.CHANGE_MODE,
+    mode
+  }
+}
+
 export const togglePassword = () => {
   return {
     type: actionTypes.TOGGLE_PASSWORD

@@ -95,7 +95,7 @@ export const success = (req, res, next) => {
         id: team.get('id'),
         title: team.get('title'),
         subdomain: team.get('subdomain'),
-        logo: team.related('logo').get('url'),
+        logo: team.related('logo').get('path'),
         token
       }
     })

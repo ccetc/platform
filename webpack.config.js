@@ -1,6 +1,10 @@
+var dotenv = require('dotenv')
+dotenv.load()
+
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const compile = require('./src/platform/utils/compile')
 const WriteIndex = require('./src/platform/utils/write_index')
+const webpack = require('webpack')
 
 compile()
 
@@ -35,6 +39,10 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin('css/[name]-[hash].min.css'),
-    new WriteIndex()
+    new WriteIndex(),
+    new webpack.DefinePlugin({
+      PRODUCTION: JSON.stringify(true),
+      PLATFORM_DOMAIN: JSON.stringify(process.env.PLATFORM_DOMAIN)
+    })
   ]
 }
