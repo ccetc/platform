@@ -63,16 +63,7 @@ const mapPropsToPage = (props, context) => {
     title: 'Expense',
     rights: ['expenses.manage_expenses'],
     tasks: [
-      { label: 'Edit Expense', modal: Edit },
-      { label: 'Delete Expense', handler: () => {
-        context.confirm.open({
-          message: 'Are You Sure?',
-          yes: () => {
-            context.history.push({ pathname: '/admin/expenses/expenses', state: 'static' })
-            context.flash.set('success', 'Your expense was successfully deleted')
-          }
-        })
-      } }
+      { label: 'Edit Expense', modal: Edit }
     ],
     resources: {
       expense: `/admin/expenses/expenses/${props.params.id}`

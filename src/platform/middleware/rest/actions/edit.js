@@ -4,8 +4,11 @@ export default options => {
 
   const processor = (req, resolve, reject) => load(options)(req).then(resolve)
 
+  const renderer = (req, result) => result
+
   return {
-    processor
+    processor,
+    renderer
   }
 
 }

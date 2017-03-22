@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'admin/components/image'
 
 export default (props) => {
   return <ReceiptView {...props.value} />
@@ -30,8 +31,7 @@ class ReceiptModal extends React.Component {
     return (
       <div className="chrome-modal-panel">
         <div className="chrome-modal-panel-header">
-          <div className="chrome-modal-panel-header-cancel">
-          </div>
+          <div className="chrome-modal-panel-header-cancel" />
           <div className="chrome-modal-panel-header-title">
             Receipt
           </div>
@@ -40,7 +40,7 @@ class ReceiptModal extends React.Component {
           </div>
         </div>
         <div className="chrome-modal-panel-body receipt">
-          <img src={ this.props.resized_url } />
+          <Image src={ this.props.path } title={ this.props.original_filename } transforms={{ w: 768 }} />
         </div>
       </div>
     )
