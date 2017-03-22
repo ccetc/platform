@@ -4,7 +4,7 @@ import Collection from 'admin/components/collection'
 import New from './new'
 import ExpenseTypeToken from '../../components/expense_type_token'
 import ProjectToken from '../../components/project_token'
-import { AprrovalBadge } from '../../components/approval_status'
+import { ApprovalBadge } from '../../components/approval_status'
 
 class Index extends React.Component {
 
@@ -25,7 +25,7 @@ class Index extends React.Component {
         { label: 'Vendor', key: 'vendor.name', primary: false },
         { label: 'Expense Type', key: 'expense_type.title', primary: false },
         { label: 'Amount', key: 'amount', primary: true, format: 'currency' },
-        { label: 'Status', key: 'is_approved', primary: true, format: AprrovalBadge }
+        { label: 'Status', key: 'is_approved', primary: true, format: ApprovalBadge }
       ],
       filters: [
         { label: 'Projects', name: 'project_id', type: 'select', multiple: true, endpoint: '/admin/expenses/projects', value: 'id', text: 'title', format: ProjectToken },

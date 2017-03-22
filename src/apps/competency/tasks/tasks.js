@@ -13,10 +13,9 @@ module.exports = {
 
     try {
 
-      const competencies = toMatrix('competencies.tsv', '\t')
+      const competencies = toMatrix('competencies.tsv', '\t').slice(1)
 
       const data = competencies.reduce((data, record) => {
-
 
         const category = findOrCreate(data.categories, { title: record[0].replace("'",'') })
 

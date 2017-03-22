@@ -4,149 +4,142 @@ module.exports = {
     {
       id: 1,
       team_id: 1,
-      title: "Category",
-      created_at: "2017-03-22T20:39:50.227Z",
-      updated_at: "2017-03-22T20:39:50.228Z"
+      title: "Organizational Knowledge",
+      created_at: "2017-03-22T21:36:53.905Z",
+      updated_at: "2017-03-22T21:36:53.906Z"
     },
     {
       id: 2,
       team_id: 1,
-      title: "Organizational Knowledge",
-      created_at: "2017-03-22T20:39:50.229Z",
-      updated_at: "2017-03-22T20:39:50.229Z"
+      title: "",
+      created_at: "2017-03-22T21:36:53.909Z",
+      updated_at: "2017-03-22T21:36:53.909Z"
     },
     {
       id: 3,
       team_id: 1,
-      title: "",
-      created_at: "2017-03-22T20:39:50.232Z",
-      updated_at: "2017-03-22T20:39:50.232Z"
+      title: "Health, Safety & Risk Management",
+      created_at: "2017-03-22T21:36:53.909Z",
+      updated_at: "2017-03-22T21:36:53.909Z"
     },
     {
       id: 4,
       team_id: 1,
-      title: "Health, Safety & Risk Management",
-      created_at: "2017-03-22T20:39:50.233Z",
-      updated_at: "2017-03-22T20:39:50.233Z"
+      title: "Equity & Inclusion",
+      created_at: "2017-03-22T21:36:53.913Z",
+      updated_at: "2017-03-22T21:36:53.913Z"
     },
     {
       id: 5,
       team_id: 1,
-      title: "Equity & Inclusion",
-      created_at: "2017-03-22T20:39:50.237Z",
-      updated_at: "2017-03-22T20:39:50.237Z"
+      title: "Service Skills",
+      created_at: "2017-03-22T21:36:53.918Z",
+      updated_at: "2017-03-22T21:36:53.918Z"
     },
     {
       id: 6,
       team_id: 1,
-      title: "Service Skills",
-      created_at: "2017-03-22T20:39:50.242Z",
-      updated_at: "2017-03-22T20:39:50.242Z"
+      title: "Communication Skills",
+      created_at: "2017-03-22T21:36:53.918Z",
+      updated_at: "2017-03-22T21:36:53.918Z"
     },
     {
       id: 7,
       team_id: 1,
-      title: "Communication Skills",
-      created_at: "2017-03-22T20:39:50.242Z",
-      updated_at: "2017-03-22T20:39:50.242Z"
+      title: "Public Presentation Skills",
+      created_at: "2017-03-22T21:36:53.918Z",
+      updated_at: "2017-03-22T21:36:53.918Z"
     },
     {
       id: 8,
       team_id: 1,
-      title: "Public Presentation Skills",
-      created_at: "2017-03-22T20:39:50.243Z",
-      updated_at: "2017-03-22T20:39:50.243Z"
+      title: "Financial Management",
+      created_at: "2017-03-22T21:36:53.919Z",
+      updated_at: "2017-03-22T21:36:53.919Z"
     },
     {
       id: 9,
       team_id: 1,
-      title: "Financial Management",
-      created_at: "2017-03-22T20:39:50.243Z",
-      updated_at: "2017-03-22T20:39:50.243Z"
+      title: "Resource Development ",
+      created_at: "2017-03-22T21:36:53.919Z",
+      updated_at: "2017-03-22T21:36:53.919Z"
     },
     {
       id: 10,
       team_id: 1,
-      title: "Resource Development ",
-      created_at: "2017-03-22T20:39:50.243Z",
-      updated_at: "2017-03-22T20:39:50.243Z"
+      title: "Technology skills",
+      created_at: "2017-03-22T21:36:53.921Z",
+      updated_at: "2017-03-22T21:36:53.921Z"
     },
     {
       id: 11,
       team_id: 1,
-      title: "Technology skills",
-      created_at: "2017-03-22T20:39:50.245Z",
-      updated_at: "2017-03-22T20:39:50.245Z"
+      title: "Organization (Work Flow) Skills",
+      created_at: "2017-03-22T21:36:53.922Z",
+      updated_at: "2017-03-22T21:36:53.922Z"
     },
     {
       id: 12,
       team_id: 1,
-      title: "Organization (Work Flow) Skills",
-      created_at: "2017-03-22T20:39:50.245Z",
-      updated_at: "2017-03-22T20:39:50.245Z"
+      title: "Program Coordination & Project Management Skills",
+      created_at: "2017-03-22T21:36:53.922Z",
+      updated_at: "2017-03-22T21:36:53.922Z"
     },
     {
       id: 13,
       team_id: 1,
-      title: "Program Coordination & Project Management Skills",
-      created_at: "2017-03-22T20:39:50.246Z",
-      updated_at: "2017-03-22T20:39:50.246Z"
+      title: "Teamwork & Collaboration Skills",
+      created_at: "2017-03-22T21:36:53.923Z",
+      updated_at: "2017-03-22T21:36:53.923Z"
     },
     {
       id: 14,
       team_id: 1,
-      title: "Teamwork & Collaboration Skills",
-      created_at: "2017-03-22T20:39:50.247Z",
-      updated_at: "2017-03-22T20:39:50.247Z"
+      title: "Program Delivery & Teaching Skills",
+      created_at: "2017-03-22T21:36:53.925Z",
+      updated_at: "2017-03-22T21:36:53.925Z"
     },
     {
       id: 15,
       team_id: 1,
-      title: "Program Delivery & Teaching Skills",
-      created_at: "2017-03-22T20:39:50.248Z",
-      updated_at: "2017-03-22T20:39:50.248Z"
+      title: "Program Evaluation Skills",
+      created_at: "2017-03-22T21:36:53.926Z",
+      updated_at: "2017-03-22T21:36:53.926Z"
     },
     {
       id: 16,
       team_id: 1,
-      title: "Program Evaluation Skills",
-      created_at: "2017-03-22T20:39:50.248Z",
-      updated_at: "2017-03-22T20:39:50.248Z"
+      title: "Program Development Skills",
+      created_at: "2017-03-22T21:36:53.928Z",
+      updated_at: "2017-03-22T21:36:53.928Z"
     },
     {
       id: 17,
       team_id: 1,
-      title: "Program Development Skills",
-      created_at: "2017-03-22T20:39:50.249Z",
-      updated_at: "2017-03-22T20:39:50.249Z"
+      title: "Volunteer Management Skills",
+      created_at: "2017-03-22T21:36:53.928Z",
+      updated_at: "2017-03-22T21:36:53.928Z"
     },
     {
       id: 18,
       team_id: 1,
-      title: "Volunteer Management Skills",
-      created_at: "2017-03-22T20:39:50.250Z",
-      updated_at: "2017-03-22T20:39:50.250Z"
+      title: "Marketing and Promotion Skills",
+      created_at: "2017-03-22T21:36:53.928Z",
+      updated_at: "2017-03-22T21:36:53.928Z"
     },
     {
       id: 19,
       team_id: 1,
-      title: "Marketing and Promotion Skills",
-      created_at: "2017-03-22T20:39:50.250Z",
-      updated_at: "2017-03-22T20:39:50.250Z"
+      title: "Supervisory Skills",
+      created_at: "2017-03-22T21:36:53.929Z",
+      updated_at: "2017-03-22T21:36:53.929Z"
     },
     {
       id: 20,
       team_id: 1,
-      title: "Supervisory Skills",
-      created_at: "2017-03-22T20:39:50.250Z",
-      updated_at: "2017-03-22T20:39:50.250Z"
-    },
-    {
-      id: 21,
-      team_id: 1,
       title: "Personal Awareness and Growth",
-      created_at: "2017-03-22T20:39:50.252Z",
-      updated_at: "2017-03-22T20:39:50.252Z"
+      created_at: "2017-03-22T21:36:53.930Z",
+      updated_at: "2017-03-22T21:36:53.930Z"
     }
   ]
 }
