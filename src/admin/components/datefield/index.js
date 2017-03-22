@@ -59,6 +59,10 @@ class DateField extends React.Component {
     )
   }
 
+  componentDidMount() {
+    this.props.onChange(this.state.value)
+  }
+
   componentDidUpdate(prevProps) {
     if(prevProps.defaultValue != this.props.defaultValue) {
       this.setValue(this.props.defaultValue)
