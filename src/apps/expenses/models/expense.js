@@ -1,4 +1,6 @@
 import model from 'platform/models/model'
+import date from 'platform/validations/date'
+import currency from 'platform/validations/currency'
 import Asset from 'platform/models/asset'
 import ExpenseType from  './expense_type'
 import Project from  './project'
@@ -10,12 +12,12 @@ export default model.extend({
   tableName: 'expenses_expenses',
 
   rules: {
-    date: ['required'],
+    date: ['required', date('date')],
     project_id: ['required'],
     expense_type_id: ['required'],
     vendor_id: ['required'],
     description: ['required'],
-    amount: ['required']
+    amount: ['required', currency('amount')]
   },
 
   virtuals: {

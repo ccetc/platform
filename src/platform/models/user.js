@@ -1,6 +1,5 @@
 import model from 'platform/models/model'
 import bcrypt from 'bcrypt-nodejs'
-import unique from 'platform/validations/unique'
 import Asset from 'platform/models/asset'
 import Role from 'platform/models/role'
 import SecurityQuestion from 'platform/models/security_question'
@@ -13,7 +12,7 @@ export default model.extend({
   rules: {
     first_name: 'required',
     last_name: 'required',
-    email: ['required', 'email', unique('users', 'email')]
+    email: ['required', 'email']
   },
 
   photo: function() {

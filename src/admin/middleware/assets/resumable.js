@@ -150,25 +150,35 @@ const uploadChunk = (req) => {
         return reject({ message: 'Unable to create asset' })
       }
 
-      const s3 = new aws.S3()
-
-      return s3.upload({
+      const data = {
         Bucket: process.env.AWS_BUCKET,
         Key: `assets/${asset.id}/${filename}`,
         ACL: 'public-read',
         Body: filedata,
         ContentType: contentType
-      }).promise().catch(err => {
-        console.log('Unable to upload asset')
+      }
+
+      const s3 = new aws.S3()
+
+      return s3.upload(data).promise().then(results => {
+
+        return fs.unlinkSync(filepath)
+
+      }).then(() => {
+
+        return AssetSerializer(asset)
+
+      }).then(asset => {
+
+        return resolve(asset)
+
+      }).catch(err => {
+
+        console.log(err)
+
+        reject('Unable to upload asset')
+
       })
-
-    }).then(results => {
-
-      return fs.unlinkSync(filepath)
-
-    }).then(() => {
-
-      resolve(asset.toJSON())
 
     })
 

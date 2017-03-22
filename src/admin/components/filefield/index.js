@@ -3,6 +3,7 @@ import _ from 'lodash'
 import { getActiveTeam } from 'admin/components/admin/selectors'
 import Resumable from 'resumablejs'
 import bytes from 'bytes'
+import Image from 'admin/components/image'
 import component from 'admin/components/component'
 import * as actions from './actions'
 
@@ -52,7 +53,7 @@ class FileField extends React.Component {
                 }
                 { file.status === 'success' &&
                   <div className="filefield-preview">
-                    <img src={`/imagecache${file.asset.path}?fit=cover&w=300&h=300&dpi=2`} />
+                    <Image src={ file.asset.path } title={ file.asset.original_file_name } transforms={{ fit: 'cover', w: 300, h: 300 }} />
                     <div className="filefield-preview-caption">
                       <p>
                         { file.fileName } ({ bytes(file.fileSize, { decimalPlaces: 2, unitSeparator: ' ' }).toUpperCase() })

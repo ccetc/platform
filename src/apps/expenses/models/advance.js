@@ -1,4 +1,6 @@
 import model from 'platform/models/model'
+import date from 'platform/validations/date'
+import currency from 'platform/validations/currency'
 import ExpenseType from  './expense_type'
 import Project from  './project'
 import User from 'platform/models/user'
@@ -13,8 +15,8 @@ export default model.extend({
     expense_type_id: ['required'],
     vendor_id: ['required'],
     delivery_method: ['required'],
-    date_needed: ['required'],
-    amount: ['required'],
+    date_needed: ['required', date('date_needed')],
+    amount: ['required', currency('amount')],
     description: ['required']
   },
 

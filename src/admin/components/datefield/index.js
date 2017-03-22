@@ -34,7 +34,7 @@ class DateField extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      value: moment(props.defaultValue).format('YYYY-MM-DD')
+      value: (props.defaultValue) ? moment(props.defaultValue).format('YYYY-MM-DD') : null
     }
   }
 
