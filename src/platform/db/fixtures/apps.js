@@ -21,7 +21,7 @@ module.exports = {
       icon: 'dollar'
     }, {
       id: 3,
-      title: 'Competency',
+      title: 'Competencies',
       app_category_id: 3,
       app_author_id: 1,
       short_description: 'Manage resources required for various job positions',

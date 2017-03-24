@@ -18,6 +18,7 @@ import flash from 'admin/components/flash/reducer'
 import history from 'admin/components/history/reducer'
 import host from 'admin/components/host/reducer'
 import modal from 'admin/components/modal/reducer'
+import media from 'admin/components/media/reducer'
 import notifications from 'admin/components/notifications/reducer'
 import prompt from 'admin/components/prompt/reducer'
 import tray from 'admin/components/tray/reducer'
@@ -41,6 +42,7 @@ const adminReducers = {
   history,
   host,
   modal,
+  media,
   filter,
   tabs,
   tasks,
@@ -80,6 +82,7 @@ export default (state, action) => {
       history: history(undefined, action),
       host: host(undefined, action),
       modal: modal(undefined, action),
+      media: media(undefined, action),
       filter: filter(undefined, action),
       tabs: tabs(undefined, action),
       navigation: navigation(undefined, action),

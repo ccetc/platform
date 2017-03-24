@@ -2,7 +2,6 @@ import React from 'react'
 import _ from 'lodash'
 import moment from 'moment'
 import numeral from 'numeral'
-import {Link} from 'react-router'
 
 class Format extends React.Component {
 
@@ -28,6 +27,8 @@ class Format extends React.Component {
       return Capitalize(this.props)
     } else if(format === 'email') {
       return Email(this.props)
+    } else if(format === 'link') {
+      return Link(this.props)
     } else if(format === 'raw') {
       return Raw(this.props)
     } else if(format === 'element') {
@@ -84,7 +85,11 @@ const Capitalize = (props) => {
 }
 
 const Email = (props) => {
-  return <Link to={`mailto:${props.value}`}>{props.value}</Link>
+  return <a href={`mailto:${props.value}`}>{props.value}</a>
+}
+
+const Link = (props) => {
+  return <a href={props.value} target="_blank">{props.value}</a>
 }
 
 export default Format
