@@ -21,6 +21,14 @@
   i {
     margin: auto;
   }
+  .logo {
+    width: 50px;
+    height: 50px;
+    .logo-text {
+      font-size: 32px;
+      line-height: 32px;
+    }
+  }
 }
 .chrome-navigation-header-back,
 .chrome-navigation-header-next {
@@ -72,6 +80,9 @@
   cursor: pointer;
   background-color: #FFFFFF;
   color: #666;
+  strong {
+    color: #000;
+  }
   &.dropdown {
     background-color: #F9F9F9;
     color: #000;
@@ -92,30 +103,7 @@
   .chrome-navigation-item-icon  {
     background-color: @darkgrey;
   }
-  // &:nth-child(8n+1) .chrome-navigation-item-icon {
-  //   background-color: @red;
-  // }
-  // &:nth-child(8n+2) .chrome-navigation-item-icon {
-  //   background-color: @orange;
-  // }
-  // &:nth-child(8n+3) .chrome-navigation-item-icon {
-  //   background-color: @yellow;
-  // }
-  // &:nth-child(8n+4) .chrome-navigation-item-icon {
-  //   background-color: @green;
-  // }
-  // &:nth-child(8n+5) .chrome-navigation-item-icon {
-  //   background-color: @blue;
-  // }
-  // &:nth-child(8n+6) .chrome-navigation-item-icon {
-  //   background-color: @violet;
-  // }
-  // &:nth-child(8n+7) .chrome-navigation-item-icon {
-  //   background-color: @purple;
-  // }
-  // &:nth-child(8n+8) .chrome-navigation-item-icon {
-  //   background-color: @pink;
-  // }
+
 }
 .chrome-navigation-item-icon {
   .border-radius(5px);
@@ -170,6 +158,13 @@
   img {
     height: 30px;
     width: 30px;
+    border-radius: 5px;
+  }
+  .logo {
+    height: 30px;
+    width: 30px;
+  }
+  .logo-wrapper {
     border-radius: 5px;
   }
   .chrome-navigation-team-label {

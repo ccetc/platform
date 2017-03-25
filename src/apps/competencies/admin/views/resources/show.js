@@ -1,6 +1,7 @@
 import React from 'react'
 import Details from 'admin/components/details'
 import Page from 'admin/components/page'
+import Media from 'admin/components/media'
 
 class Show extends React.Component {
 
@@ -11,6 +12,7 @@ class Show extends React.Component {
         <div className="chrome-body">
           <div className="chrome-sidebar">
             <Details {...this._getDetails()} />
+            <Media />
           </div>
         </div>
         { resource.url &&

@@ -1,9 +1,18 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import * as actions from './actions'
 import Image from './image'
+import Video from './video'
 
 class Media extends React.Component {
 
   render() {
+    const { mode } = this.props
+    if(mode === 'image') {
+      return <Image />
+    } else if(mode === 'video') {
+      return <Video />
+    }
     return (
       <div className="chrome-modal-panel">
         <div className="chrome-modal-panel-header">
@@ -18,12 +27,25 @@ class Media extends React.Component {
           </div>
         </div>
         <div className="chrome-modal-panel-body">
-          <Image />
+          <a onClick={ this._changeMode.bind(this, 'image')}>Image</a>
+          <a onClick={ this._changeMode.bind(this, 'video')}>Video</a>
         </div>
       </div>
     )
   }
 
+  _changeMode(mode) {
+    this.props.onChangeMode(mode)
+  }
+
 }
 
-export default Media
+const mapStateToProps = (state, props) => ({
+  mode: state.media.mode
+})
+
+const mapDispatchToProps = {
+  onChangeMode: actions.changeMode
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Media)

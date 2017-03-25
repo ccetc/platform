@@ -5,12 +5,12 @@ module.exports = {
       id: 1,
       title: 'Cornell Cooperative Extension of Tompkins County',
       subdomain: 'ccetc',
-      logo_id: 104
+      logo_id: 1
     }, {
       id: 2,
       title: 'Think Topography',
       subdomain: 'thinktopography',
-      logo_id: 105
+      logo_id: 99
     }
   ]
 }

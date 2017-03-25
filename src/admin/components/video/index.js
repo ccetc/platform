@@ -6,7 +6,7 @@ class Video extends React.Component {
     return (
       <div className="chrome-video">
         <div>
-          <iframe src={this.props.src} frameborder="0" allowfullscreen></iframe>
+          <iframe src={this.props.src} frameBorder="0" allowFullScreen></iframe>
         </div>
       </div>
     )

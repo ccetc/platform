@@ -17,6 +17,7 @@ export default (state = INITIAL_STATE, action) => {
     return {
       ...state,
       active: null,
+      mode: 'apps',
       route: null
     }
 

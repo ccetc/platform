@@ -70,9 +70,11 @@ class Teams extends React.Component {
   }
 
   _handleChangeTeam(index) {
+    const { onToggleMode } = this.props
     this.context.admin.chooseTeam(index)
     this.context.drawer.close()
     this.context.history.reset({ pathname: '/admin' })
+    window.setTimeout(function() { onToggleMode() }, 500)
   }
 
   _handleAddTeam() {

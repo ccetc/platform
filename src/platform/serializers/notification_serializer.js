@@ -20,6 +20,7 @@ export default (object) => {
     user: {
       id: object.related('user').get('id'),
       full_name: object.related('user').get('full_name'),
+      initials: object.related('user').get('initials'),
       photo: object.related('user').related('photo').get('path')
     },
     object1: object.get('object1_text') ? {
