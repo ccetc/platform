@@ -9,6 +9,7 @@ import multiparty from 'connect-multiparty'
 import imagecache from 'platform/middleware/imagecache'
 import notFound from 'platform/middleware/not_found'
 import admin from 'admin/server'
+import website from 'public/server'
 import socket from 'admin/socket'
 import path from 'path'
 
@@ -38,6 +39,7 @@ app.use(imagecache({
 app.use(express.static('public'))
 
 app.use(admin)
+app.use(website)
 app.use(notFound)
 
 transport.listen(process.env.SERVER_PORT, () => {
