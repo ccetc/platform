@@ -9,7 +9,9 @@ export default (req, res, next) => {
 
 }
 
-const NODE_PATH = /\/content\/nodes\/(.*)/
+const NODE_PATH = /^\/content\/nodes\/(\d*)$/
+const USER_PATH = /^\/content\/users\/(\d*)$/
+const SEARCH_PATH = /^\/content\/search$/
 
 const router = (req, res) => {
 

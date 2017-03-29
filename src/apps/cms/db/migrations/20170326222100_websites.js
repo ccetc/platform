@@ -5,6 +5,7 @@ exports.up = function(knex, Promise) {
       table.integer('team_id').unsigned()
       table.foreign('team_id').references('teams.id')
       table.string('title')
+      table.string('home')
       table.timestamps()
     })
   ])

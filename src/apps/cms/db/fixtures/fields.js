@@ -1,0 +1,103 @@
+module.exports = {
+  tableName: "cms_fields",
+  records: [
+    {
+      id: 1,
+      team_id: 1,
+      website_id: 1,
+      content_type_id: 1,
+      label: 'Body',
+      code: 'body',
+      type: 'textarea',
+      is_required: true,
+      is_system: true,
+      is_disabled: false,
+      created_at: "2017-03-23T15:18:41.134Z",
+      updated_at: "2017-03-23T15:18:41.135Z"
+    },
+    {
+      id: 2,
+      team_id: 1,
+      website_id: 1,
+      content_type_id: 1,
+      label: 'Body',
+      code: 'body',
+      type: 'textarea',
+      is_required: true,
+      is_system: true,
+      is_disabled: false,
+      created_at: "2017-03-23T15:18:41.134Z",
+      updated_at: "2017-03-23T15:18:41.135Z"
+    },
+    {
+      id: 3,
+      team_id: 1,
+      website_id: 1,
+      content_type_id: 1,
+      label: 'Body',
+      code: 'body',
+      type: 'textarea',
+      is_required: true,
+      is_system: true,
+      is_disabled: false,
+      created_at: "2017-03-23T15:18:41.134Z",
+      updated_at: "2017-03-23T15:18:41.135Z"
+    },
+    {
+      id: 4,
+      team_id: 1,
+      website_id: 1,
+      content_type_id: 1,
+      label: 'Description',
+      code: 'description',
+      type: 'textarea',
+      is_required: true,
+      is_system: true,
+      is_disabled: false,
+      created_at: "2017-03-23T15:18:41.134Z",
+      updated_at: "2017-03-23T15:18:41.135Z"
+    },
+    {
+      id: 5,
+      team_id: 1,
+      website_id: 1,
+      form_id: 1,
+      label: 'First Name',
+      code: 'first_name',
+      type: 'textfield',
+      is_required: true,
+      is_system: true,
+      is_disabled: false,
+      created_at: "2017-03-23T15:18:41.134Z",
+      updated_at: "2017-03-23T15:18:41.135Z"
+    },
+    {
+      id: 6,
+      team_id: 1,
+      website_id: 1,
+      form_id: 1,
+      label: 'Last Name',
+      code: 'last_name',
+      type: 'textfield',
+      is_required: true,
+      is_system: true,
+      is_disabled: false,
+      created_at: "2017-03-23T15:18:41.134Z",
+      updated_at: "2017-03-23T15:18:41.135Z"
+    },
+    {
+      id: 7,
+      team_id: 1,
+      website_id: 1,
+      form_id: 1,
+      label: 'Email',
+      code: 'email',
+      type: 'textfield',
+      is_required: true,
+      is_system: true,
+      is_disabled: false,
+      created_at: "2017-03-23T15:18:41.134Z",
+      updated_at: "2017-03-23T15:18:41.135Z"
+    }
+  ]
+}
