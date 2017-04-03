@@ -1,28 +1,25 @@
+import glob from 'glob'
 import fs from 'fs'
 import path from 'path'
-import app from './app'
+import handler from './handler'
 
 export default (portal) => {
 
-  const appPath = path.join(__dirname, '..', '..', '..', 'apps')
+  const configs = glob.sync('src/**/apps/**/app.js')
 
-  return fs.readdirSync(appPath).reduce((routes, appName) => {
+  return configs.reduce((routes, configFile) => {
 
-    const configFile = path.join(appPath, appName, 'app.js')
+    const config = require(path.resolve(configFile))
 
-    if(!fs.existsSync(configFile)) {
-      return routes
-    }
-
-    const config = require(configFile)
+    const appName = configFile.split(path.sep).slice(-2, -1)[0]
 
     const appLoader = {
       method: 'use',
       path: `/${appName}`,
-      handler: app(config.title)
+      handler: handler(config.title)
     }
 
-    const serverFile = path.join(appPath, appName, portal, 'server.js')
+    const serverFile = path.resolve(...[...configFile.split(path.sep).slice(0, -1), portal, 'server.js'])
 
     if(!fs.existsSync(serverFile)) {
       return routes

@@ -2,11 +2,10 @@ import Promise from 'bluebird'
 import { route } from 'platform/middleware/rest'
 import glob from 'glob'
 import path from 'path'
-import Notifications from 'platform/models/notification'
 
 const processor = (req, resolve, reject)  => {
 
-  const files = glob.sync(path.resolve(__dirname, '../../../apps/*/admin/navigation.js'))
+  const files = glob.sync(path.resolve(__dirname, '../../../**/apps/**/admin/navigation.js'))
 
   const navigation = files.reduce((navigation, file) => {
     const matches = file.match(/\/([a-z_]*)\/admin\/navigation\.js/)

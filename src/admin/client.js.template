@@ -1,3 +1,17 @@
+<%
+clients = apps.reduce((clients, app) => {
+  const clientPath = path.join(app.filepath, 'admin','client.js')
+  if(!fs.existsSync(path.resolve('src',clientPath))) return clients
+  return [
+    ...clients,
+    {
+      filepath: clientPath,
+      title: app.title,
+      path: app.path
+    }
+  ]
+}, [])
+%>
 import React from 'react'
 import { IndexRoute, Route } from 'react-router'
 import Root from './root'
@@ -23,8 +37,9 @@ import Chrome from 'admin/components/chrome'
 import Panel from 'admin/views/panel'
 import Dashboard from 'admin/views/dashboard'
 import NotFound from 'admin/views/not_found'
-<% for (var app of apps) { %><% if(fs.existsSync(path.resolve(`./src/apps/${app.name}/admin/client.js`))) { %>import <%= app.title %> from '<%= app.filepath %>/admin/client'
-<% } %><% } %>
+<%= clients.map(app => {
+  return `import ${app.title} from '${app.filepath}'`
+}).join("\n") %>
 
 export default (
   <Route component={ Root }>
@@ -51,10 +66,10 @@ export default (
                               <Route component={ Transition }>
                                 <Route component={ Panel }>
                                   <IndexRoute component={ Dashboard } />
-                                  <% for (var app of apps) { %><% if(fs.existsSync(path.resolve(`./src/apps/${app.name}/admin/client.js`))) { %><Route path="<%= app.path %>">
-                                    { <%= app.title %> }
-                                  </Route>
-                                  <% } %><% } %><Route path="*" component={ NotFound }/>
+                                  <%= clients.map(app => {
+                                    return `<Route path="${app.path}">{ ${app.title} }</Route>`
+                                  }) %>
+                                  <Route path="*" component={ NotFound }/>
                                 </Route>
                               </Route>
                             </Route>

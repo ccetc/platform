@@ -5,7 +5,7 @@ const _ = require('lodash')
 
 module.exports = function compileApps() {
 
-  const configs = glob.sync('src/apps/**/app.js')
+  const configs = glob.sync('src/**/apps/**/app.js')
 
   const apps = configs.map(config => {
 
