@@ -19,7 +19,7 @@ export default (portal) => {
       handler: handler(config.title)
     }
 
-    const serverFile = path.resolve(...[...configFile.split(path.sep).slice(0, -1), portal, 'server.js'])
+    const serverFile = path.resolve(configFile.replace('/app.js',''), portal, 'server.js')
 
     if(!fs.existsSync(serverFile)) {
       return routes

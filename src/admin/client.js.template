@@ -1,11 +1,10 @@
 <%
 clients = apps.reduce((clients, app) => {
-  const clientPath = path.join(app.filepath, 'admin','client.js')
-  if(!fs.existsSync(path.resolve('src',clientPath))) return clients
+  if(!fs.existsSync(path.resolve(app.abspath, 'admin','client.js'))) return clients
   return [
     ...clients,
     {
-      filepath: clientPath,
+      filepath: path.join(app.relpath, 'admin','client'),
       title: app.title,
       path: app.path
     }
@@ -66,10 +65,8 @@ export default (
                               <Route component={ Transition }>
                                 <Route component={ Panel }>
                                   <IndexRoute component={ Dashboard } />
-                                  <%= clients.map(app => {
-                                    return `<Route path="${app.path}">{ ${app.title} }</Route>`
-                                  }) %>
-                                  <Route path="*" component={ NotFound }/>
+                                  <% for (var i in clients) { %><Route path="<%= clients[i].path %>">{ <%= clients[i].title %>}</Route>
+                                  <% } %><Route path="*" component={ NotFound }/>
                                 </Route>
                               </Route>
                             </Route>

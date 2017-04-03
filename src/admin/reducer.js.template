@@ -1,9 +1,8 @@
 <%
 reducers = {}
 for (var app of apps) {
-  const reducerPath = path.join(app.filepath, 'admin','reducer.js')
-  if(fs.existsSync(path.resolve('src',reducerPath))) {
-    reducers[app.name] = reducerPath
+  if(fs.existsSync(path.resolve(app.abspath, 'admin','reducer.js'))) {
+    reducers[app.name] = path.join(app.relpath, 'admin','reducer')
   }
 }
 %>import _ from 'lodash'

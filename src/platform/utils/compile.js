@@ -5,7 +5,9 @@ const _ = require('lodash')
 
 module.exports = function compileApps() {
 
-  const configs = glob.sync('src/**/apps/**/app.js')
+  const root = path.resolve(__dirname, '..', '..')
+
+  const configs = glob.sync(path.join(__dirname, '..', '..', '..', '**', 'apps', '**', 'app.js'))
 
   const apps = configs.map(config => {
 
@@ -13,7 +15,8 @@ module.exports = function compileApps() {
 
     return Object.assign(contents, {
       name: contents.title.toLowerCase(),
-      filepath: path.join.apply(path, config.split(path.sep).slice(0, -1).slice(1)),
+      abspath: config.replace('/app.js',''),
+      relpath: config.replace('/app.js','').replace(root, '..'),
       path: config.split(path.sep).slice(-2, -1)[0]
     })
 
