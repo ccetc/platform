@@ -10,7 +10,7 @@ import assets from 'admin/middleware/assets'
 import account from 'admin/middleware/account'
 import notifications from 'admin/middleware/notifications'
 import search from 'admin/middleware/search'
-import apps from 'admin/middleware/apps'
+import apps from 'platform/middleware/apps'
 
 const externalAuthenticationRoute = {
   method: 'use',
@@ -38,7 +38,7 @@ export const apiRoutes = [
   ...assets,
   session,
   search,
-  ...apps
+  ...apps('admin')
 ]
 
 export default buildRouter([

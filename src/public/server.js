@@ -1,3 +1,8 @@
-import cms from 'apps/cms/public/server'
+import { buildRouter } from 'platform/middleware/rest'
+import apps from 'platform/middleware/apps'
 
-export default cms
+export default buildRouter([
+  {
+    routes: apps('public')
+  }
+])

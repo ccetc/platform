@@ -64,19 +64,17 @@ const Users = (props) => {
   )
 }
 
-const mapPropsToPage = (props, context) => {
+const mapResourcesToPage = (props, context) => ({
+  role: `/admin/team/roles/${props.params.id}`,
+  access: `/admin/team/roles/${props.params.id}/access`
+})
 
-  return {
-    title: 'Role',
-    rights: ['team.manage_people'],
-    tasks: [
-      { label: 'Edit Role', modal: Edit }
-    ],
-    resources: {
-      role: `/admin/team/roles/${props.params.id}`,
-      access: `/admin/team/roles/${props.params.id}/access`
-    }
-  }
-}
+const mapPropsToPage = (props, context, resources) => ({
+  title: 'Role',
+  rights: ['team.manage_people'],
+  tasks: [
+    { label: 'Edit Role', modal: Edit }
+  ]
+})
 
-export default Page(mapPropsToPage)(Show)
+export default Page(mapResourcesToPage, mapPropsToPage)(Show)

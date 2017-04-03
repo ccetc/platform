@@ -87,7 +87,13 @@ const Roles = (props) => {
   )
 }
 
-const mapPropsToPage = (props, context) => {
+
+const mapResourcesToPage = (props, context) => ({
+  user: `/admin/team/users/${props.params.id}`,
+  access: `/admin/team/users/${props.params.id}/access`
+})
+
+const mapPropsToPage = (props, context, resources) => {
 
   const _handleResetPassword = () => {
     context.flash.set('success', 'A reset email has been sent to the user')
@@ -98,18 +104,14 @@ const mapPropsToPage = (props, context) => {
   }
 
   return {
-    title: 'User',
+    title: resources.user.full_name,
     rights: ['team.manage_people'],
     tasks: [
       { label: 'Edit User', modal: Edit },
       { label: 'Reset Password', handler: _handleResetPassword },
       { label: 'Sign Out of All Devices', handler: _handleSignOutAllDevices }
-    ],
-    resources: {
-      user: `/admin/team/users/${props.params.id}`,
-      access: `/admin/team/users/${props.params.id}/access`
-    }
+    ]
   }
 }
 
-export default Page(mapPropsToPage)(Show)
+export default Page(mapResourcesToPage, mapPropsToPage)(Show)

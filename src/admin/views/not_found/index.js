@@ -26,9 +26,10 @@ export class NotFound extends React.Component {
 
 }
 
+const mapResourcesToPage = (props, context) => ({})
 
-const mapPropsToPage = (props, context) => ({
+const mapPropsToPage = (props, context, resources) => ({
   title: '404 Not Found'
 })
 
-export default Page(mapPropsToPage)(NotFound)
+export default Page(mapResourcesToPage, mapPropsToPage)(NotFound)

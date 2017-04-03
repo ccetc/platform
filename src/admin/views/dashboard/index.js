@@ -12,8 +12,10 @@ class Dashboard extends React.Component {
 
 }
 
-const mapPropsToPage = (props, context) => ({
+const mapResourcesToPage = (props, context) => ({})
+
+const mapPropsToPage = (props, context, resources) => ({
   title: 'Dashboard'
 })
 
-export default Page(mapPropsToPage)(Dashboard)
+export default Page(mapResourcesToPage, mapPropsToPage)(Dashboard)

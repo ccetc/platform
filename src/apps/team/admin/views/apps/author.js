@@ -18,15 +18,13 @@ class Author extends React.Component {
 
 }
 
-const mapPropsToPage = (props, context) => {
+const mapResourcesToPage = (props, context) => ({
+  author: `/admin/team/apps/authors/${props.params.id}`
+})
 
-  return {
-    title: 'Author',
-    rights: ['team.manage_apps'],
-    resources: {
-      author: `/admin/team/apps/authors/${props.params.id}`
-    }
-  }
-}
+const mapPropsToPage = (props, context, resources) => ({
+  title: 'Author',
+  rights: ['team.manage_apps']
+})
 
-export default Page(mapPropsToPage)(Author)
+export default Page(mapResourcesToPage, mapPropsToPage)(Author)

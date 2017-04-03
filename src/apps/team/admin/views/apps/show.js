@@ -28,15 +28,13 @@ class Show extends React.Component {
 
 }
 
-const mapPropsToPage = (props, context) => {
+const mapResourcesToPage = (props, context) => ({
+  app: `/admin/team/apps/${props.params.id}`
+})
 
-  return {
-    title: 'App',
-    rights: ['team.manage_apps'],
-    resources: {
-      app: `/admin/team/apps/${props.params.id}`
-    }
-  }
-}
+const mapPropsToPage = (props, context, resources) => ({
+  title: 'App',
+  rights: ['team.manage_apps']
+})
 
-export default Page(mapPropsToPage)(Show)
+export default Page(mapResourcesToPage, mapPropsToPage)(Show)

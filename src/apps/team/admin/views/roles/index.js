@@ -39,7 +39,9 @@ var TitleCell = (props) => {
   )
 }
 
-const mapPropsToPage = (props, context) => ({
+const mapResourcesToPage = (props, context) => ({})
+
+const mapPropsToPage = (props, context, resources) => ({
   title: 'Roles',
   rights: ['team.manage_people'],
   task: {
@@ -49,4 +51,4 @@ const mapPropsToPage = (props, context) => ({
   }
 })
 
-export default Page(mapPropsToPage)(Index)
+export default Page(mapResourcesToPage, mapPropsToPage)(Index)

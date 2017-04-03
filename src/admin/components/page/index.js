@@ -5,7 +5,7 @@ import { getActiveTeam, getActiveUser } from '../admin/selectors'
 import Helmet from 'react-helmet'
 import _ from 'lodash'
 
-export default (pageProps) => {
+export default (pageResources, pageProps) => {
 
   return (BodyComponent) => {
 
@@ -33,19 +33,26 @@ export default (pageProps) => {
       constructor(props) {
         super(props)
         this.state = {
-          access: this._userHasRight(props.user, this.page().rights)
+          access: true
         }
       }
 
+      resources() {
+        const resources = pageResources(this.props, this.context)
+        return (!_.isEmpty(resources)) ? resources : null
+      }
+
       page() {
-        return pageProps(this.props, this.context)
+        return pageProps(this.props, this.context, this.props.data)
       }
 
       render() {
-        const { resources, task, tasks, title } = this.page()
+        const resources = this.resources()
         const { data, history, status, team } = this.props
-        const { access } = this.state
         const loaded = !resources || _.isEqual(Object.keys(data).sort(), Object.keys(resources).sort())
+        if(!loaded) return null
+        const { task, tasks, title } = this.page()
+        const { access } = this.state
         return (
           <div className="chrome-page">
             <Helmet title={`${team.title} | ${title}`} />
@@ -107,10 +114,36 @@ export default (pageProps) => {
       }
 
       componentDidMount() {
-        const { user, team } = this.props
-        const { access, resources } = this.page()
+        const resources = this.resources()
         if(resources) {
           this.context.container.fetch(resources)
+        } else {
+          this._checkAccess()
+        }
+      }
+
+      componentDidUpdate(prevProps) {
+        const { status } = this.props
+        if(prevProps.status !== status && status === 'loaded') {
+          this._checkAccess()
+        }
+      }
+
+      componentWillUnmount() {
+        const resources = this.resources()
+        if(resources) {
+          const keys = Object.keys(resources)
+          this.context.container.clear(keys)
+        }
+      }
+
+      _checkAccess() {
+        const { user, team } = this.props
+        const { access, rights } = this.page()
+        if(!this._userHasRight(user, rights)) {
+          return this.setState({
+            access: false
+          })
         }
         if(access) {
           access(user, team.token).then(result => {
@@ -123,16 +156,8 @@ export default (pageProps) => {
         }
       }
 
-      componentWillUnmount() {
-        const { resources } = this.page()
-        if(resources) {
-          const keys = Object.keys(resources)
-          this.context.container.clear(keys)
-        }
-      }
-
       _refreshResources() {
-        const { resources } = this.page()
+        const resources = this.resources()
         if(resources) {
           const props = Object.keys(resources)
           this.context.container.refresh(props)
