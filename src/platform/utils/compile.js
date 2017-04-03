@@ -7,7 +7,7 @@ module.exports = function compileApps() {
 
   const root = path.resolve(__dirname, '..', '..')
 
-  const configs = glob.sync(path.join(__dirname, '..', '..', '..', '**', 'apps', '**', 'app.js'))
+  const configs = glob.sync(path.join(__dirname, '..', '..', '**', 'apps', '**', 'app.js'))
 
   const apps = configs.map(config => {
 
