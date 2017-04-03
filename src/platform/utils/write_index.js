@@ -8,8 +8,6 @@ MyPlugin.prototype.apply = function(compiler) {
 
   compiler.plugin('done', function(stats) {
 
-    console.log('here2')
-
     var template = fs.readFileSync(path.join('.', 'src', 'admin', 'index.html'), 'utf8')
 
     var html = _.template(template)({ hash: stats.hash })

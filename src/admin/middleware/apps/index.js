@@ -6,16 +6,13 @@ const appPath = path.join(__dirname, '..', '..', '..', 'apps')
 
 const routes = fs.readdirSync(appPath).reduce((routes, appName) => {
 
-  const adminPath = path.join(appPath, appName, 'admin')
-  const configPath = path.join(appPath, appName, 'app.js')
+  const configFile = path.join(appPath, appName, 'app.js')
 
-  if(!fs.existsSync(adminPath)) {
+  if(!fs.existsSync(configFile)) {
     return routes
   }
 
-  const middlewarePath = path.join(adminPath, 'server')
-
-  const config = require(configPath)
+  const config = require(configFile)
 
   const appLoader = {
     method: 'use',
@@ -23,7 +20,13 @@ const routes = fs.readdirSync(appPath).reduce((routes, appName) => {
     handler: app(config.title)
   }
 
-  const appRoutes = require(middlewarePath).default.reduce((routes, route) => {
+  const serverFile = path.join(appPath, appName, 'admin', 'server')
+
+  if(!fs.existsSync(serverFile)) {
+    return routes
+  }
+
+  const appRoutes = require(serverFile).default.reduce((routes, route) => {
     return [
       ...routes,
       {
