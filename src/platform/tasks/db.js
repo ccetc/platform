@@ -126,7 +126,7 @@ function _loadFixtures(directory) {
           try {
             knex.raw(`SELECT pg_catalog.setval(pg_get_serial_sequence('${fixture.tableName}', 'id'), MAX(id)) FROM ${fixture.tableName}`)
           } catch(e) {}
-          
+
           return true
 
         })
