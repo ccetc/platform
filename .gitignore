@@ -11,8 +11,8 @@ src/admin/reducer.js
 src/admin/style.less
 src/admin/client.js
 dist
-apps/*
-!apps/.gitkeep
+src/apps/*
+!src/apps/.gitkeep
 assets/*
 !assets/.gitkeep
 tmp/*

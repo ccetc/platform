@@ -5,7 +5,7 @@ import handler from './handler'
 
 export default (portal) => {
 
-  const configs = glob.sync('src/**/apps/**/app.js')
+  const configs = glob.sync(path.join(__dirname, '..', '..', '..', '**', 'apps', '**', 'app.js'))
 
   return configs.reduce((routes, configFile) => {
 

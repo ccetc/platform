@@ -5,7 +5,7 @@ import path from 'path'
 
 const processor = (req, resolve, reject)  => {
 
-  const files = glob.sync(path.resolve(__dirname, '../../../**/apps/**/admin/navigation.js'))
+  const files = glob.sync(path.join(__dirname, '..', '..', '..', '**', 'apps', '**', 'admin', 'navigation.js'))
 
   const navigation = files.reduce((navigation, file) => {
     const matches = file.match(/\/([a-z_]*)\/admin\/navigation\.js/)
