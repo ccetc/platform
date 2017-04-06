@@ -1,16 +1,12 @@
 import * as actionTypes from './action_types'
 
-export function push(title, body) {
-  return {
-    type: actionTypes.PUSH,
-    title,
-    body
-  }
-}
+export const push = (title, body) => ({
+  type: actionTypes.PUSH,
+  title,
+  body
+})
 
-export function clear(index) {
-  return {
-    type: actionTypes.CLEAR,
-    index
-  }
-}
+export const clear = (index) => ({
+  type: actionTypes.CLEAR,
+  index
+})

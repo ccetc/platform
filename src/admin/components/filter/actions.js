@@ -1,89 +1,66 @@
 import * as actionTypes from './action_types'
-import api from 'admin/utils/api'
 
-export function load(key, endpoint, value, text, ids) {
-  return api.get({
-    endpoint,
-    meta: { key, value, text },
-    params: { $ids: ids },
-    request: actionTypes.LOAD_REQUEST,
-    success: actionTypes.LOAD_SUCCESS,
-    failure: actionTypes.LOAD_FAILURE
-  })
-}
+export const load = (key, endpoint, value, text, ids) => ({
+  type: 'api/REQUEST',
+  method: 'GET',
+  endpoint,
+  meta: { key, value, text },
+  params: { $ids: ids },
+  request: actionTypes.LOAD_REQUEST,
+  success: actionTypes.LOAD_SUCCESS,
+  failure: actionTypes.LOAD_FAILURE
+})
 
-export function set(key, value) {
-  return {
-    type: actionTypes.SET,
-    key,
-    value
-  }
-}
+export const set = (key, value) => ({
+  type: actionTypes.SET,
+  key,
+  value
+})
 
-export function choose(index) {
-  return {
-    type: actionTypes.CHOOSE,
-    index
-  }
-}
+export const choose = (index) => ({
+  type: actionTypes.CHOOSE,
+  index
+})
 
-export function back() {
-  return {
-    type: actionTypes.BACK
-  }
-}
+export const back = () => ({
+  type: actionTypes.BACK
+})
 
-export function restart() {
-  return {
-    type: actionTypes.RESTART
-  }
-}
+export const restart = () => ({
+  type: actionTypes.RESTART
+})
 
-export function resetAll() {
-  return {
-    type: actionTypes.RESET_ALL
-  }
-}
+export const resetAll = () => ({
+  type: actionTypes.RESET_ALL
+})
 
-export function reset(key) {
-  return {
-    type: actionTypes.RESET,
-    key
-  }
-}
+export const reset = (key) => ({
+  type: actionTypes.RESET,
+  key
+})
 
-export function update(key, value) {
-  return {
-    type: actionTypes.UPDATE,
-    key,
-    value
-  }
-}
+export const update = (key, value) => ({
+  type: actionTypes.UPDATE,
+  key,
+  value
+})
 
-export function remove(key, index) {
-  return {
-    type: actionTypes.REMOVE,
-    key,
-    index
-  }
-}
+export const remove = (key, index) => ({
+  type: actionTypes.REMOVE,
+  key,
+  index
+})
 
-export function type(query) {
-  return {
-    type: actionTypes.TYPE,
-    query
-  }
-}
+export const type = (query) => ({
+  type: actionTypes.TYPE,
+  query
+})
 
-export function lookup(q) {
-  return {
-    type: actionTypes.LOOKUP,
-    q
-  }
-}
+export const lookup = (q) => ({
+  type: actionTypes.LOOKUP,
+  q
+})
 
-export function abort() {
-  return {
-    type: actionTypes.ABORT
-  }
-}
+export const abort = () => ({
+  type: actionTypes.ABORT
+})

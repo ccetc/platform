@@ -1,14 +1,10 @@
 import * as actionTypes from './action_types'
 
-export function open(component) {
-  return {
-    type: actionTypes.OPEN,
-    component
-  }
-}
+export const open = (component) => ({
+  type: actionTypes.OPEN,
+  component
+})
 
-export function close() {
-  return {
-    type: actionTypes.CLOSE
-  }
-}
+export const close = () => ({
+  type: actionTypes.CLOSE
+})

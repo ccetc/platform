@@ -1,14 +1,10 @@
 import * as actionTypes from './action_types'
 
-export function open(tasks) {
-  return {
-    type: actionTypes.OPEN,
-    tasks
-  }
-}
+export const open = (tasks) => ({
+  type: actionTypes.OPEN,
+  tasks
+})
 
-export function close() {
-  return {
-    type: actionTypes.CLOSE
-  }
-}
+export const close = () => ({
+  type: actionTypes.CLOSE
+})

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import CreateStore from 'platform/utils/create_store'
+import CreateStore from './utils/create_store'
 import reducer from './reducer'
 
 class Root extends React.Component {
